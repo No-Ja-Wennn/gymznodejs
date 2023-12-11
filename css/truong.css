@@ -8,7 +8,7 @@
     height: 80px;
     width: 100%;
     display: block;
-    background-color: #000000;
+    background-color: black;
 }
 .header__inner{
     width: 90%;
@@ -32,7 +32,11 @@
     font-weight: 200;
 }
 .header__inner--logo h1 span{
+    background-color: goldenrod;
+    color: black;
     font-weight: 800;
+    padding: 0px 5px;
+    border-radius: 10%;
 }
 .header__inner--navigation{
     float: right;
@@ -59,7 +63,12 @@
 .header__inner--navigation a li try{
     height: 100%;
     width: 100%;
-    color: gold;
+    padding: 15px 15px;
+    background-color: goldenrod;
+}
+.header__inner--navigation a li menu{
+    padding: 15px 20px;
+    background-color: goldenrod;
 }
 @media screen and (max-width: 999px) {
     .header__inner--navigation a li home{
@@ -72,22 +81,17 @@
     }
 }
 @media screen and (max-width: 788px) {
-    .header__inner--navigation a li pro{
+    .header__inner--navigation a li sv{
         display: none;
     }
 }
-@media screen and (max-width: 684px) {
-    .header__inner--navigation a li sv{
+@media screen and (max-width: 719px) {
+    .header__inner--navigation a li pro{
         display: none;
     }
 }
 @media screen and (max-width: 616px) {
     .header__inner--navigation a li try{
-        display: none;
-    }
-}
-@media screen and (max-width: 468px) {
-    .header__inner--navigation a li log{
         display: none;
     }
 }
