@@ -18,50 +18,42 @@
     <link rel="stylesheet" href="./css/tu.css">
     <link rel="stylesheet" href="./css/van.css">
     <link rel="stylesheet" href="./css/quyen.css">
+    <style>
+        @media screen and (max-width: 768px) {
+            .header__inner__navigation li.hide-on-small-screen {
+                display: none;
+            }
+            .header__inner__navigation li.show-on-small-screen {
+                display: block;
+            }
+            .header__inner__navigation {
+                text-align: left;
+            }
+        }
+    </style>
     <title>Document</title>
 
 </head>
 
 <body>
     <div class="app">
-        <!-- LUU SY TRUONG -->
         <div class="header">
             <div class="header__inner">
-                <div class="header__inner--logo">
+                <div class="header__inner__logo">
                     <h1>GYM<span>Z</span></h1>
                 </div>
-                <!-- Thanh dieu huong -->
-                <ul class="header__inner--navigation">
-                    <a><li><home>TRANG CHU</home></li></a>
-                    <a><li><forum>DIEN DAN</forum></li></a>
-                    <a><li><pro>KHUYEN MAI</pro></li></a>
-                    <a><li><sv>DICH VU</sv></li></a>
-                    <a><li><try>TAP THU MIEN PHI</try></li></a>
-                    <a><li><log>DANG NHAP</log></li></a>
+                <ul class="header__inner__navigation">
+                    <li class="hide-on-small-screen"><a href="#">TRANG CHU</a></li>
+                    <li class="hide-on-small-screen"><a href="#">DIEN DAN</a></li>
+                    <li class="hide-on-small-screen"><a href="#">KHUYEN MAI</a></li>
+                    <li class="hide-on-small-screen"><a href="#">DICH VU</a></li>
+                    <li class="hide-on-small-screen"><a href="#">TAP THU MIEN PHI</a></li>
+                    <li class="hide-on-small-screen"><a href="#">DANG NHAP</a></li>
+                    <li class="show-on-small-screen"><a href="#">Menu</a></li>
                 </ul>
             </div>
         </div>
-        <div class="container">
-            <!-- NGO GIA QUYEN -->
-            <div class="container__home">
-                
-            </div>
-            <!-- HOANG ANH TU -->
-            <div class="container__service">
-                
-            </div>
-            <!-- LE VAN TIEN -->
-            <div class="container__shop">
-                
-            </div>
-        </div>
-
-        <!--   NGUYEN THI VAN -->
-        <div class="footer">
-
-        </div>
     </div>
-    <script src="./index.js"></script>
 </body>
 
 </html>
