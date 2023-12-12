@@ -110,7 +110,11 @@ body{
     border: none; /* Loại bỏ viền cho nút */
     cursor: pointer; /* Con trỏ chuột khi di chuyển vào nút */
 }
-
+.footer{
+    height: 700px;
+    width: 100%;
+    background-color: aqua;
+}
 
 
 
