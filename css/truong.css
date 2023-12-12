@@ -16,7 +16,7 @@
 /* Các quy tắc khác cho header, ví dụ như height, color, etc. */
 
 .header{
-    height: 80px;
+    height: 65px;
     width: 100%;
     display: block;
     background-color: black;
@@ -39,15 +39,15 @@
     display: table-cell;
     vertical-align: middle;
     font-family: 'Montserrat';
-    font-size: 40px;
+    font-size: 32px;
     font-weight: 800;
 }
 .header__inner--logo h1 span{
-    /* background-color: goldenrod; */
-    /* color: black; */
-    font-weight: 400;
-    padding: 0px 5px;
-    border-radius: 10%;
+    /* background-color: goldenrod;
+    color: black; */
+    font-weight: 100;
+    /* padding: 0px 5px;
+    border-radius: 10%; */
 }
 .header__inner--navigation{
     float: right;
@@ -102,4 +102,7 @@
         display: none;
     }
 }
-
+.header__inner--navigation li:hover{
+    opacity: 0.8;
+    cursor: pointer;
+}
