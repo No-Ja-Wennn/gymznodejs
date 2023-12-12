@@ -1,10 +1,11 @@
 body{
-    background-color: #212121;
+    background-color: #31823c;
+    color: aliceblue;
 }
 .header{
     height: 56px;
     width: 100%;
-    background-color: black;
+    background-color: rgb(198, 31, 31);
 }
 .container{
     
@@ -20,13 +21,101 @@ body{
     height: 650px;
     background-color: cornflowerblue;
 }
-.container__shop{
-    width: 100%;
-    height: 650px;
- background-color: coral;
+
+
+
+
+/* lê văn tiến */
+.feedback {
+    margin-top: 40px;
+    text-align: center;
 }
-.footer{
-    height: 340px;
-    width: 100%;
-    background-color: aquamarine;
+.container__shop {
+    background-color: rgb(201, 73, 14);
+    /* không cần cũng đc */
+    /* width: 100%;
+    height: 1100px; */
 }
+.container__images {
+    margin-top: 40px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    padding: 20px;
+}
+
+.image-item {
+    flex-basis: calc(50% - 20px); /* Chiếm 50% chiều rộng của container trừ đi khoảng cách */
+    margin-bottom: 20px;
+    text-align: center; /* Căn giữa ảnh và chữ */
+}
+
+.image-item img {
+    width: 100%; /* Chiều rộng tối đa trong container của mình */
+    border-radius: 15px;
+}
+
+.container__story {
+    margin-top: 60px;
+    text-align: center;
+}
+
+/* phần thay đổi */
+.container__change {
+    flex-wrap: wrap;
+    margin-top: 60px;
+    width: 100%;
+    background-color: blueviolet;
+    display: flex; /* Sử dụng Flexbox */
+    justify-content: space-between; /* Căn chỉnh khoảng cách ngang */
+    align-content: flex-start; /* Giữ nội dung ở phía trên của container */
+    padding: 20px; /* Thêm padding để tạo khoảng cách đều từ các cạnh */
+}
+
+.change-before,
+.change-after,
+.changer-picture,
+.change-weightcalculation {
+    margin-top: 15px; /* Đặt khoảng cách đều từ cạnh trên */
+    flex-basis: 40%; /* Chiếm 40% chiều rộng của container */
+    text-align: left; /* Căn chữ sang trái */
+}
+
+.change-after img,
+.changer-picture img {
+    max-width: 100%; /* Giới hạn kích thước tối đa của ảnh */
+    width: 100%; /* Ảnh sẽ chiếm 100% chiều rộng của phần tử cha */
+    height: auto; /* Chiều cao tự động điều chỉnh theo tỷ lệ của ảnh */
+}
+
+
+
+.bmi-form {
+    display: flex;
+    flex-direction: column;
+    width: 300px; /* Bạn có thể điều chỉnh chiều rộng theo ý muốn */
+    margin: auto;
+}
+
+.bmi-form input,
+.bmi-form select,
+.bmi-form button {
+    margin-bottom: 10px; /* Khoảng cách giữa các trường */
+    padding: 10px; /* Đệm cho các trường nhập liệu */
+    border: 1px solid #ccc; /* Viền cho các trường nhập liệu */
+}
+
+.bmi-form button {
+    background-color: blueviolet; /* Màu nền cho nút */
+    border: none; /* Loại bỏ viền cho nút */
+    cursor: pointer; /* Con trỏ chuột khi di chuyển vào nút */
+}
+
+
+
+
+
+
+
+
+
