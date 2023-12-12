@@ -1,0 +1,101 @@
+*{
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    text-decoration: none;
+}
+.header{
+    height: 65px;
+    width: 100%;
+    display: block;
+    background-color: black;
+}
+.header__inner{
+    width: 90%;
+    height: 100%;
+    display: block;
+    margin: 0 auto;
+    /* background-color: green; */
+}
+.header__inner--logo{
+    height: 100%;
+    display: table;
+    float: left;
+}
+.header__inner--logo h1{
+    color: white;
+    height: 100%;
+    display: table-cell;
+    vertical-align: middle;
+    font-family: 'Montserrat';
+    font-size: 32px;
+    font-weight: 800;
+}
+.header__inner--logo h1 span{
+    /* background-color: goldenrod;
+    color: black; */
+    font-weight: 100;
+    /* padding: 0px 5px;
+    border-radius: 10%; */
+}
+.header__inner--navigation{
+    float: right;
+    height: 100%;
+}
+.header__inner--navigation a{
+    height: 100%;
+    display: table;
+    float: left;
+    padding: 0px 20px;
+}
+.header__inner--navigation a:last-child{
+    padding-right: 0px;
+}
+.header__inner--navigation a li{
+    display: table-cell;
+    vertical-align: middle;
+    height: 100%;
+    color: white;
+    font-family: 'Montserrat';
+    font-size: 14px;
+    font-weight: 500;
+}
+.header__inner--navigation a li try{
+    height: 100%;
+    width: 100%;
+    padding: 15px 15px;
+    background-color: goldenrod;
+}
+.header__inner--navigation a li menu{
+    padding: 15px 20px;
+    background-color: goldenrod;
+}
+@media screen and (max-width: 999px) {
+    .header__inner--navigation a li home{
+        display: none;
+    }
+}
+@media screen and (max-width: 869px) {
+    .header__inner--navigation a li forum{
+        display: none;
+    }
+}
+@media screen and (max-width: 788px) {
+    .header__inner--navigation a li sv{
+        display: none;
+    }
+}
+@media screen and (max-width: 719px) {
+    .header__inner--navigation a li pro{
+        display: none;
+    }
+}
+@media screen and (max-width: 616px) {
+    .header__inner--navigation a li try{
+        display: none;
+    }
+}
+.header__inner--navigation li:hover{
+    opacity: 0.8;
+    cursor: pointer;
+}
