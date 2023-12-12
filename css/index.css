@@ -1,11 +1,10 @@
 body{
-    background-color: #31823c;
-    color: aliceblue;
+    background-color: #212121;
 }
 .header{
     height: 56px;
     width: 100%;
-    background-color: rgb(198, 31, 31);
+    background-color: black;
 }
 .container{
     
@@ -21,10 +20,11 @@ body{
     height: 650px;
     background-color: cornflowerblue;
 }
-
-
-
-
+.container__shop{
+    width: 100%;
+    height: 650px;
+ background-color: coral;
+}
 .footer{
     height: 340px;
     width: 100%;
