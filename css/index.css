@@ -26,7 +26,8 @@ body{
  background-color: coral;
 }
 .footer{
+    padding-top: 35px;
     height: 340px;
     width: 100%;
-    background-color: aquamarine;
+    background-color: #A50000;
 }
