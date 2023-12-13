@@ -4,8 +4,19 @@
     list-style: none;
     text-decoration: none;
 }
+.header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 1000; /* Số càng lớn, phần tử càng hiển thị trên đỉnh các phần tử khác */
+    background-color: #000000;
+}
+
+/* Các quy tắc khác cho header, ví dụ như height, color, etc. */
+
 .header{
-    height: 80px;
+    height: 65px;
     width: 100%;
     display: block;
     background-color: black;
@@ -29,14 +40,14 @@
     vertical-align: middle;
     font-family: 'Montserrat';
     font-size: 32px;
-    font-weight: 200;
+    font-weight: 800;
 }
 .header__inner--logo h1 span{
-    background-color: goldenrod;
-    color: black;
-    font-weight: 800;
-    padding: 0px 5px;
-    border-radius: 10%;
+    /* background-color: goldenrod;
+    color: black; */
+    font-weight: 100;
+    /* padding: 0px 5px;
+    border-radius: 10%; */
 }
 .header__inner--navigation{
     float: right;
@@ -58,16 +69,12 @@
     color: white;
     font-family: 'Montserrat';
     font-size: 14px;
-    font-weight: 600;
+    font-weight: 500;
 }
 .header__inner--navigation a li try{
     height: 100%;
     width: 100%;
     padding: 15px 15px;
-    background-color: goldenrod;
-}
-.header__inner--navigation a li menu{
-    padding: 15px 20px;
     background-color: goldenrod;
 }
 @media screen and (max-width: 999px) {
@@ -95,4 +102,7 @@
         display: none;
     }
 }
-
+.header__inner--navigation li:hover{
+    opacity: 0.8;
+    cursor: pointer;
+}
