@@ -1,14 +1,14 @@
 body{
-    background-color: #212121;
+    background-color: white;
 }
 .header{
     height: 56px;
     width: 100%;
     background-color: black;
 }
-.container{
+/* .container{
     
-}
+} */
 
 .container__home{
     width: 100%;
