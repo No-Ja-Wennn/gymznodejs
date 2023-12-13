@@ -105,7 +105,7 @@
 }
 .header__inner__navigation li:hover{
     opacity: 0.8;
-    cursor: pointer;
+    cursor: pointer;  
 }
 .header__inner__logo h1:hover{
     color: goldenrod;
