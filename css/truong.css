@@ -33,6 +33,12 @@
     display: table;
     float: left;
 }
+.header__inner--logo:hover{
+    cursor: pointer;
+}
+.header__inner--logo h1:hover{
+    color: goldenrod;
+}
 .header__inner--logo h1{
     color: white;
     height: 100%;
@@ -104,5 +110,8 @@
 }
 .header__inner--navigation li:hover{
     opacity: 0.8;
-    cursor: pointer;
+    cursor: pointer;  
+}
+.header__inner--navigation a li try:hover{
+    border: 2px white solid;
 }
