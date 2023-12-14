@@ -87,9 +87,6 @@ body{
     width: 100%; /* Ảnh sẽ chiếm 100% chiều rộng của phần tử cha */
     height: auto; /* Chiều cao tự động điều chỉnh theo tỷ lệ của ảnh */
 }
-
-
-
 .bmi-form {
     display: flex;
     flex-direction: column;
@@ -111,15 +108,8 @@ body{
     cursor: pointer; /* Con trỏ chuột khi di chuyển vào nút */
 }
 .footer{
-    height: 700px;
+    padding-top: 35px;
+    height: 340px;
     width: 100%;
-    background-color: aqua;
+    background-color: #000000;
 }
-
-
-
-
-
-
-
-
