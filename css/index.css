@@ -3,7 +3,7 @@ body{
     color: aliceblue;
 }
 .header{
-    height: 56px;
+    height: 65px;
     width: 100%;
     background-color: rgb(198, 31, 31);
 }
@@ -16,16 +16,11 @@ body{
     height: 645px;
     /* background-color: darkmagenta; */
 }
-.container__service{
-    width: 100%;
-    height: 650px;
-    background-color: cornflowerblue;
-}
 
 
 
 
-/* lê văn tiến */
+lê văn tiến
 .feedback {
     margin-top: 40px;
     text-align: center;
