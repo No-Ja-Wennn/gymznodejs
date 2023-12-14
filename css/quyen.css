@@ -1,88 +1,71 @@
-.container__home{
+.container__home {
     display: flex;
-    justify-content: center;
-    background-image: url(../img/remove_person.jpg);
+    /* align-items: center; */
+    justify-content: flex-start;
+    background-image: url(../img/back_gr_home.png);
     background-repeat: no-repeat;
     background-position: center;
-    /* background-size: cover; */
+    background-size: cover;
     position: relative;
 }
 
-.container__home__person{
-    height: 520px;
-    position: absolute;
-    left: 450px;
-    top: -5px;
-}
 
-.container__home__person:hover{
-    animation: toLeft .2s linear forwards;
-
-}
-
-@keyframes toLeft{
-    from {
-        left: 440px;
-        top: -5px;
-    }
-    to{
-        height: 510px;
-        left: 410px;
-        top: 0px;
-    }
-}
-
-.container__home__icon__list{
+.home__about {
     display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: space-around;
-    height: 520px;
-    width: 300px;
+    height: 400px;
+    width: 460px;
+    margin-left: 50%;
+    margin-top: 150px;
+    margin-right: 4px;
+}
+
+.home__about__list{
     padding: 0;
-    list-style: none;
-    margin-left: 400px;
-}
-
-
-.container__home__icon__item{
     display: flex;
     flex-direction: column;
-    align-items: flex-start;
-    width: 450px;
-    /* height: 42px; */
-    color: #000;
+    justify-content: space-between;
+}
+.home__about__list__item{
+    display: flex;
+    align-items: flex-end;
+    font-size: 2rem;
 }
 
-.container__home__icon__item__link{
+.home__about__icon__link{
+}
+.home__about__icon__link i{
     display: flex;
-    /* flex-direction: column; */
     align-items: center;
     justify-content: center;
-    /* padding: 6px 3px; */
     width: 32px;
     height: 32px;
-    font-size: 2rem;
-    color: #dcdcdc;
-    background-color: #212121;
-    border: 1px solid #212121;
+    color: #fff;
+    background-color: rgba(33, 33, 33, 0.9);
     border-radius: 4px;
 }
-.container__home__icon__item i{
+
+.home__about__icon__link i:hover{
+    background-color: rgba(14, 14, 14, 0.9);
+    
 }
 
-.container__home__icon__item:nth-child(1){
-    margin-left: 20px;
-}
-.container__home__icon__item:nth-child(2){
-    margin-left: -60px;
-}
-.container__home__icon__item:nth-child(3){
-    margin-left: -80px;
+.home__about__icon__text{
+    margin-left: 12px;
+    padding: 8px 4px;
+    font-weight: 700;
+    line-height: 2.4rem;
+    background-color: rgba(33, 33, 33, 0.2);
+    position: relative;
+    border: 1px solid #4d4d4d;
+    border-radius: 4px;
 }
 
-.container__home__icon__item__text{
-    color: var(--while-color);
-    font-size: 1.6rem;
-    margin-top: 12px;
+.home__about__icon__text::after{
+    display: block;
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    border: 8px solid;
+    border-color: transparent transparent aqua aqua;
 }
