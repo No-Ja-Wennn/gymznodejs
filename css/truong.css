@@ -92,7 +92,6 @@
 .containt a{
     left: 0;
     padding: 20px 15px;
-    /* border-bottom: 1px white solid; */
     
 }
 .dropdown .containt{
@@ -101,6 +100,7 @@
     background-color: black;
     position: absolute;
     top: 100%;
+    animation: fadeOut 0.5s ease-in-out forwards;
 }
 .dropdown:hover .containt{
     display: block;
@@ -142,6 +142,7 @@
     top: 101%;
     right: 32px;
     border: none;
+    animation: fadeOut 0.5s ease-in-out forwards;
 }
 .header__inner__menu:hover .header__inner__navigation2{
     display: block;
@@ -157,3 +158,15 @@
         display: flex;
     }
 }
+@keyframes fadeOut {
+    from {
+        top: 50%;
+        opacity: 0;
+        scale: 0.8;
+    }
+    to {
+        top: 100%;
+        opacity: 1;
+        scale: 1;
+    }
+  }
