@@ -1,30 +1,3 @@
-body{
-    background-color: #31823c;
-    color: aliceblue;
-}
-.header{
-    height: 56px;
-    width: 100%;
-    background-color: rgb(198, 31, 31);
-}
-.container{
-    
-}
-
-.container__home{
-    width: 100%;
-    height: 650px;
-    background-color: darkmagenta;
-}
-.container__service{
-    width: 100%;
-    height: 650px;
-    background-color: cornflowerblue;
-}
-
-
-
-
 /* lê văn tiến */
 .feedback {
     margin-top: 40px;
@@ -65,7 +38,7 @@ body{
     flex-wrap: wrap;
     margin-top: 60px;
     width: 100%;
-    background-color: blueviolet;
+    background-color: rgb(43, 226, 61);
     display: flex; /* Sử dụng Flexbox */
     justify-content: space-between; /* Căn chỉnh khoảng cách ngang */
     align-content: flex-start; /* Giữ nội dung ở phía trên của container */
@@ -112,10 +85,50 @@ body{
 }
 
 
+/* PHẦN SẢN PHẨM */
+.container_sanpham {
+    margin: 50px ;
+    text-align: center;
+}
+/* Định kiểu cho container chứa sản phẩm */
+.container-danhmucsanpham {
+    display: inline-block; /* Hiển thị các container cạnh nhau theo chiều ngang */
+    margin: 10px; /* Tạo khoảng cách xung quanh container */
+    border: 1px solid #ccc; /* Tạo viền xung quanh container */
+    padding: 10px; /* Tạo khoảng cách giữa viền và nội dung bên trong */
+    text-align: center; /* Căn giữa nội dung bên trong container */
+    vertical-align: top; /* Căn đỉnh các container khi hiển thị cạnh nhau */
+    width: 250px; /* Chiều rộng cố định cho container */
+    height: 350px; /* Chiều cao cố định cho container */
+    box-sizing: border-box; /* Đảm bảo padding và border không làm tăng kích thước tổng thể */
+}
 
+/* Định kiểu cho ảnh sản phẩm */
+.container-danhmucsanpham img {
+    width: 220px; /* Chiều rộng cố định cho ảnh */
+    height: 220px; /* Chiều cao cố định cho ảnh */
+    border: 1px solid #000; /* Tạo viền xung quanh ảnh */
+    display: block; /* Hiển thị ảnh dạng block để có thể áp dụng margin tự động */
+    margin: 0 auto 10px; /* Căn giữa ảnh trong container và tạo khoảng cách với chữ dưới */
+    transition: transform 0.3s ease; /* Thêm hiệu ứng chuyển đổi khi có sự kiện */
+}
 
+/* Hiệu ứng khi di chuột vào ảnh */
+.container-danhmucsanpham img:hover {
+    transform: scale(1.05); /* Phóng to ảnh khi di chuột vào */
+    cursor: pointer; /* Thay đổi con trỏ chuột thành hình dạng nút nhấn */
+    border-color: goldenrod; /* Thay đổi màu viền của ảnh */
+}
 
+/* Định kiểu cho tiêu đề và giá sản phẩm */
+.container-danhmucsanpham h2, .container-danhmucsanpham h1 {
+    margin: 5px 0; /* Tạo khoảng cách giữa tiêu đề, giá và các phần tử khác */
+}
 
-
-
-
+/* Định kiểu cho phần tử cha chứa các container sản phẩm */
+.parent-container {
+    text-align: center; /* Căn giữa nội dung bên trong phần tử cha */
+    height: 800px; /* Chiều cao cố định cho phần tử cha */
+    width: 100%; /* Chiều rộng phần tử cha chiếm toàn bộ chiều rộng của phần tử chứa nó */
+    background-color: brown; /* Màu nền cho phần tử cha */
+}

@@ -1,5 +1,5 @@
 body{
-    background-color: #31823c;
+    background-color: #e04da8;
     color: aliceblue;
 }
 .header{
@@ -110,6 +110,11 @@ body{
     border: none; /* Loại bỏ viền cho nút */
     cursor: pointer; /* Con trỏ chuột khi di chuyển vào nút */
 }
+
+
+
+
+
 .footer{
     height: 700px;
     width: 100%;
