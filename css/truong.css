@@ -88,11 +88,11 @@
     position: relative;
     display: block;
     padding: 30px 15px;
+    /* margin-right: 15px; */
 }
 .containt a{
     left: 0;
     padding: 20px 15px;
-    /* border-bottom: 1px white solid; */
     
 }
 .dropdown .containt{
@@ -101,16 +101,23 @@
     background-color: black;
     position: absolute;
     top: 100%;
+<<<<<<< HEAD
+    opacity: 0;
+
+=======
+    animation: fadeOut 0.5s ease-in-out forwards;
+>>>>>>> 61b0a5e436b0b808089a4d55afa5a103db5313ec
 }
 .dropdown:hover .containt{
     display: block;
+    animation: hienlen 0.3s ease-in-out forwards;
 }
 .containt a:hover{
     background-color: rgb(22, 22, 22);
 }
 .containt{
     margin-left: auto;
-    box-shadow: 5px 5px 5px 1px rgb(17, 17, 17);
+    /* box-shadow: 5px 5px 5px 1px rgb(17, 17, 17); */
 }
 .header__inner__menu{
     padding: 15px 15px;
@@ -142,10 +149,21 @@
     top: 101%;
     right: 32px;
     border: none;
+    animation: fadeOut 0.5s ease-in-out forwards;
 }
 .header__inner__menu:hover .header__inner__navigation2{
     display: block;
 }
+@keyframes hienlen {
+    from {
+        top: 120%;
+        opacity: 0;
+    }
+    to {
+        top: 100%;
+        opacity: 1;
+    }
+  }
 @media screen and (max-width: 850px) { 
     .header__inner__navigation{
         display: none;
@@ -156,4 +174,46 @@
     .header__inner__menu a{
         display: flex;
     }
+}
+@keyframes fadeOut {
+    from {
+        top: 50%;
+        opacity: 0;
+        scale: 0.8;
+    }
+    to {
+        top: 100%;
+        opacity: 1;
+        scale: 1;
+    }
+}
+@keyframes quayxuong{
+    50% {
+        transform: rotate(Odeg);
+    }
+    100% {
+        transform: rotate(90deg);
+        margin-left: 2px;
+    }
+}
+.bx{
+    
+    margin-left: 2px;
+    scale: 0.6;
+}
+.dropdown:hover .bx {
+    animation: quayxuong 0.4s forwards;
+    color: goldenrod;
+}
+.containt2{
+    /* display: none; */
+    position: relative;
+    right: 100%;
+    background-color: #000;
+}
+.dropdown2 li a{
+    position: absolute;
+}
+.dropdown2:hover .containt2{
+    display: block;
 }
