@@ -101,16 +101,14 @@
     background-color: black;
     position: absolute;
     top: 100%;
-<<<<<<< HEAD
     opacity: 0;
 
-=======
-    animation: fadeOut 0.5s ease-in-out forwards;
->>>>>>> 61b0a5e436b0b808089a4d55afa5a103db5313ec
+    
 }
 .dropdown:hover .containt{
     display: block;
-    animation: hienlen 0.3s ease-in-out forwards;
+    animation: fadeOut 0.5s ease-in-out forwards;
+    /* animation: hienlen 0.3s ease-in-out forwards; */
 }
 .containt a:hover{
     background-color: rgb(22, 22, 22);
@@ -216,4 +214,7 @@
 }
 .dropdown2:hover .containt2{
     display: block;
+}
+.header__inner__navigation span{
+    color: goldenrod;
 }
