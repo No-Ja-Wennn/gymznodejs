@@ -17,6 +17,7 @@
 
 }
 .footer__heading{
+    line-height: 24px;
     font-size: 1.8rem;
     text-transform: uppercase;
     padding-bottom: 20px;
@@ -41,4 +42,11 @@
 }
 .footer-list-1{
     display: flex;
+}
+
+.grid__column-4{
+    margin-left:20px;
+}
+.body{
+    font-family: 'Overpass';
 }

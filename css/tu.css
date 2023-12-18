@@ -18,12 +18,14 @@
     color: pink;
 }
 .container__service--uses{
+    /* width: ; */
     line-height: 20px;
     font-size: 15px;
     max-width:500px;
     font-weight: normal;
-    margin: 0px auto;
+    margin: 0px 3px;
     margin-bottom: 30px;
+    text-align: center;
 }
 .container__service--img{
     width: 100%;
