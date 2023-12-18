@@ -1,8 +1,12 @@
-/* .grid{
-    width: 1200px;
-    max-width: 100%;
-    margin: 0 auto;
-} */
+.footer{
+    padding-top: 35px;
+    height: 340px;
+    width: 100%;
+    background-color: #000000;
+    /* margin-left: 160px;
+    max-width: 1230px; */
+    /* text-align: center; */
+}
 *{
     color: aliceblue;
 }
@@ -10,6 +14,7 @@
     padding-left: 5px;
     padding-right: 5px;
     width: 25%;
+
 }
 .footer__heading{
     font-size: 1.8rem;

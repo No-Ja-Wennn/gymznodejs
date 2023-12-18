@@ -1,6 +1,10 @@
 body{
     background-color: #000000;
     color: aliceblue;
+    display: flex; /* Sử dụng Flexbox */
+    flex-direction: column; /* Sắp xếp các phần tử theo chiều dọc */
+    align-items: center; /* Căn giữa các phần tử theo chiều ngang */
+    justify-content: center; /* Căn giữa các phần tử theo chiều dọc */
 }
 .header{
     height: 65px;
@@ -101,15 +105,4 @@ lê văn tiến
     background-color: blueviolet; /* Màu nền cho nút */
     border: none; /* Loại bỏ viền cho nút */
     cursor: pointer; /* Con trỏ chuột khi di chuyển vào nút */
-}
-
-
-
-
-
-.footer{
-    padding-top: 35px;
-    height: 340px;
-    width: 100%;
-    background-color: #000000;
 }

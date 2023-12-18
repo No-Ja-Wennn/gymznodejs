@@ -1,15 +1,12 @@
 
 
-
-
-
 /* lê văn tiến */
 .feedback {
     margin-top: 40px;
     text-align: center;
 }
 .container__shop {
-    background-color: rgb(201, 73, 14);
+    background-color: rgb(30, 145, 165);
     /* không cần cũng đc */
     /* width: 100%;
     height: 1100px; */
@@ -43,30 +40,30 @@
     flex-wrap: wrap;
     margin-top: 60px;
     width: 100%;
-    background-color: rgb(43, 226, 61);
-    display: flex; /* Sử dụng Flexbox */
-    justify-content: space-between; /* Căn chỉnh khoảng cách ngang */
-    align-content: flex-start; /* Giữ nội dung ở phía trên của container */
-    padding: 20px; /* Thêm padding để tạo khoảng cách đều từ các cạnh */
+    background-color: rgb(30, 145, 165);
+    display: flex;
+    justify-content: space-between;
+    align-content: flex-start;
+    padding: 0 40px; /* Thêm padding 40px vào hai bên */
+    box-sizing: border-box; /* Đảm bảo padding không làm tăng kích thước tổng thể */
 }
 
 .change-before,
 .change-after,
 .changer-picture,
 .change-weightcalculation {
-    margin-top: 15px; /* Đặt khoảng cách đều từ cạnh trên */
-    flex-basis: 40%; /* Chiếm 40% chiều rộng của container */
-    text-align: left; /* Căn chữ sang trái */
+    margin-top: 15px;
+    flex-basis: calc(50% - 20px); /* Chiếm 50% chiều rộng của container trừ đi khoảng cách giữa các phần tử */
+    text-align: left;
 }
 
 .change-after img,
 .changer-picture img {
-    max-width: 100%; /* Giới hạn kích thước tối đa của ảnh */
-    width: 100%; /* Ảnh sẽ chiếm 100% chiều rộng của phần tử cha */
-    height: auto; /* Chiều cao tự động điều chỉnh theo tỷ lệ của ảnh */
+    max-width: 100%;
+    width: 100%;
+    height: auto;
+    object-fit: scale-down; /* Đảm bảo ảnh không vượt quá kích thước của phần tử cha */
 }
-
-
 
 .bmi-form {
     display: flex;
@@ -80,9 +77,8 @@
 .bmi-form button {
     margin-bottom: 10px; /* Khoảng cách giữa các trường */
     padding: 10px; /* Đệm cho các trường nhập liệu */
-    border: 1px solid #ccc; /* Viền cho các trường nhập liệu */
+    border: 1px solid #171616; /* Viền cho các trường nhập liệu */
 }
-
 .bmi-form button {
     background-color: blueviolet; /* Màu nền cho nút */
     border: none; /* Loại bỏ viền cho nút */
@@ -95,11 +91,13 @@
     margin: 50px ;
     text-align: center;
 }
+
 /* Định kiểu cho container chứa sản phẩm */
 .container-danhmucsanpham {
+    position: relative;
     display: inline-block; /* Hiển thị các container cạnh nhau theo chiều ngang */
     margin: 10px; /* Tạo khoảng cách xung quanh container */
-    border: 1px solid #ccc; /* Tạo viền xung quanh container */
+    border: 3px solid #f3f0f0; /* Tạo viền xung quanh container */
     padding: 10px; /* Tạo khoảng cách giữa viền và nội dung bên trong */
     text-align: center; /* Căn giữa nội dung bên trong container */
     vertical-align: top; /* Căn đỉnh các container khi hiển thị cạnh nhau */
@@ -107,15 +105,32 @@
     height: 350px; /* Chiều cao cố định cho container */
     box-sizing: border-box; /* Đảm bảo padding và border không làm tăng kích thước tổng thể */
 }
+.info-top-left, .info-top-right {
+    position: absolute;
+    bottom: 10px;
+    background-color: rgba(0,0,0,0.5);
+    color: white;
+    padding: 5px;
+}
+
+.info-top-left {
+    left: 10px;
+}
+
+.info-top-right {
+    right: 10px;
+}
+
 
 /* Định kiểu cho ảnh sản phẩm */
 .container-danhmucsanpham img {
-    width: 220px; /* Chiều rộng cố định cho ảnh */
-    height: 220px; /* Chiều cao cố định cho ảnh */
+    width: 100%; /* Chiều rộng của ảnh bằng 100% chiều rộng của container */
+    height: 200px; /* Chiều cao cố định của ảnh */
+    object-fit: cover; /* Đảm bảo ảnh phủ đầy khung hình mà không làm thay đổi tỷ lệ của nó */
     border: 1px solid #000; /* Tạo viền xung quanh ảnh */
-    display: block; /* Hiển thị ảnh dạng block để có thể áp dụng margin tự động */
-    margin: 0 auto 10px; /* Căn giữa ảnh trong container và tạo khoảng cách với chữ dưới */
-    transition: transform 0.3s ease; /* Thêm hiệu ứng chuyển đổi khi có sự kiện */
+    display: block; /* Hiển thị ảnh dưới dạng khối */
+    margin: 0 auto 10px; /* Tạo khoảng cách dưới ảnh */
+    transition: transform 0.3s ease; /* Tạo hiệu ứng chuyển đổi khi thay đổi kích thước ảnh */
 }
 
 /* Hiệu ứng khi di chuột vào ảnh */
@@ -125,15 +140,20 @@
     border-color: goldenrod; /* Thay đổi màu viền của ảnh */
 }
 
-/* Định kiểu cho tiêu đề và giá sản phẩm */
-.container-danhmucsanpham h2, .container-danhmucsanpham h1 {
-    margin: 5px 0; /* Tạo khoảng cách giữa tiêu đề, giá và các phần tử khác */
+.container-danhmucsanpham_tadon {
+    margin-top: 50px;
+    height: 115px;
+    width: 100%;
+    background-color: rgb(14, 14, 14);
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 /* Định kiểu cho phần tử cha chứa các container sản phẩm */
 .parent-container {
     text-align: center; /* Căn giữa nội dung bên trong phần tử cha */
-    height: 800px; /* Chiều cao cố định cho phần tử cha */
+    height: 100%; /* Chiều cao tự động điều chỉnh theo kích thước trình duyệt */
     width: 100%; /* Chiều rộng phần tử cha chiếm toàn bộ chiều rộng của phần tử chứa nó */
-    background-color: brown; /* Màu nền cho phần tử cha */
+    background-color: rgb(30, 145, 165); /* Màu nền cho phần tử cha */
 }

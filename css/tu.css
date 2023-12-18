@@ -1,12 +1,11 @@
 .container__service{
     margin-top: 50px;
-    text-align: center!important;
     background: linear-gradient(#212121d1, #212121d1),
     url("https://img4.thuthuatphanmem.vn/uploads/2021/01/07/background-phong-tap-gym_035832535.jpg");
     color: white;
     background-size: cover;
     position: relative;
-    
+    text-align: center;
 }
 .container__service--title{
     width: 100%;
@@ -27,16 +26,21 @@
     margin-bottom: 30px;
 }
 .container__service--img{
-    display: inline flex;
+    width: 100%;
+    height: 100%;
+    /* display: inline-block; */
     margin-bottom: 50px;
     flex-wrap: wrap;
+    text-align: center;
+    
  }
 
 .container__service--img .items{
-    width: 245px;
+    display: inline-block;
     background: #fff;
-    padding: 24px;
+    padding: 20px;
     border: 1px solid #efdddd;
+    margin-bottom: 50px;
     box-sizing: border-box;
 }
 .container__service--img img{
