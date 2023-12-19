@@ -27,7 +27,8 @@
 
 .image__item img {
     width: 100%; /* Chiều rộng tối đa trong container của mình */
-    border-radius: 15px;
+    border: 2px solid #b1b1b1;
+    border-radius: 4px;
 }
 
 .container__story {
