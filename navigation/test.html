@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Your Page Title</title>
+
+    <style>
+        /* Reset các giả mạo (default styles) của trình duyệt */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        /* Thiết lập một số kiểu cơ bản cho ví dụ */
+        body {
+            font-family: Arial, sans-serif;
+        }
+
+        /* Thiết lập style cho dropdown */
+        .dropdown {
+            position: relative;
+            display: inline-block;
+        }
+
+        /* Style cho liên kết chính */
+        .dropdown a {
+            text-decoration: none;
+            color: #333;
+            padding: 10px;
+            display: flex;
+            align-items: center;
+        }
+
+        /* Style cho biểu tượng mũi tên */
+        .bx.bxs-right-arrow {
+            margin-left: 5px; /* Khoảng cách giữa văn bản và biểu tượng */
+        }
+
+        /* Style cho dropdown content */
+        .containt {
+            display: none;
+            position: absolute;
+            background-color: #f9f9f9;
+            min-width: 160px;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+            z-index: 1;
+        }
+
+        /* Hiển thị dropdown content khi hover */
+        .dropdown:hover .containt {
+            display: block;
+        }
+
+        /* Style cho các mục trong dropdown content */
+        .containt a {
+            color: #333;
+            padding: 12px;
+            text-decoration: none;
+            display: block;
+        }
+
+        /* Đổi màu khi hover mục trong dropdown content */
+        .containt a:hover {
+            background-color: #ddd;
+        }
+    </style>
+</head>
+<body>
+    <div class="dropdown">
+        <a href="#">DỊCH VỤ<i class='bx bxs-right-arrow'></i></a>
+        <div class="containt">
+            <a href="#">THẺ HỘI VIÊN</a>
+            <a href="#">HUẤN LUYỆN VIÊN</a>
+            <a href="#">CỬA HÀNG WHEY</a>
+            <a href="/gymz/chatbox.html">CHAT ONLINE</a>
+        </div>
+    </div>
+</body>
+</html>
