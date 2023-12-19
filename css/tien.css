@@ -19,13 +19,13 @@
     padding: 20px;
 }
 
-.image-item {
+.image__item {
     flex-basis: calc(50% - 20px); /* Chiếm 50% chiều rộng của container trừ đi khoảng cách */
     margin-bottom: 20px;
     text-align: center; /* Căn giữa ảnh và chữ */
 }
 
-.image-item img {
+.image__item img {
     width: 100%; /* Chiều rộng tối đa trong container của mình */
     border-radius: 15px;
 }
@@ -48,52 +48,79 @@
     box-sizing: border-box; /* Đảm bảo padding không làm tăng kích thước tổng thể */
 }
 
-.change-before,
-.change-after,
-.changer-picture,
-.change-weightcalculation {
+.change__before,
+.change__after,
+.changer__picture,
+.change__weightcalculation {
     margin-top: 15px;
     flex-basis: calc(50% - 20px); /* Chiếm 50% chiều rộng của container trừ đi khoảng cách giữa các phần tử */
     text-align: left;
 }
 
-.change-after img,
-.changer-picture img {
+.change__after img,
+.changer__picture img {
     max-width: 100%;
     width: 100%;
     height: auto;
     object-fit: scale-down; /* Đảm bảo ảnh không vượt quá kích thước của phần tử cha */
 }
 
-.bmi-form {
+.bmi__form {
     display: flex;
     flex-direction: column;
     width: 300px; /* Bạn có thể điều chỉnh chiều rộng theo ý muốn */
     margin: auto;
 }
 
-.bmi-form input,
-.bmi-form select,
-.bmi-form button {
+.bmi__form input,
+.bmi__form select,
+.bmi__form button {
     margin-bottom: 10px; /* Khoảng cách giữa các trường */
     padding: 10px; /* Đệm cho các trường nhập liệu */
     border: 1px solid #171616; /* Viền cho các trường nhập liệu */
 }
-.bmi-form button {
+.bmi__form button {
     background-color: blueviolet; /* Màu nền cho nút */
     border: none; /* Loại bỏ viền cho nút */
     cursor: pointer; /* Con trỏ chuột khi di chuyển vào nút */
 }
 
+/* change__input */
+.change__input input,
+.change__input select{
+    width: 180px;
+    font-weight: 600;
+    font-size: 1.8rem;
+    padding: 8px 12px;
+    color: #000;
+    outline: none;
+    border: 1px solid #333;
+    border-radius: 4px;
+    margin-top: 4px;
+}
+
+.change__submit{
+    font-size: 1.6rem;
+    width: 180px;
+    margin-top: 4px;
+    padding: 8px 12px 4px;
+    color: #000;
+    font-weight: 700;
+    cursor: pointer;
+    border: 1px solid #333;
+    border-radius: 4px;
+    color: #fff;
+    background-color: #5e5e5e;
+}
 
 /* PHẦN SẢN PHẨM */
-.container_sanpham {
+.container__sanpham {
     margin: 50px ;
     text-align: center;
 }
 
 /* Định kiểu cho container chứa sản phẩm */
-.container-danhmucsanpham {
+.container__danhmucsanpham {
     position: relative;
     display: inline-block; /* Hiển thị các container cạnh nhau theo chiều ngang */
     margin: 10px; /* Tạo khoảng cách xung quanh container */
@@ -123,7 +150,7 @@
 
 
 /* Định kiểu cho ảnh sản phẩm */
-.container-danhmucsanpham img {
+.container__danhmucsanpham img {
     width: 100%; /* Chiều rộng của ảnh bằng 100% chiều rộng của container */
     height: 200px; /* Chiều cao cố định của ảnh */
     object-fit: cover; /* Đảm bảo ảnh phủ đầy khung hình mà không làm thay đổi tỷ lệ của nó */
@@ -134,13 +161,13 @@
 }
 
 /* Hiệu ứng khi di chuột vào ảnh */
-.container-danhmucsanpham img:hover {
+.container__danhmucsanpham img:hover {
     transform: scale(1.05); /* Phóng to ảnh khi di chuột vào */
     cursor: pointer; /* Thay đổi con trỏ chuột thành hình dạng nút nhấn */
     border-color: goldenrod; /* Thay đổi màu viền của ảnh */
 }
 
-.container-danhmucsanpham_tadon {
+.container__danhmucsanpham__tadon {
     margin-top: 50px;
     height: 115px;
     width: 100%;
@@ -151,7 +178,7 @@
 }
 
 /* Định kiểu cho phần tử cha chứa các container sản phẩm */
-.parent-container {
+.parent__container {
     text-align: center; /* Căn giữa nội dung bên trong phần tử cha */
     height: 100%; /* Chiều cao tự động điều chỉnh theo kích thước trình duyệt */
     width: 100%; /* Chiều rộng phần tử cha chiếm toàn bộ chiều rộng của phần tử chứa nó */

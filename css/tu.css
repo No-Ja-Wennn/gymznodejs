@@ -7,17 +7,17 @@
     position: relative;
     text-align: center;
 }
-.container__service--title{
+.container__service__title{
     width: 100%;
     padding-top: 30px;
     font-size: 26px;
     font-weight: 700;
     line-height: 35px;
 }
-.container__service--title:hover{
+.container__service__title:hover{
     color: pink;
 }
-.container__service--uses{
+.container__service__uses{
     /* width: ; */
     line-height: 20px;
     font-size: 15px;
@@ -27,7 +27,7 @@
     margin-bottom: 30px;
     text-align: center;
 }
-.container__service--img{
+.container__service__img{
     width: 100%;
     height: 100%;
     /* display: inline-block; */
@@ -37,7 +37,7 @@
     
  }
 
-.container__service--img .items{
+.container__service__img .items{
     display: inline-block;
     background: #fff;
     padding: 20px;
@@ -45,12 +45,12 @@
     margin-bottom: 50px;
     box-sizing: border-box;
 }
-.container__service--img img{
+.container__service__img img{
     width: 200px;
     height: 150px;
     
 }
-.container__service--img p{
+.container__service__img p{
     color: black;
     margin-top: 10px;
 }
