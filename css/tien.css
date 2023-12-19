@@ -31,19 +31,29 @@
 }
 
 .container__story {
-    margin-top: 60px;
     text-align: center;
+    background-color: rgb(30, 145, 165);
 }
+.container__story h1{
+    font-size: 2.4rem;
+    margin: 0;
+    line-height: 2.8rem;
+    padding: 22px 0 18px;
+    font-weight: 800;
+    background-color: #000;
+}
+
 
 /* phần thay đổi */
 .container__change {
-    flex-wrap: wrap;
-    margin-top: 60px;
-    width: 100%;
-    background-color: rgb(30, 145, 165);
     display: flex;
-    justify-content: space-between;
-    align-content: flex-start;
+    align-items: center;
+    flex-wrap: wrap;
+    margin-top: 22px;
+    width: 100%;
+    display: flex;
+    /* justify-content: space-between;
+    align-content: flex-start; */
     padding: 0 40px; /* Thêm padding 40px vào hai bên */
     box-sizing: border-box; /* Đảm bảo padding không làm tăng kích thước tổng thể */
 }
@@ -57,12 +67,55 @@
     text-align: left;
 }
 
-.change__after img,
-.changer__picture img {
-    max-width: 100%;
+.change__box{
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin-bottom: 18px;
+    width: 100%;
+}
+
+.change__box:last-child {
+    display: flex;
+    flex-direction: row-reverse;
+}
+
+.change__box__text{
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    flex: 2;
+    margin-top: 20px;
+    min-width: 300px;
+}
+
+.change__box__text h2{
+    font-size: 2rem;
+    line-height: 24px;
+}
+.change__box__text p{
+    font-size: 1.6rem;
+    line-height: 24px;
+    margin-left: 4px;
+}
+
+.change__box__img{
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    flex: 3;
+}
+
+.change__box__img img{
+    
+    min-width: 300px;
+    max-width: 680px;
     width: 100%;
     height: auto;
     object-fit: scale-down; /* Đảm bảo ảnh không vượt quá kích thước của phần tử cha */
+    border: 2px solid #000;
+    border-radius: 8px;
+    box-shadow: 10px 10px 5px #21212117;
 }
 
 .bmi__form {
