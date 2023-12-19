@@ -2,20 +2,20 @@
     font-family: 'Overpass';
 }
 .footer{
-
+    display: flex;
+    justify-content: center;
     padding-top: 35px;
-    /* height: 340px; */
     width: 100%;
     background-color: #000000;
-    /* margin-left: 160px;
-    max-width: 1230px; */
-    /* text-align: center; */
 }
 
-
+.footer__grid{
+    max-width: 1400px;
+    width: 100%;
+}
 .grid__row{
     display: flex;
-    /* flex-direction: column; */
+    padding: 0 20px 12px;
 }
 
 *{
@@ -23,10 +23,7 @@
 }
 .grid__column-4{
     flex: 1;
-    padding-left: 5px;
-    padding-right: 5px;
-    /* width: 25%; */
-    margin: 0 20px;
+    min-width: 132px;
 }
 .footer__heading{
     line-height: 24px;
@@ -38,12 +35,16 @@
     padding-left: 0px;
     list-style: none;
 }
+
+.footer-item{
+}
 .footer-item__link{
     text-decoration: none;
     font-size: 1.2rem;
     color: #aa9696;
     padding: 5px 0;
     display: block;
+    max-width: max-content;
 }
 .footer-item__link:hover{
     color: white;
@@ -60,5 +61,5 @@
 .grid__column-4:last-child ul{
     display: flex;
     justify-content: center;
-    width: 126px;
+    width: 120px;
 }
