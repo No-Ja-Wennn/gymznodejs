@@ -59,11 +59,8 @@
     box-sizing: border-box; /* Đảm bảo padding không làm tăng kích thước tổng thể */
 }
 
-.change__before,
-.change__after,
-.changer__picture,
 .change__weightcalculation {
-    margin-top: 15px;
+    margin: 12px 42px;
     flex-basis: calc(50% - 20px); /* Chiếm 50% chiều rộng của container trừ đi khoảng cách giữa các phần tử */
     text-align: left;
 }
