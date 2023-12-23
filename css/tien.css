@@ -6,7 +6,7 @@
     text-align: center;
 }
 .container__shop {
-    background-color: rgb(30, 145, 165);
+    background-color: rgb(13, 13, 13);
     /* không cần cũng đc */
     /* width: 100%;
     height: 1100px; */
@@ -33,7 +33,7 @@
 
 .container__story {
     text-align: center;
-    background-color: rgb(30, 145, 165);
+    background-color: rgb(14, 14, 14);
 }
 .container__story h1{
     font-size: 2.4rem;
@@ -233,5 +233,5 @@
     text-align: center; /* Căn giữa nội dung bên trong phần tử cha */
     height: 100%; /* Chiều cao tự động điều chỉnh theo kích thước trình duyệt */
     width: 100%; /* Chiều rộng phần tử cha chiếm toàn bộ chiều rộng của phần tử chứa nó */
-    background-color: rgb(30, 145, 165); /* Màu nền cho phần tử cha */
+    background-color: rgb(20, 20, 20); /* Màu nền cho phần tử cha */
 }
