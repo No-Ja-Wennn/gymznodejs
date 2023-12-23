@@ -19,12 +19,11 @@
     color: pink;
 }
 .container__service--uses{
-    width: ;
     line-height: 20px;
     font-size: 15px;
     max-width:500px;
     font-weight: normal;
-    margin: 0px 3px;
+    margin: 0px auto;
     margin-bottom: 30px;
     text-align: center;
 }
