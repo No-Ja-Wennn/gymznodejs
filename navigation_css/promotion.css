@@ -1,54 +1,204 @@
 html{
     background-color: blue;
 }
-body{
-    background-color: green; 
-}
-.container{
-    width: 100%;
-    height: 680px;
-    background-color: darkgoldenrod;
-    margin-top: 68px;
-}
-.app{
+/* body,
+.header{
+    background-color: green;
+    max-width: 1000px;
+    min-width: 280px;
+    margin: 0 auto;
+    justify-content: space-between;
+    align-items: center;
+} */
+
+
+/* .app{
     max-width: 1000px;
     margin: 0 auto;
 }
 .header{
     max-width: 1000px;
     margin: 0 auto;
-}
-.footer{
-    width: 100%;
-    height: 734px;
-    background-color: black;
-}
-.container__inner{
-    display: flex;
-}
-.container__inner__ntf{
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin: auto auto;
-    color: white;
-    cursor: pointer;
-    margin-top: 340px;
-}
-.container__inner__ntf h1{
-    font-family: montserrat;
-}
-.container__inner__ntf i{
-    color: white;
-    scale: 1.15;
-    margin-left: 10px;
-}
-.container__inner__ntf i:hover{
-    color: goldenrod;
+} */
+
+/* ================================================================================================== ĐÂY LÀ PHẦN ĐẦU */
+
+.header__inner{
+    max-width: 1000px;
 }
 
-/* menu */
+/* ================================================================================================== ĐÂY LÀ PHẦN THÂN */
+
+.container{
+    width: 100%;
+    height: 860px;
+    background-color: darkgoldenrod;
+    margin-top: 68px;
+
+    /* display: flex;
+    justify-content: space-between;
+    align-items: stretch; */
+}
+
+.container__select{
+    max-width: 1000px;
+    height: 100%;
+    display: flex;
+    margin: 0 auto;
+    background-color: antiquewhite;
+}
+
+.container__colum1 {
+    width: 50%;
+    margin: 0 auto;
+    background-color: rgb(0, 85, 119);
+}
+
+.container__colum2 {
+    width: 50%;
+    margin: 0 auto;
+    background-color: rgb(52, 0, 119);
+}
+
+/* ================================================================================================== ĐÂY LÀ PHẦN THÂN 1 */
+
+.container__colum1__inner,
+.container__colum1__inner2{
+    display: flex;
+}
+
+.container__colum1__inner{
+    background-color: rgb(0, 42, 119);
+    height: 50%;
+}
+
+.container__colum1__inner2{
+    height: 50%;
+    background-color: rgb(146, 146, 146);
+}
+
+.container__colum2__inner{
+    background-color: rgb(36, 0, 119);
+    height: 50%;
+}
+
+.container__colum2__inner2{
+    height: 50%;
+    /* background-color: rgb(146, 146, 146); */
+}
+/* ================================================================================================== ĐÂY LÀ PHẦN FOOTER */
+
+.footer{
+    width: 100%;
+    height: 400px;
+    background-color: black;
+    display: flex;
+    justify-content: space-between;
+}
+
+.footer__select{
+    max-width: 1000px;
+    height: 100%;
+    display: flex;
+    margin: 0 auto;
+}
+
+.footer__colum1{
+    display: block;
+    padding: 0 10px;
+    width: 60%;
+    margin: 0 auto;
+    background-color: rgb(0, 0, 0);
+    text-align: left;
+}
+
+.footer__colum1 a h2{
+    display: flex;
+    margin: revert;
+    color: white;
+}
+
+.footer__colum1 a{
+    position: relative;
+    color: white;
+    display: inline-flex;
+    margin-top: 10px;
+}
+
+.footer__colum1 i{
+    line-height: 14px;
+    margin-right: 10px;
+}
+
+.footer__colum2{
+    width: 40%;
+    margin: 0 auto;
+    background-color: rgb(20, 20, 20);
+}
+
+/* .footer__colum1,
+.footer__colum2{
+    
+    text-align: center;
+    color: white;
+} */
+
+
+
+
+.service__customer__list a{
+    display: inline-flex;
+    margin-right: 120px;
+    margin-top: 10px;
+    color: white;
+}
+
+/* .service__customer__list i{
+    margin-right: 10px;
+    line-height: 14px;
+} */
+
+.footer__last{
+    display: flex;
+    width: 100%;
+    height: 100px;
+    background-color: rgb(0, 0, 0);
+    border-top: 1px white solid;
+}
+
+/* ================================================================================================== ĐÂY LÀ PHẦN MENU */
 .header__inner__menu i{
     scale: 2;
     color: white;
 }
+
+/* ================================================================================================== ĐÂY LÀ PHẦN MEDIA */
+
+@media (max-width: 1000px) {
+    .container {
+        flex-direction: column;
+        align-items: center;
+        height: 1720px;
+    }
+
+    .container__colum1,
+    .container__colum2 {
+        
+        width: 100%;
+        height: 860px;
+    }
+
+    .footer{
+        flex-direction: column;
+        align-items: center;
+        height: 800px;
+    }
+    .footer__colum1,
+    .footer__colum2{
+    
+        width: 100%;
+        height: 400px;
+    }
+}
+
+/* ================================================================================================== ĐÂY LÀ PHẦN ... */
