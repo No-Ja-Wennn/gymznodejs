@@ -38,3 +38,39 @@ body{
 .container__inner__ntf i:hover{
     color: goldenrod;
 }
+
+
+.header__inner__menu i{
+    scale: 2;
+    color: white;
+}
+.menuroi a{
+    padding: 23.96px 30px;
+    display: block;
+}
+.noidung{
+    display: none;
+    position: absolute;
+    top: 100%;
+    right: 0;
+    margin-right: 60px;
+}
+.noidung a{
+    text-align: center;
+    padding: 0;
+    display: block;
+    min-width: 100px;
+    width: 100%;
+    /* padding: 8px; */
+    padding: 25px 30px;
+    background-color: black;
+    color: white;
+    font-size: 14px;
+    font-weight: 600;
+}
+.menuroi:hover .noidung{
+    display: block;
+}
+.noidung a:hover{
+    background-color: gray;
+}
