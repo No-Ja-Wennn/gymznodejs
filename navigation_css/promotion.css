@@ -167,6 +167,17 @@ html{
     border-top: 1px white solid;
 }
 
+.footer__last__select{
+    width: 100%;
+    max-width: 1000px;
+    
+    background-color: rgb(0, 0, 0);/* display: flex; */
+    margin: 0 auto;
+    text-align: left;
+    margin-top: 10px;
+}
+
+.footer__last__select
 /* ================================================================================================== ĐÂY LÀ PHẦN MENU */
 .header__inner__menu i{
     scale: 2;
