@@ -331,47 +331,107 @@ html{
 } */
 
 /* .menuroi{
-    position: relative;;
+    position: relative;
 } */
 .menuroi a{
+    position: relative;
     padding: 23.96px 30px;
     display: block;
+    /* background-color: rgba(0, 128, 0, 0.158); */
 }
 .noidung{
     display: none;
     position: absolute;
-    top: 100%;
+    top: 0;
+    right: 200px;
+    min-width: 300px;
+    width: 100%;
+    /* background-color: goldenrod */
+    /* top: 165px; */
+    /* top: 100%;
     right: 0;
-    margin-right: 60px;
+    margin-right: 60px; */
+    /* box-shadow: 10px 10px 0px 1000px rgba(0, 0, 0, 0.400); */
 }
 .noidung a{
-    text-align: center;
-    padding: 0;
-    display: block;
-    min-width: 100px;
-    width: 100%;
+    /* text-align: center; */
+    /* display: block; */
+    
     /* padding: 8px; */
-    padding: 25px 30px;
+    padding: 26px 25px;
+
+
+
+
+    /* animation: side_right 2s ease-in-out forwards; */
+    
     background-color: black;
     color: white;
-    font-size: 14px;
+    font-size: 16px;
     font-weight: 600;
 }
-.menuroi:hover .noidung{
+/* .menuroi:hover .noidung{
     display: block;
-}
+} */
+
+
+
+
+
 .menuroi:active .noidung{
+    animation: all 5s ease-in-out;
     display: block;
+    animation: side_right 5s ease-in-out forwards;
 }
 .noidung a:hover{
-    background-color: gray;
-}
-.menuroi a:hover .menuroi i{
-    color: aqua;
+    background-color: #222;
 }
 
 
 
+
+
+/* .header{
+    background-color: goldenrod;
+} */
+
+.logo{
+    width: 100%;
+    height: 67.8px;
+}
+.logo img{
+    height: 100%;
+    width: 100%;
+    padding: 0;
+}
+/* .logo a{
+    padding: 14px 10px;
+    font-size: 32px;
+    font-family: montserrat;
+    font-weight: 900;
+    background-color: rgba(0, 0, 0, 0.400);
+    cursor: pointer;
+}
+.logo a:hover{
+    background-color: rgba(0, 0, 0, 0.400);
+}
+.logo span{
+    font-weight: 100;
+    margin-left: 5px;
+} */
+/* ================================================================================================== ĐÂY LÀ PHẦN ANIMATION */
+@keyframes side_right{
+    0%{
+        right: 700px;
+    }
+    30%{
+        right: 200px;
+    }
+    100%{
+        right: 200px;
+        box-shadow: 10px 10px 1000px 1000px rgba(0, 0, 0, 0.400);
+    }
+}
 /* ================================================================================================== ĐÂY LÀ PHẦN MEDIA */
 
 @media (max-width: 1000px) {
