@@ -1,3 +1,4 @@
 {
-    "simpleBrowser.focusLockIndicator.enabled": true
+    "simpleBrowser.focusLockIndicator.enabled": true,
+    "liveServer.settings.port": 5501
 }

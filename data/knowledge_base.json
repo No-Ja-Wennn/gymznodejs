@@ -1,0 +1,168 @@
+{
+  "questions": [
+    {
+      "question": "what is the capital of France",
+      "answers": [
+        "Paris",
+        "London",
+        "Berlin",
+        "Rome"
+      ],
+      "correctAnswer": 0
+    },
+    {
+      "question": "what is the capital of Germany",
+      "answers": [
+        "Paris",
+        "London",
+        "Berlin",
+        "Rome"
+      ],
+      "correctAnswer": 2
+    },
+    {
+      "question": "hello",
+      "answer": "hey there"
+    },
+    {
+      "question": "phòng gym mở cửa từ mấy giờ?",
+      "answer": "phòng gym mở cửa từ 6 giờ sáng."
+    },
+    {
+      "question": "tôi nên tập luyện bao lâu mỗi ngày?",
+      "answer": "bạn nên tập luyện ít nhất 30 phút mỗi ngày."
+    },
+    {
+      "question": "tôi có thể mang giày thể thao vào phòng gym không?",
+      "answer": "có, bạn nên mang giày thể thao khi tập luyện ở phòng gym."
+    },
+    {
+      "question": "tôi có thể sử dụng máy tập sau khi phòng gym đóng cửa không?",
+      "answer": "không, bạn chỉ có thể sử dụng máy tập trong giờ mở cửa của phòng gym."
+    },
+    {
+      "question": "tôi có thể mang thức ăn vào phòng gym không?",
+      "answer": "không, hầu hết các phòng gym không cho phép mang thức ăn vào."
+    },
+    {
+      "question": "tôi có thể sử dụng khăn của phòng gym không?",
+      "answer": "có, hầu hết các phòng gym cung cấp khăn cho khách hàng."
+    },
+    {
+      "question": "tôi có thể tập luyện cùng bạn bè tại phòng gym không?",
+      "answer": "có, bạn có thể tập luyện cùng bạn bè tại phòng gym."
+    },
+    {
+      "question": "phòng gym có dịch vụ huấn luyện cá nhân không?",
+      "answer": "có, hầu hết các phòng gym đều cung cấp dịch vụ huấn luyện cá nhân."
+    },
+    {
+      "question": "tôi có thể thay đổi lịch tập luyện của mình không?",
+      "answer": "có, bạn có thể thay đổi lịch tập luyện của mình tại phòng gym."
+    },
+    {
+      "question": "phòng gym có dịch vụ giữ đồ không?",
+      "answer": "có, hầu hết các phòng gym đều cung cấp dịch vụ giữ đồ cho khách hàng."
+    },
+    {
+      "question": "tôi có thể hủy gói tập của mình không?",
+      "answer": "có, bạn có thể hủy gói tập của mình tại phòng gym."
+    },
+    {
+      "question": "tôi có thể đăng ký gói tập online không?",
+      "answer": "có, hầu hết các phòng gym đều cho phép đăng ký gói tập online."
+    },
+    {
+      "question": "tôi có thể thanh toán phí tập luyện bằng thẻ tín dụng không?",
+      "answer": "có, hầu hết các phòng gym đều chấp nhận thanh toán bằng thẻ tín dụng."
+    },
+    {
+      "question": "tôi có thể tập luyện vào cuối tuần không?",
+      "answer": "có, hầu hết các phòng gym đều mở cửa vào cuối tuần."
+    },
+    {
+      "question": "tôi có thể tập luyện ở phòng gym mà không cần đăng ký không?",
+      "answer": "không, bạn cần đăng ký trước khi tập luyện ở phòng gym."
+    },
+    {
+      "question": "tôi có thể tập luyện ở phòng gym mà không cần giày thể thao không?",
+      "answer": "không, bạn cần mang giày thể thao khi tập luyện ở phòng gym."
+    },
+    {
+      "question": "tôi có thể tập luyện ở phòng gym mà không cần đồ tập không?",
+      "answer": "không, bạn cần mặc đồ tập khi tập luyện ở phòng gym."
+    },
+    {
+      "question": "tôi có thể tập luyện ở phòng gym mà không cần nước không?",
+      "answer": "không, bạn cần mang theo nước khi tập luyện ở phòng gym."
+    },
+    {
+      "question": "tôi có thể tập luyện ở phòng gym mà không cần khăn không?",
+      "answer": "không, bạn cần mang theo khăn khi tập luyện ở phòng gym."
+    },
+    {
+      "question": "tôi có thể tập luyện ở phòng gym mà không cần tai nghe không?",
+      "answer": "có, bạn không cần mang theo tai nghe khi tập luyện ở phòng gym."
+    },
+    {
+      "question": "tôi có thể tập luyện ở phòng gym mà không cần găng tay không?",
+      "answer": "có, bạn không cần mang theo găng tay khi tập luyện ở phòng gym."
+    },
+    {
+      "question": "tôi có thể tập luyện ở phòng gym mà không cần mũ không?",
+      "answer": "có, bạn không cần mang theo mũ khi tập luyện ở phòng gym."
+    },
+    {
+      "question": "tôi có thể tập luyện ở phòng gym mà không cần tất không?",
+      "answer": "có, bạn không cần mang theo tất khi tập luyện ở phòng gym."
+    },
+    {
+      "question": "tôi có thể tập luyện ở phòng gym mà không cần băng đô không?",
+      "answer": "có, bạn không cần mang theo băng đô khi tập luyện ở phòng gym."
+    },
+    {
+      "question": "chào bạn",
+      "answer": "chào bạn nhé"
+    },
+    {
+      "question": "tôi có thể ăn ở đó không",
+      "answer": "không, phòng gym không bán đồ ăn, nhưng nếu bạn cần thì tôi có thể bảo người đi mua giúp bạn"
+    },
+    {
+      "question": "xin chào",
+      "answer": "chào bạn"
+    },
+    {
+      "question": "chào shop",
+      "answer": "chào bạn"
+    },
+    {
+      "question": "phòng gym có bán đồ ăn không",
+      "answer": "không ạ"
+    },
+    {
+      "question": "xin chàoo",
+      "answer": "chào bạn"
+    },
+    {
+      "question": "xin chàoooo",
+      "answer": "chào bạn"
+    },
+    {
+      "question": "bạn có khỏe lắm không",
+      "answer": "có, tôi khỏe"
+    },
+    {
+      "question": "chào bạn nhiều nhé",
+      "answer": "chào bạn"
+    },
+    {
+      "question": "chào bạn nhé!!",
+      "answer": "chào bạn"
+    },
+    {
+      "question": "how are you",
+      "answer": "i'm good"
+    }
+  ]
+}

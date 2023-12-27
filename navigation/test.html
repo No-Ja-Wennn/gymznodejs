@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <title>Your Page Title</title>
+
+    <style>
+        .header__inner__menu {
+            display: flex;
+            padding: 16px;
+            background-color: gray;
+        }
+
+        .menuroi {
+            position: relative;
+        }
+
+        .menuroi a {
+            padding: 16px;
+            background-color: gold;
+
+        }
+
+        .noidung {
+            display: none;
+            position: absolute;
+            top: 100%;
+            background-color: green;
+
+        }
+
+        .menuroi:hover .noidung {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .noidung a {
+            padding: 16px;
+            text-decoration: none;
+            color: white;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="header__inner__menu">
+        <div class="menuroi">
+            <a href="#"><i class='bx bx-menu'></i></a>
+            <div class="noidung">
+                <a href="#">TRANG CHỦ</a>
+                <a href="#">DIỄN ĐÀN</a>
+                <a href="#">DỊCH VỤ</a>
+                <a href="#">KHUYẾN MÃI</a>
+                <a href="#">TẬP THỬ MIỄN PHÍ</a>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>

@@ -1,0 +1,485 @@
+html{
+    background-color: blue;
+}
+/* body,
+.header{
+    background-color: green;
+    max-width: 1000px;
+    min-width: 280px;
+    margin: 0 auto;
+    justify-content: space-between;
+    align-items: center;
+} */
+
+
+/* .app{
+    max-width: 1000px;
+    margin: 0 auto;
+}
+.header{
+    max-width: 1000px;
+    margin: 0 auto;
+} */
+
+/* ================================================================================================== ĐÂY LÀ PHẦN ĐẦU */
+
+.header__inner{
+    max-width: 1000px;
+}
+
+/* ================================================================================================== ĐÂY LÀ PHẦN THÂN */
+
+.container{
+    width: 100%;
+    height: 860px;
+    background-color: darkgoldenrod;
+    margin-top: 68px;
+
+    /* display: flex;
+    justify-content: space-between;
+    align-items: stretch; */
+}
+
+.container__select{
+    max-width: 1000px;
+    height: 100%;
+    display: flex;
+    margin: 0 auto;
+    background-color: rgb(255, 145, 0);
+}
+
+.container__colum1 {
+    width: 50%;
+    margin: 0 auto;
+    background-color: rgb(0, 85, 119);
+}
+
+.container__colum2 {
+    width: 50%;
+    margin: 0 auto;
+    background-color: rgb(52, 0, 119);
+}
+
+/* ================================================================================================== ĐÂY LÀ PHẦN THÂN 1 */
+
+.container__colum1__inner,
+.container__colum1__inner2{
+    display: flex;
+}
+
+.container__colum1__inner{
+    background-color: rgb(0, 42, 119);
+    height: 50%;
+}
+
+.container__colum1__inner2{
+    height: 50%;
+    background-color: rgb(146, 146, 146);
+}
+
+.container__colum2__inner{
+    background-color: rgb(112, 112, 112);
+    height: 50%;
+}
+
+.container__colum2__inner2{
+    height: 50%;
+    /* background-color: rgb(146, 146, 146); */
+}
+/* ================================================================================================== ĐÂY LÀ PHẦN FOOTER */
+
+.footer{
+    width: 100%;
+    height: 410px;
+    background-color: #222;
+    display: flex;
+    justify-content: space-between;
+    /* font-size: 14px; */
+}
+
+.footer i{
+    scale: 1.3;
+}
+
+.footer__select{
+    max-width: 1000px;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    margin: 0 auto;
+}
+
+.footer__colum1{
+    display: block;
+    /* padding: 0 10px; */
+    max-width: 60%;
+    width: 100%;
+    /* background-color: gray; */
+    text-align: left;
+    font-size: 14px;
+}
+
+.footer__colum1 a{
+    margin-left: 10px;
+}
+
+.footer__colum1 a h3{
+    display: flex;
+    margin: revert;
+    color: white;
+    margin-right: 10px;
+    font-size: 23px;
+}
+
+.about__website a{
+    margin-bottom: 20px;
+}
+
+.footer__colum1 a{
+    position: relative;
+    color: white;
+    display: inline-flex;
+    margin-top: 15px;
+}
+
+.footer__colum1 i{
+    line-height: 12px;
+    margin-right: 10px;
+}
+
+.footer__colum2{
+    max-width: 40%;
+    width: 100%;
+    margin: 0 auto;
+    /* background-color: gray; */
+}
+.footer__colum2__inner{
+    position: relative;
+    width: 90%;
+    margin-top: 87px;
+    height: auto;
+}
+.group{
+    width: 100%;
+    height: 98%;
+    position: absolute;
+    background-color: #00000080;
+}
+.name__page{
+    position: absolute;
+    margin-left: 25%;
+    margin-top: 15px;
+}
+.name__page a{
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 24px;
+    color: white;
+    position: relative;
+    margin: 0;
+    
+}
+
+.name__page h4{
+    color: white;
+    font-size: 10px;
+    margin-left: 1px;
+}
+.name__page a m{
+    display: inline-flex;
+    position: relative;
+}
+.name__page i{
+    scale: 0.8;
+    color: #1E90FF;
+    position: absolute;
+    top: -21px;
+}
+.avatar__img img{
+    width: 20%;
+    height: 34.64%;
+    margin: 10px;
+    border: 1px white solid;
+    position: absolute;
+    position: relative;
+}
+.cover__img img{
+    width: 100%;
+    height: 100%;
+}
+
+.folow__page{
+    position: absolute;
+    bottom: 8px;
+    
+    
+    margin-left: 10px;
+    
+}
+.folow__page a{
+    background-color: #ffffffbb;
+    border-radius: 2px;
+
+
+    /* margin-left: 22px; */
+    margin-right: 10px;
+    font-size: 12px;
+    font-family: Arial, Helvetica, sans-serif;
+    color: #000000;
+    padding: 4px;
+}
+
+.folow__page i{
+    /* scale: 2; */
+    margin-right: 5px;
+    position: relative;
+    vertical-align: middle;
+    /* color: #1E90FF; */
+}
+.folow__page a:hover{
+    background-color: white;
+}
+
+.share__page{
+    position: absolute;
+    bottom: 8px;
+    right: 10px;
+}
+.share__page a{
+    padding: 4px;
+    color: black;
+    background-color: #ffffffbb;
+    font-size: 12px;
+    font-family: Arial, Helvetica, sans-serif;
+    border-radius: 2px;
+}
+.share__page i{
+    margin-right: 5px;
+    position: relative;
+    vertical-align: middle;
+}
+.share__page a:hover{
+    background-color: white;
+}
+
+.service__customer__list a{
+    /* display: inline-flex;
+    
+    margin-top: 10px;
+    color: white; */
+
+    margin-right: 120px;
+}
+
+/* .service__customer__list i{
+    margin-right: 10px;
+    line-height: 14px;
+} */
+
+.footer__last{
+    display: flex;
+    width: 100%;
+    height: 100px;
+    background-color: #222;
+    
+}
+
+.footer__last__select{
+    width: 100%;
+    max-width: 1000px;
+    
+    /* background-color: rgb(0, 0, 0); */
+    margin: 0 auto;
+    text-align: left;
+    /* margin-top: 10px; */
+
+    border-top: 1px white solid;
+}
+
+.footer__last__select a{
+    display: flex;
+    color: white;
+    margin-left: 10px;
+    font-size: 14px;
+    margin-top: 45px;
+}
+
+/* .footer__last__select i{
+    margin-right: 10px;
+    line-height: 1px;
+} */
+
+
+.footer__colum1 a:hover{
+    color: goldenrod;
+}
+.footer__colum2 a:hover{
+    opacity: 0.8;
+}
+
+/* ================================================================================================== ĐÂY LÀ PHẦN MENU */
+
+
+.header__inner__menu{
+    position: relative;
+}
+.header__inner__menu i{
+    scale: 2;
+    color: white;
+}
+/* .header__inner__menu i:hover{
+    color: #1E90FF;
+} */
+
+/* .menuroi{
+    position: relative;;
+} */
+.menuroi a{
+    padding: 23.96px 30px;
+    display: block;
+}
+.noidung{
+    display: none;
+    position: absolute;
+    top: 100%;
+    right: 0;
+    margin-right: 60px;
+}
+.noidung a{
+    text-align: center;
+    padding: 0;
+    display: block;
+    min-width: 100px;
+    width: 100%;
+    /* padding: 8px; */
+    padding: 25px 30px;
+    background-color: black;
+    color: white;
+    font-size: 14px;
+    font-weight: 600;
+}
+/* .menuroi:hover .noidung{
+    display: block;
+} */
+/* .menuroi:focus-within .noidung{
+    display: block;
+} */
+
+@keyframes aaa{
+    from{
+        display: none;
+    }
+    to{
+        display: block;
+    }
+}
+
+.noidung a:hover{
+    background-color: gray;
+}
+.menuroi a:hover .menuroi i{
+    color: aqua;
+}
+
+
+
+/* ================================================================================================== ĐÂY LÀ PHẦN MEDIA */
+
+@media (max-width: 1000px) {
+    .header__inner__navigation{
+        display: none;
+    }
+    .header__inner__try{
+        display: none;
+    }
+    .header__inner__menu{
+        display: flex;
+    }
+    .header__inner{
+        width: 100%;
+        max-width: 500px;
+    }
+    .container,
+    .container__select {
+        flex-direction: column;
+        align-items: center;
+        height: 1720px;
+    }
+
+    .container__colum1,
+    .container__colum2 {
+        
+        width: 100%;
+        height: 860px;
+    }
+
+    .footer,
+    .footer__select{
+        flex-direction: column;
+        align-items: center;
+        height: 800px;
+    }
+    .footer__colum1,
+    .footer__colum2{
+        max-width: 500px;
+        width: 100%;
+        height: 400px;
+    }
+    .footer__colum1 h3{
+        text-align: center;
+    }
+    .service__customer__list a{
+        margin-right: 50px;
+    }
+    .footer__last__select{
+        max-width: 500px;
+        width: 100%;
+    }
+    .footer__colum1__inner{
+        display: flex;
+        width: 100%;
+    }
+    .footer__colum1__inner a{
+        display: flex;
+        margin: 0 auto;
+    }
+
+    .about__us{
+        width: 100%;
+    }
+
+    .about__us__inner{
+        width: 90%;
+        margin: 0 auto;
+    }
+    .service__customer__list{
+        width: 100%;
+        display: flex;
+        height: 100%;
+    }
+    .service__customer__list__inner {
+        width: 90%;
+        margin-left: auto;
+    }
+    
+    /* .footer__colum2__inner{
+        position: relative;
+        width: 100%;
+        height: 100%;
+        margin: 0 auto;
+    } */
+    .footer__colum2__inner{
+        margin: 0 auto;
+        margin-top: 60px;
+        
+    }
+    
+    .footer__last__select{
+        display: flex;
+    }
+    .footer__last__select__inner{
+        
+        margin: 0 auto;
+    }
+}
+
+/* ================================================================================================== ĐÂY LÀ PHẦN ... */
