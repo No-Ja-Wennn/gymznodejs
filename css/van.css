@@ -1,0 +1,65 @@
+.body{
+    font-family: 'Overpass';
+}
+.footer{
+    display: flex;
+    justify-content: center;
+    padding-top: 35px;
+    width: 100%;
+    background-color: #000000;
+}
+
+.footer__grid{
+    max-width: 1400px;
+    width: 100%;
+}
+.grid__row{
+    display: flex;
+    padding: 0 20px 12px;
+}
+
+*{
+    color: aliceblue;
+}
+.grid__column-4{
+    flex: 1;
+    min-width: 132px;
+}
+.footer__heading{
+    line-height: 24px;
+    font-size: 1.8rem;
+    text-transform: uppercase;
+    padding-bottom: 20px;
+}
+.footer-list{
+    padding-left: 0px;
+    list-style: none;
+}
+
+.footer-item{
+}
+.footer-item__link{
+    text-decoration: none;
+    font-size: 1.2rem;
+    color: #aa9696;
+    padding: 5px 0;
+    display: block;
+    max-width: max-content;
+}
+.footer-item__link:hover{
+    color: white;
+}
+.footer-item__icon{
+    font-size: 1.6rem;
+    margin-right: 6px;
+}
+.footer-list-1{
+    display: flex;
+}
+
+
+.grid__column-4:last-child ul{
+    display: flex;
+    justify-content: center;
+    width: 120px;
+}

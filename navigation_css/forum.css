@@ -1,0 +1,46 @@
+html{
+    background-color: blue;
+}
+body{
+    background-color: green; 
+}
+.container{
+    width: 100%;
+    height: 680px;
+    background-color: indianred;
+    margin-top: 68px;
+}
+.footer{
+    width: 100%;
+    height: 734px;
+    background-color: black;
+}
+.container__inner{
+    display: flex;
+}
+.container__inner__ntf{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: auto auto;
+    color: white;
+    cursor: pointer;
+    margin-top: 340px;
+}
+.container__inner__ntf h1{
+    font-family: montserrat;
+}
+.container__inner__ntf i{
+    color: white;
+    scale: 1.15;
+    margin-left: 10px;
+}
+.container__inner__ntf i:hover{
+    color: goldenrod;
+}
+
+
+.header__inner__menu i{
+    scale: 2;
+    color: white;
+}
