@@ -97,11 +97,11 @@
     background-color: black;
 }
 .dropdown .containt{
-    /* display: flex; */
-    /* align-items: center; */
+    display: none;
+    align-items: center;
     
     position: absolute;
-    /* top: 100%; */
+    top: 100%;
     opacity: 0;
     box-shadow: 0 8px 16px rgb(0, 0, 0.1);
 }
@@ -119,50 +119,13 @@
     display: none;
     justify-content: space-between;
     align-items: center;
-    padding: 0 0;
-    position: relative;
+    padding: 0 15px;
 }
 .header__inner__menu i{
     scale: 3;
     color: white;
 }
-/* .menuroi{
-    position: relative;;
-} */
-.menuroi a{
-    padding: 26px 30px;
-    display: block;
-}
-.noidung{
-    display: none;
-    position: absolute;
-    top: 100%;
-    right: 0;
-    /* margin-right: 44px; */
-}
-.noidung a{
-    font-size: 14px;
-    font-weight: 600;
-    text-align: center;
-    padding: 0;
-    display: block;
-    min-width: 160px;
-    width: 100%;
-    /* padding: 8px; */
-    padding: 25px 30px;
-    margin-right: 44px;
-    background-color: black;
-    color: white;
-}
-/* .menuroi:hover .noidung{
-    display: block;
-} */
-/* .menuroi:focus-within .noidung{
-    display: block;
-} */
-.noidung a:hover{
-    background-color: gray;
-}
+
 /* ==================== ANIMATION ==================== */
 @keyframes hienlen {
     from {
@@ -196,7 +159,7 @@
 }
 
 /* ==================== MEDIA ==================== */
-@media screen and (max-width: 1000px) { 
+@media screen and (max-width: 850px) { 
     .header__inner__navigation{
         display: none;
     }

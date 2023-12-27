@@ -216,7 +216,7 @@ html{
     
 }
 .folow__page a{
-    background-color: #ffffffbb;
+    background-color: #ffffff;
     border-radius: 2px;
 
 
@@ -231,8 +231,6 @@ html{
 .folow__page i{
     /* scale: 2; */
     margin-right: 5px;
-    position: relative;
-    vertical-align: middle;
     /* color: #1E90FF; */
 }
 .folow__page a:hover{
@@ -247,15 +245,13 @@ html{
 .share__page a{
     padding: 4px;
     color: black;
-    background-color: #ffffffbb;
+    background-color: #ffffff;
     font-size: 12px;
     font-family: Arial, Helvetica, sans-serif;
     border-radius: 2px;
 }
 .share__page i{
     margin-right: 5px;
-    position: relative;
-    vertical-align: middle;
 }
 .share__page a:hover{
     background-color: white;
@@ -317,15 +313,11 @@ html{
 }
 
 /* ================================================================================================== ĐÂY LÀ PHẦN MENU */
-
-
-.header__inner__menu{
-    position: relative;
-}
 .header__inner__menu i{
     scale: 2;
     color: white;
 }
+<<<<<<< HEAD
 /* .header__inner__menu i:hover{
     color: #1E90FF;
 } */
@@ -381,6 +373,8 @@ html{
 }
 
 
+=======
+>>>>>>> parent of 27578ef (add menu, and edit very lor)
 
 /* ================================================================================================== ĐÂY LÀ PHẦN MEDIA */
 
