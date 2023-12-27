@@ -193,15 +193,7 @@
         transform: rotate(90deg);
     }
 }
-@keyframes side_right{
-    form{
-        opacity: 0;
-    }
-    to{
-        opacity: 1;
-        box-shadow: 10px 10px 0px 1000px rgba(0, 0, 0, 0.400);
-    }
-}
+
 /* ==================== MEDIA ==================== */
 @media screen and (max-width: 850px) { 
     .header__inner__navigation{
