@@ -6,6 +6,10 @@
 *{
     color: aliceblue;
 }
+/* .footer{
+    justify-content: space-around;
+    flex-wrap: wrap;
+} */
 .grid__column-4{
     padding-left: 5px;
     padding-right: 5px;
