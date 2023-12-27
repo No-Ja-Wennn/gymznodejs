@@ -29,6 +29,10 @@
     display: block;
     cursor: pointer;
 }
+.header__inner__logo a{
+    height: 100%;
+    width: 100%;
+}
 .header__inner__logo h1{
     color: white;
     justify-content: space-between;
