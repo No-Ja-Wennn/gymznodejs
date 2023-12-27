@@ -1,63 +1,81 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
     <title>Your Page Title</title>
 
     <style>
-        .header__inner__menu {
-            display: flex;
-            padding: 16px;
-            background-color: gray;
+        /* Reset các giả mạo (default styles) của trình duyệt */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
         }
 
-        .menuroi {
+        /* Thiết lập một số kiểu cơ bản cho ví dụ */
+        body {
+            font-family: Arial, sans-serif;
+        }
+
+        /* Thiết lập style cho dropdown */
+        .dropdown {
             position: relative;
+            display: inline-block;
         }
 
-        .menuroi a {
-            padding: 16px;
-            background-color: gold;
-
+        /* Style cho liên kết chính */
+        .dropdown a {
+            text-decoration: none;
+            color: #333;
+            padding: 10px;
+            display: flex;
+            align-items: center;
         }
 
-        .noidung {
+        /* Style cho biểu tượng mũi tên */
+        .bx.bxs-right-arrow {
+            margin-left: 5px; /* Khoảng cách giữa văn bản và biểu tượng */
+        }
+
+        /* Style cho dropdown content */
+        .containt {
             display: none;
             position: absolute;
-            top: 100%;
-            background-color: green;
-
+            background-color: #f9f9f9;
+            min-width: 160px;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+            z-index: 1;
         }
 
-        .menuroi:hover .noidung {
-            display: flex;
-            flex-direction: column;
+        /* Hiển thị dropdown content khi hover */
+        .dropdown:hover .containt {
+            display: block;
         }
 
-        .noidung a {
-            padding: 16px;
+        /* Style cho các mục trong dropdown content */
+        .containt a {
+            color: #333;
+            padding: 12px;
             text-decoration: none;
-            color: white;
+            display: block;
+        }
+
+        /* Đổi màu khi hover mục trong dropdown content */
+        .containt a:hover {
+            background-color: #ddd;
         }
     </style>
 </head>
-
 <body>
-    <div class="header__inner__menu">
-        <div class="menuroi">
-            <a href="#"><i class='bx bx-menu'></i></a>
-            <div class="noidung">
-                <a href="#">TRANG CHỦ</a>
-                <a href="#">DIỄN ĐÀN</a>
-                <a href="#">DỊCH VỤ</a>
-                <a href="#">KHUYẾN MÃI</a>
-                <a href="#">TẬP THỬ MIỄN PHÍ</a>
-            </div>
+    <div class="dropdown">
+        <a href="#">DỊCH VỤ<i class='bx bxs-right-arrow'></i></a>
+        <div class="containt">
+            <a href="#">THẺ HỘI VIÊN</a>
+            <a href="#">HUẤN LUYỆN VIÊN</a>
+            <a href="#">CỬA HÀNG WHEY</a>
+            <a href="/gymz/chatbox.html">CHAT ONLINE</a>
         </div>
     </div>
 </body>
-
 </html>

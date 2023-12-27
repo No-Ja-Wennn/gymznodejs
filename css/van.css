@@ -21,6 +21,10 @@
 *{
     color: aliceblue;
 }
+/* .footer{
+    justify-content: space-around;
+    flex-wrap: wrap;
+} */
 .grid__column-4{
     flex: 1;
     min-width: 132px;
@@ -58,6 +62,12 @@
 }
 
 
+.grid__column-4{
+    margin-left:20px;
+}
+.body{
+    font-family: 'Overpass';
+}
 .grid__column-4:last-child ul{
     display: flex;
     justify-content: center;
