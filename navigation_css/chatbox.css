@@ -1,14 +1,21 @@
+.app{
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+}
 .container--chat{
     display: flex;
     align-items: center;
     justify-content: center;
     background-color: rgba(169, 169, 169, 0.675);
+    height: 100%;
 }
 
 .chatbox{
     display: flex;
     flex-direction: column;
-    height: calc(100vh - 68px);
+    /* height: calc(100vh - 68px); */
+    height: 100%;
     max-width: 1200px;
     width: 100%;
     min-width: 300px;

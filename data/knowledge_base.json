@@ -1,135 +1,111 @@
 {
   "questions": [
     {
-      "question": "what is the capital of France",
-      "answers": [
-        "Paris",
-        "London",
-        "Berlin",
-        "Rome"
-      ],
-      "correctAnswer": 0
-    },
-    {
-      "question": "what is the capital of Germany",
-      "answers": [
-        "Paris",
-        "London",
-        "Berlin",
-        "Rome"
-      ],
-      "correctAnswer": 2
-    },
-    {
       "question": "hello",
       "answer": "hey there"
     },
     {
-      "question": "phòng gym mở cửa từ mấy giờ?",
+      "question": "mở cửa từ mấy giờ",
       "answer": "phòng gym mở cửa từ 6 giờ sáng."
     },
     {
-      "question": "tôi nên tập luyện bao lâu mỗi ngày?",
+      "question": "tập luyện bao lâu mỗi ngày",
       "answer": "bạn nên tập luyện ít nhất 30 phút mỗi ngày."
     },
     {
-      "question": "tôi có thể mang giày thể thao vào phòng gym không?",
+      "question": "mang giày thể thao vào phòng gym",
       "answer": "có, bạn nên mang giày thể thao khi tập luyện ở phòng gym."
     },
     {
-      "question": "tôi có thể sử dụng máy tập sau khi phòng gym đóng cửa không?",
-      "answer": "không, bạn chỉ có thể sử dụng máy tập trong giờ mở cửa của phòng gym."
-    },
-    {
-      "question": "tôi có thể mang thức ăn vào phòng gym không?",
+      "question": "mang thức ăn vào phòng gym",
       "answer": "không, hầu hết các phòng gym không cho phép mang thức ăn vào."
     },
     {
-      "question": "tôi có thể sử dụng khăn của phòng gym không?",
+      "question": "sử dụng khăn của phòng gym",
       "answer": "có, hầu hết các phòng gym cung cấp khăn cho khách hàng."
     },
     {
-      "question": "tôi có thể tập luyện cùng bạn bè tại phòng gym không?",
+      "question": "tập luyện cùng bạn bè tại phòng gym",
       "answer": "có, bạn có thể tập luyện cùng bạn bè tại phòng gym."
     },
     {
-      "question": "phòng gym có dịch vụ huấn luyện cá nhân không?",
+      "question": "dịch vụ huấn luyện cá nhân",
       "answer": "có, hầu hết các phòng gym đều cung cấp dịch vụ huấn luyện cá nhân."
     },
     {
-      "question": "tôi có thể thay đổi lịch tập luyện của mình không?",
+      "question": "thay đổi lịch tập luyện",
       "answer": "có, bạn có thể thay đổi lịch tập luyện của mình tại phòng gym."
     },
     {
-      "question": "phòng gym có dịch vụ giữ đồ không?",
+      "question": "dịch vụ giữ đồ",
       "answer": "có, hầu hết các phòng gym đều cung cấp dịch vụ giữ đồ cho khách hàng."
     },
     {
-      "question": "tôi có thể hủy gói tập của mình không?",
+      "question": "hủy gói tập của mình",
       "answer": "có, bạn có thể hủy gói tập của mình tại phòng gym."
     },
     {
-      "question": "tôi có thể đăng ký gói tập online không?",
+      "question": "đăng ký gói tập online",
       "answer": "có, hầu hết các phòng gym đều cho phép đăng ký gói tập online."
     },
     {
-      "question": "tôi có thể thanh toán phí tập luyện bằng thẻ tín dụng không?",
+      "question": "thanh toán phí tập luyện bằng thẻ tín dụng",
       "answer": "có, hầu hết các phòng gym đều chấp nhận thanh toán bằng thẻ tín dụng."
     },
     {
-      "question": "tôi có thể tập luyện vào cuối tuần không?",
+      "question": "tập luyện vào cuối tuần",
       "answer": "có, hầu hết các phòng gym đều mở cửa vào cuối tuần."
     },
     {
-      "question": "tôi có thể tập luyện ở phòng gym mà không cần đăng ký không?",
+      "question": "tập luyện ở phòng gym mà không cần đăng ký",
       "answer": "không, bạn cần đăng ký trước khi tập luyện ở phòng gym."
     },
     {
-      "question": "tôi có thể tập luyện ở phòng gym mà không cần giày thể thao không?",
+      "question": "tập luyện ở phòng gym mà không cần giày thể thao",
       "answer": "không, bạn cần mang giày thể thao khi tập luyện ở phòng gym."
     },
     {
-      "question": "tôi có thể tập luyện ở phòng gym mà không cần đồ tập không?",
+      "question": "tập luyện ở phòng gym mà không cần đồ tập",
       "answer": "không, bạn cần mặc đồ tập khi tập luyện ở phòng gym."
     },
     {
-      "question": "tôi có thể tập luyện ở phòng gym mà không cần nước không?",
+      "question": "tập luyện ở phòng gym mà không cần nước",
       "answer": "không, bạn cần mang theo nước khi tập luyện ở phòng gym."
     },
     {
-      "question": "tôi có thể tập luyện ở phòng gym mà không cần khăn không?",
+      "question": "tập luyện ở phòng gym mà không cần khăn",
       "answer": "không, bạn cần mang theo khăn khi tập luyện ở phòng gym."
     },
     {
-      "question": "tôi có thể tập luyện ở phòng gym mà không cần tai nghe không?",
+      "question": "tập luyện ở phòng gym mà không cần tai nghe",
       "answer": "có, bạn không cần mang theo tai nghe khi tập luyện ở phòng gym."
     },
     {
-      "question": "tôi có thể tập luyện ở phòng gym mà không cần găng tay không?",
+      "question": "tập luyện ở phòng gym mà không cần găng tay",
       "answer": "có, bạn không cần mang theo găng tay khi tập luyện ở phòng gym."
     },
     {
-      "question": "tôi có thể tập luyện ở phòng gym mà không cần mũ không?",
+      "question": "tập luyện ở phòng gym mà không cần mũ",
       "answer": "có, bạn không cần mang theo mũ khi tập luyện ở phòng gym."
     },
     {
-      "question": "tôi có thể tập luyện ở phòng gym mà không cần tất không?",
+      "question": "tập luyện ở phòng gym mà không cần tất",
       "answer": "có, bạn không cần mang theo tất khi tập luyện ở phòng gym."
     },
     {
-      "question": "tôi có thể tập luyện ở phòng gym mà không cần băng đô không?",
+      "question": "tập luyện ở phòng gym mà không cần băng đô",
       "answer": "có, bạn không cần mang theo băng đô khi tập luyện ở phòng gym."
     },
     {
       "question": "chào bạn",
-      "answer": "chào bạn nhé"
+      "answer": "chào bạn nhé."
     },
     {
-      "question": "tôi có thể ăn ở đó không",
-      "answer": "không, phòng gym không bán đồ ăn, nhưng nếu bạn cần thì tôi có thể bảo người đi mua giúp bạn"
+      "question": "có thể ăn ở đó không",
+      "answer": "không, phòng gym không bán đồ ăn, nhưng nếu bạn cần thì tôi có thể bảo người đi mua giúp bạn."
     },
     {
-      "question": "xin chào",
+      "question": "Xin chào",
       "answer": "chào bạn"
     },
     {
@@ -163,6 +139,410 @@
     {
       "question": "how are you",
       "answer": "i'm good"
+    },
+    {
+      "question": "đăng ký một gói tập",
+      "answer": "Để đăng ký một gói tập tại phòng gym của chúng tôi, bạn có thể đến trực tiếp tại quầy lễ tân hoặc liên hệ qua số điện thoại để được hướng dẫn chi tiết."
+    },
+    {
+      "question": "số loại máy tập",
+      "answer": "Chúng tôi có tổng cộng 30 loại máy tập khác nhau, bao gồm máy chạy bộ, máy đạp xe, và máy tập cơ bụng, v.v."
+    },
+    {
+      "question": "chương trình huấn luyện cá nhân",
+      "answer": "Chương trình huấn luyện cá nhân của chúng tôi được thiết kế riêng cho mỗi cá nhân, dựa trên mục tiêu và nhu cầu riêng. Chúng tôi có đội ngũ huấn luyện viên chuyên nghiệp sẵn sàng hỗ trợ và tư vấn."
+    },
+    {
+      "question": "đặt lịch hẹn với huấn luyện viên",
+      "answer": "Để đặt lịch hẹn với một huấn luyện viên cá nhân, bạn có thể gọi điện hoặc đến trực tiếp quầy lễ tân để chúng tôi sắp xếp lịch hẹn phù hợp."
+    },
+    {
+      "question": "phòng thay đồ và tắm",
+      "answer": "Có, chúng tôi có phòng thay đồ, kệ để đồ và khu vệ sinh với đầy đủ tiện nghi tại phòng gym."
+    },
+    {
+      "question": "gói tập cho người mới",
+      "answer": "Chắc chắn! Chúng tôi có gói tập dành riêng cho người mới bắt đầu, giúp họ tiếp cận và làm quen với các bài tập cơ bản một cách dễ dàng."
+    },
+    {
+      "question": "hủy gói tập",
+      "answer": "Để hủy gói tập, bạn cần thông báo trước ít nhất 7 ngày và sẽ có quy định cụ thể về việc hủy và hoàn tiền."
+    },
+    {
+      "question": "dịch vụ tư vấn dinh dưỡng",
+      "answer": "Chắc chắn, chúng tôi có đội ngũ chuyên gia dinh dưỡng sẵn sàng tư vấn và đưa ra giải pháp dinh dưỡng phù hợp cho các khách hàng."
+    },
+    {
+      "question": "không gian và trang thiết bị",
+      "answer": "Phòng gym của chúng tôi rộng rãi, được trang bị đầy đủ máy tập hiện đại từ các thương hiệu uy tín trên thế giới. Không gian thiết kế thoáng đãng, mang đến trải nghiệm tập luyện thoải mái và hiệu quả cho mọi người."
+    },
+    {
+      "question": "mở cửa vào thứ mấy",
+      "answer": "Chúng tôi mở cửa từ thứ Hai đến thứ Bảy, từ 6 giờ sáng đến 10 giờ tối. Chủ nhật là ngày nghỉ của phòng gym."
+    },
+    {
+      "question": "mang thú cưng vào",
+      "answer": "Xin lỗi, do quy định của chúng tôi, không cho phép mang thú cưng vào trong phòng gym."
+    },
+    {
+      "question": "wifi miễn phí",
+      "answer": "Có, chúng tôi cung cấp dịch vụ wifi miễn phí cho tất cả khách hàng của mình."
+    },
+    {
+      "question": "Lớp tập nhóm",
+      "answer": "Chúng tôi tổ chức các lớp hướng dẫn tập luyện nhóm vào các buổi sáng thứ Ba và thứ Năm. Chi tiết và lịch trình được thông báo tại quầy lễ tân."
+    },
+    {
+      "question": "Thiết bị cho người già",
+      "answer": "Có, chúng tôi có một khu vực riêng biệt và thiết bị phù hợp để hỗ trợ người già trong quá trình tập luyện."
+    },
+    {
+      "question": "Dịch vụ thức ăn, đồ uống",
+      "answer": "Có, chúng tôi cung cấp một quầy thức ăn và đồ uống nhẹ dành cho các khách hàng."
+    },
+    {
+      "question": "Hỗ trợ tập luyện",
+      "answer": "Bạn chỉ cần liên hệ với nhân viên hoặc huấn luyện viên tại phòng gym để nhận được sự hỗ trợ khi cần thiết."
+    },
+    {
+      "question": "Hệ thống âm thanh, ánh sáng",
+      "answer": "Chắc chắn, chúng tôi có hệ thống âm thanh và ánh sáng chuyên nghiệp để tạo không gian tập luyện thoải mái và sôi động."
+    },
+    {
+      "question": "Chương trình giảm cân, tăng cân",
+      "answer": "Chúng tôi có đội ngũ chuyên gia dinh dưỡng sẵn sàng tư vấn và hỗ trợ bạn trong việc đặt ra mục tiêu giảm cân hoặc tăng cân một cách khoa học."
+    },
+    {
+      "question": "Tập luyện cho phụ nữ mang thai",
+      "answer": "Có, chúng tôi có chương trình tập luyện dành riêng cho phụ nữ mang thai, nhằm đảm bảo sức khỏe và an toàn khi tập luyện."
+    },
+    {
+      "question": "Dịch vụ massage, spa",
+      "answer": "Chúng tôi cung cấp dịch vụ massage và spa với đội ngũ nhân viên chuyên nghiệp, giúp bạn thư giãn sau những buổi tập căng thẳng."
+    },
+    {
+      "question": "Sự kiện, giải đấu thể thao",
+      "answer": "Chúng tôi thường xuyên tổ chức các sự kiện và giải đấu thể thao để kích thích sự nhiệt huyết và đam mê tập luyện trong cộng đồng."
+    },
+    {
+      "question": "Trở thành huấn luyện viên",
+      "answer": "Nếu bạn quan tâm đến việc trở thành một huấn luyện viên tại chúng tôi, vui lòng nộp hồ sơ qua email hoặc liên hệ trực tiếp tại phòng gym để biết thêm chi tiết."
+    },
+    {
+      "question": "Tư vấn lên kế hoạch tập luyện",
+      "answer": "Chúng tôi cung cấp dịch vụ tư vấn về việc lên kế hoạch tập luyện, giúp bạn có được phương pháp tập luyện hiệu quả và phù hợp với mục tiêu của mình."
+    },
+    {
+      "question": "Phụ kiện, trang thiết bị tập luyện",
+      "answer": "Có, chúng tôi có một cửa hàng tại phòng gym cung cấp các phụ kiện và trang thiết bị tập luyện chất lượng."
+    },
+    {
+      "question": "Đánh giá, phản hồi",
+      "answer": "Chúng tôi rất hoan nghênh mọi phản hồi từ khách hàng. Bạn có thể đánh giá và gửi phản hồi thông qua website hoặc trực tiếp tại quầy lễ tân của phòng gym."
+    },
+    {
+      "question": "Khu vực nghỉ ngơi, thư giãn",
+      "answer": "Có, chúng tôi có khu vực nghỉ ngơi và thư giãn với ghế massage, khu vực đọc sách và phòng xông hơi, giúp bạn thư giãn sau mỗi buổi tập luyện."
+    },
+    {
+      "question": "Theo dõi tiến trình tập luyện",
+      "answer": "Chúng tôi cung cấp một ứng dụng di động và trang web cho phép bạn theo dõi tiến trình tập luyện, kế hoạch và mục tiêu của mình."
+    },
+    {
+      "question": "Chương trình tập luyện cho trẻ em",
+      "answer": "Chúng tôi có chương trình tập luyện dành riêng cho trẻ em, nhưng cần được giám sát của phụ huynh."
+    },
+    {
+      "question": "Giờ mở cửa",
+      "answer": "Chúng tôi mở cửa từ 6 giờ sáng đến 10 giờ tối hàng ngày."
+    },
+    {
+      "question": "Giá gói tập",
+      "answer": "Bạn có thể liên hệ trực tiếp để biết thông tin về giá cả và các gói tập."
+    },
+    {
+      "question": "Máy chạy bộ",
+      "answer": "Có, chúng tôi có nhiều máy chạy bộ hiện đại."
+    },
+    {
+      "question": "Đặt lịch tập",
+      "answer": "Không cần, bạn có thể đến và tập luyện bất cứ lúc nào trong giờ mở cửa."
+    },
+    {
+      "question": "Tư vấn dinh dưỡng",
+      "answer": "Có, chúng tôi có đội ngũ chuyên gia dinh dưỡng."
+    },
+    {
+      "question": "Dịch vụ massage",
+      "answer": "Có, chúng tôi có dịch vụ massage chuyên nghiệp."
+    },
+    {
+      "question": "Phòng thay đồ",
+      "answer": "Có, chúng tôi có phòng thay đồ và khu vệ sinh."
+    },
+    {
+      "question": "Thuê huấn luyện viên",
+      "answer": "Chúng tôi có đội ngũ huấn luyện viên chuyên nghiệp. Bạn có thể liên hệ lễ tân để đăng ký"
+    },
+    {
+      "question": "Huấn luyện viên",
+      "answer": "Có, chúng tôi có đội ngũ huấn luyện viên chuyên nghiệp."
+    },
+    {
+      "question": "Tập cùng bạn bè",
+      "answer": "Chắc chắn, bạn có thể tập luyện cùng bạn bè tại phòng gym."
+    },
+    {
+      "question": "Máy tập cardio",
+      "answer": "Có, chúng tôi có nhiều loại máy tập cardio."
+    },
+    {
+      "question": "Chương trình cho người mới",
+      "answer": "Có, chúng tôi có chương trình dành cho mọi trình độ."
+    },
+    {
+      "question": "Nhận học viên ngoại tỉnh",
+      "answer": "Tất nhiên, chúng tôi hoan nghênh học viên từ mọi nơi."
+    },
+    {
+      "question": "Dịch vụ giữ xe",
+      "answer": "Có, chúng tôi có khu vực để giữ xe miễn phí cho khách hàng."
+    },
+    {
+      "question": "Chương trình giảm cân",
+      "answer": "Có, chúng tôi có chương trình giảm cân chuyên nghiệp."
+    },
+    {
+      "question": "Thức ăn, đồ uống sau tập",
+      "answer": "Có, chúng tôi có quầy thức ăn và đồ uống nhẹ."
+    },
+    {
+      "question": "Kích thước phòng gym",
+      "answer": "Phòng gym của chúng tôi có diện tích hơn 500m², đủ rộng rãi để phục vụ nhiều khách hàng cùng một lúc."
+    },
+    {
+      "question": "Lịch tập cá nhân",
+      "answer": "Chắc chắn, chúng tôi cung cấp dịch vụ lên lịch tập luyện cá nhân tùy chỉnh cho mỗi khách hàng."
+    },
+    {
+      "question": "Tập luyện cho người cao tuổi",
+      "answer": "Có, chúng tôi có chương trình tập luyện dành riêng cho người cao tuổi để giúp họ duy trì sức khỏe và linh hoạt."
+    },
+    {
+      "question": "Dịch vụ Yoga, Pilates",
+      "answer": "Có, chúng tôi có các lớp hướng dẫn Yoga và Pilates hàng tuần."
+    },
+    {
+      "question": "Máy tập hiện đại",
+      "answer": "Chắc chắn, chúng tôi luôn cập nhật và trang bị máy tập hiện đại nhất cho khách hàng."
+    },
+    {
+      "question": "Chương trình cho trẻ em",
+      "answer": "Chúng tôi có các lớp tập luyện dành cho trẻ em dưới sự giám sát của huấn luyện viên."
+    },
+    {
+      "question": "Huấn luyện trực tuyến",
+      "answer": "Có, chúng tôi cung cấp dịch vụ huấn luyện trực tuyến để phục vụ khách hàng ở xa."
+    },
+    {
+      "question": "Phòng xông hơi",
+      "answer": "Có, chúng tôi có phòng xông hơi để giúp bạn thư giãn sau buổi tập."
+    },
+    {
+      "question": "Tư vấn dinh dưỡng",
+      "answer": "Chúng tôi có đội ngũ chuyên gia dinh dưỡng sẵn sàng tư vấn cho khách hàng."
+    },
+    {
+      "question": "TV và âm thanh",
+      "answer": "Có, chúng tôi có trang bị TV và hệ thống âm thanh chất lượng."
+    },
+    {
+      "question": "Gói tập theo tháng",
+      "answer": "Có, chúng tôi cung cấp gói tập luyện theo tháng với nhiều ưu đãi."
+    },
+    {
+      "question": "Cho thuê quần áo tập",
+      "answer": "Có, chúng tôi có dịch vụ cho thuê quần áo tập luyện nếu bạn cần."
+    },
+    {
+      "question": "Phí đăng ký hội viên",
+      "answer": "Chúng tôi không thu phí đăng ký hội viên, chỉ thu phí theo gói tập bạn chọn."
+    },
+    {
+      "question": "Tập cho phụ nữ mang thai",
+      "answer": "Chúng tôi có chương trình tập luyện dành cho phụ nữ mang thai dưới sự hướng dẫn của chuyên gia."
+    },
+    {
+      "question": "Dịch vụ giữ trẻ",
+      "answer": "Chúng tôi không cung cấp dịch vụ giữ trẻ, nhưng chúng tôi hoan nghênh phụ huynh mang theo trẻ em và giữa một khoảng thời gian an toàn."
+    },
+    {
+      "question": "Hướng dẫn cho người mới",
+      "answer": "Có, chúng tôi có chương trình hướng dẫn cơ bản cho người mới bắt đầu."
+    },
+    {
+      "question": "Bảo trì, vệ sinh",
+      "answer": "Chúng tôi luôn duy trì tiêu chuẩn vệ sinh cao và thường xuyên bảo trì trang thiết bị."
+    },
+    {
+      "question": "Gửi xe miễn phí",
+      "answer": "Có, chúng tôi cung cấp dịch vụ gửi xe miễn phí cho khách hàng."
+    },
+    {
+      "question": "Phòng tập cho nhóm",
+      "answer": "Chúng tôi có phòng tập riêng cho nhóm với không gian tách biệt."
+    },
+    {
+      "question": "Đăng ký thẻ thành viên",
+      "answer": "Bạn có thể đến quầy lễ tân để đăng ký, chúng tôi có chương trình thẻ thành viên với nhiều ưu đãi."
+    },
+    {
+      "question": "Giảm giá sinh viên",
+      "answer": "Chúng tôi cung cấp giảm giá đặc biệt cho sinh viên khi đăng ký thẻ hội viên."
+    },
+    {
+      "question": "Thuê hướng dẫn viên cá nhân",
+      "answer": "Có, chúng tôi có dịch vụ thuê hướng dẫn viên cá nhân để hỗ trợ bạn tập luyện hiệu quả."
+    },
+    {
+      "question": "bận rộn có tập được không",
+      "answer": "Chúng tôi có chương trình tập cho người bận rộn với lịch trình linh hoạt."
+    },
+    {
+      "question": "Tắm, vệ sinh sau tập",
+      "answer": "Có, chúng tôi có dịch vụ tắm và vệ sinh sau khi tập miễn phí."
+    },
+    {
+      "question": "Trang web, ứng dụng di động",
+      "answer": "Có, chúng tôi có cả trang web và ứng dụng di động giúp bạn dễ dàng quản lý lịch trình và tập luyện."
+    },
+    {
+      "question": "Tập cho cặp đôi",
+      "answer": "Chúng tôi có chương trình tập luyện dành cho cặp đôi giúp họ tập luyện cùng nhau."
+    },
+    {
+      "question": "Huấn luyện trực tuyến",
+      "answer": "Có, chúng tôi cung cấp dịch vụ huấn luyện trực tuyến cho khách hàng."
+    },
+    {
+      "question": "Cho thuê dụng cụ tập",
+      "answer": "Có, chúng tôi cung cấp dịch vụ cho thuê dụng cụ tập luyện nếu bạn cần."
+    },
+    {
+      "question": "Tập cho người khuyết tật",
+      "answer": "Chúng tôi có chương trình tập dành riêng cho người khuyết tật dưới sự hướng dẫn chuyên nghiệp."
+    },
+    {
+      "question": "Giúp đỡ khi bị thương",
+      "answer": "Chúng tôi có đội ngũ nhân viên đào tạo về sơ cứu sẵn sàng hỗ trợ bạn khi cần."
+    },
+    {
+      "question": "Bể bơi",
+      "answer": "Không, chúng tôi không có bể bơi trong phòng gym."
+    },
+    {
+      "question": "Lớp tập buổi sáng",
+      "answer": "Có, chúng tôi có lớp tập vào buổi sáng."
+    },
+    {
+      "question": "Khu vực nghỉ ngơi sau tập",
+      "answer": "Có, chúng tôi có khu vực nghỉ ngơi sau tập."
+    },
+    {
+      "question": "Máy tập chạy bộ",
+      "answer": "Có, chúng tôi có máy tập chạy bộ."
+    },
+    {
+      "question": "Giảm giá hội viên cũ",
+      "answer": "Có, chúng tôi có giảm giá cho hội viên cũ."
+    },
+    {
+      "question": "Tư vấn dinh dưỡng",
+      "answer": "Có, chúng tôi có dịch vụ tư vấn dinh dưỡng."
+    },
+    {
+      "question": "Hướng dẫn yoga",
+      "answer": "Có, chúng tôi có dịch vụ hướng dẫn yoga."
+    },
+    {
+      "question": "Lớp aerobic",
+      "answer": "Có, chúng tôi có lớp aerobic."
+    },
+    {
+      "question": "Cho thuê phòng riêng",
+      "answer": "Không, chúng tôi không có dịch vụ cho thuê phòng riêng."
+    },
+    {
+      "question": "Tập cho trẻ em",
+      "answer": "Có, chúng tôi có chương trình tập luyện cho trẻ em."
+    },
+    {
+      "question": "Phí tập hàng tháng",
+      "answer": "Phí tập hàng tháng là 500,000 VNĐ."
+    },
+    {
+      "question": "Phí huấn luyện viên",
+      "answer": "Phí thuê huấn luyện viên là 200,000 VNĐ mỗi buổi."
+    },
+    {
+      "question": "Vệ sinh sạch sẽ",
+      "answer": "Có, chúng tôi duy trì tiêu chuẩn vệ sinh cao."
+    },
+    {
+      "question": "Máy tập an toàn",
+      "answer": "Có, tất cả máy tập đều được kiểm tra và bảo dưỡng định kỳ."
+    },
+    {
+      "question": "Giờ cao điểm",
+      "answer": "Giờ cao điểm là từ 17h đến 20h hàng ngày."
+    },
+    {
+      "question": "Đặt lịch tập",
+      "answer": "Có, bạn có thể đặt lịch tập trước qua ứng dụng của chúng tôi."
+    },
+    {
+      "question": "Tập cả ngày không giới hạn",
+      "answer": "Có, chúng tôi có gói tập không giới hạn cho khách hàng."
+    },
+    {
+      "question": "Không gian cho phụ nữ",
+      "answer": "Có, chúng tôi có khu vực riêng cho phụ nữ tập luyện."
+    },
+    {
+      "question": "Thuê quần áo tập",
+      "answer": "Không, nhưng chúng tôi bán các sản phẩm thể thao."
+    },
+    {
+      "question": "Huấn luyện người cao tuổi",
+      "answer": "Có, chúng tôi có chương trình riêng cho người cao tuổi."
+    },
+    {
+      "question": "Hướng dẫn tập cho người mới",
+      "answer": "Có, chúng tôi có đội ngũ huấn luyện viên tận tâm và chu đáo."
+    },
+    {
+      "question": "Thức ăn, đồ uống sau tập",
+      "answer": "Có, chúng tôi cung cấp dịch vụ thức ăn và đồ uống tại quầy."
+    },
+    {
+      "question": "Tập cho người béo phì",
+      "answer": "Có, chúng tôi có chương trình riêng cho người béo phì."
+    },
+    {
+      "question": "Massage sau tập",
+      "answer": "Có, chúng tôi cung cấp dịch vụ massage chuyên nghiệp."
+    },
+    {
+      "question": "để đậu xe",
+      "answer": "Có, chúng tôi có khu vực đậu xe riêng."
+    },
+    {
+      "question": "nhà để xe",
+      "answer": "Có, chúng tôi có khu vực đậu xe riêng."
+    },
+    {
+      "question": "chỗ để xe",
+      "answer": "Có, chúng tôi có khu vực đậu xe riêng."
     }
   ]
 }

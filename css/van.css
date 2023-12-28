@@ -31,14 +31,15 @@
     text-transform: uppercase;
     padding-bottom: 20px;
 }
-.footer-list{
+.footer__list{
     padding-left: 0px;
     list-style: none;
 }
 
-.footer-item{
+.footer__item{
+    width: max-content;
 }
-.footer-item__link{
+.footer__item__link{
     text-decoration: none;
     font-size: 1.2rem;
     color: #aa9696;
@@ -46,14 +47,26 @@
     display: block;
     max-width: max-content;
 }
-.footer-item__link:hover{
+
+.footer__item::after{
+    display: block;
+    width: 100%;
+    content: "";
+    height: 2px;
+    /* background-color: #f60334; */
+}
+.footer__item__link:hover{
     color: white;
 }
-.footer-item__icon{
+.footer__item__link:hover .footer__item::after{
+    
+    background-color: #f60334;  
+}
+.footer__item__icon{
     font-size: 1.6rem;
     margin-right: 6px;
 }
-.footer-list-1{
+.footer__list-1{
     display: flex;
 }
 
