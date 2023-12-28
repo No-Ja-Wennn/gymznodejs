@@ -29,6 +29,10 @@
     display: block;
     cursor: pointer;
 }
+.header__inner__logo a{
+    height: 100%;
+    width: 100%;
+}
 .header__inner__logo h1{
     color: white;
     justify-content: space-between;
@@ -38,6 +42,7 @@
     font-family: Montserrat;
     font-weight: 900;
     font-size: 32px;
+    margin-left: 10px;
 }
 .header__inner__logo span{
     font-weight: 100;
@@ -97,11 +102,11 @@
     background-color: black;
 }
 .dropdown .containt{
-    display: none;
-    align-items: center;
+    /* display: flex; */
+    /* align-items: center; */
     
     position: absolute;
-    top: 100%;
+    /* top: 100%; */
     opacity: 0;
     box-shadow: 0 8px 16px rgb(0, 0, 0.1);
 }
@@ -113,17 +118,55 @@
     background-color: rgb(22, 22, 22);
 }
 
+/* ==================== MENU ==================== */
 
 .header__inner__menu {
     display: none;
     justify-content: space-between;
     align-items: center;
-    padding: 15px 15px;
+    padding: 0 0;
+    position: relative;
 }
 .header__inner__menu i{
     scale: 3;
+    color: white;
 }
-
+/* .menuroi{
+    position: relative;;
+} */
+/* .menuroi a{
+    padding: 26px 30px;
+    display: block;
+}
+.noidung{
+    display: none;
+    position: absolute;
+    top: 100%;
+    right: 0;
+    
+}
+.noidung a{
+    font-size: 14px;
+    font-weight: 600;
+    text-align: center;
+    padding: 0;
+    display: block;
+    min-width: 160px;
+    width: 100%;
+    padding: 25px 30px;
+    margin-right: 44px;
+    background-color: black;
+    color: white;
+}
+.menuroi:hover .noidung{
+    display: block;
+}
+.menuroi:active .noidung{
+    display: block;
+}
+.noidung a:hover{
+    background-color: gray;
+} */
 /* ==================== ANIMATION ==================== */
 @keyframes hienlen {
     from {
@@ -155,9 +198,32 @@
         transform: rotate(90deg);
     }
 }
-
+@keyframes side_right{
+    0%{
+        opacity: 0;
+        left: -300px;
+        /* right: calc(100vw); */
+    }
+    30%{
+        opacity: 1;
+    }
+    100%{
+        left: 0;
+        opacity: 1;
+        /* right: calc(100vw - 300px); */
+        /* box-shadow: 10px 10px 1000px 1000px rgba(0, 0, 0, 0.400); */
+    }
+}
+@keyframes overlay{
+    0%{
+        opacity: 0;
+    }
+    100%{
+        opacity: 1;
+    }
+}
 /* ==================== MEDIA ==================== */
-@media screen and (max-width: 850px) { 
+@media screen and (max-width: 1000px) { 
     .header__inner__navigation{
         display: none;
     }
@@ -183,4 +249,121 @@
     color: goldenrod;
 }
 
+/* ================================================================================================== ĐÂY LÀ PHẦN MENU */
+
+
+.header__inner__menu {
+    position: relative;
+}
+
+/* .header__inner__menu i {
+    scale: 2;
+    color: white;
+} */
+
+/* .header__inner__menu i:hover{
+    color: #1E90FF;
+} */
+
+
+
+/* .body{
+    position: relative;
+} */
+
+.nen_mo {
+    display: none;
+    z-index: 9;
+    position: fixed;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.400);
+}
+
+
+
+
+.menuroi {
+    display: flex;
+    position: relative;
+}
+
+.menuroi a {
+    position: relative;
+    padding: 23.96px 30px;
+    display: block;
+    /* background-color: rgba(0, 128, 0, 0.158); */
+}
+
+.noidung {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: -300px;
+    /* right: calc(100vw - 300px); */
+    width: 300px;
+    opacity: 0;
+    height: 100vh;
+    background-color: black;
+    /* top: 165px; */
+    /* top: 100%;
+    right: 0;
+    margin-right: 60px; */
+    /* box-shadow: 10px 10px 0px 1000px rgba(0, 0, 0, 0.400); */
+}
+
+.noidung a {
+    padding: 26px 12px;
+    background-color: black;
+    color: white;
+    font-size: 16px;
+    font-weight: 600;
+    border-bottom: 1px rgba(255, 255, 255, 0.1) solid;
+}
+
+.noidung i {
+    margin-right: 30px;
+    margin-left: 20px;
+    scale: 2;
+}
+
+.noidung a:hover {
+    background-color: #222;
+}
+
+
+/* .header{
+    background-color: goldenrod;
+} */
+
+/* .logo{
+    width: 100%;
+    height: 67.8px;
+}
+.logo img{
+    height: 100%;
+    width: 100%;
+    padding: 0;
+} */
+
+
+.logo a {
+    padding: 25px 20px;
+    font-size: 32px;
+    font-family: montserrat;
+    font-weight: 900;
+    background-color: black;
+    cursor: pointer;
+}
+
+.logo a:hover {
+    background-color: rgba(0, 0, 0, 0.400);
+}
+
+.logo span {
+    font-weight: 100;
+    margin-left: 5px;
+}
 

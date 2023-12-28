@@ -13,12 +13,13 @@
     <link href="https://fonts.googleapis.com/css2?family=Overpass:wght@100;200;300;400;500;600;700;800;900&display=swap"
         rel="stylesheet">
     <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="stylesheet" href="./font/fontawesome-free-6.4.0-web/css/all.min.css">
+    <link rel="stylesheet" href="../font/fontawesome-free-6.4.0-web/css/all.min.css">
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
     <link rel="stylesheet" href="../css/index.css">
     <link rel="stylesheet" href="../css/truong.css">
     <link rel="stylesheet" href="../css/base.css">
     <link rel="stylesheet" href="../navigation_css/shop.css">
+    <link rel="stylesheet" href="../navigation_css/End_shoprtien.css">
     <title>GYMZ - Thể hình giới trẻ</title>
 
 </head>
@@ -37,14 +38,14 @@
                 <div class="header__inner__navigation">
                     <ul>
                         <li><a href="../index.html">TRANG CHỦ</a></li>
-                        <li><a href="./forum.html"><span>DIỄN ĐÀN</span></a></li>
+                        <li><a href="./forum.html">DIỄN ĐÀN</a></li>
                         <li>
                             <div class="dropdown">
-                                <a href="#">DỊCH VỤ<m><i class='bx bxs-right-arrow'></i></m></a>
+                                <a href="#"><span>DỊCH VỤ</span><m><i class='bx bxs-right-arrow'></i></m></a>
                                 <div class="containt">
                                     <a href="#">THẺ HỘI VIÊN</a>
                                     <a href="#">HUẤN LUYỆN VIÊN</a>
-                                    <a href="#">CỬA HÀNG WHEY</a>
+                                    <a href="#"><span>CỬA HÀNG WHEY</span></a>
                                     <a href="../chatbox.html">CHAT ONLINE</a>
                                 </div>
                             </div>
@@ -58,7 +59,22 @@
                     </ul>
                 </div>
                 <div class="header__inner__menu">
-                    <a href="#">MENU</a>
+                    <div class="menuroi">
+                        <a href="#">
+                            <i class='bx bx-menu' ></i>
+                        </a>
+                        <div class="noidung">
+                            <div class="logo">
+                                <a href="">GYM<span>Z</span></a>
+                                <!-- <img src="../img/background/logo_and_bgr.png" alt="logo and bgr"> -->
+                            </div>
+                            <a href="../index.html"><i class='bx bxs-home'></i>TRANG CHỦ</a>
+                            <a href="./forum.html"><i class='bx bx-world' ></i>DIỄN ĐÀN</a>
+                            <a href="#"><i class='bx bxs-file' ></i>DỊCH VỤ</a>
+                            <a href="./promotion.html"><i class='bx bxs-purchase-tag' ></i>KHUYẾN MÃI</a>
+                            <a href="#"><i class='bx bx-code-alt' ></i>TẬP THỬ MIỄN PHÍ</a>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -236,12 +252,49 @@
 
 
 
-
-        <div class="footer">
-
+        <div class="container-shop_end">
+            <div class="container-shop_end-bodypart">
+                <h2 class="heading-list">THÔNG TIN</h2>
+                <ul class="heading">
+                    <li><i class="fa-solid fa-phone"></i> 0386868686</li>
+                    <li><i class="fa-solid fa-map-pin"></i> Trường CNTT Thái Nguyên</li>
+                    <li><i class="fa-solid fa-clock"></i> Thứ Hai - Thứ Sáu: 6:00 đến 23:00
+                        Thứ Bảy - Chủ Nhật: 8:00 đến 22:00</li>
+                </ul>
+            </div>
+            
+            <div class="container-shop_end-bodypart">
+                 <h2 class="heading-list">DỊCH VỤ</h2>
+                <ul class="heading">
+                    <li>Phương thức thanh toán</li>
+                    <li>Chính sách giá</li>
+                    <li>Chính sách bảo mật</li>
+                </ul>      
+               
+            </div>
+            <div class="container-shop_end-bodypart">
+                <h2 class="heading-list">TÌM HIỂU THÊM</h2>
+                <ul class="heading">
+                    <li>Tuyển Dụng</li>
+                    <li>Tin Tức</li>
+                    <li>Câu lạc bộ</li>    
+                </ul>
+            </div>
+            <div class="container-shop_end-bodypart">
+                <h2 class="heading-list">MẠNG XÃ HỘI</h2>
+                <ul class="heading">
+                    <i class="fa-brands fa-facebook"></i>
+                    <i class="fa-brands fa-instagram"></i>
+                    <i class="fa-brands fa-youtube"></i>
+                    <i class="fa-brands fa-facebook-messenger"></i>
+                </ul>
+            </div>
         </div>
     </div>
+    <!-- overlay -->
+    <div class="nen_mo"></div>
     <script src="./index.js"></script>
+    <script src="../navigation_javascript/menu.js"></script>
 </body>
 
 </html>

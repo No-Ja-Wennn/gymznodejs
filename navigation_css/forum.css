@@ -38,3 +38,126 @@ body{
 .container__inner__ntf i:hover{
     color: goldenrod;
 }
+
+
+.header__inner__menu i{
+    scale: 2;
+    color: white;
+}
+
+/* ================================================================================================== ĐÂY LÀ PHẦN MENU */
+
+
+.header__inner__menu {
+    position: relative;
+}
+
+.header__inner__menu i {
+    scale: 2;
+    color: white;
+}
+
+/* .header__inner__menu i:hover{
+    color: #1E90FF;
+} */
+
+
+
+/* .body{
+    position: relative;
+} */
+
+.nen_mo {
+    display: none;
+    z-index: 9;
+    position: fixed;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.400);
+}
+
+
+
+
+.menuroi {
+    display: flex;
+    position: relative;
+}
+
+.menuroi a {
+    position: relative;
+    padding: 23.96px 30px;
+    display: block;
+    /* background-color: rgba(0, 128, 0, 0.158); */
+}
+
+.noidung {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: -300px;
+    /* right: calc(100vw - 300px); */
+    width: 300px;
+    opacity: 0;
+    height: 100vh;
+    background-color: black;
+    /* top: 165px; */
+    /* top: 100%;
+    right: 0;
+    margin-right: 60px; */
+    /* box-shadow: 10px 10px 0px 1000px rgba(0, 0, 0, 0.400); */
+}
+
+.noidung a {
+    padding: 26px 12px;
+    background-color: black;
+    color: white;
+    font-size: 16px;
+    font-weight: 600;
+    border-bottom: 1px rgba(255, 255, 255, 0.1) solid;
+}
+
+.noidung i {
+    margin-right: 30px;
+    margin-left: 20px;
+}
+
+.noidung a:hover {
+    background-color: #222;
+}
+
+
+/* .header{
+    background-color: goldenrod;
+} */
+
+/* .logo{
+    width: 100%;
+    height: 67.8px;
+}
+.logo img{
+    height: 100%;
+    width: 100%;
+    padding: 0;
+} */
+
+
+.logo a {
+    padding: 14px 10px;
+    font-size: 32px;
+    font-family: montserrat;
+    font-weight: 900;
+    background-color: black;
+    cursor: pointer;
+}
+
+.logo a:hover {
+    background-color: rgba(0, 0, 0, 0.400);
+}
+
+.logo span {
+    font-weight: 100;
+    margin-left: 5px;
+}

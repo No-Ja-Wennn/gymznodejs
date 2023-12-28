@@ -28,3 +28,7 @@ html{
     display: flex;
     flex-wrap: wrap
 }
+
+.body{
+    position: relative;
+}
