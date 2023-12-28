@@ -16,7 +16,7 @@
     position: relative;
     display: inline-block; /* Hiển thị các container cạnh nhau theo chiều ngang */
     margin: 10px; /* Tạo khoảng cách xung quanh container */
-    border: 3px solid #f3f0f0; /* Tạo viền xung quanh container */
+    border: 5px solid #f3f0f0; /* Tạo viền xung quanh container */
     padding: 10px; /* Tạo khoảng cách giữa viền và nội dung bên trong */
     text-align: center; /* Căn giữa nội dung bên trong container */
     vertical-align: top; /* Căn đỉnh các container khi hiển thị cạnh nhau */
@@ -74,14 +74,5 @@
     text-align: center; /* Căn giữa nội dung bên trong phần tử cha */
     height: 100%; /* Chiều cao tự động điều chỉnh theo kích thước trình duyệt */
     width: 100%; /* Chiều rộng phần tử cha chiếm toàn bộ chiều rộng của phần tử chứa nó */
-    background-color: rgb(30, 145, 165); /* Màu nền cho phần tử cha */
-}
-
-
-
-
-.footer{
-    width: 100%;
-    height: 734px;
-    background-color: black;
+    background-color: rgb(35, 35, 35); /* Màu nền cho phần tử cha */
 }

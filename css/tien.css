@@ -105,15 +105,14 @@
 }
 
 .change__box__img img{
-    
-    min-width: 300px;
+    min-width: 450px;
     max-width: 680px;
     width: 100%;
     height: auto;
     object-fit: scale-down; /* Đảm bảo ảnh không vượt quá kích thước của phần tử cha */
     border: 2px solid #000;
-    border-radius: 8px;
     box-shadow: 10px 10px 5px #21212117;
+    border-radius: 15px;
 }
 
 .bmi__form {
