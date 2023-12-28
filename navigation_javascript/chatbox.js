@@ -3,6 +3,12 @@
 
 // chatbox
 
+
+window.onload = function() {
+    window.scrollTo(0, document.body.scrollHeight);
+}
+
+
 const stringSimilarity = require('string-similarity'); //
 
 const chatBoxMessage = document.querySelector('.chatbox__message');
