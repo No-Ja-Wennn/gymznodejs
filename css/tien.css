@@ -112,7 +112,7 @@
     object-fit: scale-down; /* Đảm bảo ảnh không vượt quá kích thước của phần tử cha */
     border: 2px solid #000;
     box-shadow: 10px 10px 5px #21212117;
-    border-radius: 15px;
+    border-radius: 5px;
 }
 
 .bmi__form {
