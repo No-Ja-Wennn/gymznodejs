@@ -27,22 +27,61 @@ function makeLi(value = "", option = "chatbox__message__item__right"){
 }
 
 
-sendButton.addEventListener('click', () => {
+const OpenAI = require("openai");
+// const openai = new OpenAI({
+//   apiKey: "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"
+// });
+const openai = new OpenAI({
+    apiKey: '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',
+    dangerouslyAllowBrowser: true
+});
+  
+const openFun=async(valueInput)=>{
+    const chatCompletion = await openai.chat.completions.create({
+        model: "gpt-3.5-turbo",
+        messages: [{"role": "user", "content": `${valueInput}`,}],
+        max_tokens:100
+    });
+    return chatCompletion.choices[0].message.content;
+}
+
+
+async function getPromiseResult(valueInput) {
+    try {
+      const result = await openFun(valueInput);
+    //   console.log(result)
+      return result;
+
+    } catch (error) {
+      return "Xin lỗi, tôi chưa thể trả lời câu hỏi này."; // Xử lý lỗi nếu có
+    }
+  }
+  
+
+
+sendButton.addEventListener('click', async () => { // Thêm async vào đây
     const valueInput = inputElement.value.trim();
     if (valueInput) {
         displayUserMessage(valueInput);
 
-        loadKnowledgeBase(function (knowledgeBase) {
+        loadKnowledgeBase(async function (knowledgeBase) { // Thêm async vào đây
             const bestMatch = findBestMatch(valueInput, knowledgeBase.questions);
+            let response = false;
             let answer = "Xin lỗi, tôi chưa thể trả lời câu hỏi này.";
             if (bestMatch && bestMatch.answer) {
                 answer = bestMatch.answer;
+                response = true
+                displayBotMessage(answer);
             }
-            displayBotMessage(answer);
+            if(response == false){
+                answer = await getPromiseResult(valueInput); // Thêm await vào đây
+                displayBotMessage(answer);
+            }
         }); 
         inputElement.value = '';
     }
 });
+
 
 function isQuestionContained(userInput, questionWords, percentageRequired = 0.8) {
     var userInputWords = userInput.toLowerCase().split(/\s+/);
@@ -51,8 +90,6 @@ function isQuestionContained(userInput, questionWords, percentageRequired = 0.8)
         questionWords = questionWords.toLowerCase().split(/\s+/);
         var matchingWords = questionWords.filter(word => userInputWords.includes(word)).length;
         var percentage = matchingWords / questionWords.length;
-        // console.log("matchingWords", matchingWords)
-        // console.log("questionWords", questionWords.length)
         if (percentage >= percentageRequired) {
             return true;
         }
@@ -91,7 +128,7 @@ function getCloseMatches(userInput, questions, n, cutoff) {
         var question = questions[i];
         var similarity1 = stringSimilarity.compareTwoStrings(userInput, question.question); // Sử dụng stringSimilarity để tính toán độ tương đồng
         var similarity2 = isQuestionContained(userInput, question.question, cutoff);
-        console.log(question, ": ",similarity1)
+        // console.log(question, ": ",similarity1)
         if (similarity1 >= cutoff || similarity2 == true) {
             matches.push(question);
             if (matches.length >= n) {
@@ -120,7 +157,6 @@ function getCloseMatches(userInput, questions, n, cutoff) {
 //     for (var i = 0; i < questions.length; i++) {
 //         var question = questions[i];
 //         var similarity = jaccardSimilarity(userInput, question.question);
-//         console.log(question, ": ",similarity)
 //         if (similarity >= cutoff) {
 //             matches.push(question);
 //             if (matches.length >= n) {

@@ -15,6 +15,7 @@
     "webpack-cli": "^5.1.4"
   },
   "dependencies": {
+    "openai": "^4.24.1",
     "string-similarity": "^4.0.4"
   }
 }
