@@ -2241,7 +2241,7 @@ const OpenAI = require("openai");
 //   apiKey: "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"
 // });
 const openai = new OpenAI({
-    apiKey: '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',
+    apiKey: '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',
     dangerouslyAllowBrowser: true
 });
   
@@ -2249,7 +2249,7 @@ const openFun=async(valueInput)=>{
     const chatCompletion = await openai.chat.completions.create({
         model: "gpt-3.5-turbo",
         messages: [{"role": "user", "content": `${valueInput}`,}],
-        max_tokens:100
+        max_tokens:1000
     });
     return chatCompletion.choices[0].message.content;
 }
