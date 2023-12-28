@@ -44,10 +44,27 @@ sendButton.addEventListener('click', () => {
             }
             displayBotMessage(answer);
         }); 
-        
         inputElement.value = '';
     }
 });
+
+function isQuestionContained(userInput, questionWords, percentageRequired = 0.8) {
+    var userInputWords = userInput.toLowerCase().split(/\s+/);
+
+    // for (var i = 0; i < questionArray.length; i++) {
+        questionWords = questionWords.toLowerCase().split(/\s+/);
+        var matchingWords = questionWords.filter(word => userInputWords.includes(word)).length;
+        var percentage = matchingWords / questionWords.length;
+        // console.log("matchingWords", matchingWords)
+        // console.log("questionWords", questionWords.length)
+        if (percentage >= percentageRequired) {
+            return true;
+        }
+    // }
+
+    // Chỉ in ra 'false' nếu không tìm thấy câu hỏi nào khớp
+    return false;
+}
 
 function displayUserMessage(message) {
     const chatBoxItemUser = makeLi(message, "chatbox__message__item__right");
@@ -66,6 +83,36 @@ inputElement.addEventListener("keypress", function(event) {
 });
 
 
+function getCloseMatches(userInput, questions, n, cutoff) {
+    var matches = [];
+    // convert all to lower
+    userInput = userInput.toLowerCase();
+    questions.forEach(question => {
+        question.question = question.question.toLowerCase();
+    });
+    // compear
+    for (var i = 0; i < questions.length; i++) {
+        var question = questions[i];
+        var similarity1 = stringSimilarity.compareTwoStrings(userInput, question.question); // Sử dụng stringSimilarity để tính toán độ tương đồng
+        var similarity2 = isQuestionContained(userInput, question.question, cutoff);
+        console.log(question, ": ",similarity1)
+        if (similarity1 >= cutoff || similarity2 == true) {
+            matches.push(question);
+            if (matches.length >= n) {
+                break;
+            }
+        }
+    }
+    return matches;
+}
+
+// function jaccardSimilarity(question, userInput) {
+//     let questionSet = new Set(question.split(' '));
+//     let userInputSet = new Set(userInput.split(' '));
+//     let intersection = new Set([...questionSet].filter(x => userInputSet.has(x)));
+//     return intersection.size / (questionSet.size + userInputSet.size - intersection.size);
+// }
+
 // function getCloseMatches(userInput, questions, n, cutoff) {
 //     var matches = [];
 //     // convert all to lower
@@ -73,10 +120,10 @@ inputElement.addEventListener("keypress", function(event) {
 //     questions.forEach(question => {
 //         question.question = question.question.toLowerCase();
 //     });
-//     // compear
+//     // compare
 //     for (var i = 0; i < questions.length; i++) {
 //         var question = questions[i];
-//         var similarity = stringSimilarity.compareTwoStrings(userInput, question.question); // Sử dụng stringSimilarity để tính toán độ tương đồng
+//         var similarity = jaccardSimilarity(userInput, question.question);
 //         console.log(question, ": ",similarity)
 //         if (similarity >= cutoff) {
 //             matches.push(question);
@@ -87,35 +134,6 @@ inputElement.addEventListener("keypress", function(event) {
 //     }
 //     return matches;
 // }
-
-function jaccardSimilarity(question, userInput) {
-    let questionSet = new Set(question.split(' '));
-    let userInputSet = new Set(userInput.split(' '));
-    let intersection = new Set([...questionSet].filter(x => userInputSet.has(x)));
-    return intersection.size / (questionSet.size + userInputSet.size - intersection.size);
-}
-
-function getCloseMatches(userInput, questions, n, cutoff) {
-    var matches = [];
-    // convert all to lower
-    userInput = userInput.toLowerCase();
-    questions.forEach(question => {
-        question.question = question.question.toLowerCase();
-    });
-    // compare
-    for (var i = 0; i < questions.length; i++) {
-        var question = questions[i];
-        var similarity = jaccardSimilarity(userInput, question.question);
-        console.log(question, ": ",similarity)
-        if (similarity >= cutoff) {
-            matches.push(question);
-            if (matches.length >= n) {
-                break;
-            }
-        }
-    }
-    return matches;
-}
 
 
 function calculateSimilarity(a, b) {
@@ -167,7 +185,7 @@ function saveUserInputQuestion(userInput, question) {
 
 
 function findBestMatch(userQuestion, questions) {
-    const matches = getCloseMatches(userQuestion, questions, 1, 0.5);
+    const matches = getCloseMatches(userQuestion, questions, 1, 0.8);
     if (matches.length > 0) {
         return matches[0];
     } else {

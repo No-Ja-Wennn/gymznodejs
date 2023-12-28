@@ -41,10 +41,27 @@ sendButton.addEventListener('click', () => {
             }
             displayBotMessage(answer);
         }); 
-        
         inputElement.value = '';
     }
 });
+
+function isQuestionContained(userInput, questionWords, percentageRequired = 0.8) {
+    var userInputWords = userInput.toLowerCase().split(/\s+/);
+
+    // for (var i = 0; i < questionArray.length; i++) {
+        questionWords = questionWords.toLowerCase().split(/\s+/);
+        var matchingWords = questionWords.filter(word => userInputWords.includes(word)).length;
+        var percentage = matchingWords / questionWords.length;
+        // console.log("matchingWords", matchingWords)
+        // console.log("questionWords", questionWords.length)
+        if (percentage >= percentageRequired) {
+            return true;
+        }
+    // }
+
+    // Chỉ in ra 'false' nếu không tìm thấy câu hỏi nào khớp
+    return false;
+}
 
 function displayUserMessage(message) {
     const chatBoxItemUser = makeLi(message, "chatbox__message__item__right");
@@ -73,9 +90,10 @@ function getCloseMatches(userInput, questions, n, cutoff) {
     // compear
     for (var i = 0; i < questions.length; i++) {
         var question = questions[i];
-        var similarity = stringSimilarity.compareTwoStrings(userInput, question.question); // Sử dụng stringSimilarity để tính toán độ tương đồng
-        console.log(question, ": ",similarity)
-        if (similarity >= cutoff) {
+        var similarity1 = stringSimilarity.compareTwoStrings(userInput, question.question); // Sử dụng stringSimilarity để tính toán độ tương đồng
+        var similarity2 = isQuestionContained(userInput, question.question, cutoff);
+        console.log(question, ": ",similarity1)
+        if (similarity1 >= cutoff || similarity2 == true) {
             matches.push(question);
             if (matches.length >= n) {
                 break;

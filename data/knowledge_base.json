@@ -281,6 +281,10 @@
       "answer": "Có, chúng tôi có phòng thay đồ và khu vệ sinh."
     },
     {
+      "question": "Thuê huấn luyện viên",
+      "answer": "Chúng tôi có đội ngũ huấn luyện viên chuyên nghiệp. Bạn có thể liên hệ lễ tân để đăng ký"
+    },
+    {
       "question": "Huấn luyện viên",
       "answer": "Có, chúng tôi có đội ngũ huấn luyện viên chuyên nghiệp."
     },
@@ -389,8 +393,8 @@
       "answer": "Chúng tôi có phòng tập riêng cho nhóm với không gian tách biệt."
     },
     {
-      "question": "Thẻ thành viên",
-      "answer": "Có, chúng tôi có chương trình thẻ thành viên với nhiều ưu đãi."
+      "question": "Đăng ký thẻ thành viên",
+      "answer": "Bạn có thể đến quầy lễ tân để đăng ký, chúng tôi có chương trình thẻ thành viên với nhiều ưu đãi."
     },
     {
       "question": "Giảm giá sinh viên",
@@ -401,7 +405,7 @@
       "answer": "Có, chúng tôi có dịch vụ thuê hướng dẫn viên cá nhân để hỗ trợ bạn tập luyện hiệu quả."
     },
     {
-      "question": "Tập cho người bận rộn",
+      "question": "bận rộn có tập được không",
       "answer": "Chúng tôi có chương trình tập cho người bận rộn với lịch trình linh hoạt."
     },
     {
@@ -529,7 +533,15 @@
       "answer": "Có, chúng tôi cung cấp dịch vụ massage chuyên nghiệp."
     },
     {
-      "question": "Chỗ đậu xe",
+      "question": "để đậu xe",
+      "answer": "Có, chúng tôi có khu vực đậu xe riêng."
+    },
+    {
+      "question": "nhà để xe",
+      "answer": "Có, chúng tôi có khu vực đậu xe riêng."
+    },
+    {
+      "question": "chỗ để xe",
       "answer": "Có, chúng tôi có khu vực đậu xe riêng."
     }
   ]
