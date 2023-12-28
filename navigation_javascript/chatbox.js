@@ -1,4 +1,10 @@
+// import React from 'react' // nạp thư viện react
+// import ReactDOM from 'react-dom' // nạp thư viện react-dom
+
 // chatbox
+
+const stringSimilarity = require('string-similarity'); //
+
 const chatBoxMessage = document.querySelector('.chatbox__message');
 const chatBoxList = chatBoxMessage.querySelector('.chatbox__message__list');
 
@@ -21,46 +27,54 @@ function makeLi(value = "", option = "chatbox__message__item__right"){
     return chatBoxItem;
 }
 
+
 sendButton.addEventListener('click', () => {
-    var valueInput = inputElement.value;
+    const valueInput = inputElement.value.trim();
     if (valueInput) {
-        const chatBoxItemUser = makeLi(valueInput, "chatbox__message__item__right")
-        
-        chatBoxList.appendChild(chatBoxItemUser);
-        
+        displayUserMessage(valueInput);
 
         loadKnowledgeBase(function (knowledgeBase) {
-            var bestMatch = findBestMatch(valueInput, knowledgeBase.questions);
-            var answer = null;
-            if (bestMatch[0] !== null)
-                answer = bestMatch[0].answer;
-            if (answer === null) 
-                answer = "Sorry, Hiện tại chưa thể trả lời câu hỏi này.";
-
-            console.log(answer)
-            const chatBoxItemBot = makeLi(answer, "chatbox__message__item__left")
-            chatBoxList.appendChild(chatBoxItemBot);
+            const bestMatch = findBestMatch(valueInput, knowledgeBase.questions);
+            let answer = "Xin lỗi, tôi chưa thể trả lời câu hỏi này.";
+            if (bestMatch && bestMatch.answer) {
+                answer = bestMatch.answer;
+            }
+            displayBotMessage(answer);
         }); 
         
-        inputElement.value = ''
+        inputElement.value = '';
     }
 });
 
+function displayUserMessage(message) {
+    const chatBoxItemUser = makeLi(message, "chatbox__message__item__right");
+    chatBoxList.appendChild(chatBoxItemUser);
+}
+function displayBotMessage(message) {
+    const chatBoxItemBot = makeLi(message, "chatbox__message__item__left");
+    chatBoxList.appendChild(chatBoxItemBot);
+}
 
 inputElement.addEventListener("keypress", function(event) {
     if (event.key === "Enter") {
         event.preventDefault();
         sendButton.click();
-        
     }
 });
 
 
 function getCloseMatches(userInput, questions, n, cutoff) {
     var matches = [];
+    // convert all to lower
+    userInput = userInput.toLowerCase();
+    questions.forEach(question => {
+        question.question = question.question.toLowerCase();
+    });
+    // compear
     for (var i = 0; i < questions.length; i++) {
         var question = questions[i];
-        var similarity = calculateSimilarity(userInput, question.question);
+        var similarity = stringSimilarity.compareTwoStrings(userInput, question.question); // Sử dụng stringSimilarity để tính toán độ tương đồng
+        console.log(question, ": ",similarity)
         if (similarity >= cutoff) {
             matches.push(question);
             if (matches.length >= n) {
@@ -71,11 +85,40 @@ function getCloseMatches(userInput, questions, n, cutoff) {
     return matches;
 }
 
+// function jaccardSimilarity(question, userInput) {
+//     let questionSet = new Set(question.split(' '));
+//     let userInputSet = new Set(userInput.split(' '));
+//     let intersection = new Set([...questionSet].filter(x => userInputSet.has(x)));
+//     return intersection.size / (questionSet.size + userInputSet.size - intersection.size);
+// }
+
+// function getCloseMatches(userInput, questions, n, cutoff) {
+//     var matches = [];
+//     // convert all to lower
+//     userInput = userInput.toLowerCase();
+//     questions.forEach(question => {
+//         question.question = question.question.toLowerCase();
+//     });
+//     // compare
+//     for (var i = 0; i < questions.length; i++) {
+//         var question = questions[i];
+//         var similarity = jaccardSimilarity(userInput, question.question);
+//         console.log(question, ": ",similarity)
+//         if (similarity >= cutoff) {
+//             matches.push(question);
+//             if (matches.length >= n) {
+//                 break;
+//             }
+//         }
+//     }
+//     return matches;
+// }
+
+
 function calculateSimilarity(a, b) {
     if (typeof a !== 'string' || typeof b !== 'string') {
         return 0;
     }
-
     var pairs1 = getLetterPairs(a.toUpperCase());
     var pairs2 = getLetterPairs(b.toUpperCase());
     var union = pairs1.length + pairs2.length;
@@ -106,23 +149,26 @@ function loadKnowledgeBase(callback) {
     });
 }
 
-function saveKnowledgeBase(data) {
-    var jsonData = JSON.stringify(data, null, 2);
-    var blob = new Blob([jsonData], { type: "application/json" });
-    var url = URL.createObjectURL(blob);
-    var a = document.createElement("a");
-    a.href = url;
-    a.download = "knowledge_base.json";
-    a.click();
+const fs = require('fs');
+function saveUserInputQuestion(userInput, question) {
+    // Lấy dữ liệu đã lưu từ trước (nếu có)
+    var data = JSON.parse(fs.readFileSync('data/knowledge_base.json')) || [];
+    // Thêm câu hỏi mới vào dữ liệu
+    data.push({
+        userInput: userInput,
+        question: question
+    });
+    // Lưu lại dữ liệu
+    fs.writeFileSync('data/knowledge_base.json', JSON.stringify(data));
 }
 
+
 function findBestMatch(userQuestion, questions) {
-    var matches = getCloseMatches(userQuestion, questions, 1, 0.7);
+    const matches = getCloseMatches(userQuestion, questions, 1, 0.8);
     if (matches.length > 0) {
-        var score = calculateSimilarity(userQuestion, matches[0].question);
-        return [matches[0], score];
+        return matches[0];
     } else {
-        return [null, null];
+        return null;
     }
 }
 
@@ -135,23 +181,3 @@ function getAnswerForQuestion(question, knowledgeBase) {
     }
     return null;
 }
-
-function sendMessage(userInput) {
-    // var userInput = document.getElementById("user-input").value.trim();
-    if (userInput.toLowerCase() === "quit") {
-        return;
-    }
-
-    // var chatContainer = document.getElementById("chat-container");
-    // var userMessage = document.createElement("p");
-    // userMessage.innerText = "You: " + userInput;
-    // chatContainer.appendChild(userMessage);  
-}
-
-
-
-
-/*
-
-
-*/

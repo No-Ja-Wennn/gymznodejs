@@ -7,8 +7,8 @@
     background-position: right;
     background-size: cover;
     position: relative;
-    border-bottom: .1px solid rgba(124, 136, 136, 0.4);
-    box-shadow: 0px 26px 26px 22px rgba(59, 59, 59, 1);
+    /* border-bottom: .1px solid rgba(124, 136, 136, 0.4);
+    box-shadow: 0px 26px 26px 22px rgba(59, 59, 59, 1); */
     height: 100vh;
 }
 
@@ -147,7 +147,7 @@
     /* font-size: 4rem; */
     font-weight: 700;
     line-height: 4.2rem;
-    max-width: 360px;
+    max-width: 420px;
     margin: 18px 0 22px;
 }
 
@@ -221,4 +221,79 @@
         left: 20px;
         border-color: #d1d1d1;
     }
+}
+
+
+/* container__caculatorBMI */
+.container__caculatorBMI{
+    display: flex;
+    max-width: 60vw;
+    flex-wrap: wrap;
+}
+
+.container__caculatorBMI__left{
+    /* flex: 2; */
+    margin-right: 20px;
+    display: flex;
+    align-items: center;
+}
+
+.container__caculatorBMI__text{
+    font-size: 3.6rem;
+    line-height: 4rem;
+    width: 360px;
+}
+
+.container__caculatorBMI__right{
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    flex-wrap: wrap;
+    flex: 1;
+}
+
+/* .container__caculatorBMI__right:not(:first-child){
+    margin-left: 12px;
+} */
+
+.container__caculatorBMI__input{
+    height: 45px;
+    border: 0px;
+    outline: none;
+        display: block;
+        width: 100%;
+        padding: .375rem .75rem;
+        font-size: 1.6rem;
+        font-weight: 400;
+        line-height: 1.5;
+        margin-right: 16px;
+        width: 116px;
+        color: #fff;
+    background-color: #3d3d3d;
+}
+
+.container__caculatorBMI__btn{
+    height: 45px;
+    border: 0px;
+    outline: none;
+        display: block;
+        width: 100%;
+        padding: .375rem .75rem;
+        font-size: 1.6rem;
+        font-weight: 400;
+        line-height: 1.5;
+        min-width: 146px;
+    background-color: #ff0436;
+}
+
+.container__caculatorBMI::before {
+    content: "";
+    height: 100%;
+    width: 135%;
+    background-color: #1f1f1f;
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    z-index: -1;
+    clip-path: polygon(0 0,100% 0,90% 100%,0% 100%);
 }
