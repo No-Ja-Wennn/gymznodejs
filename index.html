@@ -223,17 +223,19 @@
                 <div class="change__weightcalculation">
                     <!-- trường nhập liệu  -->
                     <div class="change__input">
-                        <input type="text" id="height" name="height" placeholder="Chiều cao (cm)">
-                        <input type="text" id="weight" name="weight" placeholder="Cân nặng (kg)">
-                        <input type="text" id="age" name="age" placeholder="Tuổi">
+                        <input type="number" id="height" name="height" min="0" max="300" placeholder="Chiều cao (cm)">
+                        <input type="number" id="weight" name="weight" min="0" max="150" placeholder="Cân nặng (kg)">
+                        <input type="number" id="age" name="age" min="0" max="100" placeholder="Tuổi">
                         <input type="text" id="fullname" name="fullname" placeholder="Họ và tên">
                         <select id="gender" name="gender">
+                            <option value="" disabled selected>Giới tính</option>
                             <option value="male">Nam</option>
                             <option value="female">Nữ</option>
                             <option value="other">Khác</option>
-                        </select>
+                        </select>                       
                         <input type="tel" id="phone" name="phone" placeholder="Số điện thoại">
                     </div>
+                    <span class="change__input__error"></span>
                     <button class="change__submit" type="submit">NHẬN KẾT QUẢ</button>
                 </div>
             </div>

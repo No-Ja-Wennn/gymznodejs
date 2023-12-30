@@ -60,6 +60,8 @@
 }
 
 .change__weightcalculation {
+    display: flex;
+    flex-direction: column;
     margin: 12px 42px;
     flex-basis: calc(50% - 20px); /* Chiếm 50% chiều rộng của container trừ đi khoảng cách giữa các phần tử */
     text-align: left;
@@ -173,7 +175,7 @@
     padding: 8px 12px 4px;
     color: #000;
     outline: none;
-    border: 1px solid #333;
+    border: 2px solid #333;
     border-radius: 4px;
     margin-top: 4px;
     margin-right: 4px;
@@ -196,10 +198,14 @@
     z-index: 4;
 }
 
-.change__submit:hover{
-
+.change__input__error{
+    color: #ff738f;
+    z-index: 2;
+    font-size: 1.6em;
+    line-height: 2.4rem;
+    margin-top: 8px;
+    min-height: 8px;
 }
-
 /* PHẦN SẢN PHẨM */
 .container__sanpham {
     /* margin: 50px ; */
