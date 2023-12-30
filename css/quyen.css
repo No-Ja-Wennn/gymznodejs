@@ -7,8 +7,8 @@
     background-position: right;
     background-size: cover;
     position: relative;
-    /* border-bottom: .1px solid rgba(124, 136, 136, 0.4);
-    box-shadow: 0px 26px 26px 22px rgba(59, 59, 59, 1); */
+    border-bottom: .1px solid rgba(124, 136, 136, 0.4);
+    box-shadow: 0px 26px 26px 22px rgba(59, 59, 59, 1);
     height: 100vh;
 }
 

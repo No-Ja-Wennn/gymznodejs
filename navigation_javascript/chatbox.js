@@ -29,7 +29,7 @@ function makeLi(value = "", option = "chatbox__message__item__right") {
 
 const OpenAI = require("openai");
 const openai = new OpenAI({
-    apiKey: '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',
+    apiKey: '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',
     dangerouslyAllowBrowser: true
 });
 
@@ -43,7 +43,7 @@ const openFun = async (valueInput) => {
 }
 
 openFun(`
-chỉ trả lời những câu hỏi liên quan đến gym và sức khoẻ cuộc sống, không trả lời các vấn đề khác
+chỉ được nói về gym, không được nói những điều khác, chỉ nói về chủ đề tập gym, những câu hỏi không liên quan đến gym không trả lời, gym là chủ đề nói, những vấn đề khác gym không trả lời:
 `
 )
 

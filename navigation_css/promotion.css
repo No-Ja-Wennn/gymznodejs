@@ -89,9 +89,10 @@ html {
 
 .footer {
     width: 100%;
-    height: 410px;
+    /* height: 410px; */
     background-color: #222;
     display: flex;
+    flex-direction: column;
     justify-content: space-between;
     /* font-size: 14px; */
 }
@@ -106,6 +107,7 @@ html {
     height: 100%;
     display: flex;
     margin: 0 auto;
+    margin-bottom: 20px;
 }
 
 .footer__colum1 {
@@ -289,8 +291,9 @@ html {
 
 .footer__last {
     display: flex;
+    /* align-items: center; */
     width: 100%;
-    height: 100px;
+    height: 60px;
     background-color: #222;
 
 }
@@ -312,7 +315,7 @@ html {
     color: white;
     margin-left: 10px;
     font-size: 14px;
-    margin-top: 45px;
+    /* margin-top: 45px; */
 }
 
 /* .footer__last__select i{
@@ -446,6 +449,17 @@ html {
     margin-left: 5px;
 }
 
+.footer__last__select {
+    display: flex;
+
+    align-items: center;
+}
+
+.footer__last__select__inner {
+    display: flex;
+    align-items: center;
+}
+
 /* ================================================================================================== ĐÂY LÀ PHẦN ANIMATION */
 @keyframes side_right {
     0% {
@@ -544,7 +558,7 @@ html {
 
     .footer__colum1__inner a {
         display: flex;
-        margin: 0 auto;
+        /* margin: 0 auto; */
     }
 
     .about__us {
