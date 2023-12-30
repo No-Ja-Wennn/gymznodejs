@@ -11,7 +11,7 @@ const inputBox = document.querySelector('.chatbox__bottom__input');
 const inputElement = inputBox.querySelector('input')
 const sendButton = inputBox.querySelector('i');
 
-function makeLi(value = "", option = "chatbox__message__item__right"){
+function makeLi(value = "", option = "chatbox__message__item__right") {
     const chatBoxItem = document.createElement('li');
     if (value) {
         chatBoxItem.className = `chatbox__message__item ${option}`;
@@ -28,35 +28,36 @@ function makeLi(value = "", option = "chatbox__message__item__right"){
 
 
 const OpenAI = require("openai");
-// const openai = new OpenAI({
-//   apiKey: "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"
-// });
 const openai = new OpenAI({
-    apiKey: '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',
+    apiKey: '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',
     dangerouslyAllowBrowser: true
 });
-  
-const openFun=async(valueInput)=>{
+
+const openFun = async (valueInput) => {
     const chatCompletion = await openai.chat.completions.create({
         model: "gpt-3.5-turbo",
-        messages: [{"role": "user", "content": `${valueInput}`,}],
-        max_tokens:1000
+        messages: [{ "role": "user", "content": `${valueInput}`, }],
+        max_tokens: 1000
     });
     return chatCompletion.choices[0].message.content;
 }
 
+openFun(`
+chỉ trả lời những câu hỏi liên quan đến gym và sức khoẻ cuộc sống, không trả lời các vấn đề khác
+`
+)
 
 async function getPromiseResult(valueInput) {
     try {
-      const result = await openFun(valueInput);
-    //   console.log(result)
-      return result;
+        const result = await openFun(valueInput);
+        //   console.log(result)
+        return result;
 
     } catch (error) {
-      return "Xin lỗi, tôi chưa thể trả lời câu hỏi này."; // Xử lý lỗi nếu có
+        return "Xin lỗi, tôi chưa thể trả lời câu hỏi này."; // Xử lý lỗi nếu có
     }
-  }
-  
+}
+
 
 
 sendButton.addEventListener('click', async () => { // Thêm async vào đây
@@ -73,11 +74,12 @@ sendButton.addEventListener('click', async () => { // Thêm async vào đây
                 response = true
                 displayBotMessage(answer);
             }
-            if(response == false){
+            if (response == false) {
                 answer = await getPromiseResult(valueInput); // Thêm await vào đây
                 displayBotMessage(answer);
+                // saveUserInputQuestion(valueInput, answer);
             }
-        }); 
+        });
         inputElement.value = '';
     }
 });
@@ -87,12 +89,12 @@ function isQuestionContained(userInput, questionWords, percentageRequired = 0.8)
     var userInputWords = userInput.toLowerCase().split(/\s+/);
 
     // for (var i = 0; i < questionArray.length; i++) {
-        questionWords = questionWords.toLowerCase().split(/\s+/);
-        var matchingWords = questionWords.filter(word => userInputWords.includes(word)).length;
-        var percentage = matchingWords / questionWords.length;
-        if (percentage >= percentageRequired) {
-            return true;
-        }
+    questionWords = questionWords.toLowerCase().split(/\s+/);
+    var matchingWords = questionWords.filter(word => userInputWords.includes(word)).length;
+    var percentage = matchingWords / questionWords.length;
+    if (percentage >= percentageRequired) {
+        return true;
+    }
     // }
 
     // Chỉ in ra 'false' nếu không tìm thấy câu hỏi nào khớp
@@ -108,7 +110,7 @@ function displayBotMessage(message) {
     chatBoxList.appendChild(chatBoxItemBot);
 }
 
-inputElement.addEventListener("keypress", function(event) {
+inputElement.addEventListener("keypress", function (event) {
     if (event.key === "Enter") {
         event.preventDefault();
         sendButton.click();
@@ -129,6 +131,11 @@ function getCloseMatches(userInput, questions, n, cutoff) {
         var similarity1 = stringSimilarity.compareTwoStrings(userInput, question.question); // Sử dụng stringSimilarity để tính toán độ tương đồng
         var similarity2 = isQuestionContained(userInput, question.question, cutoff);
         // console.log(question, ": ",similarity1)
+        console.log("stringSimilarity ", similarity1);
+        if (similarity1 >= cutoff && similarity1 < 1) {
+            // saveUserInputQuestion(userInput, matches.answer);
+            console.log("đã lưu userInput = ", userInput, "matches.answer= ", matches.answer)
+        }
         if (similarity1 >= cutoff || similarity2 == true) {
             matches.push(question);
             if (matches.length >= n) {
@@ -138,35 +145,6 @@ function getCloseMatches(userInput, questions, n, cutoff) {
     }
     return matches;
 }
-
-// function jaccardSimilarity(question, userInput) {
-//     let questionSet = new Set(question.split(' '));
-//     let userInputSet = new Set(userInput.split(' '));
-//     let intersection = new Set([...questionSet].filter(x => userInputSet.has(x)));
-//     return intersection.size / (questionSet.size + userInputSet.size - intersection.size);
-// }
-
-// function getCloseMatches(userInput, questions, n, cutoff) {
-//     var matches = [];
-//     // convert all to lower
-//     userInput = userInput.toLowerCase();
-//     questions.forEach(question => {
-//         question.question = question.question.toLowerCase();
-//     });
-//     // compare
-//     for (var i = 0; i < questions.length; i++) {
-//         var question = questions[i];
-//         var similarity = jaccardSimilarity(userInput, question.question);
-//         if (similarity >= cutoff) {
-//             matches.push(question);
-//             if (matches.length >= n) {
-//                 break;
-//             }
-//         }
-//     }
-//     return matches;
-// }
-
 
 function calculateSimilarity(a, b) {
     if (typeof a !== 'string' || typeof b !== 'string') {
@@ -202,18 +180,15 @@ function loadKnowledgeBase(callback) {
     });
 }
 
-const fs = require('fs');
-function saveUserInputQuestion(userInput, question) {
-    // Lấy dữ liệu đã lưu từ trước (nếu có)
-    var data = JSON.parse(fs.readFileSync('data/knowledge_base.json')) || [];
-    // Thêm câu hỏi mới vào dữ liệu
-    data.push({
-        userInput: userInput,
-        question: question
-    });
-    // Lưu lại dữ liệu
-    fs.writeFileSync('data/knowledge_base.json', JSON.stringify(data));
-}
+var fs = require('fs');
+// function saveUserInputQuestion(userInput, question) {
+//     var data = JSON.parse(fs.readFileSync('../data/knowledge_base.json', 'utf8')) || [];
+//     data.push({
+//         userInput: userInput,
+//         question: question
+//     });
+//     fs.writeFileSync('data/knowledge_base.json', JSON.stringify(data));
+// }
 
 
 function findBestMatch(userQuestion, questions) {
@@ -234,3 +209,4 @@ function getAnswerForQuestion(question, knowledgeBase) {
     }
     return null;
 }
+

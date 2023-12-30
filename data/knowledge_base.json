@@ -9,6 +9,30 @@
       "answer": "phòng gym mở cửa từ 6 giờ sáng."
     },
     {
+      "question": "địa điểm",
+      "answer": "Đường z115, xã Quyết Thắng, tp Thái Nguyên. hẹn bạn một ngày sớm nhất"
+    },
+    {
+      "question": "địa chỉ",
+      "answer": "Đường z115, xã Quyết Thắng, tp Thái Nguyên. hẹn bạn một ngày sớm nhất"
+    },
+    {
+      "question": "ở đâu",
+      "answer": "Đường z115, xã Quyết Thắng, tp Thái Nguyên. hẹn bạn một ngày sớm nhất"
+    },
+    {
+      "question": "số điện thoại",
+      "answer": "Bạn có thể liên hệ: 0335199011"
+    },
+    {
+      "question": "sđt",
+      "answer": "Bạn có thể liên hệ: 0335199011"
+    },
+    {
+      "question": "sdt",
+      "answer": "Bạn có thể liên hệ: 0335199011"
+    },
+    {
       "question": "tập luyện bao lâu mỗi ngày",
       "answer": "bạn nên tập luyện ít nhất 30 phút mỗi ngày."
     },
@@ -123,10 +147,6 @@
     {
       "question": "xin chàoooo",
       "answer": "chào bạn"
-    },
-    {
-      "question": "bạn có khỏe lắm không",
-      "answer": "có, tôi khỏe"
     },
     {
       "question": "chào bạn nhiều nhé",
@@ -361,6 +381,22 @@
       "answer": "Có, chúng tôi cung cấp gói tập luyện theo tháng với nhiều ưu đãi."
     },
     {
+      "question": "giá vé tháng",
+      "answer": "Chúng tôi cung cấp gói tập luyện theo tháng với giá là 2 triệu đồng"
+    },
+    {
+      "question": "tiền một tháng",
+      "answer": "Chúng tôi cung cấp gói tập luyện theo tháng với giá là 2 triệu đồng"
+    },
+    {
+      "question": "giá vé tuần",
+      "answer": "Chúng tôi cung cấp gói tập luyện theo tuần với giá là 500 nghìn đồng"
+    },
+    {
+      "question": "tiền một tuần",
+      "answer": "Chúng tôi cung cấp gói tập luyện theo tuần với giá là 500 nghìn đồng"
+    },
+    {
       "question": "Cho thuê quần áo tập",
       "answer": "Có, chúng tôi có dịch vụ cho thuê quần áo tập luyện nếu bạn cần."
     },
@@ -543,6 +579,74 @@
     {
       "question": "chỗ để xe",
       "answer": "Có, chúng tôi có khu vực đậu xe riêng."
+    },
+    {
+      "question": "tập một buổi",
+      "answer": "Không, Chúng tôi chỉ cung cấp dịch vụ tập theo tuần và theo tháng"
+    },
+    {
+      "question": "một buổi tập bao nhiêu tiền",
+      "answer": "Chúng tôi chỉ cung cấp dịch vụ tập theo tuần và theo tháng"
+    },
+    {
+      "question": "cách đăng ký một gói tập",
+      "answer": "Để đăng ký một gói tập, bạn chỉ cần đến quầy lễ tân của phòng gym và hỏi nhân viên hỗ trợ."
+    },
+    {
+      "question": "mang theo thẻ",
+      "answer": "Đúng, bạn cần mang theo thẻ tập của mình để được vào tập."
+    },
+    {
+      "question": "hướng dẫn tập",
+      "answer": "Chúng tôi cung cấp dịch vụ hướng dẫn tập để hỗ trợ bạn trong quá trình tập luyện."
+    },
+    {
+      "question": "tôi có thể tập luyện cùng người bạn của mình không?",
+      "answer": "Chắc chắn, bạn có thể tập luyện cùng với bạn bè của mình tại phòng gym."
+    },
+    {
+      "question": "phòng tắm",
+      "answer": "Có, phòng gym của chúng tôi có các tiện ích như phòng tắm, vệ sinh và khu vực thay đồ."
+    },
+    {
+      "question": "phòng vệ sinh",
+      "answer": "Có, phòng gym của chúng tôi có các tiện ích như phòng tắm, vệ sinh và khu vực thay đồ."
+    },
+    {
+      "question": "Giá vé tập tháng",
+      "answer": "Giá vé tập hàng tháng tại phòng gym của chúng tôi là 2 triệu VND."
+    },
+    {
+      "question": "bao tiền tháng",
+      "answer": "Giá vé tập hàng tháng tại phòng gym của chúng tôi là 2 triệu VND."
+    },
+    {
+      "question": "bao tiền tuần",
+      "answer": "Giá vé tập hàng tháng tại phòng gym của chúng tôi là 500 nghìn đồng"
+    },
+    {
+      "question": "yoga, zumba",
+      "answer": "Có, chúng tôi cung cấp các lớp hướng dẫn như yoga, zumba và nhiều lớp khác hàng tuần."
+    },
+    {
+      "question": "tư vấn dinh dưỡng",
+      "answer": "Đúng, chúng tôi có dịch vụ tư vấn dinh dưỡng để hỗ trợ bạn đạt được kết quả tốt nhất sau khi tập luyện."
+    },
+    {
+      "question": "khu vực gym cho nữ",
+      "answer": "Có, chúng tôi có khu vực gym riêng cho nữ để tạo sự thoải mái và riêng tư hơn cho khách hàng."
+    },
+    {
+      "question": "trả tiền tập thử",
+      "answer": "Không, bạn có thể đăng ký thẻ tập thử nghiệm để trải nghiệm dịch vụ của chúng tôi trước khi quyết định đăng ký gói tập dài hạn."
+    },
+    {
+      "question": "tập thử",
+      "answer": "Chắc chắn, bạn có thể đăng ký thẻ tập thử nghiệm để trải nghiệm dịch vụ của chúng tôi trước khi quyết định đăng ký gói tập dài hạn."
+    },
+    {
+      "question": "cở sở vật chất",
+      "answer": "Tại đây, chúng tôi đã trang bị những thiết bị hiện đại, như máy chạy, máy tập cơ tay..."
     }
   ]
 }
