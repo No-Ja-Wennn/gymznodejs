@@ -19,7 +19,7 @@
     <link rel="stylesheet" href="../css/truong.css">
     <link rel="stylesheet" href="../css/base.css">
     <link rel="stylesheet" href="../navigation_css/shop.css">
-    <link rel="stylesheet" href="End_shoprtien.css">
+    <link rel="stylesheet" href="../navigation_css/End_shoprtien.css">
     <title>GYMZ - Thể hình giới trẻ</title>
 
 </head>
@@ -38,14 +38,14 @@
                 <div class="header__inner__navigation">
                     <ul>
                         <li><a href="../index.html">TRANG CHỦ</a></li>
-                        <li><a href="./forum.html"><span>DIỄN ĐÀN</span></a></li>
+                        <li><a href="./forum.html">DIỄN ĐÀN</a></li>
                         <li>
                             <div class="dropdown">
-                                <a href="#">DỊCH VỤ<m><i class='bx bxs-right-arrow'></i></m></a>
+                                <a href="#"><span>DỊCH VỤ</span><m><i class='bx bxs-right-arrow'></i></m></a>
                                 <div class="containt">
                                     <a href="#">THẺ HỘI VIÊN</a>
                                     <a href="#">HUẤN LUYỆN VIÊN</a>
-                                    <a href="#">CỬA HÀNG WHEY</a>
+                                    <a href="#"><span>CỬA HÀNG WHEY</span></a>
                                     <a href="../chatbox.html">CHAT ONLINE</a>
                                 </div>
                             </div>
@@ -59,7 +59,22 @@
                     </ul>
                 </div>
                 <div class="header__inner__menu">
-                    <a href="#">MENU</a>
+                    <div class="menuroi">
+                        <a href="#">
+                            <i class='bx bx-menu' ></i>
+                        </a>
+                        <div class="noidung">
+                            <div class="logo">
+                                <a href="">GYM<span>Z</span></a>
+                                <!-- <img src="../img/background/logo_and_bgr.png" alt="logo and bgr"> -->
+                            </div>
+                            <a href="../index.html"><i class='bx bxs-home'></i>TRANG CHỦ</a>
+                            <a href="./forum.html"><i class='bx bx-world' ></i>DIỄN ĐÀN</a>
+                            <a href="#"><i class='bx bxs-file' ></i>DỊCH VỤ</a>
+                            <a href="./promotion.html"><i class='bx bxs-purchase-tag' ></i>KHUYẾN MÃI</a>
+                            <a href="#"><i class='bx bx-code-alt' ></i>TẬP THỬ MIỄN PHÍ</a>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -275,9 +290,11 @@
                 </ul>
             </div>
         </div>
-        
     </div>
+    <!-- overlay -->
+    <div class="nen_mo"></div>
     <script src="./index.js"></script>
+    <script src="../navigation_javascript/menu.js"></script>
 </body>
 
 </html>

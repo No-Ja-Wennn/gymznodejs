@@ -65,6 +65,7 @@
     text-align: left;
 }
 
+
 .change__box{
     display: flex;
     justify-content: center;
@@ -88,12 +89,14 @@
 }
 
 .change__box__text h2{
-    font-size: 2rem;
+    font-size: 2.4rem;
     line-height: 24px;
+    margin-bottom: 6px;
 }
 .change__box__text p{
-    font-size: 1.6rem;
-    line-height: 24px;
+    font-size: 1.4rem;
+    font-weight: 600;
+    line-height: 18px;
     margin-left: 4px;
 }
 
@@ -105,15 +108,14 @@
 }
 
 .change__box__img img{
-    
-    min-width: 300px;
+    min-width: 350px;
     max-width: 680px;
     width: 100%;
     height: auto;
     object-fit: scale-down; /* Đảm bảo ảnh không vượt quá kích thước của phần tử cha */
     border: 2px solid #000;
-    border-radius: 8px;
     box-shadow: 10px 10px 5px #21212117;
+    border-radius: 5px;
 }
 
 .bmi__form {
@@ -137,31 +139,65 @@
 }
 
 /* change__input */
+.change__weightcalculation{
+    position: relative;
+    padding: 20px 20px;
+}
+
+
+.change__input{
+    display: flex;
+    flex-wrap: wrap;
+    padding-right: 50px;
+}
+
+
+.change__weightcalculation::before {
+    display: block;
+    content: "";
+    height: 100%;
+    width: 135%;
+    background-color: #1f1f1f;
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    z-index: 0;
+    clip-path: polygon(0 0,100% 0,90% 100%,0% 100%);
+}
+
 .change__input input,
 .change__input select{
     width: 180px;
     font-weight: 600;
     font-size: 1.8rem;
-    padding: 8px 12px;
+    padding: 8px 12px 4px;
     color: #000;
     outline: none;
     border: 1px solid #333;
     border-radius: 4px;
     margin-top: 4px;
+    margin-right: 4px;
+    z-index: 3;
 }
 
 .change__submit{
+    position: relative;
     font-size: 1.6rem;
     width: 180px;
-    margin-top: 4px;
-    padding: 8px 12px 4px;
+    margin-top: 8px;
+    padding: 12px 12px 8px;
     color: #000;
     font-weight: 700;
     cursor: pointer;
     border: 1px solid #333;
     border-radius: 4px;
     color: #fff;
-    background-color: #5e5e5e;
+    background-color: #ff0436;
+    z-index: 40;
+}
+
+.change__submit:hover{
+
 }
 
 /* PHẦN SẢN PHẨM */
