@@ -96,6 +96,10 @@
     padding: 26px 15px;
     position: relative;
 }
+
+.containt{
+    display: none;
+}
 .containt a{
     
     padding: 20px 15px;
