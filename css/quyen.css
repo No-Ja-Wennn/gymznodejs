@@ -178,6 +178,10 @@
     border: 0px;
 }
 
+.home__about__btn__child__link{
+    color: #fff;
+}
+
 .home__about__btn::before{
     position: absolute;
     top: -20px;
