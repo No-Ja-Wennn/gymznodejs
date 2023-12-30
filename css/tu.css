@@ -15,7 +15,7 @@
     font-weight: 700;
     line-height: 35px;
 }
-.container__service__title:hover{
+.container__service__img:hover{
     color: pink;
 }
 
@@ -52,7 +52,7 @@
 
  
  .service__img_row-2:last-child{
-    /* align-self: flex-end; */
+    align-self: flex-end;
  }
 
 .container__service__img__items{
