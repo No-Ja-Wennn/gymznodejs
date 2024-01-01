@@ -118,31 +118,34 @@ html {
     /* background-color: gray; */
     text-align: left;
     font-size: 14px;
+    margin-top: 15px;
 }
 
-.footer__colum1 a {
-    margin-left: 10px;
-}
 
 .footer__colum1 a h3 {
     display: flex;
-    margin: revert;
+    margin: 20px 0;
     color: white;
     margin-right: 10px;
     font-size: 23px;
 }
-
+/* 
 .about__website a {
     margin-bottom: 20px;
-}
+} */
 
 .footer__colum1 a {
     position: relative;
     color: white;
     display: inline-flex;
-    margin-top: 15px;
+    /* margin-top: 15px; */
+    
 }
-
+.about__us__inner a{
+    margin: 15px 0;
+    margin-left: 10px;
+    
+}
 .footer__colum1 i {
     line-height: 12px;
     margin-right: 10px;
@@ -160,6 +163,7 @@ html {
     width: 90%;
     margin-top: 87px;
     height: auto;
+    /* left: -20px; */
 }
 
 .group {
@@ -188,6 +192,7 @@ html {
     color: white;
     font-size: 10px;
     margin-left: 1px;
+    margin-top: 2px;
 }
 
 .name__page a m {
@@ -204,11 +209,11 @@ html {
 
 .avatar__img img {
     width: 20%;
-    height: 34.64%;
+    /* height: 34.64%; */
     margin: 10px;
     border: 1px white solid;
-    position: absolute;
-    position: relative;
+    /* position: absolute;
+    position: relative; */
 }
 
 .cover__img img {
@@ -276,12 +281,9 @@ html {
 }
 
 .service__customer__list a {
-    /* display: inline-flex;
-    
-    margin-top: 10px;
-    color: white; */
-
-    margin-right: 120px;
+    margin: 15px 0;
+    margin-left: 10px;
+    margin-right: 140px;
 }
 
 /* .service__customer__list i{
@@ -329,7 +331,7 @@ html {
 }
 
 .footer__colum2 a:hover {
-    opacity: 0.8;
+    text-decoration: underline;
 }
 
 /* ================================================================================================== ĐÂY LÀ PHẦN MENU */
@@ -459,7 +461,9 @@ html {
     display: flex;
     align-items: center;
 }
-
+.footer__last__select__inner i{
+    margin-right: 10px;
+}
 /* ================================================================================================== ĐÂY LÀ PHẦN ANIMATION */
 @keyframes side_right {
     0% {
@@ -528,22 +532,41 @@ html {
     .footer__select {
         flex-direction: column;
         align-items: center;
-        height: 800px;
+        /* height: 800px; */
     }
 
     .footer__colum1,
     .footer__colum2 {
         max-width: 500px;
         width: 100%;
-        height: 400px;
+        /* height: 400px; */
     }
 
     .footer__colum1 h3 {
         text-align: center;
     }
-
+    .footer__colum1 a h3{
+        margin-right: 0;
+        line-height: 30px;
+    }
+    .footer__colum1 a{
+        margin-left: 0;
+    }
+    
+    .service__customer__list {
+        width: 100%;
+        display: flex;
+        height: 100%;
+    }
     .service__customer__list a {
-        margin-right: 50px;
+        margin: 0;
+        margin: 15px 9px;
+    }
+    .service__customer__list__inner {
+        display: block;
+        text-align: center;
+        width: 90%;
+        margin: 0 auto;
     }
 
     .footer__last__select {
@@ -558,11 +581,14 @@ html {
 
     .footer__colum1__inner a {
         display: flex;
-        /* margin: 0 auto; */
+        margin: 0 auto;
+        /* margin-top: 15px; */
     }
 
     .about__us {
         width: 100%;
+        text-align: center;
+        line-height: 20px;
     }
 
     .about__us__inner {
@@ -570,17 +596,10 @@ html {
         margin: 0 auto;
     }
 
-    .service__customer__list {
-        width: 100%;
-        display: flex;
-        height: 100%;
-    }
-
-    .service__customer__list__inner {
-        width: 90%;
-        margin-left: auto;
-    }
-
+    /* .footer__colum2{
+        display: ;
+        background-color: green;
+    } */
     /* .footer__colum2__inner{
         position: relative;
         width: 100%;
@@ -589,14 +608,13 @@ html {
     } */
     .footer__colum2__inner {
         margin: 0 auto;
-        margin-top: 60px;
+        /* margin-top: 60px; */
 
     }
 
-    .footer__last__select {
-        display: flex;
+    .footer__last__select i{
+        margin-right: 10px;
     }
-
     .footer__last__select__inner {
 
         margin: 0 auto;
