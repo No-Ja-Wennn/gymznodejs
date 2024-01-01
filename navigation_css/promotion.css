@@ -141,6 +141,9 @@ html {
     /* margin-top: 15px; */
     
 }
+.about__us__inner{
+    display: grid;
+}
 .about__us__inner a{
     margin: 15px 0;
     margin-left: 10px;
@@ -551,6 +554,8 @@ html {
     }
     .footer__colum1 a{
         margin-left: 0;
+        align-items: center;
+        text-align: left;
     }
     
     .service__customer__list {
@@ -592,10 +597,15 @@ html {
     }
 
     .about__us__inner {
-        width: 90%;
+        width: 100%;
         margin: 0 auto;
+        display: block;
     }
-
+    .about__us__inner a{
+        width: 223px;
+        margin: 15px 5px;
+        /* display: inline; */
+    }
     /* .footer__colum2{
         display: ;
         background-color: green;

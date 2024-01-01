@@ -135,42 +135,7 @@
     scale: 3;
     color: white;
 }
-/* .menuroi{
-    position: relative;;
-} */
-/* .menuroi a{
-    padding: 26px 30px;
-    display: block;
-}
-.noidung{
-    display: none;
-    position: absolute;
-    top: 100%;
-    right: 0;
-    
-}
-.noidung a{
-    font-size: 14px;
-    font-weight: 600;
-    text-align: center;
-    padding: 0;
-    display: block;
-    min-width: 160px;
-    width: 100%;
-    padding: 25px 30px;
-    margin-right: 44px;
-    background-color: black;
-    color: white;
-}
-.menuroi:hover .noidung{
-    display: block;
-}
-.menuroi:active .noidung{
-    display: block;
-}
-.noidung a:hover{
-    background-color: gray;
-} */
+
 /* ==================== ANIMATION ==================== */
 @keyframes hienlen {
     from {
@@ -228,6 +193,10 @@
 }
 /* ==================== MEDIA ==================== */
 @media screen and (max-width: 1000px) { 
+    .header__inner {
+        width: 100%;
+        max-width: 1000px;
+    }
     .header__inner__navigation{
         display: none;
     }
@@ -254,26 +223,6 @@
 }
 
 /* ================================================================================================== ĐÂY LÀ PHẦN MENU */
-
-
-.header__inner__menu {
-    position: relative;
-}
-
-/* .header__inner__menu i {
-    scale: 2;
-    color: white;
-} */
-
-/* .header__inner__menu i:hover{
-    color: #1E90FF;
-} */
-
-
-
-/* .body{
-    position: relative;
-} */
 
 .nen_mo {
     display: none;
@@ -316,6 +265,7 @@
     right: 0;
     margin-right: 60px; */
     /* box-shadow: 10px 10px 0px 1000px rgba(0, 0, 0, 0.400); */
+    
 }
 
 .noidung a {
@@ -354,7 +304,7 @@
 
 
 .logo a {
-    padding: 25px 20px;
+    padding: 25px 10px;
     font-size: 32px;
     font-family: montserrat;
     font-weight: 900;

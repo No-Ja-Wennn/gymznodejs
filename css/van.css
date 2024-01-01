@@ -330,25 +330,6 @@
 /* ================================================================================================== ĐÂY LÀ PHẦN MENU */
 
 
-.header__inner__menu {
-    position: relative;
-}
-
-.header__inner__menu i {
-    scale: 2;
-    color: white;
-}
-
-/* .header__inner__menu i:hover{
-    color: #1E90FF;
-} */
-
-
-
-/* .body{
-    position: relative;
-} */
-
 .nen_mo {
     display: none;
     z-index: 9;
