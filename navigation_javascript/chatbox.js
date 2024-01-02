@@ -180,16 +180,6 @@ function loadKnowledgeBase(callback) {
     });
 }
 
-var fs = require('fs');
-// function saveUserInputQuestion(userInput, question) {
-//     var data = JSON.parse(fs.readFileSync('../data/knowledge_base.json', 'utf8')) || [];
-//     data.push({
-//         userInput: userInput,
-//         question: question
-//     });
-//     fs.writeFileSync('data/knowledge_base.json', JSON.stringify(data));
-// }
-
 
 function findBestMatch(userQuestion, questions) {
     const matches = getCloseMatches(userQuestion, questions, 1, 0.8);
@@ -200,13 +190,4 @@ function findBestMatch(userQuestion, questions) {
     }
 }
 
-function getAnswerForQuestion(question, knowledgeBase) {
-    for (var i = 0; i < knowledgeBase.questions.length; i++) {
-        var q = knowledgeBase.questions[i];
-        if (q.question === question) {
-            return q.answer;
-        }
-    }
-    return null;
-}
 

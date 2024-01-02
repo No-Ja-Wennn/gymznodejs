@@ -20,6 +20,10 @@
     <link rel="stylesheet" href="../css/base.css">
     <link rel="stylesheet" href="../navigation_css/shop.css">
     <link rel="stylesheet" href="../navigation_css/End_shoprtien.css">
+    <script src="https://unpkg.com/react@18/umd/react.development.js" crossorigin></script>
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js" crossorigin></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+
     <title>GYMZ - Thể hình giới trẻ</title>
 
 </head>
@@ -41,7 +45,9 @@
                         <li><a href="./forum.html">DIỄN ĐÀN</a></li>
                         <li>
                             <div class="dropdown">
-                                <a href="#"><span>DỊCH VỤ</span><m><i class='bx bxs-right-arrow'></i></m></a>
+                                <a href="#"><span>DỊCH VỤ</span>
+                                    <m><i class='bx bxs-right-arrow'></i></m>
+                                </a>
                                 <div class="containt">
                                     <a href="#">THẺ HỘI VIÊN</a>
                                     <a href="#">HUẤN LUYỆN VIÊN</a>
@@ -61,7 +67,7 @@
                 <div class="header__inner__menu">
                     <div class="menuroi">
                         <a href="#">
-                            <i class='bx bx-menu' ></i>
+                            <i class='bx bx-menu'></i>
                         </a>
                         <div class="noidung">
                             <div class="logo">
@@ -69,24 +75,24 @@
                                 <!-- <img src="../img/background/logo_and_bgr.png" alt="logo and bgr"> -->
                             </div>
                             <a href="../index.html"><i class='bx bxs-home'></i>TRANG CHỦ</a>
-                            <a href="./forum.html"><i class='bx bx-world' ></i>DIỄN ĐÀN</a>
-                            <a href="#"><i class='bx bxs-file' ></i>DỊCH VỤ</a>
-                            <a href="./promotion.html"><i class='bx bxs-purchase-tag' ></i>KHUYẾN MÃI</a>
-                            <a href="#"><i class='bx bx-code-alt' ></i>TẬP THỬ MIỄN PHÍ</a>
+                            <a href="./forum.html"><i class='bx bx-world'></i>DIỄN ĐÀN</a>
+                            <a href="#"><i class='bx bxs-file'></i>DỊCH VỤ</a>
+                            <a href="./promotion.html"><i class='bx bxs-purchase-tag'></i>KHUYẾN MÃI</a>
+                            <a href="#"><i class='bx bx-code-alt'></i>TẬP THỬ MIỄN PHÍ</a>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-        <div class="container">
+        <div id="root" class="container">
+            <!-- còm men vào để chạy bên js để render ra giao diện nhé -->
             <!-- container__shopee -->
-            <div class="container__sanpham">
+            <!-- <div class="container__sanpham">
                 <h1>SẢN PHẨM GIÚP PHÁT TRIỂN CƠ THỂ</h1>
 
                 <div class="parent__container">
                     <div class="container__danhmucsanpham">
-                        <img src="https://drvitamin.vn/wp-content/uploads/2021/04/thuc-pham-chuc-nang-tap-gym-5.jpg"
-                            alt="">
+                        <img src="../img/equipment/10_Foam_Roller/310_Foam_Roller.jpg" alt="">
                         <div class="info-top-left">Số lượng: 533</div>
                         <div class="info-top-right">Đã bán: 222</div>
                         <h2>Whey protein Sữa Tăng Cơ Rule 1 Whey Protein ISOLATE</h2>
@@ -161,15 +167,17 @@
                         <h2>Whey protein Sữa Tăng Cơ Rule 10 Whey Protein ISOLATE</h2>
                         <h1>₫987.953 - ₫1.977.345</h1>
                     </div>
+                </div>
 
 
 
-                    <div class="container__danhmucsanpham_tadon">
-                        <h1>Dụng Cụ Tập Luyện</h1>
-                    </div>
+                <div class="container__danhmucsanpham_tadon">
+                    <h1>Dụng Cụ Tập Luyện</h1>
+                </div>
 
 
 
+                <div class="parent__container">
                     <div class="container__danhmucsanpham">
                         <img src="https://bizweb.dktcdn.net/100/144/271/files/ta-tay-impul.jpg?v=1496110690060" alt="">
                         <div class="info-top-left">Số lượng: 99</div>
@@ -247,7 +255,8 @@
                         <h1>₫11.879.555 - ₫17.77.378</h1>
                     </div>
                 </div>
-            </div>
+            </div> -->
+
         </div>
 
 
@@ -262,22 +271,22 @@
                         Thứ Bảy - Chủ Nhật: 8:00 đến 22:00</li>
                 </ul>
             </div>
-            
+
             <div class="container-shop_end-bodypart">
-                 <h2 class="heading-list">DỊCH VỤ</h2>
+                <h2 class="heading-list">DỊCH VỤ</h2>
                 <ul class="heading">
                     <li>Phương thức thanh toán</li>
                     <li>Chính sách giá</li>
                     <li>Chính sách bảo mật</li>
-                </ul>      
-               
+                </ul>
+
             </div>
             <div class="container-shop_end-bodypart">
                 <h2 class="heading-list">TÌM HIỂU THÊM</h2>
                 <ul class="heading">
                     <li>Tuyển Dụng</li>
                     <li>Tin Tức</li>
-                    <li>Câu lạc bộ</li>    
+                    <li>Câu lạc bộ</li>
                 </ul>
             </div>
             <div class="container-shop_end-bodypart">
@@ -295,6 +304,7 @@
     <div class="nen_mo"></div>
     <script src="./index.js"></script>
     <script src="../navigation_javascript/menu.js"></script>
+    <script  src="../navigation_javascript/shop.js" type="text/babel"></script>
 </body>
 
 </html>
