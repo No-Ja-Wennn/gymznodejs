@@ -1,5 +1,5 @@
 .container__home {
-    z-index: 9;
+    z-index: 5;
     display: flex;
     justify-content: flex-start;
     background-image: url(../img/background/banner10.jpg);

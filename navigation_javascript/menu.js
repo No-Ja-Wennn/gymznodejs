@@ -25,7 +25,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
     body.addEventListener('click', function() {
         content.style.display = 'none';
-        overlay.style.display = 'none';
+        // overlay.style.display = 'none';
         logo.style.display = 'block';
     });
 });

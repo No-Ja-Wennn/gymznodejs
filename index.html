@@ -44,7 +44,7 @@
                         <li><a href="./navigation/forum.html">DIỄN ĐÀN</a></li>
                         <li>
                             <div class="dropdown">
-                                <a href="#">DỊCH VỤ<m><i class='bx bxs-right-arrow'></i></m></a>
+                                <a class="header__inner__navigation__sevice" href="#">DỊCH VỤ<m><i class='bx bxs-right-arrow'></i></m></a>
                                 <div class="containt">
                                     <a href="#">THẺ HỘI VIÊN</a>
                                     <a href="./navigation/coach.html">HUẤN LUYỆN VIÊN</a>
@@ -223,17 +223,19 @@
                 <div class="change__weightcalculation">
                     <!-- trường nhập liệu  -->
                     <div class="change__input">
-                        <input type="text" id="height" name="height" placeholder="Chiều cao (cm)">
-                        <input type="text" id="weight" name="weight" placeholder="Cân nặng (kg)">
-                        <input type="text" id="age" name="age" placeholder="Tuổi">
+                        <input type="number" id="height" name="height" min="0" max="300" placeholder="Chiều cao (cm)">
+                        <input type="number" id="weight" name="weight" min="0" max="150" placeholder="Cân nặng (kg)">
+                        <input type="number" id="age" name="age" min="0" max="100" placeholder="Tuổi">
                         <input type="text" id="fullname" name="fullname" placeholder="Họ và tên">
                         <select id="gender" name="gender">
+                            <option value="" disabled selected>Giới tính</option>
                             <option value="male">Nam</option>
                             <option value="female">Nữ</option>
                             <option value="other">Khác</option>
-                        </select>
+                        </select>                       
                         <input type="tel" id="phone" name="phone" placeholder="Số điện thoại">
                     </div>
+                    <span class="change__input__error"></span>
                     <button class="change__submit" type="submit">NHẬN KẾT QUẢ</button>
                 </div>
             </div>
@@ -345,8 +347,56 @@
                 </div>
             </div>
         </div>
-        <script src="./index.js"></script>
-        <script src="./navigation_javascript/menu.js"></script>
+    </div>
+
+    <!-- overlay -->
+    <div class="modal">
+        <div class="modal-overlay">
+
+        </div>
+        <div class="modal__body">
+            <div class="BMI-form">
+                <div class="BMI__title">
+                    <span class="BMI__title__word">Kết quả</span>
+                    <i class="BMI__title__icon fa-solid fa-xmark"></i>
+                </div>
+                <div class="BMI__value">
+                    <div class="BMI__value__row">
+                        <span class="BMI__value__row__label">Chiều cao: </span>
+                        <span class="BMI__value__row__data"></span>
+                    </div>
+                    <div class="BMI__value__row">
+                        <span class="BMI__value__row__label">Cân nặng: </span>
+                        <span class="BMI__value__row__data"></span>
+                    </div>
+                    <div class="BMI__value__row">
+                        <span class="BMI__value__row__label">Tuổi: </span>
+                        <span class="BMI__value__row__data"></span>
+                    </div>
+                    <div class="BMI__value__row">
+                        <span class="BMI__value__row__label">Giới tính: </span>
+                        <span class="BMI__value__row__data"></span>
+                    </div>
+                    <div class="BMI__value__row">
+                        <span class="BMI__value__row__label">Chỉ số BMI: </span>
+                        <span class="BMI__value__row__data"></span>
+                    </div>
+                    <div class="BMI__value__row">
+                        <span class="BMI__value__row__label">Tình trạng sức khỏe: </span>
+                        <span class="BMI__value__row__data"></span>
+                    </div>
+                    <div class="BMI__value__row">
+                        <span class="BMI__value__row__label">Tư vấn:</span>
+                        <span class="BMI__value__row__data"></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <script src="./index.js"></script>
+    <script src="./navigation_javascript/menu.js"></script>
 </body>
 
 </html>

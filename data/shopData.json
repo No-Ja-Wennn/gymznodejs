@@ -1,0 +1,227 @@
+{
+    "dataWhey": [
+        {
+            "id": 1,
+            "title": "Optimum Nutrition Gold Standard 100% Whey",
+            "amount": 1200,
+            "sold": 950,
+            "star": 4.8,
+            "countReview": 850,
+            "brand": "Optimum Nutrition",
+            "normalPrice": "₫900,000",
+            "discountPrice": "-15%",
+            "detectedPrice": "₫765,000",
+            "priceStart": "₫850,000",
+            "priceEnd": "₫950,000",
+            "detail": "Sản phẩm chứa hàm lượng protein cao từ whey protein cô đặc và whey protein cô đặc cách mạng. Bổ sung lượng BCAA cần thiết giúp tăng cường phục hồi cơ sau tập luyện.",
+            "img": [
+                "../img/whey/1_ON_Gold_Standard_100%_Whey/11_ON_Gold_Standard_100%_Whey.jpg",
+                "../img/whey/1_ON_Gold_Standard_100%_Whey/21_ON_Gold_Standard_100%_Whey.jpg",
+                "../img/whey/1_ON_Gold_Standard_100%_Whey/31_ON_Gold_Standard_100%_Whey.jpg",
+                "../img/whey/1_ON_Gold_Standard_100%_Whey/41_ON_Gold_Standard_100%_Whey.jpg",
+                "../img/whey/1_ON_Gold_Standard_100%_Whey/51_ON_Gold_Standard_100%_Whey.jpg"
+            ]
+        },
+        {
+            "id": 2,
+            "title": "MuscleTech NitroTech Whey Gold",
+            "amount": 850,
+            "sold": 720,
+            "star": 4.7,
+            "countReview": 650,
+            "brand": "MuscleTech",
+            "normalPrice": "₫950,000",
+            "discountPrice": "-18%",
+            "detectedPrice": "₫779,000",
+            "priceStart": "₫890,000",
+            "priceEnd": "₫970,000",
+            "detail": "Sản phẩm whey protein cao cấp từ MuscleTech, bổ sung phức hợp whey protein cô đặc và whey isolate. Hỗ trợ tăng cơ và phục hồi sau tập luyện hiệu quả.",
+            "img": [
+                "../img/whey/2_MuscleTech_NitroTech/12_MuscleTech_NitroTech.jpg",
+                "../img/whey/2_MuscleTech_NitroTech/22_MuscleTech_NitroTech.jpg",
+                "../img/whey/2_MuscleTech_NitroTech/32_MuscleTech_NitroTech.jpg",
+                "../img/whey/2_MuscleTech_NitroTech/42_MuscleTech_NitroTech.jpg",
+                "../img/whey/2_MuscleTech_NitroTech/52_MuscleTech_NitroTech.jpg"
+            ]
+        },
+        {
+            "id": 3,
+            "title": "Dymatize ISO100 Hydrolyzed Whey Protein Isolate",
+            "amount": 1100,
+            "sold": 870,
+            "star": 4.9,
+            "countReview": 800,
+            "brand": "Dymatize",
+            "normalPrice": "₫850,000",
+            "discountPrice": "-10%",
+            "detectedPrice": "₫765,000",
+            "priceStart": "₫800,000",
+            "priceEnd": "₫870,000",
+            "detail": "Whey protein cô đặc và cô đặc hydrolyzed, hấp thu nhanh và dễ dàng cho cơ thể. Hỗ trợ tăng cơ và phục hồi cơ sau tập luyện.",
+            "img": [
+                "../img/whey/3_Dymatize_ISO100/13_Dymatize_ISO100.jpg",
+                "../img/whey/3_Dymatize_ISO100/23_Dymatize_ISO100.jpg",
+                "../img/whey/3_Dymatize_ISO100/33_Dymatize_ISO100.jpg",
+                "../img/whey/3_Dymatize_ISO100/43_Dymatize_ISO100.jpg",
+                "../img/whey/3_Dymatize_ISO100/53_Dymatize_ISO100.jpg"
+            ]
+        },
+        {
+            "id": 4,
+            "title": "BSN Syntha-6 Edge Protein Powder",
+            "amount": 1050,
+            "sold": 890,
+            "star": 4.6,
+            "countReview": 780,
+            "brand": "BSN",
+            "normalPrice": "₫800,000",
+            "discountPrice": "-12%",
+            "detectedPrice": "₫704,000",
+            "priceStart": "₫750,000",
+            "priceEnd": "₫820,000",
+            "detail": "Phức hợp whey protein và các loại protein khác, bổ sung đầy đủ acid amin cần thiết. Cung cấp năng lượng liên tục và hỗ trợ tăng cơ cơ bản.",
+            "img": [
+                "../img/whey/4_BSN_Syntha6_Edge/14_BSN_Syntha6_Edge.jpg",
+                "../img/whey/4_BSN_Syntha6_Edge/24_BSN_Syntha6_Edge.jpg",
+                "../img/whey/4_BSN_Syntha6_Edge/34_BSN_Syntha6_Edge.jpg",
+                "../img/whey/4_BSN_Syntha6_Edge/44_BSN_Syntha6_Edge.jpg",
+                "../img/whey/4_BSN_Syntha6_Edge/54_BSN_Syntha6_Edge.jpg"
+            ]
+        },
+        {
+            "id": 5,
+            "title": "Myprotein Impact Whey Isolate",
+            "amount": 1000,
+            "sold": 800,
+            "star": 4.7,
+            "countReview": 720,
+            "brand": "Myprotein",
+            "normalPrice": "₫750,000",
+            "discountPrice": "-14%",
+            "detectedPrice": "₫645,000",
+            "priceStart": "₫700,000",
+            "priceEnd": "₫760,000",
+            "detail": "Whey protein cô đặc isolate với hàm lượng protein cao. Thích hợp cho người tập gym và người thể thao muốn tăng cơ và giảm mỡ.",
+            "img": [
+                "../img/whey/5_Myprotein_Impact/15_Myprotein_Impact.jpg",
+                "../img/whey/5_Myprotein_Impact/25_Myprotein_Impact.jpg",
+                "../img/whey/5_Myprotein_Impact/35_Myprotein_Impact.jpg",
+                "../img/whey/5_Myprotein_Impact/45_Myprotein_Impact.jpg",
+                "../img/whey/5_Myprotein_Impact/55_Myprotein_Impact.jpg"
+            ]
+        },
+        {
+            "id": 6,
+            "title": "Muscletech Premium Gold 100% Whey Protein",
+            "amount": 1150,
+            "sold": 900,
+            "star": 4.8,
+            "countReview": 830,
+            "brand": "Muscletech",
+            "normalPrice": "₫850,000",
+            "discountPrice": "-16%",
+            "detectedPrice": "₫714,000",
+            "priceStart": "₫800,000",
+            "priceEnd": "₫870,000",
+            "detail": "Whey protein cô đặc và whey protein cô đặc cách mạng, hỗ trợ phục hồi cơ sau tập luyện và xây dựng cơ bắp hiệu quả.",
+            "img": [
+                "../img/whey/6_Muscletech_Premium_Gold/16_Muscletech_Premium_Gold.jpg",
+                "../img/whey/6_Muscletech_Premium_Gold/26_Muscletech_Premium_Gold.jpg",
+                "../img/whey/6_Muscletech_Premium_Gold/36_Muscletech_Premium_Gold.jpg",
+                "../img/whey/6_Muscletech_Premium_Gold/46_Muscletech_Premium_Gold.jpg",
+                "../img/whey/6_Muscletech_Premium_Gold/56_Muscletech_Premium_Gold.jpg"
+            ]
+        },
+        {
+            "id": 7,
+            "title": "Cellucor Whey Sport Protein Powder",
+            "amount": 1100,
+            "sold": 820,
+            "star": 4.5,
+            "countReview": 760,
+            "brand": "Cellucor",
+            "normalPrice": "₫750,000",
+            "discountPrice": "-10%",
+            "detectedPrice": "₫675,000",
+            "priceStart": "₫720,000",
+            "priceEnd": "₫770,000",
+            "detail": "Sản phẩm whey protein giá rẻ từ Cellucor, chất lượng tốt, giúp tăng cường sức mạnh và tăng cơ một cách hiệu quả.",
+            "img": [
+                "../img/whey/7_Cellucor_Whey/17_Cellucor_Whey.jpg",
+                "../img/whey/7_Cellucor_Whey/27_Cellucor_Whey.jpg",
+                "../img/whey/7_Cellucor_Whey/37_Cellucor_Whey.jpg",
+                "../img/whey/7_Cellucor_Whey/47_Cellucor_Whey.jpg",
+                "../img/whey/7_Cellucor_Whey/57_Cellucor_Whey.jpg"
+            ]
+        },
+        {
+            "id": 8,
+            "title": "Optimum Nutrition Performance Whey Protein",
+            "amount": 1050,
+            "sold": 790,
+            "star": 4.6,
+            "countReview": 710,
+            "brand": "Optimum Nutrition",
+            "normalPrice": "₫850,000",
+            "discountPrice": "-12%",
+            "detectedPrice": "₫748,000",
+            "priceStart": "₫800,000",
+            "priceEnd": "₫860,000",
+            "detail": "Whey protein giá trị từ Optimum Nutrition, chất lượng đảm bảo, hỗ trợ xây dựng cơ bắp và phục hồi sau tập luyện.",
+            "img": [
+                "../img/whey/8_ON_Performance_Whey_Protein/18_ON_Performance_Whey_Protein.jpg",
+                "../img/whey/8_ON_Performance_Whey_Protein/28_ON_Performance_Whey_Protein.jpg",
+                "../img/whey/8_ON_Performance_Whey_Protein/38_ON_Performance_Whey_Protein.jpg",
+                "../img/whey/8_ON_Performance_Whey_Protein/48_ON_Performance_Whey_Protein.jpg",
+                "../img/whey/8_ON_Performance_Whey_Protein/58_ON_Performance_Whey_Protein.jpg"
+            ]
+        },
+        {
+            "id": 9,
+            "title": "BSN Syntha-6 Protein Powder",
+            "amount": 1150,
+            "sold": 860,
+            "star": 4.7,
+            "countReview": 780,
+            "brand": "BSN",
+            "normalPrice": "₫900,000",
+            "discountPrice": "-15%",
+            "detectedPrice": "₫765,000",
+            "priceStart": "₫850,000",
+            "priceEnd": "₫920,000",
+            "detail": "Phức hợp protein đa dạng từ BSN, cung cấp acid amin cần thiết cho cơ thể, giúp tăng cường sức mạnh và sức bền.",
+            "img": [
+                "../img/whey/9_BSN_Syntha-6/19_BSN_Syntha-6.jpg",
+                "../img/whey/9_BSN_Syntha-6/29_BSN_Syntha-6.jpg",
+                "../img/whey/9_BSN_Syntha-6/39_BSN_Syntha-6.jpg",
+                "../img/whey/9_BSN_Syntha-6/49_BSN_Syntha-6.jpg",
+                "../img/whey/9_BSN_Syntha-6/59_BSN_Syntha-6.jpg"
+            ]
+        },
+        {
+            "id": 10,
+            "title": "MusclePharm Combat 100% Whey",
+            "amount": 1000,
+            "sold": 750,
+            "star": 4.5,
+            "countReview": 680,
+            "brand": "MusclePharm",
+            "normalPrice": "₫800,000",
+            "discountPrice": "-10%",
+            "detectedPrice": "₫720,000",
+            "priceStart": "₫780,000",
+            "priceEnd": "₫840,000",
+            "detail": "Whey protein chất lượng từ MusclePharm, giúp tăng cường phục hồi và xây dựng cơ bắp sau tập luyện.",
+            "img": [
+                "../img/whey/10_MusclePharm_Combat/110_MusclePharm_Combat.jpg",
+                "../img/whey/10_MusclePharm_Combat/210_MusclePharm_Combat.jpg",
+                "../img/whey/10_MusclePharm_Combat/310_MusclePharm_Combat.jpg",
+                "../img/whey/10_MusclePharm_Combat/410_MusclePharm_Combat.jpg",
+                "../img/whey/10_MusclePharm_Combat/510_MusclePharm_Combat.jpg"
+            ]
+        }
+    ],
+    "dataTool": [
+        
+    ]
+}
