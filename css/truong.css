@@ -269,6 +269,7 @@
 }
 
 .noidung a {
+    height: 68px;
     padding: 26px 12px;
     background-color: black;
     color: white;
@@ -304,6 +305,8 @@
 
 
 .logo a {
+    height: 68px;
+    padding: 25px 20px;
     padding: 25px 10px;
     font-size: 32px;
     font-family: montserrat;

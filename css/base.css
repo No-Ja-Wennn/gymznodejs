@@ -15,8 +15,9 @@ html{
 }
 
 .grid{
-    width: 1200px;
-    max-width: 100%;
+    max-width: 1200px;
+    width: 100%;
+    min-width: 370px;
     margin: 0 auto;
 }
 

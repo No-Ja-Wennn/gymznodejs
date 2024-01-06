@@ -1,0 +1,206 @@
+.container {
+    margin-top: 68px;
+    width: 100%;
+    text-align: center;
+    background-color: #7c1111;
+    /* background: linear-gradient(#212121d1, #212121d1),
+    url("https://img4.thuthuatphanmem.vn/uploads/2021/01/07/background-phong-tap-gym_035832535.jpg"); */
+}
+.container__title {
+    width: 100%;
+    padding: 15px 10px;
+    font-size: 24px;
+    line-height: 55px;
+}
+
+/* phần Huấn luyện viên */
+.container__train__coach{
+    padding: 10px;
+    background-color: #532828;
+}
+.container__train__coach__title h1{
+    width: 100%;
+    font-size: 36px;
+    line-height: 40px;
+}
+
+.container__train__coach__title p{
+    width: 100%;
+    max-width: 500px;
+    font-size: 16px;
+    margin: 0px auto;
+    text-align: justify;
+    line-height:20px;
+}
+
+
+.container__train__coach__img__items {
+    flex-basis: calc(30% - 20px); /* Chiếm 50% chiều rộng của container trừ đi khoảng cách */
+    margin-bottom: 20px;
+}
+.container__train__coach__img__items img {
+    width: 100%; /* Chiều rộng tối đa trong container của mình */
+    border: 2px solid #b1b1b1;
+    border-radius: 4px;
+}
+.container__train__coach__img {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;    
+    padding: 20px;
+}
+
+
+.container__train__coach__img__items {
+    display: inline-block;
+    max-width: 45vw;
+    padding: 12px 12px;
+    margin-left: 4px;
+    margin-right: 4px;
+    border: 1px solid #efdddd;
+    border: 2px solid #fefefe;
+    border-radius: 2px;
+    background-color: #3d3e3ddc;
+    box-sizing: border-box;
+}
+
+.container__train__coach__img__items img {
+    width: 100%;
+    min-width: 120px;
+    border: 2px solid #888888;
+    border-radius: 2px;
+
+}
+
+.container__train__coach__img__items p{
+    font-size: 2rem;
+    line-height: 30px;
+    color: rgb(255, 255, 255);
+    margin-top: 10px;
+    
+}
+/* phần yoga */
+.container__train__yoga{
+    
+    padding: 10px;
+}
+.container__train__yoga__title h1{
+    width: 100%;
+    font-size: 26px;
+    line-height: 40px;
+}
+.container__train__yoga__title p{
+    width: 100%;
+    max-width: 500px;
+    align-items: center;
+    font-size: 16px;
+    margin: 0px auto;
+    text-align: justify;
+    margin-bottom: 20px;
+    line-height: 20px;
+}
+.container__train__yoga__img{
+    display: flex;
+    justify-content: center; 
+    flex-wrap: wrap;
+}
+.container__train__yoga__img__items {
+    display: inline-block;
+    max-width: 45vw;
+    padding: 12px 12px;
+    margin-left: 4px;
+    margin-right: 4px;
+    margin-bottom: 50px;
+    border: 3px solid #d29595;
+    border-radius: 2px;
+    background-color: #532828;
+    /* box-shadow: 8px 6px 18px 2px rgba(160, 160, 160, 0.3); */
+    box-sizing: border-box;
+    min-height: 205px;
+}
+.container__train__yoga__img__items img {
+    max-width: 200px;
+    width: 100%;
+    min-width: 120px;
+    border: 2px solid #000000;
+    border-radius: 2px;
+}
+/* .container__train__yoga__img__items p {
+    font-size: 1.6rem;
+    max-width: 200px;
+    color: rgb(255, 255, 255);
+    margin-top: 10px;
+} */
+
+/* phần group */
+.container__train__group{
+    padding: 10px;
+    background-color: brown ;
+}
+.container__train__group__title h1{
+    width: 100%;
+    font-size: 26px;
+    line-height: 40px;
+}
+.container__train__group__title p{
+    width: 100%;
+    max-width: 500px;
+    font-size: 16px;
+    margin: 0px auto;
+    text-align: justify;
+    line-height:20px;
+}
+
+#p1{
+    text-align: center;
+    margin-bottom: 10px;
+}
+
+.container__train__group__img__items {
+    flex-basis: calc(30% - 20px); /* Chiếm 50% chiều rộng của container trừ đi khoảng cách */
+    margin-bottom: 20px;
+}
+.container__train__group__img__items img {
+    width: 100%; /* Chiều rộng tối đa trong container của mình */
+    border: 2px solid #b1b1b1;
+    border-radius: 4px;
+}
+.container__train__group__img {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;  
+    padding: 20px;
+}
+
+
+.container__train__group__img__items {
+    display: inline-block;
+    max-width: 45vw;
+    padding: 12px 12px;
+    margin-left: 4px;
+    margin-right: 4px;
+    border: 1px solid #efdddd;
+    border: 2px solid #fefefe;
+    border-radius: 2px;
+    background-color: #486c67dc;
+    box-sizing: border-box;
+}
+
+.container__train__group__img__items img {
+    width: 100%;
+    min-width: 120px;
+    border: 2px solid #888888;
+    border-radius: 2px;
+
+}
+
+.container__train__group__img__items p{
+    font-size: 2rem;
+    line-height: 30px;
+    color: rgb(255, 255, 255);
+    margin-top: 10px;
+    
+}
+.p2{
+    text-align: justify;
+}

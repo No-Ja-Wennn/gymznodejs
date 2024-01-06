@@ -72,7 +72,6 @@
 /* Định kiểu cho phần tử cha chứa các container sản phẩm */
 .parent__container {
     text-align: center; /* Căn giữa nội dung bên trong phần tử cha */
-    height: 100%; /* Chiều cao tự động điều chỉnh theo kích thước trình duyệt */
     width: 100%; /* Chiều rộng phần tử cha chiếm toàn bộ chiều rộng của phần tử chứa nó */
     background-color: rgb(35, 35, 35); /* Màu nền cho phần tử cha */
 }

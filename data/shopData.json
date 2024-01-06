@@ -15,11 +15,11 @@
             "priceEnd": "₫950,000",
             "detail": "Sản phẩm chứa hàm lượng protein cao từ whey protein cô đặc và whey protein cô đặc cách mạng. Bổ sung lượng BCAA cần thiết giúp tăng cường phục hồi cơ sau tập luyện.",
             "img": [
-                "../img/whey/1_ON_Gold_Standard_100%_Whey/11_ON_Gold_Standard_100%_Whey.jpg",
-                "../img/whey/1_ON_Gold_Standard_100%_Whey/21_ON_Gold_Standard_100%_Whey.jpg",
-                "../img/whey/1_ON_Gold_Standard_100%_Whey/31_ON_Gold_Standard_100%_Whey.jpg",
-                "../img/whey/1_ON_Gold_Standard_100%_Whey/41_ON_Gold_Standard_100%_Whey.jpg",
-                "../img/whey/1_ON_Gold_Standard_100%_Whey/51_ON_Gold_Standard_100%_Whey.jpg"
+                "../img/whey/1_ON_Gold_Standard_100/11_ON_Gold_Standard_100.jpg",
+                "../img/whey/1_ON_Gold_Standard_100/21_ON_Gold_Standard_100.jpg",
+                "../img/whey/1_ON_Gold_Standard_100/31_ON_Gold_Standard_100.jpg",
+                "../img/whey/1_ON_Gold_Standard_100/41_ON_Gold_Standard_100.jpg",
+                "../img/whey/1_ON_Gold_Standard_100/51_ON_Gold_Standard_100.jpg"
             ]
         },
         {
@@ -221,7 +221,226 @@
             ]
         }
     ],
-    "dataTool": [
-        
+    "dataEquipment": [
+        {
+            "id": 1,
+            "title": "Dumbbell Set 20kg",
+            "amount": 500,
+            "sold": 350,
+            "star": 4.5,
+            "countReview": 300,
+            "brand": "Fitness Brand",
+            "normalPrice": "₫1,200,000",
+            "discountPrice": "-10%",
+            "detectedPrice": "₫1,080,000",
+            "priceStart": "₫1,000,000",
+            "priceEnd": "₫1,200,000",
+            "detail": "Bộ tạ tay 20kg, chất liệu sắt không gỉ, bao gồm 2 tạ tay và 8 đĩa tạ có thể điều chỉnh. Phù hợp cho việc tập luyện tại nhà hoặc phòng tập.",
+            "img": [
+                "../img/equipment/1_Dumbbell_Set_20kg/11_Dumbbell_Set_20kg.jpg",
+                "../img/equipment/1_Dumbbell_Set_20kg/21_Dumbbell_Set_20kg.jpg",
+                "../img/equipment/1_Dumbbell_Set_20kg/31_Dumbbell_Set_20kg.jpg",
+                "../img/equipment/1_Dumbbell_Set_20kg/41_Dumbbell_Set_20kg.jpg",
+                "../img/equipment/1_Dumbbell_Set_20kg/51_Dumbbell_Set_20kg.jpg"
+            ]
+        },
+        {
+            "id": 2,
+            "title": "Yoga Mat Premium",
+            "amount": 700,
+            "sold": 550,
+            "star": 4.7,
+            "countReview": 500,
+            "brand": "Yoga Brand",
+            "normalPrice": "₫500,000",
+            "discountPrice": "-10%",
+            "detectedPrice": "₫450,000",
+            "priceStart": "₫400,000",
+            "priceEnd": "₫500,000",
+            "detail": "Thảm yoga chất lượng cao, chống trơn trượt, dễ vệ sinh. Phù hợp cho việc tập yoga tại nhà hoặc phòng tập.",
+            "img": [
+                "../img/equipment/2_Yoga_Mat_Premium/12_Yoga_Mat_Premium.jpg",
+                "../img/equipment/2_Yoga_Mat_Premium/22_Yoga_Mat_Premium.jpg",
+                "../img/equipment/2_Yoga_Mat_Premium/32_Yoga_Mat_Premium.jpg",
+                "../img/equipment/2_Yoga_Mat_Premium/42_Yoga_Mat_Premium.jpg",
+                "../img/equipment/2_Yoga_Mat_Premium/52_Yoga_Mat_Premium.jpg"
+            ]
+        },
+        {
+            "id": 3,
+            "title": "Resistance Bands Set",
+            "amount": 800,
+            "sold": 650,
+            "star": 4.6,
+            "countReview": 600,
+            "brand": "Fitness Brand",
+            "normalPrice": "₫300,000",
+            "discountPrice": "-15%",
+            "detectedPrice": "₫255,000",
+            "priceStart": "₫250,000",
+            "priceEnd": "₫350,000",
+            "detail": "Bộ dây đàn hồi tập luyện, bao gồm 5 dây có độ đàn hồi khác nhau. Phù hợp cho việc tập luyện sức mạnh và độ linh hoạt.",
+            "img": [
+                "../img/equipment/3_Resistance_Bands_Set/13_Resistance_Bands_Set.jpg",
+                "../img/equipment/3_Resistance_Bands_Set/23_Resistance_Bands_Set.jpg",
+                "../img/equipment/3_Resistance_Bands_Set/33_Resistance_Bands_Set.jpg",
+                "../img/equipment/3_Resistance_Bands_Set/43_Resistance_Bands_Set.jpg",
+                "../img/equipment/3_Resistance_Bands_Set/53_Resistance_Bands_Set.jpg"
+            ]
+        },
+        {
+            "id": 4,
+            "title": "Kettlebell 10kg",
+            "amount": 600,
+            "sold": 500,
+            "star": 4.8,
+            "countReview": 450,
+            "brand": "Fitness Brand",
+            "normalPrice": "₫700,000",
+            "discountPrice": "-20%",
+            "detectedPrice": "₫560,000",
+            "priceStart": "₫550,000",
+            "priceEnd": "₫750,000",
+            "detail": "Quả tạ hình chuông 10kg, chất liệu sắt không gỉ, có tay cầm chắc chắn. Phù hợp cho việc tập luyện sức mạnh và sức bền.",
+            "img": [
+                "../img/equipment/4_Kettlebell_10kg/14_Kettlebell_10kg.jpg",
+                "../img/equipment/4_Kettlebell_10kg/24_Kettlebell_10kg.jpg",
+                "../img/equipment/4_Kettlebell_10kg/34_Kettlebell_10kg.jpg",
+                "../img/equipment/4_Kettlebell_10kg/44_Kettlebell_10kg.jpg",
+                "../img/equipment/4_Kettlebell_10kg/54_Kettlebell_10kg.jpg"
+            ]
+        },
+        {
+            "id": 5,
+            "title": "Jump Rope Adjustable",
+            "amount": 900,
+            "sold": 800,
+            "star": 4.9,
+            "countReview": 750,
+            "brand": "Fitness Brand",
+            "normalPrice": "₫200,000",
+            "discountPrice": "-5%",
+            "detectedPrice": "₫190,000",
+            "priceStart": "₫150,000",
+            "priceEnd": "₫250,000",
+            "detail": "Dây nhảy có thể điều chỉnh độ dài, chất liệu dây nhựa cao cấp, tay cầm thoải mái. Phù hợp cho việc tập luyện sức bền và tốc độ.",
+            "img": [
+                "../img/equipment/5_Jump_Rope_Adjustable/15_Jump_Rope_Adjustable.jpg",
+                "../img/equipment/5_Jump_Rope_Adjustable/25_Jump_Rope_Adjustable.jpg",
+                "../img/equipment/5_Jump_Rope_Adjustable/35_Jump_Rope_Adjustable.jpg",
+                "../img/equipment/5_Jump_Rope_Adjustable/45_Jump_Rope_Adjustable.jpg",
+                "../img/equipment/5_Jump_Rope_Adjustable/55_Jump_Rope_Adjustable.jpg"
+            ]
+        },
+        {
+            "id": 6,
+            "title": "Exercise Ball 65cm",
+            "amount": 400,
+            "sold": 300,
+            "star": 4.4,
+            "countReview": 250,
+            "brand": "Fitness Brand",
+            "normalPrice": "₫400,000",
+            "discountPrice": "-10%",
+            "detectedPrice": "₫360,000",
+            "priceStart": "₫350,000",
+            "priceEnd": "₫450,000",
+            "detail": "Bóng tập thể dục 65cm, chất liệu PVC không chứa phthalate, có khả năng chịu lực tốt. Phù hợp cho việc tập luyện sức mạnh cốt lõi và cân bằng.",
+            "img": [
+                "../img/equipment/6_Exercise_Ball_65cm/16_Exercise_Ball_65cm.jpg",
+                "../img/equipment/6_Exercise_Ball_65cm/26_Exercise_Ball_65cm.jpg",
+                "../img/equipment/6_Exercise_Ball_65cm/36_Exercise_Ball_65cm.jpg",
+                "../img/equipment/6_Exercise_Ball_65cm/46_Exercise_Ball_65cm.jpg",
+                "../img/equipment/6_Exercise_Ball_65cm/56_Exercise_Ball_65cm.jpg"
+            ]
+        },
+        {
+            "id": 7,
+            "title": "Pull Up Bar Adjustable",
+            "amount": 500,
+            "sold": 400,
+            "star": 4.5,
+            "countReview": 350,
+            "brand": "Fitness Brand",
+            "normalPrice": "₫800,000",
+            "discountPrice": "-15%",
+            "detectedPrice": "₫680,000",
+            "priceStart": "₫650,000",
+            "priceEnd": "₫850,000",
+            "detail": "Thanh kéo nâng có thể điều chỉnh, chất liệu thép không gỉ, có khả năng chịu lực tốt. Phù hợp cho việc tập luyện sức mạnh cánh tay và ngực.",
+            "img": [
+                "../img/equipment/7_Pull_Up_Bar_Adjustable/17_Pull_Up_Bar_Adjustable.jpg",
+                "../img/equipment/7_Pull_Up_Bar_Adjustable/27_Pull_Up_Bar_Adjustable.jpg",
+                "../img/equipment/7_Pull_Up_Bar_Adjustable/37_Pull_Up_Bar_Adjustable.jpg",
+                "../img/equipment/7_Pull_Up_Bar_Adjustable/47_Pull_Up_Bar_Adjustable.jpg",
+                "../img/equipment/7_Pull_Up_Bar_Adjustable/57_Pull_Up_Bar_Adjustable.jpg"
+            ]
+        },
+        {
+            "id": 8,
+            "title": "Push Up Stands",
+            "amount": 600,
+            "sold": 500,
+            "star": 4.6,
+            "countReview": 450,
+            "brand": "Fitness Brand",
+            "normalPrice": "₫300,000",
+            "discountPrice": "-20%",
+            "detectedPrice": "₫240,000",
+            "priceStart": "₫200,000",
+            "priceEnd": "₫400,000",
+            "detail": "Bộ đế tập bài tập đẩy ngực, chất liệu nhựa cao cấp, tay cầm chắc chắn. Phù hợp cho việc tập luyện sức mạnh ngực và cánh tay.",
+            "img": [
+                "../img/equipment/8_Push_Up_Stands/18_Push_Up_Stands.jpg",
+                "../img/equipment/8_Push_Up_Stands/28_Push_Up_Stands.jpg",
+                "../img/equipment/8_Push_Up_Stands/38_Push_Up_Stands.jpg",
+                "../img/equipment/8_Push_Up_Stands/48_Push_Up_Stands.jpg",
+                "../img/equipment/8_Push_Up_Stands/58_Push_Up_Stands.jpg"
+            ]
+        },
+        {
+            "id": 9,
+            "title": "Weighted Vest 10kg",
+            "amount": 700,
+            "sold": 600,
+            "star": 4.7,
+            "countReview": 550,
+            "brand": "Fitness Brand",
+            "normalPrice": "₫1,000,000",
+            "discountPrice": "-10%",
+            "detectedPrice": "₫900,000",
+            "priceStart": "₫850,000",
+            "priceEnd": "₫1,150,000",
+            "detail": "Áo tập tạ 10kg, chất liệu vải chống rách, có thể điều chỉnh trọng lượng. Phù hợp cho việc tập luyện sức mạnh và sức bền.",
+            "img": [
+                "../img/equipment/9_Weighted_Vest_10kg/19_Weighted_Vest_10kg.jpg",
+                "../img/equipment/9_Weighted_Vest_10kg/29_Weighted_Vest_10kg.jpg",
+                "../img/equipment/9_Weighted_Vest_10kg/39_Weighted_Vest_10kg.jpg",
+                "../img/equipment/9_Weighted_Vest_10kg/49_Weighted_Vest_10kg.jpg",
+                "../img/equipment/9_Weighted_Vest_10kg/59_Weighted_Vest_10kg.jpg"
+            ]
+        },
+        {
+            "id": 10,
+            "title": "Foam Roller",
+            "amount": 800,
+            "sold": 700,
+            "star": 4.8,
+            "countReview": 650,
+            "brand": "Fitness Brand",
+            "normalPrice": "₫500,000",
+            "discountPrice": "-5%",
+            "detectedPrice": "₫475,000",
+            "priceStart": "₫450,000",
+            "priceEnd": "₫550,000",
+            "detail": "Cuộn bọt biển tập luyện, chất liệu bọt biển EVA không độc hại, có khả năng chịu lực tốt. Phù hợp cho việc tập luyện độ linh hoạt và giảm đau cơ.",
+            "img": [
+                "../img/equipment/10_Foam_Roller/110_Foam_Roller.jpg",
+                "../img/equipment/10_Foam_Roller/210_Foam_Roller.jpg",
+                "../img/equipment/10_Foam_Roller/310_Foam_Roller.jpg",
+                "../img/equipment/10_Foam_Roller/410_Foam_Roller.jpg",
+                "../img/equipment/10_Foam_Roller/510_Foam_Roller.jpg"
+            ]
+        }
     ]
 }
