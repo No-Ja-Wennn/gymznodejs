@@ -15,7 +15,7 @@
     font-weight: 700;
     line-height: 35px;
 }
-.container__service__title:hover{
+.container__service__img:hover{
     color: pink;
 }
 
@@ -34,7 +34,7 @@
     width: 100%;
     min-width: 300px;
     font-weight: normal;
-    margin: 0px 3px;
+    margin: 0px auto;
     margin-bottom: 30px;
     text-align: center;
 }
@@ -52,7 +52,7 @@
 
  
  .service__img_row-2:last-child{
-    /* align-self: flex-end; */
+    align-self: flex-end;
  }
 
 .container__service__img__items{
@@ -68,6 +68,7 @@
     background-color: #d5d5d5;
     box-shadow: 8px 6px 18px 2px rgba(160, 160, 160, 0.3);
     box-sizing: border-box;
+    min-height: 305px;
 }
 .container__service__img__items img{
     max-width: 212px;
