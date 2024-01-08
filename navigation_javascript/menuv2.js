@@ -20,30 +20,16 @@ document.addEventListener('DOMContentLoaded', function() {
         } else {
             // } if (isDisplay === 'block') {
                 content.style.animation = 'slide_left 0.4s ease-in-out forwards';
-                // content.style.display = 'none';
+                setTimeout(function(){
+                    content.style.display = 'none';
+                    overlay.style.display = 'none';
+                }, 500);
                 overlay.style.animation = 're_opacity 0.4s ease-in forwards';
-            // overlay.style.display = 'none';
+            
             logo.style.display = 'block';
         } 
     });
-    // menu.addEventListener('touchstart', function(event) {
-    //     event.stopPropagation();
-    //     var isDisplay = getComputedStyle(content).display;
-    
-    //     if (isDisplay === 'none') {
-    //         content.style.animation = 'slide_right 0.4s ease-in-out forwards';
-    //         content.style.display = 'block';
-    //         overlay.style.animation = "in_opacity 0.4s ease-in forwards";
-    //         overlay.style.display = 'block';
-    //         logo.style.display = 'none';
-    //     } else {
-    //         content.style.animation = 'slide_left 0.4s ease-in-out forwards';
-    //         // content.style.display = 'none';
-    //         overlay.style.animation = 're_opacity 0.4s ease-in forwards';
-    //         // overlay.style.display = 'none';
-    //         logo.style.display = 'block';
-    //     }
-    // });
+   
     body.addEventListener('click', function() {
         content.style.animation = 'slide_left 0.4s ease-in-out forwards';
         // content.style.display = 'none';

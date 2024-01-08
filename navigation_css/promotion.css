@@ -526,7 +526,7 @@ html {
     100%{
         opacity: 1;
         left: -300px;
-        display: none;
+        /* display: none; */
     }
 }
 @keyframes slide_right {
@@ -553,7 +553,7 @@ html {
     }
     100%{
         opacity: 0;
-        display: none;
+        /* display: none; */
     }
 }
 @keyframes in_opacity {
