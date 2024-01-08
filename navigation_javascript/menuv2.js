@@ -16,8 +16,9 @@ document.addEventListener('DOMContentLoaded', function() {
             overlay.style.animation = "in_opacity 0.4s ease-in forwards";
             overlay.style.display = 'block';
             logo.style.display = 'none';
-            
-        } if (isDisplay == 'block') {
+          
+        } else {
+        // } if (isDisplay === 'block') {
             content.style.animation = 'slide_left 0.4s ease-in-out forwards';
             // content.style.display = 'none';
             overlay.style.animation = 're_opacity 0.4s ease-in forwards';
@@ -25,7 +26,24 @@ document.addEventListener('DOMContentLoaded', function() {
             logo.style.display = 'block';
         } 
     });
-
+    menu.addEventListener('touchstart', function(event) {
+        event.stopPropagation();
+        var isDisplay = getComputedStyle(content).display;
+    
+        if (isDisplay === 'none') {
+            content.style.animation = 'slide_right 0.4s ease-in-out forwards';
+            content.style.display = 'block';
+            overlay.style.animation = "in_opacity 0.4s ease-in forwards";
+            overlay.style.display = 'block';
+            logo.style.display = 'none';
+        } else {
+            content.style.animation = 'slide_left 0.4s ease-in-out forwards';
+            // content.style.display = 'none';
+            overlay.style.animation = 're_opacity 0.4s ease-in forwards';
+            // overlay.style.display = 'none';
+            logo.style.display = 'block';
+        }
+    });
     body.addEventListener('click', function() {
         content.style.animation = 'slide_left 0.4s ease-in-out forwards';
         // content.style.display = 'none';
