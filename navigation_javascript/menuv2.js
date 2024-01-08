@@ -20,11 +20,12 @@ document.addEventListener('DOMContentLoaded', function() {
         } else {
             // } if (isDisplay === 'block') {
                 content.style.animation = 'slide_left 0.4s ease-in-out forwards';
+                overlay.style.animation = 're_opacity 0.4s ease-in forwards';
                 setTimeout(function(){
                     content.style.display = 'none';
                     overlay.style.display = 'none';
                 }, 500);
-                overlay.style.animation = 're_opacity 0.4s ease-in forwards';
+               
             
             logo.style.display = 'block';
         } 
@@ -32,9 +33,11 @@ document.addEventListener('DOMContentLoaded', function() {
    
     body.addEventListener('click', function() {
         content.style.animation = 'slide_left 0.4s ease-in-out forwards';
-        // content.style.display = 'none';
         overlay.style.animation = 're_opacity 0.4s ease-in forwards';
-        // overlay.style.display = 'none';
+        setTimeout(function(){
+            content.style.display = 'none';
+            overlay.style.display = 'none';
+        }, 500);
         logo.style.display = 'block';
     });
 });
