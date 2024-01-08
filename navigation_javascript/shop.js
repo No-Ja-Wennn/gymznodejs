@@ -24,8 +24,8 @@ const ProductItemWhey = product => {
     product = product.product
     console.log(product)
     return (
-        <div class="container__danhmucsanpham" onClick={()=>{
-            root.render(<Information data={product}/>);
+        <div class="container__danhmucsanpham" onClick={() => {
+            root.render(<Information data={product} />);
         }}>
             <img src={product.img && product.img[0]} alt="" />
             <div class="info-top-left">Số lượng: {product.amount}</div>
@@ -65,7 +65,7 @@ function App({ dataWhey, dataEquipment }) {
 
 
 
-function Information({data}) {
+function Information({ data }) {
     // console.log(data)
     return (
         <div>
@@ -78,7 +78,6 @@ function Information({data}) {
                                 <i class="fa-solid fa-chevron-right"></i>
                             </span>
                         </li>
-
                         <li class="breadcrumb__item">
                             <span class="breadcrumb__item__text">
                                 <a class="breadcrumb__item__link" href="#">Dởm whey</a>
@@ -131,10 +130,6 @@ function Information({data}) {
                         <div class="container__product">
                             <div class="product__detail">
                                 <div class="product__detail__flash">
-                                    <div class="product__detail__flash__time">
-                                        <span class="product__detail__flash__time__text">Kết thúc sau</span>
-                                        <span class="product__detail__flash__time__real">09:17:37</span>
-                                    </div>
                                     <span class="product__detail__flash__buy">{data.sold} đã bán</span>
                                 </div>
                                 <div class="product__detail__wrapper">
@@ -174,41 +169,116 @@ function Information({data}) {
                                         <span class="product__detail__price__deteted">{data.detectedPrice}</span>
                                     </div>
                                 </div>
+                                
+                                <div class="product__detail__status">
+                                    <span class="product__detail__title">
+                                        Trạng thái:
+                                    </span>
+                                    <span class="product__detail__text">
+                                        Hàng có sẵn
+                                    </span>
+                                </div>
+                                <div class="product__detail__time-use">
+                                    <span class="product__detail__title">
+                                        Hạn sử dụng:
+                                    </span>
+                                    <span class="product__detail__time-use__text">08/2024</span>
+                                </div>
                                 <div class="product__detail__promotion">
-                                    <h6 class="product__detail__promotion__title">Khuyến mãi</h6>
                                     <div class="product__detail__promotion__tag">
                                         <ul class="product__detail__promotion__tag__list">
                                             <li class="product__detail__promotion__tag__item">
-                                                <span class="product__detail__promotion__tag__name">🔥MUA MỘT TẶNG MỘT TÍNH TIỀN HAiiiiiiiiiiiiiiii🔥</span>
+                                                <span class="product__detail__promotion__tag__name">Không mùi, không
+                                                    ngọt</span>
                                             </li>
                                             <li class="product__detail__promotion__tag__item">
-                                                <span class="product__detail__promotion__tag__name">🔥MUA MỘT TẶNG MỘT TÍNH TIỀN HAI🔥</span>
+                                                <span class="product__detail__promotion__tag__name">Hỗ trợ tăng cân hiệu
+                                                    quả</span>
                                             </li>
                                             <li class="product__detail__promotion__tag__item">
-                                                <span class="product__detail__promotion__tag__name">🔥MUA MỘT TẶNG MỘT TÍNH TIỀN HAI🔥</span>
+                                                <span class="product__detail__promotion__tag__name">Có thể kết hợp với
+                                                    whey để tăng thêm năng lượng</span>
                                             </li>
                                         </ul>
                                     </div>
                                 </div>
                             </div>
-                            <div class="product__delivery">
-                                <span class="product__delivery__head">Tùy chọn giao hàng</span>
-                                <div class="product__delivery__local">
-                                    <i class="fa-solid fa-location-dot"></i>
-                                    <span>
-                                        Thái Nguyên, z115, Tân Thịnh, TP.Thái Nguyên
-                                    </span>
+                            <div class="product__bar">
+                                <div class="product__delivery">
+                                    <span class="product__delivery__head">Tùy chọn giao hàng</span>
+                                    <div class="product__delivery__local">
+                                        <i class="fa-solid fa-location-dot"></i>
+                                        <span>
+                                            Thái Nguyên, z115, Tân Thịnh, TP.Thái Nguyên
+                                        </span>
+                                    </div>
+                                    <div class="product__delivery__chat">
+                                        <i class="fa-solid fa-message"></i>
+                                        <a href="../navigation/chatbox.html">Trò chuyện</a>
+                                    </div>
                                 </div>
-                                <div class="product__delivery__chat">
-                                    <i class="fa-solid fa-message"></i>
-                                    <a href="../navigation/chatbox.html">Trò chuyện</a>
+                                <div class="product__delivery__ingredient">
+                                    <h5 class="product__delivery__ingredient__title">BẢNG THÀNH PHẦN</h5>
+                                    <div class="product__delivery__ingredient__table">
+                                        <div class="product__delivery__ingredient__box">
+                                            <p>Serving Size: 5g (1 teaspoon)</p>
+                                            <p>Servings Per Container: 80</p>
+                                        </div>
+                                        <div class="product__delivery__ingredient__box ">
+                                            <div class="product__delivery__ingredient__box--flex">
+                                                <p>Amount Per Serving</p>
+                                                <p>5g †</p>
+                                            </div>
+                                        </div>
+                                        <div class="product__delivery__ingredient__box">
+                                            <p>Creatine Monohydrate</p>
+                                        </div>
+                                        <div class="product__delivery__ingredient__box">
+                                            <p>* % Daily Value is based on a 2,000 calorie diet. Your daily values may
+                                                be higher or lower based on your calorie needs.
+                                                † Daily Value (DV) not established.</p>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
                     <div class="container__more">
-                        <h5 class="container__more__title">{data.title}</h5>
+                        <h5 class="container__more__title">MÔ TẢ SẢN PHẨM</h5>
                         <p class="container__more__text">{data.detail}</p>
+                    </div>
+                    <div class="container__message">
+                        <div class="container__message__notification">
+                            <ul class="container__message__notification__list">
+                                <li class="container__message__notification__item">
+                                    <span>
+                                        Thông tin này chỉ mang tính chất trợ giúp người đọc hiểu hơn về sản phẩm, không
+                                        nhằm
+                                        mục đích quảng cáo.</span>
+
+                                </li>
+                                <li class="container__message__notification__item">
+                                    <span>
+                                        Sản phẩm này không phải là thuốc và không có tác dụng thay thế thuốc chữa bệnh.
+                                    </span>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="container__message__use">
+                            <h5 class="container__message__title">
+                                Hướng dẫn sử dụng:
+                            </h5>
+                            <p class="container__message__text">Lấy 1 muỗng (5g) hòa tan trong 240ml nước hoặc đồ
+                                uống yêu thích của bạn. Tiêu thụ sau khi tập luyện của bạn.</p>
+                        </div>
+                        <div class="container__message__warring">
+                            <h5 class="container__message__title">
+                                Lưu ý:
+                            </h5>
+                            <p class="container__message__text">Không được sử dụng bởi những người có bệnh lí từ
+                                trước, những người dùng bất kỳ loại thuốc nào, những người dưới 18 tuổi hoặc tham khảo ý
+                                kiến bác sĩ trước khi sử dụng. Tránh xa tầm tay trẻ em và vật nuôi.</p>
+                        </div>
                     </div>
 
                 </div>
