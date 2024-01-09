@@ -91,6 +91,9 @@ function errorNotification(heightElement, weightElement, ageElement, phoneElemen
     return true;
 }
 
+// hasvalue
+
+
 changeSubmitElement.addEventListener("click", function () {
     var heightValue = heightElement.value;
     var weightValue = weightElement.value;
@@ -100,24 +103,47 @@ changeSubmitElement.addEventListener("click", function () {
     var phoneValue = phoneElement.value;
     var statusOfHeath = "";
     var message = "";
+    var greeting = "Hello";
+    if (genderValue == "male"){
+        genderValue = "Nam";
+        greeting = "Anh";
+    }else if(genderValue == "female"){
+        female = "Nữ";
+        greeting = "Chị";
+    }
+
+    
     var BMI = calculateBMI(heightValue, weightValue);
 
     if (errorNotification(heightElement, weightElement, ageElement, phoneElement)) {
         if (BMI == -1) {
-            console.log("Hello")
-        } else if (BMI < 18.5) {
-            statusOfHeath = "Bình thường";
-            message = "Bạn có một cơ thể tốt";
-        } else if (BMI >= 18.5 && BMI < 25) {
-            statusOfHeath = "Thiếu cân";
-            message = "Bạn cần áp dụng chế độ ăn và thể thao để tăng cân";
-        } else if (BMI >= 25 && BMI < 30) {
+            // console.log("Hello")
+        } else if (BMI < 16) {
+            statusOfHeath = "Gầy độ III";
+            message = `Chào ${greeting}, ${greeting} đang ở mức gầy độ III, điều này có thể ảnh hưởng đến sức khỏe của ${greeting}. Hãy thử bổ sung thêm các loại thực phẩm giàu dinh dưỡng và tập luyện để tăng cân một cách lành mạnh.`;
+        } else if (BMI >= 16 && BMI < 17) {
+            statusOfHeath = "Gầy độ II";
+            message = `Chào ${greeting}, ${greeting} đang ở mức gầy độ II, điều này có thể gây ra một số vấn đề về sức khỏe. Hãy thử tăng cường chế độ ăn uống và tập thể dục để tăng cơ.`;
+        } else if (BMI >= 17 && BMI < 18.5) {
+            statusOfHeath = "Gầy độ I";
+            message = `Chào ${greeting}, ${greeting} đang ở mức gầy độ I, điều này có thể gây ra một số vấn đề về sức khỏe. Hãy thử tăng cường chế độ ăn uống và tập thể dục để tăng cơ.`;
+        } else if (BMI >= 18.5 && BMI < 23) {
+            statusOfHeath = "Cân nặng bình thường";
+            message = `Chúc mừng! ${greeting} đang ở mức cân nặng bình thường. Hãy tiếp tục duy trì chế độ ăn uống lành mạnh và tập thể dục đều đặn.`;
+        } else if (BMI >= 23 && BMI < 25) {
             statusOfHeath = "Thừa cân";
-            message = "Bạn cần lên kế hoạch giảm cân";
-        } else if (BMI >= 30) {
-            statusOfHeath = "Béo phì";
-            message = "Bạn cần tìm hiểu và áp dụng các biện pháp giảm cân mạnh mẽ hơn";
+            message = `Chào ${greeting}, ${greeting} đang ở mức thừa cân, điều này có thể gây ra một số vấn đề về sức khỏe. Hãy thử giảm lượng calo hàng ngày và tăng cường hoạt động thể chất.`;
+        } else if (BMI >= 25 && BMI < 30) {
+            statusOfHeath = "Béo phì độ I";
+            message = `Chào ${greeting}, ${greeting} đang ở mức béo phì độ I, điều này có thể gây ra một số vấn đề về sức khỏe. Hãy thử giảm lượng calo hàng ngày và tăng cường hoạt động thể chất.`;
+        } else if (BMI >= 30 && BMI < 35) {
+            statusOfHeath = "Béo phì độ II";
+            message = `Chào ${greeting}, ${greeting} đang ở mức béo phì độ II, điều này có thể gây ra một số vấn đề về sức khỏe. Hãy thử giảm lượng calo hàng ngày và tăng cường hoạt động thể chất.`;
+        } else if (BMI >= 35) {
+            statusOfHeath = "Béo phì độ III";
+            message = `Chào ${greeting}, ${greeting} đang ở mức béo phì độ III, điều này có thể gây ra một số vấn đề về sức khỏe. Hãy thử giảm lượng calo hàng ngày và tăng cường hoạt động thể chất.`;
         }
+        BMI = BMI.toFixed(2);
         if (BMI != -1) {
             innerValueToForm(heightValue, weightValue, ageValue, genderValue, BMI, statusOfHeath, message)
             modalElement.style.display = "flex";

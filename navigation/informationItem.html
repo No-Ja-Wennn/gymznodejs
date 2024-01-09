@@ -23,6 +23,9 @@
     <link rel="stylesheet" href="../css/van.css">
     <link rel="stylesheet" href="../css/quyen.css">
     <link rel="stylesheet" href="../navigation_css/informationItem.css">
+    <script src="https://unpkg.com/react@18/umd/react.development.js" crossorigin></script>
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js" crossorigin></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
     <title>GYMZ - Thể hình giới trẻ</title>
 
 
@@ -84,8 +87,8 @@
                 </div>
             </div>
         </div>
-        <div class="container">
-            <div class="breadcrumb">
+        <div id="root" class="container">
+            <!-- <div class="breadcrumb">
                 <div class="grid">
                     <ul class="breadcrumb__list">
                         <li class="breadcrumb__item">
@@ -103,14 +106,13 @@
                         <li class="breadcrumb__item">
                             <span class="breadcrumb__item__text">
                                 <a class="breadcrumb__item__link" href="#">Đểu whey</a>
-                                <!-- <i class="fa-solid fa-chevron-right"></i> -->
                             </span>
                         </li>
                         <li class="breadcrumb__item"></li>
                     </ul>
                 </div>
-            </div>
-            <div class="container__block">
+            </div> -->
+            <!-- <div class="container__block">
                 <div class="grid">
                     <div class="container__main">
                         <div class="container__pictures">
@@ -146,10 +148,6 @@
                         <div class="container__product">
                             <div class="product__detail">
                                 <div class="product__detail__flash">
-                                    <!-- <div class="product__detail__flash__time">
-                                        <span class="product__detail__flash__time__text">Kết thúc sau</span>
-                                        <span class="product__detail__flash__time__real">09:17:37</span>
-                                    </div> -->
                                     <span class="product__detail__flash__buy">3 đã bán</span>
                                 </div>
                                 <div class="product__detail__wrapper">
@@ -205,7 +203,6 @@
                                     <span class="product__detail__time-use__text">08/2024</span>
                                 </div>
                                 <div class="product__detail__promotion">
-                                    <!-- <h6 class="product__detail__promotion__title">Khuyến mãi</h6> -->
                                     <div class="product__detail__promotion__tag">
                                         <ul class="product__detail__promotion__tag__list">
                                             <li class="product__detail__promotion__tag__item">
@@ -308,7 +305,7 @@
                         </div>
                     </div>
                 </div>
-            </div>
+            </div> -->
         </div>
     </div>
     </div>
@@ -467,6 +464,8 @@
 
     <script src="./index.js"></script>
     <script src="./navigation_javascript/menu.js"></script>
+    <script  src="../navigation_javascript/informationItem.js" type="text/babel"></script>
+
 </body>
 
 </html>
