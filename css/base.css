@@ -33,3 +33,52 @@ html{
 .body{
     position: relative;
 }
+
+
+@keyframes slide_left{
+    0%{
+        opacity: 1;
+        left: 0;
+    }
+    100%{
+        opacity: 1;
+        left: -300px;
+        /* display: none; */
+    }
+}
+@keyframes slide_right {
+    0% {
+        opacity: 1;
+        left: -300px;
+        /* right: calc(100vw); */
+    }
+
+    30% {
+        opacity: 1;
+    }
+
+    100% {
+        left: 0;
+        opacity: 1;
+        /* right: calc(100vw - 300px); */
+        /* box-shadow: 10px 10px 1000px 1000px rgba(0, 0, 0, 0.400); */
+    }
+}
+@keyframes re_opacity{
+    0%{
+        opacity: 1;
+    }
+    100%{
+        opacity: 0;
+        /* display: none; */
+    }
+}
+@keyframes in_opacity {
+    0% {
+        opacity: 0;
+    }
+
+    100% {
+        opacity: 1;
+    }
+}

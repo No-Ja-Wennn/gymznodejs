@@ -15,44 +15,7 @@ html {
     background-repeat: repeat;
     background-attachment: scroll;
 }
-/* ================================================================================================== ĐÂY LÀ PHẦN ĐẦU */
-.header{
-    /* background-color: whitesmoke; */
-}
-.header__inner {
-    max-width: 1000px;
-}
-.header__inner__logo{
-    height: 68px;
-    margin-left: 10px;
-}
-.header__inner__logo h1{
-    margin: 0;
-    display: flex;
-    align-items: center;
-    
-}
-.header__inner__logo span{
-    display: flex;
-    align-items: center;
-    position: relative;
-    top: 3px;
-}
-/* .header__inner__navigation a{
-    color: hsl(0, 100%, 40%);
-} */
-.header__inner__navigation span {
-    color: red;
-    /* font-weight: 900; */
-}
-.header__inner__try a{
-    color: white;
-    background-color: hsl(0, 100%, 40%);
-}
-/* .dropdown .header__inner__navigation__sevice{
-    color: hsl(0, 100%, 40%);
-    font-weight: 900;
-} */
+
 /* ================================================================================================== ĐÂY LÀ PHẦN THÂN */
 
 .container {
@@ -86,7 +49,7 @@ html {
     background-color: rgba(52, 0, 119, 0.034);
 }
 
-/* ================================================================================================== ĐÂY LÀ PHẦN THÂN 1 */
+/* ======== ĐÂY LÀ PHẦN THÂN 1 */
 
 .container__colum1__inner,
 .container__colum1__inner2 {
@@ -113,7 +76,7 @@ html {
     /* background-color: rgb(146, 146, 146); */
 }
 
-/* ================================================================================================== ĐÂY LÀ PHẦN FOOTER */
+/*======== ĐÂY LÀ PHẦN FOOTER */
 
 .footer {
     width: 100%;
@@ -369,153 +332,6 @@ html {
 /*  ĐÂY LÀ PHẦN MENU ===================================================================================*/
 
 
-.header__inner__menu {
-    position: relative;
-}
-.header__inner__menu__bt {
-    height: 68px;
-    width: 70px;
-    position: relative;
-    /* padding: 23.96px 30px; */
-    display: flex;
-    /* background-color: rgba(0, 128, 0, 0.158); */
-}
-.header__inner__menu__bt i {
-    /* height: 68px;
-    width: 70px;
-    margin: 0;
-    padding: 0; */
-    display: flex;
-    align-items: center;
-    margin: 0 auto;
-    font-size: 30px;
-    color: white;
-}
-/* .header__inner__menu__bt:hover{
-    color: aqua;
-    background-color: #1E90FF;
-} */
-/* .header__inner__menu i:hover{
-    color: #1E90FF;
-} */
-
-
-
-/* .body{
-    position: relative;
-} */
-
-.nen_mo {
-    display: none;
-    z-index: 9;
-    position: fixed;
-    left: 0;
-    right: 0;
-    top: 0;
-    bottom: 0;
-    background-color: rgba(0, 0, 0, 0.500);
-}
-
-
-
-
-.bt_dropdown {
-    display: flex;
-    position: relative;
-}
-
-
-
-.content {
-    display: none;
-    position: fixed;
-    top: 0;
-    /* opacity: 0; */
-    /* left: -300px; */
-    /* right: calc(100vw - 300px); */
-    width: 300px;
-    
-    height: 100vh;
-    background-color: black;
-    /* top: 165px; */
-    /* top: 100%;
-    right: 0;
-    margin-right: 60px; */
-    /* box-shadow: 10px 10px 0px 1000px rgba(0, 0, 0, 0.400); */
-}
-.noidung__text1{
-    /* font-size: 16px; */
-    display: flex;
-    align-items: center;
-    position: relative;
-    top: 2px;
-}
-.content a {
-    position: relative;
-    display: flex;
-    height: 68px;
-    /* align-items: center; */
-    /* padding: 26px 12px; */
-    background-color: black;
-    color: white;
-    font-size: 16px;
-    font-weight: 600;
-    border-bottom: 1px rgba(255, 255, 255, 0.1) solid;
-}
-
-.content .bx {
-    display: flex;
-    align-items: center;
-    margin-right: 15px;
-    margin-left: 20px;
-    font-size: 26px;
-}
-
-.content a:hover {
-    background-color: #222;
-}
-
-
-/* .header{
-    background-color: goldenrod;
-} */
-
-/* .logo{
-    width: 100%;
-    height: 67.8px;
-}
-.logo img{
-    height: 100%;
-    width: 100%;
-    padding: 0;
-} */
-
-
-.logo a {
-    position: relative;
-    align-items: center;
-    display: flex;
-    
-    padding: 0;
-    height: 68px;
-    padding-left: 10px;
-    font-size: 32px;
-    font-family: montserrat;
-    font-weight: 900;
-    background-color: black;
-    cursor: pointer;
-}
-.logo a:hover {
-    background-color: rgba(0, 0, 0, 0.400);
-}
-
-.logo span {
-    font-weight: 100;
-    position: relative;
-    margin-left: 5px;
-    top: 3px;
-}
-
 .footer__last__select {
     display: flex;
 
@@ -551,6 +367,8 @@ html {
     text-align: center;
     /* display: flex;
     align-items: center; */
+    
+    line-height: 58px;
 }
 .happy__newyear span{
     display: flex;
@@ -675,22 +493,8 @@ html {
 /* ================================================================================================== ĐÂY LÀ PHẦN MEDIA */
 
 @media (max-width: 1000px) {
-    .header__inner__navigation {
-        display: none;
-    }
 
-    .header__inner__try {
-        display: none;
-    }
 
-    .header__inner__menu {
-        display: flex;
-    }
-
-    .header__inner {
-        width: 100%;
-        max-width: 1000px;
-    }
 
     .container,
     .container__select {
