@@ -51,7 +51,7 @@
     background-color: rgba(52, 0, 119, 0.034);
 }
 
-/* ================================================================================================== ĐÂY LÀ PHẦN THÂN 1 */
+/* ======== ĐÂY LÀ PHẦN THÂN 1 */
 
 .container__colum1__inner,
 .container__colum1__inner2 {
@@ -78,7 +78,7 @@
     background-color: rgba(255, 255, 255, 0.055);
 }
 
-/* ================================================================================================== ĐÂY LÀ PHẦN FOOTER */
+/*======== ĐÂY LÀ PHẦN FOOTER */
 
 .footer {
     width: 100%;
@@ -581,22 +581,8 @@
 /* ================================================================================================== ĐÂY LÀ PHẦN MEDIA */
 
 @media (max-width: 1000px) {
-    .header__inner__navigation {
-        display: none;
-    }
 
-    .header__inner__try {
-        display: none;
-    }
 
-    .header__inner__menu {
-        display: flex;
-    }
-
-    .header__inner {
-        width: 100%;
-        max-width: 1000px;
-    }
 
     .container,
     .container__select {

@@ -12,6 +12,7 @@
     position: fixed;
     top: 0;
     z-index: 999;
+    /* background-color: whitesmoke; */
 }
 
 .header {
@@ -58,7 +59,15 @@
     font-family: montserrat;
     font-weight: 200;
     margin-left: 5px;
+    display: flex;
+    align-items: center;
+    position: relative;
+    top: 3px;
 }
+
+/* .header__inner__navigation a{
+    color: hsl(0, 100%, 40%);
+} */
 
 .header__inner__navigation {
     margin-left: auto;
@@ -178,9 +187,12 @@
     .header__inner__menu {
         display: flex;
     }
-}
+    .header__inner {
+        width: 100%;
+        max-width: 1000px;
+    }
 
-/* ==================== ====== ==================== */
+}
 
 .dropdown i {
     margin-left: 2px;
@@ -193,7 +205,8 @@
 }
 
 .header__inner__navigation span {
-    color: goldenrod;
+    /* color: goldenrod; */
+    color: red;
 }
 
 /*  ĐÂY LÀ PHẦN MENU ===================================================================================*/
