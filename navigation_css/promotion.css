@@ -1,14 +1,7 @@
-html {
-    /* background-color: blue; */
-    /* background-image: url(../img/background/bgr_pro2.png); */
-    /* background-image: url(../img/background/bgr_pro2.png);
-    background-size: 100% 100%;
-    background-repeat: no-repeat; */
-}
+
 
 .container{
     background-image: url(../img/background/bgr_pro3.png);
-    /* background-color: #800; */
     background-size: cover;
     background-origin: content-box;
     background-position: 50% 0%;
@@ -16,54 +9,27 @@ html {
     background-attachment: scroll;
 }
 /* ================================================================================================== ĐÂY LÀ PHẦN ĐẦU */
-.header{
-    /* background-color: whitesmoke; */
-}
+
 .header__inner {
     max-width: 1000px;
 }
-.header__inner__logo{
-    height: 68px;
-    margin-left: 10px;
-}
-.header__inner__logo h1{
-    margin: 0;
-    display: flex;
-    align-items: center;
-    
-}
-.header__inner__logo span{
-    display: flex;
-    align-items: center;
-    position: relative;
-    top: 3px;
-}
-/* .header__inner__navigation a{
-    color: hsl(0, 100%, 40%);
-} */
 .header__inner__navigation span {
     color: red;
-    /* font-weight: 900; */
 }
 .header__inner__try a{
-    color: white;
     background-color: hsl(0, 100%, 40%);
 }
-/* .dropdown .header__inner__navigation__sevice{
-    color: hsl(0, 100%, 40%);
-    font-weight: 900;
-} */
+.header__inner__navigation__sevice{
+    display: flex;
+    padding-top: 0;
+    padding-bottom: 0;
+}
 /* ================================================================================================== ĐÂY LÀ PHẦN THÂN */
 
 .container {
     width: 100%;
     height: 860px;
-    /* background-color: darkgoldenrod; */
     margin-top: 68px;
-
-    /* display: flex;
-    justify-content: space-between;
-    align-items: stretch; */
 }
 
 .container__select {
@@ -71,7 +37,6 @@ html {
     height: 100%;
     display: flex;
     margin: 0 auto;
-    /* background-color: rgb(255, 145, 0); */
 }
 
 .container__colum1 {
@@ -110,7 +75,7 @@ html {
 
 .container__colum2__inner2 {
     height: 50%;
-    /* background-color: rgb(146, 146, 146); */
+    background-color: rgba(255, 255, 255, 0.055);
 }
 
 /* ================================================================================================== ĐÂY LÀ PHẦN FOOTER */
@@ -122,7 +87,6 @@ html {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    /* font-size: 14px; */
 }
 
 .footer i {
@@ -140,10 +104,8 @@ html {
 
 .footer__colum1 {
     display: block;
-    /* padding: 0 10px; */
     max-width: 60%;
     width: 100%;
-    /* background-color: gray; */
     text-align: left;
     font-size: 14px;
     margin-top: 15px;
@@ -157,16 +119,13 @@ html {
     margin-right: 10px;
     font-size: 23px;
 }
-/* 
-.about__website a {
-    margin-bottom: 20px;
-} */
+
 
 .footer__colum1 a {
     position: relative;
     color: white;
     display: inline-flex;
-    /* margin-top: 15px; */
+
     
 }
 .about__us__inner{
@@ -187,7 +146,7 @@ html {
     max-width: 40%;
     width: 100%;
     margin: 0 auto;
-    /* background-color: gray; */
+
 }
 
 .footer__colum2__inner {
@@ -195,7 +154,7 @@ html {
     width: 90%;
     margin-top: 87px;
     height: auto;
-    /* left: -20px; */
+
 }
 
 .group {
@@ -241,11 +200,10 @@ html {
 
 .avatar__img img {
     width: 20%;
-    /* height: 34.64%; */
+
     margin: 10px;
     border: 1px white solid;
-    /* position: absolute;
-    position: relative; */
+
 }
 
 .cover__img img {
@@ -267,7 +225,7 @@ html {
     border-radius: 2px;
 
 
-    /* margin-left: 22px; */
+
     margin-right: 10px;
     font-size: 12px;
     font-family: Arial, Helvetica, sans-serif;
@@ -276,11 +234,11 @@ html {
 }
 
 .folow__page i {
-    /* scale: 2; */
+
     margin-right: 5px;
     position: relative;
     vertical-align: middle;
-    /* color: #1E90FF; */
+
 }
 
 .folow__page a:hover {
@@ -318,14 +276,11 @@ html {
     margin-right: 140px;
 }
 
-/* .service__customer__list i{
-    margin-right: 10px;
-    line-height: 14px;
-} */
+
 
 .footer__last {
     display: flex;
-    /* align-items: center; */
+
     width: 100%;
     height: 60px;
     background-color: #222;
@@ -336,11 +291,8 @@ html {
     width: 100%;
     max-width: 1000px;
 
-    /* background-color: rgb(0, 0, 0); */
     margin: 0 auto;
     text-align: left;
-    /* margin-top: 10px; */
-
     border-top: 1px white solid;
 }
 
@@ -349,13 +301,10 @@ html {
     color: white;
     margin-left: 10px;
     font-size: 14px;
-    /* margin-top: 45px; */
+
 }
 
-/* .footer__last__select i{
-    margin-right: 10px;
-    line-height: 1px;
-} */
+
 
 
 .footer__colum1 a:hover {
@@ -376,35 +325,18 @@ html {
     height: 68px;
     width: 70px;
     position: relative;
-    /* padding: 23.96px 30px; */
+
     display: flex;
-    /* background-color: rgba(0, 128, 0, 0.158); */
+
 }
 .header__inner__menu__bt i {
-    /* height: 68px;
-    width: 70px;
-    margin: 0;
-    padding: 0; */
+
     display: flex;
     align-items: center;
     margin: 0 auto;
     font-size: 30px;
     color: white;
 }
-/* .header__inner__menu__bt:hover{
-    color: aqua;
-    background-color: #1E90FF;
-} */
-/* .header__inner__menu i:hover{
-    color: #1E90FF;
-} */
-
-
-
-/* .body{
-    position: relative;
-} */
-
 .nen_mo {
     display: none;
     z-index: 9;
@@ -430,21 +362,15 @@ html {
     display: none;
     position: fixed;
     top: 0;
-    /* opacity: 0; */
-    /* left: -300px; */
-    /* right: calc(100vw - 300px); */
+
     width: 300px;
     
     height: 100vh;
     background-color: black;
-    /* top: 165px; */
-    /* top: 100%;
-    right: 0;
-    margin-right: 60px; */
-    /* box-shadow: 10px 10px 0px 1000px rgba(0, 0, 0, 0.400); */
+
 }
 .noidung__text1{
-    /* font-size: 16px; */
+
     display: flex;
     align-items: center;
     position: relative;
@@ -454,8 +380,6 @@ html {
     position: relative;
     display: flex;
     height: 68px;
-    /* align-items: center; */
-    /* padding: 26px 12px; */
     background-color: black;
     color: white;
     font-size: 16px;
@@ -474,22 +398,6 @@ html {
 .content a:hover {
     background-color: #222;
 }
-
-
-/* .header{
-    background-color: goldenrod;
-} */
-
-/* .logo{
-    width: 100%;
-    height: 67.8px;
-}
-.logo img{
-    height: 100%;
-    width: 100%;
-    padding: 0;
-} */
-
 
 .logo a {
     position: relative;
@@ -510,10 +418,11 @@ html {
 }
 
 .logo span {
-    font-weight: 100;
-    position: relative;
+    display: flex;
+    align-items: center;
+    font-family: montserrat;
+    font-weight: 200;
     margin-left: 5px;
-    top: 3px;
 }
 
 .footer__last__select {
@@ -549,8 +458,6 @@ html {
     font-size: 29px;
     font-weight: 900;
     text-align: center;
-    /* display: flex;
-    align-items: center; */
 }
 .happy__newyear span{
     display: flex;
@@ -632,14 +539,14 @@ html {
     100%{
         opacity: 1;
         left: -300px;
-        /* display: none; */
+
     }
 }
 @keyframes slide_right {
     0% {
         opacity: 1;
         left: -300px;
-        /* right: calc(100vw); */
+
     }
 
     30% {
@@ -649,8 +556,7 @@ html {
     100% {
         left: 0;
         opacity: 1;
-        /* right: calc(100vw - 300px); */
-        /* box-shadow: 10px 10px 1000px 1000px rgba(0, 0, 0, 0.400); */
+
     }
 }
 @keyframes re_opacity{
@@ -659,7 +565,7 @@ html {
     }
     100%{
         opacity: 0;
-        /* display: none; */
+
     }
 }
 @keyframes in_opacity {

@@ -82,7 +82,7 @@
   li {
     display: list-item;
     text-align: -webkit-match-parent;
-    line-height: 40px;
+    line-height: 40px; /*lay honnnnnn*/
 }
 
 .container-card_footer {
@@ -113,4 +113,23 @@
 }
 li:hover{
   color: #5c5e5f;
+}
+/* ==================== MEDIA ==================== */
+@media screen and (max-width: 1000px) {
+  .header__inner {
+      width: 100%;
+      max-width: 1000px;
+  }
+
+  .header__inner__navigation {
+      display: none;
+  }
+
+  .header__inner__try {
+      display: none;
+  }
+
+  .header__inner__menu {
+      display: flex;
+  }
 }

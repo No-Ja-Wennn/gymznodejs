@@ -1,0 +1,319 @@
+/* truong css =============================================================================== */
+
+* {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    text-decoration: none;
+    font-family: Overpass;
+}
+
+.header {
+    position: fixed;
+    top: 0;
+    z-index: 999;
+}
+
+.header {
+    display: flex;
+    width: 100%;
+    height: 68px;
+    background: black;
+}
+
+.header__inner {
+    display: flex;
+    width: 95%;
+    height: 100%;
+    justify-content: space-between;
+    align-items: center;
+    margin: 0 auto;
+}
+
+.header__inner__logo {
+    height: 68px;
+    display: flex;
+    align-items: center;
+    margin-left: 10px;
+}
+
+.header__inner__logo a {
+    height: 68px;
+    display: flex;
+    align-items: center;
+}
+
+.header__inner__logo h1 {
+    display: flex;
+    align-items: center;
+    font-family: montserrat;
+    font-size: 32px;
+    font-weight: 900;
+    color: white;
+}
+
+.header__inner__logo span {
+    display: flex;
+    align-items: center;
+    font-family: montserrat;
+    font-weight: 200;
+    margin-left: 5px;
+}
+
+.header__inner__navigation {
+    margin-left: auto;
+    color: #000;
+}
+
+.header__inner__navigation ul,
+.header__inner__try ul {
+    display: flex;
+    align-items: center;
+    height: 68px;
+}
+
+.header__inner__navigation li,
+.header__inner__try li {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 5px;
+}
+
+.header__inner__navigation__sevice {
+    display: flex;
+    align-items: center;
+    height: 68px;
+    position: relative;
+    padding: 0 15px;
+    color: white;
+    font-size: 14px;
+    font-weight: 600;
+    /* background-color: green; */
+}
+
+
+.header__inner__navigation a:hover {
+    color: goldenrod;
+}
+
+.header__inner__try{
+    display: flex;
+    align-items: center;
+}
+
+.header__inner__try a {
+    display: flex;
+    align-items: center;
+    color: white;
+    font-size: 14px;
+    font-weight: 600;
+    padding: 15px;
+    background-color: goldenrod;
+    margin-left: 10px;
+}
+
+.header__inner__try a:hover {
+    background-color: gold;
+    color: black;
+}
+
+.header__inner__logo h1:hover {
+    color: goldenrod;
+}
+
+.containt {
+    display: none;
+    background-color: black;
+    z-index: 22;
+}
+
+.containt a {
+    height: 50px;
+    width: 200px;
+    display: flex;
+    align-items: center;
+    color: white;
+    font-size: 14px;
+    font-weight: 600;
+    padding: 0 15px;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.dropdown .containt {
+    position: absolute;
+    opacity: 0;
+    box-shadow: 0 8px 16px rgb(0, 0, 0.1);
+}
+
+.dropdown:hover .containt {
+    display: block;
+    animation: fadeOut 0.4s ease-in-out forwards;
+}
+
+.dropdown:focus-within .containt {
+    display: block;
+    animation: fadeOut 0.4s ease-in-out forwards;
+}
+
+.containt a:hover {
+    background-color: #111;
+}
+
+/* ==================== MEDIA ==================== */
+@media (max-width: 1000px) {
+    .header__inner {
+        width: 100%;
+        max-width: 1000px;
+    }
+
+    .header__inner__navigation {
+        display: none;
+    }
+
+    .header__inner__try {
+        display: none;
+    }
+
+    .header__inner__menu {
+        display: flex;
+    }
+}
+
+/* ==================== ====== ==================== */
+
+.dropdown i {
+    margin-left: 2px;
+    scale: 0.6;
+}
+
+.dropdown:hover .bx {
+    animation: quayxuong 0.3s forwards;
+    color: goldenrod;
+}
+
+.header__inner__navigation span {
+    color: goldenrod;
+}
+
+/*  ĐÂY LÀ PHẦN MENU ===================================================================================*/
+
+
+.header__inner__menu {
+    position: relative;
+    display: none;
+}
+
+.header__inner__menu__bt {
+    height: 68px;
+    width: 70px;
+    position: relative;
+    display: flex;
+}
+
+.header__inner__menu__bt i {
+    display: flex;
+    align-items: center;
+    margin: 0 auto;
+    font-size: 30px;
+    color: white;
+}
+
+.nen_mo {
+    display: none;
+    z-index: 9;
+    position: fixed;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.500);
+}
+
+
+
+
+.bt_dropdown {
+    display: flex;
+    position: relative;
+}
+
+
+
+.content {
+    display: none;
+    position: fixed;
+    top: 0;
+    /* opacity: 0; */
+    /* left: -300px; */
+    /* right: calc(100vw - 300px); */
+    width: 300px;
+
+    height: 100vh;
+    background-color: black;
+    /* top: 165px; */
+    /* top: 100%;
+    right: 0;
+    margin-right: 60px; */
+    /* box-shadow: 10px 10px 0px 1000px rgba(0, 0, 0, 0.400); */
+}
+
+.noidung__text1 {
+    /* font-size: 16px; */
+    display: flex;
+    align-items: center;
+    position: relative;
+    top: 2px;
+}
+
+.content a {
+    position: relative;
+    display: flex;
+    height: 68px;
+    background-color: black;
+    color: white;
+    font-size: 16px;
+    font-weight: 600;
+    border-bottom: 1px rgba(255, 255, 255, 0.1) solid;
+}
+
+.content .bx {
+    display: flex;
+    align-items: center;
+    margin-right: 15px;
+    margin-left: 20px;
+    font-size: 26px;
+}
+
+.content a:hover {
+    background-color: #222;
+}
+
+
+
+
+.logo a {
+    position: relative;
+    align-items: center;
+    display: flex;
+    padding: 0;
+    height: 68px;
+    padding-left: 10px;
+    font-size: 32px;
+    font-family: montserrat;
+    font-weight: 900;
+    background-color: black;
+    cursor: pointer;
+}
+
+.logo a:hover {
+    background-color: rgba(0, 0, 0, 0.400);
+}
+
+.logo span {
+    display: flex;
+    align-items: center;
+    font-family: montserrat;
+    font-weight: 200;
+    margin-left: 5px;
+}

@@ -16,8 +16,11 @@
     <link rel="stylesheet" href="./font/fontawesome-free-6.4.0-web/css/all.min.css">
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
     <link rel="stylesheet" href="../css/base.css">
-    <link rel="stylesheet" href="../css/truong.css">
+    <link rel="stylesheet" href="../css/header.css">
+    <link rel="stylesheet" href="../css/footer.css">
+    <link rel="stylesheet" href="../css/keyframes.css">
     <link rel="stylesheet" href="../navigation_css/forum.css">
+    <!-- <link rel="stylesheet" href="../navigation_css/promotion.css"> -->
     <title>GYMZ - Thể hình giới trẻ</title>
 
 </head>
@@ -26,51 +29,82 @@
     <div class="app">
         <!-- LUU SY TRUONG -->
         <div class="header">
-            <div class="header__inner">
-                <div class="header__inner__logo">
-                    <a href="">
-                        <h1>GYM<span>Z</span></h1>
-                    </a>
-                </div>
-                <!-- Thanh dieu huong -->
-                <div class="header__inner__navigation">
-                    <ul>
-                        <li><a href="../index.html">TRANG CHỦ</a></li>
-                        <li><a href="./forum.html"><span>DIỄN ĐÀN</span></a></li>
-                        <li>
-                            <div class="dropdown">
-                                <a href="#">DỊCH VỤ<m><i class='bx bxs-right-arrow'></i></m></a>
-                                <div class="containt">
-                                    <a href="#">THẺ HỘI VIÊN</a>
-                                    <a href="#">HUẤN LUYỆN VIÊN</a>
-                                    <a href="#">CỬA HÀNG WHEY</a>
-                                    <a href="../chatbox.html">CHAT ONLINE</a>
-                                </div>
-                            </div>
-                        </li>
-                        <li><a href="./promotion.html">KHUYẾN MÃI</a></li>
-                    </ul>
-                </div>
-                <div class="header__inner__try">
-                    <ul>
-                        <li><a href="https://facebook.com/lst24">TẬP THỬ MIỄN PHÍ</a></li>
-                    </ul>
-                </div>
-                <div class="header__inner__menu">
-                    <div class="menuroi">
-                        <a href="#">
-                            <i class='bx bx-menu' ></i>
+            <div class="header">
+                <div class="header__inner">
+                    <div class="header__inner__logo">
+                        <a href="">
+                            <h1>GYM<span>Z</span></h1>
                         </a>
-                        <div class="noidung">
-                            <div class="logo">
-                                <a href="">GYM<span>Z</span></a>
-                                <!-- <img src="../img/background/logo_and_bgr.png" alt="logo and bgr"> -->
+                    </div>
+                    <!-- Thanh dieu huong -->
+                    <div class="header__inner__navigation">
+                        <ul>
+                            <li><a class="header__inner__navigation__sevice" href="../index.html">TRANG CHỦ</a></li>
+                            <li><a class="header__inner__navigation__sevice" href="./forum.html"><span>DIỄN ĐÀN</span></a></li>
+                            <li>
+                                <div class="dropdown">
+                                    <a class="header__inner__navigation__sevice" href="#" onclick="yourFunction(event)">
+                                        DỊCH VỤ<m><i class='bx bxs-right-arrow'></i></m>
+                                    </a>
+                                    <div class="containt">
+                                        <a href="./card.html">THẺ HỘI VIÊN</a>
+                                        <a href="./train.html">HUẤN LUYỆN VIÊN</a>
+                                        <a href="./shop.html">CỬA HÀNG WHEY</a>
+                                        <a href="./chatbox.html">CHAT ONLINE</a>
+                                  </div>
+                                </div>
+                            </li>
+                            <li><a class="header__inner__navigation__sevice" href="./promotion.html">KHUYẾN MÃI</a></li>
+                        </ul>
+                    </div>
+                    <div class="header__inner__try">
+                        <ul>
+                            <li><a href="https://facebook.com/lst24">TẬP THỬ MIỄN PHÍ</a></li>
+                        </ul>
+                    </div>
+                    <div class="header__inner__menu">
+                        <div class="bt_dropdown">
+                            <a class="header__inner__menu__bt" href="#" onclick="yourFunction(event)">
+                                <i class='bx bx-menu'></i>
+                            </a>
+                            <div class="content">
+                                <div class="logo">
+                                    <a class="logo__inner" href="">
+                                        GYM<span>Z</span>
+                                    </a>
+                                    <!-- <img src="../img/background/logo_and_bgr.png" alt="logo and bgr"> -->
+                                </div>
+                                <a href="../index.html">
+                                    <i class='bx bxs-home'></i>
+                                    <span class="noidung__text1">
+                                        TRANG CHỦ
+                                    </span>
+                                </a>
+                                <a href="./forum.html">
+                                    <i class='bx bx-world' ></i>
+                                    <span class="noidung__text1">
+                                        DIỄN ĐÀN
+                                    </span>
+                                </a>
+                                <a href="#">
+                                    <i class='bx bxs-file' ></i>
+                                    <span class="noidung__text1">
+                                        DỊCH VỤ
+                                    </span>
+                                </a>
+                                <a href="./promotion.html">
+                                    <i class='bx bxs-purchase-tag' ></i>
+                                    <span class="noidung__text1">
+                                        KHUYẾN MÃI
+                                    </span>
+                                </a>
+                                <a href="#">
+                                    <i class='bx bx-code-alt' ></i>
+                                    <span class="noidung__text1">
+                                        TẬP THỬ MIỄN PHÍ
+                                    </span>
+                                </a>
                             </div>
-                            <a href="../index.html"><i class='bx bxs-home'></i>TRANG CHỦ</a>
-                            <a href="./forum.html"><i class='bx bx-world' ></i>DIỄN ĐÀN</a>
-                            <a href="#"><i class='bx bxs-file' ></i>DỊCH VỤ</a>
-                            <a href="./promotion.html"><i class='bx bxs-purchase-tag' ></i>KHUYẾN MÃI</a>
-                            <a href="#"><i class='bx bx-code-alt' ></i>TẬP THỬ MIỄN PHÍ</a>
                         </div>
                     </div>
                 </div>
@@ -87,13 +121,106 @@
             </div>
         </div>
         <div class="footer">
+            <div class="footer__select">
+                <div class="footer__colum1">
+                    <div class="footer__colum1__inner">
+                        <a href="#">
+                            <h3>
+                                CÔNG TY CỔ PHẦN ĐẦU TƯ VÀ PHÁT TRIỂN CLOSEAI
+                            </h3>
+                        </a>
+                    </div>
+                    <div class="about__us">
+                        <div class="about__us__inner">
+                            <a href="#">
+                                <m><i class='bx bxs-home'></i></m> Trụ sở chính: z115, Tân Thịnh, TP.Thái
+                                Nguyên, Thái Nguyên
+                            </a>
+                            <a href="#">
+                                <m><i class='bx bxs-phone'></i></m> Hotline: 0999.999.999
+                            </a>
+                            <a href="#">
+                                <m><i class='bx bxs-envelope'></i></m> Email: closeai.work@gmail.com
+                            </a>
+                            <a href="#">
+                                <m><i class='bx bx-world'></i></m> Website: https://pwm.io.vn
+                            </a>
+                        </div>
 
+                    </div>
+                    <div class="service__customer">
+                        <div class="service__customer__title">
+                            <div class="footer__colum1__inner">
+                                <a href="#">
+                                    <h3>
+                                        DỊCH VỤ KHÁCH HÀNG
+                                    </h3>
+                                </a>
+                            </div>
+                        </div>
+                        <div class="service__customer__list">
+                            <div class="service__customer__list__inner">
+                                <a href="#">
+                                    <i class='bx bx-file'></i> Điều khoản sử dụng
+                                </a>
+                                <a href="#">
+                                    <i class='bx bxs-lock-alt'></i> Chính sách bảo mật
+                                </a>
+                                <a href="#">
+                                    <i class='bx bxs-chat'></i> Kết nối với chúng tôi
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="footer__colum2">
+                    <div class="footer__colum2__center">
+                        <div class="footer__colum2__inner">
+                            <div class="group">
+                                <div class="name__page">
+                                    <a href="#">
+                                        GYM Z<m><i class='bx bxs-badge-check'></i></m>
+                                    </a>
+                                    <h4>
+                                        999.999 người theo dõi
+                                    </h4>
+                                </div>
+                                <div class="avatar__img">
+                                    <img src="../img/background/avatar.png" alt="Ảnh đại diện">
+                                </div>
+                                <div class="folow__page">
+                                    <a href="#">
+                                        <i class='bx bxl-facebook-square'></i>Theo dõi fanpage
+                                    </a>
+                                </div>
+                                <div class="share__page">
+                                    <a href="#">
+                                        <i class='bx bxs-share'></i>Chia sẻ
+                                    </a>
+                                </div>
+                            </div>
+                            <div class="cover__img">
+                                <img src="../img/background/cover_img.png" alt="Ảnh bìa">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="footer__last">
+                <div class="footer__last__select">
+                    <div class="footer__last__select__inner">
+                        <a href="#">
+                            <m><i class='bx bxs-copyright'></i></m> 2023 Allrights reserved pwm.io.vn
+                        </a>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
     <!-- overlay -->
     <div class="nen_mo"></div>
     <script src="./index.js"></script>
-    <script src="../navigation_javascript/menu.js"></script>
+    <script src="../navigation_javascript/menuv2.js"></script>
 </body>
 
 </html>

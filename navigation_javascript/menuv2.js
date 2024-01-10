@@ -20,7 +20,7 @@ document.addEventListener('DOMContentLoaded', function() {
             bt.style.color = 'gold';
             
         } else {
-        // } if (isDisplay === 'block') {
+        
             content.style.animation = 'slide_left 0.4s ease-in-out forwards';
             overlay.style.animation = 're_opacity 0.4s ease-in forwards';
             setTimeout(function()
@@ -31,7 +31,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
             }, 400);
             
-            logo.style.display = 'block';
+            logo.style.display = 'flex';
             bt.style.color = 'white'
         } 
     });
@@ -43,7 +43,7 @@ document.addEventListener('DOMContentLoaded', function() {
             content.style.display = 'none';
             overlay.style.display = 'none';
         }, 400);
-        logo.style.display = 'block';
+        logo.style.display = 'flex';
         bt.style.color = 'white'
     });
 });
