@@ -1,31 +1,28 @@
-var menu = document.querySelector('.menuroi');
-var content = document.querySelector('.noidung');
-var body = document.querySelector('body');
-var overlay = document.querySelector(".nen_mo");
-var logo = document.querySelector(".header__inner__logo a")
-document.addEventListener('DOMContentLoaded', function() {
+var sub = document.querySelector(".submenu a");
+function toggleNoidung222(event) {
+    // Ngăn chặn sự kiện click lan ra các phần tử cha
+    event.stopPropagation();
 
-    menu.addEventListener('click', function(event) {
-        event.stopPropagation();
-        var isDisplay = getComputedStyle(content).display;
+    // Ngăn chặn sự kiện mặc định của thẻ <a>
+    event.preventDefault();
 
-        if (isDisplay === 'none') {
-            content.style.animation = 'side_right 0.4s ease-in-out forwards';
-            content.style.display = 'block';
-            overlay.style.display = 'block';
-            overlay.style.animation = "overlay 0.5s ease-in forwards";
-            logo.style.display = 'none';
-            
-        } if (isDisplay == 'block') {
-            content.style.display = 'none';
-            overlay.style.display = 'none';
-            logo.style.display = 'block';
-        } 
-    });
+    // Lấy phần tử noidung222
+    var noidung222 = document.querySelector('.noidung222');
 
-    body.addEventListener('click', function() {
-        content.style.display = 'none';
-        overlay.style.display = 'none';
-        logo.style.display = 'block';
-    });
+    // Toggle hiển thị/ẩn
+    if (noidung222.style.display === 'none' || noidung222.style.display === '') {
+        noidung222.style.display = 'block';
+        sub.style.color = 'goldenrod';
+        // sub.style.background = '#222';
+    } else {
+        noidung222.style.display = 'none';
+        sub.style.color = 'white'
+        // sub.style.background = '#000';
+    }
+}
+
+// Bổ sung sự kiện click để ẩn noidung222 khi click bất kỳ đâu trên trang
+document.addEventListener('click', function () {
+    var noidung222 = document.querySelector('.noidung222');
+    noidung222.style.display = 'none';
 });

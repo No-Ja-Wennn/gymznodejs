@@ -310,7 +310,7 @@
     text-decoration: underline;
 }
 
-/*  ĐÂY LÀ PHẦN MENU ===================================================================================*/
+/*  ĐÂY LÀ PHẦN MENU MOBILE ===================================================================================*/
 
 
 .header__inner__menu {
@@ -391,7 +391,7 @@
 }
 
 .content a:hover {
-    background-color: #222;
+    background-color: #111;
 }
 
 .logo a {
@@ -419,7 +419,24 @@
     font-weight: 200;
     margin-left: 5px;
 }
+/* SUBMENU TRONG MENUMOBILE ============================================================================= */
 
+.submenu{
+    align-items: center;
+}
+.noidung222{
+   display: none;
+   padding-left: 10px;
+   background-color: #111;
+}
+
+.noidung222 a{
+    background-color: #111;
+}
+.noidung222 a:hover{
+    color: goldenrod;
+}
+ /* ===================================== */
 .footer__last__select {
     display: flex;
 
