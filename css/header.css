@@ -61,8 +61,6 @@
     margin-left: 5px;
     display: flex;
     align-items: center;
-    position: relative;
-    top: 3px;
 }
 
 /* .header__inner__navigation a{
@@ -205,8 +203,7 @@
 }
 
 .header__inner__navigation span {
-    /* color: goldenrod; */
-    color: red;
+    color: goldenrod;
 }
 
 /*  ĐÂY LÀ PHẦN MENU ===================================================================================*/
@@ -282,6 +279,7 @@
 .content a {
     position: relative;
     display: flex;
+    align-items: center;
     height: 68px;
     background-color: black;
     color: white;
@@ -304,23 +302,16 @@
 
 
 
-
 .logo a {
-    position: relative;
-    align-items: center;
-    display: flex;
-    padding: 0;
-    height: 68px;
     padding-left: 10px;
     font-size: 32px;
     font-family: montserrat;
     font-weight: 900;
     background-color: black;
-    cursor: pointer;
 }
 
 .logo a:hover {
-    background-color: rgba(0, 0, 0, 0.400);
+    background-color: black;
 }
 
 .logo span {

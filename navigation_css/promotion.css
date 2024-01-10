@@ -19,11 +19,6 @@
 .header__inner__try a{
     background-color: hsl(0, 100%, 40%);
 }
-.header__inner__navigation__sevice{
-    display: flex;
-    padding-top: 0;
-    padding-bottom: 0;
-}
 /* ================================================================================================== ĐÂY LÀ PHẦN THÂN */
 
 .container {
