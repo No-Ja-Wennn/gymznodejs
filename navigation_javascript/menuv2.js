@@ -17,6 +17,7 @@ document.addEventListener('DOMContentLoaded', function() {
             overlay.style.animation = "in_opacity 0.4s ease-in forwards";
             overlay.style.display = 'block';
             logo.style.display = 'none';
+            bt.style.color = 'goldenrod';
 
         } else {
         
