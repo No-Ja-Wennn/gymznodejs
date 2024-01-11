@@ -1,3 +1,5 @@
+/* truong css =============================================================================== */
+
 * {
     margin: 0;
     padding: 0;
@@ -27,43 +29,38 @@
     justify-content: space-between;
     align-items: center;
     margin: 0 auto;
-    max-width: 1000px;
 }
 
 .header__inner__logo {
-    display: block;
-    cursor: pointer;
     height: 68px;
+    display: flex;
+    align-items: center;
     margin-left: 10px;
 }
 
 .header__inner__logo a {
-    height: 100%;
-    width: 100%;
+    height: 68px;
+    display: flex;
+    align-items: center;
 }
 
 .header__inner__logo h1 {
-    color: white;
-    justify-content: space-between;
-    align-items: center;
-    width: 100%;
-    height: 100%;
-    font-family: Montserrat;
-    font-weight: 900;
-    font-size: 32px;
-    margin-left: 10px;
-    margin: 0;
     display: flex;
     align-items: center;
+    font-family: montserrat;
+    font-size: 32px;
+    font-weight: 900;
+    color: white;
 }
 
 .header__inner__logo span {
-    font-weight: 100;
+    display: flex;
+    align-items: center;
+    font-family: montserrat;
+    font-weight: 200;
     margin-left: 5px;
     display: flex;
     align-items: center;
-    position: relative;
-    top: 3px;
 }
 
 /* .header__inner__navigation a{
@@ -78,8 +75,8 @@
 .header__inner__navigation ul,
 .header__inner__try ul {
     display: flex;
-    justify-content: space-between;
     align-items: center;
+    height: 68px;
 }
 
 .header__inner__navigation li,
@@ -90,30 +87,41 @@
     padding: 0 5px;
 }
 
-.header__inner__navigation a,
-.header__inner__try a {
-    padding: 15px 15px;
-    cursor: pointer;
+.header__inner__navigation__sevice {
+    display: flex;
+    align-items: center;
+    height: 68px;
+    position: relative;
+    padding: 0 15px;
+    color: white;
     font-size: 14px;
-    color: white;
     font-weight: 600;
-    color: white;
-    background-color: hsl(0, 100%, 40%);
+    /* background-color: green; */
 }
+
 
 .header__inner__navigation a:hover {
     color: goldenrod;
 }
 
+.header__inner__try{
+    display: flex;
+    align-items: center;
+}
+
 .header__inner__try a {
+    display: flex;
+    align-items: center;
+    color: white;
+    font-size: 14px;
+    font-weight: 600;
+    padding: 15px;
     background-color: goldenrod;
     margin-left: 10px;
-    border: 1px black solid;
 }
 
 .header__inner__try a:hover {
     background-color: gold;
-    border: 1px white solid;
     color: black;
 }
 
@@ -121,22 +129,21 @@
     color: goldenrod;
 }
 
-.dropdown a {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    /* padding: 26px 15px; */
-    position: relative;
-}
-
 .containt {
     display: none;
+    background-color: black;
 }
 
 .containt a {
-
-    padding: 20px 15px;
-    background-color: black;
+    height: 50px;
+    width: 200px;
+    display: flex;
+    align-items: center;
+    color: white;
+    font-size: 14px;
+    font-weight: 600;
+    padding: 0 15px;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
 }
 
 .dropdown .containt {
@@ -150,241 +157,17 @@
     animation: fadeOut 0.4s ease-in-out forwards;
 }
 
+.dropdown:focus-within .containt {
+    display: block;
+    animation: fadeOut 0.4s ease-in-out forwards;
+}
+
 .containt a:hover {
-    background-color: rgb(22, 22, 22);
-}
-
-/* .dropdown .header__inner__navigation__sevice{
-    color: hsl(0, 100%, 40%);
-    font-weight: 900;
-} */
-/* ==================== MENU ==================== */
-
-.header__inner__menu {
-    display: none;
-    justify-content: space-between;
-    align-items: center;
-    padding: 0 0;
-    position: relative;
-}
-
-.header__inner__menu__bt {
-    height: 68px;
-    width: 70px;
-    position: relative;
-    /* padding: 23.96px 30px; */
-    display: flex;
-    /* background-color: rgba(0, 128, 0, 0.158); */
-}
-
-.header__inner__menu__bt i {
-    /* height: 68px;
-    width: 70px;
-    margin: 0;
-    padding: 0; */
-    display: flex;
-    align-items: center;
-    margin: 0 auto;
-    font-size: 30px;
-    color: white;
-}
-
-/* .header__inner__menu__bt:hover{
-    color: aqua;
-    background-color: #1E90FF;
-} */
-/* .header__inner__menu i:hover{
-    color: #1E90FF;
-} */
-
-.nen_mo {
-    display: none;
-    z-index: 9;
-    position: fixed;
-    left: 0;
-    right: 0;
-    top: 0;
-    bottom: 0;
-    background-color: rgba(0, 0, 0, 0.500);
-}
-
-
-.bt_dropdown {
-    display: flex;
-    position: relative;
-}
-
-
-
-
-.menuroi__link i {
-    font-size: 24px;
-    color: white;
-}
-
-
-
-
-
-
-.content {
-    display: none;
-    position: fixed;
-    top: 0;
-    /* opacity: 0; */
-    /* left: -300px; */
-    /* right: calc(100vw - 300px); */
-    width: 300px;
-
-    height: 100vh;
-    background-color: black;
-    /* top: 165px; */
-    /* top: 100%;
-    right: 0;
-    margin-right: 60px; */
-    /* box-shadow: 10px 10px 0px 1000px rgba(0, 0, 0, 0.400); */
-}
-
-.noidung__text1 {
-    /* font-size: 16px; */
-    display: flex;
-    align-items: center;
-    position: relative;
-    top: 2px;
-}
-
-.content a {
-    position: relative;
-    display: flex;
-    height: 68px;
-    /* align-items: center; */
-    /* padding: 26px 12px; */
-    background-color: black;
-    color: white;
-    font-size: 16px;
-    font-weight: 600;
-    border-bottom: 1px rgba(255, 255, 255, 0.1) solid;
-}
-
-.content .bx {
-    display: flex;
-    align-items: center;
-    margin-right: 15px;
-    margin-left: 20px;
-    font-size: 26px;
-}
-
-.content a:hover {
-    background-color: #222;
-}
-
-
-/* .header{
-    background-color: goldenrod;
-} */
-
-/* .logo{
-    width: 100%;
-    height: 67.8px;
-}
-.logo img{
-    height: 100%;
-    width: 100%;
-    padding: 0;
-} */
-
-
-.logo a {
-    position: relative;
-    align-items: center;
-    display: flex;
-
-    padding: 0;
-    height: 68px;
-    padding-left: 10px;
-    font-size: 32px;
-    font-family: montserrat;
-    font-weight: 900;
-    background-color: black;
-    cursor: pointer;
-}
-
-.logo a:hover {
-    background-color: rgba(0, 0, 0, 0.400);
-}
-
-.logo span {
-    font-weight: 100;
-    position: relative;
-    margin-left: 5px;
-    top: 3px;
-}
-
-/* ==================== ANIMATION ==================== */
-@keyframes hienlen {
-    from {
-        top: 120%;
-        opacity: 0;
-    }
-
-    to {
-        top: 100%;
-        opacity: 1;
-    }
-}
-
-@keyframes fadeOut {
-    from {
-        top: 50%;
-        opacity: 0;
-        scale: 0.8;
-    }
-
-    to {
-        top: 100%;
-        opacity: 1;
-        scale: 1;
-    }
-}
-
-@keyframes quayxuong {
-    from {
-        transform: rotate(0deg);
-    }
-
-    to {
-        transform: rotate(90deg);
-    }
-}
-
-@keyframes side_right {
-    0% {
-        opacity: 0;
-        left: -300px;
-    }
-
-    30% {
-        opacity: 1;
-    }
-
-    100% {
-        left: 0;
-        opacity: 1;
-    }
-}
-
-@keyframes overlay {
-    0% {
-        opacity: 0;
-    }
-
-    100% {
-        opacity: 1;
-    }
+    background-color: #111;
 }
 
 /* ==================== MEDIA ==================== */
-@media screen and (max-width: 1000px) {
+@media (max-width: 1000px) {
     .header__inner {
         width: 100%;
         max-width: 1000px;
@@ -419,8 +202,30 @@
 }
 
 .header__inner__navigation span {
-    /* color: goldenrod; */
-    color: red;
+    color: goldenrod;
+}
+
+/*  ĐÂY LÀ PHẦN MENU ===================================================================================*/
+
+
+.header__inner__menu {
+    position: relative;
+    display: none;
+}
+
+.header__inner__menu__bt {
+    height: 68px;
+    width: 70px;
+    position: relative;
+    display: flex;
+}
+
+.header__inner__menu__bt i {
+    display: flex;
+    align-items: center;
+    margin: 0 auto;
+    font-size: 30px;
+    color: white;
 }
 
 .nen_mo {
@@ -431,80 +236,105 @@
     right: 0;
     top: 0;
     bottom: 0;
-    background-color: rgba(0, 0, 0, 0.400);
+    background-color: rgba(0, 0, 0, 0.500);
 }
 
-.menuroi {
+
+
+
+.bt_dropdown {
     display: flex;
     position: relative;
 }
 
-.noidung a {
+
+
+.content {
+    display: none;
+    position: fixed;
+    top: 0;
+    /* opacity: 0; */
+    /* left: -300px; */
+    /* right: calc(100vw - 300px); */
+    width: 300px;
+
+    height: 100vh;
+    background-color: black;
+    /* top: 165px; */
+    /* top: 100%;
+    right: 0;
+    margin-right: 60px; */
+    /* box-shadow: 10px 10px 0px 1000px rgba(0, 0, 0, 0.400); */
+}
+
+.noidung__text1 {
+    /* font-size: 16px; */
     display: flex;
     align-items: center;
-    padding: 26px 12px;
+    position: relative;
+    top: 2px;
+}
+
+.content a {
+    position: relative;
+    display: flex;
+    align-items: center;
+    height: 68px;
     background-color: black;
     color: white;
-    font-size: 18px;
+    font-size: 16px;
     font-weight: 600;
     border-bottom: 1px rgba(255, 255, 255, 0.1) solid;
 }
 
-.noidung__text {
-    padding-top: 8px;
-    font-size: 18px;
-}
-
-.menuroi__link {
-    position: relative;
-    padding: 23.96px 22px;
+.content .bx {
     display: flex;
     align-items: center;
-    justify-content: center;
-}
-
-.noidung {
-    display: none;
-    position: fixed;
-    top: 0;
-    left: -300px;
-    width: 300px;
-    opacity: 0;
-    height: 100vh;
-    background-color: black;
-}
-
-
-
-.noidung i {
-    margin-right: 30px;
+    margin-right: 15px;
     margin-left: 20px;
-    scale: 2;
+    font-size: 26px;
 }
 
-
-.noidung a:hover {
+.content a:hover {
     background-color: #222;
 }
 
 
+
 .logo a {
-    height: 68px;
-    padding: 12.5px 10px;
+    padding-left: 10px;
     font-size: 32px;
     font-family: montserrat;
     font-weight: 900;
     background-color: black;
-    cursor: pointer;
 }
 
 .logo a:hover {
-    background-color: rgba(0, 0, 0, 0.400);
+    background-color: black;
 }
 
 .logo span {
-    top: 3px;
-    position: relative;
-    font-weight: 100;
+    display: flex;
+    align-items: center;
+    font-family: montserrat;
+    font-weight: 200;
     margin-left: 5px;
 }
+/* SUBMENU TRONG MENUMOBILE ============================================================================= */
+
+.submenu{
+    align-items: center;
+}
+.noidung222{
+   display: none;
+   padding-left: 10px;
+   background-color: #111;
+}
+
+.noidung222 a{
+    background-color: #111;
+}
+.noidung222 a:hover{
+    color: goldenrod;
+}
+ /* ===================================== */

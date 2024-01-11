@@ -17,7 +17,10 @@
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
     <link rel="stylesheet" href="../css/index.css">
     <link rel="stylesheet" href="../css/header.css">
+    <link rel="stylesheet" href="../css/header.css">
     <link rel="stylesheet" href="../css/base.css">
+    <link rel="stylesheet" href="../css/keyframes.css">
+    <link rel="stylesheet" href="../css/footer.css">
     <link rel="stylesheet" href="../navigation_css/shop.css">
     <link rel="stylesheet" href="../navigation_css/End_shoprtien.css">
     <link rel="stylesheet" href="../navigation_css/informationItem.css">
@@ -35,27 +38,29 @@
         <div class="header">
             <div class="header__inner">
                 <div class="header__inner__logo">
-                    <a href="../index.html">
+                    <a href="">
                         <h1>GYM<span>Z</span></h1>
                     </a>
                 </div>
                 <!-- Thanh dieu huong -->
                 <div class="header__inner__navigation">
                     <ul>
-                        <li><a href="../index.html">TRANG CHỦ</a></li>
-                        <li><a href="./forum.html">DIỄN ĐÀN</a></li>
+                        <li><a class="header__inner__navigation__sevice" href="../index.html">TRANG CHỦ</a></li>
+                        <li><a class="header__inner__navigation__sevice" href="./forum.html">DIỄN ĐÀN</a></li>
                         <li>
                             <div class="dropdown">
-                                <a class="header__inner__navigation__sevice" href="#">DỊCH VỤ<m><i class='bx bxs-right-arrow'></i></m></a>
+                                <a class="header__inner__navigation__sevice" href="#" onclick="yourFunction(event)">
+                                    <span>DỊCH VỤ</span><m><i class='bx bxs-right-arrow'></i></m>
+                                </a>
                                 <div class="containt">
                                     <a href="./card.html">THẺ HỘI VIÊN</a>
                                     <a href="./train.html">HUẤN LUYỆN VIÊN</a>
-                                    <a href="./shop.html">CỬA HÀNG WHEY</a>
+                                    <a href="./shop.html"><span>CỬA HÀNG WHEY</span></a>
                                     <a href="./chatbox.html">CHAT ONLINE</a>
                               </div>
                             </div>
                         </li>
-                        <li><a href="./promotion.html"><span>KHUYẾN MÃI</span></a></li>
+                        <li><a class="header__inner__navigation__sevice" href="./promotion.html">KHUYẾN MÃI</a></li>
                     </ul>
                 </div>
                 <div class="header__inner__try">
@@ -87,28 +92,10 @@
                                     DIỄN ĐÀN
                                 </span>
                             </a>
-                            <a href="./card.html">
+                            <a href="#">
                                 <i class='bx bxs-file' ></i>
                                 <span class="noidung__text1">
-                                    THẺ HỘI VIÊN
-                                </span>
-                            </a>
-                            <a href="./train.html">
-                                <i class='bx bxs-file' ></i>
-                                <span class="noidung__text1">
-                                    HUẤN LUYỆN VIÊN
-                                </span>
-                            </a>
-                            <a href="./shop.html">
-                                <i class='bx bxs-file' ></i>
-                                <span class="noidung__text1">
-                                    CỬA HÀNG WHEY
-                                </span>
-                            </a>
-                            <a href="./chatbox.html">
-                                <i class='bx bxs-file' ></i>
-                                <span class="noidung__text1">
-                                    CHAT ONLINE
+                                    DỊCH VỤ
                                 </span>
                             </a>
                             <a href="./promotion.html">
@@ -117,7 +104,7 @@
                                     KHUYẾN MÃI
                                 </span>
                             </a>
-                            <a href="https://facebook.com/lst24">
+                            <a href="#">
                                 <i class='bx bx-code-alt' ></i>
                                 <span class="noidung__text1">
                                     TẬP THỬ MIỄN PHÍ

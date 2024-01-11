@@ -1,0 +1,115 @@
+/*  ĐÂY LÀ PHẦN ANIMATION ==================================================================================================*/
+
+@keyframes slide_left {
+    0% {
+        opacity: 1;
+        left: 0;
+    }
+
+    100% {
+        opacity: 1;
+        left: -300px;
+
+    }
+}
+
+@keyframes slide_right {
+    0% {
+        opacity: 1;
+        left: -300px;
+
+    }
+
+    30% {
+        opacity: 1;
+    }
+
+    100% {
+        left: 0;
+        opacity: 1;
+
+    }
+}
+
+@keyframes re_opacity {
+    0% {
+        opacity: 1;
+    }
+
+    100% {
+        opacity: 0;
+
+    }
+}
+
+@keyframes in_opacity {
+    0% {
+        opacity: 0;
+    }
+
+    100% {
+        opacity: 1;
+    }
+}
+
+@keyframes hienlen {
+    from {
+        top: 120%;
+        opacity: 0;
+    }
+
+    to {
+        top: 100%;
+        opacity: 1;
+    }
+}
+
+@keyframes fadeOut {
+    from {
+        top: 50%;
+        opacity: 0;
+        scale: 0.8;
+    }
+
+    to {
+        top: 100%;
+        opacity: 1;
+        scale: 1;
+    }
+}
+
+@keyframes quayxuong {
+    from {
+        transform: rotate(0deg);
+    }
+
+    to {
+        transform: rotate(90deg);
+    }
+}
+
+@keyframes side_right {
+    0% {
+        opacity: 0;
+        left: -300px;
+    }
+
+    30% {
+        opacity: 1;
+    }
+
+    100% {
+        left: 0;
+        opacity: 1;
+    }
+}
+
+@keyframes overlay {
+    0% {
+        opacity: 0;
+    }
+
+    100% {
+        opacity: 1;
+    }
+}

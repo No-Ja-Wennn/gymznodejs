@@ -17,11 +17,13 @@
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
     <link rel="stylesheet" href="./css/base.css">
     <link rel="stylesheet" href="./css/index.css">
-    <link rel="stylesheet" href="./css/tien.css">
     <link rel="stylesheet" href="./css/header.css">
+    <link rel="stylesheet" href="./css/footer.css">
+    <link rel="stylesheet" href="./css/tien.css">
     <link rel="stylesheet" href="./css/tu.css">
     <link rel="stylesheet" href="./css/van.css">
     <link rel="stylesheet" href="./css/quyen.css">
+    <link rel="stylesheet" href="./css/keyframes.css">
     <!-- <link rel="stylesheet" href="./navigation_css/promotion.css"> -->
     <title>GYMZ - Thể hình giới trẻ</title>
 
@@ -34,18 +36,20 @@
         <div class="header">
             <div class="header__inner">
                 <div class="header__inner__logo">
-                    <a href="./index.html">
+                    <a href="">
                         <h1>GYM<span>Z</span></h1>
                     </a>
                 </div>
                 <!-- Thanh dieu huong -->
                 <div class="header__inner__navigation">
                     <ul>
-                        <li><a href="./index.html">TRANG CHỦ</a></li>
-                        <li><a href="./navigation/forum.html">DIỄN ĐÀN</a></li>
+                        <li><a class="header__inner__navigation__sevice" href="./index.html"><span>TRANG CHỦ</span></a></li>
+                        <li><a class="header__inner__navigation__sevice" href="./navigation/forum.html">DIỄN ĐÀN</a></li>
                         <li>
                             <div class="dropdown">
-                                <a class="header__inner__navigation__sevice" href="#">DỊCH VỤ<m><i class='bx bxs-right-arrow'></i></m></a>
+                                <a class="header__inner__navigation__sevice" href="#" onclick="yourFunction(event)">
+                                    DỊCH VỤ<m><i class='bx bxs-right-arrow'></i></m>
+                                </a>
                                 <div class="containt">
                                     <a href="./navigation/card.html">THẺ HỘI VIÊN</a>
                                     <a href="./navigation/train.html">HUẤN LUYỆN VIÊN</a>
@@ -54,7 +58,7 @@
                               </div>
                             </div>
                         </li>
-                        <li><a href="./navigation/promotion.html"><span>KHUYẾN MÃI</span></a></li>
+                        <li><a class="header__inner__navigation__sevice" href="./navigation/promotion.html">KHUYẾN MÃI</a></li>
                     </ul>
                 </div>
                 <div class="header__inner__try">
@@ -69,7 +73,7 @@
                         </a>
                         <div class="content">
                             <div class="logo">
-                                <a class="logo__inner" href="./index.html">
+                                <a class="logo__inner" href="">
                                     GYM<span>Z</span>
                                 </a>
                                 <!-- <img src="../img/background/logo_and_bgr.png" alt="logo and bgr"> -->
@@ -86,37 +90,27 @@
                                     DIỄN ĐÀN
                                 </span>
                             </a>
-                            <a href="./navigation/card.html">
-                                <i class='bx bxs-file' ></i>
-                                <span class="noidung__text1">
-                                    THẺ HỘI VIÊN
-                                </span>
-                            </a>
-                            <a href="./navigation/train.html">
-                                <i class='bx bxs-file' ></i>
-                                <span class="noidung__text1">
-                                    HUẤN LUYỆN VIÊN
-                                </span>
-                            </a>
-                            <a href="./navigation/shop.html">
-                                <i class='bx bxs-file' ></i>
-                                <span class="noidung__text1">
-                                    CỬA HÀNG WHEY
-                                </span>
-                            </a>
-                            <a href="./navigation/chatbox.html">
-                                <i class='bx bxs-file' ></i>
-                                <span class="noidung__text1">
-                                    CHAT ONLINE
-                                </span>
-                            </a>
+                            <div class="submenu" href="#" onclick="toggleNoidung222(event)">
+                                <a href="">
+                                    <i class='bx bx-grid-alt'></i>
+                                    <span class="noidung__text1">
+                                        DỊCH VỤ
+                                    </span>
+                                </a>
+                                <div class="noidung222">
+                                    <a href="./card.html"><i class='bx bxs-tag-alt' ></i> THẺ HỘI VIÊN</a>
+                                    <a href="./train.html"><i class='bx bxs-tag-alt' ></i> HUẤN LUYỆN VIÊN</a>
+                                    <a href="./shop.html"><i class='bx bxs-tag-alt' ></i> CỬA HÀNG WHEY</a>
+                                    <a href="./chatbox.html"><i class='bx bxs-tag-alt' ></i> CHAT ONLINE</a>
+                                </div>
+                            </div>
                             <a href="./navigation/promotion.html">
                                 <i class='bx bxs-purchase-tag' ></i>
                                 <span class="noidung__text1">
                                     KHUYẾN MÃI
                                 </span>
                             </a>
-                            <a href="https://facebook.com/lst24">
+                            <a href="#">
                                 <i class='bx bx-code-alt' ></i>
                                 <span class="noidung__text1">
                                     TẬP THỬ MIỄN PHÍ
@@ -441,8 +435,8 @@
     <!-- overlay -->
     <div class="nen_mo"></div>
     <script src="./index.js"></script>
-    <!-- <script src="./navigation_javascript/menu.js"></script> -->
-    <script src="../navigation_javascript/menuv2.js"></script>
+    <script src="./navigation_javascript/menu.js"></script>
+    <script src="./navigation_javascript/menuv2.js"></script>
 </body>
 
 >>>>>>> 5fb661f85a730f40e164a98d1cf1de808ce665c4
