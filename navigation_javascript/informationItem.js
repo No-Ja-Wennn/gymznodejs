@@ -1,5 +1,5 @@
 var product = JSON.parse(localStorage.getItem('product'));
-console.log(product);
+// console.log(product);
 
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
@@ -7,7 +7,7 @@ const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(<Information data={product} />);
 
 function Information({ data }) {
-    console.log(data)
+    // console.log(data)
 
     return (
         <div>
@@ -41,30 +41,61 @@ function Information({ data }) {
                     <div class="container__main">
                         <div class="container__pictures">
                             <div class="container__pictures_big">
-                                <img src={data.img[0]}
-                                    alt="#" class="container__pictures_big__img" />
+                                <div class="container__pictures_big__slide">
+                                    <img src={data.img[0]} alt="#" class="container__pictures_big__img" />
+                                </div>
+                                <div class="container__pictures_big__slide">
+                                    <img src={data.img[1]} alt="#"
+                                        class="container__pictures_big__img" />
+                                </div>
+                                <div class="container__pictures_big__slide">
+                                    <img src={data.img[2]} alt="#"
+                                        class="container__pictures_big__img" />
+                                </div>
+                                <div class="container__pictures_big__slide">
+                                    <img src={data.img[3]} alt="#"
+                                        class="container__pictures_big__img" />
+                                </div>
+                                <div class="container__pictures_big__slide">
+                                    <img src={data.img[4]} alt="#"
+                                        class="container__pictures_big__img" />
+                                </div>
                             </div>
                             <div class="container__pictures_other">
                                 <ul class="container__pictures_other__list">
                                     <li class="container__pictures_other__item">
                                         <img src={data.img[0]}
-                                            alt="#" class="container__pictures_other__img" />
+                                            alt="#" class="container__pictures_other__img" onClick={() => {
+                                                currentSlide(1)
+                                            }} />
+
                                     </li>
                                     <li class="container__pictures_other__item">
                                         <img src={data.img[1]}
-                                            alt="#" class="container__pictures_other__img" />
+                                            alt="#" class="container__pictures_other__img" onClick={() => {
+                                                currentSlide(2)
+                                            }} />
+
                                     </li>
                                     <li class="container__pictures_other__item">
                                         <img src={data.img[2]}
-                                            alt="#" class="container__pictures_other__img" />
+                                            alt="#" class="container__pictures_other__img" onClick={() => {
+                                                currentSlide(3)
+                                            }} />
+
                                     </li>
                                     <li class="container__pictures_other__item">
                                         <img src={data.img[3]}
-                                            alt="#" class="container__pictures_other__img" />
+                                            alt="#" class="container__pictures_other__img" onClick={() => {
+                                                currentSlide(4)
+                                            }} />
+
                                     </li>
                                     <li class="container__pictures_other__item">
                                         <img src={data.img[4]}
-                                            alt="#" class="container__pictures_other__img" />
+                                            alt="#" class="container__pictures_other__img" onClick={() => {
+                                                currentSlide(5)
+                                            }} />
                                     </li>
                                 </ul>
                             </div>
@@ -228,4 +259,42 @@ function Information({ data }) {
 
         </div>
     )
+}
+
+
+// slide show
+let slideIndex = 1;
+
+setTimeout(()=>{
+    showSlides(slideIndex);
+}, 1);
+
+
+function plusSlides(n) {
+    showSlides(slideIndex += n);
+}
+
+function currentSlide(n) {
+    showSlides(slideIndex = n);
+}
+
+function showSlides(n) {
+    let i;
+    let slides = document.getElementsByClassName("container__pictures_big__slide");
+    let dots = document.getElementsByClassName("container__pictures_other__img");
+    
+    //   let captionText = document.getElementById("caption");
+    if (n > slides.length) { slideIndex = 1 }
+    if (n < 1) { slideIndex = slides.length }
+    // console.log("n = ", slides);
+    for (i = 0; i < slides.length; i++) {
+        slides[i].style.display = "none";
+    }
+    for (i = 0; i < dots.length; i++) {
+        dots[i].className = dots[i].className.replace(" active", "");
+    }
+    slides[slideIndex - 1].style.display = "block";
+    // console.log(slides[slideIndex - 1])
+    dots[slideIndex - 1].className += " active";
+    //   captionText.innerHTML = dots[slideIndex-1].alt;
 }

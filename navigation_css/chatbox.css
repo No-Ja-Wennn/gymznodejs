@@ -1,43 +1,52 @@
-.container--chat{
+.container--chat {
     display: flex;
     align-items: center;
     justify-content: center;
     background-color: rgba(169, 169, 169, 0.675);
+    min-height: calc(100vh - 68px);
+    /* margin-top: 22px; */
+    background: linear-gradient(#212121d1, #212121d1),
+        url("https://img4.thuthuatphanmem.vn/uploads/2021/01/07/background-phong-tap-gym_035832535.jpg");
+    color: white;
+    background-size: cover;
+    position: relative;
+    text-align: center;
+    padding: 0 8px;
 }
 
-.chatbox{
+.chatbox {
     display: flex;
     flex-direction: column;
     height: calc(100vh - 68px);
     max-width: 1200px;
     width: 100%;
     min-width: 300px;
-    background-color: rgba(187, 187, 187, 0.675);
+    background-color: rgba(187, 187, 187, 0.172);
     border-radius: 4px;
     overflow: hidden;
     /* border: 1px solid rgba(214, 214, 214, 0.675); */
-    box-shadow: 2px 2px 8px 2px #3f3f3f ;
+    box-shadow: 2px 2px 8px 2px #3f3f3f;
 }
 
-.chatbox__head{
+.chatbox__head {
     display: flex;
     align-items: center;
     background-color: #3d3d3d;
     padding: 0 8px;
 }
 
-.chatbox__head__title{
+.chatbox__head__title {
     font-size: 2.4rem;
 }
 
-.chatbox__head__active{
+.chatbox__head__active {
     display: flex;
     align-items: center;
     height: 100%;
     margin-left: 20px;
 }
 
-.chatbox__head__active::before{
+.chatbox__head__active::before {
     display: block;
     content: "";
     width: 8px;
@@ -47,7 +56,7 @@
     border-radius: 50%;
 }
 
-.chatbox__head__active__text{
+.chatbox__head__active__text {
     font-size: 1.2rem;
     font-weight: 700;
     margin-top: 4px;
@@ -55,36 +64,39 @@
 
 /* chatbox__message */
 
-.chatbox__message{
+.chatbox__message {
     display: flex;
     padding: 4px 12px;
     flex-direction: column-reverse;
     flex: 1;
     overflow-y: scroll;
-    -ms-overflow-style: none; /* khai báo sử dụng Internet Explorer, Edge */
-    scrollbar-width: none; /* sử dụng Firefox */
+    -ms-overflow-style: none;
+    /* khai báo sử dụng Internet Explorer, Edge */
+    scrollbar-width: none;
+    /* sử dụng Firefox */
 }
 
 .chatbox__message::-webkit-scrollbar {
-    display: none; /* cho Chrome, Safari, and Opera */
+    display: none;
+    /* cho Chrome, Safari, and Opera */
 }
 
-.chatbox__message__list{
+.chatbox__message__list {
     display: flex;
     flex-direction: column;
     margin: 0 12px;
 }
 
-.chatbox__message__list:last-child{
+.chatbox__message__list:last-child {
     margin-bottom: 14px;
 }
 
 
-.chatbox__message__item:not(:first-child){
+.chatbox__message__item:not(:first-child) {
     margin-top: 12px;
 }
 
-.chatbox__message__item__text{
+.chatbox__message__item__text {
     display: flex;
     align-items: center;
     font-size: 1.6rem;
@@ -98,12 +110,12 @@
     border-radius: 4px;
 }
 
-.chatbox__message__item__left{
+.chatbox__message__item__left {
     display: flex;
     justify-content: flex-start;
 }
 
-.chatbox__message__item__right{
+.chatbox__message__item__right {
     display: flex;
     justify-content: flex-end;
 
@@ -115,7 +127,7 @@
 
 
 /* chatbox__bottom */
-.chatbox__bottom{
+.chatbox__bottom {
     display: flex;
     flex-direction: column;
     height: 88px;
@@ -131,7 +143,7 @@
     border-style: solid;
 }
 
-.chatbox__bottom__link-social{
+.chatbox__bottom__link-social {
     display: flex;
     align-items: center;
     font-size: 1.2rem;
@@ -139,19 +151,19 @@
     background-color: #303030;
 }
 
-.chatbox__bottom__link-social__mess{
+.chatbox__bottom__link-social__mess {
     text-decoration: none;
     cursor: pointer;
 }
 
-.chatbox__bottom__input{
+.chatbox__bottom__input {
     flex: 1;
     display: flex;
     align-items: center;
     justify-content: space-between;
 }
 
-.chatbox__bottom__input input{
+.chatbox__bottom__input input {
     display: flex;
     flex: 9;
     height: calc(100% - 12px);
@@ -178,6 +190,7 @@
     cursor: pointer;
     border-radius: 4px;
 }
+
 .chatbox__bottom__input i:hover {
     opacity: 0.8;
 }

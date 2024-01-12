@@ -78,7 +78,13 @@
     
     margin-bottom: 12px;
 }
+.container__pictures_big__slide{
+    display: none;
+}
 
+.active{
+    opacity: 1;
+}
 .container__pictures_big img {
     /* width: 330px; */
     /* height: 100%; */
@@ -112,7 +118,11 @@
     border: 1px solid rgba(51, 51, 51, 0.016);
     border-radius: 2px;
     overflow: hidden;
+}
 
+.container__pictures_other__item:hover{
+    cursor: pointer;
+    opacity: 0.8;
 }
 
 .container__pictures_other__item:not(:first-child) {

@@ -82,3 +82,14 @@ html{
         opacity: 1;
     }
 }
+
+
+.hidden {
+    opacity: 0;
+    transform: translateY(50px);
+    transition: all 2s;
+}
+.visible {
+    opacity: 1;
+    transform: translateY(0);
+}

@@ -167,3 +167,17 @@ bmiIconExit.addEventListener("click", function () {
 })
 
 
+// hidden bên base.css
+
+$(document).ready(function() {
+    $(window).scroll(function() {
+        $('.hidden').each(function(i) {
+            var top_of_object = $(this).offset().top;
+            var bottom_of_window = $(window).scrollTop() + $(window).height();
+            if (bottom_of_window > top_of_object) {
+                $(this).addClass('visible');
+                console.log("hello")
+            }
+        });
+    });
+});
