@@ -120,7 +120,7 @@ li:hover{
   color: #5c5e5f;
 }
 /* ==================== MEDIA ==================== */
-@media screen and (max-width: 1000px) {
+@media screen and (max-width: 420px) {
   .header__inner {
       width: 100%;
       max-width: 1000px;
@@ -137,4 +137,54 @@ li:hover{
   .header__inner__menu {
       display: flex;
   }
+}
+img{
+  width: 100%;
+  height: auto;
+}
+.container--table{
+  margin-top: 50px 10%;
+}
+/* table, th, td {
+  border: 1px solid rgb(117, 111, 111);
+} */
+tr:nth-child(odd) {
+  background-color: #f2f2f2; /* Màu nền cho các dòng lẻ */
+}
+table {
+  width: 100%;
+  margin: 30px auto;
+  /* display: flex; */
+  flex-direction: column;
+  border-collapse: collapse; /* Để các viền không bị trùng lặp */
+}
+
+tr{
+  /* display: flex; */
+  text-align: center;
+  height: 120px;
+}
+td {
+  border-left: 1px solid rgb(194, 189, 189); /* Thêm viền trái cho mỗi ô */
+  border-right: 1px solid rgb(194, 189, 189); /* Thêm viền phải cho mỗi ô */
+}
+
+td:first-child {
+  text-align: left;
+  padding-left: 100px;
+  border-left: none; /* Loại bỏ viền trái của ô đầu tiên trong mỗi hàng */
+}
+
+td:last-child {
+  border-right: none; /* Loại bỏ viền phải của ô cuối cùng trong mỗi hàng */
+}
+.fa-duotone{
+  align-content: center;
+  width: 10px;
+  height: 10px;
+}
+i{
+  display: inline-block;
+  /* width: 5px;
+  height: 5px; */
 }
