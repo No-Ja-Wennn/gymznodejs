@@ -90,6 +90,7 @@
 .container__service__img__items:hover a {
     left: 0;
 }
+
 .container__service__img__items a:hover {
     background-color: #333333;
 }
@@ -147,6 +148,14 @@
     font-family: Inter;
 }
 
+
+.container__service__link{
+    display: block;
+    color: #efdddd;
+    font-size: 2rem;
+    text-decoration: underline;
+    padding-bottom: 12px;
+}
 
 
 
