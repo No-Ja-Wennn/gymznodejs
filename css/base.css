@@ -20,7 +20,12 @@ html{
     min-width: 370px;
     margin: 0 auto;
 }
-
+.grid1{
+    max-width: 1300px;
+    width: 100%;
+    min-width: 370px;
+    margin: 0 auto;
+}
 .grid__full-width{
     width: 100%;
 }

@@ -1,0 +1,144 @@
+.container{
+    background-image: url(../img/background/Black\ and\ Red\ Simple\ Fitness\ Zoom\ Workout\ Background.png);
+    background-size: cover;
+    background-repeat: no-repeat;
+    min-height: calc(100vh - 68px);
+}
+
+.container__box{
+    display: flex;
+    background-color: rgba(20, 20, 20, 0.94);
+}
+.container__bar{
+    flex: 2;
+    min-height: calc(100vh - 68px);
+}
+.container__bar__list{
+    width: 100%;
+    height: 100%;
+}
+
+.container__bar__item{
+    display: flex;
+    align-items: center;
+    width: 100%;
+    font-size: 1.8rem;
+    font-weight: 700;
+    background-color: #eef2f0;
+    color: #333;
+    width: 100%;
+    padding: 12px 16px;
+    border: 1px solid #333;
+}
+
+.container__bar__item--active{
+    border-right: 4px solid rgb(22, 110, 252);
+    border-top-right-radius: 4px;
+    border-bottom-right-radius: 4px;
+}
+
+.container__bar__item i{
+    margin-right: 12px;
+}
+
+.container__bar__item__text{
+    text-align: center;
+    justify-content: center;
+    padding-top: 2px;
+}
+
+.container__bar__item--avt{
+    display: flex;
+    flex-direction: column;
+    background-color: transparent;
+}
+
+.container__bar__item__avt{
+    width: 60px;
+    height: 60px;
+    object-fit: cover;
+    border-radius: 50%;
+    border: 1px solid #333;
+}
+
+.container__bar__item__name{
+    font-size: 14px;
+    margin: 6px 0;
+}
+
+/* container__show */
+.container__show{
+    flex: 12;
+}
+/* container__show__cart__head */
+.container__show__cart__head{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 20px;
+    height: 70px;
+}
+
+.show__input__id{
+    height: 34px;
+    width: 280px;
+    font-size: 16px;
+    padding: 8px 6px 6px;
+    margin-right: 12px;
+}
+
+.show__input__package{
+    height: 34px;
+    font-size: 16px;
+    margin-right: 12px;
+
+}
+.show__input__date{
+    height: 34px;
+    font-size: 16px;
+    padding: 8px 6px 6px;
+
+    margin-right: 12px;
+}
+
+.head-end{
+    flex: 1;
+    display: flex;
+    justify-content: flex-end;
+}
+
+.container__show__cart__find__btn{
+    display: block;
+    width: 90px;
+    height: 34px;
+    font-size: 16px;
+    padding: 4px 0 2px;
+}
+
+.container__show__cart__content{
+    padding: 0px 6px;
+}
+
+table{
+    border-collapse: collapse;
+    width: 100%;
+}
+
+tr{
+    height: 32px;
+}
+
+th{
+    font-size: 18px;
+    font-weight: 700;
+}
+td{ 
+    font-size: 16px;
+}
+
+table, th, td {
+    border: 1px solid rgb(255, 255, 255);
+    text-align: center;
+    vertical-align: middle;
+}
+  

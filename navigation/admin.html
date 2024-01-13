@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@100;300;500;600;900&display=swap"
+        rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Overpass:wght@100;200;300;400;500;600;700;800;900&display=swap"
+        rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="stylesheet" href="../font/fontawesome-free-6.4.0-web/css/all.min.css">
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <link rel="stylesheet" href="../css/index.css">
+    <link rel="stylesheet" href="../css/header.css">
+    <link rel="stylesheet" href="../css/base.css">
+    <link rel="stylesheet" href="../css/keyframes.css">
+    <link rel="stylesheet" href="../navigation_css/admin.css">
+    <!-- <link rel="stylesheet" href="./navigation_css/promotion.css"> -->
+    <title>GYMZ - Thể hình giới trẻ</title>
+
+
+</head>
+
+<body>
+    <div class="app">
+        <!-- LUU SY TRUONG -->
+        <div class="header">
+            <div class="header__inner">
+                <div class="header__inner__logo">
+                    <a href="">
+                        <h1>GYM<span>Z</span></h1>
+                    </a>
+                </div>
+                <!-- Thanh dieu huong -->
+                <div class="header__inner__navigation">
+                    <ul>
+                        <li><a class="header__inner__navigation__sevice" href="./index.html"><span>TRANG CHỦ</span></a>
+                        </li>
+                        <li><a class="header__inner__navigation__sevice" href="./navigation/forum.html">DIỄN ĐÀN</a>
+                        </li>
+                        <li>
+                            <div class="dropdown">
+                                <a class="header__inner__navigation__sevice" href="#" onclick="yourFunction(event)">
+                                    DỊCH VỤ<m><i class='bx bxs-right-arrow'></i></m>
+                                </a>
+                                <div class="containt">
+                                    <a href="./navigation/card.html">THẺ HỘI VIÊN</a>
+                                    <a href="./navigation/train.html">HUẤN LUYỆN VIÊN</a>
+                                    <a href="./navigation/shop.html">CỬA HÀNG WHEY</a>
+                                    <a href="./navigation/chatbox.html">CHAT ONLINE</a>
+                                </div>
+                            </div>
+                        </li>
+                        <li><a class="header__inner__navigation__sevice" href="./navigation/promotion.html">KHUYẾN
+                                MÃI</a></li>
+                    </ul>
+                </div>
+                <div class="header__inner__try">
+                    <ul>
+                        <li><a href="https://facebook.com/lst24">TẬP THỬ MIỄN PHÍ</a></li>
+                    </ul>
+                </div>
+                <div class="header__inner__menu">
+                    <div class="bt_dropdown">
+                        <a class="header__inner__menu__bt" href="#" onclick="yourFunction(event)">
+                            <i class='bx bx-menu'></i>
+                        </a>
+                        <div class="content">
+                            <div class="logo">
+                                <a class="logo__inner" href="">
+                                    GYM<span>Z</span>
+                                </a>
+                                <!-- <img src="../img/background/logo_and_bgr.png" alt="logo and bgr"> -->
+                            </div>
+                            <a href="./index.html">
+                                <i class='bx bxs-home'></i>
+                                <span class="noidung__text1">
+                                    TRANG CHỦ
+                                </span>
+                            </a>
+                            <a href="./navigation/forum.html">
+                                <i class='bx bx-world'></i>
+                                <span class="noidung__text1">
+                                    DIỄN ĐÀN
+                                </span>
+                            </a>
+                            <div class="submenu" href="#" onclick="toggleNoidung222(event)">
+                                <a href="">
+                                    <i class='bx bx-grid-alt'></i>
+                                    <span class="noidung__text1">
+                                        DỊCH VỤ
+                                    </span>
+                                </a>
+                                <div class="noidung222">
+                                    <a href="./card.html"><i class='bx bxs-tag-alt'></i> THẺ HỘI VIÊN</a>
+                                    <a href="./train.html"><i class='bx bxs-tag-alt'></i> HUẤN LUYỆN VIÊN</a>
+                                    <a href="./shop.html"><i class='bx bxs-tag-alt'></i> CỬA HÀNG WHEY</a>
+                                    <a href="./chatbox.html"><i class='bx bxs-tag-alt'></i> CHAT ONLINE</a>
+                                </div>
+                            </div>
+                            <a href="./navigation/promotion.html">
+                                <i class='bx bxs-purchase-tag'></i>
+                                <span class="noidung__text1">
+                                    KHUYẾN MÃI
+                                </span>
+                            </a>
+                            <a href="#">
+                                <i class='bx bx-code-alt'></i>
+                                <span class="noidung__text1">
+                                    TẬP THỬ MIỄN PHÍ
+                                </span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="container">
+            <!-- <div class="grid1"> -->
+                <div class="container__box">
+                    <div class="container__bar">
+                        <ul class="container__bar__list">
+                            <li class="container__bar__item container__bar__item--avt">
+                                <img class="container__bar__item__avt" src="../img/services/coach/img4.jpg" alt="">
+                                <span class="container__bar__item__name">Admin Name</span>
+                            </li>
+                            <li class="container__bar__item">
+                                <i class="fa-regular fa-comments"></i>
+                                <span class="container__bar__item__text">
+                                    Tin nhắn
+                                </span>
+                            </li>
+                            <li class="container__bar__item">
+                                <i class="fa-solid fa-users"></i>
+                                <span class="container__bar__item__text">
+                                    QL tài khoản
+                                </span>
+                            </li>
+                            <li class="container__bar__item  container__bar__item--active">
+                                <i class="fa-solid fa-address-card"></i>
+                                <span class="container__bar__item__text">
+                                    QL thẻ thành viên
+                                </span>
+                            </li>
+                            <li class="container__bar__item">
+                                <i class="fa-solid fa-shop"></i>
+                                <span class="container__bar__item__text">
+                                    QL shop
+                                </span>
+                            </li>
+                            <li class="container__bar__item">
+                                <i class="fa-solid fa-file-pen"></i>
+                                <span class="container__bar__item__text">
+                                    QL đăng ký tập
+                                </span>
+                            </li>
+                            <li class="container__bar__item">
+                                <i class="fa-solid fa-newspaper"></i>
+                                <span class="container__bar__item__text">
+                                    Quản lí tin tức
+                                </span>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="container__show">
+                        <div class="container__show__message"></div>
+                        <div class="container__show__account"></div>
+                        <div class="container__show__cart">
+                            <div class="container__show__cart__head">
+                                <input class="show__input__id" type="text" placeholder="Nhập mã thẻ hoặc tên khách hàng">
+                                <div class="head-end">
+                                    <select class="show__input__package" id="packet" name="packet">
+                                        <option value="" disabled selected>Loại thành viên</option>
+                                        <option value="NORMAL">NORMAL</option>
+                                        <option value="female">PRO</option>
+                                        <option value="other">PRO MAX</option>
+                                    </select>
+                                    <input class="show__input__date" type="text" placeholder="Ngày gia nhập">
+                                    <input class="show__input__date" type="text" placeholder="Ngày hết hạn">
+                                    <button class="container__show__cart__find__btn">Tìm kiếm</button>
+                                </div>
+                            </div>
+                            <div class="container__show__cart__content">
+                                <table>
+                                    <tr>
+                                        <th>Mã thẻ</th>
+                                        <th>Tên Hội Viên</th>
+                                        <th>Tuổi</th>
+                                        <th>Số điện thoại</th>
+                                        <th>Loại Thành Viên</th>
+                                        <th>Ngày gia nhập</th>
+                                        <th>Ngày Hết Hạn Thẻ</th>
+                                    </tr>
+                                    <tr>
+                                        <td>MT01</td>
+                                        <td>Nguyễn Văn A</td>
+                                        <td>23</td>
+                                        <td>1234567890</td>
+                                        <td>PRO MAX</td>
+                                        <td>31/12/2022</td>
+                                        <td>2/4/2023</td>
+                                    </tr>
+                                    <tr>
+                                        <td>MT01</td>
+                                        <td>Nguyễn Văn A</td>
+                                        <td>23</td>
+                                        <td>1234567890</td>
+                                        <td>PRO MAX</td>
+                                        <td>31/12/2022</td>
+                                        <td>2/4/2023</td>
+                                    </tr>
+                                    <tr>
+                                        <td>MT01</td>
+                                        <td>Nguyễn Văn A</td>
+                                        <td>23</td>
+                                        <td>1234567890</td>
+                                        <td>PRO MAX</td>
+                                        <td>31/12/2022</td>
+                                        <td>2/4/2023</td>
+                                    </tr>
+                                    <tr>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                    </tr>
+                                  </table>
+                                  
+                            </div>
+                        </div>
+                        <div class="container__show__shop"></div>
+                        <div class="container__show__submit"></div>
+                        <div class="container__show__new"></div>
+
+                    </div>
+                </div>
+            <!-- </div> -->
+
+        </div>
+
+    </div>
+
+    <!-- overlay -->
+    <div class="modal">
+        <div class="modal-overlay">
+
+        </div>
+        <div class="modal__body">
+
+        </div>
+    </div>
+
+    <div class="nen_mo"></div>
+    <script src="../navigation_javascript/admin.js"></script>
+    <script src="./navigation_javascript/menuv2.js"></script>
+</body>
+</html>
