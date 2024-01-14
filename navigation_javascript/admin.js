@@ -184,10 +184,10 @@ saveCartElement.addEventListener("click", () => {
             "dateEnd": `${valueArray[6]}`
         };
 
-        var index = myData.carts.findIndex(cart => cart.id === data.id);
+        // var index = myData.carts.findIndex(cart => cart.id === data.id);
 
-        if (index !== -1) {
-            myData.carts[index] = data;
+        if (indexChange !== -1) {
+            myData.carts[indexChange] = data;
         } else {
             myData.carts.push(data);
         }
@@ -262,11 +262,19 @@ function checkRowAddCart(arrayElement) {
 }
 
 let trelementChange;
-
+let indexChange = -1;
 function editCart(thisElement) {
     if (activeOption == "") {
         activeOption = "edit";
         var trElement = thisElement.parentElement.parentElement;
+        var tableElement = trElement.parentElement;
+        var trAray = tableElement.querySelectorAll("tr");
+        trAray = Array.from(trAray);
+        trAray.map((value, index)=>{
+            if(value === trElement){
+                indexChange = index - 1;
+            }
+        })
         trelementChange = trElement;
         var tdArray = trElement.getElementsByTagName("td")
         tdArray = Array.from(tdArray);
