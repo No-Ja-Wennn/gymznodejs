@@ -365,94 +365,75 @@
     display: none;
     position: fixed;
     top: 0;
-
-    width: 300px;
-
+    /* opacity: 0; */
+    /* left: -300px; */
+    /* right: calc(100vw - 300px); */
+    width: 250px;
     height: 100vh;
     background-color: black;
-
+    /* top: 165px; */
+    /* top: 100%;
+    right: 0;
+    margin-right: 60px; */
+    /* box-shadow: 10px 10px 0px 1000px rgba(0, 0, 0, 0.400); */
 }
 
 .noidung__text1 {
-
+    /* font-size: 16px; */
     display: flex;
     align-items: center;
     position: relative;
     top: 2px;
 }
-
-/* .content a {
+.noidung__text1:hover{
+    cursor: pointer;
+}
+.content__inner {
     position: relative;
     display: flex;
-    height: 68px;
+    align-items: center;
+    height: 40px;
     background-color: black;
     color: white;
-    font-size: 16px;
+    font-size: 14px;
     font-weight: 600;
     border-bottom: 1px rgba(255, 255, 255, 0.1) solid;
-} */
+}
 
 .content .bx {
     display: flex;
     align-items: center;
-    margin-right: 15px;
-    margin-left: 20px;
-    font-size: 26px;
+    margin-right: 5px;
+    margin-left: 15px;
+    font-size: 16px;
 }
 
-
-
-/*
-
-.content a:hover {
-    background-color: #111;
+.content__inner:hover {
+    background-color: #222;
 }
-
-.logo a {
-    position: relative;
-    align-items: center;
-    display: flex;
-    
-    padding: 0;
-    height: 68px;
-    padding-left: 10px;
-    font-size: 32px;
-    font-family: montserrat;
-    font-weight: 900;
-    background-color: black;
-    cursor: pointer;
-}
-.logo a:hover {
-    background-color: rgba(0, 0, 0, 0.400);
-}
-
-.logo span {
-    display: flex;
-    align-items: center;
-    font-family: montserrat;
-    font-weight: 200;
-    margin-left: 5px;
-} */
 /* SUBMENU TRONG MENUMOBILE ============================================================================= */
 
 .submenu {
     align-items: center;
 }
+.submenu b{
+    margin-left: 0px;
+}
 
 .noidung222 {
     display: none;
-    padding-left: 10px;
+    
     background-color: #111;
 }
 
 .noidung222 a {
+    padding-left: 49px;
     background-color: #111;
 }
 
 .noidung222 a:hover {
     color: goldenrod;
 }
-
 /* ===================================== */
 .footer__last__select {
     display: flex;
