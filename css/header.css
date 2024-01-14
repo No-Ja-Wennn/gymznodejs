@@ -450,8 +450,8 @@
     display: flex;
     align-items: center;
     padding-left: 10px;
-    margin-top: 20px;
-    /* height: 68px; */
+    margin-top: -10px;
+    height: 68px;
     /* width: 130px; */
     font-family: montserrat;
     font-size: 16px;
@@ -467,6 +467,7 @@
     display: flex;
     align-items: center;
     padding-left: 10.5px;
+    margin-top: -20px;
     font-family: montserrat;
     font-size: 14px;
     color: #dadada;
