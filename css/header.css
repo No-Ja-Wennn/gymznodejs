@@ -108,7 +108,7 @@
     color: goldenrod;
 }
 
-.header__inner__try{
+.header__inner__try {
     display: flex;
     align-items: center;
 }
@@ -129,7 +129,7 @@
     color: black;
 }
 
-.header__inner__login{
+.header__inner__login {
     position: relative;
     height: 67px;
     width: 67px;
@@ -140,7 +140,7 @@
     /* background-color: rgb(127, 0, 212); */
 }
 
-.header__inner__login ul{
+.header__inner__login ul {
     display: flex;
     align-items: center;
     justify-content: center;
@@ -149,7 +149,8 @@
     background-color: goldenrod;
     border-radius: 100%;
 }
-.submenu__login{
+
+.submenu__login {
     display: flex;
     align-items: center;
     justify-content: center;
@@ -158,7 +159,8 @@
     background-color: rgb(0, 0, 0);
     border-radius: 100%;
 }
-.account{
+
+.account {
     display: flex;
     align-items: center;
     justify-content: center;
@@ -172,10 +174,12 @@
     position: relative;
     /* bottom: 0.1041665px; */
 }
-.account:hover{
+
+.account:hover {
     opacity: 0.8;
 }
-.status__account{
+
+.status__account {
     display: none;
     align-items: flex-start;
     flex-direction: column;
@@ -186,7 +190,8 @@
     top: 100%;
     right: -10px;
 }
-.status{
+
+.status {
     display: flex;
     align-items: center;
     padding-left: 10px;
@@ -198,14 +203,17 @@
     color: black;
     border-top: 0.1px whitesmoke solid;
 }
-.status:hover{
+
+.status:hover {
     background-color: whitesmoke;
     /* border-radius: 5px; */
 }
-.submenu__login:focus-within .status__account{
+
+.submenu__login:focus-within .status__account {
     display: flex;
-    
+
 }
+
 .containt {
     display: none;
     background-color: black;
@@ -257,12 +265,15 @@
     .header__inner__try {
         display: none;
     }
-    .header__inner__login{
+
+    .header__inner__login {
         display: none;
     }
+
     .header__inner__menu {
         display: flex;
     }
+
     .header__inner {
         width: 100%;
         max-width: 1000px;
@@ -387,7 +398,8 @@
     align-items: center;
     align-content: center;
 }
-.account__login__center{
+
+.account__login__center {
     display: flex;
     align-items: center;
     justify-content: center;
@@ -397,7 +409,8 @@
     border-radius: 100%;
     margin-left: 10px;
 }
-.account__login{
+
+.account__login {
     display: flex;
     align-items: center;
     justify-content: center;
@@ -406,7 +419,8 @@
     background-color: rgb(0, 0, 0);
     border-radius: 100%;
 }
-.account__login__inner{
+
+.account__login__inner {
     display: flex;
     align-items: center;
     justify-content: center;
@@ -418,38 +432,63 @@
     background-repeat: no-repeat;
     border-radius: 100%;
 }
-.account__login__inner:hover{
+
+.account__login__inner:hover {
     opacity: 0.8;
 }
-.account__name{
+
+.account__about {
+    height: 68px;
+    max-width: 245px;
+    display: flex;
+    /* align-items: center; */
+    flex-direction: column;
+}
+
+.account__name {
     display: flex;
     align-items: center;
     padding-left: 10px;
-    height: 68px;
+    margin-top: 20px;
+    /* height: 68px; */
     /* width: 130px; */
     font-family: montserrat;
     font-size: 16px;
     font-weight: 600;
     color: whitesmoke;
 }
-.account__name:hover{
+
+.account__name:hover {
     opacity: 0.8;
 }
+
+.account__code {
+    display: flex;
+    align-items: center;
+    padding-left: 10.5px;
+    font-family: montserrat;
+    font-size: 14px;
+    color: #dadada;
+}
+
 /* SUBMENU TRONG MENUMOBILE ============================================================================= */
 
-.submenu{
+.submenu {
     align-items: center;
 }
-.noidung222{
-   display: none;
-   padding-left: 10px;
-   background-color: #111;
-}
 
-.noidung222 a{
+.noidung222 {
+    display: none;
+    padding-left: 10px;
     background-color: #111;
 }
-.noidung222 a:hover{
+
+.noidung222 a {
+    background-color: #111;
+}
+
+.noidung222 a:hover {
     color: goldenrod;
 }
- /* ===================================== */
+
+/* ===================================== */

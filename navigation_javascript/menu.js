@@ -1,13 +1,14 @@
-var sub = document.querySelector(".submenu a");
+var sub = document.querySelector(".submenu b");
+// Lấy phần tử noidung222
+var noidung222 = document.querySelector('.noidung222');
 function toggleNoidung222(event) {
     // Ngăn chặn sự kiện click lan ra các phần tử cha
     event.stopPropagation();
 
     // Ngăn chặn sự kiện mặc định của thẻ <a>
-    event.preventDefault();
+    // event.preventDefault();
 
-    // Lấy phần tử noidung222
-    var noidung222 = document.querySelector('.noidung222');
+    
 
     // Toggle hiển thị/ẩn
     if (noidung222.style.display === 'none' || noidung222.style.display === '') {
