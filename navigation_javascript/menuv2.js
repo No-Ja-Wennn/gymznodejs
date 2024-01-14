@@ -12,24 +12,24 @@ document.addEventListener('DOMContentLoaded', function() {
         console.log(getComputedStyle(content).display)
         if (isDisplay === 'none') {
             
-            content.style.animation = 'slide_right 0.4s ease-in-out forwards';
+            content.style.animation = 'slide_right 0.3s ease-in-out forwards';
             content.style.display = 'block';
-            overlay.style.animation = "in_opacity 0.4s ease-in forwards";
+            overlay.style.animation = "in_opacity 0.3s ease-in forwards";
             overlay.style.display = 'block';
             logo.style.display = 'none';
             bt.style.color = 'goldenrod';
 
         } else {
         
-            content.style.animation = 'slide_left 0.4s ease-in-out forwards';
-            overlay.style.animation = 're_opacity 0.4s ease-in forwards';
+            content.style.animation = 'slide_left 0.3s ease-in-out forwards';
+            overlay.style.animation = 're_opacity 0.3s ease-in forwards';
             setTimeout(function()
             {
 
                 content.style.display = 'none';
                 overlay.style.display = 'none';
 
-            }, 400);
+            }, 300);
             
             logo.style.display = 'flex';
             bt.style.color = 'white'
@@ -37,12 +37,12 @@ document.addEventListener('DOMContentLoaded', function() {
     });
    
     body.addEventListener('click', function() {
-        content.style.animation = 'slide_left 0.4s ease-in-out forwards';
-        overlay.style.animation = 're_opacity 0.4s ease-in forwards';
+        content.style.animation = 'slide_left 0.3s ease-in-out forwards';
+        overlay.style.animation = 're_opacity 0.3s ease-in forwards';
         setTimeout(function(){
             content.style.display = 'none';
             overlay.style.display = 'none';
-        }, 400);
+        }, 300);
         logo.style.display = 'flex';
         bt.style.color = 'white'
     });
