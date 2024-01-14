@@ -1,6 +1,4 @@
-
-
-.container{
+.container {
     background-image: url(../img/background/bgr_pro3.png);
     background-size: cover;
     background-origin: content-box;
@@ -8,17 +6,21 @@
     background-repeat: repeat;
     background-attachment: scroll;
 }
+
 /* ================================================================================================== ĐÂY LÀ PHẦN ĐẦU */
 
 .header__inner {
     max-width: 1000px;
 }
+
 .header__inner__navigation span {
     color: red;
 }
-.header__inner__try a{
+
+.header__inner__try a {
     background-color: hsl(0, 100%, 40%);
 }
+
 /* ================================================================================================== ĐÂY LÀ PHẦN THÂN */
 
 .container {
@@ -121,17 +123,20 @@
     color: white;
     display: inline-flex;
 
-    
+
 }
-.about__us__inner{
+
+.about__us__inner {
     display: grid;
 }
-.about__us__inner a{
+
+.about__us__inner a {
     width: 400px;
     margin: 15px 0;
     margin-left: 10px;
-    
+
 }
+
 .footer__colum1 i {
     line-height: 12px;
     margin-right: 10px;
@@ -316,6 +321,7 @@
 .header__inner__menu {
     position: relative;
 }
+
 .header__inner__menu__bt {
     height: 68px;
     width: 70px;
@@ -324,6 +330,7 @@
     display: flex;
 
 }
+
 .header__inner__menu__bt i {
 
     display: flex;
@@ -332,6 +339,7 @@
     font-size: 30px;
     color: white;
 }
+
 .nen_mo {
     display: none;
     z-index: 9;
@@ -359,19 +367,21 @@
     top: 0;
 
     width: 300px;
-    
+
     height: 100vh;
     background-color: black;
 
 }
-.noidung__text1{
+
+.noidung__text1 {
 
     display: flex;
     align-items: center;
     position: relative;
     top: 2px;
 }
-.content a {
+
+/* .content a {
     position: relative;
     display: flex;
     height: 68px;
@@ -380,7 +390,7 @@
     font-size: 16px;
     font-weight: 600;
     border-bottom: 1px rgba(255, 255, 255, 0.1) solid;
-}
+} */
 
 .content .bx {
     display: flex;
@@ -389,6 +399,10 @@
     margin-left: 20px;
     font-size: 26px;
 }
+
+
+
+/*
 
 .content a:hover {
     background-color: #111;
@@ -418,25 +432,28 @@
     font-family: montserrat;
     font-weight: 200;
     margin-left: 5px;
-}
+} */
 /* SUBMENU TRONG MENUMOBILE ============================================================================= */
 
-.submenu{
+.submenu {
     align-items: center;
 }
-.noidung222{
-   display: none;
-   padding-left: 10px;
-   background-color: #111;
-}
 
-.noidung222 a{
+.noidung222 {
+    display: none;
+    padding-left: 10px;
     background-color: #111;
 }
-.noidung222 a:hover{
+
+.noidung222 a {
+    background-color: #111;
+}
+
+.noidung222 a:hover {
     color: goldenrod;
 }
- /* ===================================== */
+
+/* ===================================== */
 .footer__last__select {
     display: flex;
 
@@ -447,45 +464,52 @@
     display: flex;
     align-items: center;
 }
-.footer__last__select__inner i{
+
+.footer__last__select__inner i {
     margin-right: 10px;
 }
+
 /* ================================================================================================== ĐÂY LÀ PHẦN CONTAINER */
-.container__colum1__inner__select{
+.container__colum1__inner__select {
     height: 100px;
     width: 90%;
     display: flex;
     margin: 0 auto;
 }
-.happy__newyear{
+
+.happy__newyear {
     display: flex;
     flex-direction: column;
     align-items: center;
     margin: 0 auto;
     margin-top: 20px;
 }
-.happy__newyear a{
+
+.happy__newyear a {
     color: white;
     font-family: montserrat;
     font-size: 29px;
     font-weight: 900;
     text-align: center;
 }
-.happy__newyear span{
+
+.happy__newyear span {
     display: flex;
     font-family: montserrat;
     font-size: 50px;
     color: white;
     font-weight: 900;
 }
-.container__colum2__inner2__select{
+
+.container__colum2__inner2__select {
     width: 90%;
     display: flex;
     flex-direction: column;
     margin: 0 auto;
 
 }
-.text__box{
+
+.text__box {
     max-width: 500px;
     width: 100%;
     height: 60px;
@@ -498,15 +522,17 @@
     z-index: 22;
     box-shadow: 2px 2px 30px 2px rgba(0, 0, 0, 0.4);
 }
-.text__box a{
+
+.text__box a {
     margin: 0 auto;
     position: relative;
     font-family: montserrat;
     font-weight: 600;
     color: black;
-    
+
 }
-.list__gift{
+
+.list__gift {
     width: 100%;
     max-width: 500px;
     display: flex;
@@ -515,45 +541,52 @@
     margin-top: 30px;
     background-color: hsla(0, 0%, 0%, 0.2);
     box-shadow: 2px 2px 30px 2px rgb(0, 0, 0, 0.4);
-    
+
     border-radius: 5px;
 }
-.list__gift a{
+
+.list__gift a {
     display: flex;
     width: 300px;
     color: white;
     font-size: 14px;
-    
+
     padding: 10px;
     margin: 0 auto;
 }
-.list__gift span{
+
+.list__gift span {
     font-family: montserrat;
     font-weight: 600;
     display: flex;
     align-items: center;
 }
-.list__gift .bx{
+
+.list__gift .bx {
     display: flex;
     align-items: center;
     margin-right: 10px;
     font-size: 25px;
 }
-.vip__gift i{
+
+.vip__gift i {
     color: gold;
 }
+
 /* ================================================================================================== ĐÂY LÀ PHẦN ANIMATION */
-@keyframes slide_left{
-    0%{
+@keyframes slide_left {
+    0% {
         opacity: 1;
         left: 0;
     }
-    100%{
+
+    100% {
         opacity: 1;
         left: -300px;
 
     }
 }
+
 @keyframes slide_right {
     0% {
         opacity: 1;
@@ -571,15 +604,18 @@
 
     }
 }
-@keyframes re_opacity{
-    0%{
+
+@keyframes re_opacity {
+    0% {
         opacity: 1;
     }
-    100%{
+
+    100% {
         opacity: 0;
 
     }
 }
+
 @keyframes in_opacity {
     0% {
         opacity: 0;
@@ -609,9 +645,11 @@
         width: 100%;
         height: 860px;
     }
-    .container__colum2__inner2{
+
+    .container__colum2__inner2 {
         height: auto;
     }
+
     .footer,
     .footer__select {
         flex-direction: column;
@@ -629,25 +667,29 @@
     .footer__colum1 h3 {
         text-align: center;
     }
-    .footer__colum1 a h3{
+
+    .footer__colum1 a h3 {
         margin-right: 0;
         line-height: 30px;
     }
-    .footer__colum1 a{
+
+    .footer__colum1 a {
         margin-left: 0;
         align-items: center;
         text-align: left;
     }
-    
+
     .service__customer__list {
         width: 100%;
         display: flex;
         height: 100%;
     }
+
     .service__customer__list a {
         margin: 0;
         margin: 15px 9px;
     }
+
     .service__customer__list__inner {
         display: block;
         text-align: center;
@@ -670,13 +712,15 @@
         margin: 0 auto;
         /* margin-top: 15px; */
     }
+
     /* .footer__colum2{
         border-top: 1px white solid;
         margin-top: 10px;
     } */
-    .footer__colum2__center{
+    .footer__colum2__center {
         margin-top: 10px;
     }
+
     .about__us {
         width: 100%;
         text-align: center;
@@ -688,11 +732,13 @@
         margin: 0 auto;
         display: block;
     }
-    .about__us__inner a{
+
+    .about__us__inner a {
         width: 223px;
         margin: 15px 5px;
         /* display: inline; */
     }
+
     /* .footer__colum2{
         display: ;
         background-color: green;
@@ -709,9 +755,10 @@
 
     }
 
-    .footer__last__select i{
+    .footer__last__select i {
         margin-right: 10px;
     }
+
     .footer__last__select__inner {
 
         margin: 0 auto;
