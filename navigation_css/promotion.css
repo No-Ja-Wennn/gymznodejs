@@ -480,13 +480,14 @@
     position: relative;
     width: 90%;
     display: flex;
-    /* align-items: center; */
+    align-items: center;
     justify-content: center;
     margin: 0 auto;
 }
 
 .happy__newyear {
     display: flex; 
+    justify-content: center;
     /* align-items: center; */
     height: 250px;
 }
@@ -494,17 +495,14 @@
 
 .happy__newyear img{
     display: flex;
-    /* align-items: center; */
+    align-items: center;
     justify-content: center;
-    height: 120%;
+    position: relative;
+    width: 500px;
+    top: -60px;
+    z-index: 1;
 }
-.happy__newyear span {
-    display: flex;
-    font-size: 20px;
-    color: white;
-    font-weight: 700;
-    background-color: goldenrod;
-}
+
 
 .container__colum2__inner2__select {
     width: 90%;
@@ -649,6 +647,15 @@
 
         width: 100%;
         height: 860px;
+    }
+    .happy__newyear img{
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        position: relative;
+        width: 300px;
+        top: -10px;
+        z-index: 1;
     }
     .container__colum2__inner {
         display: none;
