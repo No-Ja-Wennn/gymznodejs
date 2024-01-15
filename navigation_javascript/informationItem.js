@@ -1,5 +1,17 @@
 var product = JSON.parse(localStorage.getItem('product'));
-// console.log(product);
+if (!Array.isArray(product)) {
+    product = [];
+}
+
+var dataItem = [
+    img,
+    title,
+    price,
+    count
+];
+
+product.push(dataItem);
+localStorage.setItem('product', JSON.stringify(product));
 
 
 const root = ReactDOM.createRoot(document.getElementById("root"));

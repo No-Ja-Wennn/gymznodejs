@@ -75,37 +75,56 @@
                         </a>
                         <div class="content">
                             <div class="logo">
-                                <a class="logo__inner" href="">
-                                    GYM<span>Z</span>
-                                </a>
+                                <ul class="account__login__center">
+                                    <li class="account__login">
+                                        <a class="account__login__inner" href="">
+                                        </a>
+                                    </li>
+                                </ul>
+                                <div class="account__about">
+                                    <a class="account__name" href="#">
+                                        USERNAME
+                                    </a>
+                                    <a class="account__code" href="#">
+                                        GYMZ001
+                                    </a>
+                                </div>
                                 <!-- <img src="../img/background/logo_and_bgr.png" alt="logo and bgr"> -->
                             </div>
-                            <a href="../index.html">
+                            <a class="content__inner" href="../index.html">
                                 <i class='bx bxs-home'></i>
                                 <span class="noidung__text1">
                                     TRANG CHỦ
                                 </span>
                             </a>
-                            <a href="./forum.html">
-                                <i class='bx bx-world' ></i>
+                            <a class="content__inner" href="./forum.html">
+                                <i class='bx bx-world'></i>
                                 <span class="noidung__text1">
                                     DIỄN ĐÀN
                                 </span>
                             </a>
-                            <a href="#">
-                                <i class='bx bxs-file' ></i>
-                                <span class="noidung__text1">
-                                    DỊCH VỤ
-                                </span>
-                            </a>
-                            <a href="./promotion.html">
-                                <i class='bx bxs-purchase-tag' ></i>
+                            <div class="submenu" href="#" onclick="toggleNoidung222(event)">
+                                <b class="content__inner" href="">
+                                    <i class='bx bx-grid-alt'></i>
+                                    <span class="noidung__text1">
+                                        DỊCH VỤ
+                                    </span>
+                                </b>
+                                <div class="noidung222">
+                                    <a class="content__inner" href="./card.html"> THẺ HỘI VIÊN</a>
+                                    <a class="content__inner" href="./train.html"> HUẤN LUYỆN VIÊN</a>
+                                    <a class="content__inner" href="./shop.html"> CỬA HÀNG WHEY</a>
+                                    <a class="content__inner" href="./chatbox.html"> CHAT ONLINE</a>
+                                </div>
+                            </div>
+                            <a class="content__inner" href="./promotion.html">
+                                <i class='bx bxs-purchase-tag'></i>
                                 <span class="noidung__text1">
                                     KHUYẾN MÃI
                                 </span>
                             </a>
-                            <a href="#">
-                                <i class='bx bx-code-alt' ></i>
+                            <a class="content__inner" href="#">
+                                <i class='bx bx-code-alt'></i>
                                 <span class="noidung__text1">
                                     TẬP THỬ MIỄN PHÍ
                                 </span>
@@ -291,45 +310,111 @@
         </div>
 
 
+        <div class="footer">
+            <div class="footer__select">
+                <div class="footer__colum1">
+                    <div class="footer__colum1__inner">
+                        <a href="#">
+                            <h3>
+                                CÔNG TY CỔ PHẦN ĐẦU TƯ VÀ PHÁT TRIỂN CLOSEAI
+                            </h3>
+                        </a>
+                    </div>
+                    <div class="about__us">
+                        <div class="about__us__inner">
+                            <div class="about__address">
+                                <a href="#">
+                                    <m><i class='bx bxs-home'></i></m> Trụ sở chính: z115, Tân Thịnh, TP.Thái
+                                    Nguyên, Thái Nguyên
+                                </a>
+                            </div>
+                            <div class="about__hotline">
+                                <a href="#">
+                                    <m><i class='bx bxs-phone'></i></m> Hotline: 0999.999.999
+                                </a>
+                            </div>
+                            <div class="about__email">
+                                <a href="#">
+                                    <m><i class='bx bxs-envelope'></i></m> Email: closeai.work@gmail.com
+                                </a>
+                            </div>
+                            <div class="about__website">
+                                <a href="#">
+                                    <m><i class='bx bx-world'></i></m> Website: https://pwm.io.vn
+                                </a>
+                            </div>
+                        </div>
 
-        <div class="container-shop_end">
-            <div class="container-shop_end-bodypart">
-                <h2 class="heading-list">THÔNG TIN</h2>
-                <ul class="heading">
-                    <li><i class="fa-solid fa-phone"></i> 0386868686</li>
-                    <li><i class="fa-solid fa-map-pin"></i> Trường CNTT Thái Nguyên</li>
-                    <li><i class="fa-solid fa-clock"></i> Thứ Hai - Thứ Sáu: 6:00 đến 23:00
-                        Thứ Bảy - Chủ Nhật: 8:00 đến 22:00</li>
-                </ul>
+                    </div>
+                    <div class="service__customer">
+                        <div class="service__customer__title">
+                            <div class="footer__colum1__inner">
+                                <a href="#">
+                                    <h3>
+                                        DỊCH VỤ KHÁCH HÀNG
+                                    </h3>
+                                </a>
+                            </div>
+                        </div>
+                        <div class="service__customer__list">
+                            <div class="service__customer__list__inner">
+                                <a href="#">
+                                    <i class='bx bx-file'></i> Điều khoản sử dụng
+                                </a>
+                                <a href="#">
+                                    <i class='bx bxs-lock-alt'></i> Chính sách bảo mật
+                                </a>
+                                <a href="#">
+                                    <i class='bx bxs-chat'></i> Kết nối với chúng tôi
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="footer__colum2">
+                    <div class="footer__colum2__center">
+                        <div class="footer__colum2__inner">
+                            <div class="group">
+                                <div class="name__page">
+                                    <a href="#">
+                                        GYM Z<m><i class='bx bxs-badge-check'></i></m>
+                                    </a>
+                                    <h4>
+                                        999.999 người theo dõi
+                                    </h4>
+                                </div>
+                                <div class="avatar__img">
+                                    <img src="../img/background/avatar.png" alt="Ảnh đại diện">
+                                </div>
+                                <div class="folow__page">
+                                    <a href="#">
+                                        <i class='bx bxl-facebook-square'></i>Theo dõi fanpage
+                                    </a>
+                                </div>
+                                <div class="share__page">
+                                    <a href="#">
+                                        <i class='bx bxs-share'></i>Chia sẻ
+                                    </a>
+                                </div>
+                            </div>
+                            <div class="cover__img">
+                                <img src="../img/background/cover_img.png" alt="Ảnh bìa">
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
-
-            <div class="container-shop_end-bodypart">
-                <h2 class="heading-list">DỊCH VỤ</h2>
-                <ul class="heading">
-                    <li>Phương thức thanh toán</li>
-                    <li>Chính sách giá</li>
-                    <li>Chính sách bảo mật</li>
-                </ul>
-
-            </div>
-            <div class="container-shop_end-bodypart">
-                <h2 class="heading-list">TÌM HIỂU THÊM</h2>
-                <ul class="heading">
-                    <li>Tuyển Dụng</li>
-                    <li>Tin Tức</li>
-                    <li>Câu lạc bộ</li>
-                </ul>
-            </div>
-            <div class="container-shop_end-bodypart">
-                <h2 class="heading-list">MẠNG XÃ HỘI</h2>
-                <ul class="heading">
-                    <i class="fa-brands fa-facebook"></i>
-                    <i class="fa-brands fa-instagram"></i>
-                    <i class="fa-brands fa-youtube"></i>
-                    <i class="fa-brands fa-facebook-messenger"></i>
-                </ul>
+            <div class="footer__last">
+                <div class="footer__last__select">
+                    <div class="footer__last__select__inner">
+                        <a href="#">
+                            <m><i class='bx bxs-copyright'></i></m> 2023 Allrights reserved pwm.io.vn
+                        </a>
+                    </div>
+                </div>
             </div>
         </div>
+        
     </div>
     <!-- overlay -->
     <div class="nen_mo"></div>

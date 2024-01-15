@@ -104,15 +104,15 @@ changeSubmitElement.addEventListener("click", function () {
     var statusOfHeath = "";
     var message = "";
     var greeting = "Hello";
-    if (genderValue == "male"){
+    if (genderValue == "male") {
         genderValue = "Nam";
         greeting = "Anh";
-    }else if(genderValue == "female"){
+    } else if (genderValue == "female") {
         female = "Nữ";
         greeting = "Chị";
     }
 
-    
+
     var BMI = calculateBMI(heightValue, weightValue);
 
     if (errorNotification(heightElement, weightElement, ageElement, phoneElement)) {
@@ -160,7 +160,7 @@ const inputArray = inputBox.getElementsByTagName("input");
 
 bmiIconExit.addEventListener("click", function () {
     modalElement.style.display = "none";
-    for(i = 0; i < inputArray.length; i++){
+    for (i = 0; i < inputArray.length; i++) {
         inputArray[i].value = "";
     }
 
@@ -169,15 +169,83 @@ bmiIconExit.addEventListener("click", function () {
 
 // hidden bên base.css
 
-$(document).ready(function() {
-    $(window).scroll(function() {
-        $('.hidden').each(function(i) {
+$(document).ready(function () {
+    $(window).scroll(function () {
+        $('.hidden').each(function (i) {
             var top_of_object = $(this).offset().top;
             var bottom_of_window = $(window).scrollTop() + $(window).height();
             if (bottom_of_window > top_of_object) {
                 $(this).addClass('visible');
-                console.log("hello")
             }
         });
     });
 });
+
+
+
+// slide show
+
+// Get the modal
+var modal = document.getElementById("myModalShow");
+
+// Get the image and insert it inside the modal - use its "alt" text as a caption
+var img1 = document.querySelector(".img_change1");
+var img2 = document.querySelector(".img_change2");
+var modalImg = document.getElementById("img01");
+var captionText = document.getElementById("caption");
+img1.addEventListener("click", function () {
+    modal.style.display = "block";
+    modalImg.src = this.src;
+    captionText.innerHTML = this.alt;
+})
+img2.addEventListener("click", function () {
+    modal.style.display = "block";
+    modalImg.src = this.src;
+    captionText.innerHTML = this.alt;
+})
+
+// Get the <span> element that closes the modal
+var span = document.getElementsByClassName("close")[0];
+
+// When the user clicks on <span> (x), close the modal
+span.onclick = function () {
+    modal.style.display = "none";
+}
+
+
+// function openModal() {
+//     document.getElementById("myModal").style.display = "block";
+// }
+
+// function closeModal() {
+//     document.getElementById("myModal").style.display = "none";
+// }
+
+// var slideIndex = 1;
+// showSlides(slideIndex);
+
+// function plusSlides(n) {
+//     showSlides(slideIndex += n);
+// }
+
+// function currentSlide(n) {
+//     showSlides(slideIndex = n);
+// }
+
+// function showSlides(n) {
+//     var i;
+//     var slides = document.getElementsByClassName("modal__change__mySlides");
+//     var dots = document.getElementsByClassName("demo");
+//     var captionText = document.getElementById("caption");
+//     if (n > slides.length) { slideIndex = 1 }
+//     if (n < 1) { slideIndex = slides.length }
+//     for (i = 0; i < slides.length; i++) {
+//         slides[i].style.display = "none";
+//     }
+//     for (i = 0; i < dots.length; i++) {
+//         dots[i].className = dots[i].className.replace(" active", "");
+//     }
+//     slides[slideIndex - 1].style.display = "flex";
+//     dots[slideIndex - 1].className += " active";
+//     captionText.innerHTML = dots[slideIndex - 1].alt;
+// }

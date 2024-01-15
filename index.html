@@ -69,6 +69,31 @@
                         <li><a href="https://facebook.com/lst24">TẬP THỬ MIỄN PHÍ</a></li>
                     </ul>
                 </div>
+                <div class="header__inner__login">
+                    <ul class="">
+                        <li class="submenu__login">
+                            <a class="account" href="#" onclick="yourFunction(event)">
+                            </a>
+                            <div class="status__account">
+                                <a class="status" href="#">
+                                    ĐĂNG NHẬP
+                                </a>
+                                <a class="status" href="#">
+                                    THÔNG TIN TK
+                                </a>
+                                <a class="status" href="#">
+                                    THẺ THÀNH VIÊN
+                                </a>
+                                <a class="status" href="#">
+                                    LỊCH TẬP
+                                </a>
+                                <a class="status" href="#">
+                                    ĐĂNG XUẤT
+                                </a>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
                 <div class="header__inner__menu">
                     <div class="bt_dropdown">
                         <a class="header__inner__menu__bt" href="#" onclick="yourFunction(event)">
@@ -76,44 +101,63 @@
                         </a>
                         <div class="content">
                             <div class="logo">
-                                <a class="logo__inner" href="">
-                                    GYM<span>Z</span>
-                                </a>
+                                <ul class="account__login__center">
+                                    <li class="account__login">
+                                        <a class="account__login__inner" href="">
+                                        </a>
+                                    </li>
+                                </ul>
+                                <div class="account__about">
+                                    <a class="account__name" href="#">
+                                        USERNAME
+                                    </a>
+                                    <a class="account__code" href="#">
+                                        GYMZ001
+                                    </a>
+                                </div>
                                 <!-- <img src="../img/background/logo_and_bgr.png" alt="logo and bgr"> -->
                             </div>
-                            <a href="./index.html">
+                            <a class="content__inner" href="./index.html">
                                 <i class='bx bxs-home'></i>
                                 <span class="noidung__text1">
                                     TRANG CHỦ
                                 </span>
                             </a>
-                            <a href="./navigation/forum.html">
+                            <a class="content__inner" href="./navigation/forum.html">
                                 <i class='bx bx-world'></i>
                                 <span class="noidung__text1">
                                     DIỄN ĐÀN
                                 </span>
                             </a>
                             <div class="submenu" href="#" onclick="toggleNoidung222(event)">
-                                <a href="">
+                                <b class="content__inner" href="">
                                     <i class='bx bx-grid-alt'></i>
                                     <span class="noidung__text1">
                                         DỊCH VỤ
                                     </span>
-                                </a>
+                                </b>
                                 <div class="noidung222">
-                                    <a href="./card.html"><i class='bx bxs-tag-alt'></i> THẺ HỘI VIÊN</a>
-                                    <a href="./train.html"><i class='bx bxs-tag-alt'></i> HUẤN LUYỆN VIÊN</a>
-                                    <a href="./shop.html"><i class='bx bxs-tag-alt'></i> CỬA HÀNG WHEY</a>
-                                    <a href="./chatbox.html"><i class='bx bxs-tag-alt'></i> CHAT ONLINE</a>
+                                    <a class="content__inner" href="./navigation/card.html">
+                                        THẺ HỘI VIÊN
+                                    </a>
+                                    <a class="content__inner" href="./navigation/train.html">
+                                        HUẤN LUYỆN VIÊN
+                                    </a>
+                                    <a class="content__inner" href="./navigation/shop.html">
+                                        CỬA HÀNG WHEY
+                                    </a>
+                                    <a class="content__inner" href="./navigation/chatbox.html">
+                                        CHAT ONLINE
+                                    </a>
                                 </div>
                             </div>
-                            <a href="./navigation/promotion.html">
+                            <a class="content__inner" href="./navigation/promotion.html">
                                 <i class='bx bxs-purchase-tag'></i>
                                 <span class="noidung__text1">
                                     KHUYẾN MÃI
                                 </span>
                             </a>
-                            <a href="#">
+                            <a class="content__inner" href="#">
                                 <i class='bx bx-code-alt'></i>
                                 <span class="noidung__text1">
                                     TẬP THỬ MIỄN PHÍ
@@ -159,34 +203,47 @@
                 <div class="container__service__img hidden">
                     <div class="container__service__img__items container__service__img1">
                         <img src="./img/services/sv1.jpg" alt="">
-                        <p>Tập luyện với Huấn luyện viên cá nhân, hiệu quả nhân ba</p>
+                        <span>Tập luyện với Huấn luyện viên cá nhân</span>
+                        <a href="./navigation/train.html" class="container__service__img__items__link">Xem thêm
+                        </a>
                     </div>
                     <div class="container__service__img__items container__service__img2">
                         <img src="./img/services/sv2.jpg">
-                        <p>Cơ hội trải nghiệm 40 bộ môn yoga cơ bản, nâng cao</p>
+                        <span>Cơ hội trải nghiệm 40 bộ môn yoga</span>
+                        <a href="./navigation/train.html" class="container__service__img__items__link">Xem thêm
+                        </a>
                     </div>
                     <div class="container__service__img__items container__service__img3">
                         <img src="./img/services/sv3.jpg" alt="">
-                        <p>Giải tỏa căng thẳng với hơn 10 thể loại Group đa dạng</p>
+                        <span>Tỏa căng thẳng với hơn 10 thể loại Group</span>
+                        <a href="./navigation/train.html" class="container__service__img__items__link">Xem thêm
+                        </a>
                     </div>
                     <div class="container__service__img__items container__service__img4">
                         <img src="./img/services/sv4.jpg" alt="">
-                        <p>Cùng nhau đạp xe để nâng cao sức khỏe</p>
+                        <span>Cùng nhau đạp xe để nâng cao sức khỏe</span>
+                        <a href="./navigation/train.html" class="container__service__img__items__link">Xem thêm
+                        </a>
                     </div>
                     <div class="container__service__img__items container__service__img5">
                         <img src="./img/services/sv5.jpg" alt="">
-                        <p>Có những dạng Dance như: Zumba, Sexy Dance </p>
+                        <span>Có những dạng Dance như: Zumba, Sexy Dance </span>
+                        <a href="./navigation/train.html" class="container__service__img__items__link">Xem thêm
+                        </a>
                     </div>
                     <div class="container__service__img__items container__service__img5">
                         <img src="./img/services/sv5.jpg" alt="">
-                        <p>Có những dạng Dance như: Zumba, Sexy Dance </p>
+                        <span>Có những dạng Dance như: Zumba, Sexy Dance </span>
+                        <a href="./navigation/train.html" class="container__service__img__items__link">Xem thêm
+                        </a>
                     </div>
                 </div>
+                <!-- <a href="./navigation/train.html" class="container__service__link">Xem thêm</a> -->
             </div>
             <!-- LE VAN TIEN -->
             <div class="feedback">
                 <h1>CƠ SỞ VẬT CHẤT</h1>
-                <h2>CLOSE-AIGYM dùng toàn bộ nỗ lực để giúp bạn yêu cơ thể mình hơn, đều đặn mỗi ngày.</h2>
+                <h2>GYMZ dùng toàn bộ nỗ lực để giúp bạn yêu cơ thể mình hơn, đều đặn mỗi ngày.</h2>
             </div>
             <div class="container__shop">
                 <div class="container__images">
@@ -199,7 +256,7 @@
                     <div class="image__item">
                         <img src="https://tagalaxyfyc.com/wp-content/uploads/2023/02/2-scaled.jpg" alt="Mô tả ảnh 2">
                         <h2>Cơ sở vật chất hiện đại, sang trọng, với những dụng cụ nhập khẩu trực tiếp tại mỹ giúp cho
-                            ngươpif sử dụng có 1 trải nghiệm tốt nhất và an toàn nhất.</h2>
+                            người sử dụng có 1 trải nghiệm tốt nhất và an toàn nhất.</h2>
                     </div>
                     <div class="image__item">
                         <img src="https://storage.googleapis.com/leep_app_website/2021/05/huong-dan-tap-gym-cho-nguoi-moi-den-phong-tap.jpg"
@@ -217,7 +274,7 @@
             </div>
 
             <div class="container__story">
-                <h1>NHỮNG THAY ĐỔI KHI TẬP TẠI CLOSE-AIGYM</h1>
+                <h1>Những thay đổi khi tập tại GYMZ</h1>
                 <div class="container__change">
                     <div class="change__box">
                         <div class="change__box__text">
@@ -233,8 +290,9 @@
                             </p>
                         </div>
                         <div class="change__box__img">
-                            <img src="https://trainghiemmuasam.com/wp-content/uploads/2020/07/fitness-transformation-male.jpg"
-                                alt="">
+                            <img class="img_change1"
+                                src="https://trainghiemmuasam.com/wp-content/uploads/2020/07/fitness-transformation-male.jpg"
+                                alt="before after">
                         </div>
                     </div>
                     <div class="change__box">
@@ -256,8 +314,9 @@
                             </p>
                         </div>
                         <div class="change__box__img">
-                            <img src="https://www.binhduongvn.city/uploads/files/2021/11/22/lot-xac-nho-gym-11.jpeg"
-                                alt="">
+                            <img class="img_change2"
+                                src="https://www.binhduongvn.city/uploads/files/2021/11/22/lot-xac-nho-gym-11.jpeg"
+                                alt="Hãy đến với chúng tôi!">
                         </div>
                     </div>
 
@@ -279,6 +338,51 @@
                     </div>
                     <span class="change__input__error"></span>
                     <button class="change__submit" type="submit">NHẬN KẾT QUẢ</button>
+                </div>
+            </div>
+
+            <div class="container__history">
+                <div class="container__history__header">
+                    <h1>Hãy đến với chúng tôi!</h1>
+                    <p>Giúp bạn tăng cường sức khỏe là nhiệm vụ hàng đầu của chúng tôi.</p>
+                </div>
+                <div class="container__history__row">
+                    <div class="container__history__column">
+                        <img src="./img/history/img4.jpg" style="width:100%">
+                        <img src="./img/history/img15.jpg" style="width:100%">
+                        <img src="./img/history/img18.jpg" style="width:100%">
+                        <img src="./img/history/img1.jpg" style="width:100%">
+                        <img src="./img/history/img12.jpg" style="width:100%">
+                        <img src="./img/history/img24.jpg" style="width:100%">
+                        <img src="./img/history/img7.jpg" style="width:100%">
+                    </div>
+                    <div class="container__history__column">
+                        <img src="./img/history/img26.jpg" style="width:100%">
+                        <img src="./img/history/img23.jpg" style="width:100%">
+                        <img src="./img/history/img21.jpg" style="width:100%">
+                        <img src="./img/history/img11.jpg" style="width:100%">
+                        <img src="./img/history/img5.jpg" style="width:100%">
+                        <img src="./img/history/img13.jpg" style="width:100%">
+                        <img src="./img/history/img18.jpg" style="width:100%">
+                    </div>
+                    <div class="container__history__column">
+                        <img src="./img/history/img14.jpg" style="width:100%">
+                        <img src="./img/history/img2.jpg" style="width:100%">
+                        <img src="./img/history/img16.jpg" style="width:100%">
+                        <img src="./img/history/img17.jpg" style="width:100%">
+                        <img src="./img/history/img3.jpg" style="width:100%">
+                        <img src="./img/history/img19.jpg" style="width:100%">
+                        <img src="./img/history/img20.jpg" style="width:100%">
+                    </div>
+                    <div class="container__history__column">
+                        <img src="./img/history/img10.jpg" style="width:100%">
+                        <img src="./img/history/img22.jpg" style="width:100%">
+                        <img src="./img/history/img9.jpg" style="width:100%">
+                        <img src="./img/history/img6.jpg" style="width:100%">
+                        <img src="./img/history/img25.jpg" style="width:100%">
+                        <img src="./img/history/img8.jpg" style="width:100%">
+                        <img src="./img/history/img21.jpg" style="width:100%">
+                    </div>
                 </div>
             </div>
 
@@ -435,11 +539,68 @@
             </div>
         </div>
     </div>
+    <div id="myModalShow" class="modal">
+        <span class="close">&times;</span>
+        <img class="modal-content" id="img01">
+        <div id="caption"></div>
+    </div>
+    <!-- <div id="myModal" class="modal__change">
+        <span class="close cursor" onclick="closeModal()">&times;</span>
+        <div class="modal-content">
+            <div class="modal-content__slide">
+
+                <div class="modal__change__mySlides">
+                    <div class="numbertext">1 / 4</div>
+                    <img src="./img/history/img1.jpg">
+                </div>
+
+                <div class="modal__change__mySlides">
+                    <div class="numbertext">2 / 4</div>
+                    <img src="./img/history/img2.jpg">
+                </div>
+
+                <div class="modal__change__mySlides">
+                    <div class="numbertext">3 / 4</div>
+                    <img src="./img/history/img3.jpg">
+                </div>
+
+                <div class="modal__change__mySlides">
+                    <div class="numbertext">4 / 4</div>
+                    <img src="./img/history/img4.jpg">
+                </div>
+            </div>
+
+            <a class="modal__change__prev" onclick="plusSlides(-1)">&#10094;</a>
+            <a class="modal__change__next" onclick="plusSlides(1)">&#10095;</a>
+
+            <div class="caption-container">
+                <p id="caption"></p>
+            </div>
+
+            <div class="modal__change__bottom">
+                <div class="modal__change__bottom__column">
+                    <img class="demo cursor" src="./img/history/img1.jpg" onclick="currentSlide(1)"
+                        alt="Nature and sunrise">
+                </div>
+                <div class="modal__change__bottom__column">
+                    <img class="demo cursor" src="./img/history/img2.jpg" onclick="currentSlide(2)" alt="Snow">
+                </div>
+                <div class="modal__change__bottom__column">
+                    <img class="demo cursor" src="./img/history/img3.jpg" onclick="currentSlide(3)"
+                        alt="Mountains and fjords">
+                </div>
+                <div class="modal__change__bottom__column">
+                    <img class="demo cursor" src="./img/history/img4.jpg" onclick="currentSlide(4)"
+                        alt="Northern Lights">
+                </div>
+            </div>
+        </div>
+    </div> -->
     <!-- overlay -->
     <div class="nen_mo"></div>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="./index.js"></script>
-    <script src="./navigation_javascript/menu.js"></script>
+    <!-- <script src="./navigation_javascript/menu.js"></script> -->
     <script src="./navigation_javascript/menuv2.js"></script>
 </body>
 
