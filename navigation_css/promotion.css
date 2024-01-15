@@ -1,3 +1,11 @@
+* {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    text-decoration: none;
+    font-family: Overpass;
+}
+
 .container {
     background-image: url(../img/background/bgr_pro3.png);
     background-size: cover;
