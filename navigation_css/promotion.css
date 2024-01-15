@@ -83,18 +83,20 @@
     align-items: center;
     justify-content: center;
     /* background-color: #1E90FF; */
-    width: 90%;
+    width: 100%;
     margin: 0 auto;
 }
 .image__inner{
     display: flex;
     justify-content: center;
-    width: 90%;
-    height: 430px;
+    width: 100%;
+    height: 100%;
 }
 .anh__ico{
-    margin-left: 40px;
-    scale: 1;
+    /* margin-top: 20px; */
+    height: 100%;
+    width: 100%;
+    max-width: 500px;
 }
 .container__colum2__inner2 {
     height: 50%;
@@ -477,31 +479,33 @@
 
 /* ================================================================================================== ĐÂY LÀ PHẦN CONTAINER */
 .container__colum1__inner__select {
-    position: relative;
     width: 90%;
+    height: 100%;
     display: flex;
     align-items: center;
     justify-content: center;
     margin: 0 auto;
 }
 
-.happy__newyear {
+/* .happy__newyear {
     display: flex; 
     justify-content: center;
-    /* align-items: center; */
-    height: 250px;
+    align-items: center;
+} */
+
+.anh2024{
+    display: flex;
+    align-items: center;
+    width: 100%;
+    max-width: 500px;
+    margin: 0 auto;
 }
-
-
-.happy__newyear img{
+/* .happy__newyear img{
     display: flex;
     align-items: center;
     justify-content: center;
-    position: relative;
-    width: 500px;
-    top: -60px;
-    z-index: 1;
-}
+    width: 80%;
+} */
 
 
 .container__colum2__inner2__select {
@@ -521,7 +525,7 @@
     margin: 0 auto;
     background-color: whitesmoke;
     margin-top: 10px;
-    border-radius: 5px;
+    border-radius: 10px;
     z-index: 22;
     box-shadow: 2px 2px 30px 2px rgba(0, 0, 0, 0.4);
 }
@@ -534,23 +538,35 @@
     color: black;
 
 }
-
-.list__gift {
+.group__gift{
+    display: flex;
+    align-items: center;
+    margin: 0 auto;
+    margin-top: 20px;
+    margin-bottom: 20px;
     width: 100%;
     max-width: 500px;
+    box-shadow: 2px 2px 30px 2px rgb(0, 0, 0, 0.4);
+    border-radius: 10px;
+}
+.list__gift {
+    
     display: flex;
     flex-direction: column;
     margin: 0 auto;
-    margin-top: 30px;
+    margin-top: 5px;
+    margin-bottom: 5px;
     /* background-color: hsla(0, 0%, 0%, 0.2); */
-    box-shadow: 2px 2px 30px 2px rgb(0, 0, 0, 0.4);
+    width: 100%;
+    max-width: 400px;
 
-    border-radius: 5px;
+    
 }
 
 .list__gift a {
     display: flex;
-    width: 300px;
+    width: 90%;
+    max-width: 300px;
     color: white;
     font-size: 14px;
 
@@ -642,13 +658,15 @@
         height: 1720px;
     }
 
-    .container__colum1,
-    .container__colum2 {
-
+    .container__colum1{
         width: 100%;
         height: 860px;
     }
-    .happy__newyear img{
+    .container__colum2 {
+        width: 100%;
+        height: auto;
+    }
+    /* .happy__newyear img{
         display: flex;
         align-items: center;
         justify-content: center;
@@ -656,7 +674,8 @@
         width: 300px;
         top: -10px;
         z-index: 1;
-    }
+    } */
+
     .container__colum2__inner {
         display: none;
     }
@@ -664,6 +683,7 @@
         height: auto;
     }
     .container__colum2__inner3 {
+        height: auto;
         display: flex;
     }
     .footer,
