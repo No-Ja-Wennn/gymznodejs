@@ -469,7 +469,7 @@
 .happy__newyear a {
     color: white;
     font-family: montserrat;
-    font-size: 29px;
+    font-size: 100px;
     font-weight: 900;
     text-align: center;
 }
@@ -477,9 +477,10 @@
 .happy__newyear span {
     display: flex;
     font-family: montserrat;
-    font-size: 50px;
+    font-size: 20px;
     color: white;
     font-weight: 900;
+    background-color: goldenrod;
 }
 
 .container__colum2__inner2__select {
