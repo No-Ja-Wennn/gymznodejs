@@ -454,7 +454,7 @@
 }
 
 .noidung222 a {
-    padding-left: 49px;
+    padding-left: 47px;
     background-color: black;
 }
 
@@ -536,7 +536,7 @@
     font-size: 22px;
     font-weight: 600;
     color: black;
-
+    text-align: center;
 }
 .group__gift{
     display: flex;

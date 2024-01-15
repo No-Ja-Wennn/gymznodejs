@@ -357,11 +357,11 @@
 }
 
 .noidung__text1 {
-    /* font-size: 16px; */
+    font-family: montserrat;
     display: flex;
     align-items: center;
     position: relative;
-    top: 2px;
+    top: 0.4px;
 }
 .noidung__text1:hover{
     cursor: pointer;
@@ -454,7 +454,7 @@
     height: 68px;
     /* width: 130px; */
     font-family: montserrat;
-    font-size: 16px;
+    font-size: 14px;
     font-weight: 600;
     color: whitesmoke;
 }
@@ -469,7 +469,7 @@
     padding-left: 10.5px;
     margin-top: -20px;
     font-family: montserrat;
-    font-size: 14px;
+    font-size: 12px;
     color: #dadada;
 }
 
@@ -489,7 +489,8 @@
 }
 
 .noidung222 a {
-    padding-left: 49px;
+    font-family: montserrat;
+    padding-left: 47px;
     background-color: #111;
 }
 
