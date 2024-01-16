@@ -152,7 +152,8 @@
     display: flex;
     flex-wrap: wrap;
 }
-.gymz-element-warp{
+
+.gymz-element-wrap{
     width: 50%;
 }
 .gymz-group{
