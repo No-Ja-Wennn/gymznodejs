@@ -54,7 +54,7 @@ function yourFunction(event) {
 
 
 var sub = document.querySelector(".submenu b");
-// Lấy phần tử noidung222
+var subtext = document.querySelector(".submenu .bx");
 var noidung222 = document.querySelector('.noidung222');
 var noidung222 = document.querySelector('.noidung222');
 function toggleNoidung222(event) {
@@ -69,10 +69,12 @@ function toggleNoidung222(event) {
     // Toggle hiển thị/ẩn
     if (noidung222.style.display === 'none' || noidung222.style.display === '') {
         noidung222.style.display = 'block';
+        subtext.style.marginLeft = '25px';
         sub.style.color = 'goldenrod';
         // sub.style.background = '#222';
     } else {
         noidung222.style.display = 'none';
+        subtext.style.marginLeft = '15px';
         sub.style.color = 'white';
         // sub.style.background = '#000';
     }
@@ -81,5 +83,6 @@ function toggleNoidung222(event) {
 // Bổ sung sự kiện click để ẩn noidung222 khi click bất kỳ đâu trên trang
 document.addEventListener('click', function () {
     noidung222.style.display = 'none';
+    subtext.style.marginLeft = '15px';
     sub.style.color = 'white';
 });
