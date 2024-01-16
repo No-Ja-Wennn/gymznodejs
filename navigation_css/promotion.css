@@ -104,6 +104,80 @@
 .container__colum2__inner3 {
     display: none;
 }
+
+/* ======================= CONTAINER2 */
+
+.containertwo{
+    width: 100%;
+    max-width: 1000px;
+    margin: 0 auto;
+    height: auto;
+    background-image: url(../img/background/2024_01_16_22_44_IMG_1180.JPG);
+    /* background-color: green; */
+    background-size: cover;
+    background-origin: content-box;
+    background-position: 50% 0%;
+    background-repeat: no-repeat;
+    background-attachment: scroll;
+}
+.gymz-element {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    text-align: center;
+    line-height: 1.5;
+}
+.gymz-headline{
+    width: 95%;
+    text-align: center;
+    margin-top: 20px;
+    color: rgb(170, 0, 0);
+    font-size: 27px;
+    font-weight: 600;
+    text-shadow: 0 0 30px white;
+}
+.gymz-boder-top{
+    width: 50%;
+    max-width: 400px;
+    margin: 20px 0;
+    border-top: 2px rgb(170, 0, 0) solid;
+}
+.gymz-paragrap02{
+    width: 95%;
+    max-width: 500px;
+}
+.gymz-group{
+    width: 100%;
+    max-width: 500px;
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin-top: 35px;
+}
+.gymz-image{
+    width: 100%;
+    max-width: 500px;
+}
+.gymz-image img{
+    width: 95%;
+    max-width: 500px;
+    border-radius: 10px;
+}
+.gymz-headtext{
+    color: rgb(170, 0, 0);
+    font-weight: 600;
+    text-shadow: 0 0 5px rgba(0, 0, 0, 0.4);
+    margin: 15px 0;
+}
+.gymz-text{
+    width: 95%;
+    max-width: 400px;
+    font-size: 12px;
+    margin-bottom: 10px;
+}
 /*======== ĐÂY LÀ PHẦN FOOTER */
 
 .footer {
