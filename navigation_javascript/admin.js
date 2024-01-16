@@ -165,8 +165,7 @@ saveCartElement.addEventListener("click", () => {
         var valueArray = [];
         for (var i = 0; i < tdArray.length - 1; i++) {
             var value = tdArray[i].querySelector(".inputAdd").value;
-            if (value != ""){
-                console.log("hello")
+            if (value != "") {
                 valueArray[i] = value;
             }
             else
@@ -176,7 +175,7 @@ saveCartElement.addEventListener("click", () => {
             for (var i = 0; i < tdArray.length - 1; i++) {
                 tdArray[i].innerHTML = `${valueArray[i]}`
             }
-        }else{
+        } else {
             return;
         }
         var data = {
@@ -197,6 +196,7 @@ saveCartElement.addEventListener("click", () => {
             myData.carts.push(data);
         }
 
+        indexChange = -1;
         localStorage.setItem('cartData', JSON.stringify(myData));
 
         var trElement = document.querySelector(".trEdit");
@@ -217,11 +217,26 @@ saveCartElement.addEventListener("click", () => {
 
 function checkInformationValid(arrayData) {
     myData = JSON.parse(localStorage.getItem('cartData'));
+    var data = {
+        "id": `${arrayData[0]}`,
+        "name": `${arrayData[1]}`,
+        "age": `${Number(arrayData[2])}`,
+        "phoneNumber": `${arrayData[3]}`,
+        "cartType": `${arrayData[4]}`,
+        "dateStart": `${arrayData[5]}`,
+        "dateEnd": `${arrayData[6]}`
+    };
+    if (indexChange !== -1) {
+        myData.carts[indexChange] = data;
+    } else {
+        myData.carts.push(data);
+    }
+
     dataCompear = myData.carts;
     var test = true;
     arrayData[2] = Number(arrayData[2])
     var arrayChange = [];
-
+    var oneTime = true;
     for (var i = 0; i < dataCompear.length; i++) {
         arrayChange[i] = [
             dataCompear[i].id,
@@ -232,7 +247,8 @@ function checkInformationValid(arrayData) {
             dataCompear[i].dateStart,
             dataCompear[i].dateEnd
         ]
-        if (arraysEqual(arrayChange[i], arrayData)) {
+        if (arraysEqual(arrayChange[i], arrayData) && oneTime == true) {
+            oneTime = false;
             continue;
         }
         if (dataCompear[i].id == arrayData[0]) {
@@ -394,6 +410,12 @@ function findByID(thisElement) {
                 var spanE = document.createElement("show__find_id");
                 spanE.className = "show__find_id";
                 spanE.innerText = value.id;
+                const inputFindID = document.querySelector(".show__input__id");
+                spanE.onclick = function () {
+                    var value = this.innerText;
+                    inputFindID.value = value;
+                    findByID(thisElement);
+                };
                 findBox.appendChild(spanE);
             }
         });
@@ -403,42 +425,86 @@ function findByID(thisElement) {
 
 const findBTN = document.querySelector(".container__show__cart__find__btn");
 findBTN.addEventListener("click", () => {
-    var inputID = document.querySelector(".show__input__id").value;
-    var selectPackage = document.querySelector(".show__input__package").value;
-    var inputStart = document.getElementById("input-date-start").value
-    var inputEnd = document.getElementById("input-date-end").value;
+    var inputID = document.querySelector(".show__input__id").value.trim();
+    var selectPackage = document.querySelector(".show__input__package").value.trim();
+    var inputStart = document.getElementById("input-date-start").value.trim()
+    var inputEnd = document.getElementById("input-date-end").value.trim();
 
     myData = JSON.parse(localStorage.getItem('cartData'));
     dataArray = myData.carts;
-    dataArray.map((value, index) => {
-        var test = true;
-        if (inputID != "" && test == true) {
-            if (inputID !== value.id) {
-                test = false;
-            }
-        }
-        if (selectPackage != "" && test == true) {
-            if (selectPackage !== value.cartType) {
-                test = false;
-            }
-        }
-        if (inputStart != "" && test == true) {
-            if (inputStart !== value.dateStart) {
-                test = false;
-            }
-        }
-        if (inputEnd != "" && test == true) {
-            if (inputEnd !== value.dateEnd) {
-                test = false;
-            }
-        }
+    const tableShowElement = document.querySelector(".table__show");
 
-        if (test == true) {
-            console.log(test);
-            console.log(value);
-            console.log("tìm thấy");
-        }
-    });
+    if (inputID != "" || selectPackage != "" || inputStart != "" || inputEnd != "") {
+        tableShowElement.style.display = "none";
+        const tableBox = document.querySelector(".container__show__cart__content");
+        tableBox.innerHTML = "";
+        var tableCreate = document.createElement("table");
+        tableCreate.className = "table__show";
+        var trCreate = document.createElement("tr");
+        trCreate.className = "tr__show";
+        trCreate.innerHTML = `
+            <th class="th__show">Mã thẻ</th>
+            <th class="th__show">Tên Hội Viên</th>
+            <th class="th__show">Tuổi</th>
+            <th class="th__show">Số điện thoại</th>
+            <th class="th__show">Loại Thành Viên</th>
+            <th class="th__show">Ngày gia nhập</th>
+            <th class="th__show">Ngày Hết Hạn Thẻ</th>
+            <th class="th__show">Thao tác</th>
+        `
+        tableCreate.appendChild(trCreate);
+        dataArray.map((value, index) => {
+            var test = true;
+            if (inputID != "" && test == true) {
+                if (!value.id.includes(inputID)) {
+                    test = false;
+                    console.log("he")
+                }
+            }
+            if (selectPackage != "" && test == true) {
+                if (selectPackage !== value.cartType) {
+                    test = false;
+                }
+            }
+            if (inputStart != "" && test == true) {
+                if (inputStart !== value.dateStart) {
+                    test = false;
+                }
+            }
+            if (inputEnd != "" && test == true) {
+                if (inputEnd !== value.dateEnd) {
+                    test = false;
+                }
+            }
+            if (inputID == "" && selectPackage == "" && inputStart == "" && inputEnd == "") {
+                test = false;
+            }
+            if (test == true) {
+                console.log(test);
+                console.log(value);
+                console.log("tìm thấy");
+
+                var trCreate = document.createElement("tr");
+                trCreate.className = "tr__show";
+                trCreate.innerHTML = `
+                    <td class="td__show">${value.id}</td>
+                    <td class="td__show">${value.name}</td>
+                    <td class="td__show">${value.age}</td>
+                    <td class="td__show">${value.phoneNumber}</td>
+                    <td class="td__show">${value.cartType}</td>
+                    <td class="td__show">${value.dateStart}</td>
+                    <td class="td__show">${value.dateEnd}</td>
+                    <td class="td__show">
+                    <i class="fa-solid fa-pen-to-square" onclick="editCart(this)"></i>
+                    <i class="fa-solid fa-trash" onclick="removeCart(this)"></i>
+                    </td>
+                `
+                tableCreate.appendChild(trCreate);
+
+            }
+        });
+        tableBox.appendChild(tableCreate);
+    }
 })
 
 
