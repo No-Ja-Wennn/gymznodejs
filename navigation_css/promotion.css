@@ -73,6 +73,33 @@
     height: 70%;
 }
 
+.container__colum1__inner2__box{
+    position: relative;
+    width: 500px;
+    height: 500px;
+}
+.container__colum1__inner2__img{
+    width: 100%;
+    /* transition: transform 5s; */
+}
+
+.start__img{
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    margin: auto;
+    width: 20%;
+    height: 20%;
+    cursor: pointer;
+    background-size: contain;
+    background-position: center center;
+    background-repeat: no-repeat;
+    transition: transform 300ms ease-in-out;
+    -webkit-transition: transform 300ms ease-in-out;
+}
+
 .container__colum2__inner {
     /* background-color: #00000050; */
     height: 50%;
