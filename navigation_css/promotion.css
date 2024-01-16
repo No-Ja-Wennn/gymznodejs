@@ -212,6 +212,7 @@
 .gymz-box{
     display: flex;
     flex-wrap: wrap;
+    justify-content: center;
     width: 95%;
     max-width: 500px;
     height: auto;
@@ -225,6 +226,7 @@
     background-position: 50% 0%;
     background-repeat: no-repeat;
     background-attachment: scroll;
+    box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.377);
 }
 .gymz-element-box-title{
     display: flex;
@@ -265,8 +267,8 @@
     text-shadow: 0 0 5px rgba(0, 0, 0, 0.4);
 }
 .gymz-icon-text span{
-    width: 100%;
-    max-width: 156px;
+    /* width: 100%; */
+    /* max-width: 156px; */
     height: 80px;
     display: flex;
     align-items: flex-start;
@@ -846,7 +848,11 @@
 }
 
 /* ================================================================================================== ĐÂY LÀ PHẦN MEDIA */
-
+@media (max-width: 542px) {
+    .gymz-icon-text{
+        max-width: 200px;
+    }
+}
 @media (max-width: 1000px) {
 
 
