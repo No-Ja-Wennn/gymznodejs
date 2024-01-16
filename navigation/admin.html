@@ -108,10 +108,14 @@
                                     </span>
                                 </b>
                                 <div class="noidung222">
-                                    <a class="content__inner" href="./card.html"><i class='bx bxs-tag-alt'></i> THẺ HỘI VIÊN</a>
-                                    <a class="content__inner" href="./train.html"><i class='bx bxs-tag-alt'></i> HUẤN LUYỆN VIÊN</a>
-                                    <a class="content__inner" href="./shop.html"><i class='bx bxs-tag-alt'></i> CỬA HÀNG WHEY</a>
-                                    <a class="content__inner" href="./chatbox.html"><i class='bx bxs-tag-alt'></i> CHAT ONLINE</a>
+                                    <a class="content__inner" href="./card.html"><i class='bx bxs-tag-alt'></i> THẺ HỘI
+                                        VIÊN</a>
+                                    <a class="content__inner" href="./train.html"><i class='bx bxs-tag-alt'></i> HUẤN
+                                        LUYỆN VIÊN</a>
+                                    <a class="content__inner" href="./shop.html"><i class='bx bxs-tag-alt'></i> CỬA HÀNG
+                                        WHEY</a>
+                                    <a class="content__inner" href="./chatbox.html"><i class='bx bxs-tag-alt'></i> CHAT
+                                        ONLINE</a>
                                 </div>
                             </div>
                             <a class="content__inner" href="./promotion.html">
@@ -177,6 +181,14 @@
                             </span>
                         </li>
                     </ul>
+                    <div class="container__bar__logout">
+                        <div class="container__bar__item">
+                            <i class="fa-solid fa-right-from-bracket"></i>
+                            <span class="container__bar__item__text">
+                                Đăng xuất
+                            </span>
+                        </div>
+                    </div>
                 </div>
                 <div class="container__show">
                     <div class="container__show__message"></div>
@@ -187,41 +199,51 @@
                             <button class="container__show__cart__add__btn">Thêm thẻ thành viên</button>
                         </div>
                         <div class="container__show__cart__head">
-                            <input class="show__input__id" type="text" placeholder="Nhập mã thẻ hoặc tên khách hàng">
+                            <div class="container__show__cart__head__input__box">
+                                <input class="show__input__id" type="text" oninput="findByID(this)"
+                                    placeholder="Nhập mã thẻ hoặc tên khách hàng">
+                                <div class="show__find__id__box">
+                                    <!-- <span class="show__find_id">Ngô Gia Quyến</span>
+                                    <span class="show__find_id">Ngô Gia Quyến</span> -->
+                                </div>
+                                </table>
+                            </div>
                             <div class="head-end">
                                 <select class="show__input__package" id="packet" name="packet">
                                     <option value="" disabled selected>Loại thành viên</option>
                                     <option value="NORMAL">NORMAL</option>
-                                    <option value="female">PRO</option>
-                                    <option value="other">PRO MAX</option>
+                                    <option value="PRO">PRO</option>
+                                    <option value="PROMAX">PROMAX</option>
                                 </select>
-                                <input class="show__input__date" type="text" placeholder="Ngày gia nhập">
-                                <input class="show__input__date" type="text" placeholder="Ngày hết hạn">
+                                <input id="input-date-start" class="show__input__date" type="text"
+                                    placeholder="Ngày gia nhập">
+                                <input id="input-date-end" class="show__input__date" type="text"
+                                    placeholder="Ngày hết hạn">
                                 <button class="container__show__cart__find__btn">Tìm kiếm</button>
                             </div>
                         </div>
                         <i class="remove-icon fa-solid fa-trash"></i>
                         <div class="container__show__cart__content">
-                            <table>
-                                <tr>
-                                    <th>Mã thẻ</th>
-                                    <th>Tên Hội Viên</th>
-                                    <th>Tuổi</th>
-                                    <th>Số điện thoại</th>
-                                    <th>Loại Thành Viên</th>
-                                    <th>Ngày gia nhập</th>
-                                    <th>Ngày Hết Hạn Thẻ</th>
-                                    <th>Thao tác</th>
+                            <table class="table__show">
+                                <tr class="tr__show">
+                                    <th class="th__show">Mã thẻ</th>
+                                    <th class="th__show">Tên Hội Viên</th>
+                                    <th class="th__show">Tuổi</th>
+                                    <th class="th__show">Số điện thoại</th>
+                                    <th class="th__show">Loại Thành Viên</th>
+                                    <th class="th__show">Ngày gia nhập</th>
+                                    <th class="th__show">Ngày Hết Hạn Thẻ</th>
+                                    <th class="th__show">Thao tác</th>
                                 </tr>
-                                <!-- <tr>
-                                    <td><input class="inputAdd" type="text" placeholder="....."></td>
-                                    <td><input type="text" placeholder="....."></td>
-                                    <td><input type="text" placeholder="....."></td>
-                                    <td><input type="text" placeholder="....."></td>
-                                    <td><input type="text" placeholder="....."></td>
-                                    <td><input type="text" placeholder="....."></td>
-                                    <td><input type="text" placeholder="....."></td>
-                                    <td>
+                                <!-- <tr class="tr__show">
+                                    <td class="td__show"><input class="input__show inputAdd" type="text" placeholder="....."></td>
+                                    <td class="td__show"><input class="input__show inputAdd" type="text" placeholder="....."></td>
+                                    <td class="td__show"><input class="input__show inputAdd" type="text" placeholder="....."></td>
+                                    <td class="td__show"><input class="input__show inputAdd" type="text" placeholder="....."></td>
+                                    <td class="td__show"><input class="input__show inputAdd" type="text" placeholder="....."></td>
+                                    <td class="td__show"><input class="input__show inputAdd" type="text" placeholder="....."></td>
+                                    <td class="td__show"><input class="input__show inputAdd" type="text" placeholder="....."></td>
+                                    <td class="td__show">
                                         <i class="edit__icon fa-solid fa-pen-to-square"></i>
                                         <i class="trash__icon fa-solid fa-trash"></i>
                                     </td>
@@ -229,7 +251,7 @@
                             </table>
                         </div>
                         <div class="save__box">
-                             <span class="save__message"></span>
+                            <span class="save__message"></span>
                             <button class="save-btn">Lưu</button>
                         </div>
                     </div>
@@ -241,6 +263,12 @@
             </div>
             <!-- </div> -->
 
+            <!-- success -->
+            <div id="toast"></div>
+            <div>
+                <!-- <div onclick="showSuccessToast();" class="btn btn--sucess">Show succes toast</div>
+                <div onclick="showErrorToast();" class="btn btn--danger">Show error toast</div> -->
+            </div>
         </div>
 
     </div>
