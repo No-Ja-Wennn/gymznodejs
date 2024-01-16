@@ -36,7 +36,7 @@
 
 .container {
     width: 100%;
-    height: 860px;
+    height: 861px;
     margin-top: 68px;
 }
 
@@ -102,7 +102,7 @@
 
 .container__colum2__inner {
     /* background-color: #00000050; */
-    height: 50%;
+    /* height: 50%; */
 }
 
 .container__colum2__inner__select{
@@ -126,7 +126,7 @@
     max-width: 500px;
 }
 .container__colum2__inner2 {
-    height: 50%;
+    /* height: 50%; */
 }
 .container__colum2__inner3 {
     display: none;
@@ -137,8 +137,6 @@
 .containertwo{
     display: flex;
     width: 100%;
-    max-width: 1000px;
-    margin: 0 auto;
     height: auto;
     background-image: url(../img/background/2024_01_16_22_44_IMG_1180.JPG);
     /* background-color: green; */
@@ -147,6 +145,14 @@
     background-position: 50% 0%;
     background-repeat: no-repeat;
     background-attachment: scroll;
+}
+.containertwo__select{
+    width: 100%;
+    max-width: 1000px;
+    margin: 0 auto;
+    display: flex;
+    /* flex-direction: column; */
+    flex-wrap: wrap;
 }
 .gymz-element {
     display: flex;
@@ -174,10 +180,6 @@
 .gymz-paragrap02{
     width: 95%;
     max-width: 500px;
-}
-.containertwo__select{
-    display: flex;
-    flex-wrap: wrap;
 }
 
 .gymz-element-wrap{
@@ -217,6 +219,118 @@
     font-size: 12px;
     margin-bottom: 10px;
 }
+
+/* ====================== CONTAINER3 */
+.containerthree{
+    width: 100%;
+    height: 861px;
+    background-image: url(../img/background/2024_01_16_22_36_IMG_1178.JPG);
+    background-size: cover;
+    background-origin: content-box;
+    background-position: 50% 0%;
+    background-repeat: no-repeat;
+    background-attachment: scroll;
+}
+.containerthree__select{
+    width: 100%;
+    max-width: 1000px;
+    padding-top: 100px;
+}
+.gymz-box{
+    display: flex;
+    flex-wrap: wrap;
+    width: 95%;
+    max-width: 500px;
+    height: auto;
+    background-color: #e7e7e7;
+    border-radius: 15px;
+    margin: 0 auto;
+    padding-bottom: 50px;
+    background-image: url(../img/promotion/istockphoto-1307181424-612x612.jpg);
+    background-size: cover;
+    background-origin: content-box;
+    background-position: 50% 0%;
+    background-repeat: no-repeat;
+    background-attachment: scroll;
+}
+.gymz-element-box-title{
+    display: flex;
+    align-items: center;
+    width: 100%;
+    max-width: 500px;
+    justify-content: space-between;
+    margin: 20px 0;
+    
+}
+.gymz-title{
+    display: flex;
+    /* width: 100%; */
+    max-width: 500px;
+    margin: 0 20px;
+    font-weight: 600;
+}
+.gymz-line02{
+    display: flex;
+    height: 3px;
+    /* width: 100%; */
+    /* width: 324px; */
+    flex: 1;
+    background-color: black;
+}
+.gymz-icon-text{
+    display: flex;
+    /* align-items: center; */
+    text-align: center;
+    flex-direction: column;
+    width: 100%;
+    max-width: 166px;
+    /* width: 166px; */
+}
+.gymz-icon-text .fa-solid{
+    color: whitesmoke;
+    font-size: 40px;
+    text-shadow: 0 0 5px rgba(0, 0, 0, 0.4);
+}
+.gymz-icon-text span{
+    width: 100%;
+    max-width: 156px;
+    height: 80px;
+    display: flex;
+    align-items: flex-start;
+    margin: 0 auto;
+    font-size: 12px;
+    margin: 0 5px;
+    margin-top: 15px;
+}
+.gymz-icon-text2{
+    position: relative;
+    display: flex;
+    align-items: center;
+    width: 100%;
+    max-width: 500px;
+    height: 80px;
+    background-color: rgb(230, 0, 0);
+    color: white;
+    /* padding-right: 0px; */
+    /* flex-direction: column; */
+}
+.gymz-icon-text2 i{
+    font-size: 50px;
+    color: white;
+    margin-right: 10px;
+}
+.gymz-icon-text2 span{
+    display: flex;
+    position: absolute;
+    bottom: 15px;
+    left: 60px;
+    font-size: 11px;
+}
+/* .gymz-element-box{
+    display: flex;
+    flex-wrap: wrap;
+}  */
+
 /*======== ĐÂY LÀ PHẦN FOOTER */
 
 .footer {
@@ -798,6 +912,29 @@
     .container__colum2__inner3 {
         height: auto;
         display: flex;
+    }
+    .containertwo__select{
+        flex-direction: column;
+    }
+    .gymz-group{
+        width: 100%;
+        max-width: 1000px;
+    }
+    .gymz-image{
+        width: 100%;
+        max-width: 1000px;
+    }
+    .gymz-image img{
+        width: 95%;
+        max-width: 1000px;
+        border-radius: 10px;
+    }
+    .gymz-text{
+        width: 95%;
+        max-width: 700px;
+    }
+    .gymz-element-wrap{
+        width: 100%;
     }
     .footer,
     .footer__select {
