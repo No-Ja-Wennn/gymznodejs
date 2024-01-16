@@ -108,6 +108,7 @@
 /* ======================= CONTAINER2 */
 
 .containertwo{
+    display: flex;
     width: 100%;
     max-width: 1000px;
     margin: 0 auto;
@@ -147,6 +148,13 @@
     width: 95%;
     max-width: 500px;
 }
+.containertwo__select{
+    display: flex;
+    flex-wrap: wrap;
+}
+.gymz-element-warp{
+    width: 50%;
+}
 .gymz-group{
     width: 100%;
     max-width: 500px;
@@ -173,8 +181,11 @@
     margin: 15px 0;
 }
 .gymz-text{
+    display: flex;
+    align-items: flex-start;
     width: 95%;
     max-width: 400px;
+    height: 60px;
     font-size: 12px;
     margin-bottom: 10px;
 }
