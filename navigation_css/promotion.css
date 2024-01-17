@@ -22,7 +22,8 @@ body{
 
 /* ================================================================================================== ĐÂY LÀ PHẦN ĐẦU */
 .header{
-    background-color: rgb(190, 0, 0);
+    background-color: rgb(170, 0, 0);
+    /* z-index: 997; */
     /* top: -0.6px; */
 }
 .header__inner {
@@ -732,7 +733,7 @@ body{
 
 .nen_mo {
     display: none;
-    z-index: 9;
+    z-index: 998;
     position: fixed;
     left: 0;
     right: 0;
@@ -760,7 +761,8 @@ body{
     /* right: calc(100vw - 300px); */
     width: 250px;
     height: 100vh;
-    background-color: #000;
+    background-color: rgb(170, 0, 0);
+    background-image: none;
     /* top: 165px; */
     /* top: 100%;
     right: 0;
@@ -783,7 +785,7 @@ body{
     display: flex;
     align-items: center;
     height: 60px;
-    background-color: #000;
+    /* background-color: rgb(190, 0, 0); */
     color: white;
     font-size: 14px;
     font-weight: 600;
@@ -798,8 +800,14 @@ body{
     font-size: 16px;
 }
 
-.content__inner:hover {
+/* .content__inner:hover {
     background-color: #222;
+} */
+.account__login__center{
+    background-color: white;
+}
+.account__login{
+    background-color: rgb(170, 0, 0);
 }
 /* SUBMENU TRONG MENUMOBILE ============================================================================= */
 
@@ -816,12 +824,12 @@ body{
 
 .noidung222 a {
     padding-left: 47px;
-    background-color: black;
+    /* background-color: rgb(190, 0, 0); */
 }
 
-.noidung222 a:hover {
-    color: goldenrod;
-}
+/* .noidung222 a:hover {
+    font-weight: 700;
+} */
 /* ===================================== */
 .footer__last__select {
     display: flex;
