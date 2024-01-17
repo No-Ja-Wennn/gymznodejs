@@ -5,7 +5,12 @@
     text-decoration: none;
     font-family: montserrat;
 }
-
+html{
+    background-color: rgb(255, 255, 255);
+}
+body{
+    background-color: #1eff3c;
+}
 .container {
     background-image: url(../img/background/bgr_pro3.png);
     background-size: cover;
@@ -18,6 +23,7 @@
 /* ================================================================================================== ĐÂY LÀ PHẦN ĐẦU */
 .header{
     background-color: rgb(190, 0, 0);
+    /* top: -0.6px; */
 }
 .header__inner {
     max-width: 1000px;
