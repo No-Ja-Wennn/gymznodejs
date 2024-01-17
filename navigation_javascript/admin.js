@@ -285,11 +285,6 @@ function arraysEqual(a, b) {
     if (a == null || b == null) return false;
     if (a.length !== b.length) return false;
 
-    // Nếu bạn không quan tâm đến việc duyệt qua các phần tử theo thứ tự,
-    // thì bạn có thể sắp xếp mảng này trước khi so sánh.
-    // Nếu bạn quan tâm đến thứ tự, thì hãy bỏ qua bước này.
-    // a.sort(); b.sort();
-
     for (let i = 0; i < a.length; ++i) {
         if (a[i] !== b[i]) return false;
     }
@@ -313,11 +308,15 @@ let indexChange = -1;
 function editCart(thisElement) {
     if (activeOption == "") {
         activeOption = "edit";
+        indexChange = -1;
         var trElement = thisElement.parentElement.parentElement;
         var tableElement = trElement.parentElement;
-        var trAray = tableElement.querySelectorAll("tr");
+        var tableElement2 = document.querySelector(".table__show__main");
+        var trAray = tableElement2.querySelectorAll("tr");
         trAray = Array.from(trAray);
+        console.log(trAray);
         trAray.map((value, index) => {
+            console.log(value, trElement)
             if (value === trElement) {
                 indexChange = index - 1;
             }
@@ -437,7 +436,7 @@ findBTN.addEventListener("click", () => {
     if (inputID != "" || selectPackage != "" || inputStart != "" || inputEnd != "") {
         tableShowElement.style.display = "none";
         const tableBox = document.querySelector(".container__show__cart__content");
-        tableBox.innerHTML = "";
+        // tableBox.innerHTML = "";
         var tableCreate = document.createElement("table");
         tableCreate.className = "table__show";
         var trCreate = document.createElement("tr");

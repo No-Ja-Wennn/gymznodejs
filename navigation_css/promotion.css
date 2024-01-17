@@ -70,13 +70,14 @@
 }
 
 .container__colum1__inner2 {
-    height: 70%;
+    /* height: 70%; */
 }
 
 .container__colum1__inner2__box{
     position: relative;
-    width: 500px;
-    height: 500px;
+    width: 100%;
+    max-width: 500px;
+    /* height: 500px; */
 }
 .container__colum1__inner2__img{
     width: 100%;
