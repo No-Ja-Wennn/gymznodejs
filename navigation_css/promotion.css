@@ -70,17 +70,28 @@
 }
 
 .container__colum1__inner2 {
-    /* height: 70%; */
+    width: 95%;
+    max-width: 500px;
+    /* height: 500px; */
+    margin: 0 auto;
+    position: relative;
+    /* background-color: goldenrod; */
 }
 
 .container__colum1__inner2__box{
-    position: relative;
+    /* position: absolute; */
     width: 100%;
     max-width: 500px;
+    overflow: hidden;
+    /* background-color: green; */
     /* height: 500px; */
 }
 .container__colum1__inner2__img{
+    /* position: absolute; */
+    top: 0;
     width: 100%;
+    height: 100%;
+    border-radius: 50%;
     /* transition: transform 5s; */
 }
 
@@ -100,7 +111,9 @@
     transition: transform 300ms ease-in-out;
     -webkit-transition: transform 300ms ease-in-out;
 }
-
+.start__img:hover{
+    scale: 1.02;
+}
 .container__colum2__inner {
     /* background-color: #00000050; */
     /* height: 50%; */
@@ -233,16 +246,20 @@
     background-attachment: scroll;
 }
 .containerthree__select{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
     width: 100%;
     max-width: 1000px;
     height: auto;
     padding-top: 30px;
     padding-bottom: 30px;
+    margin: 0 auto;
 }
 .gymz-box{
     display: flex;
     flex-wrap: wrap;
-    justify-content: center;
+    justify-content: space-evenly;
     width: 95%;
     max-width: 450px;
     /* height: 150%; */
@@ -269,11 +286,12 @@
 }
 .gymz-title{
     display: flex;
+    justify-content: center;
     /* width: 100%; */
     max-width: 500px;
     margin: 0 20px;
     font-weight: 600;
-    text-shadow: 0 0 2px rgba(0, 0, 0, 0.5);
+    /* text-shadow: 0 0 2px rgba(0, 0, 0, 0.5); */
 }
 .gymz-line02{
     display: flex;
@@ -285,7 +303,7 @@
 }
 .gymz-icon-text{
     /* color: white; */
-    font-weight: 600;
+    /* font-weight: 600; */
     /* text-shadow: 0 0 2px rgba(0, 0, 0, 0.2); */
     display: flex;
     /* align-items: center; */
@@ -312,6 +330,10 @@
     margin: 0 10px;
     margin-top: 15px;
 }
+/* .gymz-element-box{
+    display: flex;
+    max-width: 500px;
+} */
 .gymz-element-box-gift{
     display: flex;
     width: 100%;
@@ -342,13 +364,14 @@
     font-size: 55px;
     color: white;
     margin-right: 10px;
+    /* margin-left: 10px; */
     position: relative;
     top: 5px;
 }
 .gymz-icon-box-text span{
     display: flex;
     position: absolute;
-    bottom: 10px;
+    bottom: 3px;
     left: 65px;
     font-size: 12px;
     font-weight: 400;
@@ -357,7 +380,85 @@
     display: flex;
     flex-wrap: wrap;
 }  */
+.gymz-box2{
+    display: flex;
+    flex-wrap: wrap;
+    width: 95%;
+    max-width: 450px;
+    height: auto;
+    background-color: black;
+    margin: 0 auto;
+    margin-bottom: 30px;
+    /* padding-bottom: 20px; */
+    border-radius: 15px;
+    color: white;
+    background-image: url(../img/promotion/beautiful-background-dark-slate-stone-ideal-culinary-product-presentation-project_627281-105.avif);
+    background-size: cover;
+    background-origin: content-box;
+    background-position: 50% 0%;
+    background-repeat: no-repeat;
+    background-attachment: scroll;
+    box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.4) ;
+}
+.gymz-title2{
+    text-shadow: 2px 2px 10px rgba(0, 0, 0, 0.8);
+    font-size: 20px;
+    line-height: 1.5;
+    max-width: 350px;
+    text-align: center;
+}
+.gymz-element-form{
+    display: flex;
+    flex-wrap: wrap;
+    width: 100%;
+    max-width: 350px;
+    margin: 0 auto;
+}
+.gymz-element-form-inner{
+    display: flex;
+    width: 100%;
+    max-width: 400px;
+    height: 100px;
+}
+.gymz-element-title{
+    display: flex;
+    align-items: center;
+    margin-left: 10px;
+    text-shadow: 2px 2px 10px rgba(0, 0, 0, 0.8);
+}
+.gymz-element-input{
+    height: 30px;
+    width: 100%;
+    max-width: 350px;
+    margin: 0 auto;
+    border-radius: 15px;
+    border-color: goldenrod;
+    border-style: solid;
+    box-shadow: 0 0 2px black;
+    padding-left: 10px;
+    padding-right: 10px;
+    box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.8);
+}
+.gymz-element-input:focus-visible{
+    outline: none;
+}
+.gymz-element-form-inner-button{
+    display: flex;
+    align-items: center;
+    margin: 0 auto;
+}
+.gymz-element-button{
+    height: 40px;
+    padding: 0 10px;
+    border-radius: 15px;
+    border-color: rgb(200, 0, 0);
+    border-style: solid;
+    background-color: rgba(200, 0, 0);
+    color: white;
+    font-weight: 700;
+    /* display: flex; */
 
+}
 /*======== ĐÂY LÀ PHẦN FOOTER */
 
 .footer {
@@ -905,9 +1006,13 @@
         max-width: 105px;
     }
 }
-@media (max-width: 542px) {
-    .gymz-icon-text{
+@media (max-width: 435px) {
+    .gymz-icon-box-text {
+        margin: 0 5px;
     }
+    /* .gymz-icon-box-text span{
+        margin-left: 5px;
+    } */
 }
 @media (max-width: 1000px) {
 
@@ -970,6 +1075,9 @@
     }
     .gymz-element-wrap{
         width: 100%;
+    }
+    .containerthree__select{
+        flex-direction: column-reverse;
     }
     .footer,
     .footer__select {

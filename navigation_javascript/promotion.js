@@ -27,21 +27,30 @@ dropDown.addEventListener("click", () => {
 let deg = 0;
 let imgTransform = document.querySelector('.container__colum1__inner2__img');
 let isSpinning = false; // Biến trạng thái mới
+// let giftArray = [
+//     {"giftName": "45 ngày free ship đỏ", "giftRates": 0.001},
+//     {"giftName": "bình nước", "giftRates": 0.178},
+//     {"giftName": "45 ngày free ship xám", "giftRates": 0.01},
+//     {"giftName": "1 chỉ vàng", "giftRates": 0},
+//     {"giftName": "1 túi du lịch", "giftRates": 0.001},
+//     {"giftName": "2 voucher", "giftRates": 0.9},
+//     {"giftName": "1 ly nước", "giftRates": 0.1},
+//     {"giftName": "1 túi da", "giftRates": 0.01}
+// ];
 let giftArray = [
-    {"giftName": "45 ngày free ship đỏ", "giftRates": 0.001},
-    {"giftName": "bình nước", "giftRates": 0.178},
-    {"giftName": "45 ngày free ship xám", "giftRates": 0.01},
-    {"giftName": "1 chỉ vàng", "giftRates": 0},
-    {"giftName": "1 túi du lịch", "giftRates": 0.001},
-    {"giftName": "2 voucher", "giftRates": 0.9},
-    {"giftName": "1 ly nước", "giftRates": 0.1},
-    {"giftName": "1 túi da", "giftRates": 0.01}
+    { "giftName": "45 ngày free ship đỏ", "giftRates": 0.8 },
+    { "giftName": "bình nước", "giftRates": 0.15 },
+    { "giftName": "45 ngày free ship xám", "giftRates": 0.01 },
+    { "giftName": "1 chỉ vàng", "giftRates": 0.0 },
+    { "giftName": "1 túi du lịch", "giftRates": 0.01 },
+    { "giftName": "2 voucher", "giftRates": 0.01 },
+    { "giftName": "1 ly nước", "giftRates": 0.01 },
+    { "giftName": "1 túi da", "giftRates": 0.0 }
 ];
-
 let timeSping = 10;
 function rotateImage(randomNum, addRound) {
     isSpinning = true; // Bắt đầu quay
-    let rounds = 5; // Số vòng quay
+    let rounds = 8; // Số vòng quay
     deg += (randomNum * 45) + (rounds * 360); // Thêm số vòng quay vào deg
 
     imgTransform.style.transform = 'rotate(' + deg + 'deg)';
