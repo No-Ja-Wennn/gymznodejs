@@ -3,18 +3,36 @@
     width: 100%;
     text-align: center;
     background-color: #7c1111;
-    /* background: linear-gradient(#212121d1, #212121d1),
-    url("https://img4.thuthuatphanmem.vn/uploads/2021/01/07/background-phong-tap-gym_035832535.jpg"); */
+}
+h1,p{
+    font-family:'Courier New', Courier, monospace;
 }
 .container__title {
+    background: linear-gradient(to right, #212121, #212121a9),
+    url("../img/services/backgroud/img2.jpg");
+    background-size: cover;
     width: 100%;
     padding: 15px 10px;
     font-size: 24px;
     line-height: 55px;
+    height: 250px;
+    position: relative;
+}
+.container__title h1{
+    font-family:'Courier New', Courier, monospace;
+    position: absolute;
+    padding-left: 20px;
+    bottom: 0;
+    left: 0;
 }
 
 /* phần Huấn luyện viên */
 .container__train__coach{
+    height: 100%;
+    background: linear-gradient(#1a4e24c3, #1a4a24c3),
+    url("../img/services/backgroud/img3.jpg");
+    position: relative;
+    background-size: cover;
     padding: 10px;
     background-color: #532828;
 }
@@ -35,23 +53,90 @@
 
 
 .container__train__coach__img__items {
-    flex-basis: calc(30% - 20px); /* Chiếm 50% chiều rộng của container trừ đi khoảng cách */
+    flex-basis: calc(27% - 30px); /* Chiếm 50% chiều rộng của container trừ đi khoảng cách */
     margin-bottom: 20px;
+    display: inline-block;
+    max-width: 45vw;
+    padding: 12px 12px;
+    margin-left: 4px;
+    margin-right: 4px;
+    border: 1px solid #efdddd;
+    border: 2px solid #fefefe;
+    border-radius: 2px;
+    background-color: #3d3e3ddc;
+
+    box-sizing: border-box;
+    animation: move 0.5s ease-in-out;
+    overflow: auto; /* Ẩn nội dung vượt quá kích thước của div */
+    transition: width 0.3s ease-in-out; /* Thêm hiệu ứng chuyển đổi mượt mà */
 }
+@keyframes move {
+    0% { transform: translateY(50%); }
+    100% { transform: translateY(0%); }
+    
+}
+
+/* .container__train__coach__img__items.back{
+    animation: move 1s ease-in-out;
+
+} */
 .container__train__coach__img__items img {
-    width: 100%; /* Chiều rộng tối đa trong container của mình */
+    width: 100%;
+    max-width: 142px; /* Chiều rộng tối đa trong container của mình */
     border: 2px solid #b1b1b1;
     border-radius: 4px;
+    min-width: 120px;
+    border: 2px solid #888888;
+    border-radius: 2px;
+    object-fit: cover;
+    /* max-width: 320px; */
+    min-height: 200px;
 }
+
+::-webkit-scrollbar {
+    display: none;
+}
+.ppppo{
+    display: none;
+}
+.container__train__coach__img__items:hover{
+    /* position: absolute; */
+    width: 200px;
+    transform: scale(1.5);
+    /* height: auto; */
+    height: 248px;
+    /* height: max-content;
+    bottom: 0; */
+    scrollbar-width: none;
+    
+}
+.container__train__coach__img__items:hover .ppppo{
+    display: block;
+    font-size: 16px;
+    line-height: 18px;
+}
+.container__train__coach__img__items::after {
+    content: "Xem thêm"; /* Thêm chữ "Xem thêm" */
+    display: block;
+    text-align: right;
+    background: rgb(8, 5, 5);
+    width: 100%;
+}
+
+.container__train__coach__img__items:hover::after {
+    content: ""; /* Ẩn chữ "Xem thêm" khi di chuột vào */
+}
+
 .container__train__coach__img {
     display: flex;
     justify-content: center;
     flex-wrap: wrap;    
     padding: 20px;
+    position: relative;
 }
 
 
-.container__train__coach__img__items {
+/* .container__train__coach__img__items {
     display: inline-block;
     max-width: 45vw;
     padding: 12px 12px;
@@ -62,26 +147,28 @@
     border-radius: 2px;
     background-color: #3d3e3ddc;
     box-sizing: border-box;
-}
-
+} */
+/* 
 .container__train__coach__img__items img {
     width: 100%;
     min-width: 120px;
     border: 2px solid #888888;
     border-radius: 2px;
 
-}
+} */
 
 .container__train__coach__img__items p{
     font-size: 2rem;
-    line-height: 30px;
+    line-height: 20px;
     color: rgb(255, 255, 255);
-    margin-top: 10px;
+    margin-top: 5px;
+    text-align: justify;
     
 }
 /* phần yoga */
 .container__train__yoga{
-    
+    background:url("../img/services/backgroud/img4.jpg");
+    background-size: cover;
     padding: 10px;
 }
 .container__train__yoga__title h1{
@@ -134,6 +221,9 @@
 
 /* phần group */
 .container__train__group{
+    background: linear-gradient(#1a4e24c3, #1a4a24c3),
+    url("../img/services/backgroud/img5.jpg");
+    background-size: cover;
     padding: 10px;
     background-color: brown ;
 }
@@ -144,7 +234,7 @@
 }
 .container__train__group__title p{
     width: 100%;
-    max-width: 500px;
+    max-width: 600px;
     font-size: 16px;
     margin: 0px auto;
     text-align: justify;

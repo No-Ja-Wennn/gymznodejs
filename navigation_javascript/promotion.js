@@ -38,13 +38,13 @@ let isSpinning = false; // Biến trạng thái mới
 //     {"giftName": "1 túi da", "giftRates": 0.01}
 // ];
 let giftArray = [
-    { "giftName": "45 ngày free ship đỏ", "giftRates": 0.8 },
-    { "giftName": "bình nước", "giftRates": 0.15 },
-    { "giftName": "45 ngày free ship xám", "giftRates": 0.01 },
+    { "giftName": "45 ngày free ship đỏ", "giftRates": 0.10 },
+    { "giftName": "bình nước", "giftRates": 0.0 },
+    { "giftName": "45 ngày free ship xám", "giftRates": 0.0 },
     { "giftName": "1 chỉ vàng", "giftRates": 0.0 },
-    { "giftName": "1 túi du lịch", "giftRates": 0.01 },
-    { "giftName": "2 voucher", "giftRates": 0.01 },
-    { "giftName": "1 ly nước", "giftRates": 0.01 },
+    { "giftName": "1 túi du lịch", "giftRates": 0.0 },
+    { "giftName": "2 voucher", "giftRates": 0.0 },
+    { "giftName": "1 ly nước", "giftRates": 0.0 },
     { "giftName": "1 túi da", "giftRates": 0.0 }
 ];
 let timeSping = 10;
