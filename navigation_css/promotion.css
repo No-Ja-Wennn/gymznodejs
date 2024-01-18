@@ -24,6 +24,7 @@ body{
 /* ================================================================================================== ĐÂY LÀ PHẦN ĐẦU */
 .header{
     background-color: rgb(170, 0, 0);
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.4);
     /* z-index: 997; */
     /* top: -0.6px; */
 }
@@ -290,7 +291,7 @@ body{
 .containerthree__select{
     display: flex;
     flex-wrap: wrap;
-    justify-content: center;
+    justify-content: space-between;
     width: 100%;
     max-width: 1000px;
     height: auto;
@@ -315,6 +316,7 @@ body{
     background-position: 50% 0%;
     background-repeat: no-repeat;
     background-attachment: scroll;
+    /* border: 2px goldenrod groove; */
     box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.377);
 }
 .gymz-element-box-title{
@@ -520,7 +522,7 @@ body{
 
 .footer__select {
     max-width: 1000px;
-    width: 100%;
+    width: 98%;
     height: 100%;
     display: flex;
     margin: 0 auto;
@@ -542,7 +544,8 @@ body{
     margin: 20px 0;
     color: white;
     margin-right: 10px;
-    font-size: 23px;
+    font-size: 20px;
+    font-weight: 600;
 }
 
 
@@ -697,11 +700,15 @@ body{
 .share__page a:hover {
     background-color: white;
 }
-
+.service__customer__list__inner {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
 .service__customer__list a {
     margin: 15px 0;
     margin-left: 10px;
-    margin-right: 140px;
+    margin-right: 55px;
 }
 
 
@@ -804,7 +811,7 @@ body{
     /* top: 100%;
     right: 0;
     margin-right: 60px; */
-    /* box-shadow: 10px 10px 0px 1000px rgba(0, 0, 0, 0.400); */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.500);
 }
 
 .noidung__text1 {
@@ -870,8 +877,8 @@ body{
 /* ===================================== */
 .footer__last__select {
     display: flex;
-
     align-items: center;
+    
 }
 
 .footer__last__select__inner {
@@ -881,6 +888,7 @@ body{
 
 .footer__last__select__inner i {
     margin-right: 10px;
+    margin-left: 10px;
 }
 
 /* ================================================================================================== ĐÂY LÀ PHẦN CONTAINER */
