@@ -81,15 +81,42 @@ body{
     max-width: 500px;
     /* height: 500px; */
     margin: 0 auto;
+    margin-bottom: 80px;
     position: relative;
     /* background-color: goldenrod; */
 }
-
+.redcloud{
+    position: absolute;
+    top: 6px;
+    left: -204px;
+}
+.redcloud2{
+    position: absolute;
+    bottom: -48px;
+    scale: 0.7;
+    right: -119px;
+    z-index: 1;
+}
+.khbcaigiluon{
+    position: absolute;
+    bottom: -20px;
+    left: -116px;
+}
+.khbcaigiluon2{
+    position: absolute;
+    top: 71px;
+    right: -138px;
+    scale: 0.5;
+    z-index: 1;
+}
 .container__colum1__inner2__box{
-    /* position: absolute; */
+    position: relative;
     width: 100%;
     max-width: 500px;
+    height: 100%;
+    max-height: 500px;
     overflow: hidden;
+    margin-top: 80px;
     /* background-color: green; */
     /* height: 500px; */
 }
@@ -99,6 +126,7 @@ body{
     width: 100%;
     height: 100%;
     border-radius: 50%;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.4);
     /* transition: transform 5s; */
 }
 
@@ -124,6 +152,7 @@ body{
 .start__img:active{
     scale: 1.02;
 }
+
 .container__colum2__inner {
     /* background-color: #00000050; */
     /* height: 50%; */
@@ -409,6 +438,8 @@ body{
     background-repeat: no-repeat;
     background-attachment: scroll;
     box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.4) ;
+    border: 2px goldenrod solid;
+    border-style: groove;
 }
 .gymz-title2{
     text-shadow: 2px 2px 10px rgba(0, 0, 0, 0.8);
@@ -420,7 +451,7 @@ body{
 .gymz-element-form{
     display: flex;
     flex-wrap: wrap;
-    width: 100%;
+    width: 90%;
     max-width: 350px;
     margin: 0 auto;
 }
@@ -1034,21 +1065,31 @@ body{
 @media (max-width: 1000px) {
 
 
-
+    .container {
+        background-image: url(../img/promotion/banner-mobile-20231226065047-_fksl.png);
+        background-size: cover;
+        background-origin: content-box;
+        background-position: 50% 0%;
+        background-repeat: no-repeat;
+        background-attachment: scroll;
+    }
     .container,
     .container__select {
         flex-direction: column;
         align-items: center;
-        height: 1720px;
+        height: auto;
     }
 
     .container__colum1{
         width: 100%;
-        height: 860px;
+        height: auto;
+        overflow: hidden;
     }
     .container__colum2 {
         width: 100%;
         height: auto;
+        display: flex;
+        flex-direction: column-reverse;
     }
     /* .happy__newyear img{
         display: flex;
@@ -1061,7 +1102,7 @@ body{
     } */
 
     .container__colum2__inner {
-        display: none;
+        /* display: none; */
     }
     .container__colum2__inner2 {
         height: auto;
