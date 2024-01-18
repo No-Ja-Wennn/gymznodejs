@@ -1,3 +1,52 @@
+// Thêm mã này vào đầu file
+const formInput = document.querySelector(".form__input");
+const buttonRequest = document.querySelector(".button__request");
+const inputs = document.querySelectorAll(".fullname__input__box");
+formInput.style.display = "none";
+
+// Hàm kiểm tra định dạng dữ liệu nhập vào
+function validateInput() {
+    let isValid = true;
+    inputs.forEach(input => {
+        if (input.value.trim() === "") {
+            isValid = false;
+        }
+    });
+    return isValid;
+}
+
+// Hiển thị form khi quay trúng phần thưởng
+// function determineGift(deg) {
+//     let giftIndex = Math.floor(deg / 45) % 8;
+//     console.log("Bạn đã quay vào: " + giftArray[giftIndex].giftName);
+//     formInput.style.display = "flex"; // Hiển thị form
+// }
+
+// Ẩn form khi nhấp vào nút xác nhận
+buttonRequest.addEventListener("click", (e) => {
+    e.stopPropagation();
+    if (validateInput()) {
+        formInput.style.display = "none"; // Ẩn form
+    } else {
+        alert("Vui lòng nhập đúng định dạng");
+    }
+});
+
+// Ẩn form khi nhấp bất kì đâu ngoài form
+window.addEventListener("click", () => {
+    formInput.style.display = "none"; // Ẩn form
+});
+
+// Ngăn không cho form bị ẩn khi nhấp vào bên trong form
+formInput.addEventListener("click", (e) => {
+    e.stopPropagation();
+});
+
+
+
+
+
+
 const dropDown = document.querySelector(".header__inner__navigation__sevice")
 const menuroiE = document.querySelector(".menuroi");
 
@@ -27,16 +76,6 @@ dropDown.addEventListener("click", () => {
 let deg = 0;
 let imgTransform = document.querySelector('.container__colum1__inner2__img');
 let isSpinning = false; // Biến trạng thái mới
-// let giftArray = [
-//     {"giftName": "45 ngày free ship đỏ", "giftRates": 0.001},
-//     {"giftName": "bình nước", "giftRates": 0.178},
-//     {"giftName": "45 ngày free ship xám", "giftRates": 0.01},
-//     {"giftName": "1 chỉ vàng", "giftRates": 0},
-//     {"giftName": "1 túi du lịch", "giftRates": 0.001},
-//     {"giftName": "2 voucher", "giftRates": 0.9},
-//     {"giftName": "1 ly nước", "giftRates": 0.1},
-//     {"giftName": "1 túi da", "giftRates": 0.01}
-// ];
 let giftArray = [
     { "giftName": "45 ngày free ship đỏ", "giftRates": 0.10 },
     { "giftName": "bình nước", "giftRates": 0.0 },
@@ -72,6 +111,7 @@ function startClick(){
 function determineGift(deg) {
     let giftIndex = Math.floor(deg / 45) % 8;
     console.log("Bạn đã quay vào: " + giftArray[giftIndex].giftName);
+    formInput.style.display = "flex"; // Hiển thị form
 }
 
 function getRandomGift(gifts) {
@@ -86,3 +126,6 @@ function getRandomGift(gifts) {
     }
     return gifts.length - 1;
 }
+
+
+
