@@ -5,7 +5,7 @@
     background-color: #7c1111;
 }
 h1,p{
-    font-family:'Courier New', Courier, monospace;
+    font-family: montserrat;
 }
 .container__title {
     background: linear-gradient(to right, #212121, #212121a9),
@@ -19,7 +19,6 @@ h1,p{
     position: relative;
 }
 .container__title h1{
-    font-family:'Courier New', Courier, monospace;
     position: absolute;
     padding-left: 20px;
     bottom: 0;
@@ -29,7 +28,7 @@ h1,p{
 /* phần Huấn luyện viên */
 .container__train__coach{
     height: 100%;
-    background: linear-gradient(#1a4e24c3, #1a4a24c3),
+    background: linear-gradient(#000000f9, #586267c3),
     url("../img/services/backgroud/img3.jpg");
     position: relative;
     background-size: cover;
@@ -44,7 +43,7 @@ h1,p{
 
 .container__train__coach__title p{
     width: 100%;
-    max-width: 500px;
+    max-width: 700px;
     font-size: 16px;
     margin: 0px auto;
     text-align: justify;
@@ -63,7 +62,7 @@ h1,p{
     border: 1px solid #efdddd;
     border: 2px solid #fefefe;
     border-radius: 2px;
-    background-color: #3d3e3ddc;
+    background-color: #3d3e3d;
 
     box-sizing: border-box;
     animation: move 0.5s ease-in-out;
@@ -96,7 +95,7 @@ h1,p{
 ::-webkit-scrollbar {
     display: none;
 }
-.ppppo{
+.infor{
     display: none;
 }
 .container__train__coach__img__items:hover{
@@ -110,7 +109,7 @@ h1,p{
     scrollbar-width: none;
     
 }
-.container__train__coach__img__items:hover .ppppo{
+.container__train__coach__img__items:hover .infor{
     display: block;
     font-size: 16px;
     line-height: 18px;
@@ -167,7 +166,8 @@ h1,p{
 }
 /* phần yoga */
 .container__train__yoga{
-    background:url("../img/services/backgroud/img4.jpg");
+    background: linear-gradient(#5d0303, #212121d0),
+    url("../img/services/backgroud/img4.jpg");
     background-size: cover;
     padding: 10px;
 }
@@ -221,7 +221,7 @@ h1,p{
 
 /* phần group */
 .container__train__group{
-    background: linear-gradient(#1a4e24c3, #1a4a24c3),
+    background: linear-gradient(#08170b, #507f5ac3),
     url("../img/services/backgroud/img5.jpg");
     background-size: cover;
     padding: 10px;
@@ -291,6 +291,8 @@ h1,p{
     margin-top: 10px;
     
 }
-.p2{
-    text-align: justify;
+ 
+/* phần dance */
+.container__train__dance{
+    
 }
