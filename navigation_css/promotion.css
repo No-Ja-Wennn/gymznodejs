@@ -9,7 +9,8 @@ html{
     background-color: rgb(255, 255, 255);
 }
 body{
-    background-color: black;
+    background-color: rgb(170, 0, 0);
+    -webkit-tap-highlight-color: transparent;
 }
 .container {
     background-image: url(../img/background/bgr_pro3.png);
@@ -23,6 +24,7 @@ body{
 /* ================================================================================================== ĐÂY LÀ PHẦN ĐẦU */
 .header{
     background-color: rgb(170, 0, 0);
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.4);
     /* z-index: 997; */
     /* top: -0.6px; */
 }
@@ -81,15 +83,43 @@ body{
     max-width: 500px;
     /* height: 500px; */
     margin: 0 auto;
+    margin-bottom: 80px;
     position: relative;
     /* background-color: goldenrod; */
 }
-
+.redcloud{
+    position: absolute;
+    top: 6px;
+    left: -204px;
+}
+.redcloud2{
+    position: absolute;
+    bottom: -48px;
+    scale: 0.7;
+    right: -119px;
+    z-index: 1;
+}
+.khbcaigiluon{
+    position: absolute;
+    bottom: -20px;
+    left: -116px;
+}
+.khbcaigiluon2{
+    position: absolute;
+    top: 71px;
+    right: -138px;
+    scale: 0.5;
+    z-index: 1;
+}
 .container__colum1__inner2__box{
-    /* position: absolute; */
+    position: relative;
     width: 100%;
     max-width: 500px;
-    overflow: hidden;
+    height: 100%;
+    max-height: 500px;
+    /* overflow: hidden; */
+    margin-top: 80px;
+    
     /* background-color: green; */
     /* height: 500px; */
 }
@@ -99,6 +129,7 @@ body{
     width: 100%;
     height: 100%;
     border-radius: 50%;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.4);
     /* transition: transform 5s; */
 }
 
@@ -117,13 +148,15 @@ body{
     background-repeat: no-repeat;
     transition: transform 300ms ease-in-out;
     -webkit-transition: transform 300ms ease-in-out;
+    -webkit-tap-highlight-color: transparent;
 }
 .start__img:hover{
     scale: 1.02;
 }
 .start__img:active{
-    scale: 1.02;
+    scale: 1.1;
 }
+
 .container__colum2__inner {
     /* background-color: #00000050; */
     /* height: 50%; */
@@ -258,7 +291,7 @@ body{
 .containerthree__select{
     display: flex;
     flex-wrap: wrap;
-    justify-content: center;
+    justify-content: space-between;
     width: 100%;
     max-width: 1000px;
     height: auto;
@@ -283,6 +316,7 @@ body{
     background-position: 50% 0%;
     background-repeat: no-repeat;
     background-attachment: scroll;
+    /* border: 2px goldenrod groove; */
     box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.377);
 }
 .gymz-element-box-title{
@@ -409,6 +443,8 @@ body{
     background-repeat: no-repeat;
     background-attachment: scroll;
     box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.4) ;
+    border: 2px goldenrod solid;
+    border-style: groove;
 }
 .gymz-title2{
     text-shadow: 2px 2px 10px rgba(0, 0, 0, 0.8);
@@ -420,7 +456,7 @@ body{
 .gymz-element-form{
     display: flex;
     flex-wrap: wrap;
-    width: 100%;
+    width: 90%;
     max-width: 350px;
     margin: 0 auto;
 }
@@ -486,7 +522,7 @@ body{
 
 .footer__select {
     max-width: 1000px;
-    width: 100%;
+    width: 98%;
     height: 100%;
     display: flex;
     margin: 0 auto;
@@ -508,7 +544,8 @@ body{
     margin: 20px 0;
     color: white;
     margin-right: 10px;
-    font-size: 23px;
+    font-size: 20px;
+    font-weight: 600;
 }
 
 
@@ -663,11 +700,15 @@ body{
 .share__page a:hover {
     background-color: white;
 }
-
+.service__customer__list__inner {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
 .service__customer__list a {
     margin: 15px 0;
     margin-left: 10px;
-    margin-right: 140px;
+    margin-right: 55px;
 }
 
 
@@ -770,7 +811,7 @@ body{
     /* top: 100%;
     right: 0;
     margin-right: 60px; */
-    /* box-shadow: 10px 10px 0px 1000px rgba(0, 0, 0, 0.400); */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.500);
 }
 
 .noidung__text1 {
@@ -836,8 +877,8 @@ body{
 /* ===================================== */
 .footer__last__select {
     display: flex;
-
     align-items: center;
+    
 }
 
 .footer__last__select__inner {
@@ -847,6 +888,7 @@ body{
 
 .footer__last__select__inner i {
     margin-right: 10px;
+    margin-left: 10px;
 }
 
 /* ================================================================================================== ĐÂY LÀ PHẦN CONTAINER */
@@ -963,7 +1005,123 @@ body{
 .vip__gift i {
     color: gold;
 }
+/* ========================= ĐÂY LÀ PHẦN FORM */
+.form__input{
+    position: fixed;
 
+
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    /* border: 1px solid #ccc; */
+    text-align: center;
+
+
+
+    /* top: 200px;
+    bottom: 0;
+    left: 0;
+    right: 0; */
+    /* background-color: green; */
+    width: 100%;
+    max-width: 500px;
+    height: 100%;
+    max-height: 500px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+
+
+    z-index: 100;
+
+}
+.form__input__select{
+    width: 90%;
+    max-width: 400px;
+    height: 90%;
+    max-height: 400px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    background-image: url(../img/promotion/beautiful-background-dark-slate-stone-ideal-culinary-product-presentation-project_627281-105.avif);
+    background-size: cover;
+    background-origin: content-box;
+    background-position: 50% 0%;
+    background-repeat: no-repeat;
+    background-attachment: scroll;
+    border-radius: 15px;
+    color: white;
+
+    box-shadow: 0 0 10px 1000px rgba(0, 0, 0, 0.7);
+
+    border: 2px goldenrod solid;
+}
+.title__input{
+    height: 80px;
+    width: 90%;
+    /* background-color: goldenrod; */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 17px;
+    font-weight: 600;
+    text-shadow: 0 0 10px black;
+    line-height: 1.5;
+    
+}
+.information__input{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+.fullname{
+    height: 80px;
+    width: 90%;
+    max-width: 400px;
+}
+.title__input__box{
+    height: 25px;
+    width: 90%;
+    max-width: 400px;
+    display: flex;
+    margin-left: 20px;
+    text-shadow: 0 0 10px black;
+}
+.fullname__input__box{
+    height: 30px;
+    width: 90%;
+    
+    max-width: 400px;
+    border-radius: 15px;
+    border-style: none;
+    /* border-color: goldenrod; */
+    box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.4);
+    outline: none;
+    padding-left: 10px;
+    padding-right: 10px;
+}
+.button{
+    width: 90%;
+    max-width: 400px;
+    /* background-color: green; */
+    height: 80px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.button__request{
+    padding: 10px 15px;
+    border-radius: 15px;
+    border-style: none;
+    background-color: rgb(180, 0, 0);
+    color: white;
+    font-weight: 700;
+    box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.4);
+}
+.button__request:active{
+    background-color: rgb(130, 0, 0);
+}
 /* ================================================================================================== ĐÂY LÀ PHẦN ANIMATION */
 @keyframes slide_left {
     0% {
@@ -1034,21 +1192,31 @@ body{
 @media (max-width: 1000px) {
 
 
-
+    .container {
+        background-image: url(../img/promotion/banner-mobile-20231226065047-_fksl.png);
+        background-size: cover;
+        background-origin: content-box;
+        background-position: 50% 0%;
+        background-repeat: no-repeat;
+        background-attachment: scroll;
+    }
     .container,
     .container__select {
         flex-direction: column;
         align-items: center;
-        height: 1720px;
+        height: auto;
     }
 
     .container__colum1{
         width: 100%;
-        height: 860px;
+        height: auto;
+        overflow: hidden;
     }
     .container__colum2 {
         width: 100%;
         height: auto;
+        display: flex;
+        flex-direction: column-reverse;
     }
     /* .happy__newyear img{
         display: flex;
@@ -1061,7 +1229,7 @@ body{
     } */
 
     .container__colum2__inner {
-        display: none;
+        /* display: none; */
     }
     .container__colum2__inner2 {
         height: auto;
