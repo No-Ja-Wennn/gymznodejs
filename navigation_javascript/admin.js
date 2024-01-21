@@ -158,10 +158,8 @@ saveCartElement.addEventListener("click", () => {
             showErrorToast("Không có gì thay đổi!");
         }
     } else if (activeOption == "edit") {
-        // trelementChange
         var tdArray = trelementChange.getElementsByTagName("td");
         tdArray = Array.from(tdArray);
-
         var valueArray = [];
         for (var i = 0; i < tdArray.length - 1; i++) {
             var value = tdArray[i].querySelector(".inputAdd").value;
@@ -187,32 +185,25 @@ saveCartElement.addEventListener("click", () => {
             "dateStart": `${valueArray[5]}`,
             "dateEnd": `${valueArray[6]}`
         };
-
-        // var index = myData.carts.findIndex(cart => cart.id === data.id);
-
+        console.log("indexcjagasdf", indexChange);
         if (indexChange !== -1) {
             myData.carts[indexChange] = data;
         } else {
             myData.carts.push(data);
         }
-
         indexChange = -1;
         localStorage.setItem('cartData', JSON.stringify(myData));
-
         var trElement = document.querySelector(".trEdit");
         trElement.classList.remove("trEdit");
         showSuccessToast("Sửa thành công!")
         activeOption = "";
     } else if (activeOption == "remove") {
-
-        console.log(dataAfterRemove)
         localStorage.setItem('cartData', JSON.stringify(dataAfterRemove));
         showSuccessToast("Xóa thành công!");
         activeOption = "";
     } else {
         showErrorToast("Vui lòng chọn chức năng!");
     }
-
 })
 
 function checkInformationValid(arrayData) {
@@ -231,13 +222,12 @@ function checkInformationValid(arrayData) {
     } else {
         myData.carts.push(data);
     }
-
     dataCompear = myData.carts;
     var test = true;
     arrayData[2] = Number(arrayData[2])
     var arrayChange = [];
     var oneTime = true;
-    for (var i = 0; i < dataCompear.length; i++) {
+    for (var i = 0; i < dataCompear.length -1; i++) {
         arrayChange[i] = [
             dataCompear[i].id,
             dataCompear[i].name,
@@ -280,12 +270,23 @@ function checkAll(trArray) {
     return ktra;
 }
 
-function arraysEqual(a, b) {
+function arraysEqual(a, b) {// LENGTH  -1;
     if (a === b) return true;
     if (a == null || b == null) return false;
     if (a.length !== b.length) return false;
 
     for (let i = 0; i < a.length; ++i) {
+        if (a[i] !== b[i]) return false;
+    }
+    return true;
+}
+
+function arraysEqual1(a, b) {// LENGTH  -1;
+    if (a === b) return true;
+    if (a == null || b == null) return false;
+    if (a.length !== b.length) return false;
+
+    for (let i = 0; i < a.length-1; ++i) {
         if (a[i] !== b[i]) return false;
     }
     return true;
@@ -314,13 +315,15 @@ function editCart(thisElement) {
         var tableElement2 = document.querySelector(".table__show__main");
         var trAray = tableElement2.querySelectorAll("tr");
         trAray = Array.from(trAray);
-        console.log(trAray);
+        var valueEdit = getValueOnTrShow(trElement);
         trAray.map((value, index) => {
-            console.log(value, trElement)
-            if (value === trElement) {
+            var valueShow = getValueOnTrShow(value);
+            console.log( valueShow, valueEdit);
+            if (arraysEqual1( valueShow, valueEdit)) {
                 indexChange = index - 1;
             }
         })
+        // console.log("indexChange", indexChange);
         trelementChange = trElement;
         var tdArray = trElement.getElementsByTagName("td")
         tdArray = Array.from(tdArray);
@@ -328,7 +331,6 @@ function editCart(thisElement) {
         for (var i = 0; i < tdArray.length - 1; i++) {
             valueArray[i] = tdArray[i].innerHTML;
         }
-
         trElement.className = "trEdit";
         for (var i = 0; i < tdArray.length - 1; i++) {
             tdArray[i].innerHTML = `<input class="inputAdd" type="text" placeholder="${valueArray[i]}">`
@@ -384,7 +386,6 @@ function removeCart(thisElement) {
         showErrorToast("Bạn đang thực hiện thao tác chỉnh sửa, bấm lưu để tiếp tục thực hiện chức năng này!");
     } else if (activeOption == "add") {
         var trElement = thisElement.parentElement.parentElement;
-        console.log(trElement)
         if (trElement.className == "trAdd tr__show") {
             activeOption = "remove";
             trelementChange = trElement;
@@ -457,7 +458,6 @@ findBTN.addEventListener("click", () => {
             if (inputID != "" && test == true) {
                 if (!value.id.includes(inputID)) {
                     test = false;
-                    console.log("he")
                 }
             }
             if (selectPackage != "" && test == true) {
@@ -479,9 +479,6 @@ findBTN.addEventListener("click", () => {
                 test = false;
             }
             if (test == true) {
-                console.log(test);
-                console.log(value);
-                console.log("tìm thấy");
 
                 var trCreate = document.createElement("tr");
                 trCreate.className = "tr__show";
@@ -507,7 +504,27 @@ findBTN.addEventListener("click", () => {
 })
 
 
-
+function getValueOnTrShow(trElement) {
+    var tdArray = trElement.querySelectorAll(".td__show");
+    tdArray = Array.from(tdArray);
+    var arrayValue = [];
+    tdArray.map((value, index)=>{
+        arrayValue[index] = value.innerHTML;
+    })
+    return arrayValue;
+}
+// function getValueOnTrEdit(trElement) {
+//     var tdArray = trElement.innerHTML;
+//     // tdArray = Array.from(tdArray);
+//     console.log(tdArray)
+//     var arrayValue = [];
+//     // arrayValue = tdArray.map((value, index)=>{
+//     //     // console.log(value.querySelector(".inputAdd"))
+//     //     // console.log("value: ", value)   
+//     //     return value.getAttribute("placeholder");
+//     // }) 
+//     // console.log(arrayValue)
+// }
 
 
 
@@ -569,8 +586,6 @@ function toast({
                     `;
         main.appendChild(toast);
         setTimeout(function () {
-            // console.log(main)
-            // main.removeChild(toast)
         }, duration + 1000)
     }
 }

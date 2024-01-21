@@ -17,6 +17,7 @@
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
     <link rel="stylesheet" href="../css/index.css">
     <link rel="stylesheet" href="../css/header.css">
+    <link rel="stylesheet" href="../css/keyframes.css">
     <link rel="stylesheet" href="../css/base.css">
     <link rel="stylesheet" href="../css/keyframes.css">
     <link rel="stylesheet" href="../navigation_css/admin.css">
@@ -164,18 +165,6 @@
                                 QL shop
                             </span>
                         </li>
-                        <li class="container__bar__item">
-                            <i class="fa-solid fa-file-pen"></i>
-                            <span class="container__bar__item__text">
-                                QL đăng ký tập
-                            </span>
-                        </li>
-                        <li class="container__bar__item">
-                            <i class="fa-solid fa-newspaper"></i>
-                            <span class="container__bar__item__text">
-                                Quản lí tin tức
-                            </span>
-                        </li>
                     </ul>
                     <div class="container__bar__logout">
                         <div class="container__bar__item">
@@ -187,8 +176,11 @@
                     </div>
                 </div>
                 <div class="container__show">
+                    <!-- MESSAGE -->
                     <div class="container__show__message"></div>
+                    <!-- ACCOUNT -->
                     <div class="container__show__account"></div>
+                    <!-- CART -->
                     <div class="container__show__cart">
                         <div class="container__show__cart__add">
                             <h1>QUẢN LÍ THẺ THÀNH VIÊN</h1>
@@ -199,8 +191,6 @@
                                 <input class="show__input__id" type="text" oninput="findByID(this)"
                                     placeholder="Nhập mã thẻ hoặc tên khách hàng">
                                 <div class="show__find__id__box">
-                                    <!-- <span class="show__find_id">Ngô Gia Quyến</span>
-                                    <span class="show__find_id">Ngô Gia Quyến</span> -->
                                 </div>
                                 </table>
                             </div>
@@ -231,19 +221,6 @@
                                     <th class="th__show">Ngày Hết Hạn Thẻ</th>
                                     <th class="th__show">Thao tác</th>
                                 </tr>
-                                <!-- <tr class="tr__show">
-                                    <td class="td__show"><input class="input__show inputAdd" type="text" placeholder="....."></td>
-                                    <td class="td__show"><input class="input__show inputAdd" type="text" placeholder="....."></td>
-                                    <td class="td__show"><input class="input__show inputAdd" type="text" placeholder="....."></td>
-                                    <td class="td__show"><input class="input__show inputAdd" type="text" placeholder="....."></td>
-                                    <td class="td__show"><input class="input__show inputAdd" type="text" placeholder="....."></td>
-                                    <td class="td__show"><input class="input__show inputAdd" type="text" placeholder="....."></td>
-                                    <td class="td__show"><input class="input__show inputAdd" type="text" placeholder="....."></td>
-                                    <td class="td__show">
-                                        <i class="edit__icon fa-solid fa-pen-to-square"></i>
-                                        <i class="trash__icon fa-solid fa-trash"></i>
-                                    </td>
-                                </tr> -->
                             </table>
                         </div>
                         <div class="save__box">
@@ -251,9 +228,8 @@
                             <button class="save-btn">Lưu</button>
                         </div>
                     </div>
+                    <!-- SHOP -->
                     <div class="container__show__shop"></div>
-                    <div class="container__show__submit"></div>
-                    <div class="container__show__new"></div>
 
                 </div>
             </div>
