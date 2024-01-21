@@ -1,4 +1,4 @@
-const jsonPath = '../data/shopData.json';
+var jsonPath = '../data/shopData.json';
 let myData = {};
 
 fetch(jsonPath)

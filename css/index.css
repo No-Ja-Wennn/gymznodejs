@@ -44,6 +44,7 @@ body{
     background-color: rgba(0, 0, 0, 0.4);
 }
 .modal__body{
+    position: relative;
     --growth-form: 0.7;
     /* kích thước 70% */
     --growth-to: 1;

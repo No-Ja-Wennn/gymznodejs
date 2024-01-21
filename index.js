@@ -1,4 +1,4 @@
-const modalElement = document.querySelector(".modal");
+var modalElement = document.querySelector(".modal");
 
 // === CACULATOR BMI=== //
 const heightElement = document.getElementById("height")
@@ -152,12 +152,8 @@ changeSubmitElement.addEventListener("click", function () {
 })
 
 const bmiIconExit = document.querySelector(".BMI__title__icon");
-
-
 const inputBox = document.querySelector(".change__input");
 const inputArray = inputBox.getElementsByTagName("input");
-
-
 bmiIconExit.addEventListener("click", function () {
     modalElement.style.display = "none";
     for (i = 0; i < inputArray.length; i++) {
@@ -165,10 +161,7 @@ bmiIconExit.addEventListener("click", function () {
     }
 
 })
-
-
 // hidden bên base.css
-
 $(document).ready(function () {
     $(window).scroll(function () {
         $('.hidden').each(function (i) {
@@ -181,14 +174,8 @@ $(document).ready(function () {
     });
 });
 
-
-
 // slide show
-
-// Get the modal
 var modal = document.getElementById("myModalShow");
-
-// Get the image and insert it inside the modal - use its "alt" text as a caption
 var img1 = document.querySelector(".img_change1");
 var img2 = document.querySelector(".img_change2");
 var modalImg = document.getElementById("img01");
@@ -211,41 +198,3 @@ var span = document.getElementsByClassName("close")[0];
 span.onclick = function () {
     modal.style.display = "none";
 }
-
-
-// function openModal() {
-//     document.getElementById("myModal").style.display = "block";
-// }
-
-// function closeModal() {
-//     document.getElementById("myModal").style.display = "none";
-// }
-
-// var slideIndex = 1;
-// showSlides(slideIndex);
-
-// function plusSlides(n) {
-//     showSlides(slideIndex += n);
-// }
-
-// function currentSlide(n) {
-//     showSlides(slideIndex = n);
-// }
-
-// function showSlides(n) {
-//     var i;
-//     var slides = document.getElementsByClassName("modal__change__mySlides");
-//     var dots = document.getElementsByClassName("demo");
-//     var captionText = document.getElementById("caption");
-//     if (n > slides.length) { slideIndex = 1 }
-//     if (n < 1) { slideIndex = slides.length }
-//     for (i = 0; i < slides.length; i++) {
-//         slides[i].style.display = "none";
-//     }
-//     for (i = 0; i < dots.length; i++) {
-//         dots[i].className = dots[i].className.replace(" active", "");
-//     }
-//     slides[slideIndex - 1].style.display = "flex";
-//     dots[slideIndex - 1].className += " active";
-//     captionText.innerHTML = dots[slideIndex - 1].alt;
-// }

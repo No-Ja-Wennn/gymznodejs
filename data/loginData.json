@@ -1,0 +1,34 @@
+{
+    "accounts": [
+        {
+            "id": "MT01",
+            "name": "Truong Designer",
+            "email": "truong@gmail.com",
+            "password": "123"
+        },
+        {
+            "id": "MT02",
+            "name": "Tien Fullstack",
+            "email": "tien@gmail.com",
+            "password": "123"
+        },
+        {
+            "id": "MT03",
+            "name": "Van Tester",
+            "email": "van@gmail.com",
+            "password": "123"
+        },
+        {
+            "id": "MT04",
+            "name": "Tu Coder",
+            "email": "tu@gmail.com",
+            "password": "123"
+        },
+        {
+            "id": "MT05",
+            "name": "Quyen Developer",
+            "email": "quyen@gmail.com",
+            "password": "123"
+        }
+    ]
+}

@@ -24,14 +24,12 @@
     <link rel="stylesheet" href="./css/quyen.css">
     <link rel="stylesheet" href="./css/base.css">
     <link rel="stylesheet" href="./css/keyframes.css">
-    <!-- <link rel="stylesheet" href="./navigation_css/promotion.css"> -->
+    <link rel="stylesheet" href="./navigation_css/login.css">
     <title>GYMZ - Thể hình giới trẻ</title>
-
-
 </head>
 
 <body>
-    <div class="app">
+    <div id="app" class="app">
         <!-- LUU SY TRUONG -->
         <div class="header">
             <div class="header__inner">
@@ -73,7 +71,7 @@
                 <div class="header__inner__login">
                     <ul class="">
                         <li class="submenu__login">
-                            <a class="account" href="#" onclick="yourFunction(event)">
+                            <a class="account-avt account" href="#" onclick="yourFunction(event)">
                             </a>
                             <div class="status__account">
                                 <a class="status" href="#">
@@ -495,7 +493,6 @@
             </div>
         </div>
     </div>
-
     <!-- overlay -->
     <div class="modal">
         <div class="modal-overlay">
@@ -538,6 +535,27 @@
                     </div>
                 </div>
             </div>
+            <div class="login-box">
+                <p>Đăng nhập tài khoản</p>
+                <form>
+                    <div class="user-box">
+                        <input class="login-email" required="" name="" type="text">
+                        <label>Email</label>
+                    </div>
+                    <div class="user-box">
+                        <input class="login-pass" required="" name="" type="password">
+                        <label>Mật khẩu</label>
+                    </div>
+                    <button id="login-btn" type="button">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                        Đăng nhập
+                    </button>
+                </form>
+                <p>Chưa có tài khoản? <a href="" class="a2">Đăng ký!</a></p>
+            </div>
         </div>
     </div>
     <div id="myModalShow" class="modal">
@@ -545,64 +563,12 @@
         <img class="modal-content" id="img01">
         <div id="caption"></div>
     </div>
-    <!-- <div id="myModal" class="modal__change">
-        <span class="close cursor" onclick="closeModal()">&times;</span>
-        <div class="modal-content">
-            <div class="modal-content__slide">
-
-                <div class="modal__change__mySlides">
-                    <div class="numbertext">1 / 4</div>
-                    <img src="./img/history/img1.jpg">
-                </div>
-
-                <div class="modal__change__mySlides">
-                    <div class="numbertext">2 / 4</div>
-                    <img src="./img/history/img2.jpg">
-                </div>
-
-                <div class="modal__change__mySlides">
-                    <div class="numbertext">3 / 4</div>
-                    <img src="./img/history/img3.jpg">
-                </div>
-
-                <div class="modal__change__mySlides">
-                    <div class="numbertext">4 / 4</div>
-                    <img src="./img/history/img4.jpg">
-                </div>
-            </div>
-
-            <a class="modal__change__prev" onclick="plusSlides(-1)">&#10094;</a>
-            <a class="modal__change__next" onclick="plusSlides(1)">&#10095;</a>
-
-            <div class="caption-container">
-                <p id="caption"></p>
-            </div>
-
-            <div class="modal__change__bottom">
-                <div class="modal__change__bottom__column">
-                    <img class="demo cursor" src="./img/history/img1.jpg" onclick="currentSlide(1)"
-                        alt="Nature and sunrise">
-                </div>
-                <div class="modal__change__bottom__column">
-                    <img class="demo cursor" src="./img/history/img2.jpg" onclick="currentSlide(2)" alt="Snow">
-                </div>
-                <div class="modal__change__bottom__column">
-                    <img class="demo cursor" src="./img/history/img3.jpg" onclick="currentSlide(3)"
-                        alt="Mountains and fjords">
-                </div>
-                <div class="modal__change__bottom__column">
-                    <img class="demo cursor" src="./img/history/img4.jpg" onclick="currentSlide(4)"
-                        alt="Northern Lights">
-                </div>
-            </div>
-        </div>
-    </div> -->
-    <!-- overlay -->
+    
     <div class="nen_mo"></div>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="./index.js"></script>
-    <!-- <script src="./navigation_javascript/menu.js"></script> -->
     <script src="./navigation_javascript/menuv2.js"></script>
+    <script src="./navigation_javascript/login.js"></script>
 </body>
 
 >>>>>>> 5fb661f85a730f40e164a98d1cf1de808ce665c4
