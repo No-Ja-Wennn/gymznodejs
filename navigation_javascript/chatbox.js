@@ -1,7 +1,3 @@
-// import React from 'react' // nạp thư viện react
-// import ReactDOM from 'react-dom' // nạp thư viện react-dom
-
-// chatbox
 const stringSimilarity = require('string-similarity'); //
 
 const chatBoxMessage = document.querySelector('.chatbox__message');
@@ -27,35 +23,35 @@ function makeLi(value = "", option = "chatbox__message__item__right") {
 }
 
 
-const OpenAI = require("openai");
-const openai = new OpenAI({
-    apiKey: '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',
-    dangerouslyAllowBrowser: true
-});
+// const OpenAI = require("openai");
+// const openai = new OpenAI({
+//     apiKey: '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',
+//     dangerouslyAllowBrowser: true
+// });
 
-const openFun = async (valueInput) => {
-    const chatCompletion = await openai.chat.completions.create({
-        model: "gpt-3.5-turbo",
-        messages: [{ "role": "user", "content": `${valueInput}`, }],
-        max_tokens: 1000
-    });
-    return chatCompletion.choices[0].message.content;
-}
+// const openFun = async (valueInput) => {
+//     const chatCompletion = await openai.chat.completions.create({
+//         model: "gpt-3.5-turbo",
+//         messages: [{ "role": "user", "content": `${valueInput}`, }],
+//         max_tokens: 1000
+//     });
+//     return chatCompletion.choices[0].message.content;
+// }
 
-openFun(`
-chỉ được nói về gym, không được nói những điều khác, chỉ nói về chủ đề tập gym, những câu hỏi không liên quan đến gym không trả lời, gym là chủ đề nói, những vấn đề khác gym không trả lời:
-`
-)
+// openFun(`
+// chỉ được nói về gym, không được nói những điều khác, chỉ nói về chủ đề tập gym, những câu hỏi không liên quan đến gym không trả lời, gym là chủ đề nói, những vấn đề khác gym không trả lời:
+// `
+// )
 
 async function getPromiseResult(valueInput) {
-    try {
-        const result = await openFun(valueInput);
-        //   console.log(result)
-        return result;
+    // try {
+    //     const result = await openFun(valueInput);
+    //     //   console.log(result)
+    //     return result;
 
-    } catch (error) {
+    // } catch (error) {
         return "Xin lỗi, tôi chưa thể trả lời câu hỏi này."; // Xử lý lỗi nếu có
-    }
+    // }
 }
 
 
@@ -130,10 +126,7 @@ function getCloseMatches(userInput, questions, n, cutoff) {
         var question = questions[i];
         var similarity1 = stringSimilarity.compareTwoStrings(userInput, question.question); // Sử dụng stringSimilarity để tính toán độ tương đồng
         var similarity2 = isQuestionContained(userInput, question.question, cutoff);
-        // console.log(question, ": ",similarity1)
-        console.log("stringSimilarity ", similarity1);
         if (similarity1 >= cutoff && similarity1 < 1) {
-            // saveUserInputQuestion(userInput, matches.answer);
             console.log("đã lưu userInput = ", userInput, "matches.answer= ", matches.answer)
         }
         if (similarity1 >= cutoff || similarity2 == true) {
