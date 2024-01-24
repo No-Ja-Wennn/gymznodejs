@@ -408,3 +408,11 @@
 }
 
 /* </toast */
+
+
+
+
+/* for chat box */
+.chatbox{
+    max-width: inherit;
+}

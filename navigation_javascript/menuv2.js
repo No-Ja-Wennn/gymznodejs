@@ -85,3 +85,4 @@ document.addEventListener('click', function () {
     subtext.style.marginLeft = '15px';
     sub.style.color = 'white';
 });
+

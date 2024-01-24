@@ -99,6 +99,7 @@
 .chatbox__message__item__text {
     display: flex;
     align-items: center;
+    text-align: left;
     font-size: 1.6rem;
     font-weight: 600;
     line-height: 2rem;

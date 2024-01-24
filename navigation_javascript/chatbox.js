@@ -50,12 +50,12 @@ async function getPromiseResult(valueInput) {
     //     return result;
 
     // } catch (error) {
-        return "Xin lỗi, tôi chưa thể trả lời câu hỏi này."; // Xử lý lỗi nếu có
+    return "Tư vấn viên sẽ sớm trả lời câu hỏi của bạn."; // Xử lý lỗi nếu có
     // }
 }
 
 
-
+let responseMessage = false;
 sendButton.addEventListener('click', async () => { // Thêm async vào đây
     const valueInput = inputElement.value.trim();
     if (valueInput) {
@@ -64,18 +64,27 @@ sendButton.addEventListener('click', async () => { // Thêm async vào đây
         loadKnowledgeBase(async function (knowledgeBase) { // Thêm async vào đây
             const bestMatch = findBestMatch(valueInput, knowledgeBase.questions);
             let response = false;
-            let answer = "Xin lỗi, tôi chưa thể trả lời câu hỏi này.";
+            let answer = "Tư vấn viên sẽ liên hệ với bạn sớm nhất";
             if (bestMatch && bestMatch.answer) {
                 answer = bestMatch.answer;
-                response = true
-                displayBotMessage(answer);
+                response = true;
+                displayBotMessage("bot: " + answer);
             }
             if (response == false) {
-                answer = await getPromiseResult(valueInput); // Thêm await vào đây
-                displayBotMessage(answer);
+                // answer = await getPromiseResult(valueInput); // Thêm await vào đây
+                setTimeout(() => {
+                    if (responseMessage == false) {
+                        displayBotMessage("bot: " + answer);
+                        chatBoxMessage.scrollTop = chatBoxMessage.scrollHeight + 100;
+                    }
+                    responseMessage == false;
+                }, 20000);
                 // saveUserInputQuestion(valueInput, answer);
             }
         });
+
+        sendMessage(valueInput)
+        chatBoxMessage.scrollTop = chatBoxMessage.scrollHeight + 100;
         inputElement.value = '';
     }
 });
@@ -184,3 +193,45 @@ function findBestMatch(userQuestion, questions) {
 }
 
 
+
+
+// send message to admin
+
+function sendMessage(message) {
+    localStorage.setItem('userMessage', message);
+    // Lưu tin nhắn vào lịch sử
+    var historyMessage = JSON.parse(localStorage.getItem('historyMessage')) || [];
+    historyMessage.push({ sender: 'User', message: message });
+    localStorage.setItem('historyMessage', JSON.stringify(historyMessage));
+}
+
+// Kiểm tra tin nhắn mới từ admin sau mỗi giây
+setInterval(function () {
+    var adminMessage = localStorage.getItem('adminMessage');
+    if (adminMessage) {
+        responseMessage = true;
+        // Hiển thị tin nhắn từ admin
+        displayBotMessage(adminMessage)
+        localStorage.removeItem('adminMessage');
+
+        chatBoxMessage.scrollTop = chatBoxMessage.scrollHeight + 100;
+        // Lưu tin nhắn vào lịch sử
+        // var historyMessage = JSON.parse(localStorage.getItem('historyMessage')) || [];
+        // historyMessage.push({ sender: 'Admin', message: adminMessage });
+        // localStorage.setItem('historyMessage', JSON.stringify(historyMessage));
+    }
+}, 1000);
+
+
+window.onload = function () {
+    var myData = JSON.parse(localStorage.getItem('historyMessage'));
+    myData.map((value) => {
+        if (value.sender == 'User') {
+            console.log("usser");
+            displayUserMessage(value.message)
+        }
+        if (value.sender == 'Admin') {
+            displayBotMessage(value.message)
+        }
+    })
+}
