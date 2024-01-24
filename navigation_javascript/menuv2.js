@@ -9,7 +9,6 @@ document.addEventListener('DOMContentLoaded', function() {
         event.stopPropagation();
         var isDisplay = getComputedStyle(content).display;
         
-        console.log(getComputedStyle(content).display)
         if (isDisplay === 'none') {
             
             content.style.animation = 'slide_right 0.3s ease-in-out forwards';

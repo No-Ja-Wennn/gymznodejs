@@ -41,7 +41,10 @@ buttonLogin.addEventListener("click", () => {
             if (emailValue == value.email && passValue == value.password) {
                 accountName.innerText = value.name;
                 accountCode.innerText = value.id;
-                localStorage.setItem("loggedInUser", JSON.stringify(value)); // Lưu thông tin người dùng vào localStorage
+                var date = new Date();
+                date.setTime(date.getTime() + (3*24*60*60*1000)); // Set expires to 3 days from now
+                var expires = "; expires=" + date.toUTCString();
+                document.cookie = "loggedInUser=" + JSON.stringify(value) + expires; // Lưu thông tin người dùng vào cookie
                 var modalElement = document.querySelector(".modal").style.display = "none";
             }
         })
@@ -50,12 +53,13 @@ buttonLogin.addEventListener("click", () => {
 
 // Kiểm tra người dùng đã đăng nhập chưa khi tải lại trang
 window.onload = function() {
-    var loggedInUser = JSON.parse(localStorage.getItem("loggedInUser")); // Lấy thông tin người dùng từ localStorage
+    var loggedInUser = JSON.parse(document.cookie.split('; ').find(row => row.startsWith('loggedInUser')).split('=')[1]); // Lấy thông tin người dùng từ cookie và chuyển nó thành đối tượng
     if (loggedInUser) {
         accountName.innerText = loggedInUser.name;
         accountCode.innerText = loggedInUser.id;
     }
 }
+
 
 var modalOverLay = document.querySelector('.modal-overlay');
 modalOverLay.addEventListener("click", ()=>{
