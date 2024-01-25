@@ -54,7 +54,7 @@ function yourFunction(event) {
 
 var sub = document.querySelector(".submenu b");
 var subtext = document.querySelector(".submenu .bx");
-var noidung222 = document.querySelector('.noidung222');
+var subbgr = document.querySelector(".content__inner");
 var noidung222 = document.querySelector('.noidung222');
 function toggleNoidung222(event) {
     // Ngăn chặn sự kiện click lan ra các phần tử cha
@@ -67,22 +67,29 @@ function toggleNoidung222(event) {
 
     // Toggle hiển thị/ẩn
     if (noidung222.style.display === 'none' || noidung222.style.display === '') {
-        noidung222.style.display = 'block';
-        subtext.style.marginLeft = '25px';
-        sub.style.color = 'goldenrod';
-        // sub.style.background = '#222';
+        noidung222.style.display = 'flex';
+        noidung222.style.animation = 'fadeInFromTop 0.4s ease-out forwards';
+        subtext.style.animation = 'service_slide_right 0.3s ease-in-out forwards';
+        // sub.style.color = 'goldenrod';
+        sub.style.background = 'rgba(0, 0, 0, 0.2)';
     } else {
-        noidung222.style.display = 'none';
-        subtext.style.marginLeft = '15px';
+        noidung222.style.animation = 'fadeOutToTop 0.5s ease-out forwards';
+        setTimeout(function(){
+            noidung222.style.display = 'none';
+        }, 500);
+        subtext.style.animation = 'service_slide_left 0.3s ease-in-out forwards';
         sub.style.color = 'white';
-        // sub.style.background = '#000';
+        sub.style.background = 'none';
     }
 }
 
 // Bổ sung sự kiện click để ẩn noidung222 khi click bất kỳ đâu trên trang
 document.addEventListener('click', function () {
-    noidung222.style.display = 'none';
-    subtext.style.marginLeft = '15px';
-    sub.style.color = 'white';
+    noidung222.style.animation = 'fadeOutToTop 0.5s ease-out forwards';
+        setTimeout(function(){
+            noidung222.style.display = 'none';
+        }, 500);
+        subtext.style.animation = 'service_slide_left 0.3s ease-in-out forwards';
+        sub.style.color = 'white';
 });
 

@@ -348,13 +348,13 @@
     /* right: calc(100vw - 300px); */
     width: 250px;
     height: 100vh;
-    /* background-color: rgb(59, 131, 91); */
-    background-image: url(../img/promotion/dark-black-stone-texture-background-free-photo.jpg);
+    background-color: black;
+    /* background-image: url(../img/promotion/dark-black-stone-texture-background-free-photo.jpg);
     background-size: cover;
     background-origin: content-box;
     background-position: 50% 0%;
     background-repeat: no-repeat;
-    background-attachment: scroll;
+    background-attachment: scroll; */
     /* top: 165px; */
     /* top: 100%;
     right: 0;
@@ -393,7 +393,7 @@
 }
 
 .content__inner:hover {
-    background-color: rgba(0, 0, 0, 0.2);
+    background-color: rgba(110, 110, 110, 0.2);
     /* font-weight: 700; */
 }
 
@@ -488,10 +488,13 @@
 .submenu b{
     margin-left: 0px;
 }
-
+.submenu b:hover{
+    background-color: rgba(0, 0, 0, 0.2);
+    cursor: pointer;
+}
 .noidung222 {
     display: none;
-    
+    flex-direction: column;
     /* background-color: #111; */
 }
 
@@ -502,7 +505,7 @@
 }
 
 .noidung222 a:hover {
-    color: goldenrod;
+    /* color: goldenrod; */
 }
 
 /* ===================================== */

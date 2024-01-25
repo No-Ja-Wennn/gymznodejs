@@ -77,10 +77,10 @@ let deg = 0;
 let imgTransform = document.querySelector('.container__colum1__inner2__img');
 let isSpinning = false; // Biến trạng thái mới
 let giftArray = [
-    { "giftName": "45 ngày free ship đỏ", "giftRates": 0.10 },
+    { "giftName": "45 ngày free ship đỏ", "giftRates": 0.0 },
     { "giftName": "bình nước", "giftRates": 0.0 },
     { "giftName": "45 ngày free ship xám", "giftRates": 0.0 },
-    { "giftName": "1 chỉ vàng", "giftRates": 0.0 },
+    { "giftName": "1 chỉ vàng", "giftRates": 0.10 },
     { "giftName": "1 túi du lịch", "giftRates": 0.0 },
     { "giftName": "2 voucher", "giftRates": 0.0 },
     { "giftName": "1 ly nước", "giftRates": 0.0 },
