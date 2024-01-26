@@ -92,6 +92,9 @@
     flex: 12;
 }
 /* container__show__cart__head */
+.container__show__cart{
+    display: none;
+}
 
 .container__show__cart__add{
     display: flex;
@@ -207,12 +210,12 @@
 .th__show:nth-child(1){
     width: 110px;
 }
-.th__show:nth-child(8){
+.tr__show .th__show:last-child{
     width: 100px;
 }
-.th__show:nth-child(3){
+/* .th__show:nth-child(3){
     width: 52px;
-}
+} */
 
 .th__show{
     font-size: 18px;
@@ -222,6 +225,8 @@
 .td__show{ 
     font-size: 16px;
     height: 32px;
+    
+  /* white-space: nowrap; */
 }
 
 .td__show i{

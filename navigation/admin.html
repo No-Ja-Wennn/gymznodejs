@@ -142,28 +142,28 @@
                             <img class="container__bar__item__avt" src="../img/services/coach/img4.jpg" alt="">
                             <span class="container__bar__item__name">Admin Name</span>
                         </li>
-                        <li class="container__bar__item">
+                        <li id="QLMessage" class="container__bar__item container__bar__item--active">
                             <i class="fa-regular fa-comments"></i>
                             <span class="container__bar__item__text">
                                 Tin nhắn
                             </span>
                         </li>
-                        <li class="container__bar__item">
+                        <li id="QLAccount" class="container__bar__item">
                             <i class="fa-solid fa-users"></i>
                             <span class="container__bar__item__text">
                                 QL tài khoản
                             </span>
                         </li>
-                        <li class="container__bar__item  container__bar__item--active">
+                        <li id="QLCart" class="container__bar__item">
                             <i class="fa-solid fa-address-card"></i>
                             <span class="container__bar__item__text">
                                 QL thẻ thành viên
                             </span>
                         </li>
-                        <li class="container__bar__item">
+                        <li id="QLCalendar" class="container__bar__item">
                             <i class="fa-solid fa-shop"></i>
                             <span class="container__bar__item__text">
-                                QL shop
+                                QL lịch tập
                             </span>
                         </li>
                     </ul>
@@ -191,9 +191,7 @@
                                 <div class="chatbox__message">
                                     <ul class="chatbox__message__list">
                                         <li class="chatbox__message__item chatbox__message__item__left">
-                                            <!-- <span class="chatbox__message__item__text">
-                                                Em chào anh/chị Em có thể giúp gì được anh chị ạ!
-                                            </span> -->
+
                                         </li>
                                     </ul>
                                 </div>
@@ -219,10 +217,43 @@
                     </div>
 
                     <!-- ACCOUNT -->
-                    <div class="container__show__account"></div>
+                    <div class="container__show__account">
+                        <!-- <div class="container__show__cart__add">
+                            <h1>QUẢN LÍ TÀI KHOẢN</h1>
+                            <button class="container__show__cart__add__btn">Thêm tài khoản</button>
+                        </div>
+                        <div class="container__show__cart__head">
+                            <div class="container__show__cart__head__input__box">
+                                <input class="show__input__id" type="text" oninput="findByID(this)"
+                                    placeholder="Nhập mã thẻ hoặc tên khách hàng">
+                                <div class="show__find__id__box">
+                                </div>
+                                </table>
+                            </div>
+                            <div class="head-end">
+                                <button class="container__show__cart__find__btn">Tìm kiếm</button>
+                            </div>
+                        </div>
+                        <i class="remove-icon fa-solid fa-trash"></i>
+                        <div class="container__show__cart__content">
+                            <table class="table__show table__show__main">
+                                <tr class="tr__show">
+                                    <th class="th__show">ID</th>
+                                    <th class="th__show">EMAIL</th>
+                                    <th class="th__show">USERNAME</th>
+                                    <th class="th__show">PASSWORD</th>
+                                    <th class="th__show"></th>
+                                </tr>
+                            </table>
+                        </div>
+                        <div class="save__box">
+                            <span class="save__message"></span>
+                            <button class="save-btn">Lưu</button>
+                        </div> -->
+                    </div>
 
                     <!-- CART -->
-                    <!-- <div class="container__show__cart">
+                    <div class="container__show__cart">
                         <div class="container__show__cart__add">
                             <h1>QUẢN LÍ THẺ THÀNH VIÊN</h1>
                             <button class="container__show__cart__add__btn">Thêm thẻ thành viên</button>
@@ -268,10 +299,12 @@
                             <span class="save__message"></span>
                             <button class="save-btn">Lưu</button>
                         </div>
-                    </div> -->
+                    </div>
 
                     <!-- SHOP -->
-                    <div class="container__show__shop"></div>
+                    <div class="container__show__calendar">
+
+                    </div>
 
                 </div>
             </div>

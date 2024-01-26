@@ -1,39 +1,150 @@
-const showCart = document.querySelector(".container__show__cart");
-if (showCart) {
-    const tableCart = showCart.getElementsByTagName("table");
+/* CLICK TO SHOW FORM */
+const messageFormBTN = document.getElementById("QLMessage");
+const accountFormBTN = document.getElementById("QLAccount");
+const cartFormBTN = document.getElementById("QLCart");
+const calendarFormBTN = document.getElementById("QLCalendar");
+// messageFormBTN
+const messageForm = document.querySelector(".container__show__message")
+const accountForm = document.querySelector(".container__show__account")
+const cartForm = document.querySelector(".container__show__cart")
+const calendarForm = document.querySelector(".container__show__calendar")
+
+messageForm.style.display = "block";
+accountForm.style.display = "none";
+cartForm.style.display = "none";
+calendarForm.style.display = "none";
+
+var itemsBox = document.querySelectorAll('.container__bar__item');
+
+// Lặp qua từng thẻ li
+for (var i = 0; i < itemsBox.length; i++) {
+    itemsBox[i].addEventListener('click', function () {
+        for (var j = 0; j < itemsBox.length; j++) {
+            itemsBox[j].classList.remove('container__bar__item--active');
+        }
+        this.classList.add('container__bar__item--active');
+    });
 }
+
+messageFormBTN.addEventListener("click", function () {
+    messageForm.style.display = "block";
+    accountForm.style.display = "none";
+    cartForm.style.display = "none";
+    calendarForm.style.display = "none";
+})
+// accountFormBTN
+accountFormBTN.addEventListener("click", function () {
+    messageForm.style.display = "none";
+    accountForm.style.display = "block";
+    cartForm.style.display = "none";
+    calendarForm.style.display = "none";
+
+})
+// cartFormBTN
+cartFormBTN.addEventListener("click", function () {
+    messageForm.style.display = "none";
+    accountForm.style.display = "none";
+    cartForm.style.display = "block";
+    calendarForm.style.display = "none";
+    showCart()
+})
+// calendarFormBTN
+calendarFormBTN.addEventListener("click", function () {
+    messageForm.style.display = "none";
+    accountForm.style.display = "none";
+    cartForm.style.display = "none";
+    calendarForm.style.display = "block";
+    calendarFormBTN.classList.add("container__bar__item--active");
+
+})
+
+
+
+// toast
+function toast({
+    title = "",
+    message = '',
+    type = "info",
+    duration = 3000
+}) {
+    const main = document.getElementById('toast');
+    if (main) {
+        const toast = document.createElement('div');
+
+        // auto remove
+        const autoRemove = setTimeout(function () {
+            main.removeChild(toast)
+        }, duration + 1000)
+        // remove when click
+        toast.onclick = function (e) {
+            if (e.target.closest('.toast__close')) {
+                main.removeChild(toast);
+                clearTimeout(autoRemove);
+            }
+        }
+        const icons = {
+            success: ' fas fa-circle-check',
+            info: 'fas fa-info-circle',
+            warning: 'fas fa-exclamation-circle',
+            error: 'fas fa-exclamation-circle',
+
+        }
+        const icon = icons[type]
+
+        const delay = (duration / 1000).toFixed(2)
+        toast.classList.add('toast', `toast__${type}`);
+        toast.style.animation = `slideInleft ease .3s, fadeOut linear 1s ${delay}s forwards`
+        toast.innerHTML = `
+            <div class="toast__icon">
+                <i class="${icon}"></i>
+            </div>
+            <div class="toast__body">
+                <div class="toast__title">${title}</div>
+                <div class="toast__msg">${message}</div>
+            </div>
+            <div class="toast__close">
+                <i class="fa-sharp fa-solid fa-xmark"></i>
+            </div>
+                    `;
+        main.appendChild(toast);
+        setTimeout(function () {
+        }, duration + 1000)
+    }
+}
+function showSuccessToast(message) {
+    toast({
+        title: "Thành công",
+        message: message,
+        type: "success",
+        duration: 5000,
+    })
+}
+function showErrorToast(message) {
+    toast({
+        title: "Thất bại",
+        message: message,
+        type: "error",
+        duration: 5000,
+    })
+}
+
+
+// ========================
+/* function of form */
 const jsonPathCart = '../data/cartdata.json';
 let myData = {};
 let activeOption = "";
-// Kiểm tra xem dữ liệu đã tồn tại trong localStorage chưa
-if (!localStorage.getItem('cartData')) {
-    fetch(jsonPathCart)
-        .then(response => {
-            if (!response.ok) {
-                throw new Error('Network response was not ok');
-            }
-            return response.json();
-        })
-        .then(data => {
-            myData = data;
-            // Lưu dữ liệu vào localStorage
-            localStorage.setItem('cartData', JSON.stringify(myData));
-            innerTableCart(myData.carts)
-        })
-        .catch(error => {
-            console.error('Fetch error:', error);
-        });
-} else {
-    // Nếu dữ liệu đã tồn tại trong localStorage, sử dụng nó
-    myData = JSON.parse(localStorage.getItem('cartData'));
-    innerTableCart(myData.carts);
-}
 
+/*
+SHOW CART
+*/
 
+let trAddArray;
+let trAddArray2;
 
 function innerTableCart(array) {
-    if (showCart) {
-        const tableCart = showCart.querySelector(".table__show");
+    if (cartForm) {
+        const tableCart = cartForm.querySelector(".table__show");
 
         array.map(value => {
             var trElement = document.createElement("tr");
@@ -56,32 +167,56 @@ function innerTableCart(array) {
     }
 }
 
+function showCart() {
+    const tableCart = cartForm.getElementsByTagName("table");
 
-// add cart
-const btnAddCart = document.querySelector(".container__show__cart__add__btn");
-const showSide = document.querySelector(".container__show__cart__content")
-let trAddArray;
-let trAddArray2;
-if (btnAddCart)
+    // Kiểm tra xem dữ liệu đã tồn tại trong localStorage chưa
+    if (!localStorage.getItem('cartData')) {
+        fetch(jsonPathCart)
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Network response was not ok');
+                }
+                return response.json();
+            })
+            .then(data => {
+                myData = data;
+
+                localStorage.setItem('cartData', JSON.stringify(myData));
+                innerTableCart(myData.carts)
+            })
+            .catch(error => {
+                console.error('Fetch error:', error);
+            });
+    } else {
+        // Nếu dữ liệu đã tồn tại trong localStorage, sử dụng nó
+        myData = JSON.parse(localStorage.getItem('cartData'));
+        innerTableCart(myData.carts);
+    }
+
+    var btnAddCart = document.querySelector(".container__show__cart__add__btn");
+    var showSide = document.querySelector(".container__show__cart__content")
+    console.log(btnAddCart)
     btnAddCart.addEventListener("click", () => {
+        console.log("j")
         if (activeOption == "") {
             activeOption = "add";
-            const tableCart = showCart.querySelector(".table__show");
+            const tableCart = cartForm.querySelector(".table__show");
             var trElement = document.createElement("tr");
             trElement.className = "trAdd tr__show";
             trElement.innerHTML = `
-        <td class="td__show"><input class="input__show inputAdd" type="text" placeholder="....."></td>
-        <td class="td__show"><input class="input__show inputAdd" type="text" placeholder="....."></td>
-        <td class="td__show"><input class="input__show inputAdd" type="text" placeholder="....."></td>
-        <td class="td__show"><input class="input__show inputAdd" type="text" placeholder="....."></td>
-        <td class="td__show"><input class="input__show inputAdd" type="text" placeholder="....."></td>
-        <td class="td__show"><input class="input__show inputAdd" type="text" placeholder="....."></td>
-        <td class="td__show"><input class="input__show inputAdd" type="text" placeholder="....."></td>
-        <td class="td__show">
-            <i class="fa-solid fa-pen-to-square" onclick="editCart(this)"></i>
-            <i class="fa-solid fa-trash" onclick="removeCart(this)"></i>
-        </td>
-            `
+            <td class="td__show"><input class="input__show inputAdd" type="text" placeholder="....."></td>
+            <td class="td__show"><input class="input__show inputAdd" type="text" placeholder="....."></td>
+            <td class="td__show"><input class="input__show inputAdd" type="text" placeholder="....."></td>
+            <td class="td__show"><input class="input__show inputAdd" type="text" placeholder="....."></td>
+            <td class="td__show"><input class="input__show inputAdd" type="text" placeholder="....."></td>
+            <td class="td__show"><input class="input__show inputAdd" type="text" placeholder="....."></td>
+            <td class="td__show"><input class="input__show inputAdd" type="text" placeholder="....."></td>
+            <td class="td__show">
+                <i class="fa-solid fa-pen-to-square" onclick="editCart(this)"></i>
+                <i class="fa-solid fa-trash" onclick="removeCart(this)"></i>
+            </td>
+                `
             tableCart.appendChild(trElement);
             trAddArray = document.querySelectorAll(".trAdd");
             trAddArray = Array.from(trAddArray);
@@ -92,12 +227,90 @@ if (btnAddCart)
         } else if (activeOption == "remove") {
             showErrorToast("Bạn đang thực hiện thao tác xóa thẻ, bấm lưu để tiếp tục sử dụng chức năng này");
         }
-
     })
 
-const saveMessage = document.querySelector(".save__message");
-var saveCartElement = document.querySelector(".save-btn");
-if (saveCartElement)
+    const findBTN = document.querySelector(".container__show__cart__find__btn");
+    findBTN.addEventListener("click", () => {
+        var inputID = document.querySelector(".show__input__id").value.trim();
+        var selectPackage = document.querySelector(".show__input__package").value.trim();
+        var inputStart = document.getElementById("input-date-start").value.trim()
+        var inputEnd = document.getElementById("input-date-end").value.trim();
+
+        myData = JSON.parse(localStorage.getItem('cartData'));
+        dataArray = myData.carts;
+        const tableShowElement = document.querySelector(".table__show");
+
+        if (inputID != "" || selectPackage != "" || inputStart != "" || inputEnd != "") {
+            tableShowElement.style.display = "none";
+            const tableBox = document.querySelector(".container__show__cart__content");
+            // tableBox.innerHTML = "";
+            var tableCreate = document.createElement("table");
+            tableCreate.className = "table__show";
+            var trCreate = document.createElement("tr");
+            trCreate.className = "tr__show";
+            trCreate.innerHTML = `
+            <th class="th__show">Mã thẻ</th>
+            <th class="th__show">Tên Hội Viên</th>
+            <th class="th__show">Tuổi</th>
+            <th class="th__show">Số điện thoại</th>
+            <th class="th__show">Loại Thành Viên</th>
+            <th class="th__show">Ngày gia nhập</th>
+            <th class="th__show">Ngày Hết Hạn Thẻ</th>
+            <th class="th__show">Thao tác</th>
+        `
+            tableCreate.appendChild(trCreate);
+            dataArray.map((value, index) => {
+                var test = true;
+                if (inputID != "" && test == true) {
+                    if (!value.id.includes(inputID)) {
+                        test = false;
+                    }
+                }
+                if (selectPackage != "" && test == true) {
+                    if (selectPackage !== value.cartType) {
+                        test = false;
+                    }
+                }
+                if (inputStart != "" && test == true) {
+                    if (inputStart !== value.dateStart) {
+                        test = false;
+                    }
+                }
+                if (inputEnd != "" && test == true) {
+                    if (inputEnd !== value.dateEnd) {
+                        test = false;
+                    }
+                }
+                if (inputID == "" && selectPackage == "" && inputStart == "" && inputEnd == "") {
+                    test = false;
+                }
+                if (test == true) {
+
+                    var trCreate = document.createElement("tr");
+                    trCreate.className = "tr__show";
+                    trCreate.innerHTML = `
+                    <td class="td__show">${value.id}</td>
+                    <td class="td__show">${value.name}</td>
+                    <td class="td__show">${value.age}</td>
+                    <td class="td__show">${value.phoneNumber}</td>
+                    <td class="td__show">${value.cartType}</td>
+                    <td class="td__show">${value.dateStart}</td>
+                    <td class="td__show">${value.dateEnd}</td>
+                    <td class="td__show">
+                    <i class="fa-solid fa-pen-to-square" onclick="editCart(this)"></i>
+                    <i class="fa-solid fa-trash" onclick="removeCart(this)"></i>
+                    </td>
+                `
+                    tableCreate.appendChild(trCreate);
+
+                }
+            });
+            tableBox.appendChild(tableCreate);
+        }
+    })
+
+    const saveMessage = document.querySelector(".save__message");
+    var saveCartElement = document.querySelector(".save-btn");
     saveCartElement.addEventListener("click", () => {
         if (activeOption == "add") {
             if (trAddArray) {
@@ -211,6 +424,9 @@ if (saveCartElement)
             showErrorToast("Vui lòng chọn chức năng!");
         }
     })
+}
+
+
 
 function checkInformationValid(arrayData) {
     myData = JSON.parse(localStorage.getItem('cartData'));
@@ -329,7 +545,6 @@ function editCart(thisElement) {
                 indexChange = index - 1;
             }
         })
-        // console.log("indexChange", indexChange);
         trelementChange = trElement;
         var tdArray = trElement.getElementsByTagName("td")
         tdArray = Array.from(tdArray);
@@ -429,86 +644,7 @@ function findByID(thisElement) {
 
 }
 
-const findBTN = document.querySelector(".container__show__cart__find__btn");
-if (findBTN)
-    findBTN.addEventListener("click", () => {
-        var inputID = document.querySelector(".show__input__id").value.trim();
-        var selectPackage = document.querySelector(".show__input__package").value.trim();
-        var inputStart = document.getElementById("input-date-start").value.trim()
-        var inputEnd = document.getElementById("input-date-end").value.trim();
 
-        myData = JSON.parse(localStorage.getItem('cartData'));
-        dataArray = myData.carts;
-        const tableShowElement = document.querySelector(".table__show");
-
-        if (inputID != "" || selectPackage != "" || inputStart != "" || inputEnd != "") {
-            tableShowElement.style.display = "none";
-            const tableBox = document.querySelector(".container__show__cart__content");
-            // tableBox.innerHTML = "";
-            var tableCreate = document.createElement("table");
-            tableCreate.className = "table__show";
-            var trCreate = document.createElement("tr");
-            trCreate.className = "tr__show";
-            trCreate.innerHTML = `
-            <th class="th__show">Mã thẻ</th>
-            <th class="th__show">Tên Hội Viên</th>
-            <th class="th__show">Tuổi</th>
-            <th class="th__show">Số điện thoại</th>
-            <th class="th__show">Loại Thành Viên</th>
-            <th class="th__show">Ngày gia nhập</th>
-            <th class="th__show">Ngày Hết Hạn Thẻ</th>
-            <th class="th__show">Thao tác</th>
-        `
-            tableCreate.appendChild(trCreate);
-            dataArray.map((value, index) => {
-                var test = true;
-                if (inputID != "" && test == true) {
-                    if (!value.id.includes(inputID)) {
-                        test = false;
-                    }
-                }
-                if (selectPackage != "" && test == true) {
-                    if (selectPackage !== value.cartType) {
-                        test = false;
-                    }
-                }
-                if (inputStart != "" && test == true) {
-                    if (inputStart !== value.dateStart) {
-                        test = false;
-                    }
-                }
-                if (inputEnd != "" && test == true) {
-                    if (inputEnd !== value.dateEnd) {
-                        test = false;
-                    }
-                }
-                if (inputID == "" && selectPackage == "" && inputStart == "" && inputEnd == "") {
-                    test = false;
-                }
-                if (test == true) {
-
-                    var trCreate = document.createElement("tr");
-                    trCreate.className = "tr__show";
-                    trCreate.innerHTML = `
-                    <td class="td__show">${value.id}</td>
-                    <td class="td__show">${value.name}</td>
-                    <td class="td__show">${value.age}</td>
-                    <td class="td__show">${value.phoneNumber}</td>
-                    <td class="td__show">${value.cartType}</td>
-                    <td class="td__show">${value.dateStart}</td>
-                    <td class="td__show">${value.dateEnd}</td>
-                    <td class="td__show">
-                    <i class="fa-solid fa-pen-to-square" onclick="editCart(this)"></i>
-                    <i class="fa-solid fa-trash" onclick="removeCart(this)"></i>
-                    </td>
-                `
-                    tableCreate.appendChild(trCreate);
-
-                }
-            });
-            tableBox.appendChild(tableCreate);
-        }
-    })
 
 
 function getValueOnTrShow(trElement) {
@@ -520,118 +656,60 @@ function getValueOnTrShow(trElement) {
     })
     return arrayValue;
 }
-// function getValueOnTrEdit(trElement) {
-//     var tdArray = trElement.innerHTML;
-//     // tdArray = Array.from(tdArray);
-//     console.log(tdArray)
-//     var arrayValue = [];
-//     // arrayValue = tdArray.map((value, index)=>{
-//     //     // console.log(value.querySelector(".inputAdd"))
-//     //     // console.log("value: ", value)   
-//     //     return value.getAttribute("placeholder");
-//     // }) 
-//     // console.log(arrayValue)
-// }
 
 
 
 
 
-// toast
-function toast({
-    title = "",
-    message = '',
-    type = "info",
-    duration = 3000
-}) {
-    const main = document.getElementById('toast');
-    if (main) {
-        const toast = document.createElement('div');
-
-        // auto remove
-        const autoRemove = setTimeout(function () {
-            main.removeChild(toast)
-        }, duration + 1000)
-        // remove when click
-        toast.onclick = function (e) {
-            if (e.target.closest('.toast__close')) {
-                main.removeChild(toast);
-                clearTimeout(autoRemove);
-            }
-        }
-        const icons = {
-            success: ' fas fa-circle-check',
-            info: 'fas fa-info-circle',
-            warning: 'fas fa-exclamation-circle',
-            error: 'fas fa-exclamation-circle',
-
-        }
-        const icon = icons[type]
-
-        const delay = (duration / 1000).toFixed(2)
-        toast.classList.add('toast', `toast__${type}`);
-        toast.style.animation = `slideInleft ease .3s, fadeOut linear 1s ${delay}s forwards`
-        toast.innerHTML = `
-            <div class="toast__icon">
-                <i class="${icon}"></i>
-            </div>
-            <div class="toast__body">
-                <div class="toast__title">${title}</div>
-                <div class="toast__msg">${message}</div>
-            </div>
-            <div class="toast__close">
-                <i class="fa-sharp fa-solid fa-xmark"></i>
-            </div>
-                    `;
-        main.appendChild(toast);
-        setTimeout(function () {
-        }, duration + 1000)
-    }
-}
-function showSuccessToast(message) {
-    toast({
-        title: "Thành công",
-        message: message,
-        type: "success",
-        duration: 5000,
-    })
-}
-function showErrorToast(message) {
-    toast({
-        title: "Thất bại",
-        message: message,
-        type: "error",
-        duration: 5000,
-    })
-}
-
-
-// send message to user
-function sendMessage(message) {
-    localStorage.setItem('adminMessage', message);
-
-    // Lưu tin nhắn vào lịch sử
-    var historyMessage = JSON.parse(localStorage.getItem('historyMessage')) || [];
-    historyMessage.push({ sender: 'Admin', message: message });
-    localStorage.setItem('historyMessage', JSON.stringify(historyMessage));
-}
-
-// Kiểm tra tin nhắn mới từ người dùng sau mỗi giây
-setInterval(function () {
-    var userMessage = localStorage.getItem('userMessage');
-    if (userMessage) {
-        // Hiển thị tin nhắn từ người dùng
-        displayBotMessage(userMessage,)
-        // Xóa tin nhắn từ người dùng sau khi đã hiển thị
-        localStorage.removeItem('userMessage');
-
-        chatBoxMessage.scrollTop = chatBoxMessage.scrollHeight + 100;
+function showMessage() {
+    function sendMessage(message) {
+        localStorage.setItem('adminMessage', message);
         // Lưu tin nhắn vào lịch sử
-        // var historyMessage = JSON.parse(localStorage.getItem('historyMessage')) || [];
-        // historyMessage.push({ sender: 'User', message: userMessage });
-        // localStorage.setItem('historyMessage', JSON.stringify(historyMessage));
+        var historyMessage = JSON.parse(localStorage.getItem('historyMessage')) || [];
+        historyMessage.push({ sender: 'Admin', message: message });
+        localStorage.setItem('historyMessage', JSON.stringify(historyMessage));
+
     }
-}, 1000);
+    // Kiểm tra tin nhắn mới từ người dùng sau mỗi giây
+    setInterval(function () {
+        var userMessage = localStorage.getItem('userMessage');
+        if (userMessage) {
+            // Hiển thị tin nhắn từ người dùng
+            displayBotMessage(userMessage)
+            // Xóa tin nhắn từ người dùng sau khi đã hiển thị
+            localStorage.removeItem('userMessage');
+
+            chatBoxMessage.scrollTop = chatBoxMessage.scrollHeight + 100;
+            // Lưu tin nhắn vào lịch sử
+            // var historyMessage = JSON.parse(localStorage.getItem('historyMessage')) || [];
+            // historyMessage.push({ sender: 'User', message: userMessage });
+            // localStorage.setItem('historyMessage', JSON.stringify(historyMessage));
+        }
+    }, 1000);
+
+
+    const inputBox = document.querySelector('.chatbox__bottom__input');
+    const inputElement = inputBox.querySelector('input')
+    const sendButton = inputBox.querySelector('i');
+    sendButton.addEventListener('click', async () => { // Thêm async vào đây
+        const valueInput = inputElement.value.trim();
+        if (valueInput) {
+            displayUserMessage(valueInput);
+            inputElement.value = '';
+            sendMessage(valueInput)
+            chatBoxMessage.scrollTop = chatBoxMessage.scrollHeight + 100;
+        }
+    });
+    inputElement.addEventListener("keypress", function (event) {
+        if (event.key === "Enter") {
+            event.preventDefault();
+            sendButton.click();
+        }
+    });
+}
+const chatBoxMessage = document.querySelector('.chatbox__message');
+
+const chatBoxList = chatBoxMessage.querySelector('.chatbox__message__list');
 
 function makeLi(value = "", option = "chatbox__message__item__right") {
     const chatBoxItem = document.createElement('li');
@@ -645,9 +723,6 @@ function makeLi(value = "", option = "chatbox__message__item__right") {
     return chatBoxItem;
 }
 
-const chatBoxMessage = document.querySelector('.chatbox__message');
-const chatBoxList = chatBoxMessage.querySelector('.chatbox__message__list');
-
 function displayUserMessage(message) {
     const chatBoxItemUser = makeLi(message, "chatbox__message__item__right");
     chatBoxList.appendChild(chatBoxItemUser);
@@ -657,28 +732,8 @@ function displayBotMessage(message) {
     chatBoxList.appendChild(chatBoxItemBot);
 }
 
-const inputBox = document.querySelector('.chatbox__bottom__input');
-const inputElement = inputBox.querySelector('input')
-const sendButton = inputBox.querySelector('i');
-sendButton.addEventListener('click', async () => { // Thêm async vào đây
-    const valueInput = inputElement.value.trim();
-    if (valueInput) {
-        displayUserMessage(valueInput);
-        inputElement.value = '';
-        sendMessage(valueInput)
-        chatBoxMessage.scrollTop = chatBoxMessage.scrollHeight + 100;
-    }
-});
-
-inputElement.addEventListener("keypress", function (event) {
-    if (event.key === "Enter") {
-        event.preventDefault();
-        sendButton.click();
-    }
-});
-
-
 window.onload = function () {
+    console.log("hel")
     var myData = JSON.parse(localStorage.getItem('historyMessage'));
     myData.map((value) => {
         if (value.sender == 'User') {
@@ -689,3 +744,65 @@ window.onload = function () {
         }
     })
 }
+
+
+
+// acount ql
+// email: "quyen@gmail.com"
+// id: "MT05"
+// name: "Quyen Developer"
+// password: "123"
+
+
+// const jsonPathAccount = '../data/loginData.json';
+
+// if (!localStorage.getItem('loginData')) {
+//     fetch(jsonPathAccount)
+//         .then(response => {
+//             if (!response.ok) {
+//                 throw new Error('Network response was not ok');
+//             }
+//             return response.json();
+//         })
+//         .then(data => {
+//             myData = data;
+//             // Lưu dữ liệu vào localStorage
+//             localStorage.setItem('loginData', JSON.stringify(myData));
+//             innerTableCart(myData.carts)
+//         })
+//         .catch(error => {
+//             console.error('Fetch error:', error);
+//         });
+// } else {
+//     // Nếu dữ liệu đã tồn tại trong localStorage, sử dụng nó
+//     myData = JSON.parse(localStorage.getItem('loginData'));
+//     // innerTableCart(myData.carts);
+// }
+
+// QLAccount.addEventListener("click", () => {
+//     myData = JSON.parse(localStorage.getItem('loginData'));
+//     console.log(myData)
+//     innerTableAccount(myData.accounts);
+// })
+
+// function innerTableAccount(array) {
+//     if (cartForm) {
+//         const tableCart = cartForm.querySelector(".table__show");
+
+//         array.map(value => {
+//             var trElement = document.createElement("tr");
+//             trElement.className = "tr__show";
+//             trElement.innerHTML = `
+//         <td class="td__show">${value.id}</td>
+//         <td class="td__show">${value.name}</td>
+//         <td class="td__show">${value.email}</td>
+//         <td class="td__show">${value.password}</td>
+//         <td class="td__show">
+//         <i class="fa-solid fa-pen-to-square" onclick="editCart(this)"></i>
+//         <i class="fa-solid fa-trash" onclick="removeCart(this)"></i>
+//         </td>
+//         `
+//             tableCart.appendChild(trElement);
+//         })
+//     }
+// }
