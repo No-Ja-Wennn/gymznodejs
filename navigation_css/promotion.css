@@ -821,9 +821,9 @@ body{
     position: relative;
     top: 0px;
 }
-.noidung__text1:hover{
+/* .noidung__text1:hover{
     cursor: pointer;
-}
+} */
 .content__inner {
     position: relative;
     display: flex;

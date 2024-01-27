@@ -52,6 +52,7 @@ function yourFunction(event) {
 }
 
 
+var service = document.querySelector("b.content__inner");
 var sub = document.querySelector(".submenu b");
 var subtext = document.querySelector(".submenu .bx");
 var subbgr = document.querySelector(".content__inner");
@@ -70,16 +71,17 @@ function toggleNoidung222(event) {
         noidung222.style.display = 'flex';
         noidung222.style.animation = 'fadeInFromTop 0.4s ease-out forwards';
         subtext.style.animation = 'service_slide_right 0.3s ease-in-out forwards';
+        service.style.animation = 'change_bgr 0.3s ease-in-out forwards'
         // sub.style.color = 'goldenrod';
-        sub.style.background = 'rgba(0, 0, 0, 0.2)';
+        // sub.style.background = 'rgba(0, 0, 0, 0.2)';
     } else {
-        noidung222.style.animation = 'fadeOutToTop 0.5s ease-out forwards';
+        noidung222.style.animation = 'fadeOutToTop 0.3s ease-out forwards';
         setTimeout(function(){
             noidung222.style.display = 'none';
-        }, 500);
-        subtext.style.animation = 'service_slide_left 0.3s ease-in-out forwards';
-        sub.style.color = 'white';
-        sub.style.background = 'none';
+        }, 300);
+        subtext.style.animation = 'service_slide_left 0.35s ease-in-out forwards';
+        service.style.animation = 're_bgr 0.3s ease-in-out forwards'
+        // sub.style.background = 'none';
     }
 }
 
@@ -90,6 +92,6 @@ document.addEventListener('click', function () {
             noidung222.style.display = 'none';
         }, 500);
         subtext.style.animation = 'service_slide_left 0.3s ease-in-out forwards';
-        sub.style.color = 'white';
+        service.style.animation = 're_bgr 0.3s ease-in-out forwards'
 });
 
