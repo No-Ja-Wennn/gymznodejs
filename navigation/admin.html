@@ -218,24 +218,25 @@
 
                     <!-- ACCOUNT -->
                     <div class="container__show__account">
-                        <!-- <div class="container__show__cart__add">
+                        <div class="container__show__add container__show__account__add">
                             <h1>QUẢN LÍ TÀI KHOẢN</h1>
-                            <button class="container__show__cart__add__btn">Thêm tài khoản</button>
+                            <button class="container__show__add__btn container__show__account__add__btn">Thêm tài
+                                khoản</button>
                         </div>
-                        <div class="container__show__cart__head">
-                            <div class="container__show__cart__head__input__box">
-                                <input class="show__input__id" type="text" oninput="findByID(this)"
+                        <div class="container__show__head">
+                            <div class="container__show__head__input__box">
+                                <input class="show__input__id" type="text" oninput="findByIDAccount(this)"
                                     placeholder="Nhập mã thẻ hoặc tên khách hàng">
                                 <div class="show__find__id__box">
                                 </div>
                                 </table>
                             </div>
                             <div class="head-end">
-                                <button class="container__show__cart__find__btn">Tìm kiếm</button>
+                                <button class="container__show__find__btn">Tìm kiếm</button>
                             </div>
                         </div>
-                        <i class="remove-icon fa-solid fa-trash"></i>
-                        <div class="container__show__cart__content">
+                        <!-- <i class="remove-icon fa-solid fa-trash"></i> -->
+                        <div class="container__show__content">
                             <table class="table__show table__show__main">
                                 <tr class="tr__show">
                                     <th class="th__show">ID</th>
@@ -249,18 +250,19 @@
                         <div class="save__box">
                             <span class="save__message"></span>
                             <button class="save-btn">Lưu</button>
-                        </div> -->
+                        </div>
                     </div>
 
                     <!-- CART -->
-                    <div class="container__show__cart">
-                        <div class="container__show__cart__add">
+                    <div class="container__show container__show__cart">
+                        <div class="container__show__add container__show__cart__add">
                             <h1>QUẢN LÍ THẺ THÀNH VIÊN</h1>
-                            <button class="container__show__cart__add__btn">Thêm thẻ thành viên</button>
+                            <button class="container__show__add__btn container__show__cart__add__btn">Thêm thẻ thành
+                                viên</button>
                         </div>
-                        <div class="container__show__cart__head">
-                            <div class="container__show__cart__head__input__box">
-                                <input class="show__input__id" type="text" oninput="findByID(this)"
+                        <div class="container__show__head container__show__cart__head">
+                            <div class="container__show__head__input__box container__show__cart__head__input__box">
+                                <input class="show__input__id" type="text" oninput="findByIDCart(this)"
                                     placeholder="Nhập mã thẻ hoặc tên khách hàng">
                                 <div class="show__find__id__box">
                                 </div>
@@ -280,8 +282,8 @@
                                 <button class="container__show__cart__find__btn">Tìm kiếm</button>
                             </div>
                         </div>
-                        <i class="remove-icon fa-solid fa-trash"></i>
-                        <div class="container__show__cart__content">
+                        <!-- <i class="remove-icon fa-solid fa-trash"></i> -->
+                        <div class="container__show__content container__show__cart__content">
                             <table class="table__show table__show__main">
                                 <tr class="tr__show">
                                     <th class="th__show">Mã thẻ</th>
@@ -301,9 +303,43 @@
                         </div>
                     </div>
 
-                    <!-- SHOP -->
+                    <!-- CALENDAR EX -->
                     <div class="container__show__calendar">
-
+                        <div class="container__show__add container__show__calendar__add">
+                            <h1>QUẢN LÍ LỊCH TẬP</h1>
+                            <button class="container__show__add__btn container__show__calendar__add__btn">Thêm lịch tập</button>
+                        </div>
+                        <div class="container__show__head container__show__calendar__head">
+                            <div class="container__show__head__input__box container__show__calendar__head__input__box">
+                                <input class="show__input__id" type="text" oninput="findByIDCalendar(this)"
+                                    placeholder="Nhập mã thẻ hoặc tên khách hàng">
+                                <div class="show__find__id__box">
+                                </div>
+                                </table>
+                            </div>
+                            <div class="head-end">
+                                <button class="container__show__find__btn container__show__calendar__find__btn">Tìm kiếm</button>
+                            </div>
+                        </div>
+                        <!-- <i class="remove-icon fa-solid fa-trash"></i> -->
+                        <div class="container__show__content container__show__calendar__content">
+                            <table class="table__show table__show__main">
+                                <tr class="tr__show">
+                                    <th class="th__show">Mã thẻ</th>
+                                    <th class="th__show">Tên Hội Viên</th>
+                                    <th class="th__show">Ngày tập</th>
+                                    <th class="th__show">Thời gian bắt đầu</th>
+                                    <th class="th__show">Thời gian kết thúc</th>
+                                    <th class="th__show">Bài tập</th>
+                                    <th class="th__show">Huấn luyện viên</th>
+                                    <th class="th__show">Thao tác</th>
+                                </tr>
+                            </table>
+                        </div>
+                        <div class="save__box">
+                            <span class="save__message"></span>
+                            <button class="save-btn">Lưu</button>
+                        </div>
                     </div>
 
                 </div>

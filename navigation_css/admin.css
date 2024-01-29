@@ -91,30 +91,30 @@
 .container__show{
     flex: 12;
 }
-/* container__show__cart__head */
-.container__show__cart{
-    display: none;
+/* container__show__head */
+.container__show{
+    /* display: none; */
 }
 
-.container__show__cart__add{
+.container__show__add{
     display: flex;
     align-items: center;
     margin-top: 12px;
 }
-.container__show__cart__add button{
+.container__show__add button{
     margin-left: 12px;
     height: 32px;
     font-size: 14px;
     padding: 0 6px;
     background-color: #f88900;
 }
-.container__show__cart__add button:hover{
+.container__show__add button:hover{
     background-color: rgb(229, 127, 1);
     cursor: pointer;
 }
 
 
-.container__show__cart__head{
+.container__show__head{
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -122,7 +122,7 @@
     height: 70px;
 }
 
-.container__show__cart__head__input__box{
+.container__show__head__input__box{
     display: flex;
     flex-direction: column;
     position: relative;
@@ -181,7 +181,7 @@
     justify-content: flex-end;
 }
 
-.container__show__cart__find__btn{
+.container__show__find__btn{
     display: block;
     width: 90px;
     height: 34px;
@@ -189,7 +189,7 @@
     padding: 4px 0 2px;
 }
 
-.container__show__cart__content{
+.container__show__content{
     padding: 0px 6px;
     position: relative;
 }
@@ -220,7 +220,8 @@
 .th__show{
     font-size: 18px;
     font-weight: 700;
-
+    line-height: 22px;
+    padding: 8px 4px;
 }
 .td__show{ 
     font-size: 16px;
