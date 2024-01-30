@@ -9,10 +9,10 @@ const accountForm = document.querySelector(".container__show__account")
 const cartForm = document.querySelector(".container__show__cart")
 const calendarForm = document.querySelector(".container__show__calendar")
 
-messageForm.style.display = "none";
+messageForm.style.display = "block";
 accountForm.style.display = "none";
 cartForm.style.display = "none";
-calendarForm.style.display = "block";
+calendarForm.style.display = "none";
 
 
 const jsonPathCart = '../data/cartdata.json';
@@ -20,10 +20,12 @@ const jsonPathCalendar = '../data/calendarData.json';
 
 let myData = {};
 let activeOption = "";
+let activeForm = "";
+let doingForm = "";
 
 var itemsBox = document.querySelectorAll('.container__bar__item');
 
-// Lặp qua từng thẻ li
+// li loop
 for (var i = 0; i < itemsBox.length; i++) {
     itemsBox[i].addEventListener('click', function () {
         for (var j = 0; j < itemsBox.length; j++) {
@@ -38,7 +40,10 @@ messageFormBTN.addEventListener("click", function () {
     accountForm.style.display = "none";
     cartForm.style.display = "none";
     calendarForm.style.display = "none";
+    showMessage();
+    saveAciveForm("message")
 })
+
 // accountFormBTN
 accountFormBTN.addEventListener("click", function () {
     messageForm.style.display = "none";
@@ -46,6 +51,7 @@ accountFormBTN.addEventListener("click", function () {
     cartForm.style.display = "none";
     calendarForm.style.display = "none";
     showAccount();
+    saveAciveForm("account")
 })
 
 // cartFormBTN
@@ -55,6 +61,7 @@ cartFormBTN.addEventListener("click", function () {
     cartForm.style.display = "block";
     calendarForm.style.display = "none";
     showCart()
+    saveAciveForm("cart")
 })
 
 // calendarFormBTN
@@ -63,13 +70,92 @@ calendarFormBTN.addEventListener("click", function () {
     accountForm.style.display = "none";
     cartForm.style.display = "none";
     calendarForm.style.display = "block";
-    calendarFormBTN.classList.add("container__bar__item--active");
     showCalendar()
-
+    saveAciveForm("calendar")
 })
-showCalendar()
 
 
+// LOAD
+function saveAciveForm(value) {
+    activeForm = value;
+    var date = new Date();
+    date.setTime(date.getTime() + (3 * 24 * 60 * 60 * 1000)); // Set expires to 3 days from now
+    var expires = "; expires=" + date.toUTCString();
+    document.cookie = "activeForm=" + JSON.stringify(value) + expires;
+}
+
+window.onload = function () {
+    var name = "activeForm=";
+    var decodedCookie = decodeURIComponent(document.cookie);
+    var ca = decodedCookie.split(';');
+    for (var i = 0; i < ca.length; i++) {
+        var c = ca[i];
+        while (c.charAt(0) == ' ') {
+            c = c.substring(1);
+        }
+        if (c.indexOf(name) == 0) {
+            var activeNow = JSON.parse(c.substring(name.length, c.length));
+            if (activeNow == "message") {
+                messageFormBTN.click()
+            } else if (activeNow == "account") {
+                accountFormBTN.click()
+            } else if (activeNow == "cart") {
+                cartFormBTN.click()
+            } else if (activeNow == "calendar") {
+                calendarFormBTN.click()
+            } else {
+                // messageFormBTN.click()
+            }
+        }
+    }
+    //load mesage
+    var myData = JSON.parse(localStorage.getItem('historyMessage'));
+    myData.map((value) => {
+        if (value.sender == 'User') {
+            displayBotMessage(value.message)
+        }
+        if (value.sender == 'Admin') {
+            displayUserMessage(value.message)
+        }
+    })
+}
+
+
+
+// check save on active // khongbiet vie t gi day nua
+function checkValidSave(valueActive, flagConsole = true) {
+    if (doingForm == valueActive || doingForm == "") {
+        return true;
+    } else {
+        if (flagConsole)
+            if (doingForm == "cart") {
+                if (activeOption == "edit")
+                    showErrorToast("Vui lòng hoàn tất chức năng sửa thẻ");
+                else if (activeOption == "add")
+                    showErrorToast("Vui lòng hoàn tất chức năng thêm thẻ");
+                else if (activeOption == "remove")
+                    showErrorToast("Vui lòng hoàn tất chức năng xóa thẻ");
+            } else if (doingForm == "account") {
+                if (activeOption == "edit")
+                    showErrorToast("Vui lòng hoàn tất chức năng sửa tài khoản");
+                else if (activeOption == "add")
+                    showErrorToast("Vui lòng hoàn tất chức năng thêm tài khoản");
+                else if (activeOption == "remove")
+                    showErrorToast("Vui lòng hoàn tất chức năng xóa tài khoản");
+            } else if (doingForm == "calendar") {
+                if (activeOption == "edit")
+                    showErrorToast("Vui lòng hoàn tất chức năng sửa lịch tập");
+                else if (activeOption == "add")
+                    showErrorToast("Vui lòng hoàn tất chức năng thêm lịch tập");
+                else if (activeOption == "remove")
+                    showErrorToast("Vui lòng hoàn tất chức năng xóa lịch tập");
+            } else {
+                showErrorToast("lỗi ở đâu đó");
+            }
+
+        return false;
+    }
+}
 
 // toast
 function toast({
@@ -202,38 +288,7 @@ function showCart() {
             innerTableCart(myData.carts);
         }
 
-    var btnAddCart = cartForm.querySelector(".container__show__cart__add__btn");
-    var showSide = cartForm.querySelector(".container__show__cart__content")
-    btnAddCart.addEventListener("click", () => {
-        if (activeOption == "") {
-            activeOption = "add";
-            const tableCart = cartForm.querySelector(".table__show");
-            var trElement = document.createElement("tr");
-            trElement.className = "trAdd tr__show";
-            trElement.innerHTML = `
-            <td class="td__show"><input class="input__show inputAdd" type="text" placeholder="....."></td>
-            <td class="td__show"><input class="input__show inputAdd" type="text" placeholder="....."></td>
-            <td class="td__show"><input class="input__show inputAdd" type="text" placeholder="....."></td>
-            <td class="td__show"><input class="input__show inputAdd" type="text" placeholder="....."></td>
-            <td class="td__show"><input class="input__show inputAdd" type="text" placeholder="....."></td>
-            <td class="td__show"><input class="input__show inputAdd" type="text" placeholder="....."></td>
-            <td class="td__show"><input class="input__show inputAdd" type="text" placeholder="....."></td>
-            <td class="td__show">
-                <i class="fa-solid fa-pen-to-square" onclick="editCart(this)"></i>
-                <i class="fa-solid fa-trash" onclick="removeCart(this)"></i>
-            </td>
-                `
-            tableCart.appendChild(trElement);
-            trAddArray = cartForm.querySelectorAll(".trAdd");
-            trAddArray = Array.from(trAddArray);
-        } else if (activeOption == "add") {
-            showErrorToast("Bạn đang thực hiện thao tác này");
-        } else if (activeOption == "edit") {
-            showErrorToast("Bạn đang thực hiện thao tác chỉnh sửa thẻ, bấm lưu để tiếp tục sử dụng chức năng này");
-        } else if (activeOption == "remove") {
-            showErrorToast("Bạn đang thực hiện thao tác xóa thẻ, bấm lưu để tiếp tục sử dụng chức năng này");
-        }
-    })
+
 
     const findBTN = cartForm.querySelector(".container__show__cart__find__btn");
     findBTN.addEventListener("click", () => {
@@ -318,123 +373,158 @@ function showCart() {
         }
     })
 
-    const saveMessage = cartForm.querySelector(".save__message");
-    var saveCartElement = cartForm.querySelector(".save-btn");
-    saveCartElement.addEventListener("click", () => {
-        if (activeOption == "add") {
-            if (trAddArray) {
-                if (checkAll(trAddArray)) {
-                    // đủ thông tin
-                    var arrayData = [];
-                    trAddArray.map((tr, index1) => {
-                        var inputArray = tr.querySelectorAll(".inputAdd");
-
-                        inputArray = Array.from(inputArray);
-                        inputArray.map((inputE, index2) => {
-                            var value = inputE.value;
-                            if (!arrayData[index1]) {
-                                arrayData[index1] = [];
-                            }
-                            arrayData[index1][index2] = value;
-                        })
-                    })
-                    myData = JSON.parse(localStorage.getItem('cartData'));
-                    dataCompear = myData.carts;
-                    arrayData.map(value => {
-                        for (var i = 0; i < dataCompear.length; i++) {
-                            if (dataCompear[i].id == value[0]) {
-                                showErrorToast("ID trùng lặp!");
-                                return;
-                            }
-                        }
-
-                        if (isNaN(value[2])) {
-                            showErrorToast("Tuổi là số!");
-                            return;
-                        }
-                        var regex = /^\(?([0-9]{3})\)?[-. ]?([0-9]{3})[-. ]?([0-9]{4})$/;
-                        if (!regex.test(value[3])) {
-                            showErrorToast("Nhập đúng số điện thoại!");
-                            return;
-                        }
-                        data = {
-                            "id": `${value[0]}`,
-                            "name": `${value[1]}`,
-                            "age": `${value[2]}`,
-                            "phoneNumber": `${value[3]}`,
-                            "cartType": `${value[4]}`,
-                            "dateStart": `${value[5]}`,
-                            "dateEnd": `${value[6]}`
-                        };
-
-                        myData.carts.push(data);
-                        localStorage.setItem('cartData', JSON.stringify(myData));
-                        var trElement = cartForm.querySelector(".trAdd");
-                        trElement.classList.remove("trAdd");
-                        showSuccessToast("Thêm thành công!");
-                        activeOption = "";
-                    })
-                    // if (test == false)
-                    //     saveMessage.innerText = "ID trùng lặp!"
-
-
-                } else {
-                    showErrorToast("Vui lòng điền đầy đủ thông tin");
-
-                }
-            } else {
-                showErrorToast("Không có gì thay đổi!");
-            }
-        } else if (activeOption == "edit") {
-            var tdArray = trelementChange.getElementsByTagName("td");
-            tdArray = Array.from(tdArray);
-            var valueArray = [];
-            for (var i = 0; i < tdArray.length - 1; i++) {
-                var value = tdArray[i].querySelector(".inputAdd").value;
-                if (value != "") {
-                    valueArray[i] = value;
-                }
-                else
-                    valueArray[i] = tdArray[i].querySelector(".inputAdd").getAttribute("placeholder")
-            }
-            if (checkInformationValidCart(valueArray)) {
-                for (var i = 0; i < tdArray.length - 1; i++) {
-                    tdArray[i].innerHTML = `${valueArray[i]}`
-                }
-            } else {
-                return;
-            }
-            var data = {
-                "id": `${valueArray[0]}`,
-                "name": `${valueArray[1]}`,
-                "age": `${Number(valueArray[2])}`,
-                "phoneNumber": `${valueArray[3]}`,
-                "cartType": `${valueArray[4]}`,
-                "dateStart": `${valueArray[5]}`,
-                "dateEnd": `${valueArray[6]}`
-            };
-            if (indexChange !== -1) {
-                myData.carts[indexChange] = data;
-            } else {
-                myData.carts.push(data);
-            }
-            indexChange = -1;
-            localStorage.setItem('cartData', JSON.stringify(myData));
-            var trElement = cartForm.querySelector(".trEdit");
-            trElement.classList.remove("trEdit");
-            showSuccessToast("Sửa thành công!")
-            activeOption = "";
-        } else if (activeOption == "remove") {
-            localStorage.setItem('cartData', JSON.stringify(dataAfterRemove));
-            showSuccessToast("Xóa thành công!");
-            activeOption = "";
-        } else {
-            showErrorToast("Vui lòng chọn chức năng!");
-        }
-    })
 }
 
+function addCart() {
+    var btnAddCart = cartForm.querySelector(".container__show__cart__add__btn");
+    var showSide = cartForm.querySelector(".container__show__cart__content")
 
+    if (checkValidSave("cart") && activeOption == "") {
+        doingForm = "cart";
+        activeOption = "add";
+        const tableCart = cartForm.querySelector(".table__show");
+        var trElement = document.createElement("tr");
+        trElement.className = "trAdd tr__show";
+        trElement.innerHTML = `
+            <td class="td__show"><input class="input__show inputAdd" type="text" placeholder="....."></td>
+            <td class="td__show"><input class="input__show inputAdd" type="text" placeholder="....."></td>
+            <td class="td__show"><input class="input__show inputAdd" type="text" placeholder="....."></td>
+            <td class="td__show"><input class="input__show inputAdd" type="text" placeholder="....."></td>
+            <td class="td__show"><input class="input__show inputAdd" type="text" placeholder="....."></td>
+            <td class="td__show"><input class="input__show inputAdd" type="text" placeholder="....."></td>
+            <td class="td__show"><input class="input__show inputAdd" type="text" placeholder="....."></td>
+            <td class="td__show">
+                <i class="fa-solid fa-pen-to-square" onclick="editCart(this)"></i>
+                <i class="fa-solid fa-trash" onclick="removeCart(this)"></i>
+            </td>
+                `
+        tableCart.appendChild(trElement);
+        trAddArray = cartForm.querySelectorAll(".trAdd");
+        trAddArray = Array.from(trAddArray);
+    } else if (doingForm == "cart" && activeOption == "add") {
+        showErrorToast("Bạn đang thực hiện thao tác này");
+    } else if (doingForm == "cart" && activeOption == "edit") {
+        showErrorToast("Bạn đang thực hiện thao tác chỉnh sửa thẻ, bấm lưu để tiếp tục sử dụng chức năng này");
+    } else if (doingForm == "cart" && activeOption == "remove") {
+        showErrorToast("Bạn đang thực hiện thao tác xóa thẻ, bấm lưu để tiếp tục sử dụng chức năng này");
+    }
+}
+
+function saveCart() {
+    const saveMessage = cartForm.querySelector(".save__message");
+    if (activeOption == "add") {
+        if (trAddArray) {
+            if (checkAll(trAddArray)) {
+                // đủ thông tin
+                var arrayData = [];
+                trAddArray.map((tr, index1) => {
+                    var inputArray = tr.querySelectorAll(".inputAdd");
+                    inputArray = Array.from(inputArray);
+                    inputArray.map((inputE, index2) => {
+                        var value = inputE.value;
+                        if (!arrayData[index1]) {
+                            arrayData[index1] = [];
+                        }
+                        arrayData[index1][index2] = value;
+                    })
+                })
+                myData = JSON.parse(localStorage.getItem('cartData'));
+                dataCompear = myData.carts;
+                arrayData.map(value => {
+                    for (var i = 0; i < dataCompear.length; i++) {
+                        if (dataCompear[i].id == value[0]) {
+                            showErrorToast("ID trùng lặp!");
+                            return;
+                        }
+                    }
+
+                    if (isNaN(value[2])) {
+                        showErrorToast("Tuổi là số!");
+                        return;
+                    }
+                    var regex = /^\(?([0-9]{3})\)?[-. ]?([0-9]{3})[-. ]?([0-9]{4})$/;
+                    if (!regex.test(value[3])) {
+                        showErrorToast("Nhập đúng số điện thoại!");
+                        return;
+                    }
+                    data = {
+                        "id": `${value[0]}`,
+                        "name": `${value[1]}`,
+                        "age": `${value[2]}`,
+                        "phoneNumber": `${value[3]}`,
+                        "cartType": `${value[4]}`,
+                        "dateStart": `${value[5]}`,
+                        "dateEnd": `${value[6]}`
+                    };
+
+                    myData.carts.push(data);
+                    localStorage.setItem('cartData', JSON.stringify(myData));
+                    var trElement = cartForm.querySelector(".trAdd");
+                    trElement.classList.remove("trAdd");
+                    showSuccessToast("Thêm thành công!");
+                    activeOption = "";
+                    doingForm = "";
+                })
+                // if (test == false)
+                //     saveMessage.innerText = "ID trùng lặp!"
+
+
+            } else {
+                showErrorToast("Vui lòng điền đầy đủ thông tin");
+
+            }
+        } else {
+            showErrorToast("Không có gì thay đổi!");
+        }
+    } else if (activeOption == "edit") {
+        var tdArray = trelementChange.getElementsByTagName("td");
+        tdArray = Array.from(tdArray);
+        var valueArray = [];
+        for (var i = 0; i < tdArray.length - 1; i++) {
+            var value = tdArray[i].querySelector(".inputAdd").value;
+            if (value != "") {
+                valueArray[i] = value;
+            }
+            else
+                valueArray[i] = tdArray[i].querySelector(".inputAdd").getAttribute("placeholder")
+        }
+        if (checkInformationValidCart(valueArray)) {
+            for (var i = 0; i < tdArray.length - 1; i++) {
+                tdArray[i].innerHTML = `${valueArray[i]}`
+            }
+        } else {
+            return;
+        }
+        var data = {
+            "id": `${valueArray[0]}`,
+            "name": `${valueArray[1]}`,
+            "age": `${Number(valueArray[2])}`,
+            "phoneNumber": `${valueArray[3]}`,
+            "cartType": `${valueArray[4]}`,
+            "dateStart": `${valueArray[5]}`,
+            "dateEnd": `${valueArray[6]}`
+        };
+        if (indexChange !== -1) {
+            myData.carts[indexChange] = data;
+        } else {
+            myData.carts.push(data);
+        }
+        indexChange = -1;
+        localStorage.setItem('cartData', JSON.stringify(myData));
+        var trElement = cartForm.querySelector(".trEdit");
+        trElement.classList.remove("trEdit");
+        showSuccessToast("Sửa thành công!")
+        activeOption = "";
+        doingForm = "";
+    } else if (activeOption == "remove") {
+        localStorage.setItem('cartData', JSON.stringify(dataAfterRemove));
+        showSuccessToast("Xóa thành công!");
+        activeOption = "";
+        doingForm = "";
+    } else {
+        showErrorToast("Vui lòng chọn chức năng!");
+    }
+}
 
 function checkInformationValidCart(arrayData) {
     myData = JSON.parse(localStorage.getItem('cartData'));
@@ -537,7 +627,8 @@ function checkRowAddCart(arrayElement) {
 let trelementChange;
 let indexChange = -1;
 function editCart(thisElement) {
-    if (activeOption == "") {
+    if (checkValidSave("cart") && activeOption == "") {
+        doingForm = "cart";
         activeOption = "edit";
         indexChange = -1;
         var trElement = thisElement.parentElement.parentElement;
@@ -548,7 +639,6 @@ function editCart(thisElement) {
         var valueEdit = getValueOnTrShow(trElement);
         trAray.map((value, index) => {
             var valueShow = getValueOnTrShow(value);
-            console.log(valueShow, valueEdit);
             if (arraysEqual1(valueShow, valueEdit)) {
                 indexChange = index - 1;
             }
@@ -564,11 +654,11 @@ function editCart(thisElement) {
         for (var i = 0; i < tdArray.length - 1; i++) {
             tdArray[i].innerHTML = `<input class="inputAdd" type="text" placeholder="${valueArray[i]}">`
         }
-    } else if (activeOption == "edit") {
+    } else if (doingForm == "cart" && activeOption == "edit") {
         showErrorToast("vui lòng bấm lưu trước khi sửa dòng khác!");
-    } else if (activeOption == "remove") {
-        showErrorToast("Bạn đang thực hiện thao tác xóa, bấm lưu để tiếp tục thực hiện chức năng này!");
-    } else if (activeOption == "add") {
+    } else if (doingForm == "cart" && activeOption == "remove") {
+        showErrorToast("Bạn đang thực hiện thao tác xóa thẻ, bấm lưu để tiếp tục thực hiện chức năng này!");
+    } else if (doingForm == "cart" && activeOption == "add") {
         showErrorToast("Bạn đang thực hiện thao tác thêm thẻ, hãy hoàn tất chức năng này trước!");
     }
 }
@@ -576,7 +666,8 @@ function editCart(thisElement) {
 let dataAfterRemove;
 
 function removeCart(thisElement) {
-    if (activeOption == "" || activeOption == "remove" || activeOption == "add") {
+    if (checkValidSave("cart") && (activeOption == "" || activeOption == "remove" || activeOption == "add")) {
+        doingForm = "cart";
         activeOption = "remove";
         var trElement = thisElement.parentElement.parentElement;
         trelementChange = trElement;
@@ -604,27 +695,27 @@ function removeCart(thisElement) {
             "dateStart": `${valueArray[5]}`,
             "dateEnd": `${valueArray[6]}`
         };
-
+        myData = JSON.parse(localStorage.getItem('cartData'));
         var index = myData.carts.findIndex(cart => cart.id === data.id);
 
         if (index !== -1) {
             myData.carts.splice(index, 1);
         }
         dataAfterRemove = myData;
-    } else if (activeOption == "edit") {
-        showErrorToast("Bạn đang thực hiện thao tác chỉnh sửa, bấm lưu để tiếp tục thực hiện chức năng này!");
-    } else if (activeOption == "add") {
+    } else if (doingForm == "cart" && activeOption == "edit") {
+        showErrorToast("Bạn đang thực hiện thao tác chỉnh sửa thẻ, bấm lưu để tiếp tục thực hiện chức năng này!");
+    } else if (checkValidSave("cart", false) && doingForm == "cart" && activeOption == "add") {
         var trElement = thisElement.parentElement.parentElement;
         if (trElement.className == "trAdd tr__show") {
             activeOption = "remove";
             trelementChange = trElement;
             trElement.remove();
             activeOption == ""
+            doingForm = "";
         }
         // showErrorToast("Bạn đang thực hiện thao tác thêm thẻ, hãy hoàn tất chức năng này trước!");
     }
 }
-
 
 function findByIDCart(thisElement) {
     myData = JSON.parse(localStorage.getItem('cartData'));
@@ -652,7 +743,6 @@ function findByIDCart(thisElement) {
 
 }
 
-
 function getValueOnTrShow(trElement) {
     var tdArray = trElement.querySelectorAll(".td__show");
     tdArray = Array.from(tdArray);
@@ -662,10 +752,6 @@ function getValueOnTrShow(trElement) {
     })
     return arrayValue;
 }
-
-
-
-
 
 function showMessage() {
     function sendMessage(message) {
@@ -738,20 +824,6 @@ function displayBotMessage(message) {
     chatBoxList.appendChild(chatBoxItemBot);
 }
 
-// window.onload = function () {
-//     console.log("hel")
-//     var myData = JSON.parse(localStorage.getItem('historyMessage'));
-//     myData.map((value) => {
-//         if (value.sender == 'User') {
-//             displayBotMessage(value.message)
-//         }
-//         if (value.sender == 'Admin') {
-//             displayUserMessage(value.message)
-//         }
-//     })
-// }
-
-
 
 // acount ql
 // email: "quyen@gmail.com"
@@ -759,9 +831,7 @@ function displayBotMessage(message) {
 // name: "Quyen Developer"
 // password: "123"
 
-
 const jsonPathAccount = '../data/loginData.json';
-
 
 function findByIDAccount(thisElement) {
     myData = JSON.parse(localStorage.getItem('loginData'));
@@ -774,7 +844,6 @@ function findByIDAccount(thisElement) {
         var k = 1;
         dataArray.map((value, index) => {
             if (k > 10) return;
-            console.log(k)
             if (value.id.toLowerCase().includes(thisElement.value.toLowerCase())) {
                 k++;
                 var spanE = document.createElement("show__find_id");
@@ -841,38 +910,6 @@ function showAccount() {
             myData = JSON.parse(localStorage.getItem('loginData'));
             innerTableAccount(myData.accounts);
         }
-    // oke//89
-    var btnAddCart = accountForm.querySelector(".container__show__account__add__btn");
-    var showSide = cartForm.querySelector(".container__show__cart__content")
-    btnAddCart.addEventListener("click", () => {
-        if (activeOption == "") {
-            activeOption = "add";
-            console.log(activeOption)
-            const tableCart = accountForm.querySelector(".table__show");
-            var trElement = document.createElement("tr");
-            trElement.className = "trAdd tr__show";
-            trElement.innerHTML = `
-            <td class="td__show"><input class="input__show inputAdd" type="text" placeholder="....."></td>
-            <td class="td__show"><input class="input__show inputAdd" type="text" placeholder="....."></td>
-            <td class="td__show"><input class="input__show inputAdd" type="text" placeholder="....."></td>
-            <td class="td__show"><input class="input__show inputAdd" type="text" placeholder="....."></td>
-            <td class="td__show">
-                <i class="fa-solid fa-pen-to-square" onclick="editAccount(this)"></i>
-                <i class="fa-solid fa-trash" onclick="removeAccount(this)"></i>
-            </td>
-                `
-            tableCart.appendChild(trElement);
-            trAddArray = accountForm.querySelectorAll(".trAdd");
-            trAddArray = Array.from(trAddArray);
-        } else if (activeOption == "add") {
-            showErrorToast("Bạn đang thực hiện thao tác này");
-        } else if (activeOption == "edit") {
-            showErrorToast("Bạn đang thực hiện thao tác chỉnh sửa thẻ, bấm lưu để tiếp tục sử dụng chức năng này");
-        } else if (activeOption == "remove") {
-            showErrorToast("Bạn đang thực hiện thao tác xóa thẻ, bấm lưu để tiếp tục sử dụng chức năng này");
-        }
-    })
-
     const findBTN = accountForm.querySelector(".container__show__find__btn");
     findBTN.addEventListener("click", () => {
         var inputID = accountForm.querySelector(".show__input__id").value.trim();
@@ -913,7 +950,6 @@ function showAccount() {
                     test = false;
                 }
                 if (test == true) {
-
                     var trCreate = document.createElement("tr");
                     trCreate.className = "tr__show";
                     trCreate.innerHTML = `
@@ -933,116 +969,147 @@ function showAccount() {
             tableBox.appendChild(tableCreate);
         }
     })
-
-    const saveMessage = accountForm.querySelector(".save__message");
-    var saveCartElement = accountForm.querySelector(".save-btn");
-    saveCartElement.addEventListener("click", () => {
-        if (activeOption == "add") {
-            if (trAddArray) {
-                if (checkAllAccount(trAddArray)) {
-                    // đủ thông tin
-                    var arrayData = [];
-                    trAddArray.map((tr, index1) => {
-                        var inputArray = tr.querySelectorAll(".inputAdd");
-                        inputArray = Array.from(inputArray);
-                        inputArray.map((inputE, index2) => {
-                            var value = inputE.value;
-                            if (!arrayData[index1]) {
-                                arrayData[index1] = [];
-                            }
-                            arrayData[index1][index2] = value;
-                        })
-                    })
-                    myData = JSON.parse(localStorage.getItem('loginData'));
-                    dataCompear = myData.accounts;
-                    arrayData.map(value => {
-                        for (var i = 0; i < dataCompear.length; i++) {
-                            if (dataCompear[i].id == value[0]) {
-                                showErrorToast("ID trùng lặp!");
-                                return;
-                            }
-                        }
-
-                        // if (isNaN(value[2])) {
-                        //     showErrorToast("Tuổi là số!");
-                        //     return;
-                        // }
-                        // var regex = /^\(?([0-9]{3})\)?[-. ]?([0-9]{3})[-. ]?([0-9]{4})$/;
-                        // if (!regex.test(value[3])) {
-                        //     showErrorToast("Nhập đúng số điện thoại!");
-                        //     return;
-                        // }
-                        data = {
-                            "id": `${value[0]}`,
-                            "name": `${value[1]}`,
-                            "email": `${value[2]}`,
-                            "password": `${value[3]}`
-                        };
-
-                        myData.accounts.push(data);
-                        localStorage.setItem('loginData', JSON.stringify(myData));
-                        var trElement = accountForm.querySelector(".trAdd");
-                        trElement.classList.remove("trAdd");
-                        showSuccessToast("Thêm thành công!");
-                        activeOption = "";
-                    })
-                    // if (test == false)
-                    //     saveMessage.innerText = "ID trùng lặp!"
-
-
-                } else {
-                    showErrorToast("Vui lòng điền đầy đủ thông tin");
-
-                }
-            } else {
-                showErrorToast("Không có gì thay đổi!");
-            }
-        } else if (activeOption == "edit") {
-            var tdArray = trelementChange.getElementsByTagName("td");
-            tdArray = Array.from(tdArray);
-            var valueArray = [];
-            for (var i = 0; i < tdArray.length - 1; i++) {
-                var value = tdArray[i].querySelector(".inputAdd").value;
-                if (value != "") {
-                    valueArray[i] = value;
-                }
-                else
-                    valueArray[i] = tdArray[i].querySelector(".inputAdd").getAttribute("placeholder")
-            }
-            if (checkInformationValidAccount(valueArray)) {
-                for (var i = 0; i < tdArray.length - 1; i++) {
-                    tdArray[i].innerHTML = `${valueArray[i]}`
-                }
-            } else {
-                return;
-            }
-            var data = {
-                "id": `${valueArray[0]}`,
-                "name": `${valueArray[1]}`,
-                "email": `${valueArray[2]}`,
-                "password": `${valueArray[3]}`
-            };
-            if (indexChange !== -1) {
-                myData.accounts[indexChange] = data;
-            } else {
-                myData.accounts.push(data);
-            }
-            indexChange = -1;
-            localStorage.setItem('loginData', JSON.stringify(myData));
-            var trElement = accountForm.querySelector(".trEdit");
-            trElement.classList.remove("trEdit");
-            showSuccessToast("Sửa thành công!")
-            activeOption = "";
-        } else if (activeOption == "remove") {
-            localStorage.setItem('loginData', JSON.stringify(dataAfterRemove));
-            showSuccessToast("Xóa thành công!");
-            activeOption = "";
-        } else {
-            showErrorToast("Vui lòng chọn chức năng!");
-        }
-    })
 }
 
+function addAccount() {
+    var btnAddAccount = accountForm.querySelector(".container__show__account__add__btn");
+    if (checkValidSave("account") && activeOption == "") {
+        doingForm = "account";
+        activeOption = "add";
+        const tableCart = accountForm.querySelector(".table__show");
+        var trElement = document.createElement("tr");
+        trElement.className = "trAdd tr__show";
+        trElement.innerHTML = `
+            <td class="td__show"><input class="input__show inputAdd" type="text" placeholder="....."></td>
+            <td class="td__show"><input class="input__show inputAdd" type="text" placeholder="....."></td>
+            <td class="td__show"><input class="input__show inputAdd" type="text" placeholder="....."></td>
+            <td class="td__show"><input class="input__show inputAdd" type="text" placeholder="....."></td>
+            <td class="td__show">
+                <i class="fa-solid fa-pen-to-square" onclick="editAccount(this)"></i>
+                <i class="fa-solid fa-trash" onclick="removeAccount(this)"></i>
+            </td>
+                `
+        tableCart.appendChild(trElement);
+        trAddArray = accountForm.querySelectorAll(".trAdd");
+        trAddArray = Array.from(trAddArray);
+    } else if (doingForm == "account" && activeOption == "add") {
+        showErrorToast("Bạn đang thực hiện thao tác này");
+    } else if (doingForm == "account" && activeOption == "edit") {
+        showErrorToast("Bạn đang thực hiện thao tác chỉnh sửa tài khoản, bấm lưu để tiếp tục sử dụng chức năng này");
+    } else if (doingForm == "account" && activeOption == "remove") {
+        showErrorToast("Bạn đang thực hiện thao tác xóa tài khoản, bấm lưu để tiếp tục sử dụng chức năng này");
+    }
+}
+
+function saveAccount() {
+    var saveMessage = accountForm.querySelector(".save__message");
+    var saveAccountElement = accountForm.querySelector(".save-btn");
+    console.log("hello")
+    if (activeOption == "add") {
+        if (trAddArray) {
+            if (checkAllAccount(trAddArray)) {
+                // đủ thông tin
+                var arrayData = [];
+                trAddArray.map((tr, index1) => {
+                    var inputArray = tr.querySelectorAll(".inputAdd");
+                    inputArray = Array.from(inputArray);
+                    inputArray.map((inputE, index2) => {
+                        var value = inputE.value;
+                        if (!arrayData[index1]) {
+                            arrayData[index1] = [];
+                        }
+                        arrayData[index1][index2] = value;
+                    })
+                })
+                myData = JSON.parse(localStorage.getItem('loginData'));
+                dataCompear = myData.accounts;
+                arrayData.map(value => {
+                    for (var i = 0; i < dataCompear.length; i++) {
+                        if (dataCompear[i].id == value[0]) {
+                            showErrorToast("ID trùng lặp!");
+                            return;
+                        }
+                    }
+
+                    // if (isNaN(value[2])) {
+                    //     showErrorToast("Tuổi là số!");
+                    //     return;
+                    // }
+                    // var regex = /^\(?([0-9]{3})\)?[-. ]?([0-9]{3})[-. ]?([0-9]{4})$/;
+                    // if (!regex.test(value[3])) {
+                    //     showErrorToast("Nhập đúng số điện thoại!");
+                    //     return;
+                    // }
+                    data = {
+                        "id": `${value[0]}`,
+                        "name": `${value[1]}`,
+                        "email": `${value[2]}`,
+                        "password": `${value[3]}`
+                    };
+
+                    myData.accounts.push(data);
+                    localStorage.setItem('loginData', JSON.stringify(myData));
+                    var trElement = accountForm.querySelector(".trAdd");
+                    trElement.classList.remove("trAdd");
+                    showSuccessToast("Thêm thành công!");
+                    activeOption = "";
+                    doingForm = "";
+                })
+                // if (test == false)
+                //     saveMessage.innerText = "ID trùng lặp!"
+            } else {
+                showErrorToast("Vui lòng điền đầy đủ thông tin");
+
+            }
+        } else {
+            showErrorToast("Không có gì thay đổi!");
+        }
+    } else if (activeOption == "edit") {
+        var tdArray = trelementChange.getElementsByTagName("td");
+        tdArray = Array.from(tdArray);
+        var valueArray = [];
+        for (var i = 0; i < tdArray.length - 1; i++) {
+            var value = tdArray[i].querySelector(".inputAdd").value;
+            if (value != "") {
+                valueArray[i] = value;
+            }
+            else
+                valueArray[i] = tdArray[i].querySelector(".inputAdd").getAttribute("placeholder")
+        }
+        if (checkInformationValidAccount(valueArray)) {
+            for (var i = 0; i < tdArray.length - 1; i++) {
+                tdArray[i].innerHTML = `${valueArray[i]}`
+            }
+        } else {
+            return;
+        }
+        var data = {
+            "id": `${valueArray[0]}`,
+            "name": `${valueArray[1]}`,
+            "email": `${valueArray[2]}`,
+            "password": `${valueArray[3]}`
+        };
+        if (indexChange !== -1) {
+            myData.accounts[indexChange] = data;
+        } else {
+            myData.accounts.push(data);
+        }
+        indexChange = -1;
+        localStorage.setItem('loginData', JSON.stringify(myData));
+        var trElement = accountForm.querySelector(".trEdit");
+        trElement.classList.remove("trEdit");
+        showSuccessToast("Sửa thành công!")
+        activeOption = "";
+        doingForm = "";
+    } else if (activeOption == "remove") {
+        localStorage.setItem('loginData', JSON.stringify(dataAfterRemove));
+        showSuccessToast("Xóa thành công!");
+        activeOption = "";
+        doingForm = "";
+    } else {
+        showErrorToast("Vui lòng chọn chức năng!");
+    }
+}
 
 function checkRowAddAccount(arrayElement) {
     var ktra = true;
@@ -1066,8 +1133,6 @@ function checkAllAccount(trArray) {
     })
     return ktra;
 }
-
-
 
 function checkInformationValidAccount(arrayData) {
     myData = JSON.parse(localStorage.getItem('loginData'));
@@ -1115,10 +1180,9 @@ function checkInformationValidAccount(arrayData) {
     return test;
 }
 
-
-
 function removeAccount(thisElement) {
-    if (activeOption == "" || activeOption == "remove" || activeOption == "add") {
+    if (checkValidSave("account") && (activeOption == "" || activeOption == "remove" || activeOption == "add")) {
+        doingForm = "account";
         activeOption = "remove";
         var trElement = thisElement.parentElement.parentElement;
         trelementChange = trElement;
@@ -1143,29 +1207,31 @@ function removeAccount(thisElement) {
             "email": `${valueArray[2]}`,
             "password": `${valueArray[3]}`
         };
-
-        var index = myData.carts.findIndex(cart => cart.id === data.id);
+        myData = JSON.parse(localStorage.getItem('loginData'));
+        var index = myData.accounts.findIndex(cart => cart.id === data.id);
 
         if (index !== -1) {
-            myData.carts.splice(index, 1);
+            myData.accounts.splice(index, 1);
         }
         dataAfterRemove = myData;
-    } else if (activeOption == "edit") {
+    } else if (doingForm == "account" && activeOption == "edit") {
         showErrorToast("Bạn đang thực hiện thao tác chỉnh sửa, bấm lưu để tiếp tục thực hiện chức năng này!");
-    } else if (activeOption == "add") {
+    } else if (checkValidSave("account", false) && doingForm == "account" && activeOption == "add") {
         var trElement = thisElement.parentElement.parentElement;
         if (trElement.className == "trAdd tr__show") {
             activeOption = "remove";
             trelementChange = trElement;
             trElement.remove();
             activeOption == ""
+            doingForm = "";
         }
         // showErrorToast("Bạn đang thực hiện thao tác thêm thẻ, hãy hoàn tất chức năng này trước!");
     }
 }
 
 function editAccount(thisElement) {
-    if (activeOption == "") {
+    if (checkValidSave("account") && activeOption == "") {
+        doingForm = "account";
         activeOption = "edit";
         indexChange = -1;
         var trElement = thisElement.parentElement.parentElement;
@@ -1176,7 +1242,6 @@ function editAccount(thisElement) {
         var valueEdit = getValueOnTrShow(trElement);
         trAray.map((value, index) => {
             var valueShow = getValueOnTrShow(value);
-            console.log(valueShow, valueEdit);
             if (arraysEqual1(valueShow, valueEdit)) {
                 indexChange = index - 1;
             }
@@ -1192,65 +1257,14 @@ function editAccount(thisElement) {
         for (var i = 0; i < tdArray.length - 1; i++) {
             tdArray[i].innerHTML = `<input class="inputAdd" type="text" placeholder="${valueArray[i]}">`
         }
-    } else if (activeOption == "edit") {
+    } else if (doingForm == "account" && activeOption == "edit") {
         showErrorToast("vui lòng bấm lưu trước khi sửa dòng khác!");
-    } else if (activeOption == "remove") {
-        showErrorToast("Bạn đang thực hiện thao tác xóa, bấm lưu để tiếp tục thực hiện chức năng này!");
-    } else if (activeOption == "add") {
-        showErrorToast("Bạn đang thực hiện thao tác thêm thẻ, hãy hoàn tất chức năng này trước!");
+    } else if (doingForm == "account" && activeOption == "remove") {
+        showErrorToast("Bạn đang thực hiện thao tác xóa tài khoản, bấm lưu để tiếp tục thực hiện chức năng này!");
+    } else if (doingForm == "account" && activeOption == "add") {
+        showErrorToast("Bạn đang thực hiện thao tác thêm tài khoản, hãy hoàn tất chức năng này trước!");
     }
 }
-function removeAccount(thisElement) {
-    if (activeOption == "" || activeOption == "remove" || activeOption == "add") {
-        activeOption = "remove";
-        var trElement = thisElement.parentElement.parentElement;
-        trelementChange = trElement;
-        trElement.remove();
-        // trelementChange
-        var tdArray = trelementChange.getElementsByTagName("td");
-        tdArray = Array.from(tdArray);
-
-        var valueArray = [];
-        for (var i = 0; i < tdArray.length - 1; i++) {
-            var value = tdArray[i].innerHTML;
-            if (value)
-                valueArray[i] = value;
-            else
-                valueArray[i] = tdArray[i].querySelector(".inputAdd").getAttribute("placeholder")
-        }
-
-        // Tạo một đối tượng data mới từ mảng giá trị
-        var data = {
-            "id": `${valueArray[0]}`,
-            "name": `${valueArray[1]}`,
-            "email": `${valueArray[2]}`,
-            "password": `${valueArray[3]}`
-        };
-
-        var index = myData.accounts.findIndex(cart => cart.id === data.id);
-
-        if (index !== -1) {
-            myData.accounts.splice(index, 1);
-        }
-        dataAfterRemove = myData;
-    } else if (activeOption == "edit") {
-        showErrorToast("Bạn đang thực hiện thao tác chỉnh sửa, bấm lưu để tiếp tục thực hiện chức năng này!");
-    } else if (activeOption == "add") {
-        var trElement = thisElement.parentElement.parentElement;
-        if (trElement.className == "trAdd tr__show") {
-            activeOption = "remove";
-            trelementChange = trElement;
-            trElement.remove();
-            activeOption == ""
-        }
-        // showErrorToast("Bạn đang thực hiện thao tác thêm thẻ, hãy hoàn tất chức năng này trước!");
-    }
-}
-
-
-// calendar ex
-
-
 
 function findByIDCalendar(thisElement) {
     myData = JSON.parse(localStorage.getItem('calendarData'));
@@ -1334,40 +1348,7 @@ function showCalendar() {
             innerTableCalendar(myData.calendars);
         }
     // oke//89
-    var btnAddCart = calendarForm.querySelector(".container__show__calendar__add__btn");
-    var showSide = cartForm.querySelector(".container__show__cart__content")
-    btnAddCart.addEventListener("click", () => {
-        if (activeOption == "") {
-            activeOption = "add";
-            console.log(activeOption)
-            const tableCart = calendarForm.querySelector(".table__show");
-            var trElement = document.createElement("tr");
-            trElement.className = "trAdd tr__show";
-            trElement.innerHTML = `
-            <td class="td__show"><input class="input__show inputAdd" type="text" placeholder="....."></td>
-            <td class="td__show"><input class="input__show inputAdd" type="text" placeholder="....."></td>
-            <td class="td__show"><input class="input__show inputAdd" type="text" placeholder="....."></td>
-            <td class="td__show"><input class="input__show inputAdd" type="text" placeholder="....."></td>
-            <td class="td__show"><input class="input__show inputAdd" type="text" placeholder="....."></td>
-            <td class="td__show"><input class="input__show inputAdd" type="text" placeholder="....."></td>
-            <td class="td__show"><input class="input__show inputAdd" type="text" placeholder="....."></td>
-            <td class="td__show"><input class="input__show inputAdd" type="text" placeholder="....."></td>
-            <td class="td__show">
-                <i class="fa-solid fa-pen-to-square" onclick="editCalendar(this)"></i>
-                <i class="fa-solid fa-trash" onclick="removeCalendar(this)"></i>
-            </td>
-                `
-            tableCart.appendChild(trElement);
-            trAddArray = calendarForm.querySelectorAll(".trAdd");
-            trAddArray = Array.from(trAddArray);
-        } else if (activeOption == "add") {
-            showErrorToast("Bạn đang thực hiện thao tác này");
-        } else if (activeOption == "edit") {
-            showErrorToast("Bạn đang thực hiện thao tác chỉnh sửa thẻ, bấm lưu để tiếp tục sử dụng chức năng này");
-        } else if (activeOption == "remove") {
-            showErrorToast("Bạn đang thực hiện thao tác xóa thẻ, bấm lưu để tiếp tục sử dụng chức năng này");
-        }
-    })
+
     const findBTN = calendarForm.querySelector(".container__show__find__btn");
     findBTN.addEventListener("click", () => {
         var inputID = calendarForm.querySelector(".show__input__id").value.trim();
@@ -1376,11 +1357,9 @@ function showCalendar() {
         // var selectPackage = calendarForm.querySelector(".show__input__package").value.trim();
         // var inputStart = calendarForm.getElementById("input-date-start").value.trim()
         // var inputEnd = calendarForm.getElementById("input-date-end").value.trim();
-
         myData = JSON.parse(localStorage.getItem('calendarData'));
         dataArray = myData.calendars;
         const tableShowElement = calendarForm.querySelector(".table__show");
-
         if (inputID != "") {
             tableShowElement.style.display = "none";
             const tableBox = calendarForm.querySelector(".container__show__content");
@@ -1437,121 +1416,159 @@ function showCalendar() {
         }
     })
 
+}
+
+function saveCalendar() {
     const saveMessage = calendarForm.querySelector(".save__message");
-    var saveCartElement = calendarForm.querySelector(".save-btn");
-    saveCartElement.addEventListener("click", () => {
-        if (activeOption == "add") {
-            if (trAddArray) {
-                if (checkAllCalendar(trAddArray)) {
-                    // đủ thông tin
-                    var arrayData = [];
-                    trAddArray.map((tr, index1) => {
-                        var inputArray = tr.querySelectorAll(".inputAdd");
-                        inputArray = Array.from(inputArray);
-                        inputArray.map((inputE, index2) => {
-                            var value = inputE.value;
-                            if (!arrayData[index1]) {
-                                arrayData[index1] = [];
-                            }
-                            arrayData[index1][index2] = value;
-                        })
-                    })
-                    myData = JSON.parse(localStorage.getItem('calendarData'));
-                    dataCompear = myData.calendars;
-                    arrayData.map(value => {
-                        for (var i = 0; i < dataCompear.length; i++) {
-                            if (dataCompear[i].id == value[0]) {
-                                showErrorToast("ID trùng lặp!");
-                                return;
-                            }
+    var saveCalendarElement = calendarForm.querySelector(".save-btn");
+    if (activeOption == "add") {
+        if (trAddArray) {
+            if (checkAllCalendar(trAddArray)) {
+                // đủ thông tin
+                var arrayData = [];
+                trAddArray.map((tr, index1) => {
+                    var inputArray = tr.querySelectorAll(".inputAdd");
+                    inputArray = Array.from(inputArray);
+                    inputArray.map((inputE, index2) => {
+                        var value = inputE.value;
+                        if (!arrayData[index1]) {
+                            arrayData[index1] = [];
                         }
-
-                        // if (isNaN(value[2])) {
-                        //     showErrorToast("Tuổi là số!");
-                        //     return;
-                        // }
-                        // var regex = /^\(?([0-9]{3})\)?[-. ]?([0-9]{3})[-. ]?([0-9]{4})$/;
-                        // if (!regex.test(value[3])) {
-                        //     showErrorToast("Nhập đúng số điện thoại!");
-                        //     return;
-                        // }
-                        data = {
-                            "id": `${value[0]}`,
-                            "name": `${value[1]}`,
-                            "date": `${value[2]}`,
-                            "timeStart": `${value[3]}`,
-                            "timeEnd": `${value[4]}`,
-                            "type": `${value[5]}`,
-                            "ptName": `${value[6]}`,
-                            "note": `${value[7]}`
-                        };
-
-                        myData.calendars.push(data);
-                        localStorage.setItem('calendarData', JSON.stringify(myData));
-                        var trElement = calendarForm.querySelector(".trAdd");
-                        trElement.classList.remove("trAdd");
-                        showSuccessToast("Thêm thành công!");
-                        activeOption = "";
+                        arrayData[index1][index2] = value;
                     })
-                    // if (test == false)
-                    //     saveMessage.innerText = "ID trùng lặp!"
+                })
+                myData = JSON.parse(localStorage.getItem('calendarData'));
+                dataCompear = myData.calendars;
+                arrayData.map(value => {
+                    for (var i = 0; i < dataCompear.length; i++) {
+                        if (dataCompear[i].id == value[0]) {
+                            showErrorToast("ID trùng lặp!");
+                            return;
+                        }
+                    }
 
+                    // if (isNaN(value[2])) {
+                    //     showErrorToast("Tuổi là số!");
+                    //     return;
+                    // }
+                    // var regex = /^\(?([0-9]{3})\)?[-. ]?([0-9]{3})[-. ]?([0-9]{4})$/;
+                    // if (!regex.test(value[3])) {
+                    //     showErrorToast("Nhập đúng số điện thoại!");
+                    //     return;
+                    // }
+                    data = {
+                        "id": `${value[0]}`,
+                        "name": `${value[1]}`,
+                        "date": `${value[2]}`,
+                        "timeStart": `${value[3]}`,
+                        "timeEnd": `${value[4]}`,
+                        "type": `${value[5]}`,
+                        "ptName": `${value[6]}`,
+                        "note": `${value[7]}`
+                    };
 
-                } else {
-                    showErrorToast("Vui lòng điền đầy đủ thông tin");
-
-                }
+                    myData.calendars.push(data);
+                    localStorage.setItem('calendarData', JSON.stringify(myData));
+                    var trElement = calendarForm.querySelector(".trAdd");
+                    trElement.classList.remove("trAdd");
+                    showSuccessToast("Thêm thành công!");
+                    activeOption = "";
+                    doingForm = "";
+                })
+                // if (test == false)
+                //     saveMessage.innerText = "ID trùng lặp!"
             } else {
-                showErrorToast("Không có gì thay đổi!");
+                showErrorToast("Vui lòng điền đầy đủ thông tin");
             }
-        } else if (activeOption == "edit") {
-            var tdArray = trelementChange.getElementsByTagName("td");
-            tdArray = Array.from(tdArray);
-            var valueArray = [];
-            for (var i = 0; i < tdArray.length - 1; i++) {
-                var value = tdArray[i].querySelector(".inputAdd").value;
-                if (value != "") {
-                    valueArray[i] = value;
-                }
-                else
-                    valueArray[i] = tdArray[i].querySelector(".inputAdd").getAttribute("placeholder")
-            }
-            if (checkInformationValidCalendar(valueArray)) {
-                for (var i = 0; i < tdArray.length - 1; i++) {
-                    tdArray[i].innerHTML = `${valueArray[i]}`
-                }
-            } else {
-                return;
-            }
-            var data = {
-                "id": `${valueArray[0]}`,
-                "name": `${valueArray[1]}`,
-                "date": `${valueArray[2]}`,
-                "timeStart": `${valueArray[3]}`,
-                "timeEnd": `${valueArray[4]}`,
-                "type": `${valueArray[5]}`,
-                "ptName": `${valueArray[6]}`,
-                "note": `${valueArray[7]}`
-            };
-            if (indexChange !== -1) {
-                myData.calendars[indexChange] = data;
-            } else {
-                myData.calendars.push(data);
-            }
-            indexChange = -1;
-            localStorage.setItem('calendarData', JSON.stringify(myData));
-            var trElement = calendarForm.querySelector(".trEdit");
-            trElement.classList.remove("trEdit");
-            showSuccessToast("Sửa thành công!")
-            activeOption = "";
-        } else if (activeOption == "remove") {
-            localStorage.setItem('calendarData', JSON.stringify(dataAfterRemove));
-            showSuccessToast("Xóa thành công!");
-            activeOption = "";
         } else {
-            showErrorToast("Vui lòng chọn chức năng!");
+            showErrorToast("Không có gì thay đổi!");
         }
-    })
+    } else if (activeOption == "edit") {
+        var tdArray = trelementChange.getElementsByTagName("td");
+        tdArray = Array.from(tdArray);
+        var valueArray = [];
+        for (var i = 0; i < tdArray.length - 1; i++) {
+            var value = tdArray[i].querySelector(".inputAdd").value;
+            if (value != "") {
+                valueArray[i] = value;
+            }
+            else
+                valueArray[i] = tdArray[i].querySelector(".inputAdd").getAttribute("placeholder")
+        }
+        if (checkInformationValidCalendar(valueArray)) {
+            for (var i = 0; i < tdArray.length - 1; i++) {
+                tdArray[i].innerHTML = `${valueArray[i]}`
+            }
+        } else {
+            return;
+        }
+        var data = {
+            "id": `${valueArray[0]}`,
+            "name": `${valueArray[1]}`,
+            "date": `${valueArray[2]}`,
+            "timeStart": `${valueArray[3]}`,
+            "timeEnd": `${valueArray[4]}`,
+            "type": `${valueArray[5]}`,
+            "ptName": `${valueArray[6]}`,
+            "note": `${valueArray[7]}`
+        };
+        if (indexChange !== -1) {
+            myData.calendars[indexChange] = data;
+        } else {
+            myData.calendars.push(data);
+        }
+        indexChange = -1;
+        localStorage.setItem('calendarData', JSON.stringify(myData));
+        var trElement = calendarForm.querySelector(".trEdit");
+        trElement.classList.remove("trEdit");
+        showSuccessToast("Sửa thành công!")
+        activeOption = "";
+        doingForm = "";
+
+    } else if (activeOption == "remove") {
+        localStorage.setItem('calendarData', JSON.stringify(dataAfterRemove));
+        showSuccessToast("Xóa thành công!");
+        activeOption = "";
+        doingForm = "";
+
+    } else {
+        showErrorToast("Vui lòng chọn chức năng!");
+    }
+}
+
+function addCalendar() {
+    var btnAddCalendar = calendarForm.querySelector(".container__show__calendar__add__btn");
+    var showSide = cartForm.querySelector(".container__show__cart__content")
+    if (checkValidSave("calendar") && activeOption == "") {
+        doingForm = "calendar";
+        activeOption = "add";
+        const tableCart = calendarForm.querySelector(".table__show");
+        var trElement = document.createElement("tr");
+        trElement.className = "trAdd tr__show";
+        trElement.innerHTML = `
+            <td class="td__show"><input class="input__show inputAdd" type="text" placeholder="....."></td>
+            <td class="td__show"><input class="input__show inputAdd" type="text" placeholder="....."></td>
+            <td class="td__show"><input class="input__show inputAdd" type="text" placeholder="....."></td>
+            <td class="td__show"><input class="input__show inputAdd" type="text" placeholder="....."></td>
+            <td class="td__show"><input class="input__show inputAdd" type="text" placeholder="....."></td>
+            <td class="td__show"><input class="input__show inputAdd" type="text" placeholder="....."></td>
+            <td class="td__show"><input class="input__show inputAdd" type="text" placeholder="....."></td>
+            <td class="td__show"><input class="input__show inputAdd" type="text" placeholder="....."></td>
+            <td class="td__show">
+                <i class="fa-solid fa-pen-to-square" onclick="editCalendar(this)"></i>
+                <i class="fa-solid fa-trash" onclick="removeCalendar(this)"></i>
+            </td>
+                `
+        tableCart.appendChild(trElement);
+        trAddArray = calendarForm.querySelectorAll(".trAdd");
+        trAddArray = Array.from(trAddArray);
+    } else if (doingForm == "calendar" && activeOption == "add") {
+        showErrorToast("Bạn đang thực hiện thao tác này");
+    } else if (doingForm == "calendar" && activeOption == "edit") {
+        showErrorToast("Bạn đang thực hiện thao tác chỉnh sửa lịch tập, bấm lưu để tiếp tục sử dụng chức năng này");
+    } else if (doingForm == "calendar" && activeOption == "remove") {
+        showErrorToast("Bạn đang thực hiện thao tác xóa lịch tập, bấm lưu để tiếp tục sử dụng chức năng này");
+    }
 }
 
 
@@ -1577,8 +1594,6 @@ function checkAllCalendar(trArray) {
     })
     return ktra;
 }
-
-
 
 function checkInformationValidCalendar(arrayData) {
     myData = JSON.parse(localStorage.getItem('calendarData'));
@@ -1634,10 +1649,9 @@ function checkInformationValidCalendar(arrayData) {
     return test;
 }
 
-
-
 function removeCalendar(thisElement) {
-    if (activeOption == "" || activeOption == "remove" || activeOption == "add") {
+    if (checkValidSave("calendar") && (activeOption == "" || activeOption == "remove" || activeOption == "add")) {
+        doingForm = "calendar";
         activeOption = "remove";
         var trElement = thisElement.parentElement.parentElement;
         trelementChange = trElement;
@@ -1666,29 +1680,32 @@ function removeCalendar(thisElement) {
             "ptName": `${valueArray[6]}`,
             "note": `${valueArray[7]}`
         };
-
-        var index = myData.accounts.findIndex(cart => cart.id === data.id);
+        myData = JSON.parse(localStorage.getItem('calendarData'));
+        var index = myData.calendars.findIndex(cart => cart.id === data.id);
 
         if (index !== -1) {
-            myData.accounts.splice(index, 1);
+            myData.calendars.splice(index, 1);
         }
         dataAfterRemove = myData;
-    } else if (activeOption == "edit") {
+    } else if (doingForm == "calendar" && activeOption == "edit") {
         showErrorToast("Bạn đang thực hiện thao tác chỉnh sửa, bấm lưu để tiếp tục thực hiện chức năng này!");
-    } else if (activeOption == "add") {
+    } else if (checkValidSave("calendar", false) && doingForm == "calendar" && activeOption == "add") {
         var trElement = thisElement.parentElement.parentElement;
         if (trElement.className == "trAdd tr__show") {
             activeOption = "remove";
             trelementChange = trElement;
             trElement.remove();
             activeOption == ""
+            doingForm = "";
+
         }
         // showErrorToast("Bạn đang thực hiện thao tác thêm thẻ, hãy hoàn tất chức năng này trước!");
     }
 }
 
 function editCalendar(thisElement) {
-    if (activeOption == "") {
+    if (checkValidSave("calendar") && activeOption == "") {
+        doingForm = "calendar";
         activeOption = "edit";
         indexChange = -1;
         var trElement = thisElement.parentElement.parentElement;
@@ -1699,7 +1716,6 @@ function editCalendar(thisElement) {
         var valueEdit = getValueOnTrShow(trElement);
         trAray.map((value, index) => {
             var valueShow = getValueOnTrShow(value);
-            console.log(valueShow, valueEdit);
             if (arraysEqual1(valueShow, valueEdit)) {
                 indexChange = index - 1;
             }
@@ -1715,61 +1731,11 @@ function editCalendar(thisElement) {
         for (var i = 0; i < tdArray.length - 1; i++) {
             tdArray[i].innerHTML = `<input class="inputAdd" type="text" placeholder="${valueArray[i]}">`
         }
-    } else if (activeOption == "edit") {
+    } else if (doingForm == "calendar" && activeOption == "edit") {
         showErrorToast("vui lòng bấm lưu trước khi sửa dòng khác!");
-    } else if (activeOption == "remove") {
-        showErrorToast("Bạn đang thực hiện thao tác xóa, bấm lưu để tiếp tục thực hiện chức năng này!");
-    } else if (activeOption == "add") {
-        showErrorToast("Bạn đang thực hiện thao tác thêm thẻ, hãy hoàn tất chức năng này trước!");
-    }
-}
-function removeCalendar(thisElement) {
-    if (activeOption == "" || activeOption == "remove" || activeOption == "add") {
-        activeOption = "remove";
-        var trElement = thisElement.parentElement.parentElement;
-        trelementChange = trElement;
-        trElement.remove();
-        // trelementChange
-        var tdArray = trelementChange.getElementsByTagName("td");
-        tdArray = Array.from(tdArray);
-
-        var valueArray = [];
-        for (var i = 0; i < tdArray.length - 1; i++) {
-            var value = tdArray[i].innerHTML;
-            if (value)
-                valueArray[i] = value;
-            else
-                valueArray[i] = tdArray[i].querySelector(".inputAdd").getAttribute("placeholder")
-        }
-
-        // Tạo một đối tượng data mới từ mảng giá trị
-        var data = {
-            "id": `${valueArray[0]}`,
-            "name": `${valueArray[1]}`,
-            "date": `${valueArray[2]}`,
-            "timeStart": `${valueArray[3]}`,
-            "timeEnd": `${valueArray[4]}`,
-            "type": `${valueArray[5]}`,
-            "ptName": `${valueArray[6]}`,
-            "note": `${valueArray[7]}`
-        };
-
-        var index = myData.calendars.findIndex(cart => cart.id === data.id);
-
-        if (index !== -1) {
-            myData.calendars.splice(index, 1);
-        }
-        dataAfterRemove = myData;
-    } else if (activeOption == "edit") {
-        showErrorToast("Bạn đang thực hiện thao tác chỉnh sửa, bấm lưu để tiếp tục thực hiện chức năng này!");
-    } else if (activeOption == "add") {
-        var trElement = thisElement.parentElement.parentElement;
-        if (trElement.className == "trAdd tr__show") {
-            activeOption = "remove";
-            trelementChange = trElement;
-            trElement.remove();
-            activeOption == ""
-        }
-        // showErrorToast("Bạn đang thực hiện thao tác thêm thẻ, hãy hoàn tất chức năng này trước!");
+    } else if (doingForm == "calendar" && activeOption == "remove") {
+        showErrorToast("Bạn đang thực hiện thao tác xóa lịch tập, bấm lưu để tiếp tục thực hiện chức năng này!");
+    } else if (doingForm == "calendar" && activeOption == "add") {
+        showErrorToast("Bạn đang thực hiện thao tác thêm lịch tập, hãy hoàn tất chức năng này trước!");
     }
 }

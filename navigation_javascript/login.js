@@ -9,21 +9,42 @@ let accountCode = document.querySelector(".account__code");
 
 let dataLogin;
 
-fetch(jsonPath)
-    .then(response => {
-        if (!response.ok) {
-            throw new Error('Network response was not ok');
-        }
-        return response.json();
-    })
-    .then(data => {
-        var myData = data.accounts;
-        dataLogin = myData;
-    })
-    .catch(error => {
-        console.error('Fetch error:', error);
-    }
-    );
+// fetch(jsonPath)
+//     .then(response => {
+//         if (!response.ok) {
+//             throw new Error('Network response was not ok');
+//         }
+//         return response.json();
+//     })
+//     .then(data => {
+//         var myData = data.accounts;
+//         dataLogin = myData;
+//     })
+//     .catch(error => {
+//         console.error('Fetch error:', error);
+//     }
+//     );
+
+if (!localStorage.getItem('loginData')) {
+    fetch(jsonPath)
+        .then(response => {
+            if (!response.ok) {
+                throw new Error('Network response was not ok');
+            }
+            return response.json();
+        })
+        .then(data => {
+            myData = data;
+            localStorage.setItem('loginData', JSON.stringify(myData));
+        })
+        .catch(error => {
+            console.error('Fetch error:', error);
+        });
+} else {
+    // Nếu dữ liệu đã tồn tại trong localStorage, sử dụng nó
+    myData = JSON.parse(localStorage.getItem('loginData'));
+    dataLogin = myData.accounts;
+}
 
 var loginBox = document.querySelector(".login-box");
 var buttonLogin = document.getElementById("login-btn");

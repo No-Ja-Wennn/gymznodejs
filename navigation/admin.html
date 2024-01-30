@@ -220,7 +220,7 @@
                     <div class="container__show__account">
                         <div class="container__show__add container__show__account__add">
                             <h1>QUẢN LÍ TÀI KHOẢN</h1>
-                            <button class="container__show__add__btn container__show__account__add__btn">Thêm tài
+                            <button id="add-account" class="container__show__add__btn container__show__account__add__btn" onclick="addAccount()">Thêm tài
                                 khoản</button>
                         </div>
                         <div class="container__show__head">
@@ -249,7 +249,7 @@
                         </div>
                         <div class="save__box">
                             <span class="save__message"></span>
-                            <button class="save-btn">Lưu</button>
+                            <button class="save-btn" onclick="saveAccount()">Lưu</button>
                         </div>
                     </div>
 
@@ -257,7 +257,7 @@
                     <div class="container__show container__show__cart">
                         <div class="container__show__add container__show__cart__add">
                             <h1>QUẢN LÍ THẺ THÀNH VIÊN</h1>
-                            <button class="container__show__add__btn container__show__cart__add__btn">Thêm thẻ thành
+                            <button  id="add-cart"  class="container__show__add__btn container__show__cart__add__btn" onclick="addCart()">Thêm thẻ thành
                                 viên</button>
                         </div>
                         <div class="container__show__head container__show__cart__head">
@@ -299,7 +299,7 @@
                         </div>
                         <div class="save__box">
                             <span class="save__message"></span>
-                            <button class="save-btn">Lưu</button>
+                            <button class="save-btn" onclick="saveCart()">Lưu</button>
                         </div>
                     </div>
 
@@ -307,7 +307,7 @@
                     <div class="container__show__calendar">
                         <div class="container__show__add container__show__calendar__add">
                             <h1>QUẢN LÍ LỊCH TẬP</h1>
-                            <button class="container__show__add__btn container__show__calendar__add__btn">Thêm lịch tập</button>
+                            <button id="add-calendar"  class="container__show__add__btn container__show__calendar__add__btn" onclick="addCalendar()">Thêm lịch tập</button>
                         </div>
                         <div class="container__show__head container__show__calendar__head">
                             <div class="container__show__head__input__box container__show__calendar__head__input__box">
@@ -336,7 +336,7 @@
                                 </tr>
                             </table>
                         </div>
-                        <div class="save__box">
+                        <div class="save__box" onclick="saveCalendar()">
                             <span class="save__message"></span>
                             <button class="save-btn">Lưu</button>
                         </div>
