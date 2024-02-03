@@ -175,18 +175,19 @@ $(document).ready(function () {
 });
 
 // slide show
-var modal = document.getElementById("myModalShow");
+var modalShow = document.getElementById("myModalShow");
+modalShow.style.display = "none";
 var img1 = document.querySelector(".img_change1");
 var img2 = document.querySelector(".img_change2");
 var modalImg = document.getElementById("img01");
 var captionText = document.getElementById("caption");
 img1.addEventListener("click", function () {
-    modal.style.display = "block";
+    modalShow.style.display = "block";
     modalImg.src = this.src;
     captionText.innerHTML = this.alt;
 })
 img2.addEventListener("click", function () {
-    modal.style.display = "block";
+    modalShow.style.display = "block";
     modalImg.src = this.src;
     captionText.innerHTML = this.alt;
 })
@@ -196,5 +197,5 @@ var span = document.getElementsByClassName("close")[0];
 
 // When the user clicks on <span> (x), close the modal
 span.onclick = function () {
-    modal.style.display = "none";
+    modalShow.style.display = "none";
 }

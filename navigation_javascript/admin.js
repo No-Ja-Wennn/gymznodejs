@@ -1,21 +1,21 @@
 /* CLICK TO SHOW FORM */
 const messageFormBTN = document.getElementById("QLMessage");
 const accountFormBTN = document.getElementById("QLAccount");
-const cartFormBTN = document.getElementById("QLCart");
+const cardFormBTN = document.getElementById("QLCard");
 const calendarFormBTN = document.getElementById("QLCalendar");
 // messageFormBTN
 const messageForm = document.querySelector(".container__show__message")
 const accountForm = document.querySelector(".container__show__account")
-const cartForm = document.querySelector(".container__show__cart")
+const cardForm = document.querySelector(".container__show__card")
 const calendarForm = document.querySelector(".container__show__calendar")
 
 messageForm.style.display = "block";
 accountForm.style.display = "none";
-cartForm.style.display = "none";
+cardForm.style.display = "none";
 calendarForm.style.display = "none";
 
 
-const jsonPathCart = '../data/cartdata.json';
+const jsonPathCard = '../data/carddata.json';
 const jsonPathCalendar = '../data/calendarData.json';
 
 let myData = {};
@@ -38,7 +38,7 @@ for (var i = 0; i < itemsBox.length; i++) {
 messageFormBTN.addEventListener("click", function () {
     messageForm.style.display = "block";
     accountForm.style.display = "none";
-    cartForm.style.display = "none";
+    cardForm.style.display = "none";
     calendarForm.style.display = "none";
     showMessage();
     saveAciveForm("message")
@@ -48,27 +48,28 @@ messageFormBTN.addEventListener("click", function () {
 accountFormBTN.addEventListener("click", function () {
     messageForm.style.display = "none";
     accountForm.style.display = "block";
-    cartForm.style.display = "none";
+    cardForm.style.display = "none";
     calendarForm.style.display = "none";
     showAccount();
     saveAciveForm("account")
 })
 
-// cartFormBTN
-cartFormBTN.addEventListener("click", function () {
+// cardFormBTN
+cardFormBTN.addEventListener("click", function () {
     messageForm.style.display = "none";
     accountForm.style.display = "none";
-    cartForm.style.display = "block";
+    cardForm.style.display = "block";
     calendarForm.style.display = "none";
-    showCart()
-    saveAciveForm("cart")
+    showCard()
+    saveAciveForm("card")
+    console.log("hekk")
 })
 
 // calendarFormBTN
 calendarFormBTN.addEventListener("click", function () {
     messageForm.style.display = "none";
     accountForm.style.display = "none";
-    cartForm.style.display = "none";
+    cardForm.style.display = "none";
     calendarForm.style.display = "block";
     showCalendar()
     saveAciveForm("calendar")
@@ -99,8 +100,8 @@ window.onload = function () {
                 messageFormBTN.click()
             } else if (activeNow == "account") {
                 accountFormBTN.click()
-            } else if (activeNow == "cart") {
-                cartFormBTN.click()
+            } else if (activeNow == "card") {
+                cardFormBTN.click()
             } else if (activeNow == "calendar") {
                 calendarFormBTN.click()
             } else {
@@ -128,7 +129,7 @@ function checkValidSave(valueActive, flagConsole = true) {
         return true;
     } else {
         if (flagConsole)
-            if (doingForm == "cart") {
+            if (doingForm == "card") {
                 if (activeOption == "edit")
                     showErrorToast("Vui lòng hoàn tất chức năng sửa thẻ");
                 else if (activeOption == "add")
@@ -237,10 +238,9 @@ SHOW CART
 let trAddArray;
 let trAddArray2;
 
-function innerTableCart(array) {
-    if (cartForm) {
-        const tableCart = cartForm.querySelector(".table__show");
-
+function innerTableCard(array) {
+    if (cardForm) {
+        const tableCard = cardForm.querySelector(".table__show");
         array.map(value => {
             var trElement = document.createElement("tr");
             trElement.className = "tr__show";
@@ -249,25 +249,25 @@ function innerTableCart(array) {
         <td class="td__show">${value.name}</td>
         <td class="td__show">${value.age}</td>
         <td class="td__show">${value.phoneNumber}</td>
-        <td class="td__show">${value.cartType}</td>
+        <td class="td__show">${value.cardType}</td>
         <td class="td__show">${value.dateStart}</td>
         <td class="td__show">${value.dateEnd}</td>
         <td class="td__show">
-        <i class="fa-solid fa-pen-to-square" onclick="editCart(this)"></i>
-        <i class="fa-solid fa-trash" onclick="removeCart(this)"></i>
+        <i class="fa-solid fa-pen-to-square" onclick="editCard(this)"></i>
+        <i class="fa-solid fa-trash" onclick="removeCard(this)"></i>
         </td>
         `
-            tableCart.appendChild(trElement);
+            tableCard.appendChild(trElement);
         })
     }
 }
 
-function showCart() {
-    const firstTd = cartForm.querySelector(".td__show");
+function showCard() {
+    const firstTd = cardForm.querySelector(".td__show");
     // Kiểm tra xem dữ liệu đã tồn tại trong localStorage chưa
     if (firstTd == null)
-        if (!localStorage.getItem('cartData')) {
-            fetch(jsonPathCart)
+        if (!localStorage.getItem('cardData')) {
+            fetch(jsonPathCard)
                 .then(response => {
                     if (!response.ok) {
                         throw new Error('Network response was not ok');
@@ -276,37 +276,37 @@ function showCart() {
                 })
                 .then(data => {
                     myData = data;
-                    localStorage.setItem('cartData', JSON.stringify(myData));
-                    innerTableCart(myData.carts)
+                    localStorage.setItem('cardData', JSON.stringify(myData));
+                    innerTableCard(myData.cards)
                 })
                 .catch(error => {
                     console.error('Fetch error:', error);
                 });
         } else {
             // Nếu dữ liệu đã tồn tại trong localStorage, sử dụng nó
-            myData = JSON.parse(localStorage.getItem('cartData'));
-            innerTableCart(myData.carts);
+            myData = JSON.parse(localStorage.getItem('cardData'));
+            innerTableCard(myData.cards);
         }
 
 
 
-    const findBTN = cartForm.querySelector(".container__show__cart__find__btn");
+    const findBTN = cardForm.querySelector(".container__show__card__find__btn");
     findBTN.addEventListener("click", () => {
-        var inputID = cartForm.querySelector(".show__input__id").value.trim();
-        var selectPackage = cartForm.querySelector(".show__input__package").value.trim();
+        var inputID = cardForm.querySelector(".show__input__id").value.trim();
+        var selectPackage = cardForm.querySelector(".show__input__package").value.trim();
         var inputStart = document.getElementById("input-date-start").value.trim()
         var inputEnd = document.getElementById("input-date-end").value.trim();
 
         const findBox = document.querySelector(".show__find__id__box");
         findBox.innerText = ""
 
-        myData = JSON.parse(localStorage.getItem('cartData'));
-        dataArray = myData.carts;
-        const tableShowElement = cartForm.querySelector(".table__show");
+        myData = JSON.parse(localStorage.getItem('cardData'));
+        dataArray = myData.cards;
+        const tableShowElement = cardForm.querySelector(".table__show");
 
         if (inputID != "" || selectPackage != "" || inputStart != "" || inputEnd != "") {
             tableShowElement.style.display = "none";
-            const tableBox = cartForm.querySelector(".container__show__cart__content");
+            const tableBox = cardForm.querySelector(".container__show__card__content");
             // tableBox.innerHTML = "";
             var tableCreate = document.createElement("table");
             tableCreate.className = "table__show";
@@ -331,7 +331,7 @@ function showCart() {
                     }
                 }
                 if (selectPackage != "" && test == true) {
-                    if (selectPackage !== value.cartType) {
+                    if (selectPackage !== value.cardType) {
                         test = false;
                     }
                 }
@@ -357,12 +357,12 @@ function showCart() {
                     <td class="td__show">${value.name}</td>
                     <td class="td__show">${value.age}</td>
                     <td class="td__show">${value.phoneNumber}</td>
-                    <td class="td__show">${value.cartType}</td>
+                    <td class="td__show">${value.cardType}</td>
                     <td class="td__show">${value.dateStart}</td>
                     <td class="td__show">${value.dateEnd}</td>
                     <td class="td__show">
-                    <i class="fa-solid fa-pen-to-square" onclick="editCart(this)"></i>
-                    <i class="fa-solid fa-trash" onclick="removeCart(this)"></i>
+                    <i class="fa-solid fa-pen-to-square" onclick="editCard(this)"></i>
+                    <i class="fa-solid fa-trash" onclick="removeCard(this)"></i>
                     </td>
                 `
                     tableCreate.appendChild(trCreate);
@@ -375,14 +375,14 @@ function showCart() {
 
 }
 
-function addCart() {
-    var btnAddCart = cartForm.querySelector(".container__show__cart__add__btn");
-    var showSide = cartForm.querySelector(".container__show__cart__content")
+function addCard() {
+    var btnAddCard = cardForm.querySelector(".container__show__card__add__btn");
+    var showSide = cardForm.querySelector(".container__show__card__content")
 
-    if (checkValidSave("cart") && activeOption == "") {
-        doingForm = "cart";
+    if (checkValidSave("card") && activeOption == "") {
+        doingForm = "card";
         activeOption = "add";
-        const tableCart = cartForm.querySelector(".table__show");
+        const tableCard = cardForm.querySelector(".table__show");
         var trElement = document.createElement("tr");
         trElement.className = "trAdd tr__show";
         trElement.innerHTML = `
@@ -391,27 +391,27 @@ function addCart() {
             <td class="td__show"><input class="input__show inputAdd" type="text" placeholder="....."></td>
             <td class="td__show"><input class="input__show inputAdd" type="text" placeholder="....."></td>
             <td class="td__show"><input class="input__show inputAdd" type="text" placeholder="....."></td>
-            <td class="td__show"><input class="input__show inputAdd" type="text" placeholder="....."></td>
-            <td class="td__show"><input class="input__show inputAdd" type="text" placeholder="....."></td>
+            <td class="td__show"><input class="input__show inputAdd" type="date" placeholder="....."></td>
+            <td class="td__show"><input class="input__show inputAdd" type="date" placeholder="....."></td>
             <td class="td__show">
-                <i class="fa-solid fa-pen-to-square" onclick="editCart(this)"></i>
-                <i class="fa-solid fa-trash" onclick="removeCart(this)"></i>
+                <i class="fa-solid fa-pen-to-square" onclick="editCard(this)"></i>
+                <i class="fa-solid fa-trash" onclick="removeCard(this)"></i>
             </td>
                 `
-        tableCart.appendChild(trElement);
-        trAddArray = cartForm.querySelectorAll(".trAdd");
+        tableCard.appendChild(trElement);
+        trAddArray = cardForm.querySelectorAll(".trAdd");
         trAddArray = Array.from(trAddArray);
-    } else if (doingForm == "cart" && activeOption == "add") {
+    } else if (doingForm == "card" && activeOption == "add") {
         showErrorToast("Bạn đang thực hiện thao tác này");
-    } else if (doingForm == "cart" && activeOption == "edit") {
+    } else if (doingForm == "card" && activeOption == "edit") {
         showErrorToast("Bạn đang thực hiện thao tác chỉnh sửa thẻ, bấm lưu để tiếp tục sử dụng chức năng này");
-    } else if (doingForm == "cart" && activeOption == "remove") {
+    } else if (doingForm == "card" && activeOption == "remove") {
         showErrorToast("Bạn đang thực hiện thao tác xóa thẻ, bấm lưu để tiếp tục sử dụng chức năng này");
     }
 }
 
-function saveCart() {
-    const saveMessage = cartForm.querySelector(".save__message");
+function saveCard() {
+    const saveMessage = cardForm.querySelector(".save__message");
     if (activeOption == "add") {
         if (trAddArray) {
             if (checkAll(trAddArray)) {
@@ -428,8 +428,8 @@ function saveCart() {
                         arrayData[index1][index2] = value;
                     })
                 })
-                myData = JSON.parse(localStorage.getItem('cartData'));
-                dataCompear = myData.carts;
+                myData = JSON.parse(localStorage.getItem('cardData'));
+                dataCompear = myData.cards;
                 arrayData.map(value => {
                     for (var i = 0; i < dataCompear.length; i++) {
                         if (dataCompear[i].id == value[0]) {
@@ -452,14 +452,14 @@ function saveCart() {
                         "name": `${value[1]}`,
                         "age": `${value[2]}`,
                         "phoneNumber": `${value[3]}`,
-                        "cartType": `${value[4]}`,
+                        "cardType": `${value[4]}`,
                         "dateStart": `${value[5]}`,
                         "dateEnd": `${value[6]}`
                     };
 
-                    myData.carts.push(data);
-                    localStorage.setItem('cartData', JSON.stringify(myData));
-                    var trElement = cartForm.querySelector(".trAdd");
+                    myData.cards.push(data);
+                    localStorage.setItem('cardData', JSON.stringify(myData));
+                    var trElement = cardForm.querySelector(".trAdd");
                     trElement.classList.remove("trAdd");
                     showSuccessToast("Thêm thành công!");
                     activeOption = "";
@@ -483,12 +483,20 @@ function saveCart() {
         for (var i = 0; i < tdArray.length - 1; i++) {
             var value = tdArray[i].querySelector(".inputAdd").value;
             if (value != "") {
-                valueArray[i] = value;
+                if (i >= 5)
+                    valueArray[i] = convertDateFormat(value);
+                else
+                    valueArray[i] = value;
+                console.log(value)
             }
+            // else if (i >= 5) {
+            //     valueArray[i] = tdArray[i].querySelector(".inputAdd").getAttribute("value")
+            //     console.log(valueArray[i])
+            // }
             else
                 valueArray[i] = tdArray[i].querySelector(".inputAdd").getAttribute("placeholder")
         }
-        if (checkInformationValidCart(valueArray)) {
+        if (checkInformationValidCard(valueArray)) {
             for (var i = 0; i < tdArray.length - 1; i++) {
                 tdArray[i].innerHTML = `${valueArray[i]}`
             }
@@ -500,24 +508,24 @@ function saveCart() {
             "name": `${valueArray[1]}`,
             "age": `${Number(valueArray[2])}`,
             "phoneNumber": `${valueArray[3]}`,
-            "cartType": `${valueArray[4]}`,
+            "cardType": `${valueArray[4]}`,
             "dateStart": `${valueArray[5]}`,
             "dateEnd": `${valueArray[6]}`
         };
         if (indexChange !== -1) {
-            myData.carts[indexChange] = data;
+            myData.cards[indexChange] = data;
         } else {
-            myData.carts.push(data);
+            myData.cards.push(data);
         }
         indexChange = -1;
-        localStorage.setItem('cartData', JSON.stringify(myData));
-        var trElement = cartForm.querySelector(".trEdit");
+        localStorage.setItem('cardData', JSON.stringify(myData));
+        var trElement = cardForm.querySelector(".trEdit");
         trElement.classList.remove("trEdit");
         showSuccessToast("Sửa thành công!")
         activeOption = "";
         doingForm = "";
     } else if (activeOption == "remove") {
-        localStorage.setItem('cartData', JSON.stringify(dataAfterRemove));
+        localStorage.setItem('cardData', JSON.stringify(dataAfterRemove));
         showSuccessToast("Xóa thành công!");
         activeOption = "";
         doingForm = "";
@@ -526,23 +534,23 @@ function saveCart() {
     }
 }
 
-function checkInformationValidCart(arrayData) {
-    myData = JSON.parse(localStorage.getItem('cartData'));
+function checkInformationValidCard(arrayData) {
+    myData = JSON.parse(localStorage.getItem('cardData'));
     var data = {
         "id": `${arrayData[0]}`,
         "name": `${arrayData[1]}`,
         "age": `${Number(arrayData[2])}`,
         "phoneNumber": `${arrayData[3]}`,
-        "cartType": `${arrayData[4]}`,
+        "cardType": `${arrayData[4]}`,
         "dateStart": `${arrayData[5]}`,
         "dateEnd": `${arrayData[6]}`
     };
     if (indexChange !== -1) {
-        myData.carts[indexChange] = data;
+        myData.cards[indexChange] = data;
     } else {
-        myData.carts.push(data);
+        myData.cards.push(data);
     }
-    dataCompear = myData.carts;
+    dataCompear = myData.cards;
     var test = true;
     arrayData[2] = Number(arrayData[2])
     var arrayChange = [];
@@ -553,7 +561,7 @@ function checkInformationValidCart(arrayData) {
             dataCompear[i].name,
             Number(dataCompear[i].age),
             dataCompear[i].phoneNumber,
-            dataCompear[i].cartType,
+            dataCompear[i].cardType,
             dataCompear[i].dateStart,
             dataCompear[i].dateEnd
         ]
@@ -583,7 +591,7 @@ function checkAll(trArray) {
     trArray.map(element => {
         var arrayInput = element.getElementsByTagName("input")
         if (ktra == false) return;
-        if (checkRowAddCart(arrayInput) == false) {
+        if (checkRowAddCard(arrayInput) == false) {
             ktra = false;
         }
     })
@@ -612,7 +620,7 @@ function arraysEqual1(a, b) {// LENGTH  -1;
     return true;
 }
 
-function checkRowAddCart(arrayElement) {
+function checkRowAddCard(arrayElement) {
     var ktra = true;
     arrayElement = Array.from(arrayElement);
     arrayElement.map(value => {
@@ -624,16 +632,28 @@ function checkRowAddCart(arrayElement) {
     return ktra;
 }
 
+function formatDate(str) {
+    var parts = str.split("/");
+    if (parts)
+        return `${parts[2]}-${parts[1].padStart(2, '0')}-${parts[0].padStart(2, '0')}`;
+    return str;
+}
+function convertDateFormat(str) {
+    var parts = str.split("-");
+    if (parts)
+        return `${parts[2]}/${parts[1]}/${parts[0]}`;
+    return str;
+}
 let trelementChange;
 let indexChange = -1;
-function editCart(thisElement) {
-    if (checkValidSave("cart") && activeOption == "") {
-        doingForm = "cart";
+function editCard(thisElement) {
+    if (checkValidSave("card") && activeOption == "") {
+        doingForm = "card";
         activeOption = "edit";
         indexChange = -1;
         var trElement = thisElement.parentElement.parentElement;
         var tableElement = trElement.parentElement;
-        var tableElement2 = cartForm.querySelector(".table__show__main");
+        var tableElement2 = cardForm.querySelector(".table__show__main");
         var trAray = tableElement2.querySelectorAll("tr");
         trAray = Array.from(trAray);
         var valueEdit = getValueOnTrShow(trElement);
@@ -652,22 +672,25 @@ function editCart(thisElement) {
         }
         trElement.className = "trEdit";
         for (var i = 0; i < tdArray.length - 1; i++) {
-            tdArray[i].innerHTML = `<input class="inputAdd" type="text" placeholder="${valueArray[i]}">`
+            if (i >= 5) {
+                tdArray[i].innerHTML = `<input class="inputAdd" type="date" value="${formatDate(valueArray[i])}">`
+            } else
+                tdArray[i].innerHTML = `<input class="inputAdd" type="text" placeholder="${valueArray[i]}">`
         }
-    } else if (doingForm == "cart" && activeOption == "edit") {
+    } else if (doingForm == "card" && activeOption == "edit") {
         showErrorToast("vui lòng bấm lưu trước khi sửa dòng khác!");
-    } else if (doingForm == "cart" && activeOption == "remove") {
+    } else if (doingForm == "card" && activeOption == "remove") {
         showErrorToast("Bạn đang thực hiện thao tác xóa thẻ, bấm lưu để tiếp tục thực hiện chức năng này!");
-    } else if (doingForm == "cart" && activeOption == "add") {
+    } else if (doingForm == "card" && activeOption == "add") {
         showErrorToast("Bạn đang thực hiện thao tác thêm thẻ, hãy hoàn tất chức năng này trước!");
     }
 }
 
 let dataAfterRemove;
 
-function removeCart(thisElement) {
-    if (checkValidSave("cart") && (activeOption == "" || activeOption == "remove" || activeOption == "add")) {
-        doingForm = "cart";
+function removeCard(thisElement) {
+    if (checkValidSave("card") && (activeOption == "" || activeOption == "remove" || activeOption == "add")) {
+        doingForm = "card";
         activeOption = "remove";
         var trElement = thisElement.parentElement.parentElement;
         trelementChange = trElement;
@@ -691,20 +714,20 @@ function removeCart(thisElement) {
             "name": `${valueArray[1]}`,
             "age": `${valueArray[2]}`,
             "phoneNumber": `${valueArray[3]}`,
-            "cartType": `${valueArray[4]}`,
+            "cardType": `${valueArray[4]}`,
             "dateStart": `${valueArray[5]}`,
             "dateEnd": `${valueArray[6]}`
         };
-        myData = JSON.parse(localStorage.getItem('cartData'));
-        var index = myData.carts.findIndex(cart => cart.id === data.id);
+        myData = JSON.parse(localStorage.getItem('cardData'));
+        var index = myData.cards.findIndex(card => card.id === data.id);
 
         if (index !== -1) {
-            myData.carts.splice(index, 1);
+            myData.cards.splice(index, 1);
         }
         dataAfterRemove = myData;
-    } else if (doingForm == "cart" && activeOption == "edit") {
+    } else if (doingForm == "card" && activeOption == "edit") {
         showErrorToast("Bạn đang thực hiện thao tác chỉnh sửa thẻ, bấm lưu để tiếp tục thực hiện chức năng này!");
-    } else if (checkValidSave("cart", false) && doingForm == "cart" && activeOption == "add") {
+    } else if (checkValidSave("card", false) && doingForm == "card" && activeOption == "add") {
         var trElement = thisElement.parentElement.parentElement;
         if (trElement.className == "trAdd tr__show") {
             activeOption = "remove";
@@ -717,10 +740,10 @@ function removeCart(thisElement) {
     }
 }
 
-function findByIDCart(thisElement) {
-    myData = JSON.parse(localStorage.getItem('cartData'));
-    dataArray = myData.carts;
-    const findBox = cartForm.querySelector(".show__find__id__box");
+function findByIDCard(thisElement) {
+    myData = JSON.parse(localStorage.getItem('cardData'));
+    dataArray = myData.cards;
+    const findBox = cardForm.querySelector(".show__find__id__box");
     findBox.innerText = ""
     if (thisElement.value == "") {
         findBox.innerText = "";
@@ -730,11 +753,11 @@ function findByIDCart(thisElement) {
                 var spanE = document.createElement("show__find_id");
                 spanE.className = "show__find_id";
                 spanE.innerText = value.id;
-                const inputFindID = cartForm.querySelector(".show__input__id");
+                const inputFindID = cardForm.querySelector(".show__input__id");
                 spanE.onclick = function () {
                     var value = this.innerText;
                     inputFindID.value = value;
-                    findByIDCart(thisElement);
+                    findByIDCard(thisElement);
                 };
                 findBox.appendChild(spanE);
             }
@@ -863,7 +886,7 @@ function findByIDAccount(thisElement) {
 }
 
 function innerTableAccount(array) {
-    if (cartForm) {
+    if (cardForm) {
         const tableAccount = accountForm.querySelector(".table__show");
         array.map(value => {
             var trElement = document.createElement("tr");
@@ -884,7 +907,7 @@ function innerTableAccount(array) {
 }
 
 function showAccount() {
-    const tableCart = accountForm.getElementsByTagName("table");
+    const tableCard = accountForm.getElementsByTagName("table");
     const firstTd = accountForm.querySelector(".td__show");
     // Kiểm tra xem dữ liệu đã tồn tại trong localStorage chưa
     if (firstTd == null)
@@ -976,7 +999,7 @@ function addAccount() {
     if (checkValidSave("account") && activeOption == "") {
         doingForm = "account";
         activeOption = "add";
-        const tableCart = accountForm.querySelector(".table__show");
+        const tableCard = accountForm.querySelector(".table__show");
         var trElement = document.createElement("tr");
         trElement.className = "trAdd tr__show";
         trElement.innerHTML = `
@@ -989,7 +1012,7 @@ function addAccount() {
                 <i class="fa-solid fa-trash" onclick="removeAccount(this)"></i>
             </td>
                 `
-        tableCart.appendChild(trElement);
+        tableCard.appendChild(trElement);
         trAddArray = accountForm.querySelectorAll(".trAdd");
         trAddArray = Array.from(trAddArray);
     } else if (doingForm == "account" && activeOption == "add") {
@@ -1208,7 +1231,7 @@ function removeAccount(thisElement) {
             "password": `${valueArray[3]}`
         };
         myData = JSON.parse(localStorage.getItem('loginData'));
-        var index = myData.accounts.findIndex(cart => cart.id === data.id);
+        var index = myData.accounts.findIndex(card => card.id === data.id);
 
         if (index !== -1) {
             myData.accounts.splice(index, 1);
@@ -1296,7 +1319,7 @@ function findByIDCalendar(thisElement) {
 }
 
 function innerTableCalendar(array) {
-    if (cartForm) {
+    if (cardForm) {
         const tableCalendar = calendarForm.querySelector(".table__show");
         array.map(value => {
             var trElement = document.createElement("tr");
@@ -1321,7 +1344,7 @@ function innerTableCalendar(array) {
 }
 
 function showCalendar() {
-    const tableCart = calendarForm.getElementsByTagName("table");
+    const tableCard = calendarForm.getElementsByTagName("table");
     const firstTd = calendarForm.querySelector(".td__show");
     // Kiểm tra xem dữ liệu đã tồn tại trong localStorage chưa
     if (firstTd == null)
@@ -1538,17 +1561,17 @@ function saveCalendar() {
 
 function addCalendar() {
     var btnAddCalendar = calendarForm.querySelector(".container__show__calendar__add__btn");
-    var showSide = cartForm.querySelector(".container__show__cart__content")
+    var showSide = cardForm.querySelector(".container__show__card__content")
     if (checkValidSave("calendar") && activeOption == "") {
         doingForm = "calendar";
         activeOption = "add";
-        const tableCart = calendarForm.querySelector(".table__show");
+        const tableCard = calendarForm.querySelector(".table__show");
         var trElement = document.createElement("tr");
         trElement.className = "trAdd tr__show";
         trElement.innerHTML = `
             <td class="td__show"><input class="input__show inputAdd" type="text" placeholder="....."></td>
             <td class="td__show"><input class="input__show inputAdd" type="text" placeholder="....."></td>
-            <td class="td__show"><input class="input__show inputAdd" type="text" placeholder="....."></td>
+            <td class="td__show"><input class="input__show inputAdd" type="date" placeholder="....."></td>
             <td class="td__show"><input class="input__show inputAdd" type="text" placeholder="....."></td>
             <td class="td__show"><input class="input__show inputAdd" type="text" placeholder="....."></td>
             <td class="td__show"><input class="input__show inputAdd" type="text" placeholder="....."></td>
@@ -1559,7 +1582,7 @@ function addCalendar() {
                 <i class="fa-solid fa-trash" onclick="removeCalendar(this)"></i>
             </td>
                 `
-        tableCart.appendChild(trElement);
+        tableCard.appendChild(trElement);
         trAddArray = calendarForm.querySelectorAll(".trAdd");
         trAddArray = Array.from(trAddArray);
     } else if (doingForm == "calendar" && activeOption == "add") {
@@ -1681,7 +1704,7 @@ function removeCalendar(thisElement) {
             "note": `${valueArray[7]}`
         };
         myData = JSON.parse(localStorage.getItem('calendarData'));
-        var index = myData.calendars.findIndex(cart => cart.id === data.id);
+        var index = myData.calendars.findIndex(card => card.id === data.id);
 
         if (index !== -1) {
             myData.calendars.splice(index, 1);
@@ -1729,7 +1752,11 @@ function editCalendar(thisElement) {
         }
         trElement.className = "trEdit";
         for (var i = 0; i < tdArray.length - 1; i++) {
-            tdArray[i].innerHTML = `<input class="inputAdd" type="text" placeholder="${valueArray[i]}">`
+            if (i == 3 || i == 4) {
+                tdArray[i].innerHTML = `<input class="inputAdd" type="time" value="${valueArray[i]}">`
+                console.log(tdArray[i])
+            } else
+                tdArray[i].innerHTML = `<input class="inputAdd" type="text" placeholder="${valueArray[i]}">`
         }
     } else if (doingForm == "calendar" && activeOption == "edit") {
         showErrorToast("vui lòng bấm lưu trước khi sửa dòng khác!");
