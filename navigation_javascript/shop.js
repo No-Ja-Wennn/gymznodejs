@@ -24,7 +24,7 @@ const ProductItemWhey = product => {
     product = product.product
     // console.log(product)
     return (
-        <div class="container__danhmucsanpham" onClick={
+        <div className="container__danhmucsanpham" onClick={
             () => {
                 // Lưu thông tin sản phẩm vào localStorage
                 localStorage.setItem('product', JSON.stringify(product));
@@ -35,8 +35,8 @@ const ProductItemWhey = product => {
             }
         }>
             <img src={product.img && product.img[0]} alt="" />
-            <div class="info-top-left">Số lượng: {product.amount}</div>
-            <div class="info-top-right">Đã bán: {product.sold}</div>
+            <div className="info-top-left">Số lượng: {product.amount}</div>
+            <div className="info-top-right">Đã bán: {product.sold}</div>
             <h2>{product.title}</h2>
             <h1>{product.priceStart} - {product.priceEnd}</h1>
         </div>
@@ -45,9 +45,9 @@ const ProductItemWhey = product => {
 
 function App({ dataWhey, dataEquipment }) {
     return (
-        <div class="container__sanpham">
+        <div className="container__sanpham">
             <h1>SẢN PHẨM GIÚP PHÁT TRIỂN CƠ THỂ</h1>
-            <div class="parent__container">
+            <div className="parent__container">
                 {dataWhey.map(product => (
                     <ProductItemWhey
                         key={product.id}
@@ -55,10 +55,10 @@ function App({ dataWhey, dataEquipment }) {
                     />
                 ))}
             </div>
-            <div class="container__danhmucsanpham_tadon">
+            <div className="container__danhmucsanpham_tadon">
                 <h1>Dụng Cụ Tập Luyện</h1>
             </div>
-            <div class="parent__container">
+            <div className="parent__container">
                 {dataEquipment.map(product => (
                     <ProductItemWhey
                         key={product.id}
