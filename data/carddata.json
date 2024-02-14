@@ -2,76 +2,48 @@
     "cards":[
         {
             "id": "MT01",
-            "name": "Nguyễn Văn A",
-            "age": 23,
-            "phoneNumber": "0333179011",
+            "name": "Lưu Sỹ Trường",
+            "age": 20,
+            "phoneNumber": "0334329011",
             "cardType": "BEGINNER",
-            "dateStart": "31/12/2022",
-            "dateEnd": "2/3/2023"
+            "dateStart": "14/02/2022",
+            "dateEnd": "14/03/2022"
         },
         {
             "id": "MT02",
-            "name": "Nguyễn Văn B",
-            "age": 29,
-            "phoneNumber": "0333179011",
+            "name": "Lê Văn Tiến",
+            "age": 20,
+            "phoneNumber": "0356765889",
             "cardType": "BEGINNER",
-            "dateStart": "31/12/2022",
-            "dateEnd": "7/3/2023"
+            "dateStart": "14/02/2022",
+            "dateEnd": "14/03/2022"
         },
         {
             "id": "MT03",
-            "name": "Nguyễn Văn C",
-            "age": 27,
-            "phoneNumber": "0333179011",
+            "name": "Nguyễn Thị Vân",
+            "age": 19,
+            "phoneNumber": "0364227898",
             "cardType": "ADVENCE",
-            "dateStart": "31/12/2022",
-            "dateEnd": "9/3/2023"
+            "dateStart": "14/02/2022",
+            "dateEnd": "14/03/2022"
         },
         {
             "id": "MT04",
-            "name": "Nguyễn Văn D",
-            "age": 33,
-            "phoneNumber": "0333179011",
-            "cardType": "BASIC",
-            "dateStart": "31/12/2022",
-            "dateEnd": "20/3/2023"
+            "name": "Hoàng Anh Tú",
+            "age": 20,
+            "phoneNumber": "0398778012",
+            "cardType": "ADVENCE",
+            "dateStart": "14/02/2022",
+            "dateEnd": "14/03/2022"
         },
         {
             "id": "MT05",
-            "name": "Nguyễn Văn D",
-            "age": 33,
-            "phoneNumber": "0333179011",
+            "name": "Ngô Gia Quyến",
+            "age": 18,
+            "phoneNumber": "0321654778",
             "cardType": "BASIC",
-            "dateStart": "31/12/2022",
-            "dateEnd": "20/3/2023"
-        },
-        {
-            "id": "MT06",
-            "name": "Nguyễn Văn D",
-            "age": 33,
-            "phoneNumber": "0333179011",
-            "cardType": "BASIC",
-            "dateStart": "31/12/2022",
-            "dateEnd": "20/3/2023"
-        },
-        {
-            "id": "MT07",
-            "name": "Nguyễn Văn D",
-            "age": 33,
-            "phoneNumber": "0333179011",
-            "cardType": "BASIC",
-            "dateStart": "31/12/2022",
-            "dateEnd": "20/3/2023"
-        },
-        {
-            "id": "MT08",
-            "name": "Nguyễn Văn D",
-            "age": 33,
-            "phoneNumber": "0333179011",
-            "cardType": "BASIC",
-            "dateStart": "31/12/2022",
-            "dateEnd": "20/3/2023"
+            "dateStart": "14/02/2022",
+            "dateEnd": "14/03/2022"
         }
-
     ]
 }

@@ -128,6 +128,10 @@ function buttonCreateAccountFunction() {
                 inputLoginEmail.value = "";
                 inputLoginPass.value = "";
                 inputLoginPassConfirm.value = "";
+                modal__body__box.map(value => {
+                    value.style.display = "none";
+                })
+                modalOverLay.click();
                 linkLogin.click();
             } else {
                 console.log("không trùng")
@@ -159,9 +163,8 @@ window.onload = function () {
 }
 
 
-var modalOverLay = document.querySelector('.modal-overlay');
+let modalOverLay = document.querySelector('.modal-overlay');
 modalOverLay.addEventListener("click", () => {
-    console.log("helloo")
     modalElement.style.display = "none";
 })
 // click on avt
@@ -185,7 +188,6 @@ if (loginMenu1)
                 e.preventDefault();
                 loginBox.style.display = "block";
                 createAccountBox.style.display = "none";
-
             })
         }
     })
@@ -269,19 +271,30 @@ cube.map(value => {
                 let registerCartForm = document.querySelector(".register-cart");
                 let phoneNumberElement = registerCartForm.querySelector(".phoneNumber");
                 let dateOfBirthElement = registerCartForm.querySelector(".date-of-birth");
-                let A_radioBtnElement = registerCartForm.querySelectorAll(".radio-option");
-                A_radioBtnElement = Array.from(A_radioBtnElement)
+                let A_radioBtnPackageElement = registerCartForm.querySelectorAll(".radio-option");
+                let A_radioBtnExElement = registerCartForm.querySelectorAll(".radio-option2");
+                A_radioBtnPackageElement = Array.from(A_radioBtnPackageElement);
+                A_radioBtnExElement = Array.from(A_radioBtnExElement);
                 let hopeDateElement = registerCartForm.querySelector(".hope-date");
                 let A_hopeTimeElement = registerCartForm.querySelectorAll(".time-input");
                 let selectPT = registerCartForm.querySelector(".select-pt");
 
                 let valueType;
-                var parentInput = A_radioBtnElement[0].parentElement;
-                valueType = parentInput.querySelector(".radio-label").innerText;
-                for (var i = 0; i < A_radioBtnElement.length; i++) {
-                    A_radioBtnElement[i].addEventListener('change', function () {
+                let valueExercise;
+                var parentInputType = A_radioBtnPackageElement[0].parentElement;
+                var parentInputExercise = A_radioBtnExElement[0].parentElement;
+                valueType = parentInputType.querySelector(".radio-label").innerText;
+                valueExercise = parentInputExercise.querySelector(".radio-label").innerText;
+                for (var i = 0; i < A_radioBtnPackageElement.length; i++) {
+                    A_radioBtnPackageElement[i].addEventListener('change', function () {
                         var parentInput = this.parentElement;
                         valueType = parentInput.querySelector(".radio-label").innerText;
+                    });
+                }
+                for (var i = 0; i < A_radioBtnExElement.length; i++) {
+                    A_radioBtnExElement[i].addEventListener('change', function () {
+                        var parentInput = this.parentElement;
+                        valueExercise = parentInput.querySelector(".radio-label").innerText;
                     });
                 }
                 let hopeTimeValue;
@@ -306,12 +319,13 @@ cube.map(value => {
                         phoneNumberValue,
                         dateOfBirthValue,
                         valueType,
+                        valueExercise,
                         hopeDateValue,
                         hopeTimeValue,
                         optionPTValue
                     }
-                    console.log(data)
                     if (checkValidRegisterValue(data)) {
+                        console.log(data)
                         var userId = loggedInUser.id;
                         myData = JSON.parse(localStorage.getItem('cardData'));
                         var dataCompear = myData.cards;
@@ -320,18 +334,45 @@ cube.map(value => {
                         var month = today.getMonth() + 1;
                         var yearNow = today.getFullYear();
                         var dateStart = day + '/' + month + '/' + yearNow;
+                        var monthEnd = (month + 1) % 12;
+                        if (monthEnd == 0) {
+                            monthEnd = 12;
+                        }
+                        var yearEnd = yearNow;
+                        if ((month + 1) - 12 > 0)
+                            var yearEnd = yearNow + 1;
 
+                        var dateEnd = day + '/' + monthEnd + '/' + yearEnd;
                         var date = new Date(data.dateOfBirthValue);
                         var yearAge = date.getFullYear();
-                        for (var i = 0; i < dataCompear.length; i++) {
-                            if (dataCompear[i].id == userId) {
-                                dataCompear[i].age = yearNow - yearAge;
-                                dataCompear[i].phoneNumber = data.phoneNumberValue
-                                dataCompear[i].cardType = data.valueType;
-                                dataCompear[i].dateStart = dateStart
+                        for (var i = 0; i < myData.cards.length; i++) {
+                            if (myData.cards[i].id == userId) {
+                                myData.cards[i].age = yearNow - yearAge;
+                                myData.cards[i].phoneNumber = data.phoneNumberValue
+                                myData.cards[i].cardType = data.valueType;
+                                myData.cards[i].dateStart = dateStart;
+                                myData.cards[i].dateEnd = dateEnd;
                             }
                         }
-                        console.log(dataCompear)
+                        localStorage.setItem('cardData', JSON.stringify(myData));
+                        myData = JSON.parse(localStorage.getItem('calendarData'));
+                        var a_time = hopeTimeValue.split("-")
+                        for (var i = 0; i < myData.calendars.length; i++) {
+                            if (myData.calendars[i].id == userId) {
+                                myData.calendars[i].date = data.hopeDateValue;
+                                myData.calendars[i].timeStart = a_time[0];
+                                myData.calendars[i].timeEnd = a_time[1];
+                                myData.calendars[i].type = data.valueExercise
+                                myData.calendars[i].ptName = data.optionPTValue
+
+                            }
+                        }
+                        localStorage.setItem('calendarData', JSON.stringify(myData));
+                        showSuccessToast("Thành công", "Quý khách vui lòng tới quầy lễ tân tại phòng gym để thanh toán")
+                        modal__body__box.map(value => {
+                            value.style.display = "none";
+                        })
+                        modalOverLay.click();
                     }
                 })
             }
@@ -354,6 +395,9 @@ function checkValidRegisterValue(data) {
         showErrorToast("Thất bại", "Vui lòng nhập ngày sinh");
         return false;
     } else if (data.valueType == "") {
+        showErrorToast("Thất bại", "Vui lòng chọn gói tập");
+        return false;
+    } else if (data.valueExercise == "") {
         showErrorToast("Thất bại", "Vui lòng chọn gói tập");
         return false;
     } else if (data.hopeDateValue == "") {
