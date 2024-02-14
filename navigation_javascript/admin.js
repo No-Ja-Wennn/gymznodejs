@@ -376,9 +376,6 @@ function showCard() {
 }
 
 function addCard() {
-    var btnAddCard = cardForm.querySelector(".container__show__card__add__btn");
-    var showSide = cardForm.querySelector(".container__show__card__content")
-
     if (checkValidSave("card") && activeOption == "") {
         doingForm = "card";
         activeOption = "add";

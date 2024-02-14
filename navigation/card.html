@@ -19,6 +19,7 @@
     <link rel="stylesheet" href="../css/keyframes.css">
     <link rel="stylesheet" href="../navigation_css/card.css">
     <link rel="stylesheet" href="../navigation_css/login.css">
+    <link rel="stylesheet" href="../navigation_css/toast.css">
     <title>GYMZ - Thể hình giới trẻ</title>
 
 </head>
@@ -36,28 +37,56 @@
                 <!-- Thanh dieu huong -->
                 <div class="header__inner__navigation">
                     <ul>
-                        <li><a class="header__inner__navigation__sevice" href="../index.html">TRANG CHỦ</a></li>
-                        <li><a class="header__inner__navigation__sevice" href="./forum.html">DIỄN ĐÀN</a></li>
+                        <li><a class="header__inner__navigation__sevice" href="./index.html"><span>TRANG CHỦ</span></a>
+                        </li>
+                        <li><a class="header__inner__navigation__sevice" href="./navigation/forum.html">DIỄN ĐÀN</a>
+                        </li>
                         <li>
                             <div class="dropdown">
                                 <a class="header__inner__navigation__sevice" href="#" onclick="yourFunction(event)">
-                                    <span>DỊCH VỤ</span>
-                                    <m><i class='bx bxs-right-arrow'></i></m>
+                                    DỊCH VỤ<m><i class='bx bxs-right-arrow'></i></m>
                                 </a>
                                 <div class="containt">
-                                    <a href="./card.html"><span>THẺ HỘI VIÊN</span></a>
-                                    <a href="./train.html">HUẤN LUYỆN VIÊN</a>
-                                    <a href="./shop.html">CỬA HÀNG WHEY</a>
-                                    <a href="./chatbox.html">CHAT ONLINE</a>
+                                    <a href="./navigation/card.html">THẺ HỘI VIÊN</a>
+                                    <a href="./navigation/train.html">HUẤN LUYỆN VIÊN</a>
+                                    <a href="./navigation/shop.html">CỬA HÀNG WHEY</a>
+                                    <a href="./navigation/chatbox.html">CHAT ONLINE</a>
+                                    <a href="./navigation/test.html">TEST</a>
                                 </div>
                             </div>
                         </li>
-                        <li><a class="header__inner__navigation__sevice" href="./promotion.html">KHUYẾN MÃI</a></li>
+                        <li><a class="header__inner__navigation__sevice" href="./navigation/promotion.html">KHUYẾN
+                                MÃI</a></li>
                     </ul>
                 </div>
                 <div class="header__inner__try">
                     <ul>
                         <li><a href="https://facebook.com/lst24">TẬP THỬ MIỄN PHÍ</a></li>
+                    </ul>
+                </div>
+                <div class="header__inner__login">
+                    <ul class="">
+                        <li class="submenu__login">
+                            <a class="account-avt account" href="#" onclick="yourFunction(event)">
+                            </a>
+                            <div class="status__account">
+                                <a class="loginstatus status" href="#">
+                                    ĐĂNG NHẬP
+                                </a>
+                                <a class="status" href="./navigation/information_account.html">
+                                    THÔNG TIN TK
+                                </a>
+                                <a class="status" href="#">
+                                    THẺ THÀNH VIÊN
+                                </a>
+                                <a class="status" href="#">
+                                    LỊCH TẬP
+                                </a>
+                                <a class="logoutstatus status" href="">
+                                    ĐĂNG XUẤT
+                                </a>
+                            </div>
+                        </li>
                     </ul>
                 </div>
                 <div class="header__inner__menu">
@@ -83,13 +112,13 @@
                                 </div>
                                 <!-- <img src="../img/background/logo_and_bgr.png" alt="logo and bgr"> -->
                             </div>
-                            <a class="content__inner" href="../index.html">
+                            <a class="content__inner" href="./index.html">
                                 <i class='bx bxs-home'></i>
                                 <span class="noidung__text1">
                                     TRANG CHỦ
                                 </span>
                             </a>
-                            <a class="content__inner" href="./forum.html">
+                            <a class="content__inner" href="./navigation/forum.html">
                                 <i class='bx bx-world'></i>
                                 <span class="noidung__text1">
                                     DIỄN ĐÀN
@@ -103,13 +132,21 @@
                                     </span>
                                 </b>
                                 <div class="noidung222">
-                                    <a class="content__inner" href="./card.html">THẺ HỘI VIÊN</a>
-                                    <a class="content__inner" href="./train.html">HUẤN LUYỆN VIÊN</a>
-                                    <a class="content__inner" href="./shop.html">CỬA HÀNG WHEY</a>
-                                    <a class="content__inner" href="./chatbox.html">CHAT ONLINE</a>
+                                    <a class="content__inner" href="./navigation/card.html">
+                                        THẺ HỘI VIÊN
+                                    </a>
+                                    <a class="content__inner" href="./navigation/train.html">
+                                        HUẤN LUYỆN VIÊN
+                                    </a>
+                                    <a class="content__inner" href="./navigation/shop.html">
+                                        CỬA HÀNG WHEY
+                                    </a>
+                                    <a class="content__inner" href="./navigation/chatbox.html">
+                                        CHAT ONLINE
+                                    </a>
                                 </div>
                             </div>
-                            <a class="content__inner" href="./promotion.html">
+                            <a class="content__inner" href="./navigation/promotion.html">
                                 <i class='bx bxs-purchase-tag'></i>
                                 <span class="noidung__text1">
                                     KHUYẾN MÃI
@@ -362,6 +399,7 @@
             </div>
         </div>
     </div>
+    <div id="toast"></div>
     <!-- overlay -->
     <div class="modal">
         <div class="modal-overlay">
@@ -454,40 +492,37 @@
                 </form>
                 <p>Đã có tài khoản? <span class="a2 link-login">Đăng nhập!</span></p>
             </div>
-            
+
             <div class="modal__body__box register-cart">
-                <!-- <p>Đăng nhập tài khoản</p> -->
                 <form>
-                    <div class="user-box">
-                        <input class="login-email" required="" name="" type="text">
-                        <label>Họ và tên</label>
-                    </div>
                     <div class="user-box createBox">
-                        <input class="login-pass" required="" name="" type="password">
+                        <input class="phoneNumber" required="" name="" type="text">
                         <label>Số điện thoại</label>
+                    </div>
+                    <div class="user-box">
+                        <input class="date-of-birth" required="" name="" type="date">
+                        <label id="actived-label">Ngày sinh</label>
                     </div>
                     <div class="box_wrap">
                         <div class="radio-container">
                             <span class="tyoe_package">Gói tập</span>
                             <div class="radio-wrapper">
                                 <label class="radio-button">
-                                    <input id="option1" name="radio-group" type="radio">
+                                    <input id="option1" class="radio-option" name="radio-group" type="radio" checked>
                                     <span class="radio-checkmark"></span>
                                     <span class="radio-label">BEGINNER</span>
                                 </label>
                             </div>
-
                             <div class="radio-wrapper">
                                 <label class="radio-button">
-                                    <input id="option2" name="radio-group" type="radio">
+                                    <input id="option2" class="radio-option" name="radio-group" type="radio">
                                     <span class="radio-checkmark"></span>
                                     <span class="radio-label">BASIC</span>
                                 </label>
                             </div>
-
                             <div class="radio-wrapper">
                                 <label class="radio-button">
-                                    <input id="option3" name="radio-group" type="radio">
+                                    <input id="option3" class="radio-option" name="radio-group" type="radio">
                                     <span class="radio-checkmark"></span>
                                     <span class="radio-label">ADVENCE</span>
                                 </label>
@@ -495,27 +530,27 @@
                         </div>
 
                         <div class="user-box createBox">
-                            <input class="login-pass" required="" name="" type="text">
+                            <input class="hope-date" required="" name="" type="text">
                             <label>Ngày tập trong tuần mong muốn</label>
                         </div>
                     </div>
 
                     <div class="radio-inputs">
                         <label class="radio">
-                            <input type="radio" name="radio" checked="">
+                            <input class="time-input" type="radio" name="radio" checked="">
                             <span class="name">1h30-3h00</span>
                         </label>
                         <label class="radio">
-                            <input type="radio" name="radio">
+                            <input class="time-input" type="radio" name="radio">
                             <span class="name">3h00-4h30</span>
                         </label>
 
                         <label class="radio">
-                            <input type="radio" name="radio">
+                            <input class="time-input" type="radio" name="radio">
                             <span class="name">5h30-6h30</span>
                         </label>
                     </div>
-                    <select name="pt-options" id="pt-options">
+                    <select name="pt-select" id="pt-select" class="select-pt">
                         <option>Trường designer</option>
                         <option>Tiến fullstack</option>
                         <option>Tú coder</option>
@@ -527,7 +562,7 @@
                         <span></span>
                         <span></span>
                         <span></span>
-                        Đăng ký
+                        Đăng ký tập
                     </button>
                 </form>
             </div>
