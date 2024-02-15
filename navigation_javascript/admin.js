@@ -111,14 +111,15 @@ window.onload = function () {
     }
     //load mesage
     var myData = JSON.parse(localStorage.getItem('historyMessage'));
-    myData.map((value) => {
-        if (value.sender == 'User') {
-            displayBotMessage(value.message)
-        }
-        if (value.sender == 'Admin') {
-            displayUserMessage(value.message)
-        }
-    })
+    if (myData)
+        myData.map((value) => {
+            if (value.sender == 'User') {
+                displayBotMessage(value.message)
+            }
+            if (value.sender == 'Admin') {
+                displayUserMessage(value.message)
+            }
+        })
 }
 
 
@@ -191,7 +192,7 @@ function toast({
 
         const delay = (duration / 1000).toFixed(2)
         toast.classList.add('toast', `toast__${type}`);
-        toast.style.animation = `slideInleft ease .3s, fadeOut linear 1s ${delay}s forwards`
+        toast.style.animation = `slideInleft ease .3s, fadeOutToast linear 1s ${delay}s forwards`
         toast.innerHTML = `
             <div class="toast__icon">
                 <i class="${icon}"></i>
@@ -1022,9 +1023,6 @@ function addAccount() {
 }
 
 function saveAccount() {
-    var saveMessage = accountForm.querySelector(".save__message");
-    var saveAccountElement = accountForm.querySelector(".save-btn");
-    console.log("hello")
     if (activeOption == "add") {
         if (trAddArray) {
             if (checkAllAccount(trAddArray)) {

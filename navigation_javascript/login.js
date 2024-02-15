@@ -2,7 +2,6 @@ import { toast, showSuccessToast, showErrorToast } from './toast.js';
 var modalElement = document.querySelector(".modal");
 var BMIForm = document.querySelector(".BMI-form");
 modalElement.style.display = "none"
-
 var jsonPath = '../data/loginData.json';
 let modal__body__box = document.querySelectorAll(".modal__body__box");
 modal__body__box = Array.from(modal__body__box);
@@ -58,6 +57,7 @@ function buttonLoginFunction() {
         }
         dataLogin.map((value) => {
             if (emailValue == value.email && passValue == value.password) {
+                deleteCookie("loggedInUser")
                 accountName.innerText = value.name;
                 accountCode.innerText = value.id;
                 var date = new Date();
@@ -69,6 +69,8 @@ function buttonLoginFunction() {
                 inputLoginPass.value = "";
                 loginMenu1.innerText = value.name;
                 test = true;
+                if (activePage == "card")
+                    showCard();
             }
         })
         if (!test) {
@@ -77,6 +79,9 @@ function buttonLoginFunction() {
     } else {
         showErrorToast("Vui lòng điền đầy đủ thông tin")
     }
+}
+function deleteCookie(cname) {
+    document.cookie = cname + "=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
 }
 // is email
 function isValidEmail(email) {
@@ -115,14 +120,41 @@ function buttonCreateAccountFunction() {
         if (test) {
             if (passValue == passConfirmValue) {
                 // ok
+                var newID = generateId(dataLogin)
                 var data = {
-                    id: generateId(dataLogin),
+                    id: newID,
                     name: nameValue,
                     email: emailValue,
                     password: passValue
                 }
                 myData.accounts.push(data);
                 localStorage.setItem('loginData', JSON.stringify(myData));
+
+                var cardData = JSON.parse(localStorage.getItem('cardData'));
+                var data = {
+                    "id": newID,
+                    "name": nameValue,
+                    "age": "",
+                    "phoneNumber": "",
+                    "cardType": "",
+                    "dateStart": "",
+                    "dateEnd": ""
+                }
+                cardData.cards.push(data);
+                localStorage.setItem('cardData', JSON.stringify(cardData));
+                var calendarData = JSON.parse(localStorage.getItem('calendarData'));
+                var data = {
+                    "id": newID,
+                    "name": nameValue,
+                    "date": "",
+                    "timeStart": "",
+                    "timeEnd": "",
+                    "type": "",
+                    "ptName": "",
+                    "note": ""
+                }
+                calendarData.calendars.push(data);
+                localStorage.setItem('calendarData', JSON.stringify(calendarData));
                 showSuccessToast("Tạo tài khoản thành công", "Vui lòng đăng nhập tài khoản vừa tạo");
                 inputLoginName.value = "";
                 inputLoginEmail.value = "";
@@ -174,6 +206,9 @@ if (loginMenu1)
     loginMenu1.addEventListener("click", () => {
         if (loginMenu1.innerText == "ĐĂNG NHẬP") {
             modalElement.style.display = "flex";
+            modal__body__box.map(value => {
+                value.style.display = "none";
+            })
             loginBox.style.display = "block";
 
             var linkCreateAccount = loginBox.querySelector(".link-create-account");
@@ -195,7 +230,8 @@ let logoutMenu1 = document.querySelector(".logoutstatus");
 if (loginMenu1)
     logoutMenu1.addEventListener("click", (e) => {
         e.preventDefault()
-        document.cookie = "loggedInUser=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
+        // document.cookie = "loggedInUser=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
+        deleteCookie("loggedInUser")
         accountName = "";
         accountCode = "";
         loginMenu1.innerText = "ĐĂNG NHẬP";
@@ -364,9 +400,11 @@ cube.map(value => {
                                 myData.calendars[i].timeEnd = a_time[1];
                                 myData.calendars[i].type = data.valueExercise
                                 myData.calendars[i].ptName = data.optionPTValue
+                                myData.calendars[i].note = "Chưa thanh toán"
 
                             }
                         }
+                        console.log(myData.calendars)
                         localStorage.setItem('calendarData', JSON.stringify(myData));
                         showSuccessToast("Thành công", "Quý khách vui lòng tới quầy lễ tân tại phòng gym để thanh toán")
                         modal__body__box.map(value => {

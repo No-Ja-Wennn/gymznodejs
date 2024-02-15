@@ -1,4 +1,5 @@
 var modalElement = document.querySelector(".modal");
+var activePage = "home";
 
 // === CACULATOR BMI=== //
 const heightElement = document.getElementById("height")

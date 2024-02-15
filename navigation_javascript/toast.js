@@ -44,8 +44,8 @@ export function toast({
             </div>
                     `;
         main.appendChild(toast);
-        setTimeout(function () {
-        }, duration + 1000)
+        // setTimeout(function () {
+        // }, duration + 1000)
     }
 }
 export function showSuccessToast(title = "Thành công", message = "Chúc mừng") {

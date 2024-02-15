@@ -8,7 +8,7 @@
             "timeEnd": "15:00",
             "type": "GYM",
             "ptName": "Truong co bap",
-            "note": "ghi chu"
+            "note": "Chưa thanh toán"
         },
         {
             "id": "MT02",
@@ -18,7 +18,7 @@
             "timeEnd": "16:30",
             "type": "YOGA",
             "ptName": "Tien co bap",
-            "note": "ghi chu"
+            "note": "Nợ 20k"
         },
         {
             "id": "MT03",
@@ -28,7 +28,7 @@
             "timeEnd": "16:30",
             "type": "GYM",
             "ptName": "Tu co bap",
-            "note": "ghi chu"
+            "note": "Nợ 2k"
         },
         {
             "id": "MT04",
@@ -38,7 +38,7 @@
             "timeEnd": "18:30",
             "type": "GYM",
             "ptName": "Van co bap",
-            "note": "ghi chu"
+            "note": "Đã thanh toán"
         },
         {
             "id": "MT05",
@@ -48,7 +48,7 @@
             "timeEnd": "15:00",
             "type": "GYM",
             "ptName": "Quyen co bap",
-            "note": "ghi chu"
+            "note": "Chưa thanh toán"
         }
     ]
 }

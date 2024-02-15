@@ -2,12 +2,11 @@ const cardBox = document.querySelector(".container--id");
 let timeCard = cardBox.querySelector(".top-id")
 let typeCard = cardBox.querySelector(".bot-id")
 let userName = cardBox.querySelector(".name-id")
-
-window.onload = function () {
-    // localstorage
+var activePage = "card";
+showCard();
+function showCard() {
     var myData = JSON.parse(localStorage.getItem('cardData'));
     dataLogin = myData.cards;
-    // cookie
     var cookie = document.cookie.split('; ').find(row => row.startsWith('loggedInUser'));
     if (cookie) {
         var month = 1;
@@ -18,12 +17,12 @@ window.onload = function () {
                     if (value.cardType == "BEGINNER")
                         month = 1;
                     else if (value.cardType == "BASIC")
-                        month = 2;
+                        month = 1;
                     else if (value.cardType == "ADVENCE")
-                        month = 3;
+                        month = 1;
                     userName.innerText = loggedInUser.name + " >> " + value.id + " <<";
                     timeCard.innerText = month + " MONTH";
-                    typeCard.innerText = "TITANIUM " + value.cardType + " PASS";
+                    typeCard.innerText = "TITANIUM " + value.cardType /*+ " PASS"*/;
                 }
             })
 
