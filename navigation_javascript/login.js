@@ -1,4 +1,7 @@
 import { toast, showSuccessToast, showErrorToast } from './toast.js';
+let userActive = "other";
+const jsonPathCard = '../data/carddata.json';
+const jsonPathCalendar = '../data/calendarData.json';
 var modalElement = document.querySelector(".modal");
 var BMIForm = document.querySelector(".BMI-form");
 modalElement.style.display = "none"
@@ -65,9 +68,11 @@ function buttonLoginFunction() {
                 var expires = "; expires=" + date.toUTCString();
                 document.cookie = "loggedInUser=" + JSON.stringify(value) + expires; // Lưu thông tin người dùng vào cookie
                 var modalElement = document.querySelector(".modal").style.display = "none";
+                userActive = value.id;
                 inputLoginEmail.value = "";
                 inputLoginPass.value = "";
                 loginMenu1.innerText = value.name;
+
                 test = true;
                 if (activePage == "card")
                     showCard();
@@ -129,8 +134,26 @@ function buttonCreateAccountFunction() {
                 }
                 myData.accounts.push(data);
                 localStorage.setItem('loginData', JSON.stringify(myData));
-
-                var cardData = JSON.parse(localStorage.getItem('cardData'));
+                let cardData = {};
+                if (!localStorage.getItem('cardData')) {
+                    fetch(jsonPathCard)
+                        .then(response => {
+                            if (!response.ok) {
+                                throw new Error('Network response was not ok');
+                            }
+                            return response.json();
+                        })
+                        .then(data => {
+                            cardData = data;
+                            localStorage.setItem('cardData', JSON.stringify(cardData));
+                        })
+                        .catch(error => {
+                            console.error('Fetch error:', error);
+                        });
+                } else {
+                    // Nếu dữ liệu đã tồn tại trong localStorage, sử dụng nó
+                    cardData = JSON.parse(localStorage.getItem('cardData'));
+                }
                 var data = {
                     "id": newID,
                     "name": nameValue,
@@ -142,7 +165,27 @@ function buttonCreateAccountFunction() {
                 }
                 cardData.cards.push(data);
                 localStorage.setItem('cardData', JSON.stringify(cardData));
-                var calendarData = JSON.parse(localStorage.getItem('calendarData'));
+                let calendarData = {}
+                if (!localStorage.getItem('calendarData')) {
+                    fetch(jsonPathCalendar)
+                        .then(response => {
+                            if (!response.ok) {
+                                throw new Error('Network response was not ok');
+                            }
+                            return response.json();
+                        })
+                        .then(data => {
+                            calendarData = data;
+                            // Lưu dữ liệu vào localStorage
+                            localStorage.setItem('calendarData', JSON.stringify(calendarData));
+                        })
+                        .catch(error => {
+                            console.error('Fetch error:', error);
+                        });
+                } else {
+                    // Nếu dữ liệu đã tồn tại trong localStorage, sử dụng nó
+                    calendarData = JSON.parse(localStorage.getItem('calendarData'));
+                }
                 var data = {
                     "id": newID,
                     "name": nameValue,
@@ -190,6 +233,8 @@ window.onload = function () {
             accountName.innerText = loggedInUser.name;
             accountCode.innerText = loggedInUser.id;
             loginMenu1.innerText = loggedInUser.name;
+            userActive = loggedInUser.id;
+            // console.log(userActive)
         }
     }
 }

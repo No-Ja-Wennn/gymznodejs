@@ -22,10 +22,12 @@
     <link rel="stylesheet" href="../css/van.css">
     <link rel="stylesheet" href="../css/quyen.css">
     <link rel="stylesheet" href="../css/keyframes.css">
+    <link rel="stylesheet" href="../navigation_css/toast.css">
+    <link rel="stylesheet" href="../navigation_css/login.css">
     <link rel="stylesheet" href="../navigation_css/chatbox.css">
     
     <title>GYMZ - Thể hình giới trẻ</title>
-    <script defer src="../navigation_javascript/bundle.js"></script></head>
+    <!-- <script defer src="../navigation_javascript/bundle.js"></script></head> -->
 
 </head>
 
@@ -42,27 +44,56 @@
                 <!-- Thanh dieu huong -->
                 <div class="header__inner__navigation">
                     <ul>
-                        <li><a class="header__inner__navigation__sevice" href="../index.html">TRANG CHỦ</a></li>
-                        <li><a class="header__inner__navigation__sevice" href="./forum.html">DIỄN ĐÀN</a></li>
+                        <li><a class="header__inner__navigation__sevice" href="./index.html"><span>TRANG CHỦ</span></a>
+                        </li>
+                        <li><a class="header__inner__navigation__sevice" href="./navigation/forum.html">DIỄN ĐÀN</a>
+                        </li>
                         <li>
                             <div class="dropdown">
                                 <a class="header__inner__navigation__sevice" href="#" onclick="yourFunction(event)">
-                                    <span>DỊCH VỤ</span><m><i class='bx bxs-right-arrow'></i></m>
+                                    DỊCH VỤ<m><i class='bx bxs-right-arrow'></i></m>
                                 </a>
                                 <div class="containt">
-                                    <a href="./card.html">THẺ HỘI VIÊN</a>
-                                    <a href="./train.html">HUẤN LUYỆN VIÊN</a>
-                                    <a href="./shop.html">CỬA HÀNG WHEY</a>
-                                    <a href="./chatbox.html"><span>CHAT ONLINE</span></a>
-                              </div>
+                                    <a href="./navigation/card.html">THẺ HỘI VIÊN</a>
+                                    <a href="./navigation/train.html">HUẤN LUYỆN VIÊN</a>
+                                    <a href="./navigation/shop.html">CỬA HÀNG WHEY</a>
+                                    <a href="./navigation/chatbox.html">CHAT ONLINE</a>
+                                    <a href="./navigation/test.html">TEST</a>
+                                </div>
                             </div>
                         </li>
-                        <li><a class="header__inner__navigation__sevice" href="./promotion.html">KHUYẾN MÃI</a></li>
+                        <li><a class="header__inner__navigation__sevice" href="./navigation/promotion.html">KHUYẾN
+                                MÃI</a></li>
                     </ul>
                 </div>
                 <div class="header__inner__try">
                     <ul>
                         <li><a href="https://facebook.com/lst24">TẬP THỬ MIỄN PHÍ</a></li>
+                    </ul>
+                </div>
+                <div class="header__inner__login">
+                    <ul class="">
+                        <li class="submenu__login">
+                            <a class="account-avt account" href="#" onclick="yourFunction(event)">
+                            </a>
+                            <div class="status__account">
+                                <a class="loginstatus status" href="#">
+                                    ĐĂNG NHẬP
+                                </a>
+                                <a class="status" href="./navigation/information_account.html">
+                                    THÔNG TIN TK
+                                </a>
+                                <a class="status" href="#">
+                                    THẺ THÀNH VIÊN
+                                </a>
+                                <a class="status" href="#">
+                                    LỊCH TẬP
+                                </a>
+                                <a class="logoutstatus status" href="">
+                                    ĐĂNG XUẤT
+                                </a>
+                            </div>
+                        </li>
                     </ul>
                 </div>
                 <div class="header__inner__menu">
@@ -88,13 +119,13 @@
                                 </div>
                                 <!-- <img src="../img/background/logo_and_bgr.png" alt="logo and bgr"> -->
                             </div>
-                            <a class="content__inner" href="../index.html">
+                            <a class="content__inner" href="./index.html">
                                 <i class='bx bxs-home'></i>
                                 <span class="noidung__text1">
                                     TRANG CHỦ
                                 </span>
                             </a>
-                            <a class="content__inner" href="./forum.html">
+                            <a class="content__inner" href="./navigation/forum.html">
                                 <i class='bx bx-world'></i>
                                 <span class="noidung__text1">
                                     DIỄN ĐÀN
@@ -108,13 +139,21 @@
                                     </span>
                                 </b>
                                 <div class="noidung222">
-                                    <a class="content__inner" href="./card.html"> THẺ HỘI VIÊN</a>
-                                    <a class="content__inner" href="./train.html"> HUẤN LUYỆN VIÊN</a>
-                                    <a class="content__inner" href="./shop.html"> CỬA HÀNG WHEY</a>
-                                    <a class="content__inner" href="./chatbox.html"> CHAT ONLINE</a>
+                                    <a class="content__inner" href="./navigation/card.html">
+                                        THẺ HỘI VIÊN
+                                    </a>
+                                    <a class="content__inner" href="./navigation/train.html">
+                                        HUẤN LUYỆN VIÊN
+                                    </a>
+                                    <a class="content__inner" href="./navigation/shop.html">
+                                        CỬA HÀNG WHEY
+                                    </a>
+                                    <a class="content__inner" href="./navigation/chatbox.html">
+                                        CHAT ONLINE
+                                    </a>
                                 </div>
                             </div>
-                            <a class="content__inner" href="./promotion.html">
+                            <a class="content__inner" href="./navigation/promotion.html">
                                 <i class='bx bxs-purchase-tag'></i>
                                 <span class="noidung__text1">
                                     KHUYẾN MÃI
@@ -158,7 +197,7 @@
                         </div>
                     </div>
                     <div class="chatbox__bottom__input">
-                        <input type="text">
+                        <input type="search" autocomplete="off">
                         <i class="fa-regular fa-paper-plane"></i>
                     </div>
                 </div>
@@ -167,8 +206,182 @@
         </div>
 
     </div>
-    <!-- overlay -->
+    <div id="toast"></div>
+
+    <!-- overlay -->    
+    <div class="modal">
+        <div class="modal-overlay">
+
+        </div>
+        <div class="modal__body">
+            <div class="modal__body__box BMI-form">
+                <div class="BMI__title">
+                    <span class="BMI__title__word">Kết quả</span>
+                    <i class="BMI__title__icon fa-solid fa-xmark"></i>
+                </div>
+                <div class="BMI__value">
+                    <div class="BMI__value__row">
+                        <span class="BMI__value__row__label">Chiều cao: </span>
+                        <span class="BMI__value__row__data"></span>
+                    </div>
+                    <div class="BMI__value__row">
+                        <span class="BMI__value__row__label">Cân nặng: </span>
+                        <span class="BMI__value__row__data"></span>
+                    </div>
+                    <div class="BMI__value__row">
+                        <span class="BMI__value__row__label">Tuổi: </span>
+                        <span class="BMI__value__row__data"></span>
+                    </div>
+                    <div class="BMI__value__row">
+                        <span class="BMI__value__row__label">Giới tính: </span>
+                        <span class="BMI__value__row__data"></span>
+                    </div>
+                    <div class="BMI__value__row">
+                        <span class="BMI__value__row__label">Chỉ số BMI: </span>
+                        <span class="BMI__value__row__data"></span>
+                    </div>
+                    <div class="BMI__value__row">
+                        <span class="BMI__value__row__label">Tình trạng sức khỏe: </span>
+                        <span class="BMI__value__row__data"></span>
+                    </div>
+                    <div class="BMI__value__row">
+                        <span class="BMI__value__row__label">Tư vấn:</span>
+                        <span class="BMI__value__row__data"></span>
+                    </div>
+                </div>
+            </div>
+            <div class="modal__body__box login-box">
+                <p>Đăng nhập tài khoản</p>
+                <form>
+                    <div class="user-box">
+                        <input class="login-email" required="" name="" type="text">
+                        <label>Email</label>
+                    </div>
+                    <div class="user-box createBox">
+                        <input class="login-pass" required="" name="" type="password">
+                        <label>Mật khẩu</label>
+                    </div>
+                    <button id="login-btn" type="button">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                        Đăng nhập
+                    </button>
+                </form>
+                <p>Chưa có tài khoản? <span class="a2 link-create-account">Đăng ký!</span></p>
+            </div>
+            <div class="modal__body__box create-account-box">
+                <p>Đăng nhập tài khoản</p>
+                <form>
+                    <div class="user-box">
+                        <input class="login-name" required="" name="" type="text">
+                        <label>Họ và tên</label>
+                    </div>
+                    <div class="user-box">
+                        <input class="login-email" required="" name="" type="text">
+                        <label>Email</label>
+                    </div>
+                    <div class="user-box">
+                        <input class="login-pass" required="" name="" type="password">
+                        <label>Mật khẩu</label>
+                    </div>
+                    <div class="user-box">
+                        <input class="login-pass-confirm" required="" name="" type="password">
+                        <label>Nhập lại mật khẩu</label>
+                    </div>
+                    <button id="create-btn" type="button">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                        Đăng ký
+                    </button>
+                </form>
+                <p>Đã có tài khoản? <span class="a2 link-login">Đăng nhập!</span></p>
+            </div>
+            
+            <div class="modal__body__box register-cart">
+                <!-- <p>Đăng nhập tài khoản</p> -->
+                <form>
+                    <div class="user-box">
+                        <input class="login-email" required="" name="" type="text">
+                        <label>Họ và tên</label>
+                    </div>
+                    <div class="user-box createBox">
+                        <input class="login-pass" required="" name="" type="password">
+                        <label>Số điện thoại</label>
+                    </div>
+                    <div class="box_wrap">
+                        <div class="radio-container">
+                            <span class="tyoe_package">Gói tập</span>
+                            <div class="radio-wrapper">
+                                <label class="radio-button">
+                                    <input id="option1" name="radio-group" type="radio">
+                                    <span class="radio-checkmark"></span>
+                                    <span class="radio-label">BEGINNER</span>
+                                </label>
+                            </div>
+
+                            <div class="radio-wrapper">
+                                <label class="radio-button">
+                                    <input id="option2" name="radio-group" type="radio">
+                                    <span class="radio-checkmark"></span>
+                                    <span class="radio-label">BASIC</span>
+                                </label>
+                            </div>
+
+                            <div class="radio-wrapper">
+                                <label class="radio-button">
+                                    <input id="option3" name="radio-group" type="radio">
+                                    <span class="radio-checkmark"></span>
+                                    <span class="radio-label">ADVENCE</span>
+                                </label>
+                            </div>
+                        </div>
+
+                        <div class="user-box createBox">
+                            <input class="login-pass" required="" name="" type="text">
+                            <label>Ngày tập trong tuần mong muốn</label>
+                        </div>
+                    </div>
+
+                    <div class="radio-inputs">
+                        <label class="radio">
+                            <input type="radio" name="radio" checked="">
+                            <span class="name">1h30-3h00</span>
+                        </label>
+                        <label class="radio">
+                            <input type="radio" name="radio">
+                            <span class="name">3h00-4h30</span>
+                        </label>
+
+                        <label class="radio">
+                            <input type="radio" name="radio">
+                            <span class="name">5h30-6h30</span>
+                        </label>
+                    </div>
+                    <select name="pt-options" id="pt-options">
+                        <option>Trường designer</option>
+                        <option>Tiến fullstack</option>
+                        <option>Tú coder</option>
+                        <option>Vân tester</option>
+                        <option>Quyến developer</option>
+                    </select>
+                    <button class="summit-btn" type="button">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                        Đăng ký
+                    </button>
+                </form>
+            </div>
+        </div>
+    </div>
     <div class="nen_mo"></div>
+    <script src="../navigation_javascript/chatbox.js"></script>
+    <script  type="module"  src="../navigation_javascript/login.js"></script>
     <script src="../navigation_javascript/menuv2.js"></script>
     <!-- <script src="../navigation_javascript/chatbox.js"></script> -->
 </body>

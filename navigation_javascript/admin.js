@@ -1,3 +1,4 @@
+let userActive = "";
 /* CLICK TO SHOW FORM */
 const messageFormBTN = document.getElementById("QLMessage");
 const accountFormBTN = document.getElementById("QLAccount");
@@ -85,6 +86,29 @@ function saveAciveForm(value) {
     document.cookie = "activeForm=" + JSON.stringify(value) + expires;
 }
 
+
+function loadMessage() {
+    removeMessage()
+    //load mesage historyMessage.messages[i].id
+    var historyMessage = JSON.parse(localStorage.getItem('historyMessage'));
+    if (historyMessage) {
+        for (var i = 0; i < historyMessage.messages.length; i++) {
+            if (historyMessage.messages[i].id == userActive) {
+                historyMessage.messages[i].msg.map((value) => {
+                    if (value.sender == 'User') {
+                        displayBotMessage(value.message)
+                    }
+                    if (value.sender == 'Admin') {
+                        displayUserMessage(value.message)
+                    }
+                })
+            }
+        }
+    }
+}
+function removeMessage() {
+    chatBoxList.innerHTML = ""
+}
 window.onload = function () {
     var name = "activeForm=";
     var decodedCookie = decodeURIComponent(document.cookie);
@@ -109,17 +133,55 @@ window.onload = function () {
             }
         }
     }
-    //load mesage
-    var myData = JSON.parse(localStorage.getItem('historyMessage'));
-    if (myData)
-        myData.map((value) => {
-            if (value.sender == 'User') {
-                displayBotMessage(value.message)
+    //load mesage historyMessage.messages[i].id
+    var historyMessage = JSON.parse(localStorage.getItem('historyMessage'));
+    if (historyMessage) {
+        for (var i = 0; i < historyMessage.messages.length; i++) {
+            if (historyMessage.messages[i].id == userActive) {
+                historyMessage.messages[i].msg.map((value) => {
+                    if (value.sender == 'User') {
+                        displayBotMessage(value.message)
+                    }
+                    if (value.sender == 'Admin') {
+                        displayUserMessage(value.message)
+                    }
+                })
             }
-            if (value.sender == 'Admin') {
-                displayUserMessage(value.message)
+        }
+        var loginData = JSON.parse(localStorage.getItem('loginData'));
+        let messageList = messageForm.querySelector(".message__list");
+        for (var i = 0; i < historyMessage.messages.length; i++) {
+            for (var j = 0; j < loginData.accounts.length; j++) {
+                if (historyMessage.messages[i].id == loginData.accounts[j].id) {
+                    var liElement = document.createElement("li");
+                    liElement.className = "message__user";
+                    liElement.innerHTML = `
+                <div class="message__user__box">
+                    <img src="../img/services/coach/img4.jpg" alt="" class="message__user__avt">
+                    <div class="message__user__box__right">
+                        <span class="message__user__name">
+                            ${loginData.accounts[j].name}
+                        </span>
+                        <span class="message__user__msg">
+                            <span class="message__user__msg__obj">id: </span>
+                            <div class="message__user__msg__text">${historyMessage.messages[i].id}</div>
+                        </span>
+                    </div>
+                    <i class="message__user__name__options fa-solid fa-ellipsis"></i>
+                </div>
+                `
+                    liElement.addEventListener("click", function () {
+                        var idBox = this.querySelector(".message__user__msg__text").innerHTML;
+                        userActive = idBox;
+                        loadMessage();
+                    })
+                    messageList.appendChild(liElement);
+                }
             }
-        })
+        }
+
+    }
+
 }
 
 
@@ -775,20 +837,32 @@ function getValueOnTrShow(trElement) {
 }
 
 function showMessage() {
-    function sendMessage(message) {
+
+    function sendMessage(userID, message) {
         localStorage.setItem('adminMessage', message);
         // Lưu tin nhắn vào lịch sử
-        var historyMessage = JSON.parse(localStorage.getItem('historyMessage')) || [];
-        historyMessage.push({ sender: 'Admin', message: message });
+        var historyMessage = JSON.parse(localStorage.getItem('historyMessage')) || { "messages": [{ "id": userID, "msg": [] }] };
+        var have = false;
+        for (var i = 0; i < historyMessage.messages.length; i++) {
+            if (historyMessage.messages[i].id == userID) {
+                historyMessage.messages[i].msg.push({ sender: 'Admin', message: message });
+                have = true;
+            }
+        }
+        if (!have) {
+            historyMessage.messages.push({ "id": userID, "msg": [{ sender: 'Admin', message: message }] })
+        }
         localStorage.setItem('historyMessage', JSON.stringify(historyMessage));
-
     }
     // Kiểm tra tin nhắn mới từ người dùng sau mỗi giây
     setInterval(function () {
-        var userMessage = localStorage.getItem('userMessage');
-        if (userMessage) {
+        var userMessage =  JSON.parse(localStorage.getItem('userMessage'))
+        // console.log(userMessage)
+        // console.log(userActive +": "+ userMessage.id)
+        if (userMessage && userActive == userMessage.id) {
+            // console.log("hello")
             // Hiển thị tin nhắn từ người dùng
-            displayBotMessage(userMessage)
+            displayBotMessage(userMessage.message)
             // Xóa tin nhắn từ người dùng sau khi đã hiển thị
             localStorage.removeItem('userMessage');
 
@@ -809,7 +883,7 @@ function showMessage() {
         if (valueInput) {
             displayUserMessage(valueInput);
             inputElement.value = '';
-            sendMessage(valueInput)
+            sendMessage(userActive, valueInput)
             chatBoxMessage.scrollTop = chatBoxMessage.scrollHeight + 100;
         }
     });

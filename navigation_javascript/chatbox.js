@@ -1,11 +1,38 @@
-const stringSimilarity = require('string-similarity'); //
-
+// const stringSimilarity = require('string-similarity'); //
+var activePage = "userMessage";
 const chatBoxMessage = document.querySelector('.chatbox__message');
 const chatBoxList = chatBoxMessage.querySelector('.chatbox__message__list');
 
 const inputBox = document.querySelector('.chatbox__bottom__input');
 const inputElement = inputBox.querySelector('input')
 const sendButton = inputBox.querySelector('i');
+
+// let userActive = "other"
+
+window.addEventListener('load', function() {
+    var cookie = document.cookie.split('; ').find(row => row.startsWith('loggedInUser'));
+    if (cookie) {
+        var loggedInUser = JSON.parse(cookie.split('=')[1]); // Lấy thông tin người dùng từ cookie và chuyển nó thành đối tượng
+        if (loggedInUser) {
+            userActive = loggedInUser.id;
+        }
+    }
+    var historyMessage = JSON.parse(localStorage.getItem('historyMessage'));
+    if (historyMessage) {
+        for (var i = 0; i < historyMessage.messages.length; i++) {
+            if (historyMessage.messages[i].id == userActive) {
+                historyMessage.messages[i].msg.map((value) => {
+                    if (value.sender == 'User') {
+                        displayUserMessage(value.message)
+                    }
+                    if (value.sender == 'Admin') {
+                        displayBotMessage(value.message)
+                    }
+                })
+            }
+        }
+    }
+})
 
 function makeLi(value = "", option = "chatbox__message__item__right") {
     const chatBoxItem = document.createElement('li');
@@ -22,38 +49,9 @@ function makeLi(value = "", option = "chatbox__message__item__right") {
     return chatBoxItem;
 }
 
-
-// const OpenAI = require("openai");
-// const openai = new OpenAI({
-//     apiKey: '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',
-//     dangerouslyAllowBrowser: true
-// });
-
-// const openFun = async (valueInput) => {
-//     const chatCompletion = await openai.chat.completions.create({
-//         model: "gpt-3.5-turbo",
-//         messages: [{ "role": "user", "content": `${valueInput}`, }],
-//         max_tokens: 1000
-//     });
-//     return chatCompletion.choices[0].message.content;
-// }
-
-// openFun(`
-// chỉ được nói về gym, không được nói những điều khác, chỉ nói về chủ đề tập gym, những câu hỏi không liên quan đến gym không trả lời, gym là chủ đề nói, những vấn đề khác gym không trả lời:
-// `
-// )
-
 async function getPromiseResult(valueInput) {
-    // try {
-    //     const result = await openFun(valueInput);
-    //     //   console.log(result)
-    //     return result;
-
-    // } catch (error) {
     return "Tư vấn viên sẽ sớm trả lời câu hỏi của bạn."; // Xử lý lỗi nếu có
-    // }
 }
-
 
 let responseMessage = false;
 sendButton.addEventListener('click', async () => { // Thêm async vào đây
@@ -61,27 +59,26 @@ sendButton.addEventListener('click', async () => { // Thêm async vào đây
     if (valueInput) {
         displayUserMessage(valueInput);
 
-        loadKnowledgeBase(async function (knowledgeBase) { // Thêm async vào đây
-            const bestMatch = findBestMatch(valueInput, knowledgeBase.questions);
-            let response = false;
-            let answer = "Tư vấn viên sẽ liên hệ với bạn sớm nhất";
-            if (bestMatch && bestMatch.answer) {
-                answer = bestMatch.answer;
-                response = true;
-                displayBotMessage("bot: " + answer);
-            }
-            if (response == false) {
-                // answer = await getPromiseResult(valueInput); // Thêm await vào đây
-                setTimeout(() => {
-                    if (responseMessage == false) {
-                        displayBotMessage("bot: " + answer);
-                        chatBoxMessage.scrollTop = chatBoxMessage.scrollHeight + 100;
-                    }
-                    responseMessage == false;
-                }, 20000);
-                // saveUserInputQuestion(valueInput, answer);
-            }
-        });
+        // loadKnowledgeBase(async function (knowledgeBase) { // Thêm async vào đây
+        //     const bestMatch = findBestMatch(valueInput, knowledgeBase.questions);
+        //     let response = false;
+        //     let answer = "Tư vấn viên sẽ liên hệ với bạn sớm nhất";
+        //     if (bestMatch && bestMatch.answer) {
+        //         answer = bestMatch.answer;
+        //         response = true;
+        //         displayBotMessage("bot: " + answer);
+        //     }
+        //     if (response == false) {
+        //         // answer = await getPromiseResult(valueInput); // Thêm await vào đây
+        //         setTimeout(() => {
+        //             if (responseMessage == false) {
+        //                 displayBotMessage("bot: " + answer);
+        //                 chatBoxMessage.scrollTop = chatBoxMessage.scrollHeight + 100;
+        //             }
+        //             responseMessage == false;
+        //         }, 20000);
+        //     }
+        // });
 
         sendMessage(valueInput)
         chatBoxMessage.scrollTop = chatBoxMessage.scrollHeight + 100;
@@ -92,17 +89,12 @@ sendButton.addEventListener('click', async () => { // Thêm async vào đây
 
 function isQuestionContained(userInput, questionWords, percentageRequired = 0.8) {
     var userInputWords = userInput.toLowerCase().split(/\s+/);
-
-    // for (var i = 0; i < questionArray.length; i++) {
     questionWords = questionWords.toLowerCase().split(/\s+/);
     var matchingWords = questionWords.filter(word => userInputWords.includes(word)).length;
     var percentage = matchingWords / questionWords.length;
     if (percentage >= percentageRequired) {
         return true;
     }
-    // }
-
-    // Chỉ in ra 'false' nếu không tìm thấy câu hỏi nào khớp
     return false;
 }
 
@@ -121,7 +113,6 @@ inputElement.addEventListener("keypress", function (event) {
         sendButton.click();
     }
 });
-
 
 function getCloseMatches(userInput, questions, n, cutoff) {
     var matches = [];
@@ -148,40 +139,11 @@ function getCloseMatches(userInput, questions, n, cutoff) {
     return matches;
 }
 
-function calculateSimilarity(a, b) {
-    if (typeof a !== 'string' || typeof b !== 'string') {
-        return 0;
-    }
-    var pairs1 = getLetterPairs(a.toUpperCase());
-    var pairs2 = getLetterPairs(b.toUpperCase());
-    var union = pairs1.length + pairs2.length;
-    var intersection = 0;
-    for (var i = 0; i < pairs1.length; i++) {
-        for (var j = 0; j < pairs2.length; j++) {
-            if (pairs1[i] === pairs2[j]) {
-                intersection++;
-                pairs2.splice(j, 1);
-                break;
-            }
-        }
-    }
-    return (2.0 * intersection) / union;
-}
-
-function getLetterPairs(str) {
-    var pairs = [];
-    for (var i = 0; i < str.length - 1; i++) {
-        pairs.push(str.slice(i, i + 2));
-    }
-    return pairs;
-}
-
 function loadKnowledgeBase(callback) {
     $.getJSON("../data/knowledge_base.json", function (data) {
         callback(data);
     });
 }
-
 
 function findBestMatch(userQuestion, questions) {
     const matches = getCloseMatches(userQuestion, questions, 1, 0.8);
@@ -192,16 +154,21 @@ function findBestMatch(userQuestion, questions) {
     }
 }
 
-
-
-
 // send message to admin
-
 function sendMessage(message) {
-    localStorage.setItem('userMessage', message);
+    localStorage.setItem('userMessage', JSON.stringify({"id": userActive, "message": message}));
     // Lưu tin nhắn vào lịch sử
-    var historyMessage = JSON.parse(localStorage.getItem('historyMessage')) || [];
-    historyMessage.push({ sender: 'User', message: message });
+    var historyMessage = JSON.parse(localStorage.getItem('historyMessage')) || { "messages": [{ "id": userActive, "msg": [] }] };
+    var have = false;
+    for (var i = 0; i < historyMessage.messages.length; i++) {
+        if (historyMessage.messages[i].id == userActive) {
+            historyMessage.messages[i].msg.push({ sender: 'User', message: message });
+            have = true;
+        }
+    }
+    if (!have) {
+        historyMessage.messages.push({ "id": userActive, "msg": [{ sender: 'Admin', message: message }] })
+    }
     localStorage.setItem('historyMessage', JSON.stringify(historyMessage));
 }
 
@@ -221,17 +188,3 @@ setInterval(function () {
         // localStorage.setItem('historyMessage', JSON.stringify(historyMessage));
     }
 }, 1000);
-
-
-window.onload = function () {
-    var myData = JSON.parse(localStorage.getItem('historyMessage'));
-    myData.map((value) => {
-        if (value.sender == 'User') {
-            console.log("usser");
-            displayUserMessage(value.message)
-        }
-        if (value.sender == 'Admin') {
-            displayBotMessage(value.message)
-        }
-    })
-}
