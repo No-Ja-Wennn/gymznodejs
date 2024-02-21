@@ -41,6 +41,19 @@ body{
     background-color: hsl(0, 100%, 40%);
 }
 
+.dropdown .containt{
+    background-color: rgb(170, 0, 0);
+    box-shadow: 2px 2px 2px 0px rgba(0, 0, 0, 0.5);
+}
+
+.containt a:hover{
+    background-color: rgb(140, 0, 0);
+}
+
+.header__inner__navigation a:hover{
+    color: gold;
+}
+
 /* ================================================================================================== ĐÂY LÀ PHẦN THÂN */
 
 .container {

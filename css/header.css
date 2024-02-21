@@ -220,7 +220,7 @@
 }
 
 .containt a {
-    height: 50px;
+    height: 68px;
     width: 200px;
     display: flex;
     align-items: center;
@@ -228,7 +228,7 @@
     font-size: 14px;
     font-weight: 600;
     padding: 0 15px;
-    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    border-top: 1px solid rgb(0 0 0 / 10%);
 }
 
 .dropdown .containt {
