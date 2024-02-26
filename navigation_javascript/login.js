@@ -275,8 +275,7 @@ let logoutMenu1 = document.querySelector(".logoutstatus");
 if (loginMenu1)
     logoutMenu1.addEventListener("click", (e) => {
         e.preventDefault()
-        // document.cookie = "loggedInUser=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
-        deleteCookie("loggedInUser")
+        deleteCookie("loggedInUser");
         accountName = "";
         accountCode = "";
         loginMenu1.innerText = "ĐĂNG NHẬP";

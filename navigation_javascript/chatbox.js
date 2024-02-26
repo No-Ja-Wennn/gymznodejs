@@ -7,16 +7,17 @@ const inputBox = document.querySelector('.chatbox__bottom__input');
 const inputElement = inputBox.querySelector('input')
 const sendButton = inputBox.querySelector('i');
 
-// let userActive = "other"
+let userActive = "other"
 
-window.addEventListener('load', function() {
+window.addEventListener('load', function () {
     var cookie = document.cookie.split('; ').find(row => row.startsWith('loggedInUser'));
     if (cookie) {
         var loggedInUser = JSON.parse(cookie.split('=')[1]); // Lấy thông tin người dùng từ cookie và chuyển nó thành đối tượng
         if (loggedInUser) {
             userActive = loggedInUser.id;
         }
-    }
+    } else
+        userActive = "other";
     var historyMessage = JSON.parse(localStorage.getItem('historyMessage'));
     if (historyMessage) {
         for (var i = 0; i < historyMessage.messages.length; i++) {
@@ -58,34 +59,11 @@ sendButton.addEventListener('click', async () => { // Thêm async vào đây
     const valueInput = inputElement.value.trim();
     if (valueInput) {
         displayUserMessage(valueInput);
-
-        // loadKnowledgeBase(async function (knowledgeBase) { // Thêm async vào đây
-        //     const bestMatch = findBestMatch(valueInput, knowledgeBase.questions);
-        //     let response = false;
-        //     let answer = "Tư vấn viên sẽ liên hệ với bạn sớm nhất";
-        //     if (bestMatch && bestMatch.answer) {
-        //         answer = bestMatch.answer;
-        //         response = true;
-        //         displayBotMessage("bot: " + answer);
-        //     }
-        //     if (response == false) {
-        //         // answer = await getPromiseResult(valueInput); // Thêm await vào đây
-        //         setTimeout(() => {
-        //             if (responseMessage == false) {
-        //                 displayBotMessage("bot: " + answer);
-        //                 chatBoxMessage.scrollTop = chatBoxMessage.scrollHeight + 100;
-        //             }
-        //             responseMessage == false;
-        //         }, 20000);
-        //     }
-        // });
-
         sendMessage(valueInput)
         chatBoxMessage.scrollTop = chatBoxMessage.scrollHeight + 100;
         inputElement.value = '';
     }
 });
-
 
 function isQuestionContained(userInput, questionWords, percentageRequired = 0.8) {
     var userInputWords = userInput.toLowerCase().split(/\s+/);
@@ -156,7 +134,15 @@ function findBestMatch(userQuestion, questions) {
 
 // send message to admin
 function sendMessage(message) {
-    localStorage.setItem('userMessage', JSON.stringify({"id": userActive, "message": message}));
+    var cookie = document.cookie.split('; ').find(row => row.startsWith('loggedInUser'));
+    if (cookie) {
+        var loggedInUser = JSON.parse(cookie.split('=')[1]); // Lấy thông tin người dùng từ cookie và chuyển nó thành đối tượng
+        if (loggedInUser) {
+            userActive = loggedInUser.id;
+        }
+    } else
+        userActive = "other"
+    localStorage.setItem('userMessage', JSON.stringify({ "id": userActive, "message": message }));
     // Lưu tin nhắn vào lịch sử
     var historyMessage = JSON.parse(localStorage.getItem('historyMessage')) || { "messages": [{ "id": userActive, "msg": [] }] };
     var have = false;
@@ -174,17 +160,12 @@ function sendMessage(message) {
 
 // Kiểm tra tin nhắn mới từ admin sau mỗi giây
 setInterval(function () {
-    var adminMessage = localStorage.getItem('adminMessage');
-    if (adminMessage) {
+    var adminMessage = JSON.parse(localStorage.getItem('adminMessage'));
+    if (adminMessage && userActive == adminMessage.id) {
         responseMessage = true;
         // Hiển thị tin nhắn từ admin
-        displayBotMessage(adminMessage)
+        displayBotMessage(adminMessage.message)
         localStorage.removeItem('adminMessage');
-
         chatBoxMessage.scrollTop = chatBoxMessage.scrollHeight + 100;
-        // Lưu tin nhắn vào lịch sử
-        // var historyMessage = JSON.parse(localStorage.getItem('historyMessage')) || [];
-        // historyMessage.push({ sender: 'Admin', message: adminMessage });
-        // localStorage.setItem('historyMessage', JSON.stringify(historyMessage));
     }
 }, 1000);

@@ -1,4 +1,4 @@
-let userActive = "";
+let userActive = "other";
 /* CLICK TO SHOW FORM */
 const messageFormBTN = document.getElementById("QLMessage");
 const accountFormBTN = document.getElementById("QLAccount");
@@ -63,7 +63,6 @@ cardFormBTN.addEventListener("click", function () {
     calendarForm.style.display = "none";
     showCard()
     saveAciveForm("card")
-    console.log("hekk")
 })
 
 // calendarFormBTN
@@ -150,10 +149,11 @@ window.onload = function () {
         }
         var loginData = JSON.parse(localStorage.getItem('loginData'));
         let messageList = messageForm.querySelector(".message__list");
-        for (var i = 0; i < historyMessage.messages.length; i++) {
+        var liElement;
+        for (var i = historyMessage.messages.length-1; i >= 0; i--) {
             for (var j = 0; j < loginData.accounts.length; j++) {
                 if (historyMessage.messages[i].id == loginData.accounts[j].id) {
-                    var liElement = document.createElement("li");
+                    liElement = document.createElement("li");
                     liElement.className = "message__user";
                     liElement.innerHTML = `
                 <div class="message__user__box">
@@ -169,23 +169,105 @@ window.onload = function () {
                     </div>
                     <i class="message__user__name__options fa-solid fa-ellipsis"></i>
                 </div>
+                <div class="message__user__box__affter">
+                    <ul class="message__user__box__affter__list">
+                        <li class="message__user__box__affter__item">Xóa đoạn chat</li>
+                    </ul>
+                </div>
                 `
-                    liElement.addEventListener("click", function () {
-                        var idBox = this.querySelector(".message__user__msg__text").innerHTML;
-                        userActive = idBox;
-                        loadMessage();
-                    })
+                    liElement.addEventListener("click", handleClick);
                     messageList.appendChild(liElement);
+                    var iconOptionMessage = liElement.querySelector(".message__user__name__options");
+                    iconOptionMessage.addEventListener("click", function () {
+                        lastestIconOptionMessage = this
+                        var optionElement = this.parentElement.parentElement.querySelector(".message__user__box__affter");
+                        showNowRemoveElement = optionElement
+                        displayNoneAllOption();
+                        if (optionElement.style.display == "block")
+                            optionElement.style.display = "none"
+                        else
+                            optionElement.style.display = "block"
+
+                        var removeMessageElement = showNowRemoveElement.querySelector(".message__user__box__affter__item")
+                        removeMessageElement.addEventListener("click", () => {
+                            var parentRremove = removeMessageElement.parentElement.parentElement.parentElement
+                            var idMessageRemove = parentRremove.
+                                querySelector(".message__user__msg__text").innerHTML;
+                            var a_liE = document.querySelectorAll(".message__user");
+                            a_liE = Array.from(a_liE)
+                            a_liE.map(value => { value.classList.remove("message__user--active") })
+                            // remove from database
+                            console.log("pa", parentRremove)
+                            var historyMessage = JSON.parse(localStorage.getItem('historyMessage'));
+                            historyMessage.messages = historyMessage.messages.filter((value) => {
+                                return value.id !== idMessageRemove;
+                            });
+
+                            localStorage.setItem('historyMessage', JSON.stringify(historyMessage));
+                            // remove show
+                            parentRremove.style.display = "none";
+                            activeFirstMessage();
+                            console.log("elo")
+                            liElement.removeEventListener("click", handleClick);
+                        })
+                    })
                 }
             }
         }
 
+        // click to first message
+        activeFirstMessage();
     }
 
 }
 
+function activeFirstMessage() {
+    var listMessageTitle = document.querySelectorAll(".message__user");
+    listMessageTitle = Array.from(listMessageTitle)
+    console.log("listMessageTitle", listMessageTitle)
+    if (listMessageTitle) {
+        listMessageTitle = Array.from(listMessageTitle);
+        // listMessageTitle[0].
+        var idBox = listMessageTitle[0].querySelector(".message__user__msg__text").innerHTML;
+        userActive = idBox;
+        loadMessage();
+        var a_liE = document.querySelectorAll(".message__user");
+        a_liE = Array.from(a_liE)
+        a_liE.map(value => { value.classList.remove("message__user--active") })
+        listMessageTitle[0].classList.add("message__user--active");
+    }
+}
 
+function handleClick() {
+    var idBox = this.querySelector(".message__user__msg__text").innerHTML;
+    userActive = idBox;
+    loadMessage();
+    var a_liE = document.querySelectorAll(".message__user");
+    a_liE = Array.from(a_liE)
+    a_liE.map(value => { value.classList.remove("message__user--active") })
+    this.classList.add("message__user--active");
+}
 
+function displayNoneAllOption() {
+    var a_optionElement = document.querySelectorAll(".message__user__box__affter")
+    a_optionElement = Array.from(a_optionElement)
+    a_optionElement.map(value => {
+        value.style.display = "none"
+    })
+}
+let lastestIconOptionMessage;
+let showNowRemoveElement;
+document.addEventListener('click', function (event) {
+    // var myElement = document.getElementById('myElement');
+    if (lastestIconOptionMessage && showNowRemoveElement)
+        if (event.target !== lastestIconOptionMessage && event.target !== showNowRemoveElement) {
+            var a_optionElement = document.querySelectorAll(".message__user__box__affter")
+            a_optionElement = Array.from(a_optionElement)
+            a_optionElement.map(value => {
+                value.style.display = "none"
+            })
+        }
+});
 // check save on active // khongbiet vie t gi day nua
 function checkValidSave(valueActive, flagConsole = true) {
     if (doingForm == valueActive || doingForm == "") {
@@ -547,12 +629,7 @@ function saveCard() {
                     valueArray[i] = convertDateFormat(value);
                 else
                     valueArray[i] = value;
-                console.log(value)
             }
-            // else if (i >= 5) {
-            //     valueArray[i] = tdArray[i].querySelector(".inputAdd").getAttribute("value")
-            //     console.log(valueArray[i])
-            // }
             else
                 valueArray[i] = tdArray[i].querySelector(".inputAdd").getAttribute("placeholder")
         }
@@ -837,9 +914,8 @@ function getValueOnTrShow(trElement) {
 }
 
 function showMessage() {
-
     function sendMessage(userID, message) {
-        localStorage.setItem('adminMessage', message);
+        localStorage.setItem('adminMessage', JSON.stringify({ id: userID, message }));
         // Lưu tin nhắn vào lịch sử
         var historyMessage = JSON.parse(localStorage.getItem('historyMessage')) || { "messages": [{ "id": userID, "msg": [] }] };
         var have = false;
@@ -856,11 +932,8 @@ function showMessage() {
     }
     // Kiểm tra tin nhắn mới từ người dùng sau mỗi giây
     setInterval(function () {
-        var userMessage =  JSON.parse(localStorage.getItem('userMessage'))
-        // console.log(userMessage)
-        // console.log(userActive +": "+ userMessage.id)
+        var userMessage = JSON.parse(localStorage.getItem('userMessage'))
         if (userMessage && userActive == userMessage.id) {
-            // console.log("hello")
             // Hiển thị tin nhắn từ người dùng
             displayBotMessage(userMessage.message)
             // Xóa tin nhắn từ người dùng sau khi đã hiển thị
@@ -1823,7 +1896,6 @@ function editCalendar(thisElement) {
         for (var i = 0; i < tdArray.length - 1; i++) {
             if (i == 3 || i == 4) {
                 tdArray[i].innerHTML = `<input class="inputAdd" type="time" value="${valueArray[i]}">`
-                console.log(tdArray[i])
             } else
                 tdArray[i].innerHTML = `<input class="inputAdd" type="text" placeholder="${valueArray[i]}">`
         }
@@ -1835,3 +1907,10 @@ function editCalendar(thisElement) {
         showErrorToast("Bạn đang thực hiện thao tác thêm lịch tập, hãy hoàn tất chức năng này trước!");
     }
 }
+
+
+// var iconOptionMessage = document.querySelector(".message__user__name__options");
+// iconOptionMessage.addEventListener("click", () => {
+//     var optionElement = document.querySelector(".message__user__box__affter");
+//     optionElement.style.display = "block"
+// })

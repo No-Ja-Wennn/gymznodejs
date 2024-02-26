@@ -183,6 +183,7 @@
 }
 
 .message__user{
+    position: relative;
     width: 100%;
     background-color: #c4c4c448;
     border: 1px solid #333;
@@ -190,7 +191,9 @@
     cursor: pointer;
     border-radius: 6px;
 }
-
+.message__user--active{
+    background-color: #666464;
+}
 .message__user__box{
     display: flex;
     align-items: center;
@@ -236,6 +239,33 @@
 .message__user__name__options:hover{
     color: #f88900;
 }
+
+.message__user__box__affter{
+    display: none;   
+    position: absolute;
+    left: 70%;
+    z-index: 10;
+    border-radius: 4px;
+    overflow: hidden;
+    bottom: -24px;
+    border: 2px solid #333;
+}
+
+.message__user__box__affter__item{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #f88900;
+    min-width: 122px;
+    font-size: 14px;
+    padding: 8px 6px 6px;
+}
+.message__user__box__affter__item:hover{
+    background-color: #dd7a01;
+
+}
+
+
 
 .chatbox {
     flex: 10;
