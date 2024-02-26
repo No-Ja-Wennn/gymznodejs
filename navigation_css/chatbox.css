@@ -114,13 +114,14 @@
     font-family: montserrat;
     line-height: 2rem;
     width: max-content;
-    max-width: 650px;
+    max-width: 1000px;
+    max-width: 80%;
     padding: 8px 15px;
 
     border: 1px solid rgba(255, 255, 255, 0.3);
     border-radius: 20px;
-    word-wrap: break-word;
-    word-break: break-all;
+    overflow-wrap: anywhere;
+    /* word-break: break-all; */
 }
 
 .chatbox__message__item__left {
@@ -145,9 +146,8 @@
 /* chatbox__bottom */
 .chatbox__bottom {
     display: flex;
-    align-items: center;
-    /* flex-direction: column; */
-    height: 60px;
+    align-items: flex-end;
+    height: auto;
     background-color: rgba(0, 0, 0, 0.2);
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
     /* border-top-right-radius: 8px;
@@ -172,7 +172,7 @@
 
 a.chatbox__bottom__link-social__mess{
     width: 50px;
-    height: 50px;
+    height: 60px;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -227,17 +227,25 @@ a.chatbox__bottom__link-social__mess:hover .sub{
 .chatbox__bottom__input {
     flex: 1;
     display: flex;
-    align-items: center;
-    height: 50px;
+    align-items: flex-end;
+    /* height: 50px; */
     /* justify-content: space-between; */
 }
 
-.chatbox__bottom__input input {
+#myTextarea {
+    resize: none;
+    overflow: hidden; /* Ẩn thanh scrollbar */
+}
+
+
+.chatbox__bottom__input textarea {
     display: flex;
     flex: 9;
-    height: calc(100% - 12px);
-    padding: 0 10px;
-    margin-right: 10px;
+    /* height: calc(100% - 12px); */
+    min-height: 40px;
+    max-height: 372px;
+    padding: 8px 15px 10px;
+    /* margin-right: 10px; */
     font-size: 1.6rem;
     color: var(--white-color);
     background-color: transparent;
@@ -245,6 +253,9 @@ a.chatbox__bottom__link-social__mess:hover .sub{
     border-color: rgb(150, 150, 150);
     border: 1px solid rgba(255, 255, 255, 0.3);
     outline: none;
+    font-family: montserrat;
+    margin-bottom: 10px;
+    /* margin-top: 10px; */
 }
 
 .chatbox__bottom__input i {
@@ -253,13 +264,13 @@ a.chatbox__bottom__link-social__mess:hover .sub{
     justify-content: center;
     flex: 1;
     font-size: 3rem;
-    height: calc(100% - 12px);
-    width: 32px;
-    /* padding: 0 12px; */
-    margin-right: 12px;
-    /* background-color: #5f5f5f62; */
+    height: 60px;
+    width: 60px;
+
+    margin: 0 10px;
+
     cursor: pointer;
-    border-radius: 4px;
+
     color: rgb(180, 180, 180);
 }
 
@@ -269,14 +280,41 @@ a.chatbox__bottom__link-social__mess:hover .sub{
 
 @media (max-width: 414px){
     .chatbox__message__item__text{
-        max-width: 285px;
+        /* max-width: 285px; */
         font-size: 15px;
     }
 }
 
 @media (max-width: 320px){
     .chatbox__message__item__text{
-        max-width: 230px;
+        /* max-width: 230px; */
         font-size: 14px;
+    }
+    .sub{
+        display: none;
+        position: absolute;
+        top: 0px;
+        bottom: -31px;
+        right: 60px;
+    }
+    a.chatbox__bottom__link-social__mess span{
+        color: white;
+        display: flex;
+        position: absolute;
+        bottom: 100px;
+        font-family: montserrat;
+        font-size: 12px;
+        padding: 10px;
+        background-color: goldenrod;
+        border-radius: 20px;
+        left: 10px;
+        width: 130px;
+    }
+    i.bx.bxs-down-arrow{
+        color: goldenrod;
+        font-size: 16px;
+        position: absolute;
+        bottom: 88px;
+        left: 25px;
     }
 }
