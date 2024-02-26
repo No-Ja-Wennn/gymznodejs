@@ -269,7 +269,7 @@ a.chatbox__bottom__link-social__mess:hover .sub{
 
 @media (max-width: 414px){
     .chatbox__message__item__text{
-        max-width: 280px;
+        max-width: 285px;
         font-size: 15px;
     }
 }
