@@ -128,8 +128,8 @@
 }
 
 .footer__colum1 i {
-    line-height: 12px;
-    margin-right: 4px;
+    /* line-height: 12px; */
+    /* margin-right: 4px; */
 }
 
 .footer__colum2 {
@@ -276,9 +276,9 @@
 /* .service__customer__list__inner  a:not(:last-child){
     margin-right: 4px;
 } */
-.service__customer__list__inner  a:not(:first-child){
+/* .service__customer__list__inner  a:not(:first-child){
     margin-left: 4px;
-}
+} */
 
 
 .footer__last {
@@ -393,37 +393,9 @@
 /* ================================================================================================== ĐÂY LÀ PHẦN MEDIA */
 
 @media (max-width: 1000px) {
-    .header__inner__navigation {
-        display: none;
-    }
-
-    .header__inner__try {
-        display: none;
-    }
-
     .header__inner__menu {
         display: flex;
     }
-
-    .header__inner {
-        width: 100%;
-        max-width: 1000px;
-    }
-
-    .container,
-    .container__select {
-        flex-direction: column;
-        align-items: center;
-        /* height: 1720px; */
-    }
-
-    .container__colum1,
-    .container__colum2 {
-
-        width: 100%;
-        height: 860px;
-    }
-
     .footer,
     .footer__select {
         flex-direction: column;
@@ -433,21 +405,38 @@
 
     .footer__colum1,
     .footer__colum2 {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        /* max-width: 500px; */
+        max-width: 500px;
         width: 100%;
         /* height: 400px; */
-        padding: 0px 20px;
     }
 
     .footer__colum1 h3 {
         text-align: center;
     }
-
-    .service__customer__list a:not(:last-child) {
-        /* margin-right: 50px; */
+    .footer__colum1 a h3{
+        margin-right: 0;
+        line-height: 30px;
+    }
+    .footer__colum1 a{
+        margin-left: 0;
+        align-items: center;
+        text-align: left;
+    }
+    
+    .service__customer__list {
+        width: 100%;
+        display: flex;
+        height: 100%;
+    }
+    .service__customer__list a {
+        margin: 0;
+        margin: 15px 9px;
+    }
+    .service__customer__list__inner {
+        display: block;
+        text-align: center;
+        width: 90%;
+        margin: 0 auto;
     }
 
     .footer__last__select {
@@ -457,61 +446,72 @@
 
     .footer__colum1__inner {
         display: flex;
-        justify-content: center;
         width: 100%;
     }
 
     .footer__colum1__inner a {
         display: flex;
-        /* margin: 0 auto; */
+        margin: 0 auto;
+        /* margin-top: 15px; */
     }
-
+    /* .footer__colum2{
+        border-top: 1px white solid;
+        margin-top: 10px;
+    } */
+    .footer__colum2__center{
+        margin-top: 10px;
+    }
     .about__us {
         width: 100%;
+        text-align: center;
+        line-height: 20px;
     }
 
     .about__us__inner {
-        margin: 0 auto;
-    }
-
-    .service__customer__list {
         width: 100%;
-        display: flex;
-        /* height: 100%; */
-        margin-bottom: 28px;
-    }
-
-    .service__customer__list__inner {
+        margin: 0 auto;
         display: flex;
         flex-wrap: wrap;
-        justify-content: center;
-        /* width: 90%; */
-        /* margin-left: auto; */
+        justify-content: space-between;
     }
-    .service__customer__list__inner  a{
-        display: flex;
-        align-items: center;
-        width: max-content;
+    .about__us__inner a{
+        width: 235px;
+        margin: 15px 5px;
+        /* display: inline; */
     }
+    /* .footer__colum2{
+        display: ;
+        background-color: green;
+    } */
+    /* .footer__colum2__inner{
+        position: relative;
+        width: 100%;
+        height: 100%;
+        margin: 0 auto;
+    } */
     .footer__colum2__inner {
         margin: 0 auto;
         /* margin-top: 60px; */
 
     }
 
-    .footer__last__select {
-        display: flex;
+    .footer__last__select i{
+        margin-right: 10px;
     }
-
     .footer__last__select__inner {
 
-        /* margin: 0 auto; */
-    }
-}
-@media (max-width: 520px) {
-    .service__customer__list__inner  a:last-child{
-        margin-left: 0px;
+        margin: 0 auto;
     }
 }
 
-/* ================================================================================================== ĐÂY LÀ PHẦN ... */
+@media (max-width: 520px){
+    .about__us__inner{
+        justify-content: center
+    }
+    .about__us__inner a{
+        width: 300px;
+        /* width: 100%; */
+        display: flex;
+        justify-content: center;
+    }
+}

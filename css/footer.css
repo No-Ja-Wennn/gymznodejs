@@ -7,7 +7,6 @@
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    /* font-size: 14px; */
 }
 
 .footer i {
@@ -16,20 +15,17 @@
 
 .footer__select {
     max-width: 1000px;
-    width: 100%;
+    width: 98%;
     height: 100%;
     display: flex;
     margin: 0 auto;
     margin-bottom: 20px;
-    background-color: #222;
 }
 
 .footer__colum1 {
     display: block;
-    /* padding: 0 10px; */
     max-width: 60%;
     width: 100%;
-    /* background-color: gray; */
     text-align: left;
     font-size: 14px;
     margin-top: 15px;
@@ -41,29 +37,30 @@
     margin: 20px 0;
     color: white;
     margin-right: 10px;
-    font-size: 23px;
+    font-size: 20px;
+    font-weight: 600;
 }
-/* 
-.about__website a {
-    margin-bottom: 20px;
-} */
+
 
 .footer__colum1 a {
     position: relative;
     color: white;
     display: inline-flex;
-    /* margin-top: 15px; */
-    
+
+
 }
-.about__us__inner{
+
+.about__us__inner {
     display: grid;
 }
-.about__us__inner a{
-    width: 400px;
+
+.about__us__inner a {
+    width: 450px;
     margin: 15px 0;
     margin-left: 10px;
-    
+
 }
+
 .footer__colum1 i {
     line-height: 12px;
     margin-right: 10px;
@@ -73,7 +70,7 @@
     max-width: 40%;
     width: 100%;
     margin: 0 auto;
-    /* background-color: gray; */
+
 }
 
 .footer__colum2__inner {
@@ -81,7 +78,7 @@
     width: 90%;
     margin-top: 87px;
     height: auto;
-    /* left: -20px; */
+
 }
 
 .group {
@@ -111,6 +108,8 @@
     font-size: 10px;
     margin-left: 1px;
     margin-top: 2px;
+    font-weight: 500;
+    font-family: overpass;
 }
 
 .name__page a m {
@@ -127,11 +126,10 @@
 
 .avatar__img img {
     width: 20%;
-    /* height: 34.64%; */
+
     margin: 10px;
     border: 1px white solid;
-    /* position: absolute;
-    position: relative; */
+
 }
 
 .cover__img img {
@@ -153,7 +151,7 @@
     border-radius: 2px;
 
 
-    /* margin-left: 22px; */
+
     margin-right: 10px;
     font-size: 12px;
     font-family: Arial, Helvetica, sans-serif;
@@ -162,11 +160,11 @@
 }
 
 .folow__page i {
-    /* scale: 2; */
+
     margin-right: 5px;
     position: relative;
     vertical-align: middle;
-    /* color: #1E90FF; */
+
 }
 
 .folow__page a:hover {
@@ -197,21 +195,22 @@
 .share__page a:hover {
     background-color: white;
 }
-
+.service__customer__list__inner {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
 .service__customer__list a {
     margin: 15px 0;
     margin-left: 10px;
-    margin-right: 140px;
+    margin-right: 55px;
 }
 
-/* .service__customer__list i{
-    margin-right: 10px;
-    line-height: 14px;
-} */
+
 
 .footer__last {
     display: flex;
-    /* align-items: center; */
+
     width: 100%;
     height: 60px;
     background-color: #222;
@@ -222,26 +221,20 @@
     width: 100%;
     max-width: 1000px;
 
-    /* background-color: rgb(0, 0, 0); */
     margin: 0 auto;
     text-align: left;
-    /* margin-top: 10px; */
-
     border-top: 1px white solid;
 }
 
 .footer__last__select a {
     display: flex;
     color: white;
-    margin-left: 10px;
+    /* margin-left: 10px; */
     font-size: 14px;
-    /* margin-top: 45px; */
+
 }
 
-/* .footer__last__select i{
-    margin-right: 10px;
-    line-height: 1px;
-} */
+
 
 
 .footer__colum1 a:hover {
@@ -252,21 +245,23 @@
     text-decoration: underline;
 }
 
-
-
 .footer__last__select {
     display: flex;
-
     align-items: center;
+    
 }
 
 .footer__last__select__inner {
     display: flex;
     align-items: center;
 }
-.footer__last__select__inner i{
+
+.footer__last__select__inner i {
     margin-right: 10px;
+    margin-left: 10px;
 }
+
+
 /* ==================== MEDIA ==================== */
 
 @media (max-width: 1000px) {
@@ -347,10 +342,12 @@
     .about__us__inner {
         width: 100%;
         margin: 0 auto;
-        display: block;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
     }
     .about__us__inner a{
-        width: 223px;
+        width: 235px;
         margin: 15px 5px;
         /* display: inline; */
     }
@@ -376,5 +373,11 @@
     .footer__last__select__inner {
 
         margin: 0 auto;
+    }
+}
+
+@media (max-width: 520px){
+    .about__us__inner{
+        justify-content: center
     }
 }

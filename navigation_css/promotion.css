@@ -575,7 +575,7 @@ body{
 }
 
 .about__us__inner a {
-    width: 400px;
+    width: 450px;
     margin: 15px 0;
     margin-left: 10px;
 
@@ -628,6 +628,8 @@ body{
     font-size: 10px;
     margin-left: 1px;
     margin-top: 2px;
+    font-weight: 500;
+    font-family: overpass;
 }
 
 .name__page a m {
@@ -747,7 +749,7 @@ body{
 .footer__last__select a {
     display: flex;
     color: white;
-    margin-left: 10px;
+    /* margin-left: 10px; */
     font-size: 14px;
 
 }
