@@ -1,5 +1,5 @@
 *{
-    /* font-family: montserrat; */
+    line-height: 2rem;
 }
 
 .container--chat {
@@ -243,8 +243,8 @@ a.chatbox__bottom__link-social__mess:hover .sub{
     flex: 9;
     /* height: calc(100% - 12px); */
     min-height: 40px;
-    max-height: 372px;
-    padding: 8px 15px 10px;
+    /* max-height: 372px; */
+    padding: 10px 15px;
     /* margin-right: 10px; */
     font-size: 1.6rem;
     color: var(--white-color);
@@ -255,7 +255,7 @@ a.chatbox__bottom__link-social__mess:hover .sub{
     outline: none;
     font-family: montserrat;
     margin-bottom: 10px;
-    /* margin-top: 10px; */
+    line-height: 1;
 }
 
 .chatbox__bottom__input i {
