@@ -4,7 +4,7 @@ const chatBoxMessage = document.querySelector('.chatbox__message');
 const chatBoxList = chatBoxMessage.querySelector('.chatbox__message__list');
 
 const inputBox = document.querySelector('.chatbox__bottom__input');
-const inputElement = inputBox.querySelector('input')
+const inputElement = inputBox.querySelector('textarea')
 const sendButton = inputBox.querySelector('i');
 
 let userActive = "other"

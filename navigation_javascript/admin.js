@@ -949,7 +949,7 @@ function showMessage() {
 
 
     const inputBox = document.querySelector('.chatbox__bottom__input');
-    const inputElement = inputBox.querySelector('input')
+    const inputElement = inputBox.querySelector('textarea');
     const sendButton = inputBox.querySelector('i');
     sendButton.addEventListener('click', async () => { // Thêm async vào đây
         const valueInput = inputElement.value.trim();

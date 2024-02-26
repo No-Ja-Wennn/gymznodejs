@@ -218,6 +218,10 @@ a.chatbox__bottom__link-social__mess:hover .sub{
     width: 35px;
 }
 
+a.chatbox__bottom__link-social__mess:active .messenger_ico{
+    opacity: 0.6;
+}
+
 .chatbox__bottom__link-social__mess {
     text-decoration: none;
     cursor: pointer;
@@ -275,6 +279,10 @@ a.chatbox__bottom__link-social__mess:hover .sub{
 }
 
 .chatbox__bottom__input i:hover {
+    /* color: white; */
+}
+
+.chatbox__bottom__input i:active {
     color: white;
 }
 
