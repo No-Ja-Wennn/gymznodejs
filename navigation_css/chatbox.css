@@ -6,6 +6,10 @@ body{
     overflow: hidden;
 }
 
+.container{
+    overflow: hidden;
+}
+
 .container--chat {
     display: flex;
     align-items: center;
