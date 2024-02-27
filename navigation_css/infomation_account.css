@@ -73,7 +73,7 @@ ul.change__the__password__group{
 }
 a.change__the__password__group.change__the__password__group__content{
     color: black;
-    font-weight: 600;
+    font-weight: 500;
 }
 a.change__the__password__group.change__the__password__group__sub__content{
     color: rgba(0, 0, 0, 0.5);
@@ -299,9 +299,10 @@ a.third__part__a__content__edit__fullname:active{
     }
     .page__header.change__the__password{
         flex-direction: row;
-        align-items: flex-start;
+        align-items: center;
         justify-content: flex-start;
         width: 100%;
+        margin-top: 0;
     }
     .page__header.title{
         width: 100%;
