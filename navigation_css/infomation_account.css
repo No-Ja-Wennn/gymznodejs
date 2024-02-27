@@ -299,6 +299,7 @@ a.third__part__a__content__edit__fullname:active{
     }
     .page__header.change__the__password{
         flex-direction: row;
+        align-items: flex-start;
         justify-content: flex-start;
         width: 100%;
     }
