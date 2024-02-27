@@ -2,14 +2,6 @@
     line-height: 2rem;
 }
 
-body{
-    overflow: hidden;
-}
-
-.container{
-    overflow: hidden;
-}
-
 .container--chat {
     display: flex;
     align-items: center;
@@ -152,6 +144,11 @@ body{
 
 
 /* chatbox__bottom */
+
+.chatbox__bottom__input{
+    overflow: hidden;
+}
+
 .chatbox__bottom {
     display: flex;
     align-items: flex-end;
