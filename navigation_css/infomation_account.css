@@ -329,6 +329,9 @@ a.third__part__a__content__edit__fullname:active{
     .rows{
         justify-content: space-between;
     }
+    a.part__two.part__two__information{
+        text-align: end;
+    }
 }
 @media (max-width: 280px){
     .rows.third__part{
