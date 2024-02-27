@@ -1,6 +1,9 @@
 *{
     font-family: montserrat;
-
+    /* overflow: hidden; */
+}
+.footer{
+    overflow: hidden;
 }
 .container{ 
     height: auto;
@@ -25,7 +28,7 @@
     font-size: 14px;
 }
 .page__header{
-    height: 90px;
+    min-height: 90px;
     margin-top: 15px;
     display: flex;
     align-items: center;
@@ -47,8 +50,8 @@ a.change__the__password.key__ico{
     font-size: 14px;
     color: goldenrod;
     background-color: rgba(218, 165, 32, 0.15);
-    height: 35px;
-    width: 35px;
+    min-height: 35px;
+    min-width: 35px;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -64,7 +67,7 @@ ul.change__the__password__group{
     align-items: flex-start;
     justify-content: space-between;
     margin-left: 10px;
-    height: 35px;
+    min-height: 35px;
     font-size: 12px;
 }
 a.change__the__password__group.change__the__password__group__content{
@@ -82,13 +85,16 @@ a.change__the__password__group.change__the__password__group__content:hover{
     min-height: 56px;
     align-items: center;
 }
+.border__top{
+    border-top: 1px rgba(128, 128, 128, 0.1) solid;
+}
 .image__rows{
     display: flex;
     height: auto;
     padding: 16px;
-    border-bottom: 1px rgba(0, 0, 0, 0.2) solid;
 }
 .rows.first__part{
+    min-width: 200px;
     max-width: 25%;
     width: 100%;
     height: auto;
@@ -101,7 +107,7 @@ a.change__the__password__group.change__the__password__group__content:hover{
     background-color: goldenrod;
     color: white;
     height: 160px;
-    width: 160px;
+    min-width: 160px;
     border-radius: 50%;
     display: flex;
     align-items: center;
@@ -111,14 +117,22 @@ a.change__the__password__group.change__the__password__group__content:hover{
     max-width: 25%;
     width: 100%;
 }
+.hide__row{
+    max-width: 50%;
+    width: 100%;
+    margin-left: 10px;
+    display: flex;
+    justify-content: flex-end;
+}
 .the__second__part.the__second__part__group{
     display: flex;
     flex-direction: column;
 }
 span.the__second__part.the__second__part__content{
     line-height: 1.4;
-    width: 80%;
+    width: 95%;
     color: rgba(0, 0, 0, 0.5);
+    text-align: justify;
 }
 button.the__second__part.the__second__part__button{
     height: 33px;
@@ -128,7 +142,7 @@ button.the__second__part.the__second__part__button{
     border-radius: 3px;
     border: 1px rgba(0, 0, 0, 0.5) solid;
     color: black;
-    font-weight: 600;
+    font-weight: 500;
     cursor: pointer;
 }
 button.the__second__part.the__second__part__button:active{
@@ -144,11 +158,11 @@ button.the__second__part.the__second__part__button:active{
 .rows.third__part__selection{
     margin-right: 10px;
 }
-.title__table{
+/* .title__table{
     border-bottom: 1px rgba(0, 0, 0, 0.2) solid;
-}
+} */
 .title__table__group{
-    height: 48px;
+    min-height: 48px;
     width: auto;
     display: flex;
     align-items: center;
@@ -159,10 +173,10 @@ button.the__second__part.the__second__part__button:active{
     max-width: 50%;
     width: 100%;
     display: flex;
-    font-weight: 600;
+    font-weight: 500;
 }
 .title__table__group.part__two{
-    max-width: 50%;
+    max-width: 100%;
     width: 100%;
     margin-right: 10px;
     display: flex;
@@ -177,28 +191,35 @@ a.part__two.part__two__information:active{
     color: goldenrod;
 }
 .rows.part__one__and__two{
+    min-width: 400px;
     max-width: 50%;
     width: 100%;
-    /* display: flex; */
     padding: 8px 0 8px 16px;
 }
 .part__one{
+    min-width: 200px;
     max-width: 50%;
     width: 100%;
 }
-.part__two{
+.part__one__title{
+    color: rgba(0, 0, 0, 0.5);
+}
+.rows.part__two{
     max-width: 50%;
     width: 100%;
 }
 .part__two__content{
-    font-weight: 600;
+    font-weight: 500;
 }
 .third__part__a.third__part__a__content{
     color: rgba(0, 0, 0, 0.5);
+    padding: 8px 0 8px 16px;
+    min-height: 56px;
 }
 .third__part__a{
     width: 100%;
     display: flex;
+    align-items: center;
     justify-content: flex-start;
 }
 .third__part__b{
@@ -218,4 +239,109 @@ a.third__part__a__content__edit__fullname{
 }
 a.third__part__a__content__edit__fullname:active{
     color: goldenrod;
+}
+
+
+
+
+@media (max-width: 900px){
+    .hide__row{
+        display: none;
+    }
+    .rows.the__second__part{
+        max-width: 100%;
+    }
+
+
+
+    .rows.part__one__and__two{
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .rows{
+        min-height: 20px;
+    }
+    .rows.part__one__and__two{
+        min-width: 200px;
+        max-width: 200px;
+        width: 100%;
+        padding: 8px 16px 8px 16px;
+    }
+    .rows.part__two{
+        max-width: 100%;
+    }
+    .part__two__content{
+        width: 100%;
+    }
+    span.the__second__part.the__second__part__content{
+        text-align: left;
+    }
+    .third__part__a.third__part__a__content{
+        padding: 8px 0 8px 0;
+    }
+    .rows.third__part{
+        max-width: 100%;
+    }
+}
+@media (max-width: 640px){
+    .third__part__a{
+        display: none;
+    }
+}
+@media (max-width: 480px){
+    .image__rows{
+        flex-direction: column;
+    }
+    .the__second__part.the__second__part__group{
+        margin-top: 16px;
+    }
+    
+    .part__one{
+        min-width: 0;
+        max-width: 100%;
+    }
+    .rows.part__one__and__two{
+        min-width: 0;
+    }
+    .page__header.title h1{
+        line-height: 1.4;
+    }
+
+    .rows.third__part{
+        max-width: 0;
+    }
+    .rows{
+        justify-content: space-between;
+    }
+}
+@media (max-width: 280px){
+    .rows.third__part{
+        width: fit-content;
+    }
+    .rows.third__part{
+        margin: 0;
+    }
+    .third__part__b{
+        margin-right: 0;
+        margin-left: 1px;
+        width: fit-content;
+        padding: 0;
+        height: 56px;
+        min-width: 20px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+    .rows.first__part{
+        min-width: 0;
+        max-width: 140px;
+        width: 100%;
+    }
+    .first__part.first__part__containt__image{
+        min-width: 0;
+        width: 140px;
+        height: 140px;
+    }
 }
