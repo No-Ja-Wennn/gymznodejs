@@ -11,6 +11,7 @@
     margin-top: 68px;
     display: flex;
     justify-content: center;
+    /* background-color: rgba(70, 70, 70, 0.1); */
 }
 .container__inner{
     height: auto;
@@ -291,6 +292,19 @@ a.third__part__a__content__edit__fullname:active{
     }
 }
 @media (max-width: 480px){
+    .page__header{
+        flex-direction: column;
+        align-items: flex-start;
+        min-height: 45px;
+    }
+    .page__header.change__the__password{
+        flex-direction: row;
+        justify-content: flex-start;
+        width: 100%;
+    }
+    .page__header.title{
+        width: 100%;
+    }
     .image__rows{
         flex-direction: column;
     }
