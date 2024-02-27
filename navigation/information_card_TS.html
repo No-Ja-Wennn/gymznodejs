@@ -1,0 +1,491 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@100;300;500;600;900&display=swap"
+        rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Overpass:wght@100;200;300;400;500;600;700;800;900&display=swap"
+        rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="stylesheet" href="../font/fontawesome-free-6.4.0-web/css/all.min.css">
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <link rel="stylesheet" href="../css/base.css">
+    <link rel="stylesheet" href="../css/header.css">
+    <link rel="stylesheet" href="../css/footer.css">
+    <link rel="stylesheet" href="../css/keyframes.css">
+    <link rel="stylesheet" href="../navigation_css/infomation_account.css">
+    <!-- <link rel="stylesheet" href="../navigation_css/promotion.css"> -->
+    <title>GYMZ - Thể hình giới trẻ</title>
+
+</head>
+
+<body>
+    <div class="app">
+        <!-- LUU SY TRUONG -->
+        <div class="header">
+            <div class="header__inner">
+                <div class="header__inner__logo">
+                    <a href="">
+                        <h1>GYM<span>Z</span></h1>
+                    </a>
+                </div>
+                <!-- Thanh dieu huong -->
+                <div class="header__inner__navigation">
+                    <ul>
+                        <li><a class="header__inner__navigation__sevice" href="../index.html">TRANG CHỦ</a></li>
+                        <li><a class="header__inner__navigation__sevice" href="./forum.html">DIỄN ĐÀN</a></li>
+                        <li>
+                            <div class="dropdown">
+                                <a class="header__inner__navigation__sevice" href="#" onclick="yourFunction(event)">
+                                    DỊCH VỤ<m><i class='bx bxs-right-arrow'></i></m>
+                                </a>
+                                <div class="containt">
+                                    <a href="./card.html">THẺ HỘI VIÊN</a>
+                                    <a href="./train.html">HUẤN LUYỆN VIÊN</a>
+                                    <a href="./shop.html">CỬA HÀNG WHEY</a>
+                                    <a href="./chatbox.html">CHAT ONLINE</a>
+                              </div>
+                            </div>
+                        </li>
+                        <li><a class="header__inner__navigation__sevice" href="./promotion.html">KHUYẾN MÃI</a></li>
+                    </ul>
+                </div>
+                <div class="header__inner__try">
+                    <ul>
+                        <li><a href="https://facebook.com/lst24">TẬP THỬ MIỄN PHÍ</a></li>
+                    </ul>
+                </div>
+                <div class="header__inner__menu">
+                    <div class="bt_dropdown">
+                        <a class="header__inner__menu__bt" href="#" onclick="yourFunction(event)">
+                            <i class='bx bx-menu'></i>
+                        </a>
+                        <div class="content">
+                            <div class="logo">
+                                <ul class="account__login__center">
+                                    <li class="account__login">
+                                        <a class="account__login__inner" href="">
+                                        </a>
+                                    </li>
+                                </ul>
+                                <div class="account__about">
+                                    <a class="account__name" href="#">
+                                        USERNAME
+                                    </a>
+                                    <a class="account__code" href="#">
+                                        GYMZ001
+                                    </a>
+                                </div>
+                                <!-- <img src="../img/background/logo_and_bgr.png" alt="logo and bgr"> -->
+                            </div>
+                            <a class="content__inner" href="../index.html">
+                                <i class='bx bxs-home'></i>
+                                <span class="noidung__text1">
+                                    TRANG CHỦ
+                                </span>
+                            </a>
+                            <a class="content__inner" href="./forum.html">
+                                <i class='bx bx-world'></i>
+                                <span class="noidung__text1">
+                                    DIỄN ĐÀN
+                                </span>
+                            </a>
+                            <div class="submenu" href="#" onclick="toggleNoidung222(event)">
+                                <b class="content__inner" href="">
+                                    <i class='bx bx-grid-alt'></i>
+                                    <span class="noidung__text1">
+                                        DỊCH VỤ
+                                    </span>
+                                </b>
+                                <div class="noidung222">
+                                    <a class="content__inner" href="./card.html"> THẺ HỘI VIÊN</a>
+                                    <a class="content__inner" href="./train.html"> HUẤN LUYỆN VIÊN</a>
+                                    <a class="content__inner" href="./shop.html"> CỬA HÀNG WHEY</a>
+                                    <a class="content__inner" href="./chatbox.html"> CHAT ONLINE</a>
+                                </div>
+                            </div>
+                            <a class="content__inner" href="./promotion.html">
+                                <i class='bx bxs-purchase-tag'></i>
+                                <span class="noidung__text1">
+                                    KHUYẾN MÃI
+                                </span>
+                            </a>
+                            <a class="content__inner" href="#">
+                                <i class='bx bx-code-alt'></i>
+                                <span class="noidung__text1">
+                                    TẬP THỬ MIỄN PHÍ
+                                </span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="container">
+            <div class="container__inner">
+                <div class="container__inner__select">
+                    <div class="page__header">
+                        <div class="page__header title">
+                            <h1>
+                                Thông tin của bạn
+                            </h1>
+                        </div>
+                        <div class="page__header change__the__password">
+                            <a href="" class="change__the__password key__ico">
+                                <i class="fa-solid fa-key"></i>
+                            </a>
+                            <ul class="change__the__password__group">
+                                <a href="" class="change__the__password__group change__the__password__group__content">
+                                    Thay đổi mật khẩu
+                                </a>
+                                <a href="" class="change__the__password__group change__the__password__group__sub__content">
+                                    Bảo mật
+                                </a>
+                            </ul>
+                        </div>
+                    </div>
+                    <div id="table1" class="table">
+                        <div class="person__information">
+                            <div class="border__top">
+                                <div class="rows">
+                                    <div class="image__rows">
+                                        <div class="rows first__part">
+                                            <div class="first__part first__part__containt__image">
+                                                <i class="fa-regular fa-user"></i>
+                                            </div>
+                                        </div>
+                                        <div class=" rows the__second__part">
+                                            <div class="the__second__part the__second__part__group">
+                                                <span class="the__second__part the__second__part__content">
+                                                    Hãy cá nhân hóa tài khoản của bạn bằng một bức ảnh. 
+                                                    Ảnh hồ sơ của bạn sẽ xuất hiện trên các ứng dụng 
+                                                    và thiết bị sử dụng tài khoản GYMZ của bạn.
+                                                </span>
+                                                <button class="the__second__part the__second__part__button">
+                                                    Thêm ảnh
+                                                </button>
+                                            </div>
+                                        </div>
+                                        <div class="hide__row">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="border__top">
+                                <div class="rows">
+                                    <div class="rows part__one__and__two">
+                                        <div class="rows part__one">
+                                            <div class="part__one__title">
+                                                Họ và tên
+                                            </div>
+                                        </div>
+                                        <div class="rows part__two">
+                                            <div class="part__two__content">
+                                                Truong Designer
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="rows third__part">
+                                        <div class="rows third__part__selection">
+                                            <div class="third__part__a">
+                                                <div class="third__part__a third__part__a__content">
+                                                    <a href="" class="third__part__a__content__edit__fullname">
+                                                        Chỉnh sửa tên
+                                                    </a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div id="table2" class="table">
+                        <div class="profine__information">
+                            <div class="title__table">
+                                <div class="title__table__group">
+                                    <div class="title__table__group part__one">
+                                        Thông tin hồ sơ
+                                    </div>
+                                    <div class="title__table__group part__two">
+                                        <a class="part__two part__two__information" href="">
+                                            Chỉnh sửa thông tin hồ sơ
+                                        </a>
+                                    </div>
+                                    
+                                </div>
+                            </div>
+                            <div class="border__top">
+                                <div class="rows">
+                                    <div class="rows part__one__and__two">
+                                        <div class="rows part__one">
+                                            <div class="part__one__title">
+                                                Ngày sinh
+                                            </div>
+                                        </div>
+                                        <div class="rows part__two">
+                                            <div class="part__two__content">
+                                                27/06/2004
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="rows third__part">
+                                        <div class="third__part__a">
+                                            <div class="third__part__a third__part__a__content">
+                                                Ngày sinh của bạn đã được dùng cho cài đặt an toàn của tài khoản
+                                            </div>
+                                        </div>
+                                        <div class="third__part__b">
+                                            <div class="third__part__b__ico">
+                                                <i class="fa-solid fa-chevron-right"></i>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="border__top">
+                                <div class="rows">
+                                    <div class="rows part__one__and__two">
+                                        <div class="rows part__one">
+                                            <div class="part__one__title">
+                                                Quốc gia hoặc khu vực
+                                            </div>
+                                        </div>
+                                        <div class="rows part__two">
+                                            <div class="part__two__content">
+                                                Việt Nam
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="rows third__part">
+                                        <div class="third__part__a">
+                                            <div class="third__part__a third__part__a__content">
+                                                Quốc gia và khu vực của bạn đã được sử dụng cho cài đặt về quyền riêng tư
+                                            </div>
+                                        </div>
+                                        <div class="third__part__b">
+                                            <div class="third__part__b__ico">
+                                                <i class="fa-solid fa-chevron-right"></i>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="border__top">
+                                <div class="rows">
+                                    <div class="rows part__one__and__two">
+                                        <div class="rows part__one">
+                                            <div class="part__one__title">
+                                                Ngôn ngữ
+                                            </div>
+                                        </div>
+                                        <div class="rows part__two">
+                                            <div class="part__two__content">
+                                                Tiếng Việt (Việt Nam)
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="rows third__part">
+                                        <div class="third__part__a">
+                                            <div class="third__part__a third__part__a__content">
+                                                Hỏi trước khi dịch
+                                            </div>
+                                        </div>
+                                        <div class="third__part__b">
+                                            <div class="third__part__b__ico">
+                                                <i class="fa-solid fa-chevron-right"></i>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div id="table3" class="table">
+                        <div class="account__information">
+                            <div class="title__table">
+                                <div class="title__table__group">
+                                    <div class="title__table__group part__one">
+                                        Thông tin tài khoản
+                                    </div>
+                                    <div class="title__table__group part__two">
+                                        <a class="part__two part__two__information" href="">
+                                            Chỉnh sửa thông tin tài khoản
+                                        </a>
+                                    </div>
+                                    
+                                </div>
+                            </div>
+                            <div class="border__top">
+                                <div class="rows">
+                                    <div class="rows part__one__and__two">
+                                        <div class="rows part__one">
+                                            <div class="part__one__title">
+                                                Địa chỉ email
+                                            </div>
+                                        </div>
+                                        <div class="rows part__two">
+                                            <div class="part__two__content">
+                                                truong@gmail.com
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="rows third__part">
+                                        <div class="third__part__a">
+                                            <div class="third__part__a third__part__a__content">
+                                                Địa chỉ email bạn sử dụng để đăng nhập vào 
+                                                tài khoản GYMZ của mình
+                                            </div>
+                                        </div>
+                                        <div class="third__part__b">
+                                            <div class="third__part__b__ico">
+                                                <i class="fa-solid fa-chevron-right"></i>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="border__top">
+                                <div class="rows">
+                                    <div class="rows part__one__and__two">
+                                        <div class="rows part__one">
+                                            <div class="part__one__title">
+                                                Số điện thoại
+                                            </div>
+                                        </div>
+                                        <div class="rows part__two">
+                                            <div class="part__two__content">
+                                                099.999.9999
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="rows third__part">
+                                        <div class="third__part__a">
+                                            <div class="third__part__a third__part__a__content">
+                                                Số điện thoại của bạn đã được dùng để đăng 
+                                                nhập vào tài khoản GYMZ của bạn
+                                            </div>
+                                        </div>
+                                        <div class="third__part__b">
+                                            <div class="third__part__b__ico">
+                                                <i class="fa-solid fa-chevron-right"></i>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>   
+                </div>
+            </div>
+        </div>
+        <div class="footer">
+            <div class="footer__select">
+                <div class="footer__colum1">
+                    <div class="footer__colum1__inner">
+                        <a href="#">
+                            <h3>
+                                CÔNG TY CỔ PHẦN ĐẦU TƯ VÀ PHÁT TRIỂN CLOSEAI
+                            </h3>
+                        </a>
+                    </div>
+                    <div class="about__us">
+                        <div class="about__us__inner">
+                            <a href="#">
+                                <m><i class='bx bxs-home'></i></m> Trụ sở chính: z115, Tân Thịnh, TP.Thái
+                                Nguyên, Thái Nguyên
+                            </a>
+                            <a href="#">
+                                <m><i class='bx bxs-phone'></i></m> Hotline: 0999.999.999
+                            </a>
+                            <a href="#">
+                                <m><i class='bx bxs-envelope'></i></m> Email: closeai.work@gmail.com
+                            </a>
+                            <a href="#">
+                                <m><i class='bx bx-world'></i></m> Website: https://pwm.io.vn
+                            </a>
+                        </div>
+
+                    </div>
+                    <div class="service__customer">
+                        <div class="service__customer__title">
+                            <div class="footer__colum1__inner">
+                                <a href="#">
+                                    <h3>
+                                        DỊCH VỤ KHÁCH HÀNG
+                                    </h3>
+                                </a>
+                            </div>
+                        </div>
+                        <div class="service__customer__list">
+                            <div class="service__customer__list__inner">
+                                <a href="#">
+                                    <i class='bx bx-file'></i> Điều khoản sử dụng
+                                </a>
+                                <a href="#">
+                                    <i class='bx bxs-lock-alt'></i> Chính sách bảo mật
+                                </a>
+                                <a href="#">
+                                    <i class='bx bxs-chat'></i> Kết nối với chúng tôi
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="footer__colum2">
+                    <div class="footer__colum2__center">
+                        <div class="footer__colum2__inner">
+                            <div class="group">
+                                <div class="name__page">
+                                    <a href="#">
+                                        GYM Z<m><i class='bx bxs-badge-check'></i></m>
+                                    </a>
+                                    <h4>
+                                        999.999 người theo dõi
+                                    </h4>
+                                </div>
+                                <div class="avatar__img">
+                                    <img src="../img/background/avatar.png" alt="Ảnh đại diện">
+                                </div>
+                                <div class="folow__page">
+                                    <a href="#">
+                                        <i class='bx bxl-facebook-square'></i>Theo dõi fanpage
+                                    </a>
+                                </div>
+                                <div class="share__page">
+                                    <a href="#">
+                                        <i class='bx bxs-share'></i>Chia sẻ
+                                    </a>
+                                </div>
+                            </div>
+                            <div class="cover__img">
+                                <img src="../img/background/cover_img.png" alt="Ảnh bìa">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="footer__last">
+                <div class="footer__last__select">
+                    <div class="footer__last__select__inner">
+                        <a href="#">
+                            <m><i class='bx bxs-copyright'></i></m> 2023 Allrights reserved pwm.io.vn
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- overlay -->
+    <div class="nen_mo"></div>
+    <script src="./index.js"></script>
+    <script src="../navigation_javascript/menuv2.js"></script>
+</body>
+
+</html>

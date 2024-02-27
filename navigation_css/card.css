@@ -1,3 +1,24 @@
+
+i.fa-solid.fa-caret-up{
+    position: absolute;
+    top: 85%;
+    right: 23px;
+    font-size: 30px;
+    color: #333;
+}
+
+.status__account {
+    display: flex;
+    align-items: flex-start;
+    flex-direction: column;
+    min-width: 238px;
+    background-color: #333;
+    position: absolute;
+    top: 110%;
+    right: 0;
+    padding: 10px 0;
+}
+
 .container {
   background-color: #e0e0e0;
   width: 100%;

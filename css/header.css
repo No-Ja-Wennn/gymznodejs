@@ -130,86 +130,106 @@
 }
 
 .header__inner__login {
-    position: relative;
-    height: 67px;
-    width: 67px;
+    min-height: 68px;
+    min-width: 68px;
+    background-color: black;
     display: flex;
     align-items: center;
     justify-content: center;
     margin-left: 10px;
-    /* background-color: rgb(127, 0, 212); */
+    position: relative;
 }
 
-.header__inner__login ul {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    height: 47px;
-    width: 47px;
+ul.header__inner__login__inner{
     background-color: goldenrod;
-    border-radius: 100%;
-}
-
-.submenu__login {
+    min-height: 46px;
+    min-width: 46px;
     display: flex;
     align-items: center;
     justify-content: center;
-    height: 43px;
-    width: 43px;
-    background-color: rgb(0, 0, 0);
-    border-radius: 100%;
+    border-radius: 50%;
 }
-
-.account {
+li.submenu__login{
+    background-color: black;
+    min-width: 42px;
+    min-height: 42px;
     display: flex;
     align-items: center;
     justify-content: center;
-    height: 39px;
-    width: 39px;
-    border-radius: 100%;
-    /* background-color: green; */
-    background-image: url(../img/icon/avatar__ico.jpg);
+    border-radius: 50%;
+}
+a.account-avt.account{
+    background-color: black;
+    min-width: 40px;
+    min-height: 40px;
+    background-image: url(/img/icon/avatar__ico.jpg);
     background-size: cover;
     background-repeat: no-repeat;
-    position: relative;
-    /* bottom: 0.1041665px; */
+    /* position: relative; */
+    border-radius: 50%;
 }
+/* .account {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 39px;
+    min-width: 39px;
+    border-radius: 100%; */
+    /* background-color: green; */
+    /* background-image: url(../img/icon/avatar__ico.jpg); */
+    /* background-size: cover;
+    background-repeat: no-repeat;
+    position: relative; */
+    /* bottom: 0.1041665px; */
+/* } */
 
 .account:hover {
     opacity: 0.8;
 }
+ul.submenu__login__content{
+    display: none;
+}
+i.fa-solid.fa-caret-up{
+    position: absolute;
+    top: 85%;
+    right: 23px;
+    font-size: 30px;
+    color: #111;
+}
 
 .status__account {
-    display: none;
+    display: flex;
     align-items: flex-start;
     flex-direction: column;
-    width: 130px;
-    /* height: 68px; */
-    background-color: #dadada;
+    min-width: 238px;
+    background-color: #111;
     position: absolute;
-    top: 100%;
-    right: -10px;
+    top: 110%;
+    right: 0;
+    padding: 10px 0;
 }
 
 .status {
     display: flex;
     align-items: center;
-    padding-left: 10px;
+    margin-left: 20px;
+    padding: 0 10px;
     height: 30px;
-    width: 130px;
     font-family: montserrat;
-    font-size: 12px;
-    font-weight: 600;
-    color: black;
-    border-top: 0.1px whitesmoke solid;
+    font-size: 14px;
+    color: rgba(255, 255, 255, 0.8);
+    /* border-top: 0.1px whitesmoke solid; */
 }
-
+/* a.loginstatus.status{
+    font-size: 15px;
+} */
 .status:hover {
-    background-color: whitesmoke;
-    /* border-radius: 5px; */
+    color: white;
+    /* border-radius: 10px; */
+    border: 1px rgba(255, 255, 255, 0.2) solid;
 }
 
-.submenu__login:focus-within .status__account {
+.submenu__login:focus-within ul.submenu__login__content{
     display: flex;
 
 }
