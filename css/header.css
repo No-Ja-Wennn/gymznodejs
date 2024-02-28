@@ -191,10 +191,10 @@ ul.submenu__login__content{
 }
 i.fa-solid.fa-caret-up{
     position: absolute;
-    top: 85%;
+    top: 90%;
     right: 23px;
     font-size: 30px;
-    color: #111;
+    color: #222;
 }
 
 .status__account {
@@ -202,9 +202,9 @@ i.fa-solid.fa-caret-up{
     align-items: flex-start;
     flex-direction: column;
     min-width: 238px;
-    background-color: #111;
+    background-color: #222;
     position: absolute;
-    top: 110%;
+    top: 115%;
     right: 0;
     padding: 10px 0;
 }

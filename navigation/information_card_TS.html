@@ -19,7 +19,7 @@
     <link rel="stylesheet" href="../css/header.css">
     <link rel="stylesheet" href="../css/footer.css">
     <link rel="stylesheet" href="../css/keyframes.css">
-    <link rel="stylesheet" href="../navigation_css/infomation_account.css">
+    <link rel="stylesheet" href="../navigation_css/information_card_TS.css">
     <!-- <link rel="stylesheet" href="../navigation_css/promotion.css"> -->
     <title>GYMZ - Thể hình giới trẻ</title>
 
@@ -133,43 +133,64 @@
                     <div class="page__header">
                         <div class="page__header title">
                             <h1>
-                                Thông tin của bạn
+                                Thông tin thẻ thành viên
                             </h1>
                         </div>
-                        <div class="page__header change__the__password">
-                            <a href="" class="change__the__password key__ico">
-                                <i class="fa-solid fa-key"></i>
-                            </a>
-                            <ul class="change__the__password__group">
-                                <a href="" class="change__the__password__group change__the__password__group__content">
-                                    Thay đổi mật khẩu
-                                </a>
-                                <a href="" class="change__the__password__group change__the__password__group__sub__content">
-                                    Bảo mật
-                                </a>
-                            </ul>
-                        </div>
                     </div>
-                    <div id="table1" class="table">
-                        <div class="person__information">
+                    <div id="table1" class="first__table">
+                        <div class="card__information">
                             <div class="border__top">
                                 <div class="rows">
-                                    <div class="image__rows">
-                                        <div class="rows first__part">
-                                            <div class="first__part first__part__containt__image">
-                                                <i class="fa-regular fa-user"></i>
+                                    <div class="information__card">
+                                        <div class="information__card first__part">
+                                            <div class="first__part first__part__image">
+                                                <img class="card" src="../img/card/advance.png" alt="advance">
                                             </div>
                                         </div>
-                                        <div class=" rows the__second__part">
+                                        <div class="information__card the__second__part">
                                             <div class="the__second__part the__second__part__group">
-                                                <span class="the__second__part the__second__part__content">
-                                                    Hãy cá nhân hóa tài khoản của bạn bằng một bức ảnh. 
-                                                    Ảnh hồ sơ của bạn sẽ xuất hiện trên các ứng dụng 
-                                                    và thiết bị sử dụng tài khoản GYMZ của bạn.
-                                                </span>
-                                                <button class="the__second__part the__second__part__button">
-                                                    Thêm ảnh
-                                                </button>
+                                                <div id="card" class="card__holder">
+                                                    <div id="information__card__title" class="card__holder card__holder__title">
+                                                        Tên hội viên
+                                                    </div>
+                                                    <div id="information__card__content" class="card__holder card__holder__content">
+                                                        Truong Designer
+                                                    </div>
+                                                </div>
+                                                <div id="card" class="id__card">
+                                                    <div id="information__card__title" class="id__card id__card__title">
+                                                        Mã thẻ thành viên
+                                                    </div>
+                                                    <div id="information__card__content" class="id__card id__card__content">
+                                                        MT01
+                                                    </div>
+                                                </div>
+                                                <div id="card" class="card__type">
+                                                    <div id="information__card__title" class="card__type card__type__title">
+                                                        Loại thẻ thành viên
+                                                    </div>
+                                                    <div id="information__card__content" class="card__type card__type__content">
+                                                        <a class="card__type__content card__type__content__link" href="../navigation/card.html">
+                                                            ADVANCE
+                                                        </a>
+                                                    </div>
+                                                </div>
+                                                <div id="card" class="card__registration__date">
+                                                    <div id="information__card__title" class="card__registration__date card__registration__date__title">
+                                                        Ngày đăng ký thẻ
+                                                    </div>
+                                                    <div id="information__card__content" class="card__registration__date card__registration__date__content">
+                                                        28/02/2024
+                                                    </div>
+                                                </div>
+                                                <div id="card" class="card__expiration__date">
+                                                    <div id="information__card__title" class="card__expiration__date card__expiration__date__title">
+                                                        Ngày hết hạn thẻ
+                                                    </div>
+                                                    <div id="information__card__content" class="card__expiration__date card__expiration__date__content">
+                                                        28/02/2034
+                                                    </div>
+                                                </div>
                                             </div>
                                         </div>
                                         <div class="hide__row">
@@ -182,28 +203,19 @@
                                     <div class="rows part__one__and__two">
                                         <div class="rows part__one">
                                             <div class="part__one__title">
-                                                Họ và tên
-                                            </div>
-                                        </div>
-                                        <div class="rows part__two">
-                                            <div class="part__two__content">
-                                                Truong Designer
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="rows third__part">
-                                        <div class="rows third__part__selection">
-                                            <div class="third__part__a">
-                                                <div class="third__part__a third__part__a__content">
-                                                    <a href="" class="third__part__a__content__edit__fullname">
-                                                        Chỉnh sửa tên
-                                                    </a>
-                                                </div>
+                                                <a href="">Xem điều khoản sử dụng</a>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
+                        </div>
+                    </div>
+                    <div class="page__header">
+                        <div class="page__header title">
+                            <h1>
+                                Thông tin lịch tập
+                            </h1>
                         </div>
                     </div>
                     <div id="table2" class="table">
@@ -306,82 +318,7 @@
                                 </div>
                             </div>
                         </div>
-                    </div>
-                    <div id="table3" class="table">
-                        <div class="account__information">
-                            <div class="title__table">
-                                <div class="title__table__group">
-                                    <div class="title__table__group part__one">
-                                        Thông tin tài khoản
-                                    </div>
-                                    <div class="title__table__group part__two">
-                                        <a class="part__two part__two__information" href="">
-                                            Chỉnh sửa thông tin tài khoản
-                                        </a>
-                                    </div>
-                                    
-                                </div>
-                            </div>
-                            <div class="border__top">
-                                <div class="rows">
-                                    <div class="rows part__one__and__two">
-                                        <div class="rows part__one">
-                                            <div class="part__one__title">
-                                                Địa chỉ email
-                                            </div>
-                                        </div>
-                                        <div class="rows part__two">
-                                            <div class="part__two__content">
-                                                truong@gmail.com
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="rows third__part">
-                                        <div class="third__part__a">
-                                            <div class="third__part__a third__part__a__content">
-                                                Địa chỉ email bạn sử dụng để đăng nhập vào 
-                                                tài khoản GYMZ của mình
-                                            </div>
-                                        </div>
-                                        <div class="third__part__b">
-                                            <div class="third__part__b__ico">
-                                                <i class="fa-solid fa-chevron-right"></i>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="border__top">
-                                <div class="rows">
-                                    <div class="rows part__one__and__two">
-                                        <div class="rows part__one">
-                                            <div class="part__one__title">
-                                                Số điện thoại
-                                            </div>
-                                        </div>
-                                        <div class="rows part__two">
-                                            <div class="part__two__content">
-                                                099.999.9999
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="rows third__part">
-                                        <div class="third__part__a">
-                                            <div class="third__part__a third__part__a__content">
-                                                Số điện thoại của bạn đã được dùng để đăng 
-                                                nhập vào tài khoản GYMZ của bạn
-                                            </div>
-                                        </div>
-                                        <div class="third__part__b">
-                                            <div class="third__part__b__ico">
-                                                <i class="fa-solid fa-chevron-right"></i>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>   
+                    </div>  
                 </div>
             </div>
         </div>
