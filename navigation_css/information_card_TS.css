@@ -50,21 +50,58 @@
     display: flex;
     align-items: center;
     justify-content: flex-start;
+    justify-content: space-between;
 }
 .page__header.title{
-    width: 90%;
+    width: 80%;
     line-height: 1.4;
     /* background-color: rgb(255, 180, 88); */
 }
 .page__header.title h1{
     font-weight: 600;
 }
+.night__mode{
+    width: 10%;
+    display: flex;
+    justify-content: flex-end;
+    min-height: 90px;
+}
+
+button.night__mode__button{
+    min-height: 28px;
+    min-width: 28px;
+    border-radius: 50%;
+    border: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #222;
+    color: whitesmoke;
+    cursor: pointer;
+}
+i.bx.bxs-moon{
+    font-size: 14px;
+}
+button.night__mode__button:hover{
+    background-color: #999;
+    color: white;
+}
+button.night__mode__button:active{
+    background-color: #999;
+    color: white;
+}
+
+
+
+
+
 .border__top{
     border-top: 1px rgba(0, 0, 0, 0.05) solid;
 }
 .rows{
     min-height: 30px;
     display: flex;
+    width: 100%;
 }
 .information__card{
     width: 100%;
@@ -79,7 +116,7 @@
 }
 .information__card.first__part{
     /* background-color: green; */
-    width: 60%;
+    width: 50%;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -145,6 +182,107 @@ a.card__type__content.card__type__content__link:active{
     color: goldenrod;
 }
 
+
+
+
+.rows.rules{
+    width: 100%;
+    display: flex;
+    align-items: center;
+}
+.rules.rules__group{
+    display: flex;
+    align-items: center;
+    min-height: 40px;
+    padding: 0 15px;
+}
+.rules__group.rules__group__title{
+    display: flex;
+    align-items: center;
+    min-height: 40px;
+}
+a.rules__group__title.rules__group__title__content{
+    display: flex;
+    align-items: center;
+    color: rgba(0, 0, 0, 0.5);
+    min-height: 40px;
+    cursor: pointer;
+}
+a.rules__group__title.rules__group__title__content:hover{
+    color: goldenrod;
+}
+a.rules__group__title.rules__group__title__content:active{
+    color: goldenrod;
+}
+.rules__group__content{
+    display: none;
+    justify-content: center;
+    position: fixed;
+    /* background-color: green; */
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    max-width: 500px;
+    width: 100%;
+    height: auto;
+    line-height: 1.4;
+    z-index: 1;
+}
+ul.group__rules{
+    width: 90%;
+    display: flex;
+    flex-direction: column;
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: 0 0 0 1000px rgba(0, 0, 0, 0.5);
+}
+li.group__rules__title{
+    width: 100%;
+    min-height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    /* background-color: goldenrod; */
+    border-bottom: 1px rgba(0, 0, 0, 0.05) solid;
+    font-size: 16px;
+}
+li.group__rules.title__and__content{
+    /* margin-top: 15px; */
+    padding: 15px;
+    color: rgba(0, 0, 0, 0.5);
+    text-align: justify;
+}
+span.group__rules.title__content{
+    margin-left: 10px;
+    margin-right: 2px;
+    color: black;
+}
+li.group__rules.button__hide{
+    min-height: 80px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-top: 1px rgba(0, 0, 0, 0.05) solid;
+}
+button.button__hide.button__hide__terms__of__use{
+    background-color: white;
+    border-radius: 5px;
+    border: 1px rgba(0, 0, 0, 0.2) solid;
+    padding: 5px 15px;
+    color: rgba(0, 0, 0, 0.5);
+}
+button.button__hide.button__hide__terms__of__use:hover{
+    color: black;
+    border: 1px black solid;
+}
+button.button__hide.button__hide__terms__of__use:active{
+    background: whitesmoke;
+}
+
+
+
+
+
 @media (max-width: 800px){
     .information__card{
         flex-direction: column;
@@ -154,6 +292,7 @@ a.card__type__content.card__type__content__link:active{
         width: 100%;
         padding: 0;
         margin-bottom: 10px;
+        border: none;
         border-bottom: 1px rgba(0, 0, 0, 0.05) solid;
     }
     .first__part.first__part__image{
@@ -170,5 +309,16 @@ a.card__type__content.card__type__content__link:active{
     }
     #information__card__title{
         margin: 0;
+    }
+}
+@media (max-width: 320px){
+    .rules__group__content{
+        margin-top: 35px;
+    }
+    li.group__rules.title__and__content{
+        padding: 0 15px;
+    }
+    li.group__rules.button__hide{
+        min-height: 50px;
     }
 }
