@@ -113,7 +113,16 @@ a.change__the__password__group.change__the__password__group__content:hover{
     display: flex;
     align-items: center;
     justify-content: center;
+    overflow: hidden;
 }
+
+.first__part__containt__image__img{
+    width: 160px;
+    height: 160px;
+    display: none;
+    object-fit: cover;
+}
+
 .rows.the__second__part{
     max-width: 25%;
     width: 100%;
@@ -135,9 +144,15 @@ span.the__second__part.the__second__part__content{
     color: rgba(0, 0, 0, 0.5);
     text-align: justify;
 }
-button.the__second__part.the__second__part__button{
-    height: 33px;
+
+#input-file-avt{
+    display: none;
+}
+
+.the__second__part.the__second__part__button{
+    /* height: 33px; */
     width: 100px;
+    padding: 12px 0;
     margin-top: 10px;
     background-color: white;
     border-radius: 3px;
@@ -145,6 +160,7 @@ button.the__second__part.the__second__part__button{
     color: black;
     font-weight: 500;
     cursor: pointer;
+    text-align: center;
 }
 button.the__second__part.the__second__part__button:active{
     background-color: rgba(218, 165, 32, 0.2);
@@ -183,10 +199,11 @@ button.the__second__part.the__second__part__button:active{
     display: flex;
     justify-content: flex-end;
 }
-a.part__two.part__two__information{
+span.part__two.part__two__information{
     color: rgba(218, 165, 32, 0.5);
     display: flex;
     justify-content: flex-end;
+    cursor: pointer;
 }
 a.part__two.part__two__information:active{
     color: goldenrod;
@@ -233,10 +250,11 @@ a.part__two.part__two__information:active{
 .third__part__b:active{
     color: goldenrod;
 }
-a.third__part__a__content__edit__fullname{
+span.third__part__a__content__edit__fullname{
     color: rgba(218, 165, 32, 0.5);
     display: flex;
     justify-content: flex-end;
+    cursor: pointer;
 }
 a.third__part__a__content__edit__fullname:active{
     color: goldenrod;
