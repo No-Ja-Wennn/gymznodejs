@@ -19,15 +19,15 @@
     <link rel="stylesheet" href="../css/header.css">
     <link rel="stylesheet" href="../css/footer.css">
     <link rel="stylesheet" href="../css/keyframes.css">
+    <link rel="stylesheet" href="../navigation_css/toast.css">
     <link rel="stylesheet" href="../navigation_css/infomation_account.css">
-    <!-- <link rel="stylesheet" href="../navigation_css/promotion.css"> -->
+    <link rel="stylesheet" href="../navigation_css/login.css">
     <title>GYMZ - Thể hình giới trẻ</title>
 
 </head>
 
 <body>
     <div class="app">
-        <!-- LUU SY TRUONG -->
         <div class="header">
             <div class="header__inner">
                 <div class="header__inner__logo">
@@ -50,7 +50,7 @@
                                     <a href="./train.html">HUẤN LUYỆN VIÊN</a>
                                     <a href="./shop.html">CỬA HÀNG WHEY</a>
                                     <a href="./chatbox.html">CHAT ONLINE</a>
-                              </div>
+                                </div>
                             </div>
                         </li>
                         <li><a class="header__inner__navigation__sevice" href="./promotion.html">KHUYẾN MÃI</a></li>
@@ -144,7 +144,8 @@
                                 <a href="" class="change__the__password__group change__the__password__group__content">
                                     Thay đổi mật khẩu
                                 </a>
-                                <a href="" class="change__the__password__group change__the__password__group__sub__content">
+                                <a href=""
+                                    class="change__the__password__group change__the__password__group__sub__content">
                                     Bảo mật
                                 </a>
                             </ul>
@@ -157,19 +158,28 @@
                                     <div class="image__rows">
                                         <div class="rows first__part">
                                             <div class="first__part first__part__containt__image">
-                                                <i class="fa-regular fa-user"></i>
+                                                <i class="icon-user fa-regular fa-user"></i>
+                                                <img id="avt-img" class="first__part__containt__image__img"
+                                                    src="../img/background/3.jpg" alt="">
                                             </div>
                                         </div>
                                         <div class=" rows the__second__part">
                                             <div class="the__second__part the__second__part__group">
                                                 <span class="the__second__part the__second__part__content">
-                                                    Hãy cá nhân hóa tài khoản của bạn bằng một bức ảnh. 
-                                                    Ảnh hồ sơ của bạn sẽ xuất hiện trên các ứng dụng 
+                                                    Hãy cá nhân hóa tài khoản của bạn bằng một bức ảnh.
+                                                    Ảnh hồ sơ của bạn sẽ xuất hiện trên các ứng dụng
                                                     và thiết bị sử dụng tài khoản GYMZ của bạn.
                                                 </span>
-                                                <button class="the__second__part the__second__part__button">
+
+                                                <label for="input-file-avt"
+                                                    class="the__second__part the__second__part__button">Thêm ảnh</label>
+                                                <input type="file" accept="image/jpeg, image/png, image/jpg"
+                                                    id="input-file-avt">
+
+                                                <!-- <button
+                                                    class="the__second__part the__second__part__button">
                                                     Thêm ảnh
-                                                </button>
+                                                </button> -->
                                             </div>
                                         </div>
                                         <div class="hide__row">
@@ -186,8 +196,9 @@
                                             </div>
                                         </div>
                                         <div class="rows part__two">
-                                            <div class="part__two__content">
-                                                Truong Designer
+                                            <div id="name-client" class="part__two__content">
+                                                <!-- Truong Designer -->
+                                                .....
                                             </div>
                                         </div>
                                     </div>
@@ -195,9 +206,9 @@
                                         <div class="rows third__part__selection">
                                             <div class="third__part__a">
                                                 <div class="third__part__a third__part__a__content">
-                                                    <a href="" class="third__part__a__content__edit__fullname">
+                                                    <span id="edit-name" class="third__part__a__content__edit__fullname">
                                                         Chỉnh sửa tên
-                                                    </a>
+                                                    </span>
                                                 </div>
                                             </div>
                                         </div>
@@ -214,11 +225,11 @@
                                         Thông tin hồ sơ
                                     </div>
                                     <div class="title__table__group part__two">
-                                        <a class="part__two part__two__information" href="">
+                                        <span id="change-profile" class="part__two part__two__information" href="">
                                             Chỉnh sửa thông tin hồ sơ
-                                        </a>
+                                        </span>
                                     </div>
-                                    
+
                                 </div>
                             </div>
                             <div class="border__top">
@@ -230,8 +241,9 @@
                                             </div>
                                         </div>
                                         <div class="rows part__two">
-                                            <div class="part__two__content">
-                                                27/06/2004
+                                            <div id="dateofbirth-client" class="part__two__content">
+                                                <!-- 27/06/2004 -->
+                                                .....
                                             </div>
                                         </div>
                                     </div>
@@ -266,7 +278,8 @@
                                     <div class="rows third__part">
                                         <div class="third__part__a">
                                             <div class="third__part__a third__part__a__content">
-                                                Quốc gia và khu vực của bạn đã được sử dụng cho cài đặt về quyền riêng tư
+                                                Quốc gia và khu vực của bạn đã được sử dụng cho cài đặt về quyền riêng
+                                                tư
                                             </div>
                                         </div>
                                         <div class="third__part__b">
@@ -315,11 +328,11 @@
                                         Thông tin tài khoản
                                     </div>
                                     <div class="title__table__group part__two">
-                                        <a class="part__two part__two__information" href="">
+                                        <span id="change-information" class="part__two part__two__information" href="">
                                             Chỉnh sửa thông tin tài khoản
-                                        </a>
+                                        </span>
                                     </div>
-                                    
+
                                 </div>
                             </div>
                             <div class="border__top">
@@ -331,15 +344,16 @@
                                             </div>
                                         </div>
                                         <div class="rows part__two">
-                                            <div class="part__two__content">
-                                                truong@gmail.com
+                                            <div id="email-client" class="part__two__content">
+                                                <!-- truong@gmail.com -->
+                                                .....
                                             </div>
                                         </div>
                                     </div>
                                     <div class="rows third__part">
                                         <div class="third__part__a">
                                             <div class="third__part__a third__part__a__content">
-                                                Địa chỉ email bạn sử dụng để đăng nhập vào 
+                                                Địa chỉ email bạn sử dụng để đăng nhập vào
                                                 tài khoản GYMZ của mình
                                             </div>
                                         </div>
@@ -360,15 +374,16 @@
                                             </div>
                                         </div>
                                         <div class="rows part__two">
-                                            <div class="part__two__content">
-                                                099.999.9999
+                                            <div id="phone-client" class="part__two__content">
+                                                <!-- 099.999.9999 -->
+                                                .....
                                             </div>
                                         </div>
                                     </div>
                                     <div class="rows third__part">
                                         <div class="third__part__a">
                                             <div class="third__part__a third__part__a__content">
-                                                Số điện thoại của bạn đã được dùng để đăng 
+                                                Số điện thoại của bạn đã được dùng để đăng
                                                 nhập vào tài khoản GYMZ của bạn
                                             </div>
                                         </div>
@@ -381,7 +396,7 @@
                                 </div>
                             </div>
                         </div>
-                    </div>   
+                    </div>
                 </div>
             </div>
         </div>
@@ -482,10 +497,47 @@
             </div>
         </div>
     </div>
+    <div id="toast"></div>
+
     <!-- overlay -->
+    
+    <div class="modal">
+        <div class="modal-overlay">
+
+        </div>
+        <div class="modal__body">
+            <div class="modal__body__box change-name-box">
+                <p class="edit-title">Đổi tên khách hàng</p>
+                <div>
+                    <div class="user-box">
+                        <input class="new-name" required="" name="" type="text">
+                        <label class="edit-label">Tên mới</label>
+                    </div>
+                    <div class="submit__row">
+                        <button id="submitExit">
+                            <!-- <span></span>
+                            <span></span>
+                            <span></span>
+                            <span></span> -->
+                            Thoát
+                        </button>
+                        <button id="submitChangeName">
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                            Xác nhận
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
     <div class="nen_mo"></div>
-    <script src="./index.js"></script>
+    <script type="module" src="../navigation_javascript/toast.js"></script>
     <script src="../navigation_javascript/menuv2.js"></script>
+    <script type="module" src="../navigation_javascript/information_account.js"></script>
+    <script type="module" src="../navigation_javascript/login.js"></script>
 </body>
 
 </html>

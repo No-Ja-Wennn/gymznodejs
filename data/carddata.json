@@ -3,7 +3,7 @@
         {
             "id": "MT01",
             "name": "Lưu Sỹ Trường",
-            "age": 20,
+            "age": "20/02/2004",
             "phoneNumber": "0334329011",
             "cardType": "BEGINNER",
             "dateStart": "14/02/2022",
@@ -12,7 +12,7 @@
         {
             "id": "MT02",
             "name": "Lê Văn Tiến",
-            "age": 20,
+            "age":  "21/02/2004",
             "phoneNumber": "0356765889",
             "cardType": "BEGINNER",
             "dateStart": "14/02/2022",
@@ -21,7 +21,7 @@
         {
             "id": "MT03",
             "name": "Nguyễn Thị Vân",
-            "age": 19,
+            "age":  "22/02/2004",
             "phoneNumber": "0364227898",
             "cardType": "ADVENCE",
             "dateStart": "14/02/2022",
@@ -30,7 +30,7 @@
         {
             "id": "MT04",
             "name": "Hoàng Anh Tú",
-            "age": 20,
+            "age":  "23/02/2004",
             "phoneNumber": "0398778012",
             "cardType": "ADVENCE",
             "dateStart": "14/02/2022",
@@ -39,7 +39,7 @@
         {
             "id": "MT05",
             "name": "Ngô Gia Quyến",
-            "age": 18,
+            "age":  "24/02/2004",
             "phoneNumber": "0321654778",
             "cardType": "BASIC",
             "dateStart": "14/02/2022",

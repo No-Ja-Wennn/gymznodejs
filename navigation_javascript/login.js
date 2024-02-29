@@ -15,6 +15,7 @@ modal__body__box.map(value => {
 let accountName = document.querySelector(".account__name");
 let accountCode = document.querySelector(".account__code");
 const createAccountBox = document.querySelector(".create-account-box");
+if(createAccountBox)
 createAccountBox.style.display = "none";
 let dataLogin;
 let myData = { "accounts": [] }
@@ -222,7 +223,10 @@ function buttonCreateAccountFunction() {
     }
 }
 
+if(buttonLogin)
 buttonLogin.addEventListener("click", () => buttonLoginFunction())
+if(buttonCreate)
+
 buttonCreate.addEventListener("click", () => buttonCreateAccountFunction())
 
 window.onload = function () {
@@ -232,6 +236,7 @@ window.onload = function () {
         if (loggedInUser) {
             accountName.innerText = loggedInUser.name;
             accountCode.innerText = loggedInUser.id;
+            if(loginMenu1)
             loginMenu1.innerText = loggedInUser.name;
             userActive = loggedInUser.id;
             // console.log(userActive)
@@ -246,6 +251,7 @@ modalOverLay.addEventListener("click", () => {
 })
 // click on avt
 let loginMenu1 = document.querySelector(".loginstatus");
+if(createAccountBox)
 var linkLogin = createAccountBox.querySelector(".link-login");
 if (loginMenu1)
     loginMenu1.addEventListener("click", () => {
@@ -299,12 +305,14 @@ document.addEventListener('keypress', function (event) {
     // enter key
     if (keycode == '13') {
         if (modalElement.style.display == "flex") {
-            var inputLoginEmail = loginBox.querySelector(".login-email");
-            var inputLoginPass = loginBox.querySelector(".login-pass");
-            var emailValue = inputLoginEmail.value;
-            var passValue = inputLoginPass.value;
-            if (emailValue && passValue) {
-                buttonLoginFunction();
+            if(loginBox){
+                var inputLoginEmail = loginBox.querySelector(".login-email");
+                var inputLoginPass = loginBox.querySelector(".login-pass");
+                var emailValue = inputLoginEmail.value;
+                var passValue = inputLoginPass.value;
+                if (emailValue && passValue) {
+                    buttonLoginFunction();
+                }
             }
         }
     }
