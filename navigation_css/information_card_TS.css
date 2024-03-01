@@ -35,14 +35,14 @@
     margin-top: 30px;
     font-size: 14px;
 }
-.table{
+/* .table{
     width: 95%;
     height: auto;
     border-radius: 10px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.15);
     margin-top: 30px;
     font-size: 14px;
-}
+} */
 .page__header{
     width: 95%;
     min-height: 90px;
@@ -183,7 +183,7 @@ a.card__type__content.card__type__content__link:active{
 }
 
 
-
+/* dieu khoan su dung  */
 
 .rows.rules{
     width: 100%;
@@ -268,21 +268,18 @@ button.button__hide.button__hide__terms__of__use{
     background-color: white;
     border-radius: 5px;
     border: 1px rgba(0, 0, 0, 0.2) solid;
-    padding: 5px 15px;
+    padding: 4px 8px;
     color: rgba(0, 0, 0, 0.5);
 }
 button.button__hide.button__hide__terms__of__use:hover{
     color: black;
-    border: 1px black solid;
+    border: 1px rgba(0, 0, 0, 0.5) solid;
 }
 button.button__hide.button__hide__terms__of__use:active{
     background: whitesmoke;
 }
 
-
-
-
-
+/* phan media */
 @media (max-width: 800px){
     .information__card{
         flex-direction: column;
@@ -320,5 +317,269 @@ button.button__hide.button__hide__terms__of__use:active{
     }
     li.group__rules.button__hide{
         min-height: 50px;
+    }
+}
+
+
+
+
+
+
+
+
+/* phan lich tap */
+
+.table__training__schedule{
+    width: 95%;
+    height: auto;
+    /* background-color: goldenrod; */
+    margin-top: 30px;
+    font-size: 14px;
+}
+.operation__row{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    min-height: 60px;
+    padding: 0 16px;
+    border-radius: 10px;
+    margin-bottom: 20px;
+    border-bottom: 1px rgba(0, 0, 0, 0.05) solid;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.15);
+}
+.operation__button{
+    display: flex;
+    align-items: center;
+    min-height: 60px;
+}
+.request{
+    display: flex;
+    align-items: center;
+    min-height: 60px;
+}
+button.button__in__operation{
+    background-color: white;
+    border-radius: 5px;
+    /* border: 1px rgba(0, 0, 0, 0.1) solid; */
+    border: none;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.15);
+    padding: 4px 8px;
+    color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    /* align-items: center; */
+}
+button#button2{
+    margin-left: 16px;
+}
+i.bx.bx-list-check{
+    font-size: 16px;
+    margin-right: 3px;
+}
+
+button.button__in__operation:hover{
+    color: rgba(0, 0, 0, 0.6);
+    /* border: 1px rgba(0, 0, 0, 0.15) solid; */
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
+}
+button.button__in__operation:active{
+    background-color: whitesmoke;
+}
+
+
+.training__schedule{
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    height: auto;
+    margin-bottom: 30px;
+    /* background-color: green; */
+}
+.table{
+    padding: 16px 16px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.15);
+    display: flex;
+    width: 32%;
+    min-height: 280px;
+    min-width: 290px;
+}
+div#training-schedule{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    /* flex: 1 0 auto; */
+    /* background-color: bisque; */
+}
+.row{
+    display: flex;
+    align-items: flex-start;
+    min-height: 40px;
+}
+.row__title{
+    margin-right: 10px;
+    min-width: fit-content;
+}
+.row__content{
+    color: rgba(0, 0, 0, 0.5);
+}
+
+
+
+/* form dang ky =====================================*/
+
+
+.form1{
+    display: none;
+    justify-content: center;
+    position: fixed;
+    /* background-color: green; */
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    max-width: 500px;
+    width: 100%;
+    height: auto;
+    /* line-height: 1.4; */
+    z-index: 1;
+}
+.registration__traning__schedule{
+    width: 90%;
+}
+.registration__traning__schedule .table{
+    width: 100%;
+    z-index: 1;
+    background-color: white;
+    box-shadow: 0 0 0 1000px rgba(0, 0, 0, 0.5);
+}
+.registration__traning__schedule #training-schedule{
+    width: 100%;
+}
+.row__title__table{
+    border-bottom: 1px rgba(0, 0, 0, 0.05) solid;
+    margin-bottom: 16px;
+    padding-bottom: 10px;
+    width: 100%;
+    min-height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.row__title__table__content{
+    font-size: 16px;
+}
+.x__cancel{
+    width: 20px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 16px;
+    color: rgba(0, 0, 0, 0.5);
+}
+.x__cancel:hover{
+    color: rgba(0, 0, 0, 0.8);
+}
+.x__cancel:active{
+    color: rgba(0, 0, 0, 0.8);
+}
+.row__final{
+    min-height: 30px;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-top: 1px rgba(0, 0, 0, 0.05) solid;
+}
+.row__final__button{
+    min-height: 30px;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 16px;
+}
+button.button__form{
+    background-color: white;
+    border-radius: 8px;
+    /* border: 1px rgba(0, 0, 0, 0.1) solid; */
+    border: none;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+    padding: 4px 8px;
+    color: rgba(0, 0, 0, 0.5);
+}
+button.button__form:hover{
+    color: rgba(0, 0, 0, 0.8);
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
+    /* border: 1px rgba(0, 0, 0, 0.15) solid; */
+}
+button.button__form:active{
+    background-color: whitesmoke;
+}
+
+
+
+/* phan media cua lich tap */
+
+@media (max-width: 1200px){
+    .training__schedule{
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        justify-content: space-between;
+        width: 100%;
+        height: auto;
+        /* background-color: green; */
+    }
+    .table{
+        width: 49%;
+        margin-top: 15px;
+    }
+}
+@media (max-width: 768px){
+    .training__schedule{
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        justify-content: space-between;
+        width: 100%;
+        height: auto;
+        /* background-color: green; */
+    }
+    .table{
+        width: 100%;
+        margin-top: 15px;
+    }
+}
+@media (max-width: 480px){
+    .operation__row{
+        padding: 0 10px;
+    }
+    button#button2{
+        margin-left: 10px;
+    }
+    .request__button .button__in__operation{
+        width: 115px;
+        margin-left: 20px;
+    }
+}
+@media (max-width: 360px){
+    .operation__row{
+        padding: 0 10px;
+        flex-direction: column;
+    }
+    button#button2{
+        margin-left: 10px;
+    }
+    .request__button .button__in__operation{
+        width: fit-content;
+        margin-left: 0;
+    }
+
+    .table{
+        min-width: fit-content;
+        width: 100%;
+        margin-top: 15px;
     }
 }
