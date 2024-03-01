@@ -57,6 +57,7 @@ a.change__the__password.key__ico{
     justify-content: center;
     align-items: center;
     border-radius: 50%;
+    cursor: pointer;
 }
 a.change__the__password.key__ico:active{
     color: rgb(255, 255, 255);
@@ -74,6 +75,7 @@ ul.change__the__password__group{
 a.change__the__password__group.change__the__password__group__content{
     color: black;
     font-weight: 500;
+    cursor: pointer;
 }
 a.change__the__password__group.change__the__password__group__sub__content{
     color: rgba(0, 0, 0, 0.5);
@@ -204,8 +206,9 @@ span.part__two.part__two__information{
     display: flex;
     justify-content: flex-end;
     cursor: pointer;
+    text-align: end;
 }
-a.part__two.part__two__information:active{
+.part__two.part__two__information:active{
     color: goldenrod;
 }
 .rows.part__one__and__two{
@@ -250,16 +253,20 @@ a.part__two.part__two__information:active{
 .third__part__b:active{
     color: goldenrod;
 }
-span.third__part__a__content__edit__fullname{
+span.third__part__c__content__edit__fullname{
     color: rgba(218, 165, 32, 0.5);
     display: flex;
     justify-content: flex-end;
     cursor: pointer;
+    padding: 8px 0 8px 16px;
+    text-align: end;
 }
-a.third__part__a__content__edit__fullname:active{
+.third__part__c__content__edit__fullname:active{
     color: goldenrod;
 }
-
+.third__part__c{
+    width: 100%;
+}
 
 
 
@@ -343,9 +350,9 @@ a.third__part__a__content__edit__fullname:active{
         line-height: 1.4;
     }
 
-    .rows.third__part{
+    /* .rows.third__part{
         max-width: 0;
-    }
+    } */
     .rows{
         justify-content: space-between;
     }
@@ -355,7 +362,7 @@ a.third__part__a__content__edit__fullname:active{
 }
 @media (max-width: 280px){
     .rows.third__part{
-        width: fit-content;
+        width: 50%;
     }
     .rows.third__part{
         margin: 0;
