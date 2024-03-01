@@ -32,3 +32,18 @@ function nightmode(event) {
 }
 
 nightmodebt.addEventListener('click', nightmode);
+
+
+
+var buttonregistration = document.querySelector('#button1');
+var xregistration = document.querySelector('.x__cancel');
+var formregistration = document.querySelector('.form1');
+var buttonsendrequest = document.querySelector('.button__form');
+
+buttonregistration.addEventListener('click', function(){
+    formregistration.style.display = 'flex';
+})
+
+xregistration.addEventListener('click', function(){
+    formregistration.style.display = 'none';
+})

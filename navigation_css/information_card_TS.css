@@ -183,7 +183,7 @@ a.card__type__content.card__type__content__link:active{
 }
 
 
-
+/* dieu khoan su dung  */
 
 .rows.rules{
     width: 100%;
@@ -360,7 +360,9 @@ button.button__hide.button__hide__terms__of__use:active{
 button.button__in__operation{
     background-color: white;
     border-radius: 5px;
-    border: 1px rgba(0, 0, 0, 0.1) solid;
+    /* border: 1px rgba(0, 0, 0, 0.1) solid; */
+    border: none;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.15);
     padding: 4px 8px;
     color: rgba(0, 0, 0, 0.5);
     display: flex;
@@ -375,8 +377,9 @@ i.bx.bx-list-check{
 }
 
 button.button__in__operation:hover{
-    color: rgba(0, 0, 0, 0.8);
-    border: 1px rgba(0, 0, 0, 0.15) solid;
+    color: rgba(0, 0, 0, 0.6);
+    /* border: 1px rgba(0, 0, 0, 0.15) solid; */
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
 }
 button.button__in__operation:active{
     background-color: whitesmoke;
@@ -390,6 +393,7 @@ button.button__in__operation:active{
     justify-content: space-between;
     width: 100%;
     height: auto;
+    margin-bottom: 30px;
     /* background-color: green; */
 }
 .table{
@@ -420,6 +424,102 @@ div#training-schedule{
 .row__content{
     color: rgba(0, 0, 0, 0.5);
 }
+
+
+
+/* form dang ky =====================================*/
+
+
+.form1{
+    display: none;
+    justify-content: center;
+    position: fixed;
+    /* background-color: green; */
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    max-width: 500px;
+    width: 100%;
+    height: auto;
+    /* line-height: 1.4; */
+    z-index: 1;
+}
+.registration__traning__schedule{
+    width: 90%;
+}
+.registration__traning__schedule .table{
+    width: 100%;
+    z-index: 1;
+    background-color: white;
+    box-shadow: 0 0 0 1000px rgba(0, 0, 0, 0.5);
+}
+.registration__traning__schedule #training-schedule{
+    width: 100%;
+}
+.row__title__table{
+    border-bottom: 1px rgba(0, 0, 0, 0.05) solid;
+    margin-bottom: 16px;
+    padding-bottom: 10px;
+    width: 100%;
+    min-height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.row__title__table__content{
+    font-size: 16px;
+}
+.x__cancel{
+    width: 20px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 16px;
+    color: rgba(0, 0, 0, 0.5);
+}
+.x__cancel:hover{
+    color: rgba(0, 0, 0, 0.8);
+}
+.x__cancel:active{
+    color: rgba(0, 0, 0, 0.8);
+}
+.row__final{
+    min-height: 30px;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-top: 1px rgba(0, 0, 0, 0.05) solid;
+}
+.row__final__button{
+    min-height: 30px;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 16px;
+}
+button.button__form{
+    background-color: white;
+    border-radius: 8px;
+    /* border: 1px rgba(0, 0, 0, 0.1) solid; */
+    border: none;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+    padding: 4px 8px;
+    color: rgba(0, 0, 0, 0.5);
+}
+button.button__form:hover{
+    color: rgba(0, 0, 0, 0.8);
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
+    /* border: 1px rgba(0, 0, 0, 0.15) solid; */
+}
+button.button__form:active{
+    background-color: whitesmoke;
+}
+
+
+
 /* phan media cua lich tap */
 
 @media (max-width: 1200px){
