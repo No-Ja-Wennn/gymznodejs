@@ -522,3 +522,4 @@ function checkValidRegisterValue(data) {
     }
     return true;
 }
+

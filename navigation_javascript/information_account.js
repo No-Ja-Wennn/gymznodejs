@@ -428,3 +428,99 @@ function exitBTN() {
 modalOverlay.addEventListener("click", function () {
     exitBTN();
 })
+
+
+
+
+/// change password
+
+const changePasswordElement = document.querySelector(".change__the__password__group__content");
+changePasswordElement.addEventListener("click", function () {
+
+    if (cookie) {
+        typeChange = "password";
+
+        deletePhoneInput();
+        deletePhoneInputPass();
+        removeAllEvent();
+        var editTitle = modalBox.querySelector(".edit-title");
+        var editLabel = modalBox.querySelector(".edit-label");
+        var changeNameBox = modalBox.querySelector(".change-name-box");
+        submitForm = document.getElementById("submitChangeName")
+        editTitle.innerText = 'Chỉnh sửa thông tin tài khoản';
+        editLabel.innerText = "email"
+        editLabel.id = '';
+        insertInputAfterUserBoxPass();
+        var inputElement = modalBox.querySelector(".new-name");
+        // var phoneinputElement = modalBox.querySelector(".new-phone");
+        inputElement.type = "email";
+        modalBox.style.display = "flex";
+        changeNameBox.style.display = "block";
+        submitForm.addEventListener("click", clickHandlerPassword);
+    } else {
+        showErrorToast("Thất bại", "Vui lòng đăng nhập !");
+    }
+})
+function clickHandlerPassword(event) {
+    f_submitChangPassword();
+    // Xóa sự kiện click sau khi đã thực hiện
+    // submitForm.removeEventListener("click", clickHandlerPassword);
+}
+
+function f_submitChangPassword() {
+    var changeNameBox = modalBox.querySelector(".change-name-box");
+    var inputName = changeNameBox.querySelector(".new-name");
+    var newValue = inputName.value;
+    var inputPhone = changeNameBox.querySelector(".new-phone");
+    var phoneValue = inputPhone.value;
+    if (newValue && cookieID && phoneValue) {
+        changeValue(cookieID, "email", newValue);
+        changeValue(cookieID, "phone", phoneValue);
+        inputName.value = "";
+        // change value element
+        emailElement.innerText = newValue;
+        phoneElement.innerText = phoneValue;
+        saveCookie("loggedInUser", loggedInUser);
+        displayNone();
+        showSuccessToast("Thành công!");
+
+        removeAllEvent();
+        // remove form DOM
+        inputPhone.parentElement.remove();
+    }
+    else {
+        showErrorToast("Thất bại", "Vui lòng nhập dữ liệu")
+    }
+}
+
+function insertInputAfterUserBoxPass() {
+    var phoneInput = document.querySelector(".new-phone");
+    if (!phoneInput) {
+
+        var newUserBox = document.createElement("div");
+        newUserBox.classList.add("user-box");
+
+        const inputElement = document.createElement("input");
+        inputElement.classList.add("new-phone");
+        inputElement.setAttribute("required", "");
+        inputElement.setAttribute("name", "");
+        inputElement.setAttribute("type", "text");
+        const labelElement = document.createElement("label");
+        labelElement.classList.add("edit-label");
+        labelElement.innerText = "Số điện thoại";
+        newUserBox.appendChild(inputElement);
+        newUserBox.appendChild(labelElement);
+
+        const existingUserBox = modalBox.querySelector(".user-box");
+
+        // Chèn thẻ <div> mới vào sau thẻ <div> có class là "user-box"
+        existingUserBox.parentNode.insertBefore(newUserBox, existingUserBox.nextSibling);
+    }
+}
+
+function deletePhoneInputPass() {
+    var phoneInput = document.querySelector(".new-phone");
+    if (phoneInput) {
+        phoneInput.parentElement.remove();
+    }
+}
