@@ -15,8 +15,8 @@ modal__body__box.map(value => {
 let accountName = document.querySelector(".account__name");
 let accountCode = document.querySelector(".account__code");
 const createAccountBox = document.querySelector(".create-account-box");
-if(createAccountBox)
-createAccountBox.style.display = "none";
+if (createAccountBox)
+    createAccountBox.style.display = "none";
 let dataLogin;
 let myData = { "accounts": [] }
 
@@ -223,11 +223,11 @@ function buttonCreateAccountFunction() {
     }
 }
 
-if(buttonLogin)
-buttonLogin.addEventListener("click", () => buttonLoginFunction())
-if(buttonCreate)
+if (buttonLogin)
+    buttonLogin.addEventListener("click", () => buttonLoginFunction())
+if (buttonCreate)
 
-buttonCreate.addEventListener("click", () => buttonCreateAccountFunction())
+    buttonCreate.addEventListener("click", () => buttonCreateAccountFunction())
 
 window.onload = function () {
     var cookie = document.cookie.split('; ').find(row => row.startsWith('loggedInUser'));
@@ -236,8 +236,8 @@ window.onload = function () {
         if (loggedInUser) {
             accountName.innerText = loggedInUser.name;
             accountCode.innerText = loggedInUser.id;
-            if(loginMenu1)
-            loginMenu1.innerText = loggedInUser.name;
+            if (loginMenu1)
+                loginMenu1.innerText = loggedInUser.name;
             userActive = loggedInUser.id;
             // console.log(userActive)
         }
@@ -251,8 +251,8 @@ modalOverLay.addEventListener("click", () => {
 })
 // click on avt
 let loginMenu1 = document.querySelector(".loginstatus");
-if(createAccountBox)
-var linkLogin = createAccountBox.querySelector(".link-login");
+if (createAccountBox)
+    var linkLogin = createAccountBox.querySelector(".link-login");
 if (loginMenu1)
     loginMenu1.addEventListener("click", () => {
         if (loginMenu1.innerText == "ĐĂNG NHẬP") {
@@ -291,6 +291,26 @@ var accountLoginaInner = document.querySelector(".account__login__inner");
 accountLoginaInner.addEventListener("click", (e) => {
     e.preventDefault()
     modalElement.style.display = "flex";
+    
+    modal__body__box.map(value => {
+        value.style.display = "none";
+    })
+    loginBox.style.display = "block";
+
+    var linkCreateAccount = loginBox.querySelector(".link-create-account");
+    linkCreateAccount.addEventListener("click", function (e) {
+        e.preventDefault();
+        loginBox.style.display = "none";
+        createAccountBox.style.display = "block";
+
+    })
+    var linkLogin = createAccountBox.querySelector(".link-login");
+    linkLogin.addEventListener("click", function (e) {
+        e.preventDefault();
+        loginBox.style.display = "block";
+        createAccountBox.style.display = "none";
+    })
+
 })
 
 var logoElement = document.querySelector(".logo");
@@ -305,7 +325,7 @@ document.addEventListener('keypress', function (event) {
     // enter key
     if (keycode == '13') {
         if (modalElement.style.display == "flex") {
-            if(loginBox){
+            if (loginBox) {
                 var inputLoginEmail = loginBox.querySelector(".login-email");
                 var inputLoginPass = loginBox.querySelector(".login-pass");
                 var emailValue = inputLoginEmail.value;
