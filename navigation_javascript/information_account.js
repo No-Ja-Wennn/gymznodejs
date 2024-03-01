@@ -180,7 +180,7 @@ function displayNone() {
 }
 
 function changeValue(idUser, type, newValue) {
-    // name, age, email, phone
+    // name, age, email, phone, password
     var loginData = JSON.parse(localStorage.getItem('loginData'));
     var cardData = JSON.parse(localStorage.getItem('cardData'));
     var calendarData = JSON.parse(localStorage.getItem('calendarData'));
@@ -193,6 +193,9 @@ function changeValue(idUser, type, newValue) {
             } else if (type == "email") {
                 value.email = newValue;
                 loggedInUser.email = newValue;
+            } else if (type == "password") {
+                value.password = newValue;
+                loggedInUser.password = newValue;
             }
         }
     });
@@ -326,7 +329,7 @@ changeInforE.addEventListener("click", function () {
         var editTitle = modalBox.querySelector(".edit-title");
         var editLabel = modalBox.querySelector(".edit-label");
         var changeNameBox = modalBox.querySelector(".change-name-box");
-        submitForm = document.getElementById("submitChangeName")
+        submitForm = document.getElementById("submitChangeName");
         editTitle.innerText = 'Chỉnh sửa thông tin tài khoản';
         editLabel.innerText = "email"
         editLabel.id = '';
@@ -439,21 +442,19 @@ changePasswordElement.addEventListener("click", function () {
 
     if (cookie) {
         typeChange = "password";
-
         deletePhoneInput();
         deletePhoneInputPass();
         removeAllEvent();
         var editTitle = modalBox.querySelector(".edit-title");
         var editLabel = modalBox.querySelector(".edit-label");
         var changeNameBox = modalBox.querySelector(".change-name-box");
-        submitForm = document.getElementById("submitChangeName")
-        editTitle.innerText = 'Chỉnh sửa thông tin tài khoản';
-        editLabel.innerText = "email"
+        submitForm = document.getElementById("submitChangeName");
+        editTitle.innerText = 'Thay đổi mật khẩu';
+        editLabel.innerText = "Mật khẩu cũ";
         editLabel.id = '';
-        insertInputAfterUserBoxPass();
+        insertInputAfterUserBoxPass(true);
         var inputElement = modalBox.querySelector(".new-name");
-        // var phoneinputElement = modalBox.querySelector(".new-phone");
-        inputElement.type = "email";
+        inputElement.type = "text";
         modalBox.style.display = "flex";
         changeNameBox.style.display = "block";
         submitForm.addEventListener("click", clickHandlerPassword);
@@ -469,17 +470,22 @@ function clickHandlerPassword(event) {
 
 function f_submitChangPassword() {
     var changeNameBox = modalBox.querySelector(".change-name-box");
+    // old password
     var inputName = changeNameBox.querySelector(".new-name");
-    var newValue = inputName.value;
-    var inputPhone = changeNameBox.querySelector(".new-phone");
-    var phoneValue = inputPhone.value;
-    if (newValue && cookieID && phoneValue) {
-        changeValue(cookieID, "email", newValue);
-        changeValue(cookieID, "phone", phoneValue);
+    var oldValue = inputName.value;
+    // new password
+    var inputPhone = changeNameBox.querySelector(".new-password");
+    var newpassValue = inputPhone.value;
+    // confirm password
+    var inputPhone = changeNameBox.querySelector(".confirm-pass");
+    var confirmValue = inputPhone.value;
+
+    if (checkValidChangePass(oldValue, newpassValue, confirmValue) && cookieID ) {
+        changeValue(cookieID, "passwword", newValue);
         inputName.value = "";
+        inputPhone.value = "";
+        inputPhone.value = "";
         // change value element
-        emailElement.innerText = newValue;
-        phoneElement.innerText = phoneValue;
         saveCookie("loggedInUser", loggedInUser);
         displayNone();
         showSuccessToast("Thành công!");
@@ -488,26 +494,69 @@ function f_submitChangPassword() {
         // remove form DOM
         inputPhone.parentElement.remove();
     }
-    else {
-        showErrorToast("Thất bại", "Vui lòng nhập dữ liệu")
+    // else {
+    //     showErrorToast("Thất bại", "Vui lòng nhập dữ liệu")
+    // }
+}
+
+function checkValidChangePass(oldPass, newPass, confirmPass){
+    if(!oldPass){
+        showErrorToast("Thất bại", "Vui lòng nhập mật khẩu cũ");
+        return false;
+    }else if(!newPass){
+        showErrorToast("Thất bại", "Vui lòng nhập mật khẩu mới");
+        return false
+    } else if(!confirmPass){
+        showErrorToast("Thất bại", "Vui lòng nhập mật khẩu");
+        return false;
+    }else{
+
+
+        return true;
     }
 }
 
-function insertInputAfterUserBoxPass() {
+function insertInputAfterUserBoxPass(flag = false) {
+    console.log('flag', flag)
     var phoneInput = document.querySelector(".new-phone");
     if (!phoneInput) {
 
+        
+        if (flag == true) {
+            var newUserBox = document.createElement("div");
+            newUserBox.classList.add("user-box");
+            // create input two
+            var inputElement = document.createElement("input");
+            inputElement.setAttribute("required", "");
+            inputElement.setAttribute("name", "");
+            inputElement.setAttribute("type", "text");
+            inputElement.classList.add("confirm-pass");
+
+            var labelElement = document.createElement("label");
+            labelElement.classList.add("edit-label");
+            labelElement.innerText = "Nhập lại mật khẩu";
+
+            newUserBox.appendChild(inputElement);
+            newUserBox.appendChild(labelElement);
+            console.log(newUserBox)
+            const existingUserBox = modalBox.querySelector(".user-box");
+
+            // Chèn thẻ <div> mới vào sau thẻ <div> có class là "user-box"
+            existingUserBox.parentNode.insertBefore(newUserBox, existingUserBox.nextSibling);
+
+        }
+
         var newUserBox = document.createElement("div");
         newUserBox.classList.add("user-box");
-
-        const inputElement = document.createElement("input");
-        inputElement.classList.add("new-phone");
+        // create input one
+        var inputElement = document.createElement("input");
+        inputElement.classList.add("new-password");
         inputElement.setAttribute("required", "");
         inputElement.setAttribute("name", "");
         inputElement.setAttribute("type", "text");
-        const labelElement = document.createElement("label");
+        var labelElement = document.createElement("label");
         labelElement.classList.add("edit-label");
-        labelElement.innerText = "Số điện thoại";
+        labelElement.innerText = "Mật khẩu mới";
         newUserBox.appendChild(inputElement);
         newUserBox.appendChild(labelElement);
 
@@ -515,12 +564,19 @@ function insertInputAfterUserBoxPass() {
 
         // Chèn thẻ <div> mới vào sau thẻ <div> có class là "user-box"
         existingUserBox.parentNode.insertBefore(newUserBox, existingUserBox.nextSibling);
+
     }
 }
 
 function deletePhoneInputPass() {
-    var phoneInput = document.querySelector(".new-phone");
+    var phoneInput = document.querySelector(".new-password");
     if (phoneInput) {
         phoneInput.parentElement.remove();
     }
+    
+    var emailInput = document.querySelector(".confirm-pass");
+    if (emailInput) {
+        emailInput.parentElement.remove();
+    }
+    
 }
