@@ -164,7 +164,7 @@ span.the__second__part.the__second__part__content{
     cursor: pointer;
     text-align: center;
 }
-button.the__second__part.the__second__part__button:active{
+.the__second__part.the__second__part__button:active{
     background-color: rgba(218, 165, 32, 0.2);
 }
 .rows.third__part{
@@ -207,6 +207,12 @@ span.part__two.part__two__information{
     justify-content: flex-end;
     cursor: pointer;
     text-align: end;
+}
+a.more__information{
+    color: rgba(218, 165, 32, 0.5);
+}
+a.more__information:active{
+    color: gold;
 }
 .part__two.part__two__information:active{
     color: goldenrod;

@@ -96,8 +96,10 @@ inputAvatar.addEventListener("click", function () {
                     // save
                     var loggedInUser = JSON.parse(cookie.split('=')[1]);
                     avtLink.links.map(value => {
-                        if (value.id == loggedInUser.id)
+                        if (value.id == loggedInUser.id){
                             value.path = e.target.result;
+                            console.log(value.path)
+                        }
                     })
                     localStorage.setItem('avtLink', JSON.stringify(avtLink));
                 };
@@ -121,6 +123,7 @@ editNameElement.addEventListener("click", function () {
         typeChange = "name";
 
         deletePhoneInput();
+        deletePhoneInputPass();
         removeAllEvent();
         var editTitle = modalBox.querySelector(".edit-title");
         var editLabel = modalBox.querySelector(".edit-label");
@@ -163,7 +166,7 @@ function f_submitChangName() {
 
         saveCookie("loggedInUser", loggedInUser);
         displayNone();
-        showSuccessToast("Thành công!");
+        showSuccessToast("Thành công!", "Sửa tên thành công");
 
         removeAllEvent();
         typeChange = "";
@@ -200,7 +203,7 @@ function changeValue(idUser, type, newValue) {
         }
     });
 
-
+    
     // name age phone
     cardData.cards.map(value => {
         if (value.id == idUser) {
@@ -223,6 +226,8 @@ function changeValue(idUser, type, newValue) {
                 loggedInUser.name = newValue;
             }
     });
+    console.log("loing: ", loginData)
+    console.log("loing: ", loggedInUser)
     localStorage.setItem('loginData', JSON.stringify(loginData));
     localStorage.setItem('cardData', JSON.stringify(cardData));
     localStorage.setItem('calendarData', JSON.stringify(calendarData));
@@ -261,6 +266,8 @@ changeProfileE.addEventListener("click", function () {
         typeChange = "profile";
 
         deletePhoneInput();
+        deletePhoneInputPass();
+
         removeAllEvent();
         var editTitle = modalBox.querySelector(".edit-title");
         var editLabel = modalBox.querySelector(".edit-label");
@@ -300,7 +307,7 @@ function f_submitChangBirth() {
             dateOfBirthElement.innerText = newValue;
             saveCookie("loggedInUser", loggedInUser);
             displayNone();
-            showSuccessToast("Thành công!");
+            showSuccessToast("Thành công!", "Sửa ngày sinh thành công");
             removeAllEvent();
         }
     }
@@ -325,6 +332,8 @@ changeInforE.addEventListener("click", function () {
         typeChange = "information";
 
         deletePhoneInput();
+        deletePhoneInputPass();
+
         removeAllEvent();
         var editTitle = modalBox.querySelector(".edit-title");
         var editLabel = modalBox.querySelector(".edit-label");
@@ -365,7 +374,7 @@ function f_submitChangInfor() {
         phoneElement.innerText = phoneValue;
         saveCookie("loggedInUser", loggedInUser);
         displayNone();
-        showSuccessToast("Thành công!");
+        showSuccessToast("Thành công!", "Sửa thông tin thành công");
 
         removeAllEvent();
         // remove form DOM
@@ -415,6 +424,7 @@ function removeAllEvent() {
     submitForm.removeEventListener("click", clickHandlerName);
     submitForm.removeEventListener("click", clickHandlerAge);
     submitForm.removeEventListener("click", clickHandlerInfor);
+    submitForm.removeEventListener("click", clickHandlerPassword);
 
 }
 
@@ -481,14 +491,14 @@ function f_submitChangPassword() {
     var confirmValue = inputPhone.value;
 
     if (checkValidChangePass(oldValue, newpassValue, confirmValue) && cookieID ) {
-        changeValue(cookieID, "passwword", newValue);
+        changeValue(cookieID, "password", newpassValue);
         inputName.value = "";
         inputPhone.value = "";
         inputPhone.value = "";
         // change value element
         saveCookie("loggedInUser", loggedInUser);
         displayNone();
-        showSuccessToast("Thành công!");
+        showSuccessToast("Thành công!", "Đổi mật khẩu thành công");
 
         removeAllEvent();
         // remove form DOM
@@ -500,6 +510,7 @@ function f_submitChangPassword() {
 }
 
 function checkValidChangePass(oldPass, newPass, confirmPass){
+
     if(!oldPass){
         showErrorToast("Thất bại", "Vui lòng nhập mật khẩu cũ");
         return false;
@@ -510,8 +521,14 @@ function checkValidChangePass(oldPass, newPass, confirmPass){
         showErrorToast("Thất bại", "Vui lòng nhập mật khẩu");
         return false;
     }else{
-
-
+        // has value
+        if(newPass != confirmPass){
+            showErrorToast("Thất bại", "Mật khẩu không khớp");
+            return false;
+        }else if(oldPass != loggedInUser.password){
+            showErrorToast("Thất bại", "Mật khẩu cũ không đúng");
+            return false;
+        }
         return true;
     }
 }
