@@ -20,6 +20,7 @@
     <link rel="stylesheet" href="../css/header.css">
     <link rel="stylesheet" href="../css/footer.css">
     <link rel="stylesheet" href="../css/keyframes.css">
+    <link rel="stylesheet" href="../navigation_css/toast.css">
     <link rel="stylesheet" href="../navigation_css/information_card_TS.css">
     <!-- <link rel="stylesheet" href="../navigation_css/promotion.css"> -->
     <title>GYMZ - Thể hình giới trẻ</title>
@@ -150,7 +151,7 @@
                                     <div class="information__card">
                                         <div class="information__card first__part">
                                             <div class="first__part first__part__image">
-                                                <img class="card" src="../img/card/advance.png" alt="advance">
+                                                <img class="card card-img" src="../img/card/advance.png" alt="advance">
                                             </div>
                                         </div>
                                         <div class="information__card the__second__part">
@@ -160,7 +161,7 @@
                                                         Tên hội viên
                                                     </div>
                                                     <div id="information__card__content" class="card__holder card__holder__content">
-                                                        Truong Designer
+                                                        ...
                                                     </div>
                                                 </div>
                                                 <div id="card" class="id__card">
@@ -168,7 +169,7 @@
                                                         Mã thẻ thành viên
                                                     </div>
                                                     <div id="information__card__content" class="id__card id__card__content">
-                                                        MT01
+                                                        ...
                                                     </div>
                                                 </div>
                                                 <div id="card" class="card__type">
@@ -177,7 +178,7 @@
                                                     </div>
                                                     <div id="information__card__content" class="card__type card__type__content">
                                                         <a class="card__type__content card__type__content__link" href="../navigation/card.html">
-                                                            ADVANCE
+                                                            ...
                                                         </a>
                                                     </div>
                                                 </div>
@@ -186,7 +187,7 @@
                                                         Ngày đăng ký thẻ
                                                     </div>
                                                     <div id="information__card__content" class="card__registration__date card__registration__date__content">
-                                                        28/02/2024
+                                                        ...
                                                     </div>
                                                 </div>
                                                 <div id="card" class="card__expiration__date">
@@ -194,7 +195,7 @@
                                                         Ngày hết hạn thẻ
                                                     </div>
                                                     <div id="information__card__content" class="card__expiration__date card__expiration__date__content">
-                                                        28/02/2034
+                                                        ...
                                                     </div>
                                                 </div>
                                             </div>
@@ -283,10 +284,60 @@
                                                     </div>
                                                     <div class="row">
                                                         <div class="row__title">
+                                                            Loại thẻ:
+                                                        </div>
+                                                        <div class="row__content">
+                                                            <div>
+                                                                <input type="radio" id="card1" name="card">
+                                                                <label for="card1">BEGINNER</label><br>
+                                                            
+                                                            </div>
+                                                            <div>
+                                                                <input type="radio" id="card2" name="card">
+                                                                <label for="card2">BASIC</label><br>
+                                                                
+                                                            </div>
+                                                            <div>
+                                                                <input type="radio" id="card3" name="card">
+                                                                <label for="card3">ADVANCE</label><br>
+                                                                
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="row">
+                                                        <div class="row__title">
                                                             Ngày:
                                                         </div>
                                                         <div class="row__content">
-                                                            Chọn ngày
+                                                            <div>
+                                                                <input type="checkbox" id="monday" name="weekday">
+                                                                <label for="monday">T2</label><br>
+                                                            </div>
+                                                            <div>
+                                                                <input type="checkbox" id="tuesday" name="weekday">
+                                                                <label for="tuesday">T3</label><br>
+                                                            </div>
+                                                            <div>
+                                                                <input type="checkbox" id="wednesday" name="weekday">
+                                                                <label for="wednesday">T4</label><br>
+                                                            </div>
+                                                            <div>
+                                                                <input type="checkbox" id="thursday" name="weekday">
+                                                                <label for="thursday">T5</label><br>
+                                                            </div>
+                                                            <div>
+                                                                <input type="checkbox" id="friday" name="weekday">
+                                                                <label for="friday">T6</label><br>
+                                                            </div>
+                                                            <div>
+                                                                <input type="checkbox" id="saturday" name="weekday">
+                                                                <label for="saturday">T7</label><br>
+                                                            </div>
+                                                            <div>
+                                                                <input type="checkbox" id="sunday" name="weekday">
+                                                                <label for="sunday">CN</label><br>
+                                                            </div>
+                                                                
                                                         </div>
                                                     </div>
                                                     <div class="row">
@@ -294,15 +345,36 @@
                                                             Thời gian:
                                                         </div>
                                                         <div class="row__content">
-                                                            Chọn thời gian
+                                                            <div>
+                                                                <input type="radio" id="time1" name="time">
+                                                                <label for="time1">13:30-15:00</label><br>
+                                                            
+                                                            </div>
+                                                            <div>
+                                                                <input type="radio" id="time2" name="time">
+                                                                <label for="time2">15:00-16:30</label><br>
+                                                                
+                                                            </div>
+                                                            <div>
+                                                                <input type="radio" id="time3" name="time">
+                                                                <label for="time3">17:30-18:30</label><br>
+                                                                
+                                                            </div>
                                                         </div>
                                                     </div>
                                                     <div class="row">
                                                         <div class="row__title">
                                                             Môn:
                                                         </div>
-                                                        <div class="row__content">
-                                                            Chọn bài tập
+                                                        <div class="row__content row__content--type">
+                                                            <div>
+                                                                <input type="radio" id="GYM" name="type">
+                                                                <label for="GYM">GYM</label><br>
+                                                            </div>
+                                                            <div>
+                                                                <input type="radio" id="YOGA" name="type">
+                                                                <label for="YOGA">YOGA</label><br>
+                                                            </div>
                                                         </div>
                                                     </div>
                                                     <div class="row">
@@ -318,7 +390,7 @@
                                                             Ghi chú: 
                                                         </div>
                                                         <div class="row__content">
-                                                            Nhấp để thêm ghi chú
+                                                            <input class="row__content__input" type="text" placeholder="Nhấp để thêm ghi chú">
                                                         </div>
                                                     </div>
                                                     <div class="row__final">
@@ -337,6 +409,41 @@
                                     <button id="button2" class="button__in__operation">
                                         Huỷ lịch
                                     </button>
+                                    <div id="form2" class="form1">
+                                        <div class="registration__traning__schedule">
+                                            <div class="table">
+                                                <div id="training-schedule" class="first__training__schedule">
+                                                    <div class="row__title__table">
+                                                        <div class="row__title__table__content">
+                                                            Hủy lịch tập
+                                                        </div>
+                                                        <div class="x__cancel2">
+                                                            <i class="fa-regular fa-circle-xmark"></i>
+                                                        </div>
+                                                    </div>
+                                                    
+                                                    <div class="row">
+                                                        <div class="row__title">
+                                                            Lưu ý: Bạn hãy cân nhắc trước khi hủy lịch tập, không thể hoàn lại thao tác này, bạn sẽ mất tiền và chúng tôi sẽ không chịu trách nhiệm!
+                                                        </div>
+                                                        
+                                                    </div>
+                                                    <div class="row__final">
+                                                        <div class="row__final__button">
+                                                            <div class="row__final__button__grid">
+                                                                <button class="button__form button__form__exit">
+                                                                    Thoát
+                                                                </button>
+                                                                <button class="button__form button__form__cancel">
+                                                                    Gửi yêu cầu
+                                                                </button>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                             <div class="request">
@@ -348,8 +455,8 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="training__schedule">
-                            <div class="table">
+                        <div class="training__schedule training__schedule--calendar">
+                            <!-- <div class="table">
                                 <div id="training-schedule" class="first__training__schedule">
                                     <div class="row">
                                         <div class="row__title">
@@ -393,8 +500,8 @@
                                         </div>
                                     </div>
                                 </div>
-                            </div>
-                            <div class="table">
+                            </div> -->
+                            <!-- <div class="table">
                                 <div id="training-schedule" class="second__training__schedule">
                                     <div class="row">
                                         <div class="row__title">
@@ -481,7 +588,7 @@
                                         </div>
                                     </div>
                                 </div>
-                            </div>
+                            </div> -->
                         </div>
                     </div>  
                 </div>
@@ -584,11 +691,13 @@
             </div>
         </div>
     </div>
-    <!-- overlay -->
+    <div id="toast"></div>
+        <!-- overlay -->
     <div class="nen_mo"></div>
-    <script src="./index.js"></script>
     <script src="../navigation_javascript/menuv2.js"></script>
     <script src="../navigation_javascript/terms_of_use.js"></script>
+    <script type="module" src="../navigation_javascript/toast.js"></script>
+    <script type="module"  src="../navigation_javascript/information_card_TS.js"></script>
 </body>
 
 </html>

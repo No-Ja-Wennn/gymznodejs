@@ -423,9 +423,28 @@ div#training-schedule{
 }
 .row__content{
     color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: space-between;
+    flex: 1;
+    flex-wrap: wrap;
 }
 
+.row__content--type{
+    justify-content: flex-start;
+}
 
+.row__content--type div{
+    display: flex;
+    align-items: center;
+    margin-right: 8px;
+}
+
+.row__content input{
+    outline: none;
+    border: 0;    
+    color: rgba(0, 0, 0, 0.5);
+
+}
 
 /* form dang ky =====================================*/
 
@@ -500,6 +519,14 @@ div#training-schedule{
     justify-content: center;
     margin-top: 16px;
 }
+
+.row__final__button__grid{
+    display: flex;
+    justify-content: space-between;
+    width: 60%;
+
+}
+
 button.button__form{
     background-color: white;
     border-radius: 8px;
@@ -518,6 +545,9 @@ button.button__form:active{
     background-color: whitesmoke;
 }
 
+#button3{
+    opacity: 0;
+}
 
 
 /* phan media cua lich tap */

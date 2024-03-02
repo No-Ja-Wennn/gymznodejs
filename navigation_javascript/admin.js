@@ -150,7 +150,7 @@ window.onload = function () {
         var loginData = JSON.parse(localStorage.getItem('loginData'));
         let messageList = messageForm.querySelector(".message__list");
         var liElement;
-        for (var i = historyMessage.messages.length-1; i >= 0; i--) {
+        for (var i = historyMessage.messages.length - 1; i >= 0; i--) {
             for (var j = 0; j < loginData.accounts.length; j++) {
                 if (historyMessage.messages[i].id == loginData.accounts[j].id) {
                     liElement = document.createElement("li");
@@ -838,11 +838,13 @@ function removeCard(thisElement) {
 
         var valueArray = [];
         for (var i = 0; i < tdArray.length - 1; i++) {
+            console.log("tdArray[i]", tdArray[i])
             var value = tdArray[i].innerHTML;
             if (value)
                 valueArray[i] = value;
             else
-                valueArray[i] = tdArray[i].querySelector(".inputAdd").getAttribute("placeholder")
+                if (tdArray[i].querySelector(".inputAdd"))
+                    valueArray[i] = tdArray[i].querySelector(".inputAdd").getAttribute("placeholder")
         }
 
         // Tạo một đối tượng data mới từ mảng giá trị
@@ -1831,7 +1833,8 @@ function removeCalendar(thisElement) {
             if (value)
                 valueArray[i] = value;
             else
-                valueArray[i] = tdArray[i].querySelector(".inputAdd").getAttribute("placeholder")
+                if (tdArray[i].querySelector(".inputAdd"))
+                    valueArray[i] = tdArray[i].querySelector(".inputAdd").getAttribute("placeholder")
         }
 
         // Tạo một đối tượng data mới từ mảng giá trị

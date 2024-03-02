@@ -61,7 +61,7 @@ function buttonLoginFunction() {
         }
         dataLogin.map((value) => {
             if (emailValue == value.email && passValue == value.password) {
-                deleteCookie("loggedInUser")
+                deleteCookie("loggedInUser");
                 accountName.innerText = value.name;
                 accountCode.innerText = value.id;
                 var date = new Date();
@@ -87,7 +87,9 @@ function buttonLoginFunction() {
     }
 }
 function deleteCookie(cname) {
+    console.log("da xoa");
     document.cookie = cname + "=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
+    // document.cookie = cname + "=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/navigation;";
 }
 // is email
 function isValidEmail(email) {
