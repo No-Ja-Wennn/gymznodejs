@@ -1,12 +1,17 @@
+import { loadData } from './loadData.js';
+
+loadData();
+
 const cardBox = document.querySelector(".container--id");
 let timeCard = cardBox.querySelector(".top-id")
 let typeCard = cardBox.querySelector(".bot-id")
 let userName = cardBox.querySelector(".name-id")
 var activePage = "card";
+
 showCard();
 function showCard() {
     var myData = JSON.parse(localStorage.getItem('cardData'));
-    dataLogin = myData.cards;
+    var dataLogin = myData.cards;
     var cookie = document.cookie.split('; ').find(row => row.startsWith('loggedInUser'));
     if (cookie) {
         var month = 1;

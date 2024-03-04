@@ -1,3 +1,7 @@
+import { loadData } from './navigation_javascript/loadData.js';
+
+loadData();
+
 var modalElement = document.querySelector(".modal");
 var activePage = "home";
 

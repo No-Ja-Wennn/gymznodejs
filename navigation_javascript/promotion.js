@@ -1,3 +1,7 @@
+import { loadData } from './loadData.js';
+
+loadData();
+
 // Thêm mã này vào đầu file
 const formInput = document.querySelector(".form__input");
 const buttonRequest = document.querySelector(".button__request");

@@ -1,3 +1,6 @@
+// import { loadData } from './loadData.js';
+
+// loadData();
 var product = JSON.parse(localStorage.getItem('product'));
 // if (!Array.isArray(product)) {
 //     product = [];
@@ -16,7 +19,7 @@ var product = JSON.parse(localStorage.getItem('product'));
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 
-root.render(<Information data={product} />);
+root.render(< Information data={product} />);
 
 function Information({ data }) {
     return (

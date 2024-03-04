@@ -1,3 +1,7 @@
+import { loadData } from './loadData.js';
+
+loadData();
+
 import { toast, showSuccessToast, showErrorToast } from './toast.js';
 const modalOverlay = document.querySelector(".modal-overlay");
 const nameElement = document.getElementById("name-client");

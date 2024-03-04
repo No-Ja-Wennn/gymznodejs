@@ -245,6 +245,7 @@ window.onload = function () {
             userActive = loggedInUser.id;
             // console.log(userActive)
         }
+        if(logoutMobile)
         logoutMobile.style.display = "flex";
     }
 }
@@ -289,7 +290,7 @@ function logout() {
     accountCode.innerText = "GYMZ001";
     loginMenu1.innerText = "ĐĂNG NHẬP";
     logoutMobile.style.display = "none";
-    showSuccessToast("Đã đăng xuất", "")
+    showSuccessToast("Đã đăng xuất", "");
 }
 let logoutMenu1 = document.querySelector(".logoutstatus");
 if (loginMenu1)
@@ -373,6 +374,8 @@ function generateId(accounts) {
 }
 
 // cart form
+/*
+
 let registerCart = modalElement.querySelector(".register-cart");
 let cube = document.querySelectorAll(".cube");
 cube = Array.from(cube);
@@ -513,6 +516,7 @@ cube.map(value => {
     })
 })
 
+*/
 function checkValidRegisterValue(data) {
     if (data.phoneNumberValue == "") {
         showErrorToast("Thất bại", "Vui lòng nhập số điện thoại");

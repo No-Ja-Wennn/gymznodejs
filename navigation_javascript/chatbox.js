@@ -1,3 +1,7 @@
+import { loadData } from './loadData.js';
+
+loadData();
+
 // const stringSimilarity = require('string-similarity'); //
 var activePage = "userMessage";
 const chatBoxMessage = document.querySelector('.chatbox__message');

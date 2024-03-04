@@ -1,3 +1,7 @@
+import { loadData } from './loadData.js';
+
+loadData();
+
 import { toast, showSuccessToast, showErrorToast } from './toast.js';
 document.cookie = "loggedInUser=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/navigation;";
 
@@ -7,11 +11,13 @@ const rulesContent = document.querySelector('.rules__group__content');
 const hideButton = document.querySelector('.button__hide__terms__of__use');
 
 // Xử lý sự kiện khi click vào 'Xem điều khoản sử dụng'
+if(viewTermsLink)
 viewTermsLink.addEventListener('click', function () {
     rulesContent.style.display = 'flex'; // Hiển thị nội dung
 });
 
 // Xử lý sự kiện khi click vào nút 'Xác nhận'
+if(hideButton)
 hideButton.addEventListener('click', function () {
     rulesContent.style.display = 'none'; // Ẩn nội dung
 });
@@ -31,7 +37,7 @@ function nightmode(event) {
         nightmodebt.style.color = 'whitesmoke';
     }
 }
-
+if(nightmodebt)
 nightmodebt.addEventListener('click', nightmode);
 
 
@@ -113,21 +119,22 @@ if (!accountData) {
 }
 
 function showInformation(value, type = "card") {
-
-    nameElement.innerText = value.name;
-    idElement.innerText = value.id;
-    if (type != "account") {
-        typeElement.innerText = value.cardType;
-        startElement.innerText = value.dateStart;
-        endElement.innerText = value.dateEnd;
-
-        var cardImg = document.querySelector(".card-img");
-        if (value.cardType == "BEGINNER") {
-            cardImg.src = "../img/card/beginner.png";
-        } else if (value.cardType == "BASIC") {
-            cardImg.src = "../img/card/basic.png";
-        } else if (value.cardType == "ADVANCE") {
-            cardImg.src = "../img/card/advance.png";
+    if(nameElement && idElement){
+        nameElement.innerText = value.name;
+        idElement.innerText = value.id;
+        if (type != "account") {
+            typeElement.innerText = value.cardType;
+            startElement.innerText = value.dateStart;
+            endElement.innerText = value.dateEnd;
+    
+            var cardImg = document.querySelector(".card-img");
+            if (value.cardType == "BEGINNER") {
+                cardImg.src = "../img/card/beginner.png";
+            } else if (value.cardType == "BASIC") {
+                cardImg.src = "../img/card/basic.png";
+            } else if (value.cardType == "ADVANCE") {
+                cardImg.src = "../img/card/advance.png";
+            }
         }
     }
 
@@ -136,7 +143,27 @@ function showInformation(value, type = "card") {
 
 const registerBTN = document.getElementById("button1");
 let submitRegister = document.querySelector(".button__form");
-registerBTN.addEventListener("click", function () {
+let cube = document.querySelectorAll(".cube");
+if(cube)
+cube = Array.from(cube);
+if(registerBTN)
+registerBTN.addEventListener("click", f_mainRegister);
+if(cube)
+cube.map(value => {
+    value.addEventListener("click",()=>{
+        var modalBox = document.querySelector(".modal");
+        var bodyBox = modalBox.querySelector(".form1");
+        modalBox.style.display = "flex"
+        bodyBox.style.padding = "0"
+        bodyBox.style.boxShadow = "none";
+        bodyBox.style.backgroundColor = "transparent";
+
+        f_mainRegister();
+    } 
+    );
+})
+
+function f_mainRegister() {
     if (cookie) {
         var test = false;
         calendarData.calendars.map(value => {
@@ -151,12 +178,15 @@ registerBTN.addEventListener("click", function () {
         }
 
         else {
+            
+        var modalBox = document.querySelector(".modal");
+        if(modalBox) modalBox.style.display = "none";
             showErrorToast("Xin lỗi", "Bạn đã đăng ký dịch vụ của chúng tôi trước đó");
         }
     } else {
         showErrorToast("Thất bại", "Vui lòng đăng nhập")
     }
-})
+}
 
 function f_submitRegister() {
     var inputs = document.getElementsByName('card');
@@ -313,6 +343,7 @@ function f_submitRegister() {
             }
         })
         // successesfulll
+        
         showSuccessToast("Thành công", "Đăng ký lịch tập thành công, cảm ơn đã sử dụng dịch vụ");
         formregistration.style.display = 'none';
         removeChecked("card");
@@ -320,6 +351,10 @@ function f_submitRegister() {
         removeChecked("time");
         removeChecked("type");
         document.querySelector(".row__content__input").value = "";
+        
+        var modalBox = document.querySelector(".modal");
+        var bodyBox = modalBox.querySelector(".form1");
+        if(modalBox) modalBox.style.display = "none";
         submitRegister.removeEventListener("click", f_submitRegister);
     }
 }
@@ -419,18 +454,20 @@ function loadInforCalendar(value) {
                             </div>
 
                             `
+                            if(trainingBox)
             trainingBox.appendChild(tableElement);
         }
 
 }
 const xCancel2 = document.querySelector(".x__cancel2");
+if(xCancel2)
 xCancel2.addEventListener("click", function () {
     form2.style.display = "none";
 })
 
 // huỷn lịch tập
 let submitCancel = document.querySelector(".button__form__cancel");
-
+if(cancelCalendarBTN)
 cancelCalendarBTN.addEventListener("click", function () {
     if (cookie) {
         calendarData = JSON.parse(localStorage.getItem('calendarData'));
@@ -487,6 +524,7 @@ function f_summitCancel() {
 }
 
 const btnExitCancel = document.querySelector(".button__form__exit");
+if(btnExitCancel)
 btnExitCancel.addEventListener("click", function(){
     form2.style.display = "none";
 })

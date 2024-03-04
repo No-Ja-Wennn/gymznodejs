@@ -224,17 +224,18 @@ window.onload = function () {
 function activeFirstMessage() {
     var listMessageTitle = document.querySelectorAll(".message__user");
     listMessageTitle = Array.from(listMessageTitle)
-    console.log("listMessageTitle", listMessageTitle)
     if (listMessageTitle) {
         listMessageTitle = Array.from(listMessageTitle);
         // listMessageTitle[0].
-        var idBox = listMessageTitle[0].querySelector(".message__user__msg__text").innerHTML;
-        userActive = idBox;
-        loadMessage();
-        var a_liE = document.querySelectorAll(".message__user");
-        a_liE = Array.from(a_liE)
-        a_liE.map(value => { value.classList.remove("message__user--active") })
-        listMessageTitle[0].classList.add("message__user--active");
+        if(listMessageTitle[0]){
+            var idBox = listMessageTitle[0].querySelector(".message__user__msg__text").innerHTML;
+            userActive = idBox;
+            loadMessage();
+            var a_liE = document.querySelectorAll(".message__user");
+            a_liE = Array.from(a_liE)
+            a_liE.map(value => { value.classList.remove("message__user--active") })
+            listMessageTitle[0].classList.add("message__user--active");
+        }
     }
 }
 
