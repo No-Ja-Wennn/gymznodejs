@@ -14,6 +14,8 @@ modal__body__box.map(value => {
 //set defaut
 let accountName = document.querySelector(".account__name");
 let accountCode = document.querySelector(".account__code");
+
+
 const createAccountBox = document.querySelector(".create-account-box");
 if (createAccountBox)
     createAccountBox.style.display = "none";
@@ -73,7 +75,8 @@ function buttonLoginFunction() {
                 inputLoginEmail.value = "";
                 inputLoginPass.value = "";
                 loginMenu1.innerText = value.name;
-
+                logoutMobile.style.display = "flex";
+                showSuccessToast("Đăng nhập thành công", "Chào mừng bạn đã tới với dịch vụ của chúng tôi")
                 test = true;
                 if (activePage == "card")
                     showCard();
@@ -228,7 +231,6 @@ function buttonCreateAccountFunction() {
 if (buttonLogin)
     buttonLogin.addEventListener("click", () => buttonLoginFunction())
 if (buttonCreate)
-
     buttonCreate.addEventListener("click", () => buttonCreateAccountFunction())
 
 window.onload = function () {
@@ -243,6 +245,7 @@ window.onload = function () {
             userActive = loggedInUser.id;
             // console.log(userActive)
         }
+        logoutMobile.style.display = "flex";
     }
 }
 
@@ -279,46 +282,60 @@ if (loginMenu1)
             })
         }
     })
+// logout function
+function logout() {
+    deleteCookie("loggedInUser");
+    accountName.innerText = "USERNAME";
+    accountCode.innerText = "GYMZ001";
+    loginMenu1.innerText = "ĐĂNG NHẬP";
+    logoutMobile.style.display = "none";
+    showSuccessToast("Đã đăng xuất", "")
+}
 let logoutMenu1 = document.querySelector(".logoutstatus");
 if (loginMenu1)
-    logoutMenu1.addEventListener("click", (e) => {
-        e.preventDefault()
-        deleteCookie("loggedInUser");
-        accountName = "";
-        accountCode = "";
-        loginMenu1.innerText = "ĐĂNG NHẬP";
-    })
+    logoutMenu1.addEventListener("click", logout)
+
+let logoutMobile = document.querySelector(".content__logout__btn");
+if (logoutMobile) {
+    logoutMobile.addEventListener("click", logout)
+}
+
 // click on avt mini
 var accountLoginaInner = document.querySelector(".account__login__inner");
-accountLoginaInner.addEventListener("click", (e) => {
-    e.preventDefault()
-    modalElement.style.display = "flex";
-    
-    modal__body__box.map(value => {
-        value.style.display = "none";
-    })
-    loginBox.style.display = "block";
+accountLoginaInner.addEventListener("click", loginMobile)
 
-    var linkCreateAccount = loginBox.querySelector(".link-create-account");
-    linkCreateAccount.addEventListener("click", function (e) {
-        e.preventDefault();
-        loginBox.style.display = "none";
-        createAccountBox.style.display = "block";
-
-    })
-    var linkLogin = createAccountBox.querySelector(".link-login");
-    linkLogin.addEventListener("click", function (e) {
-        e.preventDefault();
+function loginMobile() {
+    var cookie = document.cookie.split('; ').find(row => row.startsWith('loggedInUser'));
+    if (cookie) {
+        var loggedInUser = JSON.parse(cookie.split('=')[1]); // Lấy thông tin người dùng từ cookie và chuyển nó thành đối tượng
+        if (loggedInUser) {
+            window.location.href = '/navigation/information_account.html';
+        }
+    } else {
+        modalElement.style.display = "flex";
+        modal__body__box.map(value => {
+            value.style.display = "none";
+        })
         loginBox.style.display = "block";
-        createAccountBox.style.display = "none";
-    })
 
-})
+        var linkCreateAccount = loginBox.querySelector(".link-create-account");
+        linkCreateAccount.addEventListener("click", function (e) {
+            e.preventDefault();
+            loginBox.style.display = "none";
+            createAccountBox.style.display = "block";
+
+        })
+        var linkLogin = createAccountBox.querySelector(".link-login");
+        linkLogin.addEventListener("click", function (e) {
+            e.preventDefault();
+            loginBox.style.display = "block";
+            createAccountBox.style.display = "none";
+        })
+    }
+}
 
 var logoElement = document.querySelector(".logo");
-logoElement.addEventListener("click", () => {
-    modalElement.style.display = "flex";
-})
+logoElement.addEventListener("click", loginMobile)
 
 
 

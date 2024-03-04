@@ -12,7 +12,7 @@ document.addEventListener('DOMContentLoaded', function() {
         if (isDisplay === 'none') {
             
             content.style.animation = 'slide_right 0.3s ease-in-out forwards';
-            content.style.display = 'block';
+            content.style.display = 'flex';
             overlay.style.animation = "in_opacity 0.3s ease-in forwards";
             overlay.style.display = 'block';
             logo.style.display = 'none';
