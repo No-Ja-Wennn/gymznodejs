@@ -114,7 +114,7 @@
 
 .name__page a m {
     display: inline-flex;
-    position: relative;
+    /* position: relative; */
 }
 
 .name__page i {
