@@ -84,6 +84,7 @@
     margin-top: 1px;
     padding: 4px 32px;
     width: max-content;
+    font-family: montserrat;
 }
 
 .home__about__title{
@@ -93,11 +94,16 @@
     max-width: 420px;
     margin: 18px 0 22px;
     font-family: 'Roboto';
+    color: white;
+    line-height: 1.3;
+    text-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
+    font-family: montserrat;
 }
 
 .home__about__text{
     font-size: 1.2rem;
     max-width: 360px;
+    font-family: montserrat;
 }
 
 .home__about__btn{
@@ -124,6 +130,7 @@
 
 .home__about__btn__child__link{
     color: #fff;
+    font-family: montserrat;
 }
 
 .home__about__btn::before{
@@ -254,9 +261,15 @@
   
   .container__history__header {
     text-align: center;
-    padding: 32px;
+    padding: 20px;
   }
-  
+  .container__history__header h1{
+    font-size: 26px;
+    font-weight: 600;
+  }
+  .container__history__header p{
+    font-size: 16px;
+  }
   .container__history__row {
     display: -ms-flexbox; /* IE10 */
     display: flex;

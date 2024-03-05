@@ -1,0 +1,397 @@
+*{
+    font-family: montserrat;
+    /* overflow: hidden; */
+}
+.footer{
+    overflow: hidden;
+}
+.container{ 
+    height: auto;
+    width: 100%;
+    margin-top: 68px;
+    display: flex;
+    justify-content: center;
+    /* background-color: rgba(70, 70, 70, 0.1); */
+}
+.container__inner{
+    height: auto;
+    width: 95%;
+    display: flex;
+    justify-content: center;
+    padding-bottom: 50px;
+}
+.table{
+    width: 100%;
+    height: auto;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.15);
+    margin-top: 30px;
+    font-size: 14px;
+}
+.page__header{
+    min-height: 90px;
+    margin-top: 15px;
+    display: flex;
+    align-items: center;
+}
+.page__header.title{
+    width: 50%;
+    /* background-color: rgb(255, 180, 88); */
+}
+.page__header.title h1{
+    font-weight: 600;
+}
+.page__header.change__the__password{
+    width: 50%;
+    /* background-color: beige; */
+    display: flex;
+    justify-content: flex-end;
+}
+a.change__the__password.key__ico{
+    font-size: 14px;
+    color: goldenrod;
+    background-color: rgba(218, 165, 32, 0.15);
+    min-height: 35px;
+    min-width: 35px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;
+    cursor: pointer;
+}
+a.change__the__password.key__ico:active{
+    color: rgb(255, 255, 255);
+    background-color: rgba(218, 165, 32, 0.5);
+}
+ul.change__the__password__group{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: space-between;
+    margin-left: 10px;
+    min-height: 35px;
+    font-size: 12px;
+}
+a.change__the__password__group.change__the__password__group__content{
+    color: black;
+    font-weight: 500;
+    cursor: pointer;
+}
+a.change__the__password__group.change__the__password__group__sub__content{
+    color: rgba(0, 0, 0, 0.5);
+}
+a.change__the__password__group.change__the__password__group__content:hover{
+    color: rgba(218, 165, 32, 0.5);
+}
+.rows{
+    display: flex;
+    min-height: 56px;
+    align-items: center;
+}
+.border__top{
+    border-top: 1px rgba(128, 128, 128, 0.1) solid;
+}
+.image__rows{
+    display: flex;
+    height: auto;
+    padding: 16px;
+}
+.rows.first__part{
+    min-width: 200px;
+    max-width: 25%;
+    width: 100%;
+    height: auto;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    font-size: 50px;
+}
+.first__part.first__part__containt__image{
+    background-color: goldenrod;
+    color: white;
+    height: 160px;
+    min-width: 160px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+}
+
+.first__part__containt__image__img{
+    width: 160px;
+    height: 160px;
+    display: none;
+    object-fit: cover;
+}
+
+.rows.the__second__part{
+    max-width: 25%;
+    width: 100%;
+}
+.hide__row{
+    max-width: 50%;
+    width: 100%;
+    margin-left: 10px;
+    display: flex;
+    justify-content: flex-end;
+}
+.the__second__part.the__second__part__group{
+    display: flex;
+    flex-direction: column;
+}
+span.the__second__part.the__second__part__content{
+    line-height: 1.4;
+    width: 95%;
+    color: rgba(0, 0, 0, 0.5);
+    text-align: justify;
+}
+
+#input-file-avt{
+    display: none;
+}
+
+.the__second__part.the__second__part__button{
+    /* height: 33px; */
+    width: 100px;
+    padding: 12px 0;
+    margin-top: 10px;
+    background-color: white;
+    border-radius: 3px;
+    border: 1px rgba(0, 0, 0, 0.5) solid;
+    color: black;
+    font-weight: 500;
+    cursor: pointer;
+    text-align: center;
+}
+.the__second__part.the__second__part__button:active{
+    background-color: rgba(218, 165, 32, 0.2);
+}
+.rows.third__part{
+    max-width: 50%;
+    width: 100%;
+    margin-left: 10px;
+    display: flex;
+    justify-content: flex-end;
+}
+.rows.third__part__selection{
+    margin-right: 10px;
+}
+/* .title__table{
+    border-bottom: 1px rgba(0, 0, 0, 0.2) solid;
+} */
+.title__table__group{
+    min-height: 48px;
+    width: auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 8px 0 8px 8px;
+}
+.title__table__group.part__one{
+    max-width: 50%;
+    width: 100%;
+    display: flex;
+    font-weight: 500;
+}
+.title__table__group.part__two{
+    max-width: 100%;
+    width: 100%;
+    margin-right: 10px;
+    display: flex;
+    justify-content: flex-end;
+}
+span.part__two.part__two__information{
+    color: rgba(218, 165, 32, 0.5);
+    display: flex;
+    justify-content: flex-end;
+    cursor: pointer;
+    text-align: end;
+}
+a.more__information{
+    color: rgba(218, 165, 32, 0.5);
+}
+a.more__information:active{
+    color: gold;
+}
+.part__two.part__two__information:active{
+    color: goldenrod;
+}
+.rows.part__one__and__two{
+    min-width: 400px;
+    max-width: 50%;
+    width: 100%;
+    padding: 8px 0 8px 16px;
+}
+.part__one{
+    min-width: 200px;
+    max-width: 50%;
+    width: 100%;
+}
+.part__one__title{
+    color: rgba(0, 0, 0, 0.5);
+}
+.rows.part__two{
+    max-width: 50%;
+    width: 100%;
+}
+.part__two__content{
+    font-weight: 500;
+}
+.third__part__a.third__part__a__content{
+    color: rgba(0, 0, 0, 0.5);
+    padding: 8px 0 8px 16px;
+    min-height: 56px;
+}
+.third__part__a{
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+}
+.third__part__b{
+    width: 20px;
+    color: rgba(0, 0, 0, 0.5);
+    padding: 20px 15px;
+    margin-right: 10px;
+    cursor: pointer;
+}
+.third__part__b:active{
+    color: goldenrod;
+}
+span.third__part__c__content__edit__fullname{
+    color: rgba(218, 165, 32, 0.5);
+    display: flex;
+    justify-content: flex-end;
+    cursor: pointer;
+    padding: 8px 0 8px 16px;
+    text-align: end;
+}
+.third__part__c__content__edit__fullname:active{
+    color: goldenrod;
+}
+.third__part__c{
+    width: 100%;
+}
+
+
+
+@media (max-width: 900px){
+    .hide__row{
+        display: none;
+    }
+    .rows.the__second__part{
+        max-width: 100%;
+    }
+
+
+
+    .rows.part__one__and__two{
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .rows{
+        min-height: 20px;
+    }
+    .rows.part__one__and__two{
+        min-width: 200px;
+        max-width: 200px;
+        width: 100%;
+        padding: 8px 16px 8px 16px;
+    }
+    .rows.part__two{
+        max-width: 100%;
+    }
+    .part__two__content{
+        width: 100%;
+    }
+    span.the__second__part.the__second__part__content{
+        text-align: left;
+    }
+    .third__part__a.third__part__a__content{
+        padding: 8px 0 8px 0;
+    }
+    .rows.third__part{
+        max-width: 100%;
+    }
+}
+@media (max-width: 640px){
+    .third__part__a{
+        display: none;
+    }
+}
+@media (max-width: 480px){
+    .page__header{
+        flex-direction: column;
+        align-items: flex-start;
+        min-height: 45px;
+    }
+    .page__header.change__the__password{
+        flex-direction: row;
+        align-items: center;
+        justify-content: flex-start;
+        width: 100%;
+        margin-top: 0;
+    }
+    .page__header.title{
+        width: 100%;
+    }
+    .image__rows{
+        flex-direction: column;
+    }
+    .the__second__part.the__second__part__group{
+        margin-top: 16px;
+    }
+    
+    .part__one{
+        min-width: 0;
+        max-width: 100%;
+    }
+    .rows.part__one__and__two{
+        min-width: 0;
+    }
+    .page__header.title h1{
+        line-height: 1.4;
+    }
+
+    /* .rows.third__part{
+        max-width: 0;
+    } */
+    .rows{
+        justify-content: space-between;
+    }
+    a.part__two.part__two__information{
+        text-align: end;
+    }
+}
+@media (max-width: 280px){
+    .rows.third__part{
+        width: 50%;
+    }
+    .rows.third__part{
+        margin: 0;
+    }
+    .third__part__b{
+        margin-right: 0;
+        margin-left: 1px;
+        width: fit-content;
+        padding: 0;
+        height: 56px;
+        min-width: 20px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+    .rows.first__part{
+        min-width: 0;
+        max-width: 140px;
+        width: 100%;
+    }
+    .first__part.first__part__containt__image{
+        min-width: 0;
+        width: 140px;
+        height: 140px;
+    }
+}

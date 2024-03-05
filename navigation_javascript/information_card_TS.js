@@ -28,11 +28,13 @@ var nen = document.querySelector('.container');
 function nightmode(event) {
     if (nightmodebt.style.background === 'rgb(34, 34, 34)' || nightmodebt.style.background === '') {
         nen.style.background = '#111';
+        nen.style.color = 'rgb(255, 255, 255)';
         nightmodebt.style.background = 'white';
         nightmodebt.style.color = 'rgb(34, 34, 34)';
     }
     else {
         nen.style.background = 'white';
+        nen.style.color = 'rgb(0, 0, 0)';
         nightmodebt.style.background = 'rgb(34, 34, 34)';
         nightmodebt.style.color = 'whitesmoke';
     }
