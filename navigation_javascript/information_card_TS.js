@@ -76,9 +76,8 @@ let calendarData = JSON.parse(localStorage.getItem('calendarData'));
 const cookie = document.cookie.split('; ').find(
     row => row.startsWith('loggedInUser'));
 
-console.log(cookie)
 let loggedInUser;
-
+if(cookie)
 for (let i = 0; i < cookie.length; i++) {
     if (cookie[i].startsWith('loggedInUser') && cookie[i].includes('path=/')) {
         loggedInUser = cookie[i];

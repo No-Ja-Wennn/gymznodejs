@@ -12,6 +12,7 @@ modal__body__box.map(value => {
     value.style.display = "none";
 })
 //set defaut
+let activePage;
 let accountName = document.querySelector(".account__name");
 let accountCode = document.querySelector(".account__code");
 
@@ -90,7 +91,6 @@ function buttonLoginFunction() {
     }
 }
 function deleteCookie(cname) {
-    console.log("da xoa");
     document.cookie = cname + "=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
     // document.cookie = cname + "=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/navigation;";
 }
@@ -215,11 +215,9 @@ function buttonCreateAccountFunction() {
                 modalOverLay.click();
                 linkLogin.click();
             } else {
-                console.log("không trùng")
                 showErrorToast("Mật khẩu không khớp", "Vui lòng nhập kiểm tra lại ")
             }
         } else {
-            console.log("tài khoản đã tồn tại")
             showErrorToast("Địa chỉ email đã tồn tại", "Vui lòng sử dụng địa chỉ email khác")
         }
 
@@ -243,7 +241,6 @@ window.onload = function () {
             if (loginMenu1)
                 loginMenu1.innerText = loggedInUser.name;
             userActive = loggedInUser.id;
-            // console.log(userActive)
         }
         if(logoutMobile)
         logoutMobile.style.display = "flex";
@@ -455,7 +452,6 @@ cube.map(value => {
                         optionPTValue
                     }
                     if (checkValidRegisterValue(data)) {
-                        console.log(data)
                         var userId = loggedInUser.id;
                         myData = JSON.parse(localStorage.getItem('cardData'));
                         var dataCompear = myData.cards;
@@ -498,7 +494,6 @@ cube.map(value => {
 
                             }
                         }
-                        console.log(myData.calendars)
                         localStorage.setItem('calendarData', JSON.stringify(myData));
                         showSuccessToast("Thành công", "Quý khách vui lòng tới quầy lễ tân tại phòng gym để thanh toán")
                         modal__body__box.map(value => {

@@ -197,7 +197,6 @@ window.onload = function () {
                             a_liE = Array.from(a_liE)
                             a_liE.map(value => { value.classList.remove("message__user--active") })
                             // remove from database
-                            console.log("pa", parentRremove)
                             var historyMessage = JSON.parse(localStorage.getItem('historyMessage'));
                             historyMessage.messages = historyMessage.messages.filter((value) => {
                                 return value.id !== idMessageRemove;
@@ -207,7 +206,6 @@ window.onload = function () {
                             // remove show
                             parentRremove.style.display = "none";
                             activeFirstMessage();
-                            console.log("elo")
                             liElement.removeEventListener("click", handleClick);
                         })
                     })
@@ -839,7 +837,6 @@ function removeCard(thisElement) {
 
         var valueArray = [];
         for (var i = 0; i < tdArray.length - 1; i++) {
-            console.log("tdArray[i]", tdArray[i])
             var value = tdArray[i].innerHTML;
             if (value)
                 valueArray[i] = value;
