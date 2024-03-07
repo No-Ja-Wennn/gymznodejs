@@ -122,7 +122,6 @@ changeSubmitElement.addEventListener("click", function () {
 
     if (errorNotification(heightElement, weightElement, ageElement, phoneElement)) {
         if (BMI == -1) {
-            // console.log("Hello")
         } else if (BMI < 16) {
             statusOfHeath = "Gầy độ III";
             message = `Chào ${greeting}, ${greeting} đang ở mức gầy độ III, điều này có thể ảnh hưởng đến sức khỏe của ${greeting}. Hãy thử bổ sung thêm các loại thực phẩm giàu dinh dưỡng và tập luyện để tăng cân một cách lành mạnh.`;

@@ -102,7 +102,6 @@ inputAvatar.addEventListener("click", function () {
                     avtLink.links.map(value => {
                         if (value.id == loggedInUser.id){
                             value.path = e.target.result;
-                            console.log(value.path)
                         }
                     })
                     localStorage.setItem('avtLink', JSON.stringify(avtLink));
@@ -230,8 +229,6 @@ function changeValue(idUser, type, newValue) {
                 loggedInUser.name = newValue;
             }
     });
-    console.log("loing: ", loginData)
-    console.log("loing: ", loggedInUser)
     localStorage.setItem('loginData', JSON.stringify(loginData));
     localStorage.setItem('cardData', JSON.stringify(cardData));
     localStorage.setItem('calendarData', JSON.stringify(calendarData));
@@ -538,7 +535,6 @@ function checkValidChangePass(oldPass, newPass, confirmPass){
 }
 
 function insertInputAfterUserBoxPass(flag = false) {
-    console.log('flag', flag)
     var phoneInput = document.querySelector(".new-phone");
     if (!phoneInput) {
 
@@ -559,7 +555,6 @@ function insertInputAfterUserBoxPass(flag = false) {
 
             newUserBox.appendChild(inputElement);
             newUserBox.appendChild(labelElement);
-            console.log(newUserBox)
             const existingUserBox = modalBox.querySelector(".user-box");
 
             // Chèn thẻ <div> mới vào sau thẻ <div> có class là "user-box"

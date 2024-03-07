@@ -109,7 +109,7 @@ function getCloseMatches(userInput, questions, n, cutoff) {
         var similarity1 = stringSimilarity.compareTwoStrings(userInput, question.question); // Sử dụng stringSimilarity để tính toán độ tương đồng
         var similarity2 = isQuestionContained(userInput, question.question, cutoff);
         if (similarity1 >= cutoff && similarity1 < 1) {
-            console.log("đã lưu userInput = ", userInput, "matches.answer= ", matches.answer)
+            // console.log("đã lưu userInput = ", userInput, "matches.answer= ", matches.answer)
         }
         if (similarity1 >= cutoff || similarity2 == true) {
             matches.push(question);

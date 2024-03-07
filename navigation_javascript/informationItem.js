@@ -5,7 +5,6 @@ var product = JSON.parse(localStorage.getItem('product'));
 // if (!Array.isArray(product)) {
 //     product = [];
 // }
-// console.log(product)
 // var dataItem = [
 //     img,
 //     title,
@@ -299,7 +298,6 @@ function showSlides(n) {
     //   let captionText = document.getElementById("caption");
     if (n > slides.length) { slideIndex = 1 }
     if (n < 1) { slideIndex = slides.length }
-    // console.log("n = ", slides);
     for (i = 0; i < slides.length; i++) {
         slides[i].style.display = "none";
     }
@@ -307,7 +305,6 @@ function showSlides(n) {
         dots[i].className = dots[i].className.replace(" active", "");
     }
     slides[slideIndex - 1].style.display = "block";
-    // console.log(slides[slideIndex - 1])
     dots[slideIndex - 1].className += " active";
     //   captionText.innerHTML = dots[slideIndex-1].alt;
 }

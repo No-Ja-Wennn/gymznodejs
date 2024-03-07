@@ -1,6 +1,6 @@
-import { loadData } from './loadData.js';
+// import { loadData } from './loadData.js';
 
-loadData();
+// loadData();
 
 // Thêm mã này vào đầu file
 const formInput = document.querySelector(".form__input");
@@ -22,7 +22,6 @@ function validateInput() {
 // Hiển thị form khi quay trúng phần thưởng
 // function determineGift(deg) {
 //     let giftIndex = Math.floor(deg / 45) % 8;
-//     console.log("Bạn đã quay vào: " + giftArray[giftIndex].giftName);
 //     formInput.style.display = "flex"; // Hiển thị form
 // }
 
@@ -59,11 +58,8 @@ const noidungE = document.querySelector(".noidung");
 dropDown.addEventListener("click", () => {
     if (noidungE.style.display == "block") {
         noidungE.style.display = "none";
-        console.log("block");
     } else {
         noidungE.style.display = "block";
-        console.log("none");
-
     }
 })
 
@@ -114,7 +110,6 @@ function startClick(){
 
 function determineGift(deg) {
     let giftIndex = Math.floor(deg / 45) % 8;
-    console.log("Bạn đã quay vào: " + giftArray[giftIndex].giftName);
     formInput.style.display = "flex"; // Hiển thị form
 }
 

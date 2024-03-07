@@ -10,7 +10,6 @@ fetch(jsonPath)
     })
     .then(data => {
         myData = data;
-        // console.log(myData);
         root.render(<App dataWhey={myData.dataWhey} dataEquipment={myData.dataEquipment} />);
     })
     .catch(error => {
@@ -22,7 +21,6 @@ const root = ReactDOM.createRoot(document.getElementById("root"));
 
 const ProductItemWhey = product => {
     product = product.product
-    // console.log(product)
     return (
         <div className="container__danhmucsanpham" onClick={
             () => {
