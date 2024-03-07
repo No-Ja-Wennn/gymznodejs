@@ -141,14 +141,14 @@
     100% {
         opacity: 1;
         transform: translateY(0);
-        height: 240px;
+        height: 180px;
     }
 }
 @keyframes fadeOutToTop {
     0% {
         opacity: 1;
         transform: translateY(0);
-        height: 240px;
+        height: 180px;
     }
     20% {
         opacity: 0.05;
