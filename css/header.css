@@ -238,6 +238,7 @@ i.fa-solid.fa-caret-up{
 .containt {
     display: none;
     background-color: black;
+    z-index: 999;
 }
 
 .containt a {
