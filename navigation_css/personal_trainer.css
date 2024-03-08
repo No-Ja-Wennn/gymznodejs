@@ -6,7 +6,7 @@
     background-color: rgb(255, 255, 255);
     height: 68px;
     border-bottom: 1px rgb(0, 0, 0, 0.3) solid;
-    box-shadow: 0 0 10px rgb(255, 255, 255);
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
 }
 .header__inner__logo h1,
 .header__inner__navigation a{
@@ -23,8 +23,10 @@
 .containt a:hover{
     background-color: transparent;
 }
-.footer{
+.footer,
+.footer__last{
     overflow: hidden;
+    /* background: transparent; */
 }
 .video__title{
     margin-top: 68px;
@@ -60,43 +62,54 @@ video{
     top: 0;
     left: 0;
     width: 100%;
-    box-shadow: 0 0 20em 20em rgb(0, 0, 0, 0.8);
+    box-shadow: 0 0 20em 20em rgb(0, 0, 0, 0.5);
+    z-index: 1;
 }
 .title{
     position: absolute;
-    top: 3.5rem;
+    top: 5rem;
     left: 1rem;
-    z-index: 990;
+    z-index: 2;
     text-transform: uppercase;
-    font-family: Trebuchet MS,Lucida Sans Unicode,Lucida Grande,Lucida Sans,Arial,sans-serif;
-    font-size: 12rem;
-    font-weight: 700;
+    /* font-family: Trebuchet MS,Lucida Sans Unicode,Lucida Grande,Lucida Sans,Arial,sans-serif; */
+    font-family: Epilogue;
+    font-size: 11.5rem;
+    font-weight: 600;
     color: white;
-    max-width: 75%;
+    max-width: 65%;
     margin: 0;
-    line-height: 12rem;
+    line-height: 13.5rem;
 }
-@media screen and (max-width:1600px) {
-    .title{
-        max-width: 86%;
-    }
+
+.container{
+    height: calc(100vh - 68px);
+    background-color: rgba(255, 255, 255, 0.2);
 }
+
 @media screen and (max-width:1000px) {
     .title{
         /* font-size: 10rem;
         line-height: 10rem; */
     }
 }
-@media screen and (max-width:768px) {
+@media screen and (max-width:720px) {
     .title{
         font-size: 8rem;
-        line-height: 10rem;
+        line-height: 8.8rem;
     }
 }
 @media screen and (max-width:390px) {
     .title{
+        top: 2.5rem;
         font-size: 7rem;
-        line-height: 8rem;
+        line-height: 7.8rem;
+    }
+}
+@media screen and (max-width:360px) {
+    .title{
+        top: 2.5rem;
+        font-size: 7rem;
+        line-height: 7.3rem;
     }
 }
 @media screen and (max-width:320px) {
