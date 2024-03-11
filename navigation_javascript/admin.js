@@ -1,3 +1,95 @@
+/* LOAD DATA */
+function loadData() {
+    const jsonPathAccount = '../data/loginData.json';
+
+    const jsonPathCard = '../data/carddata.json';
+    const jsonPathCalendar = '../data/calendarData.json';
+    const jsonPathShop = '../data/shopData.json';
+    let myData;
+    if (!localStorage.getItem('cardData')) {
+        fetch(jsonPathCard)
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Network response was not ok');
+                }
+                return response.json();
+            })
+            .then(data => {
+                myData = data;
+                localStorage.setItem('cardData', JSON.stringify(myData));
+            })
+            .catch(error => {
+                console.error('Fetch error:', error);
+            });
+    }
+
+    /*   ====    */
+    if (!localStorage.getItem('loginData')) {
+        fetch(jsonPathAccount)
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Network response was not ok');
+                }
+                return response.json();
+            })
+            .then(data => {
+                myData = data;
+                // Lưu dữ liệu vào localStorage
+                localStorage.setItem('loginData', JSON.stringify(myData));
+            })
+            .catch(error => {
+                console.error('Fetch error:', error);
+            });
+    }
+
+    /*   ====    */
+    if (!localStorage.getItem('calendarData')) {
+        fetch(jsonPathCalendar)
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Network response was not ok');
+                }
+                return response.json();
+            })
+            .then(data => {
+                myData = data;
+                // Lưu dữ liệu vào localStorage
+                localStorage.setItem('calendarData', JSON.stringify(myData));
+            })
+            .catch(error => {
+                console.error('Fetch error:', error);
+            });
+    }
+
+    // 
+    if (!localStorage.getItem('product')) {
+        fetch(jsonPathShop)
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Network response was not ok');
+                }
+                return response.json();
+            })
+            .then(data => {
+                myData = data;
+                localStorage.setItem('product', JSON.stringify(myData));
+            })
+            .catch(error => {
+                console.error('Fetch error:', error);
+            });
+    }
+
+
+    var dataHistoryMessage = JSON.parse(localStorage.getItem('historyMessage'));
+    if (!dataHistoryMessage) {
+        dataHistoryMessage = {
+            messages: []
+        }
+        localStorage.setItem('historyMessage', JSON.stringify(dataHistoryMessage));
+    }
+}
+loadData();
+
 let userActive = "other";
 /* CLICK TO SHOW FORM */
 const messageFormBTN = document.getElementById("QLMessage");
@@ -84,7 +176,6 @@ function saveAciveForm(value) {
     var expires = "; expires=" + date.toUTCString();
     document.cookie = "activeForm=" + JSON.stringify(value) + expires;
 }
-
 
 function loadMessage() {
     removeMessage()
@@ -225,7 +316,7 @@ function activeFirstMessage() {
     if (listMessageTitle) {
         listMessageTitle = Array.from(listMessageTitle);
         // listMessageTitle[0].
-        if(listMessageTitle[0]){
+        if (listMessageTitle[0]) {
             var idBox = listMessageTitle[0].querySelector(".message__user__msg__text").innerHTML;
             userActive = idBox;
             loadMessage();
@@ -434,89 +525,92 @@ function showCard() {
 
 
 
-    const findBTN = cardForm.querySelector(".container__show__card__find__btn");
-    findBTN.addEventListener("click", () => {
-        var inputID = cardForm.querySelector(".show__input__id").value.trim();
-        var selectPackage = cardForm.querySelector(".show__input__package").value.trim();
-        var inputStart = document.getElementById("input-date-start").value.trim()
-        var inputEnd = document.getElementById("input-date-end").value.trim();
+    findBTNCard.addEventListener("click", f_findBTNCard);
 
-        const findBox = document.querySelector(".show__find__id__box");
-        findBox.innerText = ""
+}
 
-        myData = JSON.parse(localStorage.getItem('cardData'));
-        dataArray = myData.cards;
-        const tableShowElement = cardForm.querySelector(".table__show");
+const findBTNCard = cardForm.querySelector(".container__show__card__find__btn");
 
-        if (inputID != "" || selectPackage != "" || inputStart != "" || inputEnd != "") {
-            tableShowElement.style.display = "none";
-            const tableBox = cardForm.querySelector(".container__show__card__content");
-            // tableBox.innerHTML = "";
-            var tableCreate = document.createElement("table");
-            tableCreate.className = "table__show";
-            var trCreate = document.createElement("tr");
-            trCreate.className = "tr__show";
-            trCreate.innerHTML = `
-            <th class="th__show">Mã thẻ</th>
-            <th class="th__show">Tên Hội Viên</th>
-            <th class="th__show">Tuổi</th>
-            <th class="th__show">Số điện thoại</th>
-            <th class="th__show">Loại Thành Viên</th>
-            <th class="th__show">Ngày gia nhập</th>
-            <th class="th__show">Ngày Hết Hạn Thẻ</th>
-            <th class="th__show">Thao tác</th>
-        `
-            tableCreate.appendChild(trCreate);
-            dataArray.map((value, index) => {
-                var test = true;
-                if (inputID != "" && test == true) {
-                    if (!value.id.includes(inputID)) {
-                        test = false;
-                    }
-                }
-                if (selectPackage != "" && test == true) {
-                    if (selectPackage !== value.cardType) {
-                        test = false;
-                    }
-                }
-                if (inputStart != "" && test == true) {
-                    if (inputStart !== value.dateStart) {
-                        test = false;
-                    }
-                }
-                if (inputEnd != "" && test == true) {
-                    if (inputEnd !== value.dateEnd) {
-                        test = false;
-                    }
-                }
-                if (inputID == "" && selectPackage == "" && inputStart == "" && inputEnd == "") {
+function f_findBTNCard() {
+    var inputID = cardForm.querySelector(".show__input__id").value.trim();
+    var selectPackage = cardForm.querySelector(".show__input__package").value.trim();
+    var inputStart = document.getElementById("input-date-start").value.trim()
+    var inputEnd = document.getElementById("input-date-end").value.trim();
+
+    const findBox = document.querySelector(".show__find__id__box");
+    findBox.innerText = ""
+
+    myData = JSON.parse(localStorage.getItem('cardData'));
+    dataArray = myData.cards;
+    const tableShowElement = cardForm.querySelector(".table__show");
+
+    if (inputID != "" || selectPackage != "" || inputStart != "" || inputEnd != "") {
+        tableShowElement.style.display = "none";
+        const tableBox = cardForm.querySelector(".container__show__card__content");
+        // tableBox.innerHTML = "";
+        var tableCreate = document.createElement("table");
+        tableCreate.className = "table__show";
+        var trCreate = document.createElement("tr");
+        trCreate.className = "tr__show";
+        trCreate.innerHTML = `
+        <th class="th__show">Mã thẻ</th>
+        <th class="th__show">Tên Hội Viên</th>
+        <th class="th__show">Tuổi</th>
+        <th class="th__show">Số điện thoại</th>
+        <th class="th__show">Loại Thành Viên</th>
+        <th class="th__show">Ngày gia nhập</th>
+        <th class="th__show">Ngày Hết Hạn Thẻ</th>
+        <th class="th__show">Thao tác</th>
+    `
+        tableCreate.appendChild(trCreate);
+        dataArray.map((value, index) => {
+            var test = true;
+            if (inputID != "" && test == true) {
+                if (!value.id.includes(inputID)) {
                     test = false;
                 }
-                if (test == true) {
-
-                    var trCreate = document.createElement("tr");
-                    trCreate.className = "tr__show";
-                    trCreate.innerHTML = `
-                    <td class="td__show">${value.id}</td>
-                    <td class="td__show">${value.name}</td>
-                    <td class="td__show">${value.age}</td>
-                    <td class="td__show">${value.phoneNumber}</td>
-                    <td class="td__show">${value.cardType}</td>
-                    <td class="td__show">${value.dateStart}</td>
-                    <td class="td__show">${value.dateEnd}</td>
-                    <td class="td__show">
-                    <i class="fa-solid fa-pen-to-square" onclick="editCard(this)"></i>
-                    <i class="fa-solid fa-trash" onclick="removeCard(this)"></i>
-                    </td>
-                `
-                    tableCreate.appendChild(trCreate);
-
+            }
+            if (selectPackage != "" && test == true) {
+                if (selectPackage !== value.cardType) {
+                    test = false;
                 }
-            });
-            tableBox.appendChild(tableCreate);
-        }
-    })
+            }
+            if (inputStart != "" && test == true) {
+                if (inputStart !== value.dateStart) {
+                    test = false;
+                }
+            }
+            if (inputEnd != "" && test == true) {
+                if (inputEnd !== value.dateEnd) {
+                    test = false;
+                }
+            }
+            if (inputID == "" && selectPackage == "" && inputStart == "" && inputEnd == "") {
+                test = false;
+            }
+            if (test == true) {
+                var trCreate = document.createElement("tr");
+                trCreate.className = "tr__show";
+                trCreate.innerHTML = `
+                <td class="td__show">${value.id}</td>
+                <td class="td__show">${value.name}</td>
+                <td class="td__show">${value.age}</td>
+                <td class="td__show">${value.phoneNumber}</td>
+                <td class="td__show">${value.cardType}</td>
+                <td class="td__show">${value.dateStart}</td>
+                <td class="td__show">${value.dateEnd}</td>
+                <td class="td__show">
+                <i class="fa-solid fa-pen-to-square" onclick="editCard(this)"></i>
+                <i class="fa-solid fa-trash" onclick="removeCard(this)"></i>
+                </td>
+            `
+                tableCreate.appendChild(trCreate);
+                findBTNCard.removeEventListener("click", f_findBTNCard);
 
+            }
+        });
+        tableBox.appendChild(tableCreate);
+    }
 }
 
 function addCard() {
@@ -1915,3 +2009,56 @@ function editCalendar(thisElement) {
 //     var optionElement = document.querySelector(".message__user__box__affter");
 //     optionElement.style.display = "block"
 // })
+
+
+
+
+
+/// find message
+
+let searchMessageInput = document.querySelector(".search__message__input");
+
+searchMessageInput.addEventListener("input", function () {
+    let historyMessage = JSON.parse(localStorage.getItem('historyMessage'));
+    let loginData = JSON.parse(localStorage.getItem('loginData'));
+    var a_messengerUser = document.querySelectorAll(".message__user");
+    a_messengerUser = Array.from(a_messengerUser);
+    for(var i = 0; i < a_messengerUser.length; i++){
+        a_messengerUser[i].style.display = "block";
+
+        var nameUser = a_messengerUser[i].querySelector(".message__user__name").innerHTML;
+        var idUser = a_messengerUser[i].querySelector(".message__user__msg__text").innerHTML;
+        if(!(nameUser.toLowerCase().includes(searchMessageInput.value.toLowerCase())
+        || idUser.toLowerCase().includes(searchMessageInput.value.toLowerCase()))){
+            a_messengerUser[i].style.display = "none";
+            // console.log(nameUser.toLowerCase())
+            // console.log(searchMessageInput.value.toLowerCase())
+        }
+    }
+
+
+    if (searchMessageInput.value == ""){
+
+    }
+})
+
+let exitSearch = document.querySelector(".exit--search");
+let valueMessageTemp = "";
+let messageList = document.querySelector(".message__list");
+searchMessageInput.addEventListener("click", function () {
+    exitSearch.style.display = "block";
+    valueMessageTemp = messageList.innerHTML;
+
+    exitSearch.addEventListener("click", f_exitSearch);
+})
+
+function f_exitSearch() {
+    exitSearch.style.display = "none";
+    var a_messengerUser = document.querySelectorAll(".message__user");
+    a_messengerUser = Array.from(a_messengerUser);
+    for(var i = 0; i < a_messengerUser.length; i++){
+        a_messengerUser[i].style.display = "block";
+    }
+    searchMessageInput.value = ""
+    exitSearch.removeEventListener("click", f_exitSearch);
+}
