@@ -161,7 +161,17 @@
     overflow: hidden;
 }
 
-.list-message-box__find i{
+.list-message-box__search{
+    display: flex;
+    align-items: center;
+}
+
+div.list-message-box__search > i{
+    color: #fff;
+    display: none;
+}
+
+.list-message-box__search i{
     font-size: 1.4rem;
     padding:  0 8px;
     color: #666;
