@@ -465,6 +465,159 @@ video{
 #button2:active{
     background-color: whitesmoke;
 }
+
+
+
+.container3{
+    width: 100%;
+    height: max-content;
+    display: flex;
+    justify-content: center;
+    padding: 50px 0;
+    padding-top: 200px;
+    background-image: url(/img/background/x2.png);
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: 0 50%;
+}
+.container3__select{
+    width: 98%;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+}
+.container3__title{
+    min-height: max-content;
+}
+.title3__content h1{
+    text-transform: uppercase;
+    text-align: center;
+    font-size: 36px;
+    font-weight: 600;
+    color: rgb(190, 0, 0);
+    letter-spacing: 6.3px;
+    font-style: italic;
+    padding: 0 5%;
+}
+.container3__title h3{
+    text-align: justify;
+    font-size: 18px;
+    font-weight: 600;
+    color: rgb(0, 0, 0);
+    padding: 0 5%;
+    margin: 40px 0;
+}
+/* SLICK SLIDER */
+.image__item{
+    border-radius: 15px;
+    box-shadow: 0 0 10px rgb(0, 0, 0, 0.5);
+}
+.image{
+    /* width: 400px; */
+    /* margin-bottom: 20px; */
+}
+.image img{
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+    border-radius: 15px 15px 0 0;
+}
+.image h3{
+    font-size: 18px;
+}
+.slick-slider{
+    display: flex;
+    align-items: center;
+}
+.slick-initialized .slick-slide{
+    margin: 20px;
+    border-radius: 15px;
+    box-shadow: 0 0 10px rgb(0, 0, 0, 0.2);
+}
+/* .image__item.slick-slide.slick-cloned.slick-active{
+} */
+.slick-prev{
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background-color: transparent;
+    color: rgb(0, 0, 0);
+    border: none;
+    z-index: 1;
+    padding: 20px 5px;
+    left: 0;
+    font-size: 23px;
+    transition: .3s;
+    cursor: pointer;
+}
+.slick-prev:hover{
+    color: rgb(180, 0, 0);
+    background-color: whitesmoke;
+}
+.slick-next{
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background-color: transparent;
+    color: rgb(0, 0, 0);
+    border: none;
+    z-index: 1;
+    padding: 20px 5px;
+    right: 0;
+    font-size: 23px;
+    transition: .3s;
+    cursor: pointer;
+}
+/* SLICK SLIDER */
+.title-bar{
+    min-height: 120px;
+    background-color: rgb(255, 255, 255);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 0 10px;
+    border-radius: 0 0 15px 15px;
+}
+.name-person{
+    text-transform: uppercase;
+    text-align: left;
+    font-size: 16px;
+    font-weight: 600;
+    color: black;
+    margin-top: 10px;
+}
+.job-name{
+    text-align: left;
+    font-size: 14px;
+    color: rgb(0, 0, 0, 0.5);
+}
+.view-more{
+    height: 50px;
+    display: flex;
+    align-items: center;
+}
+.bt-view{
+    border: none;
+    color: rgba(0, 0, 0, 0.5);
+    background-color: transparent;
+    padding: 8px 16px;
+    text-transform: uppercase;
+    font-style: italic;
+    font-size: 14px;
+    border-radius: 50px;
+    border: 1px rgb(0, 0, 0, 0.3) solid;
+    transition: 0.3s;
+}
+.bt-view:hover{
+    color: rgb(255, 255, 255);
+    border-color: rgb(180, 0, 0);
+    background-color: rgb(190, 0, 0);
+}
+.bt-view:active{
+    background-color: rgb(86, 0, 0);
+}
+
+
 @media screen and (max-width:1200px) {
     .title{
         top: 4rem;
@@ -508,6 +661,9 @@ video{
     }
     .cheer__colum__one h3{
         font-size: 16px;
+    }
+    .title3__content h1{
+        font-size: 26px;
     }
 }
 @media screen and (max-width:890px) {
@@ -566,6 +722,9 @@ video{
         font-size: 5rem;
         line-height: 5rem;
     }
+    .title3__content h1{
+        letter-spacing: 5px;
+    }
 }
 @media screen and (max-width:580px) {
     .title{
@@ -596,9 +755,9 @@ video{
     #colum{
         flex-direction: column;
     }
-    /* .overlayimg img{
-        min-height: 289px;
-    } */
+    .title3__content h1{
+        letter-spacing: 3px;
+    }
 }
 @media screen and (max-width:480px) {
     .title{

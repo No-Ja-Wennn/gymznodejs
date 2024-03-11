@@ -3,124 +3,70 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Vòng quay may mắn</title>
-    <style>
-        #wheel {
-            width: 200px;
-            height: 200px;
-            background-color: #f00;
-            border-radius: 50%;
-            position: relative;
-            overflow: hidden;
-            cursor: pointer;
-            transition: transform 3s ease-out;
-        }
-
-        #arrow {
-            width: 10px;
-            height: 100px;
-            background-color: #fff;
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%) rotate(0deg);
-            transform-origin: 50% 100%;
-            cursor: pointer;
-        }
-
-        #prizeForm {
-            display: none;
-            max-width: 400px;
-            margin: 20px auto;
-        }
-    </style>
+    <title>Document</title>
+    <link
+        rel="stylesheet"
+        type="text/css"
+        href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css"
+      />
 </head>
 <body>
 
-<div id="wheel" onclick="spinWheel()">
-    <div id="arrow"></div>
-</div>
+    <div class="image__slider">
+        <div class="image__item">
+            <div class="image">
+                <img src="/img/personal-trainer/hlv/quyen.png" alt="">
+            </div>
+            <h3>
+                your title
+            </h3>
+        </div>
+        <div class="image__item">
+            <div class="image">
+                <img src="/img/personal-trainer/hlv/tien.png" alt="">
+            </div>
+            <h3>
+                your title
+            </h3>
+        </div>
+        <div class="image__item">
+            <div class="image">
+                <img src="/img/personal-trainer/hlv/tu.png" alt="">
+            </div>
+            <h3>
+                your title
+            </h3>
+        </div>
+        <div class="image__item">
+            <div class="image">
+                <img src="/img/personal-trainer/hlv/truong.png" alt="">
+            </div>
+            <h3>
+                your title
+            </h3>
+        </div>
+        <div class="image__item">
+            <div class="image">
+                <img src="/img/personal-trainer/hlv/van.png" alt="">
+            </div>
+            <h3>
+                your title
+            </h3>
+        </div>
+    </div>
 
-<div id="prizeForm">
-    <form onsubmit="submitForm(event)">
-        <label for="name">Tên:</label>
-        <input type="text" id="name" name="name" required>
-
-        <label for="phone">Số điện thoại:</label>
-        <input type="tel" id="phone" name="phone" required>
-
-        <label for="email">Email:</label>
-        <input type="email" id="email" name="email" required>
-
-        <button type="submit">Gửi thông tin</button>
-    </form>
-</div>
-
-<script>
-    var rotating = false;
-    var spinCount = 0;
-
-    function spinWheel() {
-        if (!rotating && spinCount < 1) {
-            rotating = true;
-
-            // Random số góc quay từ 0 đến 360 độ cho 5 phần thưởng
-            var randomRotation = Math.floor(Math.random() * 360);
-
-            // Áp dụng transform để xoay vòng quay
-            document.getElementById('wheel').style.transform = 'rotate(' + (randomRotation + 3600) + 'deg)'; // 10 vòng quay
-
-            // Đặt timeout để chờ hết thời gian quay (3 giây) trước khi mở khóa lại
-            setTimeout(function () {
-                rotating = false;
-                spinCount++;
-
-                // Hiển thị thông báo và form nếu trúng thưởng
-                if (isWinner(randomRotation)) {
-                    showPrizeForm();
-                } else {
-                    alert("Chúc mừng! Bạn đã quay một lần!");
-                }
-            }, 3000);
-        } else if (spinCount >= 1) {
-            alert("Bạn đã hết lượt quay!");
-        }
-    }
-
-    function isWinner(rotation) {
-        // Chỉ định khoảng góc cho từng phần thưởng
-        var prizeRanges = [
-            { min: 0, max: 72 },
-            { min: 72, max: 144 },
-            { min: 144, max: 216 },
-            { min: 216, max: 288 },
-            { min: 288, max: 360 }
-        ];
-
-        // Kiểm tra xem góc quay có nằm trong khoảng của phần thưởng nào không
-        for (var i = 0; i < prizeRanges.length; i++) {
-            if (rotation >= prizeRanges[i].min && rotation < prizeRanges[i].max) {
-                return true;
-            }
-        }
-        return false;
-    }
-
-    function showPrizeForm() {
-        document.getElementById('prizeForm').style.display = 'block';
-    }
-
-    function submitForm(event) {
-        event.preventDefault();
-        var name = document.getElementById('name').value;
-        var phone = document.getElementById('phone').value;
-        var email = document.getElementById('email').value;
-
-        // Thực hiện xử lý thông tin như gửi đến server, lưu trữ, ...
-        // Ở đây chỉ là hiển thị thông báo, bạn có thể thay đổi thành hành động mong muốn.
-        alert("Thông tin đã được gửi:\nTên: " + name + "\nSố điện thoại: " + phone + "\nEmail: " + email);
-    }
-</script>
-
+    <script
+      type="text/javascript"
+      src="https://code.jquery.com/jquery-1.11.0.min.js"
+    ></script>
+    <script
+      type="text/javascript"
+      src="https://code.jquery.com/jquery-migrate-1.2.1.min.js"
+    ></script>
+    <script
+      type="text/javascript"
+      src="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"
+    ></script>
+    <script src="/app.js"></script>
 </body>
 </html>
