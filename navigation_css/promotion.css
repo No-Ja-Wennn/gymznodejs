@@ -633,15 +633,14 @@ body{
 }
 
 .name__page a m {
-    display: inline-flex;
-    position: relative;
+    opacity: 1;
 }
 
 .name__page i {
     scale: 0.8;
     color: #1E90FF;
-    position: absolute;
-    top: -21px;
+    /* position: absolute; */
+    /* top: -21px; */
 }
 
 .avatar__img img {

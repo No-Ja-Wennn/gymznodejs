@@ -89,12 +89,16 @@
 }
 
 .name__page {
+    display: flex;
+    flex-direction: column;
     position: absolute;
     margin-left: 25%;
     margin-top: 15px;
 }
 
 .name__page a {
+    display: flex;
+    align-items: center;
     font-family: Arial, Helvetica, sans-serif;
     font-size: 24px;
     color: white;
@@ -113,15 +117,14 @@
 }
 
 .name__page a m {
-    display: inline-flex;
-    /* position: relative; */
+    opacity: 1;
 }
 
 .name__page i {
     scale: 0.8;
     color: #1E90FF;
-    position: absolute;
-    top: -21px;
+    /* position: absolute;
+    top: -21px; */
 }
 
 .avatar__img img {

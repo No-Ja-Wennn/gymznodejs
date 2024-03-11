@@ -65,13 +65,17 @@
 }
 
 @keyframes fadeOut {
-    from {
+    0% {
         top: 50%;
         opacity: 0;
         scale: 0.8;
     }
-
-    to {
+    50%{
+        top: 90%;
+        opacity: 0;
+        scale: 0.9;
+    }
+    100% {
         top: 100%;
         opacity: 1;
         scale: 1;
@@ -141,14 +145,14 @@
     100% {
         opacity: 1;
         transform: translateY(0);
-        height: 240px;
+        height: 180px;
     }
 }
 @keyframes fadeOutToTop {
     0% {
         opacity: 1;
         transform: translateY(0);
-        height: 240px;
+        height: 180px;
     }
     20% {
         opacity: 0.05;
