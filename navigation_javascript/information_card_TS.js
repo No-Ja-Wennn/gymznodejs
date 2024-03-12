@@ -11,16 +11,16 @@ const rulesContent = document.querySelector('.rules__group__content');
 const hideButton = document.querySelector('.button__hide__terms__of__use');
 
 // Xử lý sự kiện khi click vào 'Xem điều khoản sử dụng'
-if(viewTermsLink)
-viewTermsLink.addEventListener('click', function () {
-    rulesContent.style.display = 'flex'; // Hiển thị nội dung
-});
+if (viewTermsLink)
+    viewTermsLink.addEventListener('click', function () {
+        rulesContent.style.display = 'flex'; // Hiển thị nội dung
+    });
 
 // Xử lý sự kiện khi click vào nút 'Xác nhận'
-if(hideButton)
-hideButton.addEventListener('click', function () {
-    rulesContent.style.display = 'none'; // Ẩn nội dung
-});
+if (hideButton)
+    hideButton.addEventListener('click', function () {
+        rulesContent.style.display = 'none'; // Ẩn nội dung
+    });
 
 var nightmodebt = document.querySelector('.night__mode__button');
 var nen = document.querySelector('.container');
@@ -39,8 +39,8 @@ function nightmode(event) {
         nightmodebt.style.color = 'whitesmoke';
     }
 }
-if(nightmodebt)
-nightmodebt.addEventListener('click', nightmode);
+if (nightmodebt)
+    nightmodebt.addEventListener('click', nightmode);
 
 
 
@@ -57,9 +57,10 @@ var cancelCalendarBTN = document.getElementById("button2")
 //     }
 // })
 
-xregistration.addEventListener('click', function () {
-    formregistration.style.display = 'none';
-})
+if (xregistration)
+    xregistration.addEventListener('click', function () {
+        formregistration.style.display = 'none';
+    })
 // init
 
 
@@ -77,14 +78,14 @@ const cookie = document.cookie.split('; ').find(
     row => row.startsWith('loggedInUser'));
 
 let loggedInUser;
-if(cookie)
-for (let i = 0; i < cookie.length; i++) {
-    if (cookie[i].startsWith('loggedInUser') && cookie[i].includes('path=/')) {
-        loggedInUser = cookie[i];
-        // console.log(loggedInUser)
-        break;
+if (cookie)
+    for (let i = 0; i < cookie.length; i++) {
+        if (cookie[i].startsWith('loggedInUser') && cookie[i].includes('path=/')) {
+            loggedInUser = cookie[i];
+            // console.log(loggedInUser)
+            break;
+        }
     }
-}
 
 
 if (!accountData) {
@@ -120,14 +121,14 @@ if (!accountData) {
 }
 
 function showInformation(value, type = "card") {
-    if(nameElement && idElement){
+    if (nameElement && idElement) {
         nameElement.innerText = value.name;
         idElement.innerText = value.id;
         if (type != "account") {
             typeElement.innerText = value.cardType;
             startElement.innerText = value.dateStart;
             endElement.innerText = value.dateEnd;
-    
+
             var cardImg = document.querySelector(".card-img");
             if (value.cardType == "BEGINNER") {
                 cardImg.src = "../img/card/beginner.png";
@@ -145,28 +146,39 @@ function showInformation(value, type = "card") {
 const registerBTN = document.getElementById("button1");
 let submitRegister = document.querySelector(".button__form");
 let cube = document.querySelectorAll(".cube");
-if(cube)
-cube = Array.from(cube);
-if(registerBTN)
-registerBTN.addEventListener("click", f_mainRegister);
-if(cube)
-cube.map(value => {
-    value.addEventListener("click",()=>{
-        var modalBox = document.querySelector(".modal");
-        var bodyBox = modalBox.querySelector(".form1");
-        modalBox.style.display = "flex"
-        bodyBox.style.padding = "0"
-        bodyBox.style.boxShadow = "none";
-        bodyBox.style.backgroundColor = "transparent";
-
-        f_mainRegister();
-    } 
-    );
-})
+if (cube)
+    cube = Array.from(cube);
+if (registerBTN)
+    registerBTN.addEventListener("click", f_mainRegister);
+if (cube)
+    cube.map(value => {
+        value.addEventListener("click", () => {
+            var cookie = document.cookie.split('; ').find(row => row.startsWith('loggedInUser'));
+            var modalBox = document.querySelector(".modal");
+            var modalBody = modalBox.querySelector(".modal__body");
+            modalBox.style.display = "flex"
+            if (cookie) {
+                var bodyBox = modalBox.querySelector(".form1");
+                bodyBox.style.padding = "0"
+                bodyBox.style.boxShadow = "none";
+                bodyBox.style.display = "flex";
+                modalBody.style.display = "flex"
+                bodyBox.style.backgroundColor = "transparent";
+            } else {
+                var loginBox = document.querySelector(".login-box");
+                loginBox.style.display = "block";
+            }
+            f_mainRegister();
+        }
+        );
+    })
 
 function f_mainRegister() {
+    var cookie = document.cookie.split('; ').find(row => row.startsWith('loggedInUser'));
+
     if (cookie) {
         var test = false;
+        var loggedInUser = JSON.parse(cookie.split('=')[1]); // Lấy thông tin người dùng từ cookie và chuyển nó thành đối tượng
         calendarData.calendars.map(value => {
             if (value.date && value.id == loggedInUser.id) {
                 console.log(value.date)
@@ -179,9 +191,9 @@ function f_mainRegister() {
         }
 
         else {
-            
-        var modalBox = document.querySelector(".modal");
-        if(modalBox) modalBox.style.display = "none";
+
+            var modalBox = document.querySelector(".modal");
+            if (modalBox) modalBox.style.display = "none";
             showErrorToast("Xin lỗi", "Bạn đã đăng ký dịch vụ của chúng tôi trước đó");
         }
     } else {
@@ -190,6 +202,8 @@ function f_mainRegister() {
 }
 
 function f_submitRegister() {
+    var cookie = document.cookie.split('; ').find(row => row.startsWith('loggedInUser'));
+    var loggedInUser = JSON.parse(cookie.split('=')[1]); // Lấy thông tin người dùng từ cookie và chuyển nó thành đối tượng
     var inputs = document.getElementsByName('card');
     var card;
     for (var i = 0; i < inputs.length; i++) {
@@ -344,7 +358,7 @@ function f_submitRegister() {
             }
         })
         // successesfulll
-        
+
         showSuccessToast("Thành công", "Đăng ký lịch tập thành công, cảm ơn đã sử dụng dịch vụ");
         formregistration.style.display = 'none';
         removeChecked("card");
@@ -352,10 +366,10 @@ function f_submitRegister() {
         removeChecked("time");
         removeChecked("type");
         document.querySelector(".row__content__input").value = "";
-        
+
         var modalBox = document.querySelector(".modal");
         var bodyBox = modalBox.querySelector(".form1");
-        if(modalBox) modalBox.style.display = "none";
+        if (modalBox) modalBox.style.display = "none";
         submitRegister.removeEventListener("click", f_submitRegister);
     }
 }
@@ -455,41 +469,41 @@ function loadInforCalendar(value) {
                             </div>
 
                             `
-                            if(trainingBox)
-            trainingBox.appendChild(tableElement);
+            if (trainingBox)
+                trainingBox.appendChild(tableElement);
         }
 
 }
 const xCancel2 = document.querySelector(".x__cancel2");
-if(xCancel2)
-xCancel2.addEventListener("click", function () {
-    form2.style.display = "none";
-})
+if (xCancel2)
+    xCancel2.addEventListener("click", function () {
+        form2.style.display = "none";
+    })
 
 // huỷn lịch tập
 let submitCancel = document.querySelector(".button__form__cancel");
-if(cancelCalendarBTN)
-cancelCalendarBTN.addEventListener("click", function () {
-    if (cookie) {
-        calendarData = JSON.parse(localStorage.getItem('calendarData'));
-        var test = false;
-        calendarData.calendars.map(value => {
-            if (value.id == loggedInUser.id && value.date) {
-                test = true;
-            }
-        })
-        if (test) {
-            var form2 = document.getElementById("form2");
-            form2.style.display = "flex";
+if (cancelCalendarBTN)
+    cancelCalendarBTN.addEventListener("click", function () {
+        if (cookie) {
+            calendarData = JSON.parse(localStorage.getItem('calendarData'));
+            var test = false;
+            calendarData.calendars.map(value => {
+                if (value.id == loggedInUser.id && value.date) {
+                    test = true;
+                }
+            })
+            if (test) {
+                var form2 = document.getElementById("form2");
+                form2.style.display = "flex";
 
-            submitCancel.addEventListener("click", f_summitCancel);
+                submitCancel.addEventListener("click", f_summitCancel);
+            } else {
+                showErrorToast("Thất bại", "Bạn chưa đăng ký lịch tập")
+            }
         } else {
-            showErrorToast("Thất bại", "Bạn chưa đăng ký lịch tập")
+            showErrorToast("Thất bại", "Vui lòng đăng nhập")
         }
-    } else {
-        showErrorToast("Thất bại", "Vui lòng đăng nhập")
-    }
-})
+    })
 
 function f_summitCancel() {
 
@@ -525,7 +539,7 @@ function f_summitCancel() {
 }
 
 const btnExitCancel = document.querySelector(".button__form__exit");
-if(btnExitCancel)
-btnExitCancel.addEventListener("click", function(){
-    form2.style.display = "none";
-})
+if (btnExitCancel)
+    btnExitCancel.addEventListener("click", function () {
+        form2.style.display = "none";
+    })

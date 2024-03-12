@@ -15,6 +15,8 @@ const phoneElement = document.getElementById("phone")
 const changeSubmitElement = document.querySelector(".change__submit")
 const BMIDataArray = document.querySelectorAll(".BMI__value__row__data");
 const errorMessageOfBMIE = document.querySelector(".change__input__error");
+const modalBox = document.querySelector(".modal");
+const bmiBox = modalBox.querySelector(".BMI-form");
 
 function calculateBMI(heightCm, weight) {
     if (heightCm > 0 && weight > 0) {
@@ -100,6 +102,7 @@ function errorNotification(heightElement, weightElement, ageElement, phoneElemen
 
 
 changeSubmitElement.addEventListener("click", function () {
+    bmiBox.style.display = "block"
     var heightValue = heightElement.value;
     var weightValue = weightElement.value;
     var ageValue = ageElement.value;
