@@ -133,7 +133,7 @@ function buttonCreateAccountFunction() {
             showErrorToast("Địa chỉ email không hợp lệ", "Vui lòng nhập lại")
             return;
         }
-        if(!validatePassword(passValue)){
+        if (!validatePassword(passValue)) {
             return;
         }
         dataLogin.map((value, index) => {
@@ -291,41 +291,43 @@ let loginMenu1 = document.querySelector(".loginstatus");
 if (createAccountBox)
     var linkLogin = createAccountBox.querySelector(".link-login");
 if (loginMenu1)
-    loginMenu1.addEventListener("click", () => {
-        if (loginMenu1.innerText == "ĐĂNG NHẬP") {
-            modalElement.style.display = "flex";
-            modal__body__box.map(value => {
-                value.style.display = "none";
-            })
-            loginBox.style.display = "block";
+    loginMenu1.addEventListener("click", loginMenu);
 
-            var linkCreateAccount = loginBox.querySelector(".link-create-account");
-            linkCreateAccount.addEventListener("click", function (e) {
-                e.preventDefault();
-                loginBox.style.display = "none";
-                createAccountBox.style.display = "block";
+function loginMenu() {
+    if (loginMenu1.innerText == "ĐĂNG NHẬP") {
+        modalElement.style.display = "flex";
+        modal__body__box.map(value => {
+            value.style.display = "none";
+        })
+        loginBox.style.display = "block";
 
-            })
-            var linkForgotPass = loginBox.querySelector(".forgot--account--link");
-            linkForgotPass.addEventListener("click", function (e) {
-                e.preventDefault();
-                loginBox.style.display = "none";
-                forgotPassBox.style.display = "block";
-                var linkLogin = forgotPassBox.querySelector(".link-login");
-                linkLogin.addEventListener("click", function (e) {
-                    e.preventDefault();
-                    loginBox.style.display = "block";
-                    forgotPassBox.style.display = "none";
-                })
-            })
-            var linkLogin = createAccountBox.querySelector(".link-login");
+        var linkCreateAccount = loginBox.querySelector(".link-create-account");
+        linkCreateAccount.addEventListener("click", function (e) {
+            e.preventDefault();
+            loginBox.style.display = "none";
+            createAccountBox.style.display = "block";
+
+        })
+        var linkForgotPass = loginBox.querySelector(".forgot--account--link");
+        linkForgotPass.addEventListener("click", function (e) {
+            e.preventDefault();
+            loginBox.style.display = "none";
+            forgotPassBox.style.display = "block";
+            var linkLogin = forgotPassBox.querySelector(".link-login");
             linkLogin.addEventListener("click", function (e) {
                 e.preventDefault();
                 loginBox.style.display = "block";
-                createAccountBox.style.display = "none";
+                forgotPassBox.style.display = "none";
             })
-        }
-    })
+        })
+        var linkLogin = createAccountBox.querySelector(".link-login");
+        linkLogin.addEventListener("click", function (e) {
+            e.preventDefault();
+            loginBox.style.display = "block";
+            createAccountBox.style.display = "none";
+        })
+    }
+}
 // logout function
 function logout() {
     deleteCookie("loggedInUser");
@@ -645,4 +647,23 @@ function validatePassword(password) {
 
     // Nếu mật khẩu hợp lệ
     return true;
+}
+
+
+// change page 
+let a_linkPageInfor = document.querySelectorAll(".status__link");
+if (a_linkPageInfor) {
+    a_linkPageInfor = Array.from(a_linkPageInfor);
+    a_linkPageInfor.map(value => {
+        value.addEventListener('click', function (event) {
+            var cookie = document.cookie.split('; ').find(row => row.startsWith('loggedInUser'));
+            if (!cookie) {
+
+                event.preventDefault();
+                loginMenu();
+
+                showErrorToast("Không thể chuyển trang", "Vui lòng đăng nhập");
+            }
+        });
+    })
 }
