@@ -135,11 +135,16 @@
 
 .container__show__head__input__box {
     display: flex;
-    flex-direction: column;
+    /* flex-direction: column; */
+    align-items: center;
     position: relative;
-    width: 280px;
+    width: 320px;
 }
-
+.exit--search{
+    font-size: 16px;
+    margin-right: 8px;
+    display: none;
+}
 .container__show__message__box {
     display: flex;
 }
@@ -476,3 +481,5 @@ div.list-message-box__search > i{
 .save-btn:hover {
     background-color: rgb(103, 209, 174);
 }
+
+

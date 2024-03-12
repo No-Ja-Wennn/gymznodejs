@@ -640,11 +640,24 @@ function f_findBTNCard() {
     myData = JSON.parse(localStorage.getItem('cardData'));
     dataArray = myData.cards;
     const tableShowElement = cardForm.querySelector(".table__show");
-
+    console.log(selectPackage)
     if (inputID != "" || selectPackage != "" || inputStart != "" || inputEnd != "") {
         tableShowElement.style.display = "none";
         const tableBox = cardForm.querySelector(".container__show__card__content");
         // tableBox.innerHTML = "";
+
+        // Lấy tất cả các phần tử có class là 'table__show'
+        let elements = cardForm.getElementsByClassName('table__show');
+
+        // Duyệt qua từng phần tử
+        for (let i = elements.length - 1; i >= 0; i--) {
+            // Kiểm tra nếu phần tử không có class 'table__main'
+            if (!elements[i].classList.contains('table__show__main')) {
+                // Xóa phần tử khỏi DOM
+                elements[i].parentNode.removeChild(elements[i]);
+            }
+        }
+
         var tableCreate = document.createElement("table");
         tableCreate.className = "table__show";
         var trCreate = document.createElement("tr");
@@ -702,12 +715,31 @@ function f_findBTNCard() {
                 </td>
             `
                 tableCreate.appendChild(trCreate);
-                findBTNCard.removeEventListener("click", f_findBTNCard);
 
             }
         });
         tableBox.appendChild(tableCreate);
     }
+    // hide exit btn
+    var exitSearch = cardForm.querySelector(".exit--search");
+    exitSearch.style.display = "block";
+    exitSearch.addEventListener("click", function () {
+        showAccount();
+        exitSearch.style.display = "none";
+        //
+        var inputFindID = cardForm.querySelector(".show__input__id");
+        inputFindID.value = "";
+
+        // 
+        var suggestBox = cardForm.querySelector(".show__find__id__box");
+        suggestBox.innerHTML = ""
+
+        var a_table = cardForm.querySelectorAll(".table__show");
+        a_table = Array.from(a_table);
+        a_table.map(value => { value.style.display = "none" })
+        const tableMain = cardForm.querySelector(".table__show__main");
+        tableMain.style.display = "table";
+    });
 }
 
 function addCard() {
@@ -1200,7 +1232,7 @@ function findByIDAccount(thisElement) {
             if (k > 10) return;
             if (value.id.toLowerCase().includes(thisElement.value.toLowerCase())) {
                 k++;
-                var spanE = document.createElement("show__find_id");
+                var spanE = document.createElement("span");
                 spanE.className = "show__find_id";
                 spanE.innerText = value.id;
                 const inputFindID = document.querySelector(".show__input__id");
@@ -1268,7 +1300,7 @@ function showAccount() {
     findBTN.addEventListener("click", () => {
         var inputID = accountForm.querySelector(".show__input__id").value.trim();
         const findBox = document.querySelector(".show__find__id__box");
-        findBox.innerText = ""
+        findBox.innerText = "";
         // var selectPackage = accountForm.querySelector(".show__input__package").value.trim();
         // var inputStart = accountForm.getElementById("input-date-start").value.trim()
         // var inputEnd = accountForm.getElementById("input-date-end").value.trim();
@@ -1280,7 +1312,19 @@ function showAccount() {
         if (inputID != "") {
             tableShowElement.style.display = "none";
             const tableBox = accountForm.querySelector(".container__show__content");
-            // tableBox.innerHTML = "";
+
+            // Lấy tất cả các phần tử có class là 'table__show'
+            let elements = accountForm.getElementsByClassName('table__show');
+
+            // Duyệt qua từng phần tử
+            for (let i = elements.length - 1; i >= 0; i--) {
+                // Kiểm tra nếu phần tử không có class 'table__main'
+                if (!elements[i].classList.contains('table__show__main')) {
+                    // Xóa phần tử khỏi DOM
+                    elements[i].parentNode.removeChild(elements[i]);
+                }
+            }
+
             var tableCreate = document.createElement("table");
             tableCreate.className = "table__show";
             var trCreate = document.createElement("tr");
@@ -1322,6 +1366,27 @@ function showAccount() {
             });
             tableBox.appendChild(tableCreate);
         }
+        // hide exit btn
+        var exitSearch = accountForm.querySelector(".exit--search");
+        exitSearch.style.display = "block";
+        exitSearch.addEventListener("click", function () {
+            showAccount();
+            exitSearch.style.display = "none";
+
+            var inputFindID = accountForm.querySelector(".show__input__id");
+            inputFindID.value = "";
+                    // 
+        var suggestBox = accountForm.querySelector(".show__find__id__box");
+        suggestBox.innerHTML = ""
+
+            var a_table = accountForm.querySelectorAll(".table__show");
+            a_table = Array.from(a_table);
+            console.log(a_table)
+            a_table.map(value => { value.style.display = "none" })
+            const tableMain = accountForm.querySelector(".table__show__main");
+            tableMain.style.display = "table";
+            console.log(tableMain)
+        });
     })
 }
 
@@ -1715,6 +1780,19 @@ function showCalendar() {
             tableShowElement.style.display = "none";
             const tableBox = calendarForm.querySelector(".container__show__content");
             // tableBox.innerHTML = "";
+            
+            // Lấy tất cả các phần tử có class là 'table__show'
+            let elements = calendarForm.getElementsByClassName('table__show');
+
+            // Duyệt qua từng phần tử
+            for (let i = elements.length - 1; i >= 0; i--) {
+                // Kiểm tra nếu phần tử không có class 'table__main'
+                if (!elements[i].classList.contains('table__show__main')) {
+                    // Xóa phần tử khỏi DOM
+                    elements[i].parentNode.removeChild(elements[i]);
+                }
+            }
+
             var tableCreate = document.createElement("table");
             tableCreate.className = "table__show";
             var trCreate = document.createElement("tr");
@@ -1765,6 +1843,29 @@ function showCalendar() {
             });
             tableBox.appendChild(tableCreate);
         }
+        // hide exit btn
+        var exitSearch = calendarForm.querySelector(".exit--search");
+        console.log(exitSearch)
+        exitSearch.style.display = "block";
+        exitSearch.addEventListener("click", function () {
+            showAccount();
+            exitSearch.style.display = "none";
+
+            var inputFindID = calendarForm.querySelector(".show__input__id");
+            inputFindID.value = "";
+
+                    // 
+        var suggestBox = calendarForm.querySelector(".show__find__id__box");
+        suggestBox.innerHTML = ""
+
+            var a_table = calendarForm.querySelectorAll(".table__show");
+            a_table = Array.from(a_table);
+            console.log(a_table)
+            a_table.map(value => { value.style.display = "none" })
+            const tableMain = calendarForm.querySelector(".table__show__main");
+            tableMain.style.display = "table";
+            console.log(tableMain)
+        });
     })
 
 }
