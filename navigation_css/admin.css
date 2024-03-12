@@ -47,6 +47,10 @@
     margin-bottom: 40px;
 }
 
+.container__bar__logout .container__bar__item{
+    display: none;
+}
+
 .container__bar__item--active {
     border-right: 4px solid rgb(22, 110, 252);
     border-top-right-radius: 4px;

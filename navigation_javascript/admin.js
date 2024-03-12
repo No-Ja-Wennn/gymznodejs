@@ -102,11 +102,10 @@ const accountForm = document.querySelector(".container__show__account")
 const cardForm = document.querySelector(".container__show__card")
 const calendarForm = document.querySelector(".container__show__calendar")
 
-messageForm.style.display = "block";
+messageForm.style.display = "none";
 accountForm.style.display = "none";
 cardForm.style.display = "none";
 calendarForm.style.display = "none";
-
 
 const jsonPathCard = '../data/carddata.json';
 const jsonPathCalendar = '../data/calendarData.json';
@@ -116,57 +115,140 @@ let activeOption = "";
 let activeForm = "";
 let doingForm = "";
 
-var itemsBox = document.querySelectorAll('.container__bar__item');
+// login admin
+const modalBox = document.querySelector(".modal");
+const modalOverLay = modalBox.querySelector(".modal-overlay");
+const loginBox = modalBox.querySelector(".login-box");
 
-// li loop
-for (var i = 0; i < itemsBox.length; i++) {
-    itemsBox[i].addEventListener('click', function () {
-        for (var j = 0; j < itemsBox.length; j++) {
-            itemsBox[j].classList.remove('container__bar__item--active');
-        }
-        this.classList.add('container__bar__item--active');
-    });
+const logoutBox = document.querySelector(".container__bar__logout");
+const logoutBTN = logoutBox.querySelector(".container__bar__item");
+
+var cookie = document.cookie.split('; ').find(row => row.startsWith('loginAdmin'));
+if (cookie) {
+    var loginAdmin = JSON.parse(cookie.split('=')[1]);
+    if (loginAdmin.name == "admin123" && loginAdmin.pass == "admin@123") {
+        activeLogin();
+        var nameAdminElement = document.querySelector(".container__bar__item__name");
+        nameAdminElement.innerText = loginAdmin.name;
+        logoutBTN.style.display = "flex";
+    }
+} else {
+    modalBox.style.display = "flex";
+    modalOverLay.style.display = "flex";
+    loginBox.style.display = "block";
+    var loginBTN = document.getElementById("login-btn");
+    loginBTN.addEventListener("click", f_login);
 }
 
-messageFormBTN.addEventListener("click", function () {
+const barAvt = document.querySelector(".container__bar__item--avt");
+barAvt.addEventListener("click", function () {
+    var test = false;
+    var cookie = document.cookie.split('; ').find(row => row.startsWith('loginAdmin'));
+    if (cookie) {
+        var loginAdmin = JSON.parse(cookie.split('=')[1]);
+        if (loginAdmin.name == "admin123" && loginAdmin.pass == "admin@123") {
+            test = true;
+        }
+    }
+    if (!test) {
+        modalBox.style.display = "flex";
+        modalOverLay.style.display = "flex";
+        loginBox.style.display = "block";
+        var loginBTN = document.getElementById("login-btn");
+        loginBTN.addEventListener("click", f_login);
+    }
+})
+function f_login() {
+
+    var nameInput = loginBox.querySelector(".login-email");
+    var passInput = loginBox.querySelector(".login-pass");
+    var nameValue = nameInput.value;
+    var passValue = passInput.value;
+    if (!nameValue) {
+        showErrorToast("Vui lòng điền tên đăng nhập");
+    } else if (!passValue) {
+        showErrorToast("Vui lòng nhập mật khẩu");
+    } else {
+        if (nameValue == "admin123" && passValue == "admin@123") {
+            var data = {
+                name: "admin123",
+                pass: "admin@123"
+            }
+            modalBox.style.display = "none";
+            modalOverLay.style.display = "none";
+            loginBox.style.display = "none";
+            activeLogin();
+            var date = new Date();
+            date.setTime(date.getTime() + (3 * 24 * 60 * 60 * 1000)); // Set expires to 3 days from now
+            var expires = "; expires=" + date.toUTCString();
+            document.cookie = "loginAdmin=" + JSON.stringify(data) + expires;
+            logoutBTN.style.display = "flex";
+            var nameAdminElement = document.querySelector(".container__bar__item__name");
+            nameAdminElement.innerText = nameValue;
+            showSuccessToast("Đăng nhập thành công")
+        } else {
+            showErrorToast("Tài khoản không tồn tại");
+        }
+    }
+}
+
+logoutBTN.addEventListener("click", f_logout);
+function f_logout() {
+    document.cookie = "loginAdmin" + "=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
+    document.cookie = "loginAdmin" + "=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/navigation;";
+
+    messageForm.style.display = "none";
+    accountForm.style.display = "none";
+    cardForm.style.display = "none";
+    calendarForm.style.display = "none";
+
+    messageFormBTN.removeEventListener("click", f_hideMessageForm);
+
+    // accountFormBTN
+    accountFormBTN.removeEventListener("click", f_hideAccountForm);
+
+    // cardFormBTN
+    cardFormBTN.removeEventListener("click", f_hideCardForm);
+
+    // calendarFormBTN
+    calendarFormBTN.removeEventListener("click", f_hideCalendarForm);
+
+    var nameAdminElement = document.querySelector(".container__bar__item__name");
+    nameAdminElement.innerText = "....";
+    showSuccessToast("Đã đăng xuất");
+}
+
+function activeLogin() {
+
+    var itemsBox = document.querySelectorAll('.container__bar__item');
+    // li loop
+    for (var i = 0; i < itemsBox.length; i++) {
+        itemsBox[i].addEventListener('click', function () {
+            for (var j = 0; j < itemsBox.length; j++) {
+                itemsBox[j].classList.remove('container__bar__item--active');
+            }
+            this.classList.add('container__bar__item--active');
+        });
+    }
     messageForm.style.display = "block";
     accountForm.style.display = "none";
     cardForm.style.display = "none";
     calendarForm.style.display = "none";
-    showMessage();
-    saveAciveForm("message")
-})
 
-// accountFormBTN
-accountFormBTN.addEventListener("click", function () {
-    messageForm.style.display = "none";
-    accountForm.style.display = "block";
-    cardForm.style.display = "none";
-    calendarForm.style.display = "none";
-    showAccount();
-    saveAciveForm("account")
-})
 
-// cardFormBTN
-cardFormBTN.addEventListener("click", function () {
-    messageForm.style.display = "none";
-    accountForm.style.display = "none";
-    cardForm.style.display = "block";
-    calendarForm.style.display = "none";
-    showCard()
-    saveAciveForm("card")
-})
+    messageFormBTN.addEventListener("click", f_hideMessageForm);
 
-// calendarFormBTN
-calendarFormBTN.addEventListener("click", function () {
-    messageForm.style.display = "none";
-    accountForm.style.display = "none";
-    cardForm.style.display = "none";
-    calendarForm.style.display = "block";
-    showCalendar()
-    saveAciveForm("calendar")
-})
+    // accountFormBTN
+    accountFormBTN.addEventListener("click", f_hideAccountForm);
 
+    // cardFormBTN
+    cardFormBTN.addEventListener("click", f_hideCardForm);
+
+    // calendarFormBTN
+    calendarFormBTN.addEventListener("click", f_hideCalendarForm);
+
+
+}
 
 // LOAD
 function saveAciveForm(value) {
@@ -175,6 +257,41 @@ function saveAciveForm(value) {
     date.setTime(date.getTime() + (3 * 24 * 60 * 60 * 1000)); // Set expires to 3 days from now
     var expires = "; expires=" + date.toUTCString();
     document.cookie = "activeForm=" + JSON.stringify(value) + expires;
+}
+function f_hideMessageForm() {
+    messageForm.style.display = "block";
+    accountForm.style.display = "none";
+    cardForm.style.display = "none";
+    calendarForm.style.display = "none";
+    showMessage();
+    saveAciveForm("message")
+}
+
+function f_hideAccountForm() {
+    messageForm.style.display = "none";
+    accountForm.style.display = "block";
+    cardForm.style.display = "none";
+    calendarForm.style.display = "none";
+    showAccount();
+    saveAciveForm("account")
+}
+
+function f_hideCardForm() {
+    messageForm.style.display = "none";
+    accountForm.style.display = "none";
+    cardForm.style.display = "block";
+    calendarForm.style.display = "none";
+    showCard()
+    saveAciveForm("card")
+}
+
+function f_hideCalendarForm() {
+    messageForm.style.display = "none";
+    accountForm.style.display = "none";
+    cardForm.style.display = "none";
+    calendarForm.style.display = "block";
+    showCalendar()
+    saveAciveForm("calendar")
 }
 
 function loadMessage() {
@@ -1375,9 +1492,9 @@ function showAccount() {
 
             var inputFindID = accountForm.querySelector(".show__input__id");
             inputFindID.value = "";
-                    // 
-        var suggestBox = accountForm.querySelector(".show__find__id__box");
-        suggestBox.innerHTML = ""
+            // 
+            var suggestBox = accountForm.querySelector(".show__find__id__box");
+            suggestBox.innerHTML = ""
 
             var a_table = accountForm.querySelectorAll(".table__show");
             a_table = Array.from(a_table);
@@ -1780,7 +1897,7 @@ function showCalendar() {
             tableShowElement.style.display = "none";
             const tableBox = calendarForm.querySelector(".container__show__content");
             // tableBox.innerHTML = "";
-            
+
             // Lấy tất cả các phần tử có class là 'table__show'
             let elements = calendarForm.getElementsByClassName('table__show');
 
@@ -1854,9 +1971,9 @@ function showCalendar() {
             var inputFindID = calendarForm.querySelector(".show__input__id");
             inputFindID.value = "";
 
-                    // 
-        var suggestBox = calendarForm.querySelector(".show__find__id__box");
-        suggestBox.innerHTML = ""
+            // 
+            var suggestBox = calendarForm.querySelector(".show__find__id__box");
+            suggestBox.innerHTML = ""
 
             var a_table = calendarForm.querySelectorAll(".table__show");
             a_table = Array.from(a_table);
