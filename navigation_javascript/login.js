@@ -76,11 +76,12 @@ function buttonLoginFunction() {
                 inputLoginEmail.value = "";
                 inputLoginPass.value = "";
                 loginMenu1.innerText = value.name;
+                if(logoutMobile)
                 logoutMobile.style.display = "flex";
                 showSuccessToast("Đăng nhập thành công", "Chào mừng bạn đã tới với dịch vụ của chúng tôi")
                 test = true;
                 if (activePage == "card")
-                    showCard();
+                    showCard();                
             }
         })
         if (!test) {
@@ -92,8 +93,9 @@ function buttonLoginFunction() {
 }
 function deleteCookie(cname) {
     document.cookie = cname + "=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
-    // document.cookie = cname + "=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/navigation;";
+    document.cookie = cname + "=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/navigation;";
 }
+
 // is email
 function isValidEmail(email) {
     const regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
@@ -286,12 +288,29 @@ function logout() {
     accountName.innerText = "USERNAME";
     accountCode.innerText = "GYMZ001";
     loginMenu1.innerText = "ĐĂNG NHẬP";
+    if(logoutMobile)
     logoutMobile.style.display = "none";
     showSuccessToast("Đã đăng xuất", "");
+    // logoutMenu1.removeEventListener("click", logout)
+
+    // display none message chat
+    var chatBoxMessage = document.querySelector(".chatbox__message__list");
+    // var liElement = document.createElement("li");
+    // ulElement.className = "chatbox__message__list";
+    chatBoxMessage.innerHTML = `
+    <li class="chatbox__message__item chatbox__message__item__left">
+        <span class="chatbox__message__item__text">
+            Em chào anh/chị Em có thể giúp gì được anh chị ạ!
+        </span>
+    </li>
+    `
+    // chatBoxMessage.appendChild(ulElement)
+
 }
 let logoutMenu1 = document.querySelector(".logoutstatus");
-if (loginMenu1)
+if (loginMenu1){
     logoutMenu1.addEventListener("click", logout)
+}
 
 let logoutMobile = document.querySelector(".content__logout__btn");
 if (logoutMobile) {

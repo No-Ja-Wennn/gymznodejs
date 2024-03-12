@@ -186,6 +186,11 @@ div.list-message-box__search > i{
     text-decoration: center;
 }
 
+.message__list{
+    display: flex;
+    flex-direction: column;
+}
+
 .list-message-box__title{
     font-size: 28px;
     line-height: 30px;

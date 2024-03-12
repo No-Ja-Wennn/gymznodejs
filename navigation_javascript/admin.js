@@ -178,7 +178,7 @@ function saveAciveForm(value) {
 }
 
 function loadMessage() {
-    removeMessage()
+    removeMessage();
     //load mesage historyMessage.messages[i].id
     var historyMessage = JSON.parse(localStorage.getItem('historyMessage'));
     if (historyMessage) {
@@ -223,6 +223,11 @@ window.onload = function () {
             }
         }
     }
+    loadTaskBarMessage();
+
+}
+
+function loadTaskBarMessage() {
     //load mesage historyMessage.messages[i].id
     var historyMessage = JSON.parse(localStorage.getItem('historyMessage'));
     if (historyMessage) {
@@ -296,7 +301,9 @@ window.onload = function () {
                             localStorage.setItem('historyMessage', JSON.stringify(historyMessage));
                             // remove show
                             parentRremove.style.display = "none";
-                            activeFirstMessage();
+                            parentRremove.remove();
+
+                            // activeFirstMessage();
                             liElement.removeEventListener("click", handleClick);
                         })
                     })
@@ -309,6 +316,89 @@ window.onload = function () {
     }
 
 }
+
+function loadNewTaskBarMessage() {
+    localStorage.removeItem('userMessage');
+
+    //load mesage historyMessage.messages[i].id
+    var historyMessage = JSON.parse(localStorage.getItem('historyMessage'));
+    var loginData = JSON.parse(localStorage.getItem('loginData'));
+    if (historyMessage) {
+        var a_idUserInTaskNow = document.querySelectorAll(".message__user__msg__text");
+        a_idUserInTaskNow = Array.from(a_idUserInTaskNow);
+        var valueID = [];
+        for (var i = 0; i < a_idUserInTaskNow.length; i++) {
+            valueID.push(a_idUserInTaskNow[i].innerText);
+        }
+        for (var i = 0; i < historyMessage.messages.length; i++) {
+            if (!valueID.includes(historyMessage.messages[i].id)) {
+                for (var j = 0; j < loginData.accounts.length; j++) {
+                    if (historyMessage.messages[i].id == loginData.accounts[j].id) {
+                        var liElement = document.createElement("li");
+                        liElement.className = "message__user";
+                        liElement.innerHTML = `
+                    <div class="message__user__box">
+                        <img src="../img/services/coach/img4.jpg" alt="" class="message__user__avt">
+                        <div class="message__user__box__right">
+                            <span class="message__user__name">
+                                ${loginData.accounts[j].name}
+                            </span>
+                            <span class="message__user__msg">
+                                <span class="message__user__msg__obj">id: </span>
+                                <div class="message__user__msg__text">${historyMessage.messages[i].id}</div>
+                            </span>
+                        </div>
+                        <i class="message__user__name__options fa-solid fa-ellipsis"></i>
+                    </div>
+                    <div class="message__user__box__affter">
+                        <ul class="message__user__box__affter__list">
+                            <li class="message__user__box__affter__item">Xóa đoạn chat</li>
+                        </ul>
+                    </div>
+                    `
+                        liElement.addEventListener("click", handleClick);
+                        messageList.prepend(liElement);
+                        var iconOptionMessage = liElement.querySelector(".message__user__name__options");
+                        iconOptionMessage.addEventListener("click", function () {
+                            lastestIconOptionMessage = this
+                            var optionElement = this.parentElement.parentElement.querySelector(".message__user__box__affter");
+                            showNowRemoveElement = optionElement
+                            displayNoneAllOption();
+                            if (optionElement.style.display == "block")
+                                optionElement.style.display = "none"
+                            else
+                                optionElement.style.display = "block";
+
+                            var removeMessageElement = showNowRemoveElement.querySelector(".message__user__box__affter__item")
+                            removeMessageElement.addEventListener("click", () => {
+                                var parentRremove = removeMessageElement.parentElement.parentElement.parentElement
+                                var idMessageRemove = parentRremove.
+                                    querySelector(".message__user__msg__text").innerHTML;
+                                var a_liE = document.querySelectorAll(".message__user");
+                                a_liE = Array.from(a_liE)
+                                a_liE.map(value => { value.classList.remove("message__user--active") })
+                                // remove from database
+                                var historyMessage = JSON.parse(localStorage.getItem('historyMessage'));
+                                historyMessage.messages = historyMessage.messages.filter((value) => {
+                                    return value.id !== idMessageRemove;
+                                });
+
+                                localStorage.setItem('historyMessage', JSON.stringify(historyMessage));
+                                // remove show
+                                parentRremove.style.display = "none";
+                                parentRremove.remove();
+
+                                // activeFirstMessage();
+                                liElement.removeEventListener("click", handleClick);
+                            })
+                        })
+                    }
+                }
+            }
+        }
+    }
+}
+
 
 function activeFirstMessage() {
     var listMessageTitle = document.querySelectorAll(".message__user");
@@ -324,6 +414,10 @@ function activeFirstMessage() {
             a_liE = Array.from(a_liE)
             a_liE.map(value => { value.classList.remove("message__user--active") })
             listMessageTitle[0].classList.add("message__user--active");
+
+
+            var titleUser = document.querySelector(".chatbox__head__title");
+            titleUser.innerText = listMessageTitle[0].querySelector(".message__user__name").innerText
         }
     }
 }
@@ -336,6 +430,9 @@ function handleClick() {
     a_liE = Array.from(a_liE)
     a_liE.map(value => { value.classList.remove("message__user--active") })
     this.classList.add("message__user--active");
+
+    var titleUser = document.querySelector(".chatbox__head__title");
+    titleUser.innerText = this.querySelector(".message__user__name").innerText
 }
 
 function displayNoneAllOption() {
@@ -1006,7 +1103,7 @@ function getValueOnTrShow(trElement) {
     })
     return arrayValue;
 }
-
+let oldDataMessage = JSON.parse(localStorage.getItem('historyMessage'));
 function showMessage() {
     function sendMessage(userID, message) {
         localStorage.setItem('adminMessage', JSON.stringify({ id: userID, message }));
@@ -1032,15 +1129,10 @@ function showMessage() {
             displayBotMessage(userMessage.message)
             // Xóa tin nhắn từ người dùng sau khi đã hiển thị
             localStorage.removeItem('userMessage');
-
             chatBoxMessage.scrollTop = chatBoxMessage.scrollHeight + 100;
-            // Lưu tin nhắn vào lịch sử
-            // var historyMessage = JSON.parse(localStorage.getItem('historyMessage')) || [];
-            // historyMessage.push({ sender: 'User', message: userMessage });
-            // localStorage.setItem('historyMessage', JSON.stringify(historyMessage));
         }
+        loadNewTaskBarMessage();
     }, 1000);
-
 
     const inputBox = document.querySelector('.chatbox__bottom__input');
     const inputElement = inputBox.querySelector('textarea');
@@ -2023,13 +2115,13 @@ searchMessageInput.addEventListener("input", function () {
     let loginData = JSON.parse(localStorage.getItem('loginData'));
     var a_messengerUser = document.querySelectorAll(".message__user");
     a_messengerUser = Array.from(a_messengerUser);
-    for(var i = 0; i < a_messengerUser.length; i++){
+    for (var i = 0; i < a_messengerUser.length; i++) {
         a_messengerUser[i].style.display = "block";
 
         var nameUser = a_messengerUser[i].querySelector(".message__user__name").innerHTML;
         var idUser = a_messengerUser[i].querySelector(".message__user__msg__text").innerHTML;
-        if(!(nameUser.toLowerCase().includes(searchMessageInput.value.toLowerCase())
-        || idUser.toLowerCase().includes(searchMessageInput.value.toLowerCase()))){
+        if (!(nameUser.toLowerCase().includes(searchMessageInput.value.toLowerCase())
+            || idUser.toLowerCase().includes(searchMessageInput.value.toLowerCase()))) {
             a_messengerUser[i].style.display = "none";
             // console.log(nameUser.toLowerCase())
             // console.log(searchMessageInput.value.toLowerCase())
@@ -2037,7 +2129,7 @@ searchMessageInput.addEventListener("input", function () {
     }
 
 
-    if (searchMessageInput.value == ""){
+    if (searchMessageInput.value == "") {
 
     }
 })
@@ -2056,7 +2148,7 @@ function f_exitSearch() {
     exitSearch.style.display = "none";
     var a_messengerUser = document.querySelectorAll(".message__user");
     a_messengerUser = Array.from(a_messengerUser);
-    for(var i = 0; i < a_messengerUser.length; i++){
+    for (var i = 0; i < a_messengerUser.length; i++) {
         a_messengerUser[i].style.display = "block";
     }
     searchMessageInput.value = ""

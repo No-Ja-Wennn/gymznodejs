@@ -2,6 +2,7 @@ import { loadData } from './loadData.js';
 
 loadData();
 
+import { toast, showSuccessToast, showErrorToast } from './toast.js';
 // const stringSimilarity = require('string-similarity'); //
 var activePage = "userMessage";
 const chatBoxMessage = document.querySelector('.chatbox__message');
@@ -11,7 +12,7 @@ const inputBox = document.querySelector('.chatbox__bottom__input');
 const inputElement = inputBox.querySelector('textarea')
 const sendButton = inputBox.querySelector('i');
 
-let userActive = "other"
+let userActive = "other";
 
 window.addEventListener('load', function () {
     var cookie = document.cookie.split('; ').find(row => row.startsWith('loggedInUser'));
@@ -61,11 +62,23 @@ async function getPromiseResult(valueInput) {
 let responseMessage = false;
 sendButton.addEventListener('click', async () => { // Thêm async vào đây
     const valueInput = inputElement.value.trim();
-    if (valueInput) {
-        displayUserMessage(valueInput);
-        sendMessage(valueInput)
-        chatBoxMessage.scrollTop = chatBoxMessage.scrollHeight + 100;
-        inputElement.value = '';
+    var cookie = document.cookie.split('; ').find(row => row.startsWith('loggedInUser'));
+    if (cookie) {
+        var loggedInUser = JSON.parse(cookie.split('=')[1]); // Lấy thông tin người dùng từ cookie và chuyển nó thành đối tượng
+        if (loggedInUser) {
+            if (valueInput) {
+                displayUserMessage(valueInput);
+                sendMessage(valueInput)
+                chatBoxMessage.scrollTop = chatBoxMessage.scrollHeight + 100;
+                inputElement.value = '';
+            }
+        }
+    }else{
+        showErrorToast("Thất bại", "Vui lòng đăng nhập");
+        var modalBox = document.querySelector(".modal");
+        modalBox.style.display = "flex";
+        var loginBox = modalBox.querySelector(".login-box");
+        loginBox.style.display = "block";
     }
 });
 
@@ -143,23 +156,25 @@ function sendMessage(message) {
         var loggedInUser = JSON.parse(cookie.split('=')[1]); // Lấy thông tin người dùng từ cookie và chuyển nó thành đối tượng
         if (loggedInUser) {
             userActive = loggedInUser.id;
-        }
-    } else
-        userActive = "other"
-    localStorage.setItem('userMessage', JSON.stringify({ "id": userActive, "message": message }));
-    // Lưu tin nhắn vào lịch sử
-    var historyMessage = JSON.parse(localStorage.getItem('historyMessage')) || { "messages": [{ "id": userActive, "msg": [] }] };
-    var have = false;
-    for (var i = 0; i < historyMessage.messages.length; i++) {
-        if (historyMessage.messages[i].id == userActive) {
-            historyMessage.messages[i].msg.push({ sender: 'User', message: message });
-            have = true;
+            // Lưu tin nhắn vào lịch sử
+            var historyMessage = JSON.parse(localStorage.getItem('historyMessage'))
+            //  || { "messages": [{ "id": userActive, "msg": [] }] };
+            var have = false;
+            for (var i = 0; i < historyMessage.messages.length; i++) {
+                if (historyMessage.messages[i].id == userActive) {
+                    historyMessage.messages[i].msg.push({ sender: 'User', message: message });
+                    have = true;
+                }
+            }
+            if (!have || historyMessage.messages.length == 0) {
+                historyMessage.messages.push({ "id": userActive, "msg": [{ sender: 'User', message: message }] })
+            }
+            localStorage.setItem('historyMessage', JSON.stringify(historyMessage));
+            localStorage.setItem('userMessage', JSON.stringify({ "id": userActive, "message": message }));
         }
     }
-    if (!have) {
-        historyMessage.messages.push({ "id": userActive, "msg": [{ sender: 'Admin', message: message }] })
-    }
-    localStorage.setItem('historyMessage', JSON.stringify(historyMessage));
+
+
 }
 
 // Kiểm tra tin nhắn mới từ admin sau mỗi giây
@@ -172,4 +187,6 @@ setInterval(function () {
         localStorage.removeItem('adminMessage');
         chatBoxMessage.scrollTop = chatBoxMessage.scrollHeight + 100;
     }
+
+    // load chat
 }, 1000);

@@ -225,6 +225,7 @@ i.fa-solid.fa-caret-up{
     font-size: 15px;
 } */
 .status:hover {
+    cursor: pointer;
     color: white;
     /* border-radius: 10px; */
     border: 1px rgba(255, 255, 255, 0.2) solid;
@@ -232,7 +233,6 @@ i.fa-solid.fa-caret-up{
 
 .submenu__login:focus-within ul.submenu__login__content{
     display: flex;
-
 }
 
 .containt {
