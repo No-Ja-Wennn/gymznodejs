@@ -274,6 +274,7 @@ changeProfileE.addEventListener("click", function () {
         var editLabel = modalBox.querySelector(".edit-label");
         var changeNameBox = modalBox.querySelector(".change-name-box");
         submitForm = document.getElementById("submitChangeName")
+        if(editLabel)
         editLabel.id = 'actived-label';
         editTitle.innerText = 'Chỉnh sửa thông tin hồ sơ';
         editLabel.innerText = "Ngày sinh của bạn"
@@ -421,11 +422,13 @@ function deletePhoneInput() {
 
 // remove all click event 
 function removeAllEvent() {
-    submitForm = document.getElementById("submitChangeName")
-    submitForm.removeEventListener("click", clickHandlerName);
-    submitForm.removeEventListener("click", clickHandlerAge);
-    submitForm.removeEventListener("click", clickHandlerInfor);
-    submitForm.removeEventListener("click", clickHandlerPassword);
+    submitForm = document.getElementById("submitChangeName");
+    if(submitForm){
+        submitForm.removeEventListener("click", clickHandlerName);
+        submitForm.removeEventListener("click", clickHandlerAge);
+        submitForm.removeEventListener("click", clickHandlerInfor);
+        submitForm.removeEventListener("click", clickHandlerPassword);
+    }
 
 }
 
@@ -433,6 +436,7 @@ function removeAllEvent() {
 // EXIT BTN
 
 let submitExit = document.getElementById("submitExit");
+if(submitExit)
 submitExit.addEventListener("click", exitBTN);
 
 function exitBTN() {

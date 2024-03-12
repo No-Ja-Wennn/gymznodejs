@@ -70,7 +70,7 @@ function buttonLoginFunction() {
                 deleteCookie("loggedInUser");
                 accountName.innerText = value.name;
                 accountCode.innerText = value.id;
-                
+
                 var date = new Date();
                 date.setTime(date.getTime() + (3 * 24 * 60 * 60 * 1000)); // Set expires to 3 days from now
                 var expires = "; expires=" + date.toUTCString();
@@ -131,6 +131,9 @@ function buttonCreateAccountFunction() {
     if (emailValue && passValue && nameValue && passConfirmValue) {
         if (!isValidEmail(emailValue)) {
             showErrorToast("Địa chỉ email không hợp lệ", "Vui lòng nhập lại")
+            return;
+        }
+        if(!validatePassword(passValue)){
             return;
         }
         dataLogin.map((value, index) => {
@@ -607,3 +610,39 @@ function checkValidRegisterValue(data) {
     return true;
 }
 
+
+
+function validatePassword(password) {
+    // Kiểm tra độ dài mật khẩu
+    if (password.length < 8) {
+        showErrorToast("Mật khẩu phải có ít nhất 8 ký tự.", "Vui lòng thử lại");
+        return false;
+    }
+
+    // Kiểm tra mật khẩu có chứa chữ cái viết thường
+    if (!/[a-z]/.test(password)) {
+        showErrorToast("Mật khẩu phải có ít nhất một chữ cái viết thường.", "Vui lòng thử lại");
+        return false;
+    }
+
+    // Kiểm tra mật khẩu có chứa chữ cái viết hoa
+    if (!/[A-Z]/.test(password)) {
+        showErrorToast("Mật khẩu phải có ít nhất một chữ cái viết hoa.", "Vui lòng thử lại");
+        return false;
+    }
+
+    // Kiểm tra mật khẩu có chứa số
+    if (!/[0-9]/.test(password)) {
+        showErrorToast("Mật khẩu phải có ít nhất một số.", "Vui lòng thử lại");
+        return false;
+    }
+
+    // Kiểm tra mật khẩu có chứa ký tự đặc biệt
+    if (!/[!@#$%^&*]/.test(password)) {
+        showErrorToast("Mật khẩu phải có ít nhất một ký tự đặc biệt.", "Vui lòng thử lại");
+        return false;
+    }
+
+    // Nếu mật khẩu hợp lệ
+    return true;
+}
