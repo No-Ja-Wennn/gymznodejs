@@ -4,6 +4,10 @@ $(document).ready(function(){
         slidesToShow: 4,
         slidesToScroll: 1,
         autoplay: true,
+        autoplaySpeed: 2000,
+        draggable: false,
+        pauseOnFocus: false,
+        pauseOnHover: false,
         prevArrow:"<button type='button' class='slick-prev pull-left'><i class='fa-solid fa-chevron-left' aria-hidden='true'></i></button>",
         nextArrow:"<button type='button' class='slick-next pull-right'><i class='fa-solid fa-chevron-right'></i></button>"
       });
