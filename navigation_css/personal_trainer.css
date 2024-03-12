@@ -120,7 +120,7 @@ video{
     justify-content: space-around;
 
 }
-.container__select__colum__one h1{
+.container__select__colum__one h2{
     font-size: 36px;
     font-weight: 600;
     color: rgb(180, 0, 0);
@@ -180,7 +180,8 @@ video{
 }
 .overlayimg img{
     width: 100%;
-    position: 0 50%;
+    object-fit: cover;
+    /* position: 0 50%; */
     /* height: fit-content; */
     /* min-height: 222px; */
 }
@@ -270,14 +271,14 @@ video{
 }
 .cheer__colum__one__content{
     padding: 5%;
-    min-height: 380px;
+    min-height: 320px;
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
+    justify-content: space-around;
 }
 .title__colum__one{
     font-size: 36px;
-    color: rgb(170, 0, 0);
+    color: rgb(255, 255, 255);
     text-transform: uppercase;
     font-weight: 600; 
     font-style: italic;
@@ -285,7 +286,8 @@ video{
 .cheer__colum__one h3{
     font-size: 18px;
     font-weight: 500;
-    color: white;
+    color: rgb(255, 255, 255);
+    padding: 20px 0;
 }
 .cheer__button{
     height: 80px;
@@ -352,6 +354,7 @@ video{
 .cheer__img img{
     height: 100%;
     max-width: 100%;
+    object-fit: cover;
 }
 .form{
     max-width: 800px;
@@ -475,7 +478,7 @@ video{
     justify-content: center;
     padding: 50px 0;
     padding-top: 200px;
-    background-image: url(/img/background/x2.png);
+    background-image: url(/img/background/x1.jpg);
     background-size: cover;
     background-repeat: no-repeat;
     background-position: 0 50%;
@@ -489,7 +492,7 @@ video{
 .container3__title{
     min-height: max-content;
 }
-.title3__content h1{
+.title3__content h2{
     text-transform: uppercase;
     text-align: center;
     font-size: 36px;
@@ -662,7 +665,7 @@ video{
     .cheer__colum__one h3{
         font-size: 16px;
     }
-    .title3__content h1{
+    .title3__content h2{
         font-size: 26px;
     }
 }
@@ -722,7 +725,7 @@ video{
         font-size: 5rem;
         line-height: 5rem;
     }
-    .title3__content h1{
+    .title3__content h2{
         letter-spacing: 5px;
     }
 }
@@ -742,7 +745,7 @@ video{
     .container__select__colum__one{
         padding: 16px;
     }
-    .container__select__colum__one h1{
+    .container__select__colum__one h2{
         font-size: 26px;
         letter-spacing: 5px;
     }
@@ -755,7 +758,7 @@ video{
     #colum{
         flex-direction: column;
     }
-    .title3__content h1{
+    .title3__content h2{
         letter-spacing: 3px;
     }
 }
@@ -775,7 +778,7 @@ video{
     .container__select__colum__one{
         padding: 16px;
     }
-    .container__select__colum__one h1{
+    .container__select__colum__one h2{
         font-size: 26px;
         letter-spacing: 3px;
     }
