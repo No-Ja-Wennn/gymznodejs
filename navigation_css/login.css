@@ -224,6 +224,12 @@ input[type="date"]::-webkit-calendar-picker-indicator {
     color: #aaa;
     font-size: 14px;
 }
+.create__account__text{
+    color: #aaa;
+    font-size: 14px;
+    cursor: pointer;
+}
+
 
 .modal__body__box span.a2 {
     color: #fff;

@@ -15,9 +15,12 @@ modal__body__box.map(value => {
 let activePage;
 let accountName = document.querySelector(".account__name");
 let accountCode = document.querySelector(".account__code");
-
+const modalBox = document.querySelector(".modal");
+const modalOverLayBox = document.querySelector(".modal-overlay");
 
 const createAccountBox = document.querySelector(".create-account-box");
+const forgotPassBox = document.querySelector(".forgot-pass-box");
+const notificationBox = document.querySelector(".notification-box");
 if (createAccountBox)
     createAccountBox.style.display = "none";
 let dataLogin;
@@ -67,21 +70,26 @@ function buttonLoginFunction() {
                 deleteCookie("loggedInUser");
                 accountName.innerText = value.name;
                 accountCode.innerText = value.id;
+                
                 var date = new Date();
                 date.setTime(date.getTime() + (3 * 24 * 60 * 60 * 1000)); // Set expires to 3 days from now
                 var expires = "; expires=" + date.toUTCString();
-                document.cookie = "loggedInUser=" + JSON.stringify(value) + expires; // Lưu thông tin người dùng vào cookie
+                // Set cookie for path '/'
+                document.cookie = "loggedInUser=" + JSON.stringify(value) + expires + "; path=/";
+                // Set cookie for path '/navigation'
+                document.cookie = "loggedInUser=" + JSON.stringify(value) + expires + "; path=/navigation";// Lưu thông tin người dùng vào cookie
+
                 var modalElement = document.querySelector(".modal").style.display = "none";
                 userActive = value.id;
                 inputLoginEmail.value = "";
                 inputLoginPass.value = "";
                 loginMenu1.innerText = value.name;
-                if(logoutMobile)
-                logoutMobile.style.display = "flex";
+                if (logoutMobile)
+                    logoutMobile.style.display = "flex";
                 showSuccessToast("Đăng nhập thành công", "Chào mừng bạn đã tới với dịch vụ của chúng tôi")
                 test = true;
                 if (activePage == "card")
-                    showCard();                
+                    showCard();
             }
         })
         if (!test) {
@@ -244,10 +252,31 @@ window.onload = function () {
                 loginMenu1.innerText = loggedInUser.name;
             userActive = loggedInUser.id;
         }
-        if(logoutMobile)
-        logoutMobile.style.display = "flex";
+        if (logoutMobile)
+            logoutMobile.style.display = "flex";
     }
 }
+
+
+// submit forgot
+const submitForgotPass = document.getElementById("forgot-btn");
+if (submitForgotPass)
+    submitForgotPass.addEventListener("click", function () {
+        var valueEmail = forgotPassBox.querySelector(".login-email").value;
+        if (valueEmail) {
+            if (isValidEmail(valueEmail)) {
+                forgotPassBox.style.display = "none";
+                // notificationBox.style.display = "block";
+                modalBox.style.display = "none";
+                modalOverLayBox.style.display = "none";
+                showSuccessToast("Đã gửi yêu cầu lấy lại mật khẩu", "Hệ thống sẽ gửi link thay đổi mật khẩu tới email của bạn")
+            } else {
+                showErrorToast("Thất bại", "Địa chỉ email không hợp lệ");
+            }
+        } else {
+            showErrorToast("Thất bại", "Vui lòng nhập email");
+        }
+    })
 
 
 let modalOverLay = document.querySelector('.modal-overlay');
@@ -274,6 +303,18 @@ if (loginMenu1)
                 createAccountBox.style.display = "block";
 
             })
+            var linkForgotPass = loginBox.querySelector(".forgot--account--link");
+            linkForgotPass.addEventListener("click", function (e) {
+                e.preventDefault();
+                loginBox.style.display = "none";
+                forgotPassBox.style.display = "block";
+                var linkLogin = forgotPassBox.querySelector(".link-login");
+                linkLogin.addEventListener("click", function (e) {
+                    e.preventDefault();
+                    loginBox.style.display = "block";
+                    forgotPassBox.style.display = "none";
+                })
+            })
             var linkLogin = createAccountBox.querySelector(".link-login");
             linkLogin.addEventListener("click", function (e) {
                 e.preventDefault();
@@ -288,8 +329,8 @@ function logout() {
     accountName.innerText = "USERNAME";
     accountCode.innerText = "GYMZ001";
     loginMenu1.innerText = "ĐĂNG NHẬP";
-    if(logoutMobile)
-    logoutMobile.style.display = "none";
+    if (logoutMobile)
+        logoutMobile.style.display = "none";
     showSuccessToast("Đã đăng xuất", "");
     // logoutMenu1.removeEventListener("click", logout)
 
@@ -308,7 +349,7 @@ function logout() {
 
 }
 let logoutMenu1 = document.querySelector(".logoutstatus");
-if (loginMenu1){
+if (loginMenu1) {
     logoutMenu1.addEventListener("click", logout)
 }
 
@@ -341,6 +382,12 @@ function loginMobile() {
             loginBox.style.display = "none";
             createAccountBox.style.display = "block";
 
+        })
+        var linkForgotPass = loginBox.querySelector(".forgot--account--link");
+        linkForgotPass.addEventListener("click", function (e) {
+            e.preventDefault();
+            loginBox.style.display = "none";
+            forgotPassBox.style.display = "block";
         })
         var linkLogin = createAccountBox.querySelector(".link-login");
         linkLogin.addEventListener("click", function (e) {
