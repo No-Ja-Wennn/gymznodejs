@@ -1,7 +1,7 @@
 .container__service{
     /* min-height: calc(100vh - 68px); */
     height: auto;
-    margin-top: 22px;
+    padding-top: 22px;
     background: linear-gradient(#212121d1, #212121d1),
     url("https://img4.thuthuatphanmem.vn/uploads/2021/01/07/background-phong-tap-gym_035832535.jpg");
     /* background-color:white; */

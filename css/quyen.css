@@ -1,25 +1,33 @@
 .container__home {
-    z-index: 5;
+    width: 100%;
+    height: calc(100vh - 68px);
+    z-index: 1;
     display: flex;
     justify-content: flex-end;
+    align-items: center;
     background-image: url(../img/background/back_gr_home.png);
     background-repeat: no-repeat;
-    background-position: right;
+    background-position: left;
     background-size: cover;
     position: relative;
-    border-bottom: .1px solid rgba(124, 136, 136, 0.4);
-    box-shadow: 0px 26px 26px 22px rgba(59, 59, 59, 1);
-    height: 100vh;
+    /* border-bottom: .1px solid rgba(124, 136, 136, 0.4); */
+    /* box-shadow: 0px 26px 26px 22px rgba(59, 59, 59, 1); */
+    /* height: 100vh; */
+    overflow: hidden;
 }
 
 .home__about {
     display: flex;
     flex-direction: column;
-    height: 400px;
+    justify-content: center;
+    height: 100%;
+    /* width: 40%; */
+    background-color: rgba(0, 0, 0, 0.3);
+    box-shadow: 0 0 100px 100px rgba(0, 0, 0, 0.3);
     /* max-width: 180px; */
-    margin-top: 26vh;
+    /* margin-top: 26vh;
     margin-right: 4px;
-    margin-left: 12px;
+    margin-left: 12px; */
 }
 @media (max-width: 2000px) {
     
@@ -44,11 +52,11 @@
 
 @media (max-width: 480px) {
     .container__home {
-        background-position: calc(100% + 670px) center;
+        background-position: calc(100% + 600px) center;
         justify-content: flex-end;
     }
     .home__about {
-        margin-right: 4%;
+        margin-left: 4%;
     }
     .home__about__title{
         font-size: 3.6rem;
@@ -60,12 +68,42 @@
 
 @media (max-width: 360px) {
     .container__home {
-        background-position: calc(100% + 670px) center;
+        background-position: calc(100% + 500px) center;
         justify-content: flex-end;
     }
-
 }
-
+@media (max-width: 320px) {
+    .container__home {
+        background-position: calc(100% + 320px) center;
+        justify-content: flex-end;
+    }
+    .home__about {
+        margin: 0;
+        padding: 0;
+        margin-left: 10px;
+    }
+    .home__about__head__text{
+        font-size: 10px;
+    }
+    .home__about__title{
+        font-size: 28px;
+    }
+    .home__about__text{
+        font-size: 14px !important;
+    }
+    .home__about__btn{
+        margin-top: 40px;
+    }
+    .home__about__btn::before{
+        height: 40px !important;
+    }
+    .home__about__btn__child{
+        height: 40px !important;
+    }
+    .home__about__btn__child__link{
+        font-size: 14px;
+    }
+}
 
 .home__about__head{
     display: flex;
@@ -82,9 +120,10 @@
 
 .home__about__head__text{
     margin-top: 1px;
-    padding: 4px 32px;
+    padding: 4px 48px;
     width: max-content;
     font-family: montserrat;
+    font-size: 12px;
 }
 
 .home__about__title{
@@ -102,9 +141,10 @@
 }
 
 .home__about__text{
-    font-size: 1.2rem;
+    font-size: 16px;
     max-width: 360px;
     font-family: montserrat;
+    padding: 0 5% 0 0;
 }
 
 .home__about__btn{
