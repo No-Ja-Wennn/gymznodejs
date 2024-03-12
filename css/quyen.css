@@ -96,8 +96,9 @@
     font-family: 'Roboto';
     color: white;
     line-height: 1.3;
-    text-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
-    font-family: montserrat;
+    text-shadow: 0 0 15px rgba(0, 0, 0, .5);
+    font-family: Raleway;
+    letter-spacing: 1px;
 }
 
 .home__about__text{
