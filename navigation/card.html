@@ -493,10 +493,11 @@
                         Đăng nhập
                     </button>
                 </div>
-                <p>Chưa có tài khoản? <span class="a2 link-create-account">Đăng ký!</span></p>
+                <p class="create__account__text">Chưa có tài khoản? <span class="a2 link-create-account">Đăng ký!</span></p>
+                <span class="forgot--account--link create__account__text a2">Quên mật khẩu?</span>
             </div>
             <div class="modal__body__box create-account-box">
-                <p>Đăng ký tài khoản</p>
+                <p>Đăng nhập tài khoản</p>
                 <div>
                     <div class="user-box">
                         <input class="login-name" required="" name="" type="text">
@@ -524,81 +525,86 @@
                 </div>
                 <p>Đã có tài khoản? <span class="a2 link-login">Đăng nhập!</span></p>
             </div>
-
-            <div class="modal__body__box register-cart">
+            <div class="modal__body__box forgot-pass-box">
+                <p>Quên mật khẩu</p>
                 <div>
-                    <div class="user-box createBox">
-                        <input class="phoneNumber" required="" name="" type="text">
-                        <label>Số điện thoại</label>
-                    </div>
                     <div class="user-box">
-                        <input class="date-of-birth" required="" name="" type="date">
-                        <label id="actived-label">Ngày sinh</label>
+                        <input class="login-email" required="" name="" type="text">
+                        <label>Email</label>
+                    </div>
+                    <button id="forgot-btn" type="button">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                        Gửi yêu cầu
+                    </button>
+                </div>
+                <p>Đã có tài khoản? <span class="a2 link-login">Đăng nhập!</span></p>
+            </div>
+
+            
+            <div class="modal__body__box register-cart">
+                <!-- <p>Đăng nhập tài khoản</p> -->
+                <div>
+                    <div class="user-box">
+                        <input class="login-email" required="" name="" type="text">
+                        <label>Họ và tên</label>
+                    </div>
+                    <div class="user-box createBox">
+                        <input class="login-pass" required="" name="" type="password">
+                        <label>Số điện thoại</label>
                     </div>
                     <div class="box_wrap">
                         <div class="radio-container">
                             <span class="tyoe_package">Gói tập</span>
                             <div class="radio-wrapper">
                                 <label class="radio-button">
-                                    <input id="option1" class="radio-option" name="radio-group" type="radio" checked>
+                                    <input id="option1" name="radio-group" type="radio">
                                     <span class="radio-checkmark"></span>
                                     <span class="radio-label">BEGINNER</span>
                                 </label>
                             </div>
+
                             <div class="radio-wrapper">
                                 <label class="radio-button">
-                                    <input id="option2" class="radio-option" name="radio-group" type="radio">
+                                    <input id="option2" name="radio-group" type="radio">
                                     <span class="radio-checkmark"></span>
                                     <span class="radio-label">BASIC</span>
                                 </label>
                             </div>
+
                             <div class="radio-wrapper">
                                 <label class="radio-button">
-                                    <input id="option3" class="radio-option" name="radio-group" type="radio">
+                                    <input id="option3" name="radio-group" type="radio">
                                     <span class="radio-checkmark"></span>
                                     <span class="radio-label">ADVENCE</span>
                                 </label>
                             </div>
                         </div>
-                        <div class="radio-container">
-                            <span class="tyoe_package">Bài tập</span>
-                            <div class="radio-wrapper">
-                                <label class="radio-button">
-                                    <input id="option11" class="radio-option2" name="radio-group2" type="radio" checked>
-                                    <span class="radio-checkmark"></span>
-                                    <span class="radio-label">GYM</span>
-                                </label>
-                            </div>
-                            <div class="radio-wrapper">
-                                <label class="radio-button">
-                                    <input id="option12" class="radio-option2" name="radio-group2" type="radio">
-                                    <span class="radio-checkmark"></span>
-                                    <span class="radio-label">YOGA</span>
-                                </label>
-                            </div>
+
+                        <div class="user-box createBox">
+                            <input class="login-pass" required="" name="" type="text">
+                            <label>Ngày tập trong tuần mong muốn</label>
                         </div>
-                    </div>
-                    <div class="user-box createBox">
-                        <input class="hope-date" required="" name="" type="text">
-                        <label>Ngày tập trong tuần mong muốn</label>
                     </div>
 
                     <div class="radio-inputs">
                         <label class="radio">
-                            <input class="time-input" type="radio" name="radio" checked="">
-                            <span class="name">13:30-15:00</span>
+                            <input type="radio" name="radio" checked="">
+                            <span class="name">1h30-3h00</span>
                         </label>
                         <label class="radio">
-                            <input class="time-input" type="radio" name="radio">
-                            <span class="name">15:00-16:30</span>
+                            <input type="radio" name="radio">
+                            <span class="name">3h00-4h30</span>
                         </label>
 
                         <label class="radio">
-                            <input class="time-input" type="radio" name="radio">
-                            <span class="name">17:30-18:30</span>
+                            <input type="radio" name="radio">
+                            <span class="name">5h30-6h30</span>
                         </label>
                     </div>
-                    <select name="pt-select" id="pt-select" class="select-pt">
+                    <select name="pt-options" id="pt-options">
                         <option>Trường designer</option>
                         <option>Tiến fullstack</option>
                         <option>Tú coder</option>
@@ -610,142 +616,8 @@
                         <span></span>
                         <span></span>
                         <span></span>
-                        Đăng ký tập
+                        Đăng ký
                     </button>
-                </div>
-            </div>
-            <div id="form" class="modal__body__box form1">
-                <div class="registration__traning__schedule">
-                    <div class="table">
-                        <div id="training-schedule" class="first__training__schedule">
-                            <div class="row__title__table">
-                                <div class="row__title__table__content">
-                                    Đăng ký lịch
-                                </div>
-                                <div class="x__cancel">
-                                    <i class="fa-regular fa-circle-xmark"></i>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="row__title">
-                                    Loại thẻ:
-                                </div>
-                                <div class="row__content">
-                                    <div>
-                                        <input type="radio" id="card1" name="card">
-                                        <label for="card1">BEGINNER</label><br>
-                                    
-                                    </div>
-                                    <div>
-                                        <input type="radio" id="card2" name="card">
-                                        <label for="card2">BASIC</label><br>
-                                        
-                                    </div>
-                                    <div>
-                                        <input type="radio" id="card3" name="card">
-                                        <label for="card3">ADVANCE</label><br>
-                                        
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="row__title">
-                                    Ngày:
-                                </div>
-                                <div class="row__content">
-                                    <div>
-                                        <input type="checkbox" id="monday" name="weekday">
-                                        <label for="monday">T2</label><br>
-                                    </div>
-                                    <div>
-                                        <input type="checkbox" id="tuesday" name="weekday">
-                                        <label for="tuesday">T3</label><br>
-                                    </div>
-                                    <div>
-                                        <input type="checkbox" id="wednesday" name="weekday">
-                                        <label for="wednesday">T4</label><br>
-                                    </div>
-                                    <div>
-                                        <input type="checkbox" id="thursday" name="weekday">
-                                        <label for="thursday">T5</label><br>
-                                    </div>
-                                    <div>
-                                        <input type="checkbox" id="friday" name="weekday">
-                                        <label for="friday">T6</label><br>
-                                    </div>
-                                    <div>
-                                        <input type="checkbox" id="saturday" name="weekday">
-                                        <label for="saturday">T7</label><br>
-                                    </div>
-                                    <div>
-                                        <input type="checkbox" id="sunday" name="weekday">
-                                        <label for="sunday">CN</label><br>
-                                    </div>
-                                        
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="row__title">
-                                    Thời gian:
-                                </div>
-                                <div class="row__content">
-                                    <div>
-                                        <input type="radio" id="time1" name="time">
-                                        <label for="time1">13:30-15:00</label><br>
-                                    
-                                    </div>
-                                    <div>
-                                        <input type="radio" id="time2" name="time">
-                                        <label for="time2">15:00-16:30</label><br>
-                                        
-                                    </div>
-                                    <div>
-                                        <input type="radio" id="time3" name="time">
-                                        <label for="time3">17:30-18:30</label><br>
-                                        
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="row__title">
-                                    Môn:
-                                </div>
-                                <div class="row__content row__content--type">
-                                    <div>
-                                        <input type="radio" id="GYM" name="type">
-                                        <label for="GYM">GYM</label><br>
-                                    </div>
-                                    <div>
-                                        <input type="radio" id="YOGA" name="type">
-                                        <label for="YOGA">YOGA</label><br>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="row__title">
-                                    Huấn luyện viên:
-                                </div>
-                                <div class="row__content">
-                                    Ngẫu nhiên
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="row__title">
-                                    Ghi chú: 
-                                </div>
-                                <div class="row__content">
-                                    <input class="row__content__input" type="text" placeholder="Nhấp để thêm ghi chú">
-                                </div>
-                            </div>
-                            <div class="row__final">
-                                <div class="row__final__button">
-                                    <button class="button__form">
-                                        Gửi yêu cầu
-                                    </button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
                 </div>
             </div>
         </div>

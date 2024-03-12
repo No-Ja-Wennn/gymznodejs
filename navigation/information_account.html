@@ -553,35 +553,191 @@
     <div id="toast"></div>
 
     <!-- overlay -->
-    
     <div class="modal">
         <div class="modal-overlay">
 
         </div>
         <div class="modal__body">
-            <div class="modal__body__box change-name-box">
-                <p class="edit-title">Đổi tên khách hàng</p>
+            <div class="modal__body__box BMI-form">
+                <div class="BMI__title">
+                    <span class="BMI__title__word">Kết quả</span>
+                    <i class="BMI__title__icon fa-solid fa-xmark"></i>
+                </div>
+                <div class="BMI__value">
+                    <div class="BMI__value__row">
+                        <span class="BMI__value__row__label">Chiều cao: </span>
+                        <span class="BMI__value__row__data"></span>
+                    </div>
+                    <div class="BMI__value__row">
+                        <span class="BMI__value__row__label">Cân nặng: </span>
+                        <span class="BMI__value__row__data"></span>
+                    </div>
+                    <div class="BMI__value__row">
+                        <span class="BMI__value__row__label">Tuổi: </span>
+                        <span class="BMI__value__row__data"></span>
+                    </div>
+                    <div class="BMI__value__row">
+                        <span class="BMI__value__row__label">Giới tính: </span>
+                        <span class="BMI__value__row__data"></span>
+                    </div>
+                    <div class="BMI__value__row">
+                        <span class="BMI__value__row__label">Chỉ số BMI: </span>
+                        <span class="BMI__value__row__data"></span>
+                    </div>
+                    <div class="BMI__value__row">
+                        <span class="BMI__value__row__label">Tình trạng sức khỏe: </span>
+                        <span class="BMI__value__row__data"></span>
+                    </div>
+                    <div class="BMI__value__row">
+                        <span class="BMI__value__row__label">Tư vấn:</span>
+                        <span class="BMI__value__row__data"></span>
+                    </div>
+                </div>
+            </div>
+            <div class="modal__body__box login-box">
+                <p>Đăng nhập tài khoản</p>
                 <div>
                     <div class="user-box">
-                        <input class="new-name" required="" name="" type="text">
-                        <label class="edit-label">Tên mới</label>
+                        <input class="login-email" required="" name="" type="text">
+                        <label>Email</label>
                     </div>
-                    <div class="submit__row">
-                        <button id="submitExit">
-                            <!-- <span></span>
-                            <span></span>
-                            <span></span>
-                            <span></span> -->
-                            Thoát
-                        </button>
-                        <button id="submitChangeName">
-                            <span></span>
-                            <span></span>
-                            <span></span>
-                            <span></span>
-                            Xác nhận
-                        </button>
+                    <div class="user-box createBox">
+                        <input class="login-pass" required="" name="" type="password">
+                        <label>Mật khẩu</label>
                     </div>
+                    <button id="login-btn" type="button">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                        Đăng nhập
+                    </button>
+                </div>
+                <p class="create__account__text">Chưa có tài khoản? <span class="a2 link-create-account">Đăng ký!</span></p>
+                <span class="forgot--account--link create__account__text a2">Quên mật khẩu?</span>
+            </div>
+            <div class="modal__body__box create-account-box">
+                <p>Đăng nhập tài khoản</p>
+                <div>
+                    <div class="user-box">
+                        <input class="login-name" required="" name="" type="text">
+                        <label>Họ và tên</label>
+                    </div>
+                    <div class="user-box">
+                        <input class="login-email" required="" name="" type="text">
+                        <label>Email</label>
+                    </div>
+                    <div class="user-box">
+                        <input class="login-pass" required="" name="" type="password">
+                        <label>Mật khẩu</label>
+                    </div>
+                    <div class="user-box">
+                        <input class="login-pass-confirm" required="" name="" type="password">
+                        <label>Nhập lại mật khẩu</label>
+                    </div>
+                    <button id="create-btn" type="button">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                        Đăng ký
+                    </button>
+                </div>
+                <p>Đã có tài khoản? <span class="a2 link-login">Đăng nhập!</span></p>
+            </div>
+            <div class="modal__body__box forgot-pass-box">
+                <p>Quên mật khẩu</p>
+                <div>
+                    <div class="user-box">
+                        <input class="login-email" required="" name="" type="text">
+                        <label>Email</label>
+                    </div>
+                    <button id="forgot-btn" type="button">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                        Gửi yêu cầu
+                    </button>
+                </div>
+                <p>Đã có tài khoản? <span class="a2 link-login">Đăng nhập!</span></p>
+            </div>
+
+            
+            <div class="modal__body__box register-cart">
+                <!-- <p>Đăng nhập tài khoản</p> -->
+                <div>
+                    <div class="user-box">
+                        <input class="login-email" required="" name="" type="text">
+                        <label>Họ và tên</label>
+                    </div>
+                    <div class="user-box createBox">
+                        <input class="login-pass" required="" name="" type="password">
+                        <label>Số điện thoại</label>
+                    </div>
+                    <div class="box_wrap">
+                        <div class="radio-container">
+                            <span class="tyoe_package">Gói tập</span>
+                            <div class="radio-wrapper">
+                                <label class="radio-button">
+                                    <input id="option1" name="radio-group" type="radio">
+                                    <span class="radio-checkmark"></span>
+                                    <span class="radio-label">BEGINNER</span>
+                                </label>
+                            </div>
+
+                            <div class="radio-wrapper">
+                                <label class="radio-button">
+                                    <input id="option2" name="radio-group" type="radio">
+                                    <span class="radio-checkmark"></span>
+                                    <span class="radio-label">BASIC</span>
+                                </label>
+                            </div>
+
+                            <div class="radio-wrapper">
+                                <label class="radio-button">
+                                    <input id="option3" name="radio-group" type="radio">
+                                    <span class="radio-checkmark"></span>
+                                    <span class="radio-label">ADVENCE</span>
+                                </label>
+                            </div>
+                        </div>
+
+                        <div class="user-box createBox">
+                            <input class="login-pass" required="" name="" type="text">
+                            <label>Ngày tập trong tuần mong muốn</label>
+                        </div>
+                    </div>
+
+                    <div class="radio-inputs">
+                        <label class="radio">
+                            <input type="radio" name="radio" checked="">
+                            <span class="name">1h30-3h00</span>
+                        </label>
+                        <label class="radio">
+                            <input type="radio" name="radio">
+                            <span class="name">3h00-4h30</span>
+                        </label>
+
+                        <label class="radio">
+                            <input type="radio" name="radio">
+                            <span class="name">5h30-6h30</span>
+                        </label>
+                    </div>
+                    <select name="pt-options" id="pt-options">
+                        <option>Trường designer</option>
+                        <option>Tiến fullstack</option>
+                        <option>Tú coder</option>
+                        <option>Vân tester</option>
+                        <option>Quyến developer</option>
+                    </select>
+                    <button class="summit-btn" type="button">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                        Đăng ký
+                    </button>
                 </div>
             </div>
         </div>
