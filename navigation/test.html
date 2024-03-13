@@ -4,69 +4,117 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <link
-        rel="stylesheet"
-        type="text/css"
-        href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css"
-      />
-</head>
-<body>
+    <style>
+        .container{
+            padding: 0;
+            margin: 0;
+            height: 100vh;
+            width: 100%;
+            background-color: rgb(110, 110, 110);
+            display: flex;
+            justify-content: center;
+            overflow: hidden;
+        }
+        .container-select{
+            height: 100vh;
+            width: 90%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .container-select p{
+            font-size: 48px;
+        }
+        .container-select button{
+            padding: 10px;
+            font-size: 36px;
+            border-radius: 5px;
+            border: none;
+        }
+        .container {
+        overflow: hidden;
+    }
+    .more {
+        background-color: rgb(9, 61, 9);
+        display: flex;
+        overflow: auto;
+        height: 100vh; /* Adjust this value according to your needs */
+    }
+    .more::-webkit-scrollbar{
+        display: none;
+    }
+    .information::-webkit-scrollbar {
+    display: none;
+    }
+    body{
+        overflow: auto;
+    }
 
-    <div class="image__slider">
-        <div class="image__item">
-            <div class="image">
-                <img src="/img/personal-trainer/hlv/quyen.png" alt="">
+.information {
+    -ms-overflow-style: none;  /* IE and Edge */
+    scrollbar-width: none;  /* Firefox */
+}
+
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="container-select">
+            <p>
+                hihi haha
+            </p>
+            <button>
+                click zo day
+            </button>
+            <div class="more">
+                <div class="information">
+                    <h2>
+                        GIÚP KHÁCH HÀNG ĐẠT MỤC TIÊU
+                    </h2>
+                    <h3>
+                        Huấn luyện viên cá nhân của chúng tôi 
+                        chịu trách nhiệm về mục tiêu của bạn.
+                    </h3>
+                    <p>
+                        Bạn đang làm việc cùng những huấn luyện 
+                        viên cá nhân giỏi nhất trong ngành, có 
+                        kinh nghiệm và tận tâm vì thành công 
+                        của bạn. Một đội ngũ chuyên gia quan 
+                        tâm đến việc bạn đạt được kết quả tốt nhất.
+                    </p>
+                    <p>
+                        Chúng tôi là đối tác của bạn trên hành 
+                        trình này và có chung mục tiêu với bạn 
+                        cũng như cam kết đạt đến sự xuất sắc 
+                        trong mọi việc chúng tôi làm. Nền văn 
+                        hóa độc đáo và sôi động mà chúng tôi 
+                        đã vun đắp khiến chúng tôi trở nên 
+                        khác biệt và thúc đẩy sự tôn trọng 
+                        cũng như hỗ trợ.
+                    </p>
+                    <p>
+                        Hãy tin tưởng vào quy trình, làm việc 
+                        chăm chỉ và cam kết với chương trình 
+                        của bạn; tuổi tác và kinh nghiệm không 
+                        quan trọng. Phương pháp tiếp cận khoa 
+                        học của chúng tôi điều chỉnh các phương 
+                        pháp phù hợp với mục tiêu và thách thức 
+                        riêng của bạn. Chúng tôi tạo ra chương 
+                        trình của bạn để đảm bảo thành công, 
+                        được hỗ trợ 24/7, chịu trách nhiệm và 
+                        theo dõi tiến độ.
+                    </p>
+                </div>
             </div>
-            <h3>
-                your title
-            </h3>
-        </div>
-        <div class="image__item">
-            <div class="image">
-                <img src="/img/personal-trainer/hlv/tien.png" alt="">
-            </div>
-            <h3>
-                your title
-            </h3>
-        </div>
-        <div class="image__item">
-            <div class="image">
-                <img src="/img/personal-trainer/hlv/tu.png" alt="">
-            </div>
-            <h3>
-                your title
-            </h3>
-        </div>
-        <div class="image__item">
-            <div class="image">
-                <img src="/img/personal-trainer/hlv/truong.png" alt="">
-            </div>
-            <h3>
-                your title
-            </h3>
-        </div>
-        <div class="image__item">
-            <div class="image">
-                <img src="/img/personal-trainer/hlv/van.png" alt="">
-            </div>
-            <h3>
-                your title
-            </h3>
         </div>
     </div>
-
-    <script
-      type="text/javascript"
-      src="https://code.jquery.com/jquery-1.11.0.min.js"
-    ></script>
-    <script
-      type="text/javascript"
-      src="https://code.jquery.com/jquery-migrate-1.2.1.min.js"
-    ></script>
-    <script
-      type="text/javascript"
-      src="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"
-    ></script>
-    <script src="/app.js"></script>
 </body>
+
+<script>
+    document.querySelector('.container-select button').addEventListener('click', function() {
+        var more = document.querySelector('.more');
+        more.style.display = more.style.display === 'none' ? 'block' : 'none';
+    });
+</script>
 </html>
