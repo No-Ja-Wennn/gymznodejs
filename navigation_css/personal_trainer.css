@@ -3,6 +3,7 @@
     /* font-size: 16px; */
     line-height: 1.4;
     /* overflow: hidden; */
+    -webkit-tap-highlight-color: transparent;
 }
 .header{
     background-color: rgb(255, 255, 255);
@@ -89,7 +90,7 @@ video{
     overflow: hidden;
 
     /* height: calc(100vh - 68px); */
-    background-image: url(../img/background/c.JPG);
+    background-image: url(../img/background/c.png);
     background-repeat: no-repeat;
     background-size: cover;
     background-position: 0 50%;
@@ -102,7 +103,7 @@ video{
     justify-content: center;
     align-items: center;
     width: 98%;
-    margin-top: 50px;
+    margin-top: 30px;
 }
 #colum-father{
     width: 50%;
@@ -132,6 +133,8 @@ video{
     font-size: 18px;
     font-weight: 500;
     margin: 10px 0;
+    text-align: justify;
+    padding: 0 5%;
 }
 .container__select__colum__one p{
     font-size: 18px;
@@ -142,7 +145,7 @@ video{
 
 .container__select__colum__two{
     display: flex;
-    padding: 50px 0;
+    padding: 30px 0;
 }
 .row{
     display: flex;
@@ -225,7 +228,7 @@ video{
     width: 100%;
     display: flex;
     justify-content: center;
-    background-image: url(/img/background/gadient2.png);
+    background-image: url(/img/background/hiha.png);
     background-repeat: no-repeat;
     background-size: cover;
     background-position: 0 50%;
@@ -257,7 +260,7 @@ video{
 }
 .title__colum__one{
     font-size: 36px;
-    color: rgb(255, 255, 255);
+    color: rgb(0, 0, 0);
     text-transform: uppercase;
     font-weight: 600; 
     font-style: italic;
@@ -265,8 +268,9 @@ video{
 .cheer__colum__one h3{
     font-size: 18px;
     font-weight: 500;
-    color: rgb(255, 255, 255);
+    color: rgb(0, 0, 0);
     padding: 20px 0;
+    font-style: italic;
 }
 .cheer__button{
     height: 80px;
@@ -279,11 +283,11 @@ video{
     padding: 12px 16px 12px 12px;
     font-size: 14px;
     border-radius: 50px;
-    border: 1px rgb(255, 255, 255) solid;
+    border: 1px rgb(0, 0, 0) solid;
     background-color: transparent;
     text-transform: uppercase;
     font-style: italic;
-    color: rgb(255, 255, 255);
+    color: rgb(0, 0, 0);
     transition: .5s;
 }
 #button1:hover{
@@ -424,8 +428,8 @@ video{
     height: max-content;
     display: flex;
     justify-content: center;
-    padding: 50px 0;
-    background-image: url(/img/background/x2.png);
+    padding: 30px 0;
+    background-image: url(/img/background/x4.png);
     background-size: cover;
     background-repeat: no-repeat;
     background-position: 0 50%;
@@ -513,6 +517,10 @@ video{
     font-size: 23px;
     transition: .3s;
     cursor: pointer;
+}
+.slick-next:hover{
+    color: rgb(180, 0, 0);
+    background-color: whitesmoke;
 }
 .image__item{
     cursor: pointer;
@@ -698,7 +706,7 @@ video{
         line-height: 5rem;
     }
     .title3__content h2{
-        letter-spacing: 5px;
+        letter-spacing: 2px;
     }
     .title3__content h2{
         letter-spacing: 0;
@@ -722,7 +730,7 @@ video{
     }
     .container__select__colum__one h2{
         font-size: 26px;
-        letter-spacing: 5px;
+        letter-spacing: 0;
     }
     .container__select__colum__one h3{
         font-size: 16px;
@@ -734,7 +742,7 @@ video{
         flex-direction: column;
     }
     .title3__content h2{
-        letter-spacing: 3px;
+        letter-spacing: 2px;
     }
 }
 @media screen and (max-width:480px) {
@@ -754,7 +762,7 @@ video{
         padding: 16px;
     }
     .container__select__colum__one h2{
-        font-size: 26px;
+        font-size: 24px;
         letter-spacing: 3px;
     }
     .container__select__colum__one h3{
@@ -763,15 +771,21 @@ video{
     .container__select__colum__one p{
         font-size: 16px;
     }
+    .title3__content h2{
+        font-size: 24px;
+    }
 }
 
 .footer{
     height: max-content;
     width: 100%;
     padding-top: 50px;
+    background-color: whitesmoke;
+    background-image: url(/img/background/c.png);
 }
 .footer__select,
 .footer__last{
+    max-width: 1200px;
     width: 90%;
     margin: 0 auto;
     display: flex;
@@ -785,7 +799,7 @@ video{
 .footer__colum1__inner h3{
     width: 100%;
     padding: 10px;
-    font-size: 18px;
+    font-size: 26px;
     font-weight: 600;
     color: black;
 }
@@ -793,6 +807,9 @@ video{
 .service__customer__list,
 .footer__last__select{
     width: 100%;
+}
+.footer__last__select{
+    border-top: 1px rgb(0, 0, 0, 0.5) solid;
 }
 .about__us__inner,
 .service__customer__list__inner,
@@ -806,7 +823,7 @@ video{
 .service__customer__list__inner a,
 .footer__last__select__inner a{
     width: fit-content;
-    font-size: 14px;
+    font-size: 16px;
     color: black;
     margin: 10px 0;
     display: flex;
@@ -840,6 +857,8 @@ video{
     background-color: green;
     min-width: 300px;
     min-height: 157px;
+    max-width: 500px;
+    max-height: 262px;
     overflow: hidden;
     display: flex;
     flex-shrink: 0;
@@ -940,4 +959,102 @@ video{
 .folow__page a:active,
 .share__page a:active{
     background-color: rgb(128, 128, 128);
+}
+@media screen and (max-width: 1024px) {
+    .footer__select{
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+    .footer__colum1{
+        width: fit-content;
+    }
+    .footer__colum1 h3{
+        text-align: center;
+    }
+    .footer__colum1 a{
+        text-align: center;
+    }
+    .footer__colum1 i{
+        text-align: right;
+    }
+    .footer__colum2{
+        width: fit-content;
+    }
+    .footer__colum2__inner{
+        margin: 0;
+    }
+    .footer__last__select__inner a{
+        margin: 0 auto;
+        padding: 10px;
+    }
+    .about__us__inner, 
+    .service__customer__list__inner, 
+    .footer__last__select__inner{
+        align-items: center;
+    }
+    .service__customer__list__inner{
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+    }
+    .service__customer__list__inner a{
+        margin: 0;
+        margin: 10px;
+    }
+}
+@media screen and (max-width: 768px) {
+    .footer__colum1 h3{
+        font-size: 18px;
+    }
+    .footer__colum1 a,
+    .footer__last__select__inner a{
+        font-size: 14px;
+    }
+    .about__us__inner{
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: space-between;
+    }
+    .about__us__inner a{
+        /* min-width: calc((100% / 2) - 20px); */
+        width: 294px;
+        margin: 0;
+        margin: 10px;
+    }
+    .about__us__inner a:nth-child(2n){
+        /* background-color: green; */
+        margin-right: -40px;
+    }
+    .about__us__inner span{
+        text-align: left;
+        width: fit-content;
+    }
+    .service__customer__list__inner{
+        flex-wrap: wrap;
+    }
+    .service__customer__list__inner a{
+        min-width: calc((100% / 3) - 20px);
+    }
+}
+@media screen and (max-width: 665px) {
+    .about__us__inner{
+        flex-direction: column;
+    }
+    .about__us__inner a:nth-child(2n){
+        /* background-color: green; */
+        margin-right: 10px;
+    }
+    .about__us__inner a:nth-child(1){
+        /* background-color: green; */
+        margin-right: -10px;
+    }
+    .footer a{
+        width: fit-content;
+    }
+    .folow__page a, 
+    .share__page a{
+        font-size: 8px;
+        padding: 8px 5px 3px 3px;
+    }
 }

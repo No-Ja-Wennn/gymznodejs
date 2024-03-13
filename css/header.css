@@ -293,7 +293,7 @@ i.fa-solid.fa-caret-up{
     }
 
     .header__inner__menu {
-        display: flex;
+        display: flex !important;
     }
 
     .header__inner {
