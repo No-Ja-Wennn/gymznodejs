@@ -1,0 +1,132 @@
+body{
+    background-color: #000000;
+    color: aliceblue;
+    display: flex; /* Sử dụng Flexbox */
+    flex-direction: column; /* Sắp xếp các phần tử theo chiều dọc */
+    align-items: center; /* Căn giữa các phần tử theo chiều ngang */
+    justify-content: center; /* Căn giữa các phần tử theo chiều dọc */
+}
+.app{
+    width: 100%;
+}
+.header{
+    height: 68px;
+    width: 100%;
+    background-color: rgb(198, 31, 31);
+}
+.container{
+    margin-top: 68px;
+}
+
+.container__home{
+    width: 100%;
+    height: 658px;
+    /* background-color: darkmagenta; */
+}
+
+
+/* model */
+.modal{
+    display: none;
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    animation: fadeIn linear  0.1s;
+    z-index: 10;
+}
+
+.modal-overlay{
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.4);
+}
+.modal__body{
+    position: relative;
+    --growth-form: 0.7;
+    /* kích thước 70% */
+    --growth-to: 1;
+    /* kích thước 100% */
+    margin: auto;
+    z-index: 1;
+    animation: growth linear 0.1s;
+}
+
+.BMI-form{
+    max-width: 100%;
+    min-width: 200px;
+    width: 100%;
+    max-height: 600px;
+    min-height: 200px;
+    height: 100%;
+    background-color: #1f1f1f ;
+    padding: 20px;
+    border-radius: 2px;
+}
+
+@media screen and (max-width: 660px) { 
+    .BMI-form{
+        max-width: calc(100% - 20px);
+        min-width: 200px;
+        width: 100%;
+        max-height: 600px;
+        min-height: 200px;
+        height: 100%;
+        background-color: #1f1f1f ;
+        padding: 20px;
+        border-radius: 2px;
+        margin: 0 10px;
+    }
+}
+
+.BMI__title{
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 20px;
+}
+
+.BMI__title__word{
+    font-size: 2.8rem;
+    line-height: 20px;
+    margin: 0;
+    padding: 8px 0;
+    font-weight: 800;
+    color: #3cdb3f;
+}
+.BMI__title i{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 24px;
+    height: 24px;
+    font-size: 2rem;
+    line-height: 20px;
+    margin: 0;
+    padding: 8px 0;
+    font-weight: 800;
+    padding: 0px;
+    cursor: pointer;
+    border-radius: 50%;
+}
+.BMI__title i:hover{
+    opacity: 0.8;
+}
+
+.BMI__value{
+    padding-left: 20px;
+}
+
+.BMI__value__row:not(:last-child){
+    margin-bottom: 20px;
+}
+
+.BMI__value__row span{
+    font-size: 2rem;
+    font-weight: 700;
+    line-height: 2.1rem;
+}
+.BMI__value__row span:first-child{
+    color: bisque;
+}

@@ -1,0 +1,823 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <link rel="icon" href="../img/icon/logo.png" type="image/x-icon" />
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700;900&display=swap"
+        rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@100;300;500;600;900&display=swap"
+        rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Overpass:wght@100;200;300;400;500;600;700;800;900&display=swap"
+        rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Epilogue:ital,wght@0,100..900;1,100..900&display=swap"
+        rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Raleway:ital,wght@0,100..900;1,100..900&display=swap"
+        rel="stylesheet" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="stylesheet" href="../font/fontawesome-free-6.4.0-web/css/all.min.css" />
+    <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="../css/base.css" />
+    <link rel="stylesheet" href="../css/header.css" />
+    <!-- <link rel="stylesheet" href="../css/footer.css"> -->
+    <link rel="stylesheet" href="../css/keyframes.css" />
+    <link rel="stylesheet" href="../navigation_css/toast.css" />
+    <link rel="stylesheet" href="../navigation_css/login.css" />
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css" />
+    <link rel="stylesheet" href="../navigation_css/personal_trainer.css" />
+    <title>GYMZ - Thể hình giới trẻ</title>
+</head>
+
+<body>
+    <div class="app">
+        <div class="header">
+            <div class="header__inner">
+                <div class="header__inner__logo">
+                    <a href="">
+                        <h1>GYM<span>Z</span></h1>
+                    </a>
+                </div>
+                <!-- Thanh dieu huong -->
+                <div class="header__inner__navigation">
+                    <ul>
+                        <li>
+                            <a class="header__inner__navigation__sevice" href="../index.html">TRANG CHỦ</a>
+                        </li>
+                        <li>
+                            <a class="header__inner__navigation__sevice" href="./chatbox.html">CHAT ONLINE</a>
+                        </li>
+                        <li>
+                            <div class="dropdown">
+                                <a class="header__inner__navigation__sevice" href="#" onclick="yourFunction(event)">
+                                    DỊCH VỤ<i class="bx bxs-right-arrow"></i>
+                                </a>
+                                <div class="containt">
+                                    <a href="./personal_trainer.html">HUẤN LUYỆN VIÊN</a>
+                                    <a href="./shop.html">CỬA HÀNG WHEY</a>
+                                    <a href="./card.html">THẺ HỘI VIÊN</a>
+                                </div>
+                            </div>
+                        </li>
+                        <li>
+                            <a class="header__inner__navigation__sevice" href="./promotion.html">KHUYẾN MÃI</a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="header__inner__try">
+                    <ul>
+                        <li><a href="./promotion.html">LIÊN HỆ NGAY</a></li>
+                    </ul>
+                </div>
+                <div class="header__inner__menu">
+                    <div class="bt_dropdown">
+                        <a class="header__inner__menu__bt" href="#" onclick="yourFunction(event)">
+                            <i class="bx bx-menu"></i>
+                        </a>
+                        <div class="content">
+                            <div class="logo">
+                                <ul class="account__login__center">
+                                    <li class="account__login">
+                                        <a class="account__login__inner" href=""> </a>
+                                    </li>
+                                </ul>
+                                <div class="account__about">
+                                    <a class="account__name" href="#"> USERNAME </a>
+                                    <a class="account__code" href="#"> GYMZ001 </a>
+                                </div>
+                                <!-- <img src="../img/background/logo_and_bgr.png" alt="logo and bgr"> -->
+                            </div>
+                            <a class="content__inner" href="../index.html">
+                                <i class="bx bxs-home"></i>
+                                <span class="noidung__text1"> TRANG CHỦ </span>
+                            </a>
+                            <a class="content__inner" href="./chatbox.html">
+                                <i class="bx bx-world"></i>
+                                <span class="noidung__text1"> CHAT ONLINE </span>
+                            </a>
+                            <div class="submenu" href="#" onclick="toggleNoidung222(event)">
+                                <b class="content__inner" href="">
+                                    <i class="bx bx-grid-alt"></i>
+                                    <span class="noidung__text1"> DỊCH VỤ </span>
+                                </b>
+                                <div class="noidung222">
+                                    <a class="content__inner" href="./card.html">
+                                        THẺ HỘI VIÊN</a>
+                                    <a class="content__inner" href="./personal_trainer.html">
+                                        HUẤN LUYỆN VIÊN</a>
+                                    <a class="content__inner" href="./shop.html">
+                                        CỬA HÀNG WHEY</a>
+                                </div>
+                            </div>
+                            <a class="content__inner" href="./promotion.html">
+                                <i class="bx bxs-purchase-tag"></i>
+                                <span class="noidung__text1"> KHUYẾN MÃI </span>
+                            </a>
+                            <div class="content__logout">
+                                <a class="content__logout__btn content__inner">
+                                    <!-- <i class='bx bx-code-alt'></i> -->
+                                    <i class="bxf fa-solid fa-right-from-bracket"></i>
+                                    <span class="noidung__text1"> ĐĂNG XUẤT </span>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="video__title">
+            <div class="video__title__inner">
+                <video autoplay loop muted playsinline>
+                    <source src="../video/video_day.mp4" type="video/mp4" />
+                </video>
+                <div class="shadow"></div>
+                <h1 class="title">
+                    WORLD'S LEADING <br />
+                    PERSONAL TRAINERS
+                </h1>
+            </div>
+        </div>
+        <div class="container">
+            <div class="container__select">
+                <div id="colum-father" class="container__select__colum__one">
+                    <h2>GIÚP KHÁCH HÀNG ĐẠT MỤC TIÊU</h2>
+                    <h3>
+                        Huấn luyện viên cá nhân của chúng tôi chịu trách nhiệm về mục tiêu
+                        của bạn.
+                    </h3>
+                    <p>
+                        Bạn đang làm việc cùng những huấn luyện viên cá nhân giỏi nhất
+                        trong ngành, có kinh nghiệm và tận tâm vì thành công của bạn. Một
+                        đội ngũ chuyên gia quan tâm đến việc bạn đạt được kết quả tốt
+                        nhất.
+                    </p>
+                    <p>
+                        Chúng tôi là đối tác của bạn trên hành trình này và có chung mục
+                        tiêu với bạn cũng như cam kết đạt đến sự xuất sắc trong mọi việc
+                        chúng tôi làm. Nền văn hóa độc đáo và sôi động mà chúng tôi đã vun
+                        đắp khiến chúng tôi trở nên khác biệt và thúc đẩy sự tôn trọng
+                        cũng như hỗ trợ.
+                    </p>
+                    <p>
+                        Hãy tin tưởng vào quy trình, làm việc chăm chỉ và cam kết với
+                        chương trình của bạn; tuổi tác và kinh nghiệm không quan trọng.
+                        Phương pháp tiếp cận khoa học của chúng tôi điều chỉnh các phương
+                        pháp phù hợp với mục tiêu và thách thức riêng của bạn. Chúng tôi
+                        tạo ra chương trình của bạn để đảm bảo thành công, được hỗ trợ
+                        24/7, chịu trách nhiệm và theo dõi tiến độ.
+                    </p>
+                </div>
+                <div id="colum-father" class="container__select__colum__two">
+                    <div class="row">
+                        <div id="colum" class="colum__one">
+                            <div class="box__container">
+                                <div class="overlayimg">
+                                    <img src="/img/personal-trainer/dotmocp.jpg" alt="" />
+                                </div>
+                                <div class="title__bar">
+                                    <a href=""> mất chất béo </a>
+                                </div>
+                            </div>
+                            <div class="gap"></div>
+                            <div class="box__container">
+                                <div class="overlayimg">
+                                    <img src="/img/personal-trainer/cobapcp.jpg" alt="" />
+                                </div>
+                                <div class="title__bar">
+                                    <a href=""> đạt được cơ bắp </a>
+                                </div>
+                            </div>
+                        </div>
+                        <div id="colum" class="colum__two">
+                            <div class="photo__gap"></div>
+                            <div class="box__container">
+                                <div class="overlayimg">
+                                    <img src="/img/personal-trainer/bodycp.jpg" alt="" />
+                                </div>
+                                <div class="title__bar">
+                                    <a href=""> chuyển đổi cơ thể </a>
+                                </div>
+                            </div>
+                            <div class="gap"></div>
+                            <div class="box__container">
+                                <div class="overlayimg">
+                                    <img src="/img/personal-trainer/suckhoepncp.jpg" alt="" />
+                                </div>
+                                <div class="title__bar">
+                                    <a href=""> cải thiện sức khoẻ </a>
+                                </div>
+                            </div>
+                        </div>
+                        <div id="colum" class="colum__three">
+                            <div class="box__container">
+                                <div class="overlayimg">
+                                    <img src="/img/personal-trainer/skpncp.jpg" alt="" />
+                                </div>
+                                <div class="title__bar">
+                                    <a href=""> sức khoẻ phụ nữ </a>
+                                </div>
+                            </div>
+                            <div class="gap"></div>
+                            <div class="box__container">
+                                <div class="overlayimg">
+                                    <img src="/img/personal-trainer/runcp.jpg" alt="" />
+                                </div>
+                                <div class="title__bar">
+                                    <a href=""> sức mạnh & chuyển động </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="container2">
+            <div class="container2__select">
+                <div class="cheer">
+                    <div class="cheer__colum__one">
+                        <div class="cheer__colum__one__content">
+                            <h2 class="title__colum__one">
+                                đạt được phiên bản tốt nhất của bạn
+                            </h2>
+                            <h3>
+                                Chịu trách nhiệm về sức khoẻ của bạn và bắt tay vào một hành
+                                trình biến đổi với các huấn luyện viên cá nhân hàng đầu thế
+                                giới.
+                            </h3>
+                            <div class="cheer__button">
+                                <button id="button1">đặt tư vấn của bạn ngay bây giờ</button>
+                                <div class="cheer__button cheer__button__content">
+                                    <div class="form">
+                                        <div class="form__select">
+                                            <ul>
+                                                <li class="title__form">
+                                                    <h1>Nhập thông tin của bạn</h1>
+                                                    <div class="cancel">
+                                                        <i class="fa-regular fa-circle-xmark"></i>
+                                                    </div>
+                                                </li>
+                                                <li class="input__content">
+                                                    <div class="title__bar__input">
+                                                        Nhập tên của bạn
+                                                    </div>
+                                                    <div class="input__bar">
+                                                        <input type="text" name="name" id=""
+                                                            placeholder="nhập tên của bạn" />
+                                                    </div>
+                                                </li>
+                                                <li class="input__content">
+                                                    <div class="title__bar__input">Nhập email</div>
+                                                    <div class="input__bar">
+                                                        <input type="text" name="email" id=""
+                                                            placeholder="nhập email của bạn" />
+                                                    </div>
+                                                </li>
+                                                <li class="input__content">
+                                                    <div class="title__bar__input">
+                                                        Nhập số điện thoại
+                                                    </div>
+                                                    <div class="input__bar">
+                                                        <input type="text" name="phone__number" id=""
+                                                            placeholder="nhập số điện thoại" />
+                                                    </div>
+                                                </li>
+                                                <li class="button__send">
+                                                    <button id="button2">Nhận tư vấn</button>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="cheer__colum__two">
+                        <div class="cheer__img">
+                            <img src="/img/personal-trainer/Untitled-5.png" alt="" />
+                        </div>
+                    </div>
+                    <div class="shadow__cheer"></div>
+                </div>
+            </div>
+        </div>
+        <div class="container3">
+            <div class="container3__select">
+                <div class="container3__title">
+                    <div class="title3__content">
+                        <h2>gặp gỡ các huấn luyện viên cá nhân hàng đầu tại closeai</h2>
+                    </div>
+                    <h3>
+                        Các huấn luyện viên cá nhân hàng đầu trong ngành sẽ mang đến cho
+                        bạn trải nghiệm đào tạo tuyệt vời. Họ là những chuyên gia hàng đầu
+                        sẽ giúp bạn đạt được sự chuyển đổi mà bạn mong muốn.
+                    </h3>
+                </div>
+                <div class="image__slider">
+                    <div class="image__item">
+                        <div class="image">
+                            <img src="/img/personal-trainer/hlv/quyen.png" alt="" />
+                        </div>
+                        <div class="information-bar">
+                            <div class="information-left">
+                                <div class="name-person">quyen dev</div>
+                                <span class="job-name"> Personal Trainer </span>
+                            </div>
+                            <div class="information-right">
+                                <div class="view-more">
+                                    <button id="" class="button3 bt-view">xem</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="image__item">
+                        <div class="image">
+                            <img src="/img/personal-trainer/hlv/tien.png" alt="" />
+                        </div>
+                        <div class="information-bar">
+                            <div class="information-left">
+                                <div class="name-person">tien fullstack</div>
+                                <span class="job-name"> Personal Trainer </span>
+                            </div>
+                            <div class="information-right">
+                                <div class="view-more">
+                                    <button id="" class="button4 bt-view">xem</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="image__item">
+                        <div class="image">
+                            <img src="/img/personal-trainer/hlv/tu.png" alt="" />
+                        </div>
+                        <div class="information-bar">
+                            <div class="information-left">
+                                <div class="name-person">tu coder</div>
+                                <span class="job-name"> Personal Trainer </span>
+                            </div>
+                            <div class="information-right">
+                                <div class="view-more">
+                                    <button id="" class="button5 bt-view">xem</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="image__item">
+                        <div class="image">
+                            <img src="/img/personal-trainer/hlv/truong.png" alt="" />
+                        </div>
+                        <div class="information-bar">
+                            <div class="information-left">
+                                <div class="name-person">truong design</div>
+                                <span class="job-name"> Personal Trainer </span>
+                            </div>
+                            <div class="information-right">
+                                <div class="view-more">
+                                    <button id="" class="button6 bt-view">xem</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="image__item">
+                        <div class="image">
+                            <img src="/img/personal-trainer/hlv/van.png" alt="" />
+                        </div>
+                        <div class="information-bar">
+                            <div class="information-left">
+                                <div class="name-person">van tester</div>
+                                <span class="job-name"> Personal Trainer </span>
+                            </div>
+                            <div class="information-right">
+                                <div class="view-more">
+                                    <button id="" class="button7 bt-view">xem</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="footer">
+            <div class="footer__select">
+                <div class="footer__colum1">
+                    <div class="footer__colum1__inner">
+                        <a href="#">
+                            <h3>CÔNG TY CỔ PHẦN ĐẦU TƯ VÀ PHÁT TRIỂN CLOSEAI</h3>
+                        </a>
+                    </div>
+                    <div class="about__us">
+                        <div class="about__us__inner">
+                            <a href="#">
+                                <i class="bx bxs-home"></i>
+                                <span>Trụ sở chính: z115, Tân Thịnh, TP.Thái Nguyên, Thái
+                                    Nguyên</span>
+                            </a>
+                            <a href="#">
+                                <i class="bx bxs-phone"></i> Hotline: 0999.999.999
+                            </a>
+                            <a href="#">
+                                <i class="bx bxs-envelope"></i> Email: closeai.work@gmail.com
+                            </a>
+                            <a href="#">
+                                <i class="bx bx-world"></i> Website: https://pwm.io.vn
+                            </a>
+                        </div>
+                    </div>
+                    <div class="service__customer">
+                        <div class="service__customer__title">
+                            <div class="footer__colum1__inner">
+                                <a href="#">
+                                    <h3>DỊCH VỤ KHÁCH HÀNG</h3>
+                                </a>
+                            </div>
+                        </div>
+                        <div class="service__customer__list">
+                            <div class="service__customer__list__inner">
+                                <a href="#">
+                                    <i class="bx bx-file"></i> Điều khoản sử dụng
+                                </a>
+                                <a href="#">
+                                    <i class="bx bxs-lock-alt"></i> Chính sách bảo mật
+                                </a>
+                                <a href="#">
+                                    <i class="bx bxs-chat"></i> Kết nối với chúng tôi
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="footer__colum2">
+                    <div class="footer__colum2__center">
+                        <div class="footer__colum2__inner">
+                            <div class="group">
+                                <div class="name__page">
+                                    <a href="#"> GYM Z<i class="bx bxs-badge-check"></i> </a>
+                                    <h4>999.999 người theo dõi</h4>
+                                </div>
+                                <div class="avatar__img">
+                                    <img src="../img/background/avatar.png" alt="Ảnh đại diện" />
+                                </div>
+                                <div class="folow__page">
+                                    <a href="#">
+                                        <i class="bx bxl-facebook-square"></i>Theo dõi fanpage
+                                    </a>
+                                </div>
+                                <div class="share__page">
+                                    <a href="#"> <i class="bx bxs-share"></i>Chia sẻ </a>
+                                </div>
+                            </div>
+                            <div class="cover__img">
+                                <img src="../img/background/cover_img.png" alt="Ảnh bìa" />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="footer__last">
+                <div class="footer__last__select">
+                    <div class="footer__last__select__inner">
+                        <a href="#">
+                            <i class="bx bxs-copyright"></i> 2023 Allrights reserved
+                            pwm.io.vn
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="if3" class="information">
+        <div class="group-colum">
+            <div class="colum-img">
+                <div id="cancel3" class="cancel-if">
+                    <i class="fa-regular fa-circle-xmark"></i>
+                </div>
+                <img src="/img/personal-trainer/hlv/quyen.png" alt="" />
+            </div>
+            <div class="colum-information">
+                <div class="trainer-name">
+                    quyen dev
+                    <span> Huấn luyện viên cá nhân </span>
+                </div>
+                <div class="speech">
+                    <h3>
+                        “Tôi tin vào việc mang lại cuộc sống lành mạnh hơn
+                        mà không phải thay đổi quá nhiều cách sống của một
+                        người.”
+                    </h3>
+                    <p>
+                        Một cuộc sống khỏe mạnh, hưng thịnh không có nghĩa
+                        là giàu sang phú quý. Một cuộc sống khỏe mạnh có
+                        nghĩa là một cơ thể và tâm trí đồng bộ và bình yên.
+                        Với hơn 11 năm kinh nghiệm, Danial Azman biết cách
+                        đạt được một cơ thể và tinh thần khỏe mạnh.
+                    </p>
+                    <p>
+                        Một cuộc sống khỏe mạnh, hưng thịnh không có nghĩa
+                        là giàu sang phú quý. Một cuộc sống khỏe mạnh có
+                        nghĩa là một cơ thể và tâm trí đồng bộ và bình yên.
+                        Với hơn 11 năm kinh nghiệm, Danial Azman biết cách
+                        đạt được một cơ thể và tinh thần khỏe mạnh.
+                    </p>
+                    <p>
+                        Đó là lý do tại sao anh ấy đáp ứng nhu cầu và mục
+                        tiêu tập luyện của từng cá nhân bằng một cách tiếp
+                        cận khác nhau. Anh ấy tin tưởng sâu sắc rằng trách
+                        nhiệm của anh ấy là đưa ra hướng dẫn, huấn luyện và
+                        động lực cho khách hàng của mình để mang lại sự thay
+                        đổi thuận lợi.
+                    </p>
+                    <p>
+                        Trong 11 năm hành trình tập thể dục vừa qua, anh đã
+                        tham gia nhiều hoạt động thể dục khác nhau. Anh đã
+                        tham gia 9 cuộc thi thể hình nam giới trong nước và
+                        quốc tế và giành được 7 huy chương. Kinh nghiệm của
+                        anh đã dạy anh tính kiên nhẫn, sự tự tin và cũng
+                        giúp anh hiểu được những khía cạnh sâu sắc hơn của
+                        cơ thể và hoạt động của nó.
+                    </p>
+                    <p>
+                        Anh ấy chuyên và huấn luyện viên về chuyển đổi và
+                        cấu tạo cơ thể, đào tạo sức khỏe phụ nữ, chăm sóc
+                        trước và sau khi sinh, các công việc về đệm lót dạng
+                        hộp và chức năng tổng thể. Anh ấy cũng tập luyện cho
+                        nhiều cuộc thi thể hình khác nhau. Là một huấn luyện
+                        viên thể hình, anh ấy tin rằng mọi người có thể kết
+                        hợp lối sống lành mạnh với những thay đổi nhỏ thay
+                        vì luôn đi theo con đường cao tốc.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="if4" class="information">
+        <div class="group-colum">
+            <div class="colum-img">
+                <div id="cancel4" class="cancel-if">
+                    <i class="fa-regular fa-circle-xmark"></i>
+                </div>
+                <img src="/img/personal-trainer/hlv/tien.png" alt="" />
+            </div>
+            <div class="colum-information">
+                <div class="trainer-name">
+                    tien fullstack
+                    <span> Huấn luyện viên cá nhân </span>
+                </div>
+                <div class="speech">
+                    <h3>
+                        “Tôi tin vào việc mang lại cuộc sống lành mạnh hơn
+                        mà không phải thay đổi quá nhiều cách sống của một
+                        người.”
+                    </h3>
+                    <p>
+                        Một cuộc sống khỏe mạnh, hưng thịnh không có nghĩa
+                        là giàu sang phú quý. Một cuộc sống khỏe mạnh có
+                        nghĩa là một cơ thể và tâm trí đồng bộ và bình yên.
+                        Với hơn 11 năm kinh nghiệm, Danial Azman biết cách
+                        đạt được một cơ thể và tinh thần khỏe mạnh.
+                    </p>
+                    <p>
+                        Một cuộc sống khỏe mạnh, hưng thịnh không có nghĩa
+                        là giàu sang phú quý. Một cuộc sống khỏe mạnh có
+                        nghĩa là một cơ thể và tâm trí đồng bộ và bình yên.
+                        Với hơn 11 năm kinh nghiệm, Danial Azman biết cách
+                        đạt được một cơ thể và tinh thần khỏe mạnh.
+                    </p>
+                    <p>
+                        Đó là lý do tại sao anh ấy đáp ứng nhu cầu và mục
+                        tiêu tập luyện của từng cá nhân bằng một cách tiếp
+                        cận khác nhau. Anh ấy tin tưởng sâu sắc rằng trách
+                        nhiệm của anh ấy là đưa ra hướng dẫn, huấn luyện và
+                        động lực cho khách hàng của mình để mang lại sự thay
+                        đổi thuận lợi.
+                    </p>
+                    <p>
+                        Trong 11 năm hành trình tập thể dục vừa qua, anh đã
+                        tham gia nhiều hoạt động thể dục khác nhau. Anh đã
+                        tham gia 9 cuộc thi thể hình nam giới trong nước và
+                        quốc tế và giành được 7 huy chương. Kinh nghiệm của
+                        anh đã dạy anh tính kiên nhẫn, sự tự tin và cũng
+                        giúp anh hiểu được những khía cạnh sâu sắc hơn của
+                        cơ thể và hoạt động của nó.
+                    </p>
+                    <p>
+                        Anh ấy chuyên và huấn luyện viên về chuyển đổi và
+                        cấu tạo cơ thể, đào tạo sức khỏe phụ nữ, chăm sóc
+                        trước và sau khi sinh, các công việc về đệm lót dạng
+                        hộp và chức năng tổng thể. Anh ấy cũng tập luyện cho
+                        nhiều cuộc thi thể hình khác nhau. Là một huấn luyện
+                        viên thể hình, anh ấy tin rằng mọi người có thể kết
+                        hợp lối sống lành mạnh với những thay đổi nhỏ thay
+                        vì luôn đi theo con đường cao tốc.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="if5" class="information">
+        <div class="group-colum">
+            <div class="colum-img">
+                <div id="cancel5" class="cancel-if">
+                    <i class="fa-regular fa-circle-xmark"></i>
+                </div>
+                <img src="/img/personal-trainer/hlv/tu.png" alt="" />
+            </div>
+            <div class="colum-information">
+                <div class="trainer-name">
+                    tu coder
+                    <span> Huấn luyện viên cá nhân </span>
+                </div>
+                <div class="speech">
+                    <h3>
+                        “Tôi tin vào việc mang lại cuộc sống lành mạnh hơn
+                        mà không phải thay đổi quá nhiều cách sống của một
+                        người.”
+                    </h3>
+                    <p>
+                        Một cuộc sống khỏe mạnh, hưng thịnh không có nghĩa
+                        là giàu sang phú quý. Một cuộc sống khỏe mạnh có
+                        nghĩa là một cơ thể và tâm trí đồng bộ và bình yên.
+                        Với hơn 11 năm kinh nghiệm, Danial Azman biết cách
+                        đạt được một cơ thể và tinh thần khỏe mạnh.
+                    </p>
+                    <p>
+                        Một cuộc sống khỏe mạnh, hưng thịnh không có nghĩa
+                        là giàu sang phú quý. Một cuộc sống khỏe mạnh có
+                        nghĩa là một cơ thể và tâm trí đồng bộ và bình yên.
+                        Với hơn 11 năm kinh nghiệm, Danial Azman biết cách
+                        đạt được một cơ thể và tinh thần khỏe mạnh.
+                    </p>
+                    <p>
+                        Đó là lý do tại sao anh ấy đáp ứng nhu cầu và mục
+                        tiêu tập luyện của từng cá nhân bằng một cách tiếp
+                        cận khác nhau. Anh ấy tin tưởng sâu sắc rằng trách
+                        nhiệm của anh ấy là đưa ra hướng dẫn, huấn luyện và
+                        động lực cho khách hàng của mình để mang lại sự thay
+                        đổi thuận lợi.
+                    </p>
+                    <p>
+                        Trong 11 năm hành trình tập thể dục vừa qua, anh đã
+                        tham gia nhiều hoạt động thể dục khác nhau. Anh đã
+                        tham gia 9 cuộc thi thể hình nam giới trong nước và
+                        quốc tế và giành được 7 huy chương. Kinh nghiệm của
+                        anh đã dạy anh tính kiên nhẫn, sự tự tin và cũng
+                        giúp anh hiểu được những khía cạnh sâu sắc hơn của
+                        cơ thể và hoạt động của nó.
+                    </p>
+                    <p>
+                        Anh ấy chuyên và huấn luyện viên về chuyển đổi và
+                        cấu tạo cơ thể, đào tạo sức khỏe phụ nữ, chăm sóc
+                        trước và sau khi sinh, các công việc về đệm lót dạng
+                        hộp và chức năng tổng thể. Anh ấy cũng tập luyện cho
+                        nhiều cuộc thi thể hình khác nhau. Là một huấn luyện
+                        viên thể hình, anh ấy tin rằng mọi người có thể kết
+                        hợp lối sống lành mạnh với những thay đổi nhỏ thay
+                        vì luôn đi theo con đường cao tốc.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="if6" class="information">
+        <div class="group-colum">
+            <div class="colum-img">
+                <div id="cancel6" class="cancel-if">
+                    <i class="fa-regular fa-circle-xmark"></i>
+                </div>
+                <img src="/img/personal-trainer/hlv/truong.png" alt="" />
+            </div>
+            <div class="colum-information">
+                <div class="trainer-name">
+                    truong designer
+                    <span> Huấn luyện viên cá nhân </span>
+                </div>
+                <div class="speech">
+                    <h3>
+                        “Tôi tin vào việc mang lại cuộc sống lành mạnh hơn
+                        mà không phải thay đổi quá nhiều cách sống của một
+                        người.”
+                    </h3>
+                    <p>
+                        Một cuộc sống khỏe mạnh, hưng thịnh không có nghĩa
+                        là giàu sang phú quý. Một cuộc sống khỏe mạnh có
+                        nghĩa là một cơ thể và tâm trí đồng bộ và bình yên.
+                        Với hơn 11 năm kinh nghiệm, Danial Azman biết cách
+                        đạt được một cơ thể và tinh thần khỏe mạnh.
+                    </p>
+                    <p>
+                        Một cuộc sống khỏe mạnh, hưng thịnh không có nghĩa
+                        là giàu sang phú quý. Một cuộc sống khỏe mạnh có
+                        nghĩa là một cơ thể và tâm trí đồng bộ và bình yên.
+                        Với hơn 11 năm kinh nghiệm, Danial Azman biết cách
+                        đạt được một cơ thể và tinh thần khỏe mạnh.
+                    </p>
+                    <p>
+                        Đó là lý do tại sao anh ấy đáp ứng nhu cầu và mục
+                        tiêu tập luyện của từng cá nhân bằng một cách tiếp
+                        cận khác nhau. Anh ấy tin tưởng sâu sắc rằng trách
+                        nhiệm của anh ấy là đưa ra hướng dẫn, huấn luyện và
+                        động lực cho khách hàng của mình để mang lại sự thay
+                        đổi thuận lợi.
+                    </p>
+                    <p>
+                        Trong 11 năm hành trình tập thể dục vừa qua, anh đã
+                        tham gia nhiều hoạt động thể dục khác nhau. Anh đã
+                        tham gia 9 cuộc thi thể hình nam giới trong nước và
+                        quốc tế và giành được 7 huy chương. Kinh nghiệm của
+                        anh đã dạy anh tính kiên nhẫn, sự tự tin và cũng
+                        giúp anh hiểu được những khía cạnh sâu sắc hơn của
+                        cơ thể và hoạt động của nó.
+                    </p>
+                    <p>
+                        Anh ấy chuyên và huấn luyện viên về chuyển đổi và
+                        cấu tạo cơ thể, đào tạo sức khỏe phụ nữ, chăm sóc
+                        trước và sau khi sinh, các công việc về đệm lót dạng
+                        hộp và chức năng tổng thể. Anh ấy cũng tập luyện cho
+                        nhiều cuộc thi thể hình khác nhau. Là một huấn luyện
+                        viên thể hình, anh ấy tin rằng mọi người có thể kết
+                        hợp lối sống lành mạnh với những thay đổi nhỏ thay
+                        vì luôn đi theo con đường cao tốc.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="if7" class="information">
+        <div class="group-colum">
+            <div class="colum-img">
+                <div id="cancel7" class="cancel-if">
+                    <i class="fa-regular fa-circle-xmark"></i>
+                </div>
+                <img src="/img/personal-trainer/hlv/van.png" alt="" />
+            </div>
+            <div class="colum-information">
+                <div class="trainer-name">
+                    van tester
+                    <span> Huấn luyện viên cá nhân </span>
+                </div>
+                <div class="speech">
+                    <h3>
+                        “Tôi tin vào việc mang lại cuộc sống lành mạnh hơn
+                        mà không phải thay đổi quá nhiều cách sống của một
+                        người.”
+                    </h3>
+                    <p>
+                        Một cuộc sống khỏe mạnh, hưng thịnh không có nghĩa
+                        là giàu sang phú quý. Một cuộc sống khỏe mạnh có
+                        nghĩa là một cơ thể và tâm trí đồng bộ và bình yên.
+                        Với hơn 11 năm kinh nghiệm, Danial Azman biết cách
+                        đạt được một cơ thể và tinh thần khỏe mạnh.
+                    </p>
+                    <p>
+                        Một cuộc sống khỏe mạnh, hưng thịnh không có nghĩa
+                        là giàu sang phú quý. Một cuộc sống khỏe mạnh có
+                        nghĩa là một cơ thể và tâm trí đồng bộ và bình yên.
+                        Với hơn 11 năm kinh nghiệm, Danial Azman biết cách
+                        đạt được một cơ thể và tinh thần khỏe mạnh.
+                    </p>
+                    <p>
+                        Đó là lý do tại sao anh ấy đáp ứng nhu cầu và mục
+                        tiêu tập luyện của từng cá nhân bằng một cách tiếp
+                        cận khác nhau. Anh ấy tin tưởng sâu sắc rằng trách
+                        nhiệm của anh ấy là đưa ra hướng dẫn, huấn luyện và
+                        động lực cho khách hàng của mình để mang lại sự thay
+                        đổi thuận lợi.
+                    </p>
+                    <p>
+                        Trong 11 năm hành trình tập thể dục vừa qua, anh đã
+                        tham gia nhiều hoạt động thể dục khác nhau. Anh đã
+                        tham gia 9 cuộc thi thể hình nam giới trong nước và
+                        quốc tế và giành được 7 huy chương. Kinh nghiệm của
+                        anh đã dạy anh tính kiên nhẫn, sự tự tin và cũng
+                        giúp anh hiểu được những khía cạnh sâu sắc hơn của
+                        cơ thể và hoạt động của nó.
+                    </p>
+                    <p>
+                        Anh ấy chuyên và huấn luyện viên về chuyển đổi và
+                        cấu tạo cơ thể, đào tạo sức khỏe phụ nữ, chăm sóc
+                        trước và sau khi sinh, các công việc về đệm lót dạng
+                        hộp và chức năng tổng thể. Anh ấy cũng tập luyện cho
+                        nhiều cuộc thi thể hình khác nhau. Là một huấn luyện
+                        viên thể hình, anh ấy tin rằng mọi người có thể kết
+                        hợp lối sống lành mạnh với những thay đổi nhỏ thay
+                        vì luôn đi theo con đường cao tốc.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="toast"></div>
+
+    <!-- overlay -->
+    <div class="nen_mo"></div>
+
+    <script type="text/javascript" src="https://code.jquery.com/jquery-1.11.0.min.js"></script>
+    <script type="text/javascript" src="https://code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
+    <script type="module" src="../navigation_javascript/toast.js"></script>
+    <script src="../navigation_javascript/menuv2.js"></script>
+    <script src="/navigation_javascript/personal_trainer.js"></script>
+</body>
+
+</html>

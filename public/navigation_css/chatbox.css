@@ -1,0 +1,353 @@
+*{
+    line-height: 2rem;
+}
+
+i.fa-solid.fa-caret-up{
+    position: absolute;
+    top: 85%;
+    right: 23px;
+    font-size: 30px;
+    color: #333;
+}
+
+.status__account {
+    display: flex;
+    align-items: flex-start;
+    flex-direction: column;
+    min-width: 238px;
+    background-color: #333;
+    position: absolute;
+    top: 110%;
+    right: 0;
+    padding: 10px 0;
+}
+
+.container--chat {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: rgba(169, 169, 169, 0.675);
+    min-height: calc(100vh - 68px);
+    /* margin-top: 22px; */
+    background: linear-gradient(#212121d1, #212121d1),
+        url("https://img4.thuthuatphanmem.vn/uploads/2021/01/07/background-phong-tap-gym_035832535.jpg");
+    color: white;
+    background-size: cover;
+    position: relative;
+    text-align: center;
+    padding: 0 8px;
+    overflow: hidden;
+}
+
+.chatbox {
+    display: flex;
+    flex-direction: column;
+    height: calc(100vh - 68px);
+    max-width: 1200px;
+    width: 100%;
+    min-width: 300px;
+    background-color: rgba(0, 0, 0, 0.4);
+    /* border-radius: 4px; */
+    overflow: hidden;
+    /* border: 1px solid rgba(214, 214, 214, 0.675); */
+    box-shadow: 2px 2px 10px #000000;
+    border-top: 1px rgba(255, 255, 255, 0.05) solid;
+}
+
+.chatbox__head {
+    display: flex;
+    align-items: center;
+    background-color: rgba(0, 0, 0, 0.5);
+    padding: 0 8px;
+    /* border: 1px white solid; */
+}
+
+.chatbox__head__title {
+    font-size: 2.4rem;
+}
+
+.chatbox__head__active {
+    display: flex;
+    align-items: center;
+    height: 100%;
+    margin-left: 20px;
+}
+
+.chatbox__head__active::before {
+    display: block;
+    content: "";
+    width: 8px;
+    height: 8px;
+    margin-right: 5px;
+    margin-bottom: 5px;
+    background-color: #6fff47;
+    border-radius: 50%;
+}
+
+.chatbox__head__active__text {
+    font-size: 1.2rem;
+    font-weight: 700;
+    margin-bottom: 5px;
+    font-weight: 500;
+    font-family: montserrat;
+}
+
+/* chatbox__message */
+
+.chatbox__message {
+    display: flex;
+    padding: 4px 12px;
+    flex-direction: column-reverse;
+    flex: 1;
+    overflow-y: scroll;
+    -ms-overflow-style: none;
+    /* khai báo sử dụng Internet Explorer, Edge */
+    scrollbar-width: none;
+    /* sử dụng Firefox */
+}
+
+.chatbox__message::-webkit-scrollbar {
+    display: none;
+    /* cho Chrome, Safari, and Opera */
+}
+
+.chatbox__message__list {
+    display: flex;
+    flex-direction: column;
+    margin: 0 12px;
+}
+
+.chatbox__message__list:last-child {
+    margin-bottom: 14px;
+}
+
+
+.chatbox__message__item:not(:first-child) {
+    margin-top: 10px;
+}
+
+.chatbox__message__item__text {
+    display: flex;
+    align-items: center;
+    text-align: left;
+    font-size: 1.6rem;
+    font-family: montserrat;
+    line-height: 2rem;
+    width: max-content;
+    max-width: 1000px;
+    max-width: 80%;
+    padding: 8px 15px;
+
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    border-radius: 20px;
+    overflow-wrap: anywhere;
+    /* word-break: break-all; */
+}
+
+.chatbox__message__item__left {
+    display: flex;
+    justify-content: flex-start;
+}
+
+.chatbox__message__item__right {
+    display: flex;
+    justify-content: flex-end;
+}
+
+.chatbox__message__item__right span{
+    display: flex;
+    justify-content: flex-end;
+    background-color: rgb(51, 51, 51);
+    border: none;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+}
+
+
+/* chatbox__bottom */
+
+.chatbox__bottom__input{
+    overflow: hidden;
+}
+
+.chatbox__bottom {
+    display: flex;
+    align-items: flex-end;
+    height: auto;
+    background-color: rgba(0, 0, 0, 0.2);
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+    /* border-top-right-radius: 8px;
+    border-top-left-radius: 8px;
+    overflow: hidden;
+    border-top-width: 2px;
+    border-left-width: 0;
+    border-right-width: 0;
+    border-bottom-width: 0;
+    border-top-color: #ffffff;
+    border-style: solid; */
+}
+
+.chatbox__bottom__link-social {
+    display: flex;
+    justify-content: center;
+    width: 86px;
+    align-items: center;
+    font-size: 1.2rem;
+    /* background-color: #303030; */
+}
+
+a.chatbox__bottom__link-social__mess{
+    width: 50px;
+    height: 60px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+}
+
+a.chatbox__bottom__link-social__mess span{
+    color: white;
+    display: flex;
+    position: absolute;
+    bottom: 100px;
+    font-family: montserrat;
+    font-size: 14px;
+    padding: 10px;
+    background-color: goldenrod;
+    border-radius: 20px;
+    left: 10px;
+    width: 150px;
+}
+
+i.bx.bxs-down-arrow{
+    color: goldenrod;
+    font-size: 16px;
+    position: absolute;
+    bottom: 88px;
+    left: 40px;
+}
+
+.sub{
+    display: none;
+    position: absolute;
+    top: 0px;
+    bottom: -31px;
+    right: 70px;
+}
+
+a.chatbox__bottom__link-social__mess:hover .sub{
+    display: block;
+}
+
+.messenger_ico{
+    height: 35px;
+    width: 35px;
+}
+
+a.chatbox__bottom__link-social__mess:active .messenger_ico{
+    opacity: 0.6;
+}
+
+.chatbox__bottom__link-social__mess {
+    text-decoration: none;
+    cursor: pointer;
+    display: flex;
+}
+
+.chatbox__bottom__input {
+    flex: 1;
+    display: flex;
+    align-items: flex-end;
+    /* height: 50px; */
+    /* justify-content: space-between; */
+}
+
+#myTextarea {
+    resize: none;
+    overflow: hidden; /* Ẩn thanh scrollbar */
+}
+
+
+.chatbox__bottom__input textarea {
+    display: flex;
+    flex: 9;
+    /* height: calc(100% - 12px); */
+    min-height: 40px;
+    /* max-height: 372px; */
+    padding: 10px 15px;
+    /* margin-right: 10px; */
+    font-size: 1.6rem;
+    color: var(--white-color);
+    background-color: transparent;
+    border-radius: 20px;
+    border-color: rgb(150, 150, 150);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    outline: none;
+    font-family: montserrat;
+    margin-bottom: 10px;
+    line-height: 1;
+}
+
+.chatbox__bottom__input i {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex: 1;
+    font-size: 3rem;
+    height: 60px;
+    width: 60px;
+
+    margin: 0 10px;
+
+    cursor: pointer;
+
+    color: rgb(180, 180, 180);
+}
+
+.chatbox__bottom__input i:hover {
+    /* color: white; */
+}
+
+.chatbox__bottom__input i:active {
+    color: white;
+}
+
+@media (max-width: 414px){
+    .chatbox__message__item__text{
+        /* max-width: 285px; */
+        font-size: 15px;
+    }
+}
+
+@media (max-width: 320px){
+    .chatbox__message__item__text{
+        /* max-width: 230px; */
+        font-size: 14px;
+    }
+    .sub{
+        display: none;
+        position: absolute;
+        top: 0px;
+        bottom: -31px;
+        right: 60px;
+    }
+    a.chatbox__bottom__link-social__mess span{
+        color: white;
+        display: flex;
+        position: absolute;
+        bottom: 100px;
+        font-family: montserrat;
+        font-size: 12px;
+        padding: 10px;
+        background-color: goldenrod;
+        border-radius: 20px;
+        left: 10px;
+        width: 130px;
+    }
+    i.bx.bxs-down-arrow{
+        color: goldenrod;
+        font-size: 16px;
+        position: absolute;
+        bottom: 88px;
+        left: 25px;
+    }
+}

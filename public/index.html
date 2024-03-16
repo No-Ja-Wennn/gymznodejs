@@ -1,0 +1,730 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <link rel="icon" href="../img/icon/logo.png" type="image/x-icon">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@100;300;500;600;900&display=swap"
+        rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Overpass:wght@100;200;300;400;500;600;700;800;900&display=swap"
+        rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Raleway:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="stylesheet" href="./font/fontawesome-free-6.4.0-web/css/all.min.css">
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <link rel="stylesheet" href="./css/index.css">
+    <link rel="stylesheet" href="./css/header.css">
+    <link rel="stylesheet" href="./css/footer.css">
+    <link rel="stylesheet" href="./css/tien.css">
+    <link rel="stylesheet" href="./css/tu.css">
+    <!-- <link rel="stylesheet" href="./css/van.css"> -->
+    <link rel="stylesheet" href="./css/quyen.css">
+    <link rel="stylesheet" href="./css/base.css">
+    <link rel="stylesheet" href="./navigation_css/toast.css">
+    <link rel="stylesheet" href="./css/keyframes.css">
+    <link rel="stylesheet" href="./navigation_css/login.css">
+    <title>GYMZ - Thể hình giới trẻ</title>
+</head>
+
+<body>
+    <div id="app" class="app">
+        <!-- LUU SY TRUONG -->
+        <div class="header">
+            <div class="header__inner">
+                <div class="header__inner__logo">
+                    <a href="">
+                        <h1>GYM<span>Z</span></h1>
+                    </a>
+                </div>
+                <!-- Thanh dieu huong -->
+                <div class="header__inner__navigation">
+                    <ul>
+                        <li><a class="header__inner__navigation__sevice" href="./index.html"><span>TRANG CHỦ</span></a>
+                        </li>
+                        <li><a class="header__inner__navigation__sevice" href="./navigation/chatbox.html">CHAT ONLINE</a>
+                        </li>
+                        <li>
+                            <div class="dropdown">
+                                <a class="header__inner__navigation__sevice" href="#" onclick="yourFunction(event)">
+                                    DỊCH VỤ<m><i class='bx bxs-right-arrow'></i></m>
+                                </a>
+                                <div class="containt">
+                                    <a href="./navigation/personal_trainer.html">HUẤN LUYỆN VIÊN</a>
+                                    <a href="./navigation/shop.html">CỬA HÀNG WHEY</a>
+                                </div>
+                            </div>
+                        </li>
+                        <li><a class="header__inner__navigation__sevice" href="./navigation/card.html">THẺ HỘI VIÊN</a></li>
+                    </ul>
+                </div>
+                <div class="header__inner__try">
+                    <ul>
+                        <li><a href="./navigation/promotion.html">KHUYẾN MÃI</a></li>
+                    </ul>
+                </div>
+                <div class="header__inner__login">
+                    <ul class="header__inner__login__inner">
+                        <li class="submenu__login">
+                            <a class="account-avt account" href="#" onclick="yourFunction(event)">
+                            </a>
+                            <ul class="submenu__login__content">
+                                <i class="fa-solid fa-caret-up"></i>
+                                <div class="status__account">
+                                    <a class="loginstatus status" href="#">
+                                        ĐĂNG NHẬP
+                                    </a>
+                                    <a class="status status__link" href="./navigation/information_account.html">
+                                        THÔNG TIN TÀI KHOẢN
+                                    </a>
+                                    <a class="status status__link" href="./navigation/information_card_TS.html">
+                                        THẺ THÀNH VIÊN & LT
+                                    </a>
+                                    <a class="logoutstatus status" href="">
+                                        ĐĂNG XUẤT
+                                    </a>
+                                </div>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+                <div class="header__inner__menu">
+                    <div class="bt_dropdown">
+                        <a class="header__inner__menu__bt" href="#" onclick="yourFunction(event)">
+                            <i class='bx bx-menu'></i>
+                        </a>
+                        <div class="content">
+                            <div class="logo">
+                                <ul class="account__login__center">
+                                    <li class="account__login">
+                                        <a class="account__login__inner">
+                                        </a>
+                                    </li>
+                                </ul>
+                                <div class="account__about">
+                                    <a class="account__name">
+                                        USERNAME
+                                    </a>
+                                    <a class="account__code">
+                                        GYMZ001
+                                    </a>
+                                </div>
+                                <!-- <img src="../img/background/logo_and_bgr.png" alt="logo and bgr"> -->
+                            </div>
+                            <a class="content__inner" href="./index.html">
+                                <i class='bx bxs-home'></i>
+                                <span class="noidung__text1">
+                                    TRANG CHỦ
+                                </span>
+                            </a>
+                            <a class="content__inner" href="./navigation/chatbox.html">
+                                <i class='bx bx-world'></i>
+                                <span class="noidung__text1">
+                                    CHAT ONLINE
+                                </span>
+                            </a>
+                            <div class="submenu" href="#" onclick="toggleNoidung222(event)">
+                                <b class="content__inner" href="">
+                                    <i class='bx bx-grid-alt'></i>
+                                    <span class="noidung__text1">
+                                        DỊCH VỤ
+                                    </span>
+                                </b>
+                                <div class="noidung222">
+                                    <a class="content__inner" href="./navigation/card.html">
+                                        THẺ HỘI VIÊN
+                                    </a>
+                                    <a class="content__inner" href="./navigation/personal_trainer.html">
+                                        HUẤN LUYỆN VIÊN
+                                    </a>
+                                    <a class="content__inner" href="./navigation/shop.html">
+                                        CỬA HÀNG WHEY
+                                    </a>
+                                </div>
+                            </div>
+                            <a class="content__inner" href="./navigation/promotion.html">
+                                <i class='bx bxs-purchase-tag'></i>
+                                <span class="noidung__text1">
+                                    KHUYẾN MÃI
+                                </span>
+                            </a>
+                            <div class="content__logout">
+                                <a class="content__logout__btn content__inner">
+                                    <!-- <i class='bx bx-code-alt'></i> -->
+                                    <i class="bxf fa-solid fa-right-from-bracket"></i>
+                                    <span class="noidung__text1">
+                                        ĐĂNG XUẤT
+                                    </span>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="container">
+            <!-- NGO GIA QUYEN -->
+            <div class="container__home">
+                <div class="home__about">
+                    <div class="home__about__head">
+                        <p class="home__about__head__text">TÌM LẠI NĂNG LƯỢNG CỦA BẠN</p>
+                    </div>
+                    <h1 class="home__about__title">
+                        TẠO NỀN TẢNG CHO MÔI TRƯỜNG TẬP LUYỆN HIỆU QUẢ
+                    </h1>
+                    <p class="home__about__text">
+                        CLOSE-AIGYM dùng toàn bộ nỗ lực để giúp bạn yêu cơ thể mình hơn, đều đặn mỗi ngày.
+                    </p>
+                    <div class="home__about__btn">
+                        <button class="home__about__btn__child">
+                            <a href="./navigation/chatbox.html" class="home__about__btn__child__link">LIÊN HỆ NGAY</a>
+                        </button>
+                    </div>
+
+                </div>
+            </div>
+            <!-- HOANG ANH TU -->
+            <div class="container__service">
+                <div class="container__service__title">
+                    CÁC DỊCH VỤ CỦA CHÚNG TÔI
+                </div>
+                <div class="container__service__uses">
+                    <p>
+                        Chương trình luyện tập yoga, gym, group X được thiết kế khoa học và phù hợp từ chuyên gia sẽ
+                        giúp bạn đạt được mục tiêu sức khỏe và hình thể.
+                    </p>
+                </div>
+                <div class="container__service__img hidden">
+                    <div class="container__service__img__items container__service__img1">
+                        <img src="./img/services/sv1.jpg" alt="">
+                        <span>Tập luyện với Huấn luyện viên cá nhân</span>
+                        <a href="./navigation/personal_trainer.html" class="container__service__img__items__link">Xem thêm
+                        </a>
+                    </div>
+                    <div class="container__service__img__items container__service__img2">
+                        <img src="./img/services/sv2.jpg">
+                        <span>Cơ hội trải nghiệm 40 bộ môn yoga</span>
+                        <a href="./navigation/personal_trainer.html" class="container__service__img__items__link">Xem thêm
+                        </a>
+                    </div>
+                    <div class="container__service__img__items container__service__img3">
+                        <img src="./img/services/sv3.jpg" alt="">
+                        <span>Tỏa căng thẳng với hơn 10 thể loại Group</span>
+                        <a href="./navigation/personal_trainer.html" class="container__service__img__items__link">Xem thêm
+                        </a>
+                    </div>
+                    <div class="container__service__img__items container__service__img4">
+                        <img src="./img/services/sv4.jpg" alt="">
+                        <span>Cùng nhau đạp xe để nâng cao sức khỏe</span>
+                        <a href="./navigation/personal_trainer.html" class="container__service__img__items__link">Xem thêm
+                        </a>
+                    </div>
+                    <div class="container__service__img__items container__service__img5">
+                        <img src="./img/services/sv5.jpg" alt="">
+                        <span>Có những dạng Dance như: Zumba, Sexy Dance </span>
+                        <a href="./navigation/personal_trainer.html" class="container__service__img__items__link">Xem thêm
+                        </a>
+                    </div>
+                    <div class="container__service__img__items container__service__img5">
+                        <img src="./img/services/sv5.jpg" alt="">
+                        <span>Có những dạng Dance như: Zumba, Sexy Dance </span>
+                        <a href="./navigation/personal_trainer.html" class="container__service__img__items__link">Xem thêm
+                        </a>
+                    </div>
+                </div>
+                <!-- <a href="./navigation/trpersonal_trainerin.html" class="container__service__link">Xem thêm</a> -->
+            </div>
+            <!-- LE VAN TIEN -->
+            
+            <div class="container__shop">
+                <div class="feedback">
+                    <h1>CƠ SỞ VẬT CHẤT</h1>
+                    <h2>GYMZ có cơ sở vật chất hiện đại với phòng tập rộng rãi và trang 
+                        thiết bị tập luyện đa dạng như máy cardio, 
+                        tạ và máy tập cơ bụng. Không gian yên tĩnh, ánh sáng tự nhiên, 
+                        hệ thống điều hòa làm tăng sự thoải mái. 
+                        Có khu vực nướng, phòng thay đồ và nhân viên chuyên nghiệp.</h2>
+                </div>
+                <div class="container__images">
+                    <div class="image__item">
+                        <img src="https://watermark.lovepik.com/photo/20211121/large/lovepik-men-and-women-practise-strength-in-the-gym-picture_500595712.jpg"
+                            alt="Mô tả ảnh 1">
+                        <h2>Ngoài tập luyện 1 cách khoa học ra thì chúng ta đừng quên bổ sung các chất dinh dưỡng thiết
+                            yếu cho cơ thể cũng như cho việc tập luyện.</h2>
+                    </div>
+                    <div class="image__item">
+                        <img src="https://tagalaxyfyc.com/wp-content/uploads/2023/02/2-scaled.jpg" alt="Mô tả ảnh 2">
+                        <h2>Cơ sở vật chất hiện đại, sang trọng, với những dụng cụ nhập khẩu trực tiếp tại mỹ giúp cho
+                            người sử dụng có 1 trải nghiệm tốt nhất và an toàn nhất.</h2>
+                    </div>
+                    <div class="image__item">
+                        <img src="https://storage.googleapis.com/leep_app_website/2021/05/huong-dan-tap-gym-cho-nguoi-moi-den-phong-tap.jpg"
+                            alt="Mô tả ảnh 3">
+                        <h2>Tập luyện với những huấn luyện viên chuyên nghiệp và nhiệt tình, sẽ hướng dẫn và đưa ra các
+                            bài tập phù hợp, giúp khách hàng có 1 body đẹp như mơ.</h2>
+                    </div>
+                    <div class="image__item">
+                        <img src="https://storage.googleapis.com/leep_app_website/2020/08/lan-dau-tap-gym-image.jpg"
+                            alt="Mô tả ảnh 4">
+                        <h2>Với những cô gái này, chưa cần biết điều kiện vật chất thế nào mà chỉ nhìn qua thôi cũng đã
+                            đủ làm bao chàng trai phải mê như điếu đổ!</h2>
+                    </div>
+                </div>
+            </div>
+
+            <div class="container__story">
+                <h1>Những thay đổi khi tập tại GYMZ</h1>
+                <div class="container__change">
+                    <div class="change__box">
+                        <div class="change__box__text">
+                            <h2>BEFORE & AFTER</h2>
+                            <p>Tập luyện tại GYMZ để có cơ hội thay đổi ngoại hình một cách ngoạn mục
+                                Việc luyện tập đều đặn tại GYMZ và đúng kỹ thuật, cùng với một chế độ dinh dưỡng hợp
+                                lý
+                                sẽ giúp cải thiện vóc dáng một cách rõ rệt. Huấn luyện viên của GYMZ thiết kế chương
+                                trình
+                                luyện tập dựa trên chỉ số cơ thể, tình trạng sức khỏe của bạn nhằm giúp bạn thấy rõ sự
+                                thay đổi
+                                ngoạn mục chỉ trong khoảng trung bình từ 6-8 tuần.
+                            </p>
+                        </div>
+                        <div class="change__box__img">
+                            <img class="img_change1"
+                                src="https://trainghiemmuasam.com/wp-content/uploads/2020/07/fitness-transformation-male.jpg"
+                                alt="before after">
+                        </div>
+                    </div>
+                    <div class="change__box" style=" flex-direction: row-reverse;">
+                        <div class="change__box__text">
+                            <h2>TÍNH BMI (CHỈ SỐ KHỐI CƠ THỂ)</h2>
+                            <p>Đo chỉ số BMI tại CITIGYM để đánh giá mức độ béo, gầy hay cân nặng lý tưởng của bạn
+                                GYMZ hỗ trợ hội viên đo chỉ số BMI trước và trong quá trình tập luyện để hội viên có
+                                thể
+                                theo
+                                dõi được kết quả tập luyện. BMI là chỉ số khối cơ thể (Body Mass Index), được các bác sĩ
+                                và
+                                chuyên gia sức khỏe dùng để xác định một người có bị béo phì, thừa cân hay quá gầy. Hãy
+                                để
+                                lại
+                                thông tin để GYMZ có thể giúp bạn phân tích sức khỏe và đưa ra những tư vấn phù hợp
+                                với
+                                thể
+                                trạng của bạn.
+                            </p>
+                        </div>
+                        <div class="change__box__img">
+                            <img class="img_change2"
+                                src="https://www.binhduongvn.city/uploads/files/2021/11/22/lot-xac-nho-gym-11.jpeg"
+                                alt="Hãy đến với chúng tôi!">
+                        </div>
+                    </div>
+
+                </div>
+                <div class="change__weightcalculation">
+                    <!-- trường nhập liệu  -->
+                    <div class="change__input">
+                        <input type="number" id="height" name="height" min="0" max="300" placeholder="Chiều cao (cm)">
+                        <input type="number" id="weight" name="weight" min="0" max="150" placeholder="Cân nặng (kg)">
+                        <input type="number" id="age" name="age" min="0" max="100" placeholder="Tuổi">
+                        <input type="text" id="fullname" name="fullname" placeholder="Họ và tên">
+                        <select id="gender" name="gender">
+                            <option value="" disabled selected>Giới tính</option>
+                            <option value="male">Nam</option>
+                            <option value="female">Nữ</option>
+                            <option value="other">Khác</option>
+                        </select>
+                        <input type="tel" id="phone" name="phone" placeholder="Số điện thoại">
+                    </div>
+                    <span class="change__input__error"></span>
+                    <button class="change__submit" type="submit">NHẬN KẾT QUẢ</button>
+                </div>
+            </div>
+
+            <div class="container__history">
+                <div class="container__history__header">
+                    <h1>Hãy đến với chúng tôi!</h1>
+                    <p>Giúp bạn tăng cường sức khỏe là nhiệm vụ hàng đầu của chúng tôi.</p>
+                </div>
+                <div class="container__history__row">
+                    <div class="container__history__column">
+                        <img src="./img/history/img4.jpg" style="width:100%">
+                        <img src="./img/history/img15.jpg" style="width:100%">
+                        <img src="./img/history/img18.jpg" style="width:100%">
+                        <img src="./img/history/img1.jpg" style="width:100%">
+                        <img src="./img/history/img12.jpg" style="width:100%">
+                        <img src="./img/history/img24.jpg" style="width:100%">
+                        <img src="./img/history/img7.jpg" style="width:100%">
+                    </div>
+                    <div class="container__history__column">
+                        <img src="./img/history/img26.jpg" style="width:100%">
+                        <img src="./img/history/img23.jpg" style="width:100%">
+                        <img src="./img/history/img21.jpg" style="width:100%">
+                        <img src="./img/history/img11.jpg" style="width:100%">
+                        <img src="./img/history/img5.jpg" style="width:100%">
+                        <img src="./img/history/img13.jpg" style="width:100%">
+                        <img src="./img/history/img18.jpg" style="width:100%">
+                    </div>
+                    <div class="container__history__column">
+                        <img src="./img/history/img14.jpg" style="width:100%">
+                        <img src="./img/history/img2.jpg" style="width:100%">
+                        <img src="./img/history/img16.jpg" style="width:100%">
+                        <img src="./img/history/img17.jpg" style="width:100%">
+                        <img src="./img/history/img3.jpg" style="width:100%">
+                        <img src="./img/history/img19.jpg" style="width:100%">
+                        <img src="./img/history/img20.jpg" style="width:100%">
+                    </div>
+                    <div class="container__history__column">
+                        <img src="./img/history/img10.jpg" style="width:100%">
+                        <img src="./img/history/img22.jpg" style="width:100%">
+                        <img src="./img/history/img9.jpg" style="width:100%">
+                        <img src="./img/history/img6.jpg" style="width:100%">
+                        <img src="./img/history/img25.jpg" style="width:100%">
+                        <img src="./img/history/img8.jpg" style="width:100%">
+                        <img src="./img/history/img21.jpg" style="width:100%">
+                    </div>
+                </div>
+            </div>
+
+
+        </div>
+        <!--   NGUYEN THI VAN -->
+        <div class="footer">
+            <div class="footer__select">
+                <div class="footer__colum1">
+                    <div class="footer__colum1__inner">
+                        <a href="#">
+                            <h3>
+                                CÔNG TY CỔ PHẦN ĐẦU TƯ VÀ PHÁT TRIỂN CLOSEAI
+                            </h3>
+                        </a>
+                    </div>
+                    <div class="about__us">
+                        <div class="about__us__inner">
+                            <div class="about__address">
+                                <a href="#">
+                                    <m><i class='bx bxs-home'></i></m> Trụ sở chính: z115, Tân Thịnh, TP.Thái
+                                    Nguyên, Thái Nguyên
+                                </a>
+                            </div>
+                            <div class="about__hotline">
+                                <a href="#">
+                                    <m><i class='bx bxs-phone'></i></m> Hotline: 0999.999.999
+                                </a>
+                            </div>
+                            <div class="about__email">
+                                <a href="#">
+                                    <m><i class='bx bxs-envelope'></i></m> Email: closeai.work@gmail.com
+                                </a>
+                            </div>
+                            <div class="about__website">
+                                <a href="#">
+                                    <m><i class='bx bx-world'></i></m> Website: https://pwm.io.vn
+                                </a>
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="service__customer">
+                        <div class="service__customer__title">
+                            <div class="footer__colum1__inner">
+                                <a href="#">
+                                    <h3>
+                                        DỊCH VỤ KHÁCH HÀNG
+                                    </h3>
+                                </a>
+                            </div>
+                        </div>
+                        <div class="service__customer__list">
+                            <div class="service__customer__list__inner">
+                                <a href="#">
+                                    <i class='bx bx-file'></i> Điều khoản sử dụng
+                                </a>
+                                <a href="#">
+                                    <i class='bx bxs-lock-alt'></i> Chính sách bảo mật
+                                </a>
+                                <a href="#">
+                                    <i class='bx bxs-chat'></i> Kết nối với chúng tôi
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="footer__colum2">
+                    <div class="footer__colum2__center">
+                        <div class="footer__colum2__inner">
+                            <div class="group">
+                                <div class="name__page">
+                                    <a href="#">
+                                        GYM Z<m><i class='bx bxs-badge-check'></i></m>
+                                    </a>
+                                    <h4>
+                                        999.999 người theo dõi
+                                    </h4>
+                                </div>
+                                <div class="avatar__img">
+                                    <img src="../img/background/avatar.png" alt="Ảnh đại diện">
+                                </div>
+                                <div class="folow__page">
+                                    <a href="#">
+                                        <i class='bx bxl-facebook-square'></i>Theo dõi fanpage
+                                    </a>
+                                </div>
+                                <div class="share__page">
+                                    <a href="#">
+                                        <i class='bx bxs-share'></i>Chia sẻ
+                                    </a>
+                                </div>
+                            </div>
+                            <div class="cover__img">
+                                <img src="../img/background/cover_img.png" alt="Ảnh bìa">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="footer__last">
+                <div class="footer__last__select">
+                    <div class="footer__last__select__inner">
+                        <a href="#">
+                            <m><i class='bx bxs-copyright'></i></m> 2023 Allrights reserved pwm.io.vn
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="toast"></div>
+
+    <!-- overlay -->
+    <div class="modal">
+        <div class="modal-overlay">
+
+        </div>
+        <div class="modal__body">
+            <div class="modal__body__box BMI-form">
+                <div class="BMI__title">
+                    <span class="BMI__title__word">Kết quả</span>
+                    <i class="BMI__title__icon fa-solid fa-xmark"></i>
+                </div>
+                <div class="BMI__value">
+                    <div class="BMI__value__row">
+                        <span class="BMI__value__row__label">Chiều cao: </span>
+                        <span class="BMI__value__row__data"></span>
+                    </div>
+                    <div class="BMI__value__row">
+                        <span class="BMI__value__row__label">Cân nặng: </span>
+                        <span class="BMI__value__row__data"></span>
+                    </div>
+                    <div class="BMI__value__row">
+                        <span class="BMI__value__row__label">Tuổi: </span>
+                        <span class="BMI__value__row__data"></span>
+                    </div>
+                    <div class="BMI__value__row">
+                        <span class="BMI__value__row__label">Giới tính: </span>
+                        <span class="BMI__value__row__data"></span>
+                    </div>
+                    <div class="BMI__value__row">
+                        <span class="BMI__value__row__label">Chỉ số BMI: </span>
+                        <span class="BMI__value__row__data"></span>
+                    </div>
+                    <div class="BMI__value__row">
+                        <span class="BMI__value__row__label">Tình trạng sức khỏe: </span>
+                        <span class="BMI__value__row__data"></span>
+                    </div>
+                    <div class="BMI__value__row">
+                        <span class="BMI__value__row__label">Tư vấn:</span>
+                        <span class="BMI__value__row__data"></span>
+                    </div>
+                </div>
+            </div>
+            <div class="modal__body__box login-box">
+                <p>Đăng nhập tài khoản</p>
+                <form action="/your-login-url" method="POST">
+                    <div class="user-box">
+                        <input class="login-email" required="" name="email" type="text">
+                        <label>Email</label>
+                    </div>
+                    <div class="user-box createBox">
+                        <input class="login-pass" required="" name="password" type="password">
+                        <label>Mật khẩu</label>
+                    </div>
+                    <button id="login-btn" type="submit">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                        Đăng nhập
+                    </button>
+                </form>
+                <p class="create__account__text">Chưa có tài khoản? <span class="a2 link-create-account">Đăng ký!</span></p>
+                <span class="forgot--account--link create__account__text a2">Quên mật khẩu?</span>
+            </div>
+            <div class="modal__body__box create-account-box">
+                <p>Đăng nhập tài khoản</p>
+                <form action="/your-login-url" method="POST">
+                    <div class="user-box">
+                        <input class="login-name" required="" name="fullname" type="text">
+                        <label>Họ và tên</label>
+                    </div>
+                    <div class="user-box">
+                        <input class="login-email" required="" name="email" type="text">
+                        <label>Email</label>
+                    </div>
+                    <div class="user-box">
+                        <input class="login-pass" required="" name="password" type="password">
+                        <label>Mật khẩu</label>
+                    </div>
+                    <div class="user-box">
+                        <input class="login-pass-confirm" required="" name="passwordConfirm" type="password">
+                        <label>Nhập lại mật khẩu</label>
+                    </div>
+                    <button id="create-btn" type="submit">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                        Đăng ký
+                    </button>
+                </form>
+                <p>Đã có tài khoản? <span class="a2 link-login">Đăng nhập!</span></p>
+            </div>
+            <div class="modal__body__box forgot-pass-box">
+                <p>Quên mật khẩu</p>
+                <form action="/your-login-url" method="POST">
+                    <div class="user-box">
+                        <input class="login-email" required="" name="email" type="text">
+                        <label>Email</label>
+                    </div>
+                    <button id="forgot-btn" type="submit">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                        Gửi yêu cầu
+                    </button>
+                </form>
+                <p>Đã có tài khoản? <span class="a2 link-login">Đăng nhập!</span></p>
+            </div>
+            <div class="modal__body__box register-cart">
+                <form action="/your-login-url" method="POST">
+                    <div class="user-box">
+                        <input class="login-email" required="" name="fullname" type="text">
+                        <label>Họ và tên</label>
+                    </div>
+                    <div class="user-box createBox">
+                        <input class="login-pass" required="" name="phonenumber" type="text">
+                        <label>Số điện thoại</label>
+                    </div>
+                    <div class="box_wrap">
+                        <div class="radio-container">
+                            <span class="tyoe_package">Gói tập</span>
+                            <div class="radio-wrapper">
+                                <label class="radio-button">
+                                    <input id="option1" name="radio-group" type="radio">
+                                    <span class="radio-checkmark"></span>
+                                    <span class="radio-label">BEGINNER</span>
+                                </label>
+                            </div>
+            
+                            <div class="radio-wrapper">
+                                <label class="radio-button">
+                                    <input id="option2" name="radio-group" type="radio">
+                                    <span class="radio-checkmark"></span>
+                                    <span class="radio-label">BASIC</span>
+                                </label>
+                            </div>
+            
+                            <div class="radio-wrapper">
+                                <label class="radio-button">
+                                    <input id="option3" name="radio-group" type="radio">
+                                    <span class="radio-checkmark"></span>
+                                    <span class="radio-label">ADVENCE</span>
+                                </label>
+                            </div>
+                        </div>
+            
+                        <div class="user-box createBox">
+                            <input class="login-pass" required="" name="preferredDays" type="text">
+                            <label>Ngày tập trong tuần mong muốn</label>
+                        </div>
+                    </div>
+            
+                    <div class="radio-inputs">
+                        <label class="radio">
+                            <input type="radio" name="timeSlot" checked="">
+                            <span class="name">1h30-3h00</span>
+                        </label>
+                        <label class="radio">
+                            <input type="radio" name="timeSlot">
+                            <span class="name">3h00-4h30</span>
+                        </label>
+            
+                        <label class="radio">
+                            <input type="radio" name="timeSlot">
+                            <span class="name">5h30-6h30</span>
+                        </label>
+                    </div>
+                    <select name="pt-options" id="pt-options">
+                        <option>Trường designer</option>
+                        <option>Tiến fullstack</option>
+                        <option>Tú coder</option>
+                        <option>Vân tester</option>
+                        <option>Quyến developer</option>
+                    </select>
+                    <button class="summit-btn" type="submit">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                        Đăng ký
+                    </button>
+                </form>
+            </div>
+            
+            <div class="modal__body__box change-name-box">
+                <p class="edit-title">Đổi tên khách hàng</p>
+                <form action="/your-login-url" method="POST">
+                    <div class="user-box">
+                        <input class="new-name" required="" name="newName" type="text">
+                        <label class="edit-label">Tên mới</label>
+                    </div>
+                    <div class="submit__row">
+                        <button id="submitExit">
+                            Thoát
+                        </button>
+                        <button id="submitChangeName" type="submit">
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                            Xác nhận
+                        </button>
+                    </div>
+                </form>
+            </div>
+            
+        </div>
+    </div>
+    <div id="myModalShow" class="modal">
+        <span class="close">&times;</span>
+        <img class="modal-content" id="img01">
+        <div id="caption"></div>
+    </div>
+    
+
+    <div class="nen_mo"></div>
+    <script type="module" src="./navigation_javascript/toast.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="./navigation_javascript/menuv2.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script type="module" src="./index.js"></script>
+    <script src="./navigation_javascript/login.js"></script>
+</body>
+
+>>>>>>> 5fb661f85a730f40e164a98d1cf1de808ce665c4
+
+</html>

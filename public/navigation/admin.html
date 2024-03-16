@@ -1,0 +1,438 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <link rel="icon" href="../img/icon/logo.png" type="image/x-icon">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@100;300;500;600;900&display=swap"
+        rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Overpass:wght@100;200;300;400;500;600;700;800;900&display=swap"
+        rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="stylesheet" href="../font/fontawesome-free-6.4.0-web/css/all.min.css">
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <link rel="stylesheet" href="../css/index.css">
+    <link rel="stylesheet" href="../css/header.css">
+    <link rel="stylesheet" href="../css/base.css">
+    <link rel="stylesheet" href="../navigation_css/toast.css">
+    <link rel="stylesheet" href="../css/keyframes.css">
+    <link rel="stylesheet" href="../navigation_css/chatbox.css">
+    <link rel="stylesheet" href="../navigation_css/admin.css">
+    <link rel="stylesheet" href="../navigation_css/login.css">
+    <!-- <link rel="stylesheet" href="./navigation_css/promotion.css"> -->
+    <title>GYMZ - Thể hình giới trẻ</title>
+
+
+</head>
+
+<body>
+    <div class="app">
+        <!-- LUU SY TRUONG -->
+        <div class="header">
+            <div class="header__inner">
+                <div class="header__inner__logo">
+                    <a href="">
+                        <h1>GYM<span>Z</span></h1>
+                    </a>
+                </div>
+                <!-- Thanh dieu huong -->
+                <div class="header__inner__navigation">
+                    <ul>
+                        <li><a class="header__inner__navigation__sevice" href="../index.html">TRANG CHỦ</a></li>
+                        <li><a class="header__inner__navigation__sevice" href="./chatbox.html">CHAT ONLINE</a></li>
+                        <li>
+                            <div class="dropdown">
+                                <a class="header__inner__navigation__sevice" href="#" onclick="yourFunction(event)">
+                                    DỊCH VỤ<m><i class='bx bxs-right-arrow'></i></m>
+                                </a>
+                                <div class="containt">
+                                    <a href="./personal_trainer.html">HUẤN LUYỆN VIÊN</a>
+                                    <a href="./shop.html">CỬA HÀNG WHEY</a>
+                                </div>
+                            </div>
+                        </li>
+                        <li><a class="header__inner__navigation__sevice" href="./card.html">THẺ HỘI VIÊN</a></li>
+                    </ul>
+                </div>
+                <div class="header__inner__try">
+                    <ul>
+                        <li><a href="./promotion.html">KHUYẾN MÃI</a></li>
+                    </ul>
+                </div>
+                <div class="header__inner__menu">
+                    <div class="bt_dropdown">
+                        <a class="header__inner__menu__bt" href="#" onclick="yourFunction(event)">
+                            <i class='bx bx-menu'></i>
+                        </a>
+                        <div class="content">
+                            <div class="logo">
+                                <ul class="account__login__center">
+                                    <li class="account__login">
+                                        <a class="account__login__inner" href="">
+                                        </a>
+                                    </li>
+                                </ul>
+                                <div class="account__about">
+                                    <a class="account__name" href="#">
+                                        USERNAME
+                                    </a>
+                                    <a class="account__code" href="#">
+                                        GYMZ001
+                                    </a>
+                                </div>
+                                <!-- <img src="../img/background/logo_and_bgr.png" alt="logo and bgr"> -->
+                            </div>
+                            <a class="content__inner" href="../index.html">
+                                <i class='bx bxs-home'></i>
+                                <span class="noidung__text1">
+                                    TRANG CHỦ
+                                </span>
+                            </a>
+                            <a class="content__inner" href="./chatbox.html">
+                                <i class='bx bx-world'></i>
+                                <span class="noidung__text1">
+                                    CHAT ONLINE
+                                </span>
+                            </a>
+                            <div class="submenu" href="#" onclick="toggleNoidung222(event)">
+                                <b class="content__inner" href="">
+                                    <i class='bx bx-grid-alt'></i>
+                                    <span class="noidung__text1">
+                                        DỊCH VỤ
+                                    </span>
+                                </b>
+                                <div class="noidung222">
+                                    <a class="content__inner" href="./card.html"> THẺ HỘI VIÊN</a>
+                                    <a class="content__inner" href="./personal_trainer.html"> HUẤN LUYỆN VIÊN</a>
+                                    <a class="content__inner" href="./shop.html"> CỬA HÀNG WHEY</a>
+                                </div>
+                            </div>
+                            <a class="content__inner" href="./promotion.html">
+                                <i class='bx bxs-purchase-tag'></i>
+                                <span class="noidung__text1">
+                                    KHUYẾN MÃI
+                                </span>
+                            </a>
+                            <div class="content__logout">
+                                <a class="content__logout__btn content__inner">
+                                    <!-- <i class='bx bx-code-alt'></i> -->
+                                    <i class="bxf fa-solid fa-right-from-bracket"></i>
+                                    <span class="noidung__text1">
+                                        ĐĂNG XUẤT
+                                    </span>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="container">
+            <!-- <div class="grid1"> -->
+            <div class="container__box">
+                <div class="container__bar">
+                    <ul class="container__bar__list">
+                        <li class="container__bar__item container__bar__item--avt">
+                            <img class="container__bar__item__avt" src="../img/services/coach/img4.jpg" alt="">
+                            <span class="container__bar__item__name">Admin Name</span>
+                        </li>
+                        <li id="QLMessage" class="container__bar__item container__bar__item--active">
+                            <i class="fa-regular fa-comments"></i>
+                            <span class="container__bar__item__text">
+                                Tin nhắn
+                            </span>
+                        </li>
+                        <li id="QLAccount" class="container__bar__item">
+                            <i class="fa-solid fa-users"></i>
+                            <span class="container__bar__item__text">
+                                QL tài khoản
+                            </span>
+                        </li>
+                        <li id="QLCard" class="container__bar__item">
+                            <i class="fa-solid fa-address-card"></i>
+                            <span class="container__bar__item__text">
+                                QL thẻ thành viên
+                            </span>
+                        </li>
+                        <li id="QLCalendar" class="container__bar__item">
+                            <i class="fa-solid fa-shop"></i>
+                            <span class="container__bar__item__text">
+                                QL lịch tập
+                            </span>
+                        </li>
+                    </ul>
+                    <div class="container__bar__logout">
+                        <div class="container__bar__item">
+                            <i class="fa-solid fa-right-from-bracket"></i>
+                            <span class="container__bar__item__text">
+                                Đăng xuất
+                            </span>
+                        </div>
+                    </div>
+                </div>
+                <div class="container__show">
+
+                    <!-- MESSAGE -->
+                    <div class="container__show__message">
+                        <div class="container__show__message__box">
+                            <div class="list-message-box">
+                                <h3 class="list-message-box__title">Đoạn chat</h3>
+                                <div class="list-message-box__search">
+                                    <i class="exit--search fa-solid fa-arrow-left"></i>
+                                    <div class="list-message-box__find">
+                                        <i class="fa-solid fa-magnifying-glass"></i>
+                                        <input type="text" class="search__message__input"
+                                            placeholder="Tìm kiếm trên chatbox">
+                                    </div>
+                                </div>
+
+                                <ul class="message__list">
+                                    <!-- <li class="message__user">
+                                        <div class="message__user__box">
+                                            <img src="../img/services/coach/img4.jpg" alt="" class="message__user__avt">
+                                            <div class="message__user__box__right">
+                                                <span class="message__user__name">
+                                                    Ngô Gia Quyến
+                                                </span>
+                                                <span class="message__user__msg">
+                                                    <span class="message__user__msg__obj">Bạn: </span>
+                                                    <div class="message__user__msg__text">xin chào bạn nhé!</div>
+                                                </span>
+                                            </div>
+                                            <i class="message__user__name__options fa-solid fa-ellipsis"></i>
+                                        </div>
+                                        <div class="message__user__box__affter">
+                                            <ul class="message__user__box__affter__list">
+                                                <li class="message__user__box__affter__item">Xóa đoạn chat</li>
+                                            </ul>
+                                        </div>
+                                    </li> -->
+                                </ul>
+                            </div>
+                            <div class="chatbox">
+                                <div class="chatbox__head">
+                                    <h1 class="chatbox__head__title">CHAT BOX</h1>
+                                    <div class="chatbox__head__active">
+                                        <span class="chatbox__head__active__text">Đang hoạt động</span>
+                                    </div>
+                                </div>
+                                <div class="chatbox__message">
+                                    <ul class="chatbox__message__list">
+                                        <!-- <li class="chatbox__message__item chatbox__message__item__left">
+                                            <span class="chatbox__message__item__text"> </span>
+                                        </li> -->
+                                    </ul>
+                                </div>
+                                <div class="chatbox__bottom">
+                                    <div class="chatbox__bottom__link-social">
+                                        <div class="chatbox__bottom__link-social__mess">
+                                            <a href="https://www.messenger.com/t/172967089240726/"
+                                                class="chatbox__bottom__link-social__mess">
+                                                <img class="messenger_ico" src="/img/icon/messenger_ico.png"
+                                                    alt="messenger">
+                                                <ul class="sub">
+                                                    <span>chat với chúng tôi</span>
+                                                    <i class='bx bxs-down-arrow'></i>
+                                                </ul>
+                                            </a>
+                                        </div>
+                                    </div>
+                                    <div class="chatbox__bottom__input">
+                                        <!-- <input type="search" autocomplete="off"> -->
+                                        <textarea id="myTextarea" rows="1" cols="20"></textarea>
+                                        <i class='bx bxs-send'></i>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <!-- ACCOUNT -->
+                    <div class="container__show__account">
+                        <div class="container__show__add container__show__account__add">
+                            <h1>QUẢN LÍ TÀI KHOẢN</h1>
+                            <button id="add-account"
+                                class="container__show__add__btn container__show__account__add__btn"
+                                onclick="addAccount()">Thêm tài
+                                khoản</button>
+                        </div>
+                        <div class="container__show__head">
+                            <div class="container__show__head__input__box">
+                                <i class="exit--search fa-solid fa-arrow-left"></i>
+                                <input class="show__input__id" type="text" oninput="findByIDAccount(this)"
+                                    placeholder="Nhập mã thẻ của khách hàng">
+                                <div class="show__find__id__box"></div>
+                            </div>
+                            <div class="head-end">
+                                <button class="container__show__find__btn">Tìm kiếm</button>
+                            </div>
+                        </div>
+                        <!-- <i class="remove-icon fa-solid fa-trash"></i> -->
+                        <div class="container__show__content">
+                            <table class="table__show table__show__main">
+                                <tr class="tr__show">
+                                    <th class="th__show">ID</th>
+                                    <th class="th__show">USERNAME</th>
+                                    <th class="th__show">EMAIL</th>
+                                    <th class="th__show">PASSWORD</th>
+                                    <th class="th__show"></th>
+                                </tr>
+                            </table>
+                        </div>
+                        <div class="save__box">
+                            <span class="save__message"></span>
+                            <button class="save-btn" onclick="saveAccount()">Lưu</button>
+                        </div>
+                    </div>
+
+                    <!-- CARD -->
+                    <div class="container__show container__show__card">
+                        <div class="container__show__add container__show__card__add">
+                            <h1>QUẢN LÍ THẺ THÀNH VIÊN</h1>
+                            <button id="add-card" class="container__show__add__btn container__show__card__add__btn"
+                                onclick="addCard()">Thêm thẻ thành
+                                viên</button>
+                        </div>
+                        <div class="container__show__head container__show__card__head">
+                            <div class="container__show__head__input__box container__show__card__head__input__box">
+                                <i class="exit--search fa-solid fa-arrow-left"></i>
+                                <input class="show__input__id" type="text" oninput="findByIDCard(this)"
+                                    placeholder="Nhập mã thẻ hoặc tên khách hàng">
+                                <div class="show__find__id__box">
+                                </div>
+                                </table>
+                            </div>
+                            <div class="head-end">
+                                <select class="show__input__package" id="packet" name="packet">
+                                    <option value="" disabled selected>Loại thành viên</option>
+                                    <option value="BEGINNER">BEGINNER</option>
+                                    <option value="BASIC">BASIC</option>
+                                    <option value="ADVENCE">ADVENCE</option>
+                                </select>
+                                <input id="input-date-start" class="show__input__date" type="text"
+                                    placeholder="Ngày gia nhập">
+                                <input id="input-date-end" class="show__input__date" type="text"
+                                    placeholder="Ngày hết hạn">
+                                <button class="container__show__find__btn container__show__card__find__btn">Tìm
+                                    kiếm</button>
+                            </div>
+                        </div>
+                        <!-- <i class="remove-icon fa-solid fa-trash"></i> -->
+                        <div class="container__show__content container__show__card__content">
+                            <table class="table__show table__show__main">
+                                <tr class="tr__show">
+                                    <th class="th__show">Mã thẻ</th>
+                                    <th class="th__show">Tên Hội Viên</th>
+                                    <th class="th__show">Tuổi</th>
+                                    <th class="th__show">Số điện thoại</th>
+                                    <th class="th__show">Loại Thành Viên</th>
+                                    <th class="th__show">Ngày gia nhập</th>
+                                    <th class="th__show">Ngày Hết Hạn Thẻ</th>
+                                    <th class="th__show">Thao tác</th>
+                                </tr>
+                            </table>
+                        </div>
+                        <div class="save__box">
+                            <span class="save__message"></span>
+                            <button class="save-btn" onclick="saveCard()">Lưu</button>
+                        </div>
+                    </div>
+
+                    <!-- CALENDAR EX -->
+                    <div class="container__show__calendar">
+                        <div class="container__show__add container__show__calendar__add">
+                            <h1>QUẢN LÍ LỊCH TẬP</h1>
+                            <button id="add-calendar"
+                                class="container__show__add__btn container__show__calendar__add__btn"
+                                onclick="addCalendar()">Thêm lịch tập</button>
+                        </div>
+                        <div class="container__show__head container__show__calendar__head">
+                            <div class="container__show__head__input__box container__show__calendar__head__input__box">
+                                <i class="exit--search fa-solid fa-arrow-left"></i>
+                                <input class="show__input__id" type="text" oninput="findByIDCalendar(this)"
+                                    placeholder="Nhập mã thẻ hoặc tên khách hàng">
+                                <div class="show__find__id__box">
+                                </div>
+                                </table>
+                            </div>
+                            <div class="head-end">
+                                <button class="container__show__find__btn container__show__calendar__find__btn">Tìm
+                                    kiếm</button>
+                            </div>
+                        </div>
+                        <!-- <i class="remove-icon fa-solid fa-trash"></i> -->
+                        <div class="container__show__content container__show__calendar__content">
+                            <table class="table__show table__show__main">
+                                <tr class="tr__show">
+                                    <th class="th__show">Mã thẻ</th>
+                                    <th class="th__show">Tên Hội Viên</th>
+                                    <th class="th__show">Ngày tập trong tuần</th>
+                                    <th class="th__show">Thời gian bắt đầu</th>
+                                    <th class="th__show">Thời gian kết thúc</th>
+                                    <th class="th__show">Bài tập</th>
+                                    <th class="th__show">Huấn luyện viên</th>
+                                    <th class="th__show">Thao tác</th>
+                                </tr>
+                            </table>
+                        </div>
+                        <div class="save__box" onclick="saveCalendar()">
+                            <span class="save__message"></span>
+                            <button class="save-btn">Lưu</button>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+            <!-- </div> -->
+
+            <!-- success -->
+            <div>
+                <!-- <div onclick="showSuccessToast();" class="btn btn--sucess">Show succes toast</div>
+                    <div onclick="showErrorToast();" class="btn btn--danger">Show error toast</div> -->
+            </div>
+        </div>
+
+    </div>
+
+    <div id="toast"></div>
+    <!-- overlay -->
+    <div class="modal">
+        <div class="modal-overlay">
+
+        </div>
+        <div class="modal__body">
+            <div class="modal__body__box login-box">
+                <p>Đăng nhập tài khoản</p>
+                <div>
+                    <div class="user-box">
+                        <input class="login-email" required="" name="" type="text">
+                        <label>Tên đăng nhập</label>
+                    </div>
+                    <div class="user-box createBox">
+                        <input class="login-pass" required="" name="" type="password">
+                        <label>Mật khẩu</label>
+                    </div>
+                    <button id="login-btn" type="button">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                        Đăng nhập
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="nen_mo"></div>
+    <script src="../navigation_javascript/menuv2.js"></script>
+</body>
+
+</html>
