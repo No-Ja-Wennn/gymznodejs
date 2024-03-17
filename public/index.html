@@ -13,7 +13,8 @@
         rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Overpass:wght@100;200;300;400;500;600;700;800;900&display=swap"
         rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Raleway:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Raleway:ital,wght@0,100..900;1,100..900&display=swap"
+        rel="stylesheet">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="stylesheet" href="./font/fontawesome-free-6.4.0-web/css/all.min.css">
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
@@ -29,6 +30,7 @@
     <link rel="stylesheet" href="./css/keyframes.css">
     <link rel="stylesheet" href="./navigation_css/login.css">
     <title>GYMZ - Thể hình giới trẻ</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 </head>
 
 <body>
@@ -46,7 +48,8 @@
                     <ul>
                         <li><a class="header__inner__navigation__sevice" href="./index.html"><span>TRANG CHỦ</span></a>
                         </li>
-                        <li><a class="header__inner__navigation__sevice" href="./navigation/chatbox.html">CHAT ONLINE</a>
+                        <li><a class="header__inner__navigation__sevice" href="./navigation/chatbox.html">CHAT
+                                ONLINE</a>
                         </li>
                         <li>
                             <div class="dropdown">
@@ -59,7 +62,8 @@
                                 </div>
                             </div>
                         </li>
-                        <li><a class="header__inner__navigation__sevice" href="./navigation/card.html">THẺ HỘI VIÊN</a></li>
+                        <li><a class="header__inner__navigation__sevice" href="./navigation/card.html">THẺ HỘI VIÊN</a>
+                        </li>
                     </ul>
                 </div>
                 <div class="header__inner__try">
@@ -84,9 +88,9 @@
                                     <a class="status status__link" href="./navigation/information_card_TS.html">
                                         THẺ THÀNH VIÊN & LT
                                     </a>
-                                    <a class="logoutstatus status" href="">
+                                    <button class="logoutstatus status" type="submit">
                                         ĐĂNG XUẤT
-                                    </a>
+                                    </button>
                                 </div>
                             </ul>
                         </li>
@@ -98,7 +102,7 @@
                             <i class='bx bx-menu'></i>
                         </a>
                         <div class="content">
-                            <div class="logo">
+                            <div class="logo" id="menu2-infor">
                                 <ul class="account__login__center">
                                     <li class="account__login">
                                         <a class="account__login__inner">
@@ -202,51 +206,57 @@
                     <div class="container__service__img__items container__service__img1">
                         <img src="./img/services/sv1.jpg" alt="">
                         <span>Tập luyện với Huấn luyện viên cá nhân</span>
-                        <a href="./navigation/personal_trainer.html" class="container__service__img__items__link">Xem thêm
+                        <a href="./navigation/personal_trainer.html" class="container__service__img__items__link">Xem
+                            thêm
                         </a>
                     </div>
                     <div class="container__service__img__items container__service__img2">
                         <img src="./img/services/sv2.jpg">
                         <span>Cơ hội trải nghiệm 40 bộ môn yoga</span>
-                        <a href="./navigation/personal_trainer.html" class="container__service__img__items__link">Xem thêm
+                        <a href="./navigation/personal_trainer.html" class="container__service__img__items__link">Xem
+                            thêm
                         </a>
                     </div>
                     <div class="container__service__img__items container__service__img3">
                         <img src="./img/services/sv3.jpg" alt="">
                         <span>Tỏa căng thẳng với hơn 10 thể loại Group</span>
-                        <a href="./navigation/personal_trainer.html" class="container__service__img__items__link">Xem thêm
+                        <a href="./navigation/personal_trainer.html" class="container__service__img__items__link">Xem
+                            thêm
                         </a>
                     </div>
                     <div class="container__service__img__items container__service__img4">
                         <img src="./img/services/sv4.jpg" alt="">
                         <span>Cùng nhau đạp xe để nâng cao sức khỏe</span>
-                        <a href="./navigation/personal_trainer.html" class="container__service__img__items__link">Xem thêm
+                        <a href="./navigation/personal_trainer.html" class="container__service__img__items__link">Xem
+                            thêm
                         </a>
                     </div>
                     <div class="container__service__img__items container__service__img5">
                         <img src="./img/services/sv5.jpg" alt="">
                         <span>Có những dạng Dance như: Zumba, Sexy Dance </span>
-                        <a href="./navigation/personal_trainer.html" class="container__service__img__items__link">Xem thêm
+                        <a href="./navigation/personal_trainer.html" class="container__service__img__items__link">Xem
+                            thêm
                         </a>
                     </div>
                     <div class="container__service__img__items container__service__img5">
                         <img src="./img/services/sv5.jpg" alt="">
                         <span>Có những dạng Dance như: Zumba, Sexy Dance </span>
-                        <a href="./navigation/personal_trainer.html" class="container__service__img__items__link">Xem thêm
+                        <a href="./navigation/personal_trainer.html" class="container__service__img__items__link">Xem
+                            thêm
                         </a>
                     </div>
                 </div>
                 <!-- <a href="./navigation/trpersonal_trainerin.html" class="container__service__link">Xem thêm</a> -->
             </div>
             <!-- LE VAN TIEN -->
-            
+
             <div class="container__shop">
                 <div class="feedback">
                     <h1>CƠ SỞ VẬT CHẤT</h1>
-                    <h2>GYMZ có cơ sở vật chất hiện đại với phòng tập rộng rãi và trang 
-                        thiết bị tập luyện đa dạng như máy cardio, 
-                        tạ và máy tập cơ bụng. Không gian yên tĩnh, ánh sáng tự nhiên, 
-                        hệ thống điều hòa làm tăng sự thoải mái. 
+                    <h2>GYMZ có cơ sở vật chất hiện đại với phòng tập rộng rãi và trang
+                        thiết bị tập luyện đa dạng như máy cardio,
+                        tạ và máy tập cơ bụng. Không gian yên tĩnh, ánh sáng tự nhiên,
+                        hệ thống điều hòa làm tăng sự thoải mái.
                         Có khu vực nướng, phòng thay đồ và nhân viên chuyên nghiệp.</h2>
                 </div>
                 <div class="container__images">
@@ -543,7 +553,7 @@
             </div>
             <div class="modal__body__box login-box">
                 <p>Đăng nhập tài khoản</p>
-                <form action="/your-login-url" method="POST">
+                <form id="login-form" action="/login-url" method="POST">
                     <div class="user-box">
                         <input class="login-email" required="" name="email" type="text">
                         <label>Email</label>
@@ -560,12 +570,13 @@
                         Đăng nhập
                     </button>
                 </form>
-                <p class="create__account__text">Chưa có tài khoản? <span class="a2 link-create-account">Đăng ký!</span></p>
+                <p class="create__account__text">Chưa có tài khoản? <span class="a2 link-create-account">Đăng ký!</span>
+                </p>
                 <span class="forgot--account--link create__account__text a2">Quên mật khẩu?</span>
             </div>
             <div class="modal__body__box create-account-box">
-                <p>Đăng nhập tài khoản</p>
-                <form action="/your-login-url" method="POST">
+                <p>Đăng ký tài khoản</p>
+                <form id="create-account-form" action="/create-account-url" method="POST">
                     <div class="user-box">
                         <input class="login-name" required="" name="fullname" type="text">
                         <label>Họ và tên</label>
@@ -599,6 +610,11 @@
                         <input class="login-email" required="" name="email" type="text">
                         <label>Email</label>
                     </div>
+                    <div class="user-box send-code__code">
+                        <input class="code-pass" required="" name="code" type="text">
+                        <label>Mã khôi phục</label>
+                        <button id="send-code" type="text">Gửi mã</button>
+                    </div>
                     <button id="forgot-btn" type="submit">
                         <span></span>
                         <span></span>
@@ -629,7 +645,7 @@
                                     <span class="radio-label">BEGINNER</span>
                                 </label>
                             </div>
-            
+
                             <div class="radio-wrapper">
                                 <label class="radio-button">
                                     <input id="option2" name="radio-group" type="radio">
@@ -637,7 +653,7 @@
                                     <span class="radio-label">BASIC</span>
                                 </label>
                             </div>
-            
+
                             <div class="radio-wrapper">
                                 <label class="radio-button">
                                     <input id="option3" name="radio-group" type="radio">
@@ -646,13 +662,13 @@
                                 </label>
                             </div>
                         </div>
-            
+
                         <div class="user-box createBox">
                             <input class="login-pass" required="" name="preferredDays" type="text">
                             <label>Ngày tập trong tuần mong muốn</label>
                         </div>
                     </div>
-            
+
                     <div class="radio-inputs">
                         <label class="radio">
                             <input type="radio" name="timeSlot" checked="">
@@ -662,7 +678,7 @@
                             <input type="radio" name="timeSlot">
                             <span class="name">3h00-4h30</span>
                         </label>
-            
+
                         <label class="radio">
                             <input type="radio" name="timeSlot">
                             <span class="name">5h30-6h30</span>
@@ -684,7 +700,7 @@
                     </button>
                 </form>
             </div>
-            
+
             <div class="modal__body__box change-name-box">
                 <p class="edit-title">Đổi tên khách hàng</p>
                 <form action="/your-login-url" method="POST">
@@ -706,7 +722,7 @@
                     </div>
                 </form>
             </div>
-            
+
         </div>
     </div>
     <div id="myModalShow" class="modal">
@@ -714,15 +730,17 @@
         <img class="modal-content" id="img01">
         <div id="caption"></div>
     </div>
-    
+
 
     <div class="nen_mo"></div>
-    <script type="module" src="./navigation_javascript/toast.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="./navigation_javascript/menuv2.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script type="module" src="./index.js"></script>
-    <script src="./navigation_javascript/login.js"></script>
+    <script type="module" src="./navigation_javascript/login.js"></script>
+    <script type="module" src="./src/validate.js"></script>
+    <script type="module" src="./src/toast.js"></script>
+    <script type="module" src="./src/client.js"></script>
 </body>
 
 >>>>>>> 5fb661f85a730f40e164a98d1cf1de808ce665c4

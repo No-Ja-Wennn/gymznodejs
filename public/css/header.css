@@ -219,8 +219,16 @@ i.fa-solid.fa-caret-up{
     font-family: montserrat;
     font-size: 14px;
     color: rgba(255, 255, 255, 0.8);
+    background-color: #222;
+
     /* border-top: 0.1px whitesmoke solid; */
 }
+
+button.status{
+    outline: none;
+    border: none;
+}
+
 /* a.loginstatus.status{
     font-size: 15px;
 } */

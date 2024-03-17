@@ -2,7 +2,7 @@ input[type="date"]::-webkit-calendar-picker-indicator {
     filter: invert(1);
 }
 
-.modal{
+.modal {
     display: none;
     position: fixed;
     /* top: 68px; */
@@ -14,7 +14,7 @@ input[type="date"]::-webkit-calendar-picker-indicator {
     justify-content: center;
 }
 
-.modal__body{
+.modal__body {
     display: none;
     position: relative;
     /* width: 100%; */
@@ -25,7 +25,8 @@ input[type="date"]::-webkit-calendar-picker-indicator {
     justify-content: center;
     padding: 0 10px;
 }
-.modal-overlay{
+
+.modal-overlay {
     display: none;
     position: absolute;
     top: 0;
@@ -51,7 +52,7 @@ input[type="date"]::-webkit-calendar-picker-indicator {
     border-radius: 10px;
 }
 
-.register-cart{
+.register-cart {
     /* top: calc(100vh - 50% + 40px); */
 }
 
@@ -80,7 +81,8 @@ input[type="date"]::-webkit-calendar-picker-indicator {
     outline: none;
     background: transparent;
 }
-#actived-label{
+
+#actived-label {
     position: absolute;
     top: -20px;
     left: 0;
@@ -226,7 +228,8 @@ input[type="date"]::-webkit-calendar-picker-indicator {
     color: #aaa;
     font-size: 14px;
 }
-.create__account__text{
+
+.create__account__text {
     color: #aaa;
     font-size: 14px;
     cursor: pointer;
@@ -246,7 +249,7 @@ input[type="date"]::-webkit-calendar-picker-indicator {
 
 
 /* gioitinh */
-.box_wrap{
+.box_wrap {
     display: flex;
     margin-bottom: 12px;
 }
@@ -258,31 +261,33 @@ input[type="date"]::-webkit-calendar-picker-indicator {
     margin: 0 auto;
     max-width: 300px;
     color: white;
-  }
-.radio-container .tyoe_package{
+}
+
+.radio-container .tyoe_package {
     margin-bottom: 12px;
     font-size: 18px;
-}  
-  .radio-wrapper {
+}
+
+.radio-wrapper {
     margin-bottom: 12px;
-  }
-  
-  .radio-button {
+}
+
+.radio-button {
     display: flex;
     align-items: center;
     cursor: pointer;
     transition: all 0.2s ease-in-out;
-  }
-  
-  .radio-button:hover {
+}
+
+.radio-button:hover {
     transform: translateY(-2px);
-  }
-  
-  .radio-button input[type="radio"] {
+}
+
+.radio-button input[type="radio"] {
     display: none;
-  }
-  
-  .radio-checkmark {
+}
+
+.radio-checkmark {
     display: inline-block;
     position: relative;
     width: 16px;
@@ -290,9 +295,9 @@ input[type="date"]::-webkit-calendar-picker-indicator {
     margin-right: 10px;
     border: 2px solid #333;
     border-radius: 50%;
-  }
-  
-  .radio-checkmark:before {
+}
+
+.radio-checkmark:before {
     content: "";
     position: absolute;
     top: 50%;
@@ -303,19 +308,19 @@ input[type="date"]::-webkit-calendar-picker-indicator {
     border-radius: 50%;
     background-color: #333;
     transition: all 0.2s ease-in-out;
-  }
-  
-  .radio-button input[type="radio"]:checked ~ .radio-checkmark:before {
+}
+
+.radio-button input[type="radio"]:checked~.radio-checkmark:before {
     transform: translate(-50%, -50%) scale(1);
-  }
-  
-  .radio-label {
+}
+
+.radio-label {
     font-size: 16px;
     font-weight: 600;
-  }
-  
-  /* typegois */
-  .radio-inputs {
+}
+
+/* typegois */
+.radio-inputs {
     position: relative;
     display: flex;
     flex-wrap: wrap;
@@ -326,18 +331,18 @@ input[type="date"]::-webkit-calendar-picker-indicator {
     padding: 0.25rem;
     width: 100%;
     font-size: 14px;
-  }
-  
-  .radio-inputs .radio {
+}
+
+.radio-inputs .radio {
     flex: 1 1 auto;
     text-align: center;
-  }
-  
-  .radio-inputs .radio input {
+}
+
+.radio-inputs .radio input {
     display: none;
-  }
-  
-  .radio-inputs .radio .name {
+}
+
+.radio-inputs .radio .name {
     display: flex;
     cursor: pointer;
     align-items: center;
@@ -349,21 +354,39 @@ input[type="date"]::-webkit-calendar-picker-indicator {
     transition: all .15s ease-in-out;
     font-size: 16px;
     color: #666;
-  }
-  
-  .radio-inputs .radio input:checked + .name {
+}
+
+.radio-inputs .radio input:checked+.name {
     background-color: #e8e8e8;
     font-weight: 600;
-  }
+}
 
-  #pt-select{
+#pt-select {
     width: 100%;
     margin-top: 8px;
     padding: 6px 8px;
-  }
+}
 
-  .submit__row{
+.submit__row {
     display: flex;
     align-items: center;
     justify-content: space-between;
-  }
+}
+
+#send-code {
+    width: 122px;
+    height: 32px;
+    padding: 8px;
+    font-size: 12px;
+    font-weight: 600;
+    text-transform: none;
+    letter-spacing: normal;
+    color: #fff;
+    background-color: #f2420d;
+    margin-left: 17px;
+}
+
+.send-code__code{
+    display: flex;
+    align-items: center;
+}
