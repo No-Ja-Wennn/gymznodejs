@@ -71,3 +71,21 @@ export function validateLoginValue() {
     }
     return true;
 }
+
+export function validateChangePass(newPass, confirmPass){
+    console.log(1)
+    if(!newPass){
+        showErrorToast("Thất bại", "Vui lòng nhập mật khẩu mới của bạn");
+        return false;
+    } else if (!validatePassword(newPass)) {
+        showErrorToast("Thất bại", "mật khẩu ít nhất 8 ký tự, một chữ hoa, một chữ thường, một số và một ký tự đặc biệt");
+        return false;
+    } else if(!confirmPass){
+        showErrorToast("Thất bại", "Vui lòng nhập mật khẩu mới của bạn");
+        return false;
+    }else if(newPass != confirmPass){
+        showErrorToast("Thất bại", "Mật khẩu không khớp");
+        return false;
+    }
+    return true;
+}

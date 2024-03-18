@@ -390,3 +390,10 @@ input[type="date"]::-webkit-calendar-picker-indicator {
     display: flex;
     align-items: center;
 }
+
+#timeLeft{
+    margin-left: 17px;
+    font-size: 12px;
+    color: coral;
+    padding-bottom: 1px;
+}

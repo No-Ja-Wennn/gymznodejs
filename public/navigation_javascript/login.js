@@ -1,3 +1,4 @@
+import { showErrorToast } from '../src/toast.js';
 import { validateCreateAccount, validateLoginValue } from '../src/validate.js';
 
 const modalBox = document.querySelector(".modal");
@@ -7,9 +8,10 @@ const createAccountBox = modalBox.querySelector(".create-account-box");
 const forgotPassBox = modalBox.querySelector(".forgot-pass-box");
 const registerCartBox = modalBox.querySelector(".register-cart");
 const changeNameBox = modalBox.querySelector(".change-name-box");
+const changePassBox = modalBox.querySelector(".change-pass-box");
 
 /* ACTIVE NECESSARY FORM  */
-function activeNecessaryForm() {
+export function activeNecessaryForm() {
     modalBox.style.display = "flex";
     overlayBox.style.display = "block";
 }

@@ -5,6 +5,7 @@ const path = require('path');
 const bodyParser = require('body-parser');
 var mysql = require('mysql');
 const { generateCustomerCode } = require('./src/functions.js');
+const nodemailer = require('nodemailer');
 
 // Sử dụng body-parser để phân tích cú pháp dữ liệu form
 app.use(bodyParser.urlencoded({ extended: true }));
@@ -30,6 +31,13 @@ function clearCookie(res, cookieName) {
   res.clearCookie(cookieName);
 }
 
+var transporter = nodemailer.createTransport({
+  service: 'gmail',
+  auth: {
+    user: 'dtc225180268@ictu.edu.vn',
+    pass: 'xfsgtulujoijcuea'
+  }
+});
 
 //////////////////
 
@@ -138,13 +146,13 @@ app.post('/create-account-url', (req, res) => {
           var sql = `INSERT INTO loginData (maKH ,name, email, password) VALUES ('${generateCustomerCode(result[0].maKH)}', '${fullname}',  '${emailLower}', '${password}')`;
           con.query(sql, function (err, result) {
             if (err) throw err;
-            res.json({success: true, active: true});
+            res.json({ success: true, active: true });
             res.end();
           });
         });
-    }else{
+    } else {
       console.log("Trùng email");
-      res.json({success: true, active: false});
+      res.json({ success: true, active: false });
       res.end();
     }
   });
@@ -155,6 +163,86 @@ app.post('/logout-url', function (req, res) {
   clearCookie(res, "user_id");
   // Gửi phản hồi về client
   res.json({ message: 'Đã đăng xuất' });
+});
+
+function textForgotPass(code) {
+  return `Chào mừng bạn đến với phòng tập gym của chúng tôi,
+
+  Chúng tôi nhận được yêu cầu cài đặt lại mật khẩu cho tài khoản của bạn. Mã cài đặt lại mật khẩu của bạn là: ${code}
+  
+  Vui lòng truy cập vào trang "Quên mật khẩu" trên website của chúng tôi và nhập mã này để tiến hành cài đặt lại mật khẩu.
+  
+  Nếu bạn không yêu cầu cài đặt lại mật khẩu, vui lòng bỏ qua email này hoặc liên hệ với chúng tôi để được hỗ trợ.
+  
+  Cảm ơn bạn đã sử dụng dịch vụ của chúng tôi!
+
+  Trân trọng,
+  Đội ngũ hỗ trợ phòng tập gym`;
+
+}
+let codeChangePass = 0;
+app.post('/your-send-code-url', function (req, res) {
+  const { email } = req.body;
+  var emailLower = email.toLowerCase();
+  // Truy vấn SQL
+  var sql = `SELECT * FROM loginData WHERE email = ?`;
+
+  con.query(sql, [emailLower], function (err, result) {
+    if (err) throw err;
+
+    if (result.length > 0) {
+      var randomNumber = Math.floor(Math.random() * 1000000);
+      codeChangePass = randomNumber;
+      var mailOptions = {
+        from: 'dtc225180268@ictu.edu.vn',
+        to: email,
+        subject: 'HỆ THỐNG PHÒNG TẬP GYMZ!',
+        text: textForgotPass(randomNumber)
+      };
+
+      transporter.sendMail(mailOptions, function (error, info) {
+        if (error) {
+          console.log(error);
+        } else {
+          console.log('Email sent: ' + info.response);
+        }
+      });
+      // Gửi phản hồi về client
+      res.json({ code: randomNumber, active: true });
+    } else {
+      randomNumber = -99999;
+      console.log("Email does not exist in the database.");
+      res.json({ code: randomNumber, active: false });
+    }
+  });
+});
+
+app.post('/your-forgot-password-url', function (req, res) {
+  const { email, code } = req.body;
+  if (email && code == codeChangePass) {
+    // Gửi phản hồi về client
+    res.json({ active: true });
+  } else {
+    res.json({ active: false });
+  }
+});
+app.post('/your-change-password-url', function (req, res) {
+  const { email, pass } = req.body;
+  if (email && pass) {
+    let newPassword = pass; // Thay đổi giá trị này thành mật khẩu mới
+    let emailLower = email.toLowerCase(); // Thay đổi giá trị này thành ID của người dùng cần cập nhật mật khẩu
+
+    var sql = `UPDATE logindata SET password = ? WHERE email = ?`;
+    con.query(sql, [newPassword, emailLower], function (err, result) {
+      if (err) throw err;
+      console.log("Password updated");
+      // Gửi phản hồi về client
+      res.json({ active: true });
+    });
+  } else {
+    console.log("emal, pass: ", email, pass);
+    res.json({ active: false });
+  }
 });
 
 app.post('/register', (req, res) => {
