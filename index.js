@@ -143,7 +143,11 @@ app.post('/create-account-url', (req, res) => {
       con.query("SELECT maKH FROM loginData ORDER BY maKH DESC LIMIT 1",
         function (err, result, fields) {
           if (err) throw err;
-          var sql = `INSERT INTO loginData (maKH ,name, email, password) VALUES ('${generateCustomerCode(result[0].maKH)}', '${fullname}',  '${emailLower}', '${password}')`;
+          if(!result[0]){
+            var sql = `INSERT INTO loginData (maKH ,name, email, password) VALUES ('MK0001', '${fullname}',  '${emailLower}', '${password}')`;
+          }else{
+            var sql = `INSERT INTO loginData (maKH ,name, email, password) VALUES ('${generateCustomerCode(result[0].maKH)}', '${fullname}',  '${emailLower}', '${password}')`;
+          }
           con.query(sql, function (err, result) {
             if (err) throw err;
             res.json({ success: true, active: true });
