@@ -36,8 +36,10 @@ overlayBox.addEventListener("click", displayNoneAll);
 
 /* LOGIN BTN */
 const loginBTN1 = document.querySelector(".loginstatus");
+if(loginBTN1)
 loginBTN1.addEventListener("click", f_loginBTN);
 const loginBTN2 = document.getElementById("menu2-infor");
+if(loginBTN2)
 loginBTN2.addEventListener("click", f_loginBTN);
 export function f_loginBTN() {
     activeNecessaryForm();

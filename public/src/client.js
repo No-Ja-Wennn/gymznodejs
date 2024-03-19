@@ -11,17 +11,20 @@ const registerCartBox = modalBox.querySelector(".register-cart");
 const changeNameBox = modalBox.querySelector(".change-name-box");
 const changePassBox = modalBox.querySelector(".change-pass-box");
 let sendCodeBTN = document.getElementById("send-code");
+const timeLeftElement = document.getElementById("timeLeft");
+const logoutBTN2 = document.querySelector(".content__logout__btn");
+const logoutBTN = document.querySelector(".logoutstatus");
+const loginBTN1 = document.querySelector(".loginstatus");
+const loginBTN2 = document.getElementById("menu2-infor");
 
 
 
 let cookieSave = null;
-const logoutBTN = document.querySelector(".logoutstatus");
-const loginBTN1 = document.querySelector(".loginstatus");
-const loginBTN2 = document.getElementById("menu2-infor");
 function f_logoutBTN() {
     var userNameElement1 = document.querySelector(".loginstatus");
     var userNameElement2 = document.querySelector(".account__name");
     var accountCodeElement2 = document.querySelector(".account__code");
+    if(userNameElement1)
     userNameElement1.innerText = "ĐĂNG NHẬP";
     userNameElement2.innerText = "USERNAME";
     accountCodeElement2.innerText = "USERCODE";
@@ -32,17 +35,19 @@ function f_logoutBTN() {
         success: function (data) {
             if (data) {
                 if (cookieSave) {
+                    if(loginBTN1)
                     loginBTN1.addEventListener("click", f_loginBTN);
                     showSuccessToast("Đã đăng xuất", "Cảm ơn bạn đã sử dụng dịch vụ");
                     cookieSave = null;
                     loginBTN2.addEventListener("click", f_loginBTN);
+                    logoutBTN2.removeEventListener("click", f_logoutBTN);
                 }
                 else
                     showErrorToast("Thất bại", "Quý khách chưa đăng nhập vào hệ thống")
             }
         },
         error: function (err) {
-            console.log('Error:', err);
+            // console.log('Error:', err);
         }
     });
 }
@@ -50,11 +55,23 @@ function innerValueAfterLogin(userName, code) {
     var userNameElement1 = document.querySelector(".loginstatus");
     var userNameElement2 = document.querySelector(".account__name");
     var accountCodeElement2 = document.querySelector(".account__code");
-    userNameElement1.innerText = userName;
+    if(userNameElement1){
+        userNameElement1.innerText = userName;
+    }
     userNameElement2.innerText = userName;
     accountCodeElement2.innerText = code;
+    logoutBTN2.style.display = "flex";
+    logoutBTN2.addEventListener("click", f_logoutBTN);
+    if(loginBTN2)
+    loginBTN2.addEventListener("click", ()=>{
+        window.location.href = './navigation/information_account.html';
+    })
 }
 
+
+
+let countdownTimer;
+let emailSentCode;
 // SUBMIT FORGOT PASSWORD
 function f_sendCodeBTN(e) {
     e.preventDefault(); // Ngăn chặn hành vi mặc định của nút submit
@@ -73,21 +90,19 @@ function f_sendCodeBTN(e) {
                     showSuccessToast("Mã khôi phục đã gửi tới email của bạn");
                     sendCodeBTN.removeEventListener("click", f_sendCodeBTN);
                     sendCodeBTN.removeEventListener("click", f_sendCodeBTN);
-                    // setTimeout(() => {
-                    //     sendCodeBTN.addEventListener("click", f_sendCodeBTN);
-                    // }, 6000);
-                    var timeLeftElement = document.getElementById("timeLeft");
+
                     let timeLeft = 60;
-                    let countdownTimer = setInterval(function () {
+                    countdownTimer = setInterval(function () {
                         timeLeft--;
                         timeLeftElement.textContent = timeLeft + "s";
                         // Khi thời gian còn lại là 0, dừng đếm ngược
                         if (timeLeft <= 0) {
                             sendCodeBTN.addEventListener("click", f_sendCodeBTN);
-                            clearInterval(countdownTimer);
+                            if (typeof countdownTimer !== 'undefined') {
+                                clearInterval(countdownTimer);
+                            }
                         }
                     }, 1000);
-
                 }
                 else
                     showErrorToast("Lỗi", "Tài khoản không tồn tại trong hệ thống");
@@ -107,7 +122,7 @@ $(document).ready(function () {
                 type: 'POST',
                 data: $(this).serialize(),
                 success: function (data) {
-                    if (data) {
+                    if (data.success) {
                         innerValueAfterLogin(data.name, data.maKH);
                         removeAllInputValue();
                         displayNoneAll();
@@ -120,7 +135,7 @@ $(document).ready(function () {
                     }
                 },
                 error: function (err) {
-                    console.log('Error:', err);
+                    // console.log('Error:', err);
                 }
             });
         }
@@ -133,7 +148,6 @@ $(document).ready(function () {
                 type: 'POST',
                 data: $(this).serialize(),
                 success: function (data) {
-                    console.log(data.active);
                     if (data.active == true) {
                         removeAllInputValue();
                         displayNoneAll();
@@ -143,32 +157,14 @@ $(document).ready(function () {
                     }
                 },
                 error: function (err) {
-                    console.log('Error:', err);
+                    // console.log('Error:', err);
                 }
             });
         }
     });
     // logout
+    if(logoutBTN)
     logoutBTN.addEventListener("click", f_logoutBTN);
-    // cookie
-    $.ajax({
-        url: '/get-cookie',
-        type: 'GET',
-        success: function (data) {
-            if (data) {
-                var value = data.cookieValue;
-                if (value) {
-                    cookieSave = value;
-                    innerValueAfterLogin(value.name, value.maKH);
-                    loginBTN1.removeEventListener("click", f_loginBTN);
-                    loginBTN2.removeEventListener("click", f_loginBTN);
-                }
-            }
-        },
-        error: function (err) {
-            console.log('Error:', err);
-        }
-    });
 
     // forgot pass submit
     // Sử dụng jQuery để xử lý sự kiện click
@@ -180,26 +176,29 @@ $(document).ready(function () {
         // Lấy dữ liệu từ form
         var emailValue = forgotPassBox.querySelector(".login-email").value;
         var codeValue = forgotPassBox.querySelector(".code-pass").value;
-
-        if (emailValue && codeValue) {
-            // Gửi yêu cầu POST đến server
-            $.ajax({
-                url: '/your-forgot-password-url',
-                type: 'POST',
-                data: { email: emailValue, code: codeValue },
-                success: function (response) {
-                    if (response.active == false) {
-                        showErrorToast("Mã khôi phục không đúng", "Vui lòng nhập lại mã xác thực")
-                    } else {
-                        removeAllInputValue();
-                        displayNoneAll();
-                        activeNecessaryForm();
-                        changePassBox.style.display = "block";
+        if (emailValue == emailChangePass) {
+            if (emailValue && codeValue) {
+                // Gửi yêu cầu POST đến server
+                $.ajax({
+                    url: '/your-forgot-password-url',
+                    type: 'POST',
+                    data: { email: emailValue, code: codeValue },
+                    success: function (response) {
+                        if (response.active == false) {
+                            showErrorToast("Mã khôi phục không đúng", "Vui lòng nhập lại mã xác thực")
+                        } else {
+                            removeAllInputValue();
+                            displayNoneAll();
+                            activeNecessaryForm();
+                            changePassBox.style.display = "block";
+                        }
                     }
-                }
-            });
+                });
+            } else {
+                showErrorToast("Thất bại", "Vui lòng điền đầy đủ thông tin")
+            }
         } else {
-            showErrorToast("Thất bại", "Vui lòng điền đầy đủ thông tin")
+            showErrorToast("Lỗi", "Địa chỉ email đã thay đổi");
         }
     });
     $('#changepass-btn').click(function (e) {
@@ -208,7 +207,6 @@ $(document).ready(function () {
         // Lấy dữ liệu từ form
         let newPass = changePassBox.querySelector(".new-pass").value;
         let confirmPass = changePassBox.querySelector(".confirm-pass").value;
-        console.log(newPass, confirmPass);
         if (validateChangePass(newPass, confirmPass)) {
             // Gửi yêu cầu POST đến server
             $.ajax({
@@ -222,11 +220,60 @@ $(document).ready(function () {
                         removeAllInputValue();
                         displayNoneAll();
                         showSuccessToast("Đổi mật khẩu thành công", "Vui lòng đăng nhập bằng mật khẩu mới")
+                        timeLeftElement.textContent = 60 + "s";
+                        sendCodeBTN.addEventListener("click", f_sendCodeBTN);
+                        if (typeof countdownTimer !== 'undefined') {
+                            clearInterval(countdownTimer);
+                        }
                     }
                 }
             });
         }
     });
+    
+    // cookie
+    $.ajax({
+        url: '/get-cookie',
+        type: 'GET',
+        success: function (data) {
+            if (data) {
+                var value = data.cookieValue;
+                if (value) {
+                    cookieSave = value;
+                    innerValueAfterLogin(value.name, value.maKH);
+                    if(loginBTN1)
+                    loginBTN1.removeEventListener("click", f_loginBTN);
+                if(loginBTN2)
+                    loginBTN2.removeEventListener("click", f_loginBTN);
+                }
+            }
+        },
+        error: function (err) {
+            // console.log('Error:', err);
+        }
+    });
+    // get value for information form
+    $.ajax({
+        url: '/get-value-information-form',
+        type: 'GET',
+        success: function (data) {
+            if (data) {
+                var value = data.cookieValue;
+                if (value) {
+                    cookieSave = value;
+                    innerValueAfterLogin(value.name, value.maKH);
+                    if(loginBTN1)
+                    loginBTN1.removeEventListener("click", f_loginBTN);
+                if(loginBTN2)
+                    loginBTN2.removeEventListener("click", f_loginBTN);
+                }
+            }
+        },
+        error: function (err) {
+            // console.log('Error:', err);
+        }
+    });
+    
 
 });
 

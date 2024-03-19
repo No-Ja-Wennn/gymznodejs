@@ -21,10 +21,10 @@ function validatePhoneNumber(phoneNumber) {
     return re.test(String(phoneNumber));
 }
 function validatePassword(password) {
-    // Định nghĩa một biểu thức chính quy để kiểm tra mật khẩu
-    var re = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z]).{8,}$/;
+    var re = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z])(?=.*[!@#$%^&*]).{8,}$/;
     return re.test(password);
 }
+
 
 export function validateCreateAccount() {
     var fullname = createAccountBox.querySelector(".login-name").value;

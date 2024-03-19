@@ -76,22 +76,27 @@ function createTable() {
 
   const tables = [
     {
+      name: 'users',
+      columns: 'maKH VARCHAR(10) PRIMARY KEY, name VARCHAR(255), email VARCHAR(255)'
+    },
+    {
       name: 'loginData',
-      columns: 'maKH VARCHAR(10) PRIMARY KEY, name VARCHAR(255), email VARCHAR(255), password VARCHAR(255)'
+      columns: 'maKH VARCHAR(10) PRIMARY KEY, password VARCHAR(255), FOREIGN KEY (maKH) REFERENCES users(maKH)'
     },
     {
       name: 'historyMessage',
-      columns: 'messageID INT AUTO_INCREMENT PRIMARY KEY, maKH VARCHAR(10), sender VARCHAR(255), senderRole ENUM("admin", "customer"), message VARCHAR(255), FOREIGN KEY (maKH) REFERENCES loginData(maKH)'
+      columns: 'messageID INT AUTO_INCREMENT PRIMARY KEY, maKH VARCHAR(10), sender VARCHAR(255), senderRole ENUM("admin", "customer"), message TEXT, FOREIGN KEY (maKH) REFERENCES users(maKH)'
     },
     {
       name: 'cardData',
-      columns: 'maThe VARCHAR(10) PRIMARY KEY, maKH VARCHAR(10), name VARCHAR(255), dateOfBirth DATE, phoneNumber VARCHAR(255), cardType VARCHAR(255), dateStart DATE, dateEnd DATE, FOREIGN KEY (maKH) REFERENCES loginData(maKH)'
+      columns: 'maThe VARCHAR(10) PRIMARY KEY, maKH VARCHAR(10), name VARCHAR(255), dateOfBirth DATE, phoneNumber VARCHAR(11), cardType VARCHAR(255), dateStart DATE, dateEnd DATE, FOREIGN KEY (maKH) REFERENCES users(maKH)'
     },
     {
       name: 'calendarData',
       columns: 'maLT VARCHAR(10) PRIMARY KEY, maThe VARCHAR(10), name VARCHAR(255), date DATE, timeStart TIME, timeEnd TIME, type VARCHAR(255), ptName VARCHAR(255), note VARCHAR(255), FOREIGN KEY (maThe) REFERENCES cardData(maThe)'
     }
-  ];
+];
+
   tables.forEach(table => {
     const checkTableExists = `SELECT count(*) as count FROM information_schema.tables WHERE table_schema = 'gymz' AND table_name = '${table.name}'`;
     con.query(checkTableExists, function (err, result) {
@@ -114,44 +119,53 @@ app.post('/login-url', (req, res) => {
   const { email, password } = req.body;
 
   const lowerCaseEmail = email.toLowerCase();
-  var sql = "SELECT * FROM loginData";
-  con.query(sql, function (err, result) {
+  var sql = "SELECT users.maKH, users.name, loginData.password FROM users INNER JOIN loginData ON users.maKH = loginData.maKH WHERE users.email = ? AND loginData.password = ?";
+  con.query(sql, [lowerCaseEmail, password], function (err, result) {
     if (err) throw err;
-    var user = result.find(row => row.email === lowerCaseEmail && row.password === password);
-    if (user) {
+    if (result.length > 0) {
+      console.log("re: ", result[0]);
+      var user = result[0];
       setCookie(res, "user_id", user);
       res.json({ success: true, email: lowerCaseEmail, maKH: user.maKH, name: user.name });
     } else {
       console.log('Invalid email or password');
+      res.json({ success: false, message: 'Invalid email or password' });
     }
     res.end();
   });
 });
+
 
 app.post('/create-account-url', (req, res) => {
   // data of form in req.body
   const { fullname, email, password, passwordConfirm } = req.body;
   // ktra ton tai
   let emailLower = email.toLowerCase();
-  var sqlQuery = "SELECT email FROM loginData";
+  var sqlQuery = "SELECT email FROM users";
   con.query(sqlQuery, function (err, result, fileds) {
     var test = false;
     result.map(value => {
       if (!test && value.email == emailLower) test = true;
     })
     if (!test) {
-      con.query("SELECT maKH FROM loginData ORDER BY maKH DESC LIMIT 1",
+      con.query("SELECT maKH FROM users ORDER BY maKH DESC LIMIT 1",
         function (err, result, fields) {
           if (err) throw err;
+          var maKH;
           if(!result[0]){
-            var sql = `INSERT INTO loginData (maKH ,name, email, password) VALUES ('MK0001', '${fullname}',  '${emailLower}', '${password}')`;
+            maKH = 'MK0001';
           }else{
-            var sql = `INSERT INTO loginData (maKH ,name, email, password) VALUES ('${generateCustomerCode(result[0].maKH)}', '${fullname}',  '${emailLower}', '${password}')`;
+            maKH = generateCustomerCode(result[0].maKH);
           }
+          var sql = `INSERT INTO users (maKH ,name, email) VALUES ('${maKH}', '${fullname}',  '${emailLower}')`;
           con.query(sql, function (err, result) {
             if (err) throw err;
-            res.json({ success: true, active: true });
-            res.end();
+            sql = `INSERT INTO loginData (maKH ,password) VALUES ('${maKH}', '${password}')`;
+            con.query(sql, function (err, result) {
+              if (err) throw err;
+              res.json({ success: true, active: true });
+              res.end();
+            });
           });
         });
     } else {
@@ -161,6 +175,7 @@ app.post('/create-account-url', (req, res) => {
     }
   });
 });
+
 
 app.post('/logout-url', function (req, res) {
   // Xóa cookie
@@ -189,7 +204,7 @@ app.post('/your-send-code-url', function (req, res) {
   const { email } = req.body;
   var emailLower = email.toLowerCase();
   // Truy vấn SQL
-  var sql = `SELECT * FROM loginData WHERE email = ?`;
+  var sql = `SELECT * FROM users WHERE email = ?`;
 
   con.query(sql, [emailLower], function (err, result) {
     if (err) throw err;
@@ -221,6 +236,7 @@ app.post('/your-send-code-url', function (req, res) {
   });
 });
 
+
 app.post('/your-forgot-password-url', function (req, res) {
   const { email, code } = req.body;
   if (email && code == codeChangePass) {
@@ -234,20 +250,31 @@ app.post('/your-change-password-url', function (req, res) {
   const { email, pass } = req.body;
   if (email && pass) {
     let newPassword = pass; // Thay đổi giá trị này thành mật khẩu mới
-    let emailLower = email.toLowerCase(); // Thay đổi giá trị này thành ID của người dùng cần cập nhật mật khẩu
+    let emailLower = email.toLowerCase(); // Thay đổi giá trị này thành email của người dùng cần cập nhật mật khẩu
 
-    var sql = `UPDATE logindata SET password = ? WHERE email = ?`;
-    con.query(sql, [newPassword, emailLower], function (err, result) {
+    var sql = `SELECT maKH FROM users WHERE email = ?`;
+    con.query(sql, [emailLower], function (err, result) {
       if (err) throw err;
-      console.log("Password updated");
-      // Gửi phản hồi về client
-      res.json({ active: true });
+      if (result.length > 0) {
+        let maKH = result[0].maKH;
+        var sqlUpdate = `UPDATE loginData SET password = ? WHERE maKH = ?`;
+        con.query(sqlUpdate, [newPassword, maKH], function (err, result) {
+          if (err) throw err;
+          console.log("Password updated");
+          // Gửi phản hồi về client
+          res.json({ active: true });
+        });
+      } else {
+        console.log("No user found with this email");
+        res.json({ active: false });
+      }
     });
   } else {
-    console.log("emal, pass: ", email, pass);
+    console.log("email, pass: ", email, pass);
     res.json({ active: false });
   }
 });
+
 
 app.post('/register', (req, res) => {
   // Dữ liệu form được gửi sẽ có sẵn trong req.body
@@ -262,12 +289,25 @@ app.post('/register', (req, res) => {
 
 // COOKIE
 app.get('/get-cookie', function (req, res) {
-  // Lấy giá trị cookie
   var cookieValue = getCookie(req, 'user_id');
-
-  // Gửi giá trị cookie về client
   res.json({ cookieValue: cookieValue });
 });
+
+// information fromn
+// app.get('/get-value-information-form', function (req, res) {
+//   let resultAdd = {};
+//   var sql = 'SELECT * FROM cardData WHERE maKH = ?';
+//   con.query(sql, [maKH], function(err, result){
+//     if(err) throw err;
+//     resultAdd.push(result)
+//   })
+//   var sql = 'SELECT * FROM loginData WHERE maKH = ?';
+//   con.query(sql, [maKH], function(err, result){
+//     if(err) throw err;
+//     resultAdd.push(result)
+//   })
+//   res.json({active: true, value: resultAdd});
+// });
 
 
 // Khởi động server
