@@ -304,6 +304,7 @@
 .box-title {
     font-size: 2vh;
     font-size: 2svh;
+    font-size: 16px;
     height: 70px;
     display: flex;
     align-items: center;
