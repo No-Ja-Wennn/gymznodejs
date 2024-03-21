@@ -722,18 +722,18 @@
                 </form>
             </div>
 
-            <div class="modal__body__box change-name-box">
+            <div class="modal__body__box change-box">
                 <p class="edit-title">Đổi tên khách hàng</p>
-                <form action="/your-login-url" method="POST">
+                <form id="change-form" action="/your-name-url" method="POST">
                     <div class="user-box">
-                        <input class="new-name" required="" name="newName" type="text">
+                        <input class="new1" required="" name="newName" type="text">
                         <label class="edit-label">Tên mới</label>
                     </div>
                     <div class="submit__row">
                         <button id="submitExit">
                             Thoát
                         </button>
-                        <button id="submitChangeName" type="submit">
+                        <button id="submitChange" type="submit">
                             <span></span>
                             <span></span>
                             <span></span>
@@ -744,6 +744,15 @@
                 </form>
             </div>
 
+            <div class="modal__body__box loader">
+                <div class="loader-square"></div>
+                <div class="loader-square"></div>
+                <div class="loader-square"></div>
+                <div class="loader-square"></div>
+                <div class="loader-square"></div>
+                <div class="loader-square"></div>
+                <div class="loader-square"></div>
+            </div>
         </div>
     </div>
     <div id="myModalShow" class="modal">

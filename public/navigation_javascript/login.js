@@ -15,7 +15,6 @@ export function activeNecessaryForm() {
     modalBox.style.display = "flex";
     overlayBox.style.display = "block";
 }
-
 /* DISPLAY NONE ALL */
 export function displayNoneAll() {
     modalBox.style.display = "none";
@@ -96,5 +95,4 @@ forgotPasswordLink.addEventListener("click", () => {
 });
 
 // XỬ LÍ SỰ KIỆN SUBMIT FORM
-
 

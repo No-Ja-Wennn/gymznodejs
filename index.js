@@ -89,13 +89,14 @@ function createTable() {
     },
     {
       name: 'cardData',
-      columns: 'maThe VARCHAR(10) PRIMARY KEY, maKH VARCHAR(10), name VARCHAR(255), dateOfBirth DATE, phoneNumber VARCHAR(11), cardType VARCHAR(255), dateStart DATE, dateEnd DATE, FOREIGN KEY (maKH) REFERENCES users(maKH)'
+      columns: 'maThe VARCHAR(10) PRIMARY KEY, maKH VARCHAR(10), dateOfBirth DATE, phoneNumber VARCHAR(11), cardType VARCHAR(255), dateStart DATE, dateEnd DATE, FOREIGN KEY (maKH) REFERENCES users(maKH)'
     },
     {
       name: 'calendarData',
-      columns: 'maLT VARCHAR(10) PRIMARY KEY, maThe VARCHAR(10), name VARCHAR(255), date DATE, timeStart TIME, timeEnd TIME, type VARCHAR(255), ptName VARCHAR(255), note VARCHAR(255), FOREIGN KEY (maThe) REFERENCES cardData(maThe)'
+      columns: 'maLT VARCHAR(10) PRIMARY KEY, maThe VARCHAR(10), date DATE, timeStart TIME, timeEnd TIME, type VARCHAR(255), ptName VARCHAR(255), note VARCHAR(255), FOREIGN KEY (maThe) REFERENCES cardData(maThe)'
     }
-];
+  ];
+
 
   tables.forEach(table => {
     const checkTableExists = `SELECT count(*) as count FROM information_schema.tables WHERE table_schema = 'gymz' AND table_name = '${table.name}'`;
@@ -117,7 +118,6 @@ function createTable() {
 
 app.post('/login-url', (req, res) => {
   const { email, password } = req.body;
-
   const lowerCaseEmail = email.toLowerCase();
   var sql = "SELECT users.maKH, users.name, loginData.password FROM users INNER JOIN loginData ON users.maKH = loginData.maKH WHERE users.email = ? AND loginData.password = ?";
   con.query(sql, [lowerCaseEmail, password], function (err, result) {
@@ -152,9 +152,9 @@ app.post('/create-account-url', (req, res) => {
         function (err, result, fields) {
           if (err) throw err;
           var maKH;
-          if(!result[0]){
+          if (!result[0]) {
             maKH = 'MK0001';
-          }else{
+          } else {
             maKH = generateCustomerCode(result[0].maKH);
           }
           var sql = `INSERT INTO users (maKH ,name, email) VALUES ('${maKH}', '${fullname}',  '${emailLower}')`;
@@ -293,21 +293,142 @@ app.get('/get-cookie', function (req, res) {
   res.json({ cookieValue: cookieValue });
 });
 
-// information fromn
-// app.get('/get-value-information-form', function (req, res) {
-//   let resultAdd = {};
-//   var sql = 'SELECT * FROM cardData WHERE maKH = ?';
-//   con.query(sql, [maKH], function(err, result){
-//     if(err) throw err;
-//     resultAdd.push(result)
-//   })
-//   var sql = 'SELECT * FROM loginData WHERE maKH = ?';
-//   con.query(sql, [maKH], function(err, result){
-//     if(err) throw err;
-//     resultAdd.push(result)
-//   })
-//   res.json({active: true, value: resultAdd});
+// app.get('/get-value-information-form', async function (req, res) {
+//   let resultAdd = {
+//     maThe: "",
+//     maKH: "",
+//     name: "",
+//     email: "",
+//     password: "",
+//     dateOfBirth: "",
+//     phoneNumber: "",
+//     cardType: "",
+//     dateStart: "",
+//     dateEnd: ""
+//   };
+//   let cookieValue = getCookie(req, 'user_id');
+//   if (cookieValue && cookieValue.maKH) {
+//     let maKH = cookieValue.maKH;
+//     var sql1 = 'SELECT * FROM cardData WHERE maKH = ?';
+//     var sql2 = 'SELECT * FROM loginData WHERE maKH = ?';
+//     var sql3 = 'SELECT * FROM users WHERE maKH = ?';
+//     try {
+//       const [cardDataResult, loginDataResult, userDataResult] = await Promise.all([
+//         new Promise((resolve, reject) => {
+//           con.query(sql1, [maKH], (err, result) => {
+//             if (err) reject(err);
+//             resolve(result[0]);
+//           });
+//         }),
+//         new Promise((resolve, reject) => {
+//           con.query(sql2, [maKH], (err, result) => {
+//             if (err) reject(err);
+//             resolve(result[0]);
+//           });
+//         }),
+//         new Promise((resolve, reject) => {
+//           con.query(sql3, [maKH], (err, result) => {
+//             if (err) reject(err);
+//             resolve(result[0]);
+//           });
+//         })
+//       ]);
+//       console.log("_____")
+//       resultAdd = { ...resultAdd, ...cardDataResult, ...loginDataResult, ...userDataResult };
+//       res.json({ active: true, value: resultAdd });
+//     } catch (err) {
+//       // Handle error
+//     }
+//   }
 // });
+
+app.get('/get-value-information-form', function (req, res) {
+  let resultAdd = {
+    maThe: "",
+    maKH: "",
+    name: "",
+    email: "",
+    password: "",
+    dateOfBirth: "",
+    phoneNumber: "",
+    cardType: "",
+    dateStart: "",
+    dateEnd: ""
+  };
+  let cookieValue = getCookie(req, 'user_id');
+  if (cookieValue && cookieValue.maKH) {
+    let maKH = cookieValue.maKH;
+    var sql1 = 'SELECT * FROM cardData WHERE maKH = ?';
+    var sql2 = 'SELECT * FROM loginData WHERE maKH = ?';
+    var sql3 = 'SELECT * FROM users WHERE maKH = ?';
+    con.query(sql1, [maKH], (err, result) => {
+      if (err) reject(err);
+      cardDataResult = result[0];
+      con.query(sql2, [maKH], (err, result) => {
+        if (err) reject(err);
+        loginDataResult = result[0];
+        con.query(sql3, [maKH], (err, result) => {
+          if (err) reject(err);
+          userDataResult = result[0];
+          if(cardDataResult && loginDataResult && userDataResult){
+            resultAdd = { ...resultAdd, ...cardDataResult, ...loginDataResult, ...userDataResult };
+            console.log("resultAdd", resultAdd)
+            res.json({ success: true, value: resultAdd });
+          }
+        });
+      });
+    });
+  }else{
+    res.json({ success: false, value: resultAdd });
+  }
+});
+
+app.post('/change-name-url', (req, res) => {
+  const { name, maKH } = req.body;
+  var sqlQuery = "UPDATE users SET name = ? WHERE maKH = ?";
+  con.query(sqlQuery, [name, maKH], function (err, result) {
+    if (err) throw err;
+    res.json({ success: true, type: "name" });
+  })
+});
+app.post('/change-profile-url', (req, res) => {
+  const { date, maKH } = req.body;
+  var sqlQuery = "UPDATE cardData SET dateOfBirth = ? WHERE maKH = ?";
+  con.query(sqlQuery, [date, maKH], function (err, result) {
+    if (err) throw err;
+    res.json({ success: true, type: "profile" });
+  })
+});
+app.post('/change-inforaccount-url', (req, res) => {
+  const { email, phoneNumber, maKH } = req.body;
+  var sqlQuery = "UPDATE cardData SET phoneNumber = ? WHERE maKH = ?";
+  con.query(sqlQuery, [phoneNumber, maKH], function (err, result) {
+    if (err) throw err;
+    var sqlQuery = "UPDATE users SET email = ? WHERE maKH = ?";
+    con.query(sqlQuery, [email, maKH], function (err, result) {
+      if (err) throw err;
+      res.json({ success: true, type: "account" });
+    })
+  })
+});
+app.post('/change-password-url', (req, res) => {
+  const { password, newPass, confirmPass, maKH } = req.body;
+  var sql = "SELECT password FROM loginData WHERE maKH = ?";
+  con.query(sql, [maKH], function (err, result) {
+    console.log(result[0].password);
+    console.log("pass: ", password);
+    if (result[0].password == password) {
+      var sqlQuery = "UPDATE loginData SET password = ? WHERE maKH = ?";
+      con.query(sqlQuery, [newPass, maKH], function (err, result) {
+        if (err) throw err;
+        res.json({ success: true, type: "pass" });
+      })
+    } else {
+      res.json({ success: false, type: "pass" });
+    }
+  })
+});
+
 
 
 // Khởi động server

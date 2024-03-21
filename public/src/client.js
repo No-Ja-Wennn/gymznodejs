@@ -1,6 +1,13 @@
 import { displayNoneAll, removeAllInputValue, f_loginBTN, activeNecessaryForm } from "../navigation_javascript/login.js"
 import { showSuccessToast, showErrorToast } from "./toast.js";
-import { validateCreateAccount, validateLoginValue, validateChangePass } from './validate.js';
+import { validateCreateAccount, validateLoginValue, validateChangePass, isValidChangePass } from './validate.js';
+import {
+    innerTextOfInformation,
+    removeTextOfInformation,
+    activeClickChange,
+    unActiveClickChange,
+    removeAllValueChange
+} from '../navigation_javascript/infomation_account.js'
 
 const modalBox = document.querySelector(".modal");
 const overlayBox = modalBox.querySelector(".modal-overlay");
@@ -10,12 +17,20 @@ const forgotPassBox = modalBox.querySelector(".forgot-pass-box");
 const registerCartBox = modalBox.querySelector(".register-cart");
 const changeNameBox = modalBox.querySelector(".change-name-box");
 const changePassBox = modalBox.querySelector(".change-pass-box");
+const loadBox = modalBox.querySelector(".loader");
+
 let sendCodeBTN = document.getElementById("send-code");
 const timeLeftElement = document.getElementById("timeLeft");
 const logoutBTN2 = document.querySelector(".content__logout__btn");
 const logoutBTN = document.querySelector(".logoutstatus");
 const loginBTN1 = document.querySelector(".loginstatus");
 const loginBTN2 = document.getElementById("menu2-infor");
+
+const nameClientElement = document.getElementById("name-client");
+const dateOfBirthClientElement = document.getElementById("dateofbirth-client");
+const emailClientElement = document.getElementById("email-client");
+const phoneClientElement = document.getElementById("phone-client");
+const changeBox = document.querySelector(".change-box");
 
 
 
@@ -24,8 +39,8 @@ function f_logoutBTN() {
     var userNameElement1 = document.querySelector(".loginstatus");
     var userNameElement2 = document.querySelector(".account__name");
     var accountCodeElement2 = document.querySelector(".account__code");
-    if(userNameElement1)
-    userNameElement1.innerText = "ĐĂNG NHẬP";
+    if (userNameElement1)
+        userNameElement1.innerText = "ĐĂNG NHẬP";
     userNameElement2.innerText = "USERNAME";
     accountCodeElement2.innerText = "USERCODE";
     $.ajax({
@@ -35,12 +50,14 @@ function f_logoutBTN() {
         success: function (data) {
             if (data) {
                 if (cookieSave) {
-                    if(loginBTN1)
-                    loginBTN1.addEventListener("click", f_loginBTN);
+                    if (loginBTN1)
+                        loginBTN1.addEventListener("click", f_loginBTN);
                     showSuccessToast("Đã đăng xuất", "Cảm ơn bạn đã sử dụng dịch vụ");
                     cookieSave = null;
                     loginBTN2.addEventListener("click", f_loginBTN);
                     logoutBTN2.removeEventListener("click", f_logoutBTN);
+                    removeTextOfInformation();
+                    unActiveClickChange();
                 }
                 else
                     showErrorToast("Thất bại", "Quý khách chưa đăng nhập vào hệ thống")
@@ -55,18 +72,19 @@ function innerValueAfterLogin(userName, code) {
     var userNameElement1 = document.querySelector(".loginstatus");
     var userNameElement2 = document.querySelector(".account__name");
     var accountCodeElement2 = document.querySelector(".account__code");
-    if(userNameElement1){
+    if (userNameElement1) {
         userNameElement1.innerText = userName;
     }
     userNameElement2.innerText = userName;
     accountCodeElement2.innerText = code;
     logoutBTN2.style.display = "flex";
     logoutBTN2.addEventListener("click", f_logoutBTN);
-    if(loginBTN2)
-    loginBTN2.addEventListener("click", ()=>{
-        window.location.href = './navigation/information_account.html';
-    })
+    if (loginBTN2)
+        loginBTN2.addEventListener("click", () => {
+            window.location.href = './navigation/information_account.html';
+        })
 }
+
 
 
 
@@ -89,8 +107,7 @@ function f_sendCodeBTN(e) {
                 if (response.active) {
                     showSuccessToast("Mã khôi phục đã gửi tới email của bạn");
                     sendCodeBTN.removeEventListener("click", f_sendCodeBTN);
-                    sendCodeBTN.removeEventListener("click", f_sendCodeBTN);
-
+                    sendCodeBTN.addEventListener("click", function (e) { e.preventDefault() })
                     let timeLeft = 60;
                     countdownTimer = setInterval(function () {
                         timeLeft--;
@@ -112,6 +129,40 @@ function f_sendCodeBTN(e) {
 }
 let emailChangePass = null;
 
+function getValueInformationForm() {
+    let loaderTimeout = setTimeout(function(){
+        activeNecessaryForm();
+        overlayBox.removeEventListener("click", displayNoneAll);
+        loadBox.style.display = "flex";
+    }, 1000);
+    $.ajax({
+        url: '/get-value-information-form',
+        type: 'GET',
+        success: function (data) {
+
+            clearTimeout(loaderTimeout);
+            // displayNoneAll();
+            // overlayBox.addEventListener("click", displayNoneAll);
+
+            if (data.success) {
+                var myData = data.value;
+                console.log(myData)
+                innerTextOfInformation(
+                    myData.name,
+                    myData.dateOfBirth,
+                    myData.email,
+                    myData.phoneNumber);
+            } else {
+            }
+        },
+        error: function (err) {
+            // console.log('Error:', err);
+        }
+    });
+}
+
+
+
 // client.js
 $(document).ready(function () {
     $('#login-form').submit(function (e) {
@@ -130,6 +181,8 @@ $(document).ready(function () {
                         loginBTN1.removeEventListener("click", f_loginBTN);
                         loginBTN2.removeEventListener("click", f_loginBTN);
                         cookieSave = data;
+                        getValueInformationForm();
+                        activeClickChange();
                     } else {
                         showErrorToast("Thất bại", "Email hoặc mật khẩu không đúng");
                     }
@@ -163,8 +216,8 @@ $(document).ready(function () {
         }
     });
     // logout
-    if(logoutBTN)
-    logoutBTN.addEventListener("click", f_logoutBTN);
+    if (logoutBTN)
+        logoutBTN.addEventListener("click", f_logoutBTN);
 
     // forgot pass submit
     // Sử dụng jQuery để xử lý sự kiện click
@@ -201,6 +254,7 @@ $(document).ready(function () {
             showErrorToast("Lỗi", "Địa chỉ email đã thay đổi");
         }
     });
+
     $('#changepass-btn').click(function (e) {
         e.preventDefault();
 
@@ -230,7 +284,7 @@ $(document).ready(function () {
             });
         }
     });
-    
+
     // cookie
     $.ajax({
         url: '/get-cookie',
@@ -241,10 +295,13 @@ $(document).ready(function () {
                 if (value) {
                     cookieSave = value;
                     innerValueAfterLogin(value.name, value.maKH);
-                    if(loginBTN1)
-                    loginBTN1.removeEventListener("click", f_loginBTN);
-                if(loginBTN2)
-                    loginBTN2.removeEventListener("click", f_loginBTN);
+                    if (loginBTN1)
+                        loginBTN1.removeEventListener("click", f_loginBTN);
+                    if (loginBTN2)
+                        loginBTN2.removeEventListener("click", f_loginBTN);
+                    activeClickChange();
+                } else {
+                    unActiveClickChange();
                 }
             }
         },
@@ -253,27 +310,64 @@ $(document).ready(function () {
         }
     });
     // get value for information form
+    getValueInformationForm();
+
+    // SUBMIT CHANGE
+    $('#change-form').submit(function (e) {
+        e.preventDefault();
+        const formElement = this.closest('form');
+        const actionValue = formElement.action;
+        const url = new URL(actionValue);
+        if (url.pathname == '/change-password-url') {
+            var a_input = changeBox.querySelectorAll("input");
+            a_input = Array.from(a_input, input => input.value);
+            console.log(a_input)
+            const [password, newPass, confirmPass] = a_input;
+            if (isValidChangePass(password, newPass, confirmPass)) {
+                f_changeServer(this, url);
+            }
+        } else {
+            f_changeServer(this, url);
+        }
+
+    });
+});
+
+function f_changeServer(element, url) {
     $.ajax({
-        url: '/get-value-information-form',
-        type: 'GET',
+        url: url.pathname,
+        type: 'POST',
+        data: $(element).serialize() + "&maKH=" + encodeURIComponent(cookieSave.maKH),
         success: function (data) {
-            if (data) {
-                var value = data.cookieValue;
-                if (value) {
-                    cookieSave = value;
-                    innerValueAfterLogin(value.name, value.maKH);
-                    if(loginBTN1)
-                    loginBTN1.removeEventListener("click", f_loginBTN);
-                if(loginBTN2)
-                    loginBTN2.removeEventListener("click", f_loginBTN);
+            if (data.success) {
+                if (data.type == "name") {
+                    showSuccessToast("Đổi tên thành công");
+                    var nameValue = changeBox.querySelector(".new1").value;
+                    nameClientElement.innerText = nameValue;
+                } else if (data.type == "profile") {
+                    showSuccessToast("Đổi thông tin hồ sơ thành công");
+                    var nameValue = changeBox.querySelector(".new1").value;
+                    dateOfBirthClientElement.innerText = nameValue;
+                } else if (data.type == "account") {
+                    showSuccessToast("Đổi thông tin tài khoản thành công");
+                    var nameValue = changeBox.querySelector(".new1").value;
+                    emailClientElement.innerText = nameValue;
+                    var nameValue = changeBox.querySelector(".new2").value;
+                    phoneClientElement.innerText = nameValue;
+                } else if (data.type == "pass") {
+                    showSuccessToast("Đổi mật khẩu thành công");
                 }
+                displayNoneAll();
+                removeAllValueChange();
+            } else {
+                if (data.type == "pass")
+                    showErrorToast("Đổi mật khẩu không thành công", "Mật khẩu cũ không chính xác");
+                else
+                    showSuccessToast("Lỗi", "Vui lòng liên hệ với nhân viên lễ tân qua số 099899003");
             }
         },
         error: function (err) {
             // console.log('Error:', err);
         }
     });
-    
-
-});
-
+}
