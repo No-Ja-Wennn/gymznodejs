@@ -293,55 +293,6 @@ app.get('/get-cookie', function (req, res) {
   res.json({ cookieValue: cookieValue });
 });
 
-// app.get('/get-value-information-form', async function (req, res) {
-//   let resultAdd = {
-//     maThe: "",
-//     maKH: "",
-//     name: "",
-//     email: "",
-//     password: "",
-//     dateOfBirth: "",
-//     phoneNumber: "",
-//     cardType: "",
-//     dateStart: "",
-//     dateEnd: ""
-//   };
-//   let cookieValue = getCookie(req, 'user_id');
-//   if (cookieValue && cookieValue.maKH) {
-//     let maKH = cookieValue.maKH;
-//     var sql1 = 'SELECT * FROM cardData WHERE maKH = ?';
-//     var sql2 = 'SELECT * FROM loginData WHERE maKH = ?';
-//     var sql3 = 'SELECT * FROM users WHERE maKH = ?';
-//     try {
-//       const [cardDataResult, loginDataResult, userDataResult] = await Promise.all([
-//         new Promise((resolve, reject) => {
-//           con.query(sql1, [maKH], (err, result) => {
-//             if (err) reject(err);
-//             resolve(result[0]);
-//           });
-//         }),
-//         new Promise((resolve, reject) => {
-//           con.query(sql2, [maKH], (err, result) => {
-//             if (err) reject(err);
-//             resolve(result[0]);
-//           });
-//         }),
-//         new Promise((resolve, reject) => {
-//           con.query(sql3, [maKH], (err, result) => {
-//             if (err) reject(err);
-//             resolve(result[0]);
-//           });
-//         })
-//       ]);
-//       console.log("_____")
-//       resultAdd = { ...resultAdd, ...cardDataResult, ...loginDataResult, ...userDataResult };
-//       res.json({ active: true, value: resultAdd });
-//     } catch (err) {
-//       // Handle error
-//     }
-//   }
-// });
-
 app.get('/get-value-information-form', function (req, res) {
   let resultAdd = {
     maThe: "",
@@ -372,7 +323,6 @@ app.get('/get-value-information-form', function (req, res) {
           userDataResult = result[0];
           if(cardDataResult && loginDataResult && userDataResult){
             resultAdd = { ...resultAdd, ...cardDataResult, ...loginDataResult, ...userDataResult };
-            console.log("resultAdd", resultAdd)
             res.json({ success: true, value: resultAdd });
           }
         });
@@ -427,6 +377,21 @@ app.post('/change-password-url', (req, res) => {
       res.json({ success: false, type: "pass" });
     }
   })
+});
+
+
+// COOKIE
+app.get('/get-load-card', function (req, res) {
+  var cookieValue = getCookie(req, 'user_id');
+  const maKH = cookieValue.maKH;
+  var sql = "SELECT * FROM cardData WHERE maKH = ?";
+  let resultAdd = {};
+  con.query(sql, [maKH], function(err, result){
+    if(err) throw err;
+    resultAdd = { ...resultAdd, ...result};
+    res.json({success: true, value: resultAdd});
+  })
+
 });
 
 

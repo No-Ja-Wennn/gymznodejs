@@ -34,15 +34,18 @@
         <div class="header">
             <div class="header__inner">
                 <div class="header__inner__logo">
-                    <a href="">
+                    <a href="../index.html">
                         <h1>GYM<span>Z</span></h1>
                     </a>
                 </div>
                 <!-- Thanh dieu huong -->
                 <div class="header__inner__navigation">
                     <ul>
-                        <li><a class="header__inner__navigation__sevice" href="../index.html">TRANG CHỦ</a></li>
-                        <li><a class="header__inner__navigation__sevice" href="./chatbox.html">CHAT ONLINE</a></li>
+                        <li><a class="header__inner__navigation__sevice" href="../index.html"><span>TRANG CHỦ</span></a>
+                        </li>
+                        <li><a class="header__inner__navigation__sevice" href="./chatbox.html">CHAT
+                                ONLINE</a>
+                        </li>
                         <li>
                             <div class="dropdown">
                                 <a class="header__inner__navigation__sevice" href="#" onclick="yourFunction(event)">
@@ -54,12 +57,38 @@
                                 </div>
                             </div>
                         </li>
-                        <li><a class="header__inner__navigation__sevice" href="./card.html">THẺ HỘI VIÊN</a></li>
+                        <li><a class="header__inner__navigation__sevice" href="./card.html">THẺ HỘI VIÊN</a>
+                        </li>
                     </ul>
                 </div>
                 <div class="header__inner__try">
                     <ul>
                         <li><a href="./promotion.html">KHUYẾN MÃI</a></li>
+                    </ul>
+                </div>
+                <div class="header__inner__login">
+                    <ul class="header__inner__login__inner">
+                        <li class="submenu__login">
+                            <a class="account-avt account" href="#" onclick="yourFunction(event)">
+                            </a>
+                            <ul class="submenu__login__content">
+                                <i class="fa-solid fa-caret-up"></i>
+                                <div class="status__account">
+                                    <a class="loginstatus status" href="#">
+                                        ĐĂNG NHẬP
+                                    </a>
+                                    <a class="status status__link" href="./information_account.html">
+                                        THÔNG TIN TÀI KHOẢN
+                                    </a>
+                                    <a class="status status__link" href="./information_card_TS.html">
+                                        THẺ THÀNH VIÊN & LT
+                                    </a>
+                                    <button class="logoutstatus status" type="submit">
+                                        ĐĂNG XUẤT
+                                    </button>
+                                </div>
+                            </ul>
+                        </li>
                     </ul>
                 </div>
                 <div class="header__inner__menu">
@@ -68,18 +97,18 @@
                             <i class='bx bx-menu'></i>
                         </a>
                         <div class="content">
-                            <div class="logo">
+                            <div class="logo" id="menu2-infor">
                                 <ul class="account__login__center">
                                     <li class="account__login">
-                                        <a class="account__login__inner" href="">
+                                        <a class="account__login__inner">
                                         </a>
                                     </li>
                                 </ul>
                                 <div class="account__about">
-                                    <a class="account__name" href="#">
+                                    <a class="account__name">
                                         USERNAME
                                     </a>
-                                    <a class="account__code" href="#">
+                                    <a class="account__code">
                                         GYMZ001
                                     </a>
                                 </div>
@@ -105,9 +134,15 @@
                                     </span>
                                 </b>
                                 <div class="noidung222">
-                                    <a class="content__inner" href="./card.html"> THẺ HỘI VIÊN</a>
-                                    <a class="content__inner" href="./personal_trainer.html"> HUẤN LUYỆN VIÊN</a>
-                                    <a class="content__inner" href="./shop.html"> CỬA HÀNG WHEY</a>
+                                    <a class="content__inner" href="./card.html">
+                                        THẺ HỘI VIÊN
+                                    </a>
+                                    <a class="content__inner" href="./personal_trainer.html">
+                                        HUẤN LUYỆN VIÊN
+                                    </a>
+                                    <a class="content__inner" href="./shop.html">
+                                        CỬA HÀNG WHEY
+                                    </a>
                                 </div>
                             </div>
                             <a class="content__inner" href="./promotion.html">
@@ -117,13 +152,13 @@
                                 </span>
                             </a>
                             <div class="content__logout">
-                                <a class="content__logout__btn content__inner">
+                                <div class="content__logout__btn content__inner">
                                     <!-- <i class='bx bx-code-alt'></i> -->
                                     <i class="bxf fa-solid fa-right-from-bracket"></i>
                                     <span class="noidung__text1">
                                         ĐĂNG XUẤT
                                     </span>
-                                </a>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -753,83 +788,107 @@
             </div>
             <div class="modal__body__box login-box">
                 <p>Đăng nhập tài khoản</p>
-                <div>
+                <form id="login-form" action="/login-url" method="POST">
                     <div class="user-box">
-                        <input class="login-email" required="" name="" type="text">
+                        <input class="login-email" required="" name="email" type="text">
                         <label>Email</label>
                     </div>
                     <div class="user-box createBox">
-                        <input class="login-pass" required="" name="" type="password">
+                        <input class="login-pass" required="" name="password" type="password">
                         <label>Mật khẩu</label>
                     </div>
-                    <button id="login-btn" type="button">
+                    <button id="login-btn" type="submit">
                         <span></span>
                         <span></span>
                         <span></span>
                         <span></span>
                         Đăng nhập
                     </button>
-                </div>
-                <p class="create__account__text">Chưa có tài khoản? <span class="a2 link-create-account">Đăng ký!</span></p>
+                </form>
+                <p class="create__account__text">Chưa có tài khoản? <span class="a2 link-create-account">Đăng ký!</span>
+                </p>
                 <span class="forgot--account--link create__account__text a2">Quên mật khẩu?</span>
             </div>
             <div class="modal__body__box create-account-box">
-                <p>Đăng nhập tài khoản</p>
-                <div>
+                <p>Đăng ký tài khoản</p>
+                <form id="create-account-form" action="/create-account-url" method="POST">
                     <div class="user-box">
-                        <input class="login-name" required="" name="" type="text">
+                        <input class="login-name" required="" name="fullname" type="text">
                         <label>Họ và tên</label>
                     </div>
                     <div class="user-box">
-                        <input class="login-email" required="" name="" type="text">
+                        <input class="login-email" required="" name="email" type="text">
                         <label>Email</label>
                     </div>
                     <div class="user-box">
-                        <input class="login-pass" required="" name="" type="password">
+                        <input class="login-pass" required="" name="password" type="password">
                         <label>Mật khẩu</label>
                     </div>
                     <div class="user-box">
-                        <input class="login-pass-confirm" required="" name="" type="password">
+                        <input class="login-pass-confirm" required="" name="passwordConfirm" type="password">
                         <label>Nhập lại mật khẩu</label>
                     </div>
-                    <button id="create-btn" type="button">
+                    <button id="create-btn" type="submit">
                         <span></span>
                         <span></span>
                         <span></span>
                         <span></span>
                         Đăng ký
                     </button>
-                </div>
+                </form>
                 <p>Đã có tài khoản? <span class="a2 link-login">Đăng nhập!</span></p>
             </div>
             <div class="modal__body__box forgot-pass-box">
                 <p>Quên mật khẩu</p>
-                <div>
+                <form action="/your-forgot-url" method="POST">
                     <div class="user-box">
-                        <input class="login-email" required="" name="" type="text">
+                        <input class="login-email" required="" name="email" type="text">
                         <label>Email</label>
                     </div>
-                    <button id="forgot-btn" type="button">
+                    <div class="user-box send-code__code">
+                        <input class="code-pass" required="" name="code" type="text">
+                        <label>Mã khôi phục</label>
+                        <span id="timeLeft">60s</span>
+                        <button id="send-code" type="text">Gửi mã</button>
+                    </div>
+                    <button id="forgot-btn" type="submit">
                         <span></span>
                         <span></span>
                         <span></span>
                         <span></span>
-                        Gửi yêu cầu
+                        Xác nhận
                     </button>
-                </div>
+                </form>
                 <p>Đã có tài khoản? <span class="a2 link-login">Đăng nhập!</span></p>
             </div>
-
-            
-            <div class="modal__body__box register-cart">
-                <!-- <p>Đăng nhập tài khoản</p> -->
-                <div>
+            <div class="modal__body__box change-pass-box">
+                <p>Thay đổi mật khẩu</p>
+                <form action="/your-change-pass-url" method="POST">
                     <div class="user-box">
-                        <input class="login-email" required="" name="" type="text">
+                        <input class="new-pass" required="" name="email" type="text">
+                        <label>Mật khẩu mới</label>
+                    </div>
+                    <div class="user-box send-code__code">
+                        <input class="confirm-pass" required="" name="code" type="text">
+                        <label>Nhập lại mật khẩu</label>
+                    </div>
+                    <button id="changepass-btn" type="submit">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                        Xác nhận
+                    </button>
+                </form>
+            </div>
+            <div class="modal__body__box register-cart">
+                <form action="/your-login-url" method="POST">
+                    <div class="user-box">
+                        <input class="login-email" required="" name="fullname" type="text">
                         <label>Họ và tên</label>
                     </div>
                     <div class="user-box createBox">
-                        <input class="login-pass" required="" name="" type="password">
+                        <input class="login-pass" required="" name="phonenumber" type="text">
                         <label>Số điện thoại</label>
                     </div>
                     <div class="box_wrap">
@@ -861,23 +920,23 @@
                         </div>
 
                         <div class="user-box createBox">
-                            <input class="login-pass" required="" name="" type="text">
+                            <input class="login-pass" required="" name="preferredDays" type="text">
                             <label>Ngày tập trong tuần mong muốn</label>
                         </div>
                     </div>
 
                     <div class="radio-inputs">
                         <label class="radio">
-                            <input type="radio" name="radio" checked="">
+                            <input type="radio" name="timeSlot" checked="">
                             <span class="name">1h30-3h00</span>
                         </label>
                         <label class="radio">
-                            <input type="radio" name="radio">
+                            <input type="radio" name="timeSlot">
                             <span class="name">3h00-4h30</span>
                         </label>
 
                         <label class="radio">
-                            <input type="radio" name="radio">
+                            <input type="radio" name="timeSlot">
                             <span class="name">5h30-6h30</span>
                         </label>
                     </div>
@@ -888,31 +947,28 @@
                         <option>Vân tester</option>
                         <option>Quyến developer</option>
                     </select>
-                    <button class="summit-btn" type="button">
+                    <button class="summit-btn" type="submit">
                         <span></span>
                         <span></span>
                         <span></span>
                         <span></span>
                         Đăng ký
                     </button>
-                </div>
+                </form>
             </div>
-            <div class="modal__body__box change-name-box">
+
+            <div class="modal__body__box change-box">
                 <p class="edit-title">Đổi tên khách hàng</p>
-                <div>
+                <form id="change-form" action="/your-name-url" method="POST">
                     <div class="user-box">
-                        <input class="new-name" required="" name="" type="text">
+                        <input class="new1" required="" name="newName" type="text">
                         <label class="edit-label">Tên mới</label>
                     </div>
                     <div class="submit__row">
                         <button id="submitExit">
-                            <!-- <span></span>
-                            <span></span>
-                            <span></span>
-                            <span></span> -->
                             Thoát
                         </button>
-                        <button id="submitChangeName">
+                        <button id="submitChange" type="submit">
                             <span></span>
                             <span></span>
                             <span></span>
@@ -920,13 +976,25 @@
                             Xác nhận
                         </button>
                     </div>
-                </div>
+                </form>
+            </div>
+
+            <div class="modal__body__box loader">
+                <div class="loader-square"></div>
+                <div class="loader-square"></div>
+                <div class="loader-square"></div>
+                <div class="loader-square"></div>
+                <div class="loader-square"></div>
+                <div class="loader-square"></div>
+                <div class="loader-square"></div>
             </div>
         </div>
     </div>
     <div class="nen_mo"></div>
     <script src="../navigation_javascript/menuv2.js"></script>
-    <script type="module" src="../navigation_javascript/toast.js"></script>
+    <script type="module" src="../src/toast.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script type="module" src="../src/client.js"></script>
 </body>
 
 </html>

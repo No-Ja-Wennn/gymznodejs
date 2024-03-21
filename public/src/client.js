@@ -130,7 +130,7 @@ function f_sendCodeBTN(e) {
 let emailChangePass = null;
 
 function getValueInformationForm() {
-    let loaderTimeout = setTimeout(function(){
+    let loaderTimeout = setTimeout(function () {
         activeNecessaryForm();
         overlayBox.removeEventListener("click", displayNoneAll);
         loadBox.style.display = "flex";
@@ -161,6 +161,44 @@ function getValueInformationForm() {
     });
 }
 
+function f_changeServer(element, url) {
+    $.ajax({
+        url: url.pathname,
+        type: 'POST',
+        data: $(element).serialize() + "&maKH=" + encodeURIComponent(cookieSave.maKH),
+        success: function (data) {
+            if (data.success) {
+                if (data.type == "name") {
+                    showSuccessToast("Đổi tên thành công");
+                    var nameValue = changeBox.querySelector(".new1").value;
+                    nameClientElement.innerText = nameValue;
+                } else if (data.type == "profile") {
+                    showSuccessToast("Đổi thông tin hồ sơ thành công");
+                    var nameValue = changeBox.querySelector(".new1").value;
+                    dateOfBirthClientElement.innerText = nameValue;
+                } else if (data.type == "account") {
+                    showSuccessToast("Đổi thông tin tài khoản thành công");
+                    var nameValue = changeBox.querySelector(".new1").value;
+                    emailClientElement.innerText = nameValue;
+                    var nameValue = changeBox.querySelector(".new2").value;
+                    phoneClientElement.innerText = nameValue;
+                } else if (data.type == "pass") {
+                    showSuccessToast("Đổi mật khẩu thành công");
+                }
+                displayNoneAll();
+                removeAllValueChange();
+            } else {
+                if (data.type == "pass")
+                    showErrorToast("Đổi mật khẩu không thành công", "Mật khẩu cũ không chính xác");
+                else
+                    showSuccessToast("Lỗi", "Vui lòng liên hệ với nhân viên lễ tân qua số 099899003");
+            }
+        },
+        error: function (err) {
+            // console.log('Error:', err);
+        }
+    });
+}
 
 
 // client.js
@@ -331,43 +369,17 @@ $(document).ready(function () {
         }
 
     });
-});
 
-function f_changeServer(element, url) {
     $.ajax({
-        url: url.pathname,
-        type: 'POST',
-        data: $(element).serialize() + "&maKH=" + encodeURIComponent(cookieSave.maKH),
+        url: '/get-load-card',
+        type: 'GET',
         success: function (data) {
-            if (data.success) {
-                if (data.type == "name") {
-                    showSuccessToast("Đổi tên thành công");
-                    var nameValue = changeBox.querySelector(".new1").value;
-                    nameClientElement.innerText = nameValue;
-                } else if (data.type == "profile") {
-                    showSuccessToast("Đổi thông tin hồ sơ thành công");
-                    var nameValue = changeBox.querySelector(".new1").value;
-                    dateOfBirthClientElement.innerText = nameValue;
-                } else if (data.type == "account") {
-                    showSuccessToast("Đổi thông tin tài khoản thành công");
-                    var nameValue = changeBox.querySelector(".new1").value;
-                    emailClientElement.innerText = nameValue;
-                    var nameValue = changeBox.querySelector(".new2").value;
-                    phoneClientElement.innerText = nameValue;
-                } else if (data.type == "pass") {
-                    showSuccessToast("Đổi mật khẩu thành công");
-                }
-                displayNoneAll();
-                removeAllValueChange();
-            } else {
-                if (data.type == "pass")
-                    showErrorToast("Đổi mật khẩu không thành công", "Mật khẩu cũ không chính xác");
-                else
-                    showSuccessToast("Lỗi", "Vui lòng liên hệ với nhân viên lễ tân qua số 099899003");
+            if (data) {
+                
             }
         },
         error: function (err) {
             // console.log('Error:', err);
         }
     });
-}
+});
