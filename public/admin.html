@@ -2,7 +2,7 @@
 <html lang="en">
 
 <head>
-    <link rel="icon" href="../img/icon/logo.png" type="image/x-icon">
+    <link rel="icon" href="./img/icon/logo.png" type="image/x-icon">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css">
@@ -31,6 +31,11 @@
 </head>
 
 <body>
+    <div class="error">
+        <p>
+            không khả rụng
+        </p>
+    </div>
     <div class="app">
         <!-- LUU SY TRUONG -->
         <div class="header">
@@ -138,8 +143,14 @@
                 <div class="container__bar">
                     <ul class="container__bar__list">
                         <li class="container__bar__item container__bar__item--avt">
-                            <img class="container__bar__item__avt" src="../img/services/coach/img4.jpg" alt="">
+                            <img class="container__bar__item__avt" src="./img/icon/ico-avt.png" alt="">
                             <span class="container__bar__item__name">Admin Name</span>
+                            <div class="container__bar__options">
+                                <button class="navigation-hide-button">
+                                    <!-- <i class="fa-solid fa-bars"></i> -->
+                                    <i class="fa-solid fa-xmark"></i>
+                                </button>
+                            </div>
                         </li>
                         <li id="QLMessage" class="container__bar__item container__bar__item--active">
                             <i class="fa-regular fa-comments"></i>
@@ -165,50 +176,104 @@
                                 QL lịch tập
                             </span>
                         </li>
-                    </ul>
-                    <div class="container__bar__logout">
-                        <div class="container__bar__item">
-                            <i class="fa-solid fa-right-from-bracket"></i>
-                            <span class="container__bar__item__text">
-                                Đăng xuất
-                            </span>
+                        <div class="container__bar__logout">
+                            <div class="container__bar__item">
+                                <i class="fa-solid fa-right-from-bracket"></i>
+                                <span class="container__bar__item__text">
+                                    Đăng xuất
+                                </span>
+                            </div>
                         </div>
-                    </div>
+                    </ul>
                 </div>
+                <div class="shadow"></div>
                 <div class="container__show">
 
                     <!-- MESSAGE -->
-                    <div class="container__show__message">
-                        <div class="container__show__message__box">
+                    <div id="groupList" class="container__show__message">
+                        <div id="listItem" class="container__show__message__box">
                             <div class="list-message-box">
-                                <h3 class="list-message-box__title">Đoạn chat</h3>
+                                <div class="box-title">
+                                    <div class="navigation-display">
+                                        <button class="navigation-display-button">
+                                            <i class="fa-solid fa-bars"></i>
+                                            <!-- <i class="fa-solid fa-xmark"></i> -->
+                                        </button>
+                                    </div>
+                                    <h3 class="title-row">
+                                        Đoạn chat
+                                    </h3>
+                                    <div class="sub-middle">
+                                        <button id="next" class="slide-right">
+                                            <ion-icon name="chevron-forward-sharp">
+                                            </ion-icon>
+                                        </button>
+                                    </div>
+                                </div>
                                 <div class="list-message-box__search">
                                     <i class="exit--search fa-solid fa-arrow-left"></i>
                                     <div class="list-message-box__find">
                                         <i class="fa-solid fa-magnifying-glass"></i>
-                                        <input type="text" class="search__message__input"
-                                            placeholder="Tìm kiếm trên chatbox">
+                                        <input id="searchInput" type="text" class="search__message__input"
+                                            placeholder="Tìm kiếm trên chatbox" autocomplete="nope">
                                     </div>
                                 </div>
 
                                 <ul class="message__list">
                                     <!-- <li class="message__user">
                                         <div class="message__user__box">
-                                            <img src="../img/services/coach/img4.jpg" alt="" class="message__user__avt">
+                                            <img src="./img/icon/ico-avt.png" alt="" class="message__user__avt">
                                             <div class="message__user__box__right">
                                                 <span class="message__user__name">
-                                                    Ngô Gia Quyến
+                                                    adaddd
                                                 </span>
                                                 <span class="message__user__msg">
                                                     <span class="message__user__msg__obj">Bạn: </span>
-                                                    <div class="message__user__msg__text">xin chào bạn nhé!</div>
+                                                    <div class="message__user__msg__text">do opacity bên css nên lần đầu
+                                                        bị giật</div>
                                                 </span>
                                             </div>
-                                            <i class="message__user__name__options fa-solid fa-ellipsis"></i>
+                                            <div class="more-option">
+                                                <i class="message__user__name__options fa-solid fa-ellipsis"></i>
+                                            </div>
                                         </div>
                                         <div class="message__user__box__affter">
                                             <ul class="message__user__box__affter__list">
-                                                <li class="message__user__box__affter__item">Xóa đoạn chat</li>
+                                                <li class="message__user__box__affter__item">
+                                                    Xóa
+                                                    <span>
+                                                        <i class="fa-solid fa-trash"></i>
+                                                    </span>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </li>
+                                    <li class="message__user">
+                                        <div class="message__user__box">
+                                            <img src="./img/icon/ico-avt.png" alt="" class="message__user__avt">
+                                            <div class="message__user__box__right">
+                                                <span class="message__user__name">
+                                                   dfwwwwwww
+                                                </span>
+                                                <span class="message__user__msg">
+                                                    <span class="message__user__msg__obj">Bạn: </span>
+                                                    <div class="message__user__msg__text">
+                                                        wwwww jz
+                                                    </div>
+                                                </span>
+                                            </div>
+                                            <div class="more-option">
+                                                <i class="message__user__name__options fa-solid fa-ellipsis"></i>
+                                            </div>
+                                        </div>
+                                        <div class="message__user__box__affter">
+                                            <ul class="message__user__box__affter__list">
+                                                <li class="message__user__box__affter__item">
+                                                    Xóa
+                                                    <span>
+                                                        <i class="fa-solid fa-trash"></i>
+                                                    </span>
+                                                </li>
                                             </ul>
                                         </div>
                                     </li> -->
@@ -216,39 +281,61 @@
                             </div>
                             <div class="chatbox">
                                 <div class="chatbox__head">
-                                    <h1 class="chatbox__head__title">CHAT BOX</h1>
-                                    <div class="chatbox__head__active">
-                                        <span class="chatbox__head__active__text">Đang hoạt động</span>
+                                    <div class="first-item">
+                                        <button id="prve" class="slide-left">
+                                            <ion-icon name="chevron-back-sharp">
+                                            </ion-icon>
+                                        </button>
+                                    </div>
+                                    <div class="user-about">
+                                        <div class="user-img">
+                                            <img src="./img/icon/ico-avt.png" alt="" class="message__user__avt">
+                                        </div>
+                                        <div class="user-ifm">
+                                            <div class="chatbox__head__title">
+                                                Nguyễn Thị Vân
+                                            </div>
+                                            <div class="chatbox__head__active">
+                                                <span class="chatbox__head__active__text">
+                                                    Đang hoạt động
+                                                </span>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
                                 <div class="chatbox__message">
                                     <ul class="chatbox__message__list">
-                                        <!-- <li class="chatbox__message__item chatbox__message__item__left">
-                                            <span class="chatbox__message__item__text"> </span>
-                                        </li> -->
+                                        <li class="chatbox__message__item chatbox__message__item__left">
+                                            <span class="chatbox__message__item__text">
+                                                Em chào anh/chị Em có thể giúp gì được anh chị ạ!
+                                            </span>
+                                        </li>
                                     </ul>
                                 </div>
                                 <div class="chatbox__bottom">
                                     <div class="chatbox__bottom__link-social">
                                         <div class="chatbox__bottom__link-social__mess">
-                                            <a href="https://www.messenger.com/t/172967089240726/"
-                                                class="chatbox__bottom__link-social__mess">
-                                                <img class="messenger_ico" src="/img/icon/messenger_ico.png"
-                                                    alt="messenger">
-                                                <ul class="sub">
-                                                    <span>chat với chúng tôi</span>
-                                                    <i class='bx bxs-down-arrow'></i>
-                                                </ul>
+                                            <a href="https://www.messenger.com/t/172967089240726/" class="chatbox__bottom__link-social__mess">
+                                                <img class="messenger_ico" src="./img/icon/messenger_ico.png" alt="messenger">
                                             </a>
                                         </div>
                                     </div>
                                     <div class="chatbox__bottom__input">
-                                        <!-- <input type="search" autocomplete="off"> -->
-                                        <textarea id="myTextarea" rows="1" cols="20"></textarea>
-                                        <i class='bx bxs-send'></i>
+                                        <div class="chatbox-select">
+                                            <div class="input-scroll">
+                                                <div class="input-overflow">
+                                                    <!-- <input type="search" autocomplete="off"> -->
+                                                    <textarea id="myTextarea" rows="1" cols="20" placeholder="Aa"></textarea>
+                                                    <!-- <i class='bx bxs-send' ></i> -->
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="chatbox__bottom__send">
+                                        <i class='bx bxs-send' ></i>
                                     </div>
                                 </div>
-
+                
                             </div>
                         </div>
 
@@ -256,49 +343,72 @@
 
                     <!-- ACCOUNT -->
                     <div class="container__show__account">
-                        <div class="container__show__add container__show__account__add">
-                            <h1>QUẢN LÍ TÀI KHOẢN</h1>
-                            <button id="add-account"
-                                class="container__show__add__btn container__show__account__add__btn"
-                                onclick="addAccount()">Thêm tài
-                                khoản</button>
-                        </div>
-                        <div class="container__show__head">
-                            <div class="container__show__head__input__box">
-                                <i class="exit--search fa-solid fa-arrow-left"></i>
-                                <input class="show__input__id" type="text" oninput="findByIDAccount(this)"
-                                    placeholder="Nhập mã thẻ của khách hàng">
-                                <div class="show__find__id__box"></div>
+                        <div class="container-select">
+                            <div class="container__show__add container__show__account__add">
+                                <div class="box-title">
+                                    <div class="navigation-display">
+                                        <button class="navigation-display-button"><i class="fa-solid fa-bars"></i></button>
+                                    </div>
+                                    <h3 class="title-row">
+                                        Quản lý tài khoản
+                                    </h3>
+                                    <div class="sub-middle">
+                                        <span></span>
+                                    </div>
+                                </div>
                             </div>
-                            <div class="head-end">
-                                <button class="container__show__find__btn">Tìm kiếm</button>
+                            <div class="container__show__head">
+                                <div class="container__show__head__input__box">
+                                    <i class="exit--search fa-solid fa-arrow-left"></i>
+                                    <input class="show__input__id" type="text" oninput="findByIDAccount(this)"
+                                        placeholder="Nhập mã thẻ của khách hàng">
+                                    <div class="show__find__id__box"></div>
+                                </div>
+                                <div class="head-end" style="display: flex; justify-content: space-between;">
+                                    <button class="container__show__find__btn">Tìm kiếm</button>
+                                    <button id="add-account"
+                                    class="container__show__add__btn container__show__account__add__btn"
+                                    onclick="addAccount()">
+                                    Thêm tài khoản
+                                </button>
+                                </div>
                             </div>
-                        </div>
-                        <!-- <i class="remove-icon fa-solid fa-trash"></i> -->
-                        <div class="container__show__content">
-                            <table class="table__show table__show__main">
-                                <tr class="tr__show">
-                                    <th class="th__show">ID</th>
-                                    <th class="th__show">USERNAME</th>
-                                    <th class="th__show">EMAIL</th>
-                                    <th class="th__show">PASSWORD</th>
-                                    <th class="th__show"></th>
-                                </tr>
-                            </table>
-                        </div>
-                        <div class="save__box">
-                            <span class="save__message"></span>
-                            <button class="save-btn" onclick="saveAccount()">Lưu</button>
+                            <!-- <i class="remove-icon fa-solid fa-trash"></i> -->
+                            <div class="container__show__content">
+                                <table class="table__show table__show__main">
+                                    <tr class="tr__show">
+                                        <th class="th__show">ID</th>
+                                        <th class="th__show">USERNAME</th>
+                                        <th class="th__show">EMAIL</th>
+                                        <th class="th__show">PASSWORD</th>
+                                        <th class="th__show"></th>
+                                    </tr>
+                                </table>
+                            </div>
+                            <div class="save__box">
+                                <span class="save__message"></span>
+                                <button class="save-btn" onclick="saveAccount()">Lưu</button>
+                            </div>
                         </div>
                     </div>
 
                     <!-- CARD -->
                     <div class="container__show container__show__card">
                         <div class="container__show__add container__show__card__add">
-                            <h1>QUẢN LÍ THẺ THÀNH VIÊN</h1>
-                            <button id="add-card" class="container__show__add__btn container__show__card__add__btn"
-                                onclick="addCard()">Thêm thẻ thành
-                                viên</button>
+                            <div class="box-title">
+                                <div class="navigation-display">
+                                    <button class="navigation-display-button">
+                                        <i class="fa-solid fa-bars"></i>
+                                        <!-- <i class="fa-solid fa-xmark"></i> -->
+                                    </button>
+                                </div>
+                                <h3 class="title-row">
+                                    Quản lý thẻ thành viên
+                                </h3>
+                                <div class="sub-middle">
+                                    <span></span>
+                                </div>
+                            </div>
                         </div>
                         <div class="container__show__head container__show__card__head">
                             <div class="container__show__head__input__box container__show__card__head__input__box">
@@ -311,7 +421,7 @@
                             </div>
                             <div class="head-end">
                                 <select class="show__input__package" id="packet" name="packet">
-                                    <option value="" disabled selected>Loại thành viên</option>
+                                    <option value="" disabled selected>Loại thẻ</option>
                                     <option value="BEGINNER">BEGINNER</option>
                                     <option value="BASIC">BASIC</option>
                                     <option value="ADVENCE">ADVENCE</option>
@@ -320,8 +430,9 @@
                                     placeholder="Ngày gia nhập">
                                 <input id="input-date-end" class="show__input__date" type="text"
                                     placeholder="Ngày hết hạn">
-                                <button class="container__show__find__btn container__show__card__find__btn">Tìm
-                                    kiếm</button>
+                                <button class="container__show__find__btn container__show__card__find__btn">
+                                    Tìm kiếm
+                                </button>
                             </div>
                         </div>
                         <!-- <i class="remove-icon fa-solid fa-trash"></i> -->
@@ -329,17 +440,21 @@
                             <table class="table__show table__show__main">
                                 <tr class="tr__show">
                                     <th class="th__show">Mã thẻ</th>
-                                    <th class="th__show">Tên Hội Viên</th>
+                                    <th class="th__show">Tên KH</th>
                                     <th class="th__show">Tuổi</th>
-                                    <th class="th__show">Số điện thoại</th>
-                                    <th class="th__show">Loại Thành Viên</th>
-                                    <th class="th__show">Ngày gia nhập</th>
-                                    <th class="th__show">Ngày Hết Hạn Thẻ</th>
+                                    <th class="th__show">SĐT</th>
+                                    <th class="th__show">Loại thẻ</th>
+                                    <th class="th__show">Ngày mua</th>
+                                    <th class="th__show">Ngày hết hạn</th>
                                     <th class="th__show">Thao tác</th>
                                 </tr>
                             </table>
                         </div>
                         <div class="save__box">
+                            <button id="add-card" class="container__show__add__btn container__show__card__add__btn"
+                                onclick="addCard()">
+                                Thêm thẻ thành viên
+                            </button>
                             <span class="save__message"></span>
                             <button class="save-btn" onclick="saveCard()">Lưu</button>
                         </div>
@@ -348,10 +463,20 @@
                     <!-- CALENDAR EX -->
                     <div class="container__show__calendar">
                         <div class="container__show__add container__show__calendar__add">
-                            <h1>QUẢN LÍ LỊCH TẬP</h1>
-                            <button id="add-calendar"
-                                class="container__show__add__btn container__show__calendar__add__btn"
-                                onclick="addCalendar()">Thêm lịch tập</button>
+                            <div class="box-title">
+                                <div class="navigation-display">
+                                    <button class="navigation-display-button">
+                                        <i class="fa-solid fa-bars"></i>
+                                        <!-- <i class="fa-solid fa-xmark"></i> -->
+                                    </button>
+                                </div>
+                                <h3 class="title-row">
+                                    Quản lý lịch tập
+                                </h3>
+                                <div class="sub-middle">
+                                    <span></span>
+                                </div>
+                            </div>
                         </div>
                         <div class="container__show__head container__show__calendar__head">
                             <div class="container__show__head__input__box container__show__calendar__head__input__box">
@@ -362,9 +487,15 @@
                                 </div>
                                 </table>
                             </div>
-                            <div class="head-end">
-                                <button class="container__show__find__btn container__show__calendar__find__btn">Tìm
-                                    kiếm</button>
+                            <div class="head-end" style="display: flex; justify-content: space-between;">
+                                <button class="container__show__find__btn container__show__calendar__find__btn">
+                                    Tìm kiếm
+                                </button>
+                                <button id="add-calendar"
+                                    class="container__show__add__btn container__show__calendar__add__btn"
+                                    onclick="addCalendar()">
+                                    Thêm lịch tập
+                                </button>
                             </div>
                         </div>
                         <!-- <i class="remove-icon fa-solid fa-trash"></i> -->
@@ -372,12 +503,13 @@
                             <table class="table__show table__show__main">
                                 <tr class="tr__show">
                                     <th class="th__show">Mã thẻ</th>
-                                    <th class="th__show">Tên Hội Viên</th>
-                                    <th class="th__show">Ngày tập trong tuần</th>
-                                    <th class="th__show">Thời gian bắt đầu</th>
-                                    <th class="th__show">Thời gian kết thúc</th>
+                                    <th class="th__show">Tên KH</th>
+                                    <th class="th__show">Ngày tập</th>
+                                    <th class="th__show">TG bắt đầu</th>
+                                    <th class="th__show">TG kết thúc</th>
                                     <th class="th__show">Bài tập</th>
-                                    <th class="th__show">Huấn luyện viên</th>
+                                    <th class="th__show">HLV</th>
+                                    <th class="th__show">Ghi chú</th>
                                     <th class="th__show">Thao tác</th>
                                 </tr>
                             </table>
@@ -432,7 +564,12 @@
     </div>
 
     <div class="nen_mo"></div>
+    <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+    <script type="module" src="./admin.js"></script>
     <script src="../navigation_javascript/menuv2.js"></script>
+    <script src="./src/app.js"></script>
+    <!-- <script src="/navigation_javascript/chatbox.js"></script> -->
 </body>
 
 </html>
