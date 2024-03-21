@@ -1,111 +1,52 @@
-const btshow = document.querySelectorAll('.navigation-display-button');
-const bthide = document.querySelector('.navigation-hide-button');
-const navigation = document.querySelector('.container__bar');
+const navbar = document.querySelector('.navbar');
+const closenav = navbar.querySelector('.nav-close-bt');
 const shadow = document.querySelector('.shadow');
+const opennav = document.querySelectorAll('.nav-open-bt');
 const chat = document.querySelector('.chatbox');
 
 shadow.addEventListener('click', function(event) {
-    console.log('hide2');
-    navigation.style.animation = 'fly-out-left .35s ease-in-out forwards';
+    console.log('shadow close');
+    navbar.style.animation = 'fly-out-left .35s ease-in-out forwards';
     shadow.style.animation = 'shadow-out .35s ease-in-out forwards';
     setTimeout(function() {
-        navigation.style.display = 'none';
-        btshow.innerHTML = '<i class="fa-solid fa-bars"></i>';
+        navbar.style.display = 'none';
+        opennav.innerHTML = '<i class="fa-solid fa-bars"></i>';
         shadow.style.display = 'none';
     }, 500);
 })
-btshow.forEach(button => {
+opennav.forEach(button => {
     button.addEventListener('click', function(event) {
-        console.log('show');
-        navigation.style.animation = 'fly-in-left .35s ease-in-out forwards';
-        navigation.style.display = 'flex';
+        console.log('open');
+        navbar.style.animation = 'fly-in-left .35s ease-in-out forwards';
+        navbar.style.display = 'flex';
         shadow.style.animation = 'shadow-in .35s ease-in-out forwards';
         shadow.style.display = 'flex';
     })
 });
-
-
-
-bthide.addEventListener('click', function(event) {
-    console.log('hide');
-    navigation.style.animation = 'fly-out-left .35s ease-in-out forwards';
+closenav.addEventListener('click', function(event) {
+    console.log('close');
+    navbar.style.animation = 'fly-out-left .35s ease-in-out forwards';
     shadow.style.animation = 'shadow-out .35s ease-in-out forwards';
     setTimeout(function() {
-        navigation.style.display = 'none';
-        btshow.innerHTML = '<i class="fa-solid fa-bars"></i>';
+        navbar.style.display = 'none';
+        opennav.innerHTML = '<i class="fa-solid fa-bars"></i>';
         shadow.style.display = 'none';
     }, 500);
 })
-    
-
-
-
-let bttrash = document.querySelectorAll('.more-option i');
-let displaytrash = document.querySelector('.message__user__box__affter');
-let displaylist = document.querySelector('.message__user__box__affter__list');
-
-// bttrash.forEach(button => {
-//     button.addEventListener('click', function(){
-
-//         event.stopPropagation();
-    
-//         if (displaytrash.style.display === 'none' || displaytrash.style.display === ''){
-//             console.log('show trash1')
-//             displaytrash.style.display = 'flex';
-//             displaytrash.style.animation = 'showtrash .35s ease-in-out forwards';
-//             setTimeout(function(){
-//                 displaylist.style.animation = 'showlist .1s ease-in-out forwards';
-//             }, 250)
-//         }else{
-//             console.log('hide trash2')
-//             displaylist.style.animation = 'hidelist .1s ease-in-out forwards';
-//             setTimeout(function(){
-//                 displaytrash.style.animation = 'hidetrash .35s ease-in-out forwards';
-//                 setTimeout(function(){
-//                     displaytrash.style.display = 'none';
-//                 }, 350)
-//             }, 50)
-//         }
-//     });
-// })
-
 
 // xu ly khi click ra ngoai nut 3 cham
-document.addEventListener('click', function(){
-    if(displaytrash)
-    if(displaytrash.style.display === 'flex'){
-        console.log('hide click tum lum')
-        displaylist.style.animation = 'hidelist .1s ease-in-out forwards';
-        setTimeout(function(){
-            displaytrash.style.animation = 'hidetrash .35s ease-in-out forwards';
-            setTimeout(function(){
-                displaytrash.style.display = 'none';
-            }, 350)
-        }, 50)
-    }
-});
-
-
-
-
-
-
-//animation xoa tin nhan
-const deletechat = document.querySelector('.message__user__box__affter__item');
-if(deletechat)
-deletechat.addEventListener('click', function(){
-    const chat_active = document.querySelector('.message__user--active1');
-    chat_active.style.animation = 'side-to-left .25s ease-in-out forwards';
-    setTimeout(function(){
-        chat_active.style.animation = 'de-height .25s ease-in-out forwards';
-        setTimeout(function(){
-            chat_active.style.display = 'none';
-        }, 250)
-    }, 250)
-    console.log('delete');
-});
-
-
+// document.addEventListener('click', function(){
+//     if(displaytrash.style.display === 'flex'){
+//         console.log('hide click tum lum')
+//         displaylist.style.animation = 'hidelist .1s ease-in-out forwards';
+//         setTimeout(function(){
+//             displaytrash.style.animation = 'hidetrash .35s ease-in-out forwards';
+//             setTimeout(function(){
+//                 displaytrash.style.display = 'none';
+//             }, 350)
+//         }, 50)
+//     }
+// });
 
 // document.getElementById('next').onclick = function(){
 //     const widthItem = document.querySelector('.chatbox').offsetWidth;
@@ -116,23 +57,16 @@ deletechat.addEventListener('click', function(){
 //     document.getElementById('groupList').scrollLeft -= widthItem;
 // };
 
-
-
 function scrollRight() {
     const widthItem = document.querySelector('.chatbox').offsetWidth;
     document.getElementById('groupList').scrollLeft += widthItem;
 }
-
 function scrollLeft() {
     const widthItem = document.querySelector('.chatbox').offsetWidth;
     document.getElementById('groupList').scrollLeft -= widthItem;
 }
-
 document.getElementById('next').onclick = scrollRight;
 document.getElementById('prve').onclick = scrollLeft;
-
-
-
 // // Biến để theo dõi trạng thái của vòng lặp
 // let isScrollingRight = true;
 // // Thiết lập vòng lặp vô tận để gọi hàm
@@ -145,32 +79,97 @@ document.getElementById('prve').onclick = scrollLeft;
 //     isScrollingRight = !isScrollingRight; // Đảo ngược trạng thái sau mỗi lần gọi hàm
 // }, 2000); // Thực hiện sau mỗi 3 giây
 
+const qlMessage = navbar.querySelector('#QLMessage');
+const qlAccount = navbar.querySelector('#QLAccount');
+const qlCard = navbar.querySelector('#QLCard');
+const qlTrainingSchedule = navbar.querySelector('#QLCalendar');
+//
+const inputShow = document.querySelector('.container__show');
+const showMessage = inputShow.querySelector('#groupList');
+const showAccount = inputShow.querySelector('#accountTable');
+const showCard = inputShow.querySelector('#cardTable');
+const showTrainingSchedule = inputShow.querySelector('#trainingScheduleTable');
+
+// Tạo một hàm để hiển thị bảng tương ứng và ẩn các bảng khác
+function showTable(tableToShow) {
+    const allTables = [showMessage, showAccount, showCard, showTrainingSchedule];
+    allTables.forEach(table => {
+      if (table === tableToShow) {
+        table.style.display = 'block';
+      } else {
+        table.style.display = 'none';
+      }
+    });
+  }
+  
+  // Ẩn tất cả các bảng trừ bảng showMessage
+  showTable(showMessage);
+  
+  // Thêm sự kiện click cho các thẻ qlMessage, qlAccount, qlCard, qlTrainingSchedule
+  qlMessage.addEventListener('click', function() {
+    showTable(showMessage);
+  });
+  
+  qlAccount.addEventListener('click', function() {
+    showTable(showAccount);
+  });
+  
+  qlCard.addEventListener('click', function() {
+    showTable(showCard);
+  });
+  
+  qlTrainingSchedule.addEventListener('click', function() {
+    showTable(showTrainingSchedule);
+  });
 
 
+const msgBoxes = document.querySelectorAll('.msg-box');
 
-// let touchTimer; // Biến để lưu trữ thời gian giữ touch
-// const element = document.querySelectorAll('.message__user');
+msgBoxes.forEach(msgBox => {
+  const btOpenTrash = msgBox.querySelector('.more-option-bt');
+  const showTrash = msgBox.querySelector('.box-bot');
+  const btTrash = msgBox.querySelector('.bot-bar-item');
+  
+  btOpenTrash.addEventListener('click', function(){
+    if (showTrash.style.display === 'none' || showTrash.style.display === '') {
+      showTrash.style.display = 'flex';
+      console.log('show trash')
+    }
+    else{
+      showTrash.style.display = 'none';
+      console.log('hide trash')
+    }
+  });
 
-// element.forEach(button => {
-//     button.addEventListener('touchstart', function(event) {
-//         touchTimer = setTimeout(function() {
-//             // Thực hiện hành động khi giữ touch trong thời gian mong muốn
-//             // console.log('Touch and hold event detected!');
-//             console.log('show trash1')
-//                 displaytrash.style.display = 'flex';
-//                 displaytrash.style.animation = 'showtrash .35s ease-in-out forwards';
-//                 setTimeout(function(){
-//                     displaylist.style.animation = 'showlist .1s ease-in-out forwards';
-//                 }, 250)
-//         }, 600); // 1000 miliseconds = 1 giây (thay đổi thời gian tùy ý)
+  btTrash.addEventListener('click', function(){
+    msgBox.style.display = 'none';
+    console.log('delete message');
+  });
+  
+});
+
+
+// const msgBoxes = document.querySelectorAll('.msg-box');
+
+// msgBoxes.forEach(msgBox => {
+//   const btOpenTrash = msgBox.querySelector('.more-option-bt');
+//   const showTrash = msgBox.querySelector('.box-bot');
+//   const btTrash = msgBox.querySelectorAll('.bot-bar-item');
+
+//   btOpenTrash.addEventListener('click', function() {
+//     if (showTrash.style.display === 'none' || showTrash.style.display === '') {
+//       showTrash.style.display = 'flex';
+//       console.log('show trash');
+//     } else {
+//       showTrash.style.display = 'none';
+//       console.log('hide trash');
+//     }
+//   });
+
+//   btTrash.forEach(button => {
+//     button.addEventListener('click', function() {
+//       msgBox.style.display = 'none';
+//       console.log('delete message');
 //     });
-    
-// })
-
-
-
-
-// element.addEventListener('touchend', function(event) {
-//     clearTimeout(touchTimer); // Hủy timer nếu người dùng nhấc tay ra trước khi hết thời gian
-//     console.log('cancel Touch and hold');
+//   });
 // });
