@@ -1,12 +1,23 @@
-import { displayNoneAll, removeAllInputValue, f_loginBTN, activeNecessaryForm } from "../navigation_javascript/login.js"
+import {
+    displayNoneAll,
+    removeAllInputValue,
+    f_loginBTN,
+    activeNecessaryForm,
+    f_registerBTN,
+    f_cancel,
+    eventNotActiveRE,
+    eventNotActiveCA
+} from "../navigation_javascript/login.js"
 import { showSuccessToast, showErrorToast } from "./toast.js";
-import { validateCreateAccount, validateLoginValue, validateChangePass, isValidChangePass } from './validate.js';
+import { validateCreateAccount, validateLoginValue, validateChangePass, isValidChangePass, isFormComplete } from './validate.js';
 import {
     innerTextOfInformation,
     removeTextOfInformation,
     activeClickChange,
     unActiveClickChange,
-    removeAllValueChange
+    removeAllValueChange,
+    innerTextOfCard,
+    removeTextOfCard,
 } from '../navigation_javascript/infomation_account.js'
 
 const modalBox = document.querySelector(".modal");
@@ -14,7 +25,7 @@ const overlayBox = modalBox.querySelector(".modal-overlay");
 const loginBox = modalBox.querySelector(".login-box");
 const createAccountBox = modalBox.querySelector(".create-account-box");
 const forgotPassBox = modalBox.querySelector(".forgot-pass-box");
-const registerCartBox = modalBox.querySelector(".register-cart");
+const registerCartBox = document.getElementById("form-register");
 const changeNameBox = modalBox.querySelector(".change-name-box");
 const changePassBox = modalBox.querySelector(".change-pass-box");
 const loadBox = modalBox.querySelector(".loader");
@@ -26,13 +37,26 @@ const logoutBTN = document.querySelector(".logoutstatus");
 const loginBTN1 = document.querySelector(".loginstatus");
 const loginBTN2 = document.getElementById("menu2-infor");
 
+
+const registerBTN = document.getElementById("button1");
+const cancelREBTN = document.getElementById("button2");
+
+const path = window.location.pathname;
+
+
+// INFOR ACCOUNT PAGE
 const nameClientElement = document.getElementById("name-client");
 const dateOfBirthClientElement = document.getElementById("dateofbirth-client");
 const emailClientElement = document.getElementById("email-client");
 const phoneClientElement = document.getElementById("phone-client");
 const changeBox = document.querySelector(".change-box");
 
+const cancelRECartBox = document.getElementById("form-cancel");
 
+/////
+
+
+const informationCardTitle = document.getElementById("information__card__title");
 
 let cookieSave = null;
 function f_logoutBTN() {
@@ -52,12 +76,15 @@ function f_logoutBTN() {
                 if (cookieSave) {
                     if (loginBTN1)
                         loginBTN1.addEventListener("click", f_loginBTN);
-                    showSuccessToast("Đã đăng xuất", "Cảm ơn bạn đã sử dụng dịch vụ");
                     cookieSave = null;
                     loginBTN2.addEventListener("click", f_loginBTN);
                     logoutBTN2.removeEventListener("click", f_logoutBTN);
                     removeTextOfInformation();
                     unActiveClickChange();
+                    console.log("path: ", path)
+                    getValueInformationForm(path);
+                    cancelREBTN.removeEventListener("click", eventNotActiveCA);
+                    showSuccessToast("Đã đăng xuất", "Cảm ơn bạn đã sử dụng dịch vụ");
                 }
                 else
                     showErrorToast("Thất bại", "Quý khách chưa đăng nhập vào hệ thống")
@@ -84,8 +111,6 @@ function innerValueAfterLogin(userName, code) {
             window.location.href = './navigation/information_account.html';
         })
 }
-
-
 
 
 let countdownTimer;
@@ -129,7 +154,13 @@ function f_sendCodeBTN(e) {
 }
 let emailChangePass = null;
 
-function getValueInformationForm() {
+function getValueInformationForm(path) {
+    var type;
+    if (path == "/navigation/information_account.html") {
+        type = "account";
+    } else if (path == "/navigation/information_card_TS.html") {
+        type = "card";
+    }
     let loaderTimeout = setTimeout(function () {
         activeNecessaryForm();
         overlayBox.removeEventListener("click", displayNoneAll);
@@ -137,22 +168,49 @@ function getValueInformationForm() {
     }, 1000);
     $.ajax({
         url: '/get-value-information-form',
-        type: 'GET',
+        type: 'POST',
+        data: { type: type },
         success: function (data) {
-
             clearTimeout(loaderTimeout);
-            // displayNoneAll();
-            // overlayBox.addEventListener("click", displayNoneAll);
-
             if (data.success) {
+                console.log("Type: ", type);
                 var myData = data.value;
-                console.log(myData)
-                innerTextOfInformation(
-                    myData.name,
-                    myData.dateOfBirth,
-                    myData.email,
-                    myData.phoneNumber);
+                if (type == "account") {
+                    innerTextOfInformation(
+                        myData.name,
+                        myData.dateOfBirth,
+                        myData.email,
+                        myData.phoneNumber);
+                }
+                else if (type == "card") {
+                    innerTextOfCard(
+                        myData.name,
+                        myData.maThe,
+                        myData.cardType,
+                        myData.dateStart,
+                        myData.dateEnd
+                    );
+                }
             } else {
+                if (type == "account") {
+                    innerTextOfInformation(
+                        "...",
+                        "...",
+                        "...",
+                        "...");
+                }
+                else if (type == "card") {
+                    innerTextOfCard(
+                        "...",
+                        "...",
+                        "...",
+                        "...",
+                        "..."
+                    );
+                }
+                displayNoneAll();
+                activeNecessaryForm();
+                loginBox.style.display = "block";
             }
         },
         error: function (err) {
@@ -200,9 +258,33 @@ function f_changeServer(element, url) {
     });
 }
 
+function f_getValidCard() {
+    $.ajax({
+        url: "/get-valid-card",
+        type: "GET",
+        success: function (data) {
+            console.log("Have: ", data.have);
+            if (data.have) {
+                registerBTN.removeEventListener("click", f_registerBTN);
+                registerBTN.addEventListener("click", eventNotActiveRE);
+                cancelREBTN.removeEventListener("click", eventNotActiveCA);
+                cancelREBTN.addEventListener("click", f_cancel);
+            } else {
+                registerBTN.addEventListener("click", f_registerBTN);
+                registerBTN.removeEventListener("click", eventNotActiveRE);
+                cancelREBTN.addEventListener("click", eventNotActiveCA);
+                cancelREBTN.removeEventListener("click", f_cancel);
+            }
+        },
+        error: function (err) {
+
+        }
+    })
+}
 
 // client.js
 $(document).ready(function () {
+
     $('#login-form').submit(function (e) {
         e.preventDefault();
         if (validateLoginValue()) {
@@ -219,8 +301,9 @@ $(document).ready(function () {
                         loginBTN1.removeEventListener("click", f_loginBTN);
                         loginBTN2.removeEventListener("click", f_loginBTN);
                         cookieSave = data;
-                        getValueInformationForm();
+                        getValueInformationForm(path);
                         activeClickChange();
+                        f_getValidCard();
                     } else {
                         showErrorToast("Thất bại", "Email hoặc mật khẩu không đúng");
                     }
@@ -348,7 +431,7 @@ $(document).ready(function () {
         }
     });
     // get value for information form
-    getValueInformationForm();
+    getValueInformationForm(path)
 
     // SUBMIT CHANGE
     $('#change-form').submit(function (e) {
@@ -370,16 +453,57 @@ $(document).ready(function () {
 
     });
 
-    $.ajax({
-        url: '/get-load-card',
-        type: 'GET',
-        success: function (data) {
-            if (data) {
-                
-            }
-        },
-        error: function (err) {
-            // console.log('Error:', err);
+    $('#form-register').submit(function (e) {
+        e.preventDefault();
+        if (isFormComplete()) {
+            $.ajax({
+                url: '/register-card-url',
+                type: "POST",
+                data: $(this).serialize(),
+                success: function (data) {
+                    if (data.success) {
+                        showSuccessToast("Đăng ký lịch tập thành công", "Hẹn một ngày gần nhất tới với lễ tân để thanh toán");
+                        registerCartBox.style.display = "none";
+                        getValueInformationForm(path);
+                        f_getValidCard();
+                    } else {
+                        if (data.reason == "login") {
+                            f_loginBTN();
+                            showErrorToast("Chưa đăng nhập");
+                        } else {
+
+                        }
+                    }
+                },
+                err: function (err) {
+
+                }
+            })
         }
-    });
+    })
+
+    // CANCEL CALENDAR
+    const cancelSubmit = document.querySelector(".button__form__cancel");
+    cancelSubmit.addEventListener("click", function () {
+        $.ajax({
+            url: "/get-cancel-submit",
+            type: "GET",
+            success: function (data) {
+                console.log(data);
+                if (data.success) {
+                    f_getValidCard();
+                    showSuccessToast("Đã hủy lịch tập");
+                    cancelRECartBox.style.display = "none";
+                    getValueInformationForm(path);
+                } else {
+                    showErrorToast("LỖi")
+                }
+            },
+            error: function (err) {
+
+            }
+        })
+    })
+    // f_getValidCard();
+
 });

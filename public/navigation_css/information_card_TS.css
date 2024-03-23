@@ -131,6 +131,7 @@ button.night__mode__button:active{
     justify-content: center;
 }
 img.card{
+    display: none;
     max-height: 300px;
     max-width: 385.7px;
     width: 100%;
@@ -169,7 +170,7 @@ img.card{
     width: 60%;
     margin-left: 15px;
 }
-#information__card__content{
+.information__card__content{
     width: 40%;
     margin-left: 15px;
     color: rgba(0, 0, 0, 0.5);

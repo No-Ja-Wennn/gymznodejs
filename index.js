@@ -2,9 +2,10 @@
 const express = require('express');
 const app = express();
 const path = require('path');
+const url = require('url');
 const bodyParser = require('body-parser');
 var mysql = require('mysql');
-const { generateCustomerCode } = require('./src/functions.js');
+const { generateCustomerCode, getCurrentDate, addMonths } = require('./src/functions.js');
 const nodemailer = require('nodemailer');
 
 // Sử dụng body-parser để phân tích cú pháp dữ liệu form
@@ -15,6 +16,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 var cookieParser = require('cookie-parser');
 var session = require('express-session');
+const { threadId } = require('worker_threads');
 app.use(cookieParser());
 
 // Hàm setCookie
@@ -77,7 +79,7 @@ function createTable() {
   const tables = [
     {
       name: 'users',
-      columns: 'maKH VARCHAR(10) PRIMARY KEY, name VARCHAR(255), email VARCHAR(255)'
+      columns: 'maKH VARCHAR(10) PRIMARY KEY, name VARCHAR(255), email VARCHAR(255), dateOfBirth DATE, phoneNumber VARCHAR(11)'
     },
     {
       name: 'loginData',
@@ -89,13 +91,14 @@ function createTable() {
     },
     {
       name: 'cardData',
-      columns: 'maThe VARCHAR(10) PRIMARY KEY, maKH VARCHAR(10), dateOfBirth DATE, phoneNumber VARCHAR(11), cardType VARCHAR(255), dateStart DATE, dateEnd DATE, FOREIGN KEY (maKH) REFERENCES users(maKH)'
+      columns: 'maThe VARCHAR(10) PRIMARY KEY, maKH VARCHAR(10), cardType VARCHAR(255), dateStart DATE, dateEnd DATE, FOREIGN KEY (maKH) REFERENCES users(maKH)'
     },
     {
       name: 'calendarData',
       columns: 'maLT VARCHAR(10) PRIMARY KEY, maThe VARCHAR(10), date DATE, timeStart TIME, timeEnd TIME, type VARCHAR(255), ptName VARCHAR(255), note VARCHAR(255), FOREIGN KEY (maThe) REFERENCES cardData(maThe)'
     }
   ];
+
 
 
   tables.forEach(table => {
@@ -115,6 +118,19 @@ function createTable() {
   });
 
 }
+
+function insertIntoTable(tableName, data) {
+  let columns = Object.keys(data).join(', ');
+  let values = Object.values(data).map(value => `'${value}'`).join(', ');
+
+  let sql = `INSERT INTO ${tableName} (${columns}) VALUES (${values})`;
+
+  con.query(sql, function (err, result) {
+    if (err) throw err;
+    console.log("Record inserted successfully");
+  });
+}
+
 
 app.post('/login-url', (req, res) => {
   const { email, password } = req.body;
@@ -157,15 +173,45 @@ app.post('/create-account-url', (req, res) => {
           } else {
             maKH = generateCustomerCode(result[0].maKH);
           }
+
           var sql = `INSERT INTO users (maKH ,name, email) VALUES ('${maKH}', '${fullname}',  '${emailLower}')`;
           con.query(sql, function (err, result) {
             if (err) throw err;
             sql = `INSERT INTO loginData (maKH ,password) VALUES ('${maKH}', '${password}')`;
             con.query(sql, function (err, result) {
               if (err) throw err;
+              con.query("SELECT maThe FROM cardData ORDER BY maThe DESC LIMIT 1",
+                function (err, result, fields) {
+                  if (err) throw err;
+                  var maThe;
+                  if (!result[0]) {
+                    maThe = 'MT0001';
+                  } else {
+                    maThe = generateCustomerCode(result[0].maThe);
+                  }
+                  var cardData = { maKH: maKH, maThe: maThe };
+                  insertIntoTable("cardData", cardData);
+
+                  con.query("SELECT maLT FROM calendarData ORDER BY maLT DESC LIMIT 1",
+                    function (err, result, fields) {
+                      if (err) throw err;
+                      var maLT;
+                      if (!result[0]) {
+                        maLT = 'LT0001';
+                      } else {
+                        maLT = generateCustomerCode(result[0].maLT);
+                      }
+                      var calendarData = { maLT: maLT, maThe: maThe };
+                      insertIntoTable("calendarData", calendarData);
+                    }
+                  )
+                }
+              )
+
               res.json({ success: true, active: true });
               res.end();
             });
+
           });
         });
     } else {
@@ -293,43 +339,58 @@ app.get('/get-cookie', function (req, res) {
   res.json({ cookieValue: cookieValue });
 });
 
-app.get('/get-value-information-form', function (req, res) {
-  let resultAdd = {
-    maThe: "",
-    maKH: "",
-    name: "",
-    email: "",
-    password: "",
-    dateOfBirth: "",
-    phoneNumber: "",
-    cardType: "",
-    dateStart: "",
-    dateEnd: ""
-  };
+app.post('/get-value-information-form', function (req, res) {
+  const { type } = req.body;
   let cookieValue = getCookie(req, 'user_id');
   if (cookieValue && cookieValue.maKH) {
     let maKH = cookieValue.maKH;
-    var sql1 = 'SELECT * FROM cardData WHERE maKH = ?';
-    var sql2 = 'SELECT * FROM loginData WHERE maKH = ?';
-    var sql3 = 'SELECT * FROM users WHERE maKH = ?';
-    con.query(sql1, [maKH], (err, result) => {
-      if (err) reject(err);
-      cardDataResult = result[0];
-      con.query(sql2, [maKH], (err, result) => {
-        if (err) reject(err);
-        loginDataResult = result[0];
-        con.query(sql3, [maKH], (err, result) => {
-          if (err) reject(err);
-          userDataResult = result[0];
-          if(cardDataResult && loginDataResult && userDataResult){
-            resultAdd = { ...resultAdd, ...cardDataResult, ...loginDataResult, ...userDataResult };
-            res.json({ success: true, value: resultAdd });
-          }
-        });
+    if (type == "account") {
+      var sql = 'SELECT * FROM users WHERE maKH = ?';
+      con.query(sql, [maKH], function (err, result) {
+        var data = result[0];
+        if (data) {
+          res.json({ success: true, value: data });
+        }
       });
-    });
-  }else{
-    res.json({ success: false, value: resultAdd });
+    } else if (type == "card") {
+      var resultAdd = {};
+      var sql = 'SELECT * FROM cardData WHERE maKH = ?';
+      con.query(sql, [maKH], function (err, result) {
+        if (err) throw err;
+        var data = result[0];
+        if (data) {
+          for (var key in data) {
+            resultAdd[key] = data[key];
+          }
+          var sql = 'SELECT name FROM users WHERE maKH = ?';
+          con.query(sql, [maKH], function (err, result) {
+            if (err) throw err;
+            var data = result[0];
+            if (data) {
+              for (var key in data) {
+                resultAdd[key] = data[key];
+                var sql = 'SELECT * FROM calendarData WHERE maThe = ?';
+                con.query(sql, [resultAdd.maThe], function (err, result) {
+                  if (err) throw err;
+                  var data = result[0];
+                  if (data) {
+                    for (var key in data) {
+                      resultAdd[key] = data[key];
+                    }
+                    res.json({ success: true, value: resultAdd });
+                  }
+                })
+              }
+            }
+          })
+        }
+      });
+
+    } else {
+      res.json({ success: false, value: {} });
+    }
+  } else {
+    res.json({ success: false, value: {} });
   }
 });
 
@@ -343,7 +404,7 @@ app.post('/change-name-url', (req, res) => {
 });
 app.post('/change-profile-url', (req, res) => {
   const { date, maKH } = req.body;
-  var sqlQuery = "UPDATE cardData SET dateOfBirth = ? WHERE maKH = ?";
+  var sqlQuery = "UPDATE users SET dateOfBirth = ? WHERE maKH = ?";
   con.query(sqlQuery, [date, maKH], function (err, result) {
     if (err) throw err;
     res.json({ success: true, type: "profile" });
@@ -351,7 +412,7 @@ app.post('/change-profile-url', (req, res) => {
 });
 app.post('/change-inforaccount-url', (req, res) => {
   const { email, phoneNumber, maKH } = req.body;
-  var sqlQuery = "UPDATE cardData SET phoneNumber = ? WHERE maKH = ?";
+  var sqlQuery = "UPDATE users SET phoneNumber = ? WHERE maKH = ?";
   con.query(sqlQuery, [phoneNumber, maKH], function (err, result) {
     if (err) throw err;
     var sqlQuery = "UPDATE users SET email = ? WHERE maKH = ?";
@@ -379,22 +440,95 @@ app.post('/change-password-url', (req, res) => {
   })
 });
 
+// cardType: 'on', weekday: 'on', time: 'on', type: 'on'
+app.post('/register-card-url', (req, res) => {
+  const cookie = getCookie(req, 'user_id');
+  if (cookie) {
+    const maKH = cookie.maKH;
+    var sql = "SELECT maThe FROM cardData WHERE maKH = ?";
+    con.query(sql, [maKH], function (err, result) {
+      if (err) throw err;
+      var maThe = result[0].maThe;
+      if (maThe) {
+        const { cardType, weekday, time, type, note } = req.body;
+        var dateStart = getCurrentDate();
+        console.log("dateStart", dateStart);
+        var add = 1;
+        if (cardType == "BEGINNER") add = 1;
+        else if (cardType == "BASIC") add = 2;
+        else if (cardType == "ADVANCE") add = 3;
+        var dateEnd = addMonths(dateStart, add);
+        console.log("dateStart", dateStart);
+        console.log(cardType, weekday, time, type, note);
+        var sql = "UPDATE cardData SET cardType = ?, dateStart = ?, dateEnd = ? WHERE maThe = ?";
+        con.query(sql, [cardType, dateStart, dateEnd, maThe], function (err, result) {
+          if (err) throw err;
+          if (weekday)
+            var date = weekday.join(", ");
+          else
+            var date = null;
+          if (time)
+            var a_time = time.split("-");
+          else
+            var a_time = ["00h00", "00h00"];
+          var sql = 'UPDATE calendarData SET date = ? , timeStart = ? , timeEnd = ? , type = ? , ptName = ? , note = ?';
+          con.query(sql, [date, a_time[0], a_time[1], type, "Truong co bap", note], function (err, result) {
+            if (err) throw err;
+            res.json({ success: true });
+          })
+        });
+      } else {
+        res.json({ success: false });
+      }
+    })
+  } else {
+    res.json({ success: false, reason: "login" });
+  }
+})
 
-// COOKIE
-app.get('/get-load-card', function (req, res) {
-  var cookieValue = getCookie(req, 'user_id');
-  const maKH = cookieValue.maKH;
-  var sql = "SELECT * FROM cardData WHERE maKH = ?";
-  let resultAdd = {};
-  con.query(sql, [maKH], function(err, result){
-    if(err) throw err;
-    resultAdd = { ...resultAdd, ...result};
-    res.json({success: true, value: resultAdd});
-  })
+// active register card
+app.get('/get-valid-card', function (req, res) {
+  const cookie = getCookie(req, 'user_id');
+  if (cookie) {
+    var maKH = cookie.maKH;
+    con.query("SELECT cardType FROM cardData WHERE maKH = ?", [maKH], function (err, result) {
+      console.log(result[0].cardType);
+      if (result[0].cardType) {
+        res.json({ have: true });
+      } else {
+        res.json({ have: false });
+      }
+    })
+  } else {
+    res.json({ have: false });
+  }
+})
 
-});
+// CANCEL CALENDAR
+app.get('/get-cancel-submit', function (req, res) {
+  const cookie = getCookie(req, 'user_id');
+  if (cookie) {
+    var maKH = cookie.maKH;
+    let sql = 'UPDATE cardData SET cardType = NULL, dateStart = NULL, dateEnd = NULL WHERE maKH = ?';
+    con.query(sql, [maKH], function (err, result) {
+      if (err) throw err;
+      sql = "SELECT maThe FROM cardData WHERE maKH = ?";
+      con.query(sql, [maKH], function (err, result) {
+        if (result[0].maThe) {
+          var maThe = result[0].maThe;
+          sql = 'UPDATE calendarData SET date = NULL, timeStart = NULL, timeEnd = NULL, type = NULL, ptName = NULL, note = NULL WHERE maThe = ?';
+          con.query(sql, [maThe], function (err, result) {
+            if (err) throw err;
+            res.json({ success: true });
+          });
+        }
+      })
+    });
 
-
+  } else {
+    res.json({ success: false });
+  }
+})
 
 // Khởi động server
 const port = process.env.PORT || 8080;

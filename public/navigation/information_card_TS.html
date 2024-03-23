@@ -189,7 +189,7 @@
                                     <div class="information__card">
                                         <div class="information__card first__part">
                                             <div class="first__part first__part__image">
-                                                <img class="card card-img" src="../img/card/advance.png" alt="advance">
+                                                <img id="card-img" class="card card-img" src="../img/card/advance.png" alt="advance">
                                             </div>
                                         </div>
                                         <div class="information__card the__second__part">
@@ -199,8 +199,8 @@
                                                         class="card__holder card__holder__title">
                                                         Tên hội viên
                                                     </div>
-                                                    <div id="information__card__content"
-                                                        class="card__holder card__holder__content">
+                                                    <div id="name-client"
+                                                        class="information__card__content card__holder card__holder__content">
                                                         ...
                                                     </div>
                                                 </div>
@@ -208,8 +208,8 @@
                                                     <div id="information__card__title" class="id__card id__card__title">
                                                         Mã thẻ thành viên
                                                     </div>
-                                                    <div id="information__card__content"
-                                                        class="id__card id__card__content">
+                                                    <div id="id-card"
+                                                        class="information__card__content id__card id__card__content">
                                                         ...
                                                     </div>
                                                 </div>
@@ -218,8 +218,8 @@
                                                         class="card__type card__type__title">
                                                         Loại thẻ thành viên
                                                     </div>
-                                                    <div id="information__card__content"
-                                                        class="card__type card__type__content">
+                                                    <div id="type-card"
+                                                        class="information__card__content card__type card__type__content">
                                                         <a class="card__type__content card__type__content__link"
                                                             href="../navigation/card.html">
                                                             ...
@@ -231,8 +231,8 @@
                                                         class="card__registration__date card__registration__date__title">
                                                         Ngày đăng ký thẻ
                                                     </div>
-                                                    <div id="information__card__content"
-                                                        class="card__registration__date card__registration__date__content">
+                                                    <div id="date-start"
+                                                        class="information__card__content card__registration__date card__registration__date__content">
                                                         ...
                                                     </div>
                                                 </div>
@@ -241,8 +241,8 @@
                                                         class="card__expiration__date card__expiration__date__title">
                                                         Ngày hết hạn thẻ
                                                     </div>
-                                                    <div id="information__card__content"
-                                                        class="card__expiration__date card__expiration__date__content">
+                                                    <div id="date-end"
+                                                        class="information__card__content card__expiration__date card__expiration__date__content">
                                                         ...
                                                     </div>
                                                 </div>
@@ -319,7 +319,7 @@
                                     <button id="button1" class="button__in__operation">
                                         Đăng ký lịch
                                     </button>
-                                    <div id="form" class="form1">
+                                    <form id="form-register" class="form1">
                                         <div class="registration__traning__schedule">
                                             <div class="table">
                                                 <div id="training-schedule" class="first__training__schedule">
@@ -337,19 +337,21 @@
                                                         </div>
                                                         <div class="row__content">
                                                             <div>
-                                                                <input type="radio" id="card1" name="card">
+                                                                <input type="radio" id="card1" name="cardType"
+                                                                    value="BEGINNER">
                                                                 <label for="card1">BEGINNER</label><br>
 
                                                             </div>
                                                             <div>
-                                                                <input type="radio" id="card2" name="card">
+                                                                <input type="radio" id="card2" name="cardType"
+                                                                    value="BASIC">
                                                                 <label for="card2">BASIC</label><br>
 
                                                             </div>
                                                             <div>
-                                                                <input type="radio" id="card3" name="card">
+                                                                <input type="radio" id="card3" name="cardType"
+                                                                    value="ADVANCE">
                                                                 <label for="card3">ADVANCE</label><br>
-
                                                             </div>
                                                         </div>
                                                     </div>
@@ -359,31 +361,38 @@
                                                         </div>
                                                         <div class="row__content">
                                                             <div>
-                                                                <input type="checkbox" id="monday" name="weekday">
+                                                                <input type="checkbox" id="monday" name="weekday[]"
+                                                                    value="T2">
                                                                 <label for="monday">T2</label><br>
                                                             </div>
                                                             <div>
-                                                                <input type="checkbox" id="tuesday" name="weekday">
+                                                                <input type="checkbox" id="tuesday" name="weekday[]"
+                                                                    value="T3">
                                                                 <label for="tuesday">T3</label><br>
                                                             </div>
                                                             <div>
-                                                                <input type="checkbox" id="wednesday" name="weekday">
+                                                                <input type="checkbox" id="wednesday" name="weekday[]"
+                                                                    value="T4">
                                                                 <label for="wednesday">T4</label><br>
                                                             </div>
                                                             <div>
-                                                                <input type="checkbox" id="thursday" name="weekday">
+                                                                <input type="checkbox" id="thursday" name="weekday[]"
+                                                                    value="T5">
                                                                 <label for="thursday">T5</label><br>
                                                             </div>
                                                             <div>
-                                                                <input type="checkbox" id="friday" name="weekday">
+                                                                <input type="checkbox" id="friday" name="weekday[]"
+                                                                    value="T6">
                                                                 <label for="friday">T6</label><br>
                                                             </div>
                                                             <div>
-                                                                <input type="checkbox" id="saturday" name="weekday">
+                                                                <input type="checkbox" id="saturday" name="weekday[]"
+                                                                    value="T7">
                                                                 <label for="saturday">T7</label><br>
                                                             </div>
                                                             <div>
-                                                                <input type="checkbox" id="sunday" name="weekday">
+                                                                <input type="checkbox" id="sunday" name="weekday[]"
+                                                                    value="CN">
                                                                 <label for="sunday">CN</label><br>
                                                             </div>
 
@@ -395,17 +404,20 @@
                                                         </div>
                                                         <div class="row__content">
                                                             <div>
-                                                                <input type="radio" id="time1" name="time">
+                                                                <input type="radio" id="time1" name="time"
+                                                                    value="13:30-15:00">
                                                                 <label for="time1">13:30-15:00</label><br>
 
                                                             </div>
                                                             <div>
-                                                                <input type="radio" id="time2" name="time">
+                                                                <input type="radio" id="time2" name="time"
+                                                                    value="15:00-16:30">
                                                                 <label for="time2">15:00-16:30</label><br>
 
                                                             </div>
                                                             <div>
-                                                                <input type="radio" id="time3" name="time">
+                                                                <input type="radio" id="time3" name="time"
+                                                                    value="17:30-18:30">
                                                                 <label for="time3">17:30-18:30</label><br>
 
                                                             </div>
@@ -417,11 +429,11 @@
                                                         </div>
                                                         <div class="row__content row__content--type">
                                                             <div>
-                                                                <input type="radio" id="GYM" name="type">
+                                                                <input type="radio" id="GYM" name="type" value="GYM">
                                                                 <label for="GYM">GYM</label><br>
                                                             </div>
                                                             <div>
-                                                                <input type="radio" id="YOGA" name="type">
+                                                                <input type="radio" id="YOGA" name="type" value="YOGA">
                                                                 <label for="YOGA">YOGA</label><br>
                                                             </div>
                                                         </div>
@@ -440,12 +452,12 @@
                                                         </div>
                                                         <div class="row__content">
                                                             <input class="row__content__input" type="text"
-                                                                placeholder="Nhấp để thêm ghi chú">
+                                                                placeholder="Nhấp để thêm ghi chú" name="note">
                                                         </div>
                                                     </div>
                                                     <div class="row__final">
                                                         <div class="row__final__button">
-                                                            <button class="button__form">
+                                                            <button class="button__form" type="submit">
                                                                 Gửi yêu cầu
                                                             </button>
                                                         </div>
@@ -453,13 +465,13 @@
                                                 </div>
                                             </div>
                                         </div>
-                                    </div>
+                                    </form>
                                 </div>
                                 <div class="cancel__button">
                                     <button id="button2" class="button__in__operation">
                                         Huỷ lịch
                                     </button>
-                                    <div id="form2" class="form1">
+                                    <div id="form-cancel" class="form1">
                                         <div class="registration__traning__schedule">
                                             <div class="table">
                                                 <div id="training-schedule" class="first__training__schedule">
@@ -995,6 +1007,8 @@
     <script type="module" src="../src/toast.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script type="module" src="../src/client.js"></script>
+    <script type="module" src="../navigation_javascript/login.js"></script>
+    <script type="module" src="../navigation_javascript/infomation_account.js"></script>
 </body>
 
 </html>

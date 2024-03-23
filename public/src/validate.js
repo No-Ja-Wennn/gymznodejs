@@ -110,3 +110,31 @@ export function isValidChangePass(password, newPass, confirmPass){
     }
     return true;
 }
+
+export function isFormComplete() {
+    let cardType = document.querySelector('input[name="cardType"]:checked');
+    if (!cardType) {
+        showErrorToast("Vui lòng điền đầy đủ thông tin", "Chưa chọn loại thẻ")
+        return false;
+    }
+
+    let weekdays = document.querySelectorAll('input[name="weekday[]"]:checked');
+    if (weekdays.length === 0) {
+        showErrorToast("Vui lòng điền đầy đủ thông tin", "Chưa chọn  ngày")
+        return false;
+    }
+
+    let time = document.querySelector('input[name="time"]:checked');
+    if (!time) {
+        showErrorToast("Vui lòng điền đầy đủ thông tin", "Chưa chọn  thời gian")
+        return false;
+    }
+
+    let type = document.querySelector('input[name="type"]:checked');
+    if (!type) {
+        showErrorToast("Vui lòng điền đầy đủ thông tin", "Chưa chọn  bộ môn")
+        return false;
+    }
+
+    return true;
+}
