@@ -387,10 +387,10 @@ app.post('/get-value-information-form', function (req, res) {
       });
 
     } else {
-      res.json({ success: false, value: {} });
+      res.json({ success: false, value: {} , login: true});
     }
   } else {
-    res.json({ success: false, value: {} });
+    res.json({ success: false, value: {}});
   }
 });
 
@@ -494,13 +494,13 @@ app.get('/get-valid-card', function (req, res) {
     con.query("SELECT cardType FROM cardData WHERE maKH = ?", [maKH], function (err, result) {
       console.log(result[0].cardType);
       if (result[0].cardType) {
-        res.json({ have: true });
+        res.json({ have: true, login: true });
       } else {
-        res.json({ have: false });
+        res.json({ have: false, login: true });
       }
     })
   } else {
-    res.json({ have: false });
+    res.json({ have: false, login: false });
   }
 })
 

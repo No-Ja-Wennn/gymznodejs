@@ -6,7 +6,8 @@ import {
     f_registerBTN,
     f_cancel,
     eventNotActiveRE,
-    eventNotActiveCA
+    eventNotActiveCA,
+    f_cubeBTN
 } from "../navigation_javascript/login.js"
 import { showSuccessToast, showErrorToast } from "./toast.js";
 import { validateCreateAccount, validateLoginValue, validateChangePass, isValidChangePass, isFormComplete } from './validate.js';
@@ -40,6 +41,7 @@ const loginBTN2 = document.getElementById("menu2-infor");
 
 const registerBTN = document.getElementById("button1");
 const cancelREBTN = document.getElementById("button2");
+let a_cubeBTN = document.querySelectorAll(".cube");
 
 const path = window.location.pathname;
 
@@ -70,7 +72,6 @@ function f_logoutBTN() {
     $.ajax({
         url: '/logout-url',
         type: 'POST',
-        // data: $(this).serialize(),
         success: function (data) {
             if (data) {
                 if (cookieSave) {
@@ -83,7 +84,9 @@ function f_logoutBTN() {
                     unActiveClickChange();
                     console.log("path: ", path)
                     getValueInformationForm(path);
-                    cancelREBTN.removeEventListener("click", eventNotActiveCA);
+                    if (cancelREBTN)
+                        cancelREBTN.removeEventListener("click", eventNotActiveCA);
+                    f_getValidCard();
                     showSuccessToast("Đã đăng xuất", "Cảm ơn bạn đã sử dụng dịch vụ");
                 }
                 else
@@ -125,7 +128,7 @@ function f_sendCodeBTN(e) {
     } else {
         // Gửi yêu cầu POST đến server
         $.ajax({
-            url: '/your-send-code-url', // URL mà bạn muốn gửi yêu cầu đến
+            url: '/your-send-code-url',
             type: 'POST',
             data: { email: email }, // Dữ liệu gửi lên server
             success: function (response) {
@@ -160,6 +163,8 @@ function getValueInformationForm(path) {
         type = "account";
     } else if (path == "/navigation/information_card_TS.html") {
         type = "card";
+    } else {
+        type = "other";
     }
     let loaderTimeout = setTimeout(function () {
         activeNecessaryForm();
@@ -208,9 +213,11 @@ function getValueInformationForm(path) {
                         "..."
                     );
                 }
-                displayNoneAll();
-                activeNecessaryForm();
-                loginBox.style.display = "block";
+                if (!data.login) {
+                    displayNoneAll();
+                    activeNecessaryForm();
+                    loginBox.style.display = "block";
+                }
             }
         },
         error: function (err) {
@@ -259,21 +266,62 @@ function f_changeServer(element, url) {
 }
 
 function f_getValidCard() {
+    console.log("...")
     $.ajax({
         url: "/get-valid-card",
         type: "GET",
         success: function (data) {
-            console.log("Have: ", data.have);
-            if (data.have) {
-                registerBTN.removeEventListener("click", f_registerBTN);
-                registerBTN.addEventListener("click", eventNotActiveRE);
-                cancelREBTN.removeEventListener("click", eventNotActiveCA);
-                cancelREBTN.addEventListener("click", f_cancel);
+            if (data.login) {
+                if (data.have) {
+                    if (registerBTN && cancelREBTN) { // đã đky
+                        registerBTN.removeEventListener("click", f_registerBTN);
+                        registerBTN.addEventListener("click", eventNotActiveRE);
+                        cancelREBTN.removeEventListener("click", eventNotActiveCA);
+                        cancelREBTN.addEventListener("click", f_cancel);
+
+                    } else if (a_cubeBTN) {
+                        a_cubeBTN = Array.from(a_cubeBTN);
+                        a_cubeBTN.map(value => {
+                            value.removeEventListener("click", f_cubeBTN);
+                            value.addEventListener("click", eventNotActiveRE);
+                        })
+                    }
+                } else {
+                    if (registerBTN && cancelREBTN) { // chưa dky
+                        registerBTN.addEventListener("click", f_registerBTN);
+                        registerBTN.removeEventListener("click", eventNotActiveRE);
+                        cancelREBTN.addEventListener("click", eventNotActiveCA);
+                        cancelREBTN.removeEventListener("click", f_cancel);
+
+                    } else if (a_cubeBTN) {
+                        a_cubeBTN = Array.from(a_cubeBTN);
+                        a_cubeBTN.map(value => {
+                            value.addEventListener("click", f_cubeBTN);
+                            value.removeEventListener("click", eventNotActiveRE);
+                        })
+                    }
+                }
             } else {
-                registerBTN.addEventListener("click", f_registerBTN);
-                registerBTN.removeEventListener("click", eventNotActiveRE);
-                cancelREBTN.addEventListener("click", eventNotActiveCA);
-                cancelREBTN.removeEventListener("click", f_cancel);
+                console.log("huy");
+                if (registerBTN && cancelREBTN) { // chưa dky
+                    registerBTN.removeEventListener("click", f_registerBTN);
+                    registerBTN.removeEventListener("click", eventNotActiveRE);
+                    cancelREBTN.removeEventListener("click", eventNotActiveCA);
+                    cancelREBTN.removeEventListener("click", f_cancel);
+
+                } else if (a_cubeBTN) {
+                    a_cubeBTN = Array.from(a_cubeBTN);
+                    a_cubeBTN.map(value => {
+                        value.removeEventListener("click", f_cubeBTN);
+                        value.removeEventListener("click", eventNotActiveRE);
+                    })
+                }else if (a_cubeBTN) {
+                    a_cubeBTN = Array.from(a_cubeBTN);
+                    a_cubeBTN.map(value => {
+                        value.removeEventListener("click", f_cubeBTN);
+                        value.removeEventListener("click", eventNotActiveRE);
+                    })
+                }
             }
         },
         error: function (err) {
@@ -466,6 +514,7 @@ $(document).ready(function () {
                         registerCartBox.style.display = "none";
                         getValueInformationForm(path);
                         f_getValidCard();
+                        displayNoneAll();
                     } else {
                         if (data.reason == "login") {
                             f_loginBTN();
@@ -484,26 +533,27 @@ $(document).ready(function () {
 
     // CANCEL CALENDAR
     const cancelSubmit = document.querySelector(".button__form__cancel");
-    cancelSubmit.addEventListener("click", function () {
-        $.ajax({
-            url: "/get-cancel-submit",
-            type: "GET",
-            success: function (data) {
-                console.log(data);
-                if (data.success) {
-                    f_getValidCard();
-                    showSuccessToast("Đã hủy lịch tập");
-                    cancelRECartBox.style.display = "none";
-                    getValueInformationForm(path);
-                } else {
-                    showErrorToast("LỖi")
-                }
-            },
-            error: function (err) {
+    if (cancelSubmit)
+        cancelSubmit.addEventListener("click", function () {
+            $.ajax({
+                url: "/get-cancel-submit",
+                type: "GET",
+                success: function (data) {
+                    console.log(data);
+                    if (data.success) {
+                        f_getValidCard();
+                        showSuccessToast("Đã hủy lịch tập");
+                        cancelRECartBox.style.display = "none";
+                        getValueInformationForm(path);
+                    } else {
+                        showErrorToast("LỖi")
+                    }
+                },
+                error: function (err) {
 
-            }
+                }
+            })
         })
-    })
-    // f_getValidCard();
+    f_getValidCard();
 
 });

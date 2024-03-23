@@ -1,5 +1,9 @@
 import { showErrorToast } from '../src/toast.js';
-import { displayNoneAll, activeNecessaryForm, f_registerBTN, f_cancel } from './login.js';
+import {
+    displayNoneAll, activeNecessaryForm,
+    f_registerBTN, f_cancel,
+    f_cubeBTN
+} from './login.js';
 
 const loginForm = document.querySelector(".login-box");
 const nameClientElement = document.getElementById("name-client");
@@ -18,6 +22,7 @@ const dateEndClientElementCard = document.getElementById("date-end");
 const registerBTN = document.getElementById("button1");
 const cancelREBTN = document.getElementById("button2");
 
+let a_cubeBTN = document.querySelectorAll(".cube");
 
 export function innerTextOfInformation(name, date, email, phone) {
     if (nameClientElement, dateOfBirthClientElement, emailClientElement, phoneClientElement) {
@@ -281,6 +286,12 @@ export function activeClickChange() {
         cancelREBTN.addEventListener("click", f_cancel);
         registerBTN.removeEventListener("click", noLogin);
         cancelREBTN.removeEventListener("click", noLogin);
+    } else if (a_cubeBTN) {
+        a_cubeBTN = Array.from(a_cubeBTN);
+        a_cubeBTN.map(value => {
+            value.addEventListener("click", f_cubeBTN);
+            value.removeEventListener("click", noLogin);
+        })
     }
 }
 
@@ -307,6 +318,12 @@ export function unActiveClickChange() {
         cancelREBTN.removeEventListener("click", f_cancel);
         registerBTN.addEventListener("click", noLogin);
         cancelREBTN.addEventListener("click", noLogin);
+    } else if (a_cubeBTN) {
+        a_cubeBTN = Array.from(a_cubeBTN);
+        a_cubeBTN.map(value => {
+            value.removeEventListener("click", f_cubeBTN);
+            value.addEventListener("click", noLogin);
+        })
     }
 }
 
