@@ -140,64 +140,63 @@
         <div class="container">
             <!-- <div class="grid1"> -->
             <div class="container__box">
-                <div class="container__bar">
-                    <ul class="container__bar__list">
-                        <li class="container__bar__item container__bar__item--avt">
-                            <img class="container__bar__item__avt" src="./img/icon/ico-avt.png" alt="">
-                            <span class="container__bar__item__name">Admin Name</span>
-                            <div class="container__bar__options">
-                                <button class="navigation-hide-button">
+                <div class="navbar">
+                    <ul class="nav-menu">
+                        <li class="nav-item nav-admin-ifm">
+                            <img class="nav-admin-ifm-avt" src="./img/icon/ico-avt.png" alt="">
+                            <span class="nav-admin-ifm-name">Admin Name</span>
+                            <div class="nav-close">
+                                <button class="nav-close-bt">
                                     <!-- <i class="fa-solid fa-bars"></i> -->
-                                    <i class="fa-solid fa-xmark"></i>
+                                    <ion-icon class="nav-close-bt-icon" name="close-sharp"></ion-icon>
                                 </button>
                             </div>
                         </li>
-                        <li id="QLMessage" class="container__bar__item container__bar__item--active">
-                            <i class="fa-regular fa-comments"></i>
-                            <span class="container__bar__item__text">
+                        <li id="QLMessage" class="nav-item">
+                            <ion-icon class="nav-item-icon" name="chatbubbles-sharp"></ion-icon>
+                            <span class="nav-item-text">
                                 Tin nhắn
                             </span>
                         </li>
-                        <li id="QLAccount" class="container__bar__item">
-                            <i class="fa-solid fa-users"></i>
-                            <span class="container__bar__item__text">
+                        <li id="QLAccount" class="nav-item">
+                            <ion-icon class="nav-item-icon" name="people-sharp"></ion-icon>
+                            <span class="nav-item-text">
                                 QL tài khoản
                             </span>
                         </li>
-                        <li id="QLCard" class="container__bar__item">
-                            <i class="fa-solid fa-address-card"></i>
-                            <span class="container__bar__item__text">
+                        <li id="QLCard" class="nav-item">
+                            <ion-icon class="nav-item-icon" name="card-sharp"></ion-icon>
+                            <span class="nav-item-text">
                                 QL thẻ thành viên
                             </span>
                         </li>
-                        <li id="QLCalendar" class="container__bar__item">
-                            <i class="fa-solid fa-shop"></i>
-                            <span class="container__bar__item__text">
+                        <li id="QLCalendar" class="nav-item">
+                            <ion-icon class="nav-item-icon" name="calendar-sharp"></ion-icon>
+                            <span class="nav-item-text">
                                 QL lịch tập
                             </span>
                         </li>
-                        <div class="container__bar__logout">
-                            <div class="container__bar__item">
-                                <i class="fa-solid fa-right-from-bracket"></i>
-                                <span class="container__bar__item__text">
+                        <div class="nav-item-last">
+                            <li id="logOut" class="nav-item">
+                                <ion-icon class="nav-item-icon" name="log-out-sharp"></ion-icon>
+                                <span class="nav-item-text">
                                     Đăng xuất
                                 </span>
-                            </div>
-                        </div>
+                            </li>
+                        </di>
                     </ul>
                 </div>
                 <div class="shadow"></div>
                 <div class="container__show">
 
                     <!-- MESSAGE -->
-                    <div id="groupList" class="container__show__message">
-                        <div id="listItem" class="container__show__message__box">
-                            <div class="list-message-box">
+                    <div id="groupList" class="msgr">
+                        <div id="listItem" class="msgr-box">
+                            <div class="msgr-box-left">
                                 <div class="box-title">
-                                    <div class="navigation-display">
-                                        <button class="navigation-display-button">
-                                            <i class="fa-solid fa-bars"></i>
-                                            <!-- <i class="fa-solid fa-xmark"></i> -->
+                                    <div class="nav-open">
+                                        <button class="nav-open-bt">
+                                            <ion-icon class="nav-open-bt-icon" name="menu-sharp"></ion-icon>
                                         </button>
                                     </div>
                                     <h3 class="title-row">
@@ -210,144 +209,163 @@
                                         </button>
                                     </div>
                                 </div>
-                                <div class="list-message-box__search">
-                                    <i class="exit--search fa-solid fa-arrow-left"></i>
-                                    <div class="list-message-box__find">
-                                        <i class="fa-solid fa-magnifying-glass"></i>
-                                        <input id="searchInput" type="text" class="search__message__input"
+                                <div class="msgr-box-search">
+                                    <ion-icon class="msgr-search-exit" name="arrow-back-sharp">
+                                    </ion-icon>
+                                    <div class="msgr-search-input">
+                                        <ion-icon class="msgr-search-input-icon" name="search-sharp">
+                                        </ion-icon>
+                                        <input id="searchInput" class="msgr-search-input-text" type="text"
                                             placeholder="Tìm kiếm trên chatbox" autocomplete="nope">
                                     </div>
                                 </div>
-
-                                <ul class="message__list">
-                                    <!-- <li class="message__user">
-                                        <div class="message__user__box">
-                                            <img src="./img/icon/ico-avt.png" alt="" class="message__user__avt">
-                                            <div class="message__user__box__right">
-                                                <span class="message__user__name">
-                                                    adaddd
-                                                </span>
-                                                <span class="message__user__msg">
-                                                    <span class="message__user__msg__obj">Bạn: </span>
-                                                    <div class="message__user__msg__text">do opacity bên css nên lần đầu
-                                                        bị giật</div>
-                                                </span>
+                                <ul class="msg-list">
+                                    <li class="msg-box">
+                                        <div class="box-top">
+                                            <div class="user-box">
+                                                <div class="user-avt">
+                                                    <img src="./img/icon/ico-avt.png" alt="">
+                                                </div>
+                                                <div class="user-ifm">
+                                                    <span class="user-ifm-name">
+                                                        HOANG ANH TU
+                                                    </span>
+                                                    <span class="user-ifm-card">
+                                                        MT:
+                                                        <span class="user-ifm-card-number">
+                                                            MT01
+                                                        </span>
+                                                    </span>
+                                                </div>
                                             </div>
                                             <div class="more-option">
-                                                <i class="message__user__name__options fa-solid fa-ellipsis"></i>
+                                                <button class="more-option-bt">
+                                                    <ion-icon class="more-option-bt-icon" name="ellipsis-horizontal-sharp">
+                                                    </ion-icon>
+                                                </button>
                                             </div>
                                         </div>
-                                        <div class="message__user__box__affter">
-                                            <ul class="message__user__box__affter__list">
-                                                <li class="message__user__box__affter__item">
-                                                    Xóa
-                                                    <span>
-                                                        <i class="fa-solid fa-trash"></i>
+                                        <div class="box-bot bot-bar">
+                                            <ul class="bot-bar-menu">
+                                                <li class="bot-bar-item">
+                                                    <span class="bot-bar-item-text">
+                                                        Xoá
+                                                        <ion-icon class="bot-bar-item-icon" name="trash-sharp">
+                                                        </ion-icon>
                                                     </span>
                                                 </li>
                                             </ul>
                                         </div>
                                     </li>
-                                    <li class="message__user">
-                                        <div class="message__user__box">
-                                            <img src="./img/icon/ico-avt.png" alt="" class="message__user__avt">
-                                            <div class="message__user__box__right">
-                                                <span class="message__user__name">
-                                                   dfwwwwwww
-                                                </span>
-                                                <span class="message__user__msg">
-                                                    <span class="message__user__msg__obj">Bạn: </span>
-                                                    <div class="message__user__msg__text">
-                                                        wwwww jz
-                                                    </div>
-                                                </span>
+                                    <li class="msg-box">
+                                        <div class="box-top">
+                                            <div class="user-box">
+                                                <div class="user-avt">
+                                                    <img src="./img/icon/ico-avt.png" alt="">
+                                                </div>
+                                                <div class="user-ifm">
+                                                    <span class="user-ifm-name">
+                                                        LE VAN TIEN
+                                                    </span>
+                                                    <span class="user-ifm-card">
+                                                        MT:
+                                                        <span class="user-ifm-card-number">
+                                                            MT02
+                                                        </span>
+                                                    </span>
+                                                </div>
                                             </div>
                                             <div class="more-option">
-                                                <i class="message__user__name__options fa-solid fa-ellipsis"></i>
+                                                <button class="more-option-bt">
+                                                    <ion-icon class="more-option-bt-icon" name="ellipsis-horizontal-sharp">
+                                                    </ion-icon>
+                                                </button>
                                             </div>
                                         </div>
-                                        <div class="message__user__box__affter">
-                                            <ul class="message__user__box__affter__list">
-                                                <li class="message__user__box__affter__item">
-                                                    Xóa
-                                                    <span>
-                                                        <i class="fa-solid fa-trash"></i>
+                                        <div class="box-bot bot-bar">
+                                            <ul class="bot-bar-menu">
+                                                <li class="bot-bar-item">
+                                                    <span class="bot-bar-item-text">
+                                                        Xoá
+                                                        <ion-icon class="bot-bar-item-icon" name="trash-sharp">
+                                                        </ion-icon>
                                                     </span>
                                                 </li>
                                             </ul>
                                         </div>
-                                    </li> -->
+                                    </li>
                                 </ul>
                             </div>
-                            <div class="chatbox">
-                                <div class="chatbox__head">
-                                    <div class="first-item">
-                                        <button id="prve" class="slide-left">
-                                            <ion-icon name="chevron-back-sharp">
-                                            </ion-icon>
-                                        </button>
-                                    </div>
-                                    <div class="user-about">
-                                        <div class="user-img">
-                                            <img src="./img/icon/ico-avt.png" alt="" class="message__user__avt">
+                            <div class="msgr-box-right">
+                                <div class="chatbox">
+                                    <div class="chatbox__head">
+                                        <div class="first-item">
+                                            <button id="prve" class="slide-left">
+                                                <ion-icon name="chevron-back-sharp">
+                                                </ion-icon>
+                                            </button>
                                         </div>
-                                        <div class="user-ifm">
-                                            <div class="chatbox__head__title">
-                                                Nguyễn Thị Vân
+                                        <div class="user-about">
+                                            <div class="user-img">
+                                                <img src="./img/icon/ico-avt.png" alt="" class="message__user__avt">
                                             </div>
-                                            <div class="chatbox__head__active">
-                                                <span class="chatbox__head__active__text">
-                                                    Đang hoạt động
-                                                </span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="chatbox__message">
-                                    <ul class="chatbox__message__list">
-                                        <li class="chatbox__message__item chatbox__message__item__left">
-                                            <span class="chatbox__message__item__text">
-                                                Em chào anh/chị Em có thể giúp gì được anh chị ạ!
-                                            </span>
-                                        </li>
-                                    </ul>
-                                </div>
-                                <div class="chatbox__bottom">
-                                    <div class="chatbox__bottom__link-social">
-                                        <div class="chatbox__bottom__link-social__mess">
-                                            <a href="https://www.messenger.com/t/172967089240726/" class="chatbox__bottom__link-social__mess">
-                                                <img class="messenger_ico" src="./img/icon/messenger_ico.png" alt="messenger">
-                                            </a>
-                                        </div>
-                                    </div>
-                                    <div class="chatbox__bottom__input">
-                                        <div class="chatbox-select">
-                                            <div class="input-scroll">
-                                                <div class="input-overflow">
-                                                    <!-- <input type="search" autocomplete="off"> -->
-                                                    <textarea id="myTextarea" rows="1" cols="20" placeholder="Aa"></textarea>
-                                                    <!-- <i class='bx bxs-send' ></i> -->
+                                            <div class="user-ifm">
+                                                <div class="chatbox__head__title">
+                                                    Nguyễn Thị Vân
+                                                </div>
+                                                <div class="chatbox__head__active">
+                                                    <span class="chatbox__head__active__text">
+                                                        Đang hoạt động
+                                                    </span>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="chatbox__bottom__send">
-                                        <i class='bx bxs-send' ></i>
+                                    <div class="chatbox__message">
+                                        <ul class="chatbox__message__list">
+                                            <li class="chatbox__message__item chatbox__message__item__left">
+                                                <span class="chatbox__message__item__text">
+                                                    Em chào anh/chị Em có thể giúp gì được anh chị ạ!
+                                                </span>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                    <div class="chatbox__bottom">
+                                        <div class="chatbox__bottom__link-social">
+                                            <div class="chatbox__bottom__link-social__mess">
+                                                <a href="https://www.messenger.com/t/172967089240726/" class="chatbox__bottom__link-social__mess">
+                                                    <img class="messenger_ico" src="./img/icon/messenger_ico.png" alt="messenger">
+                                                </a>
+                                            </div>
+                                        </div>
+                                        <div class="chatbox__bottom__input">
+                                            <div class="chatbox-select">
+                                                <div class="input-scroll">
+                                                    <div class="input-overflow">
+                                                        <!-- <input type="search" autocomplete="off"> -->
+                                                        <textarea id="myTextarea" rows="1" cols="20" placeholder="Aa"></textarea>
+                                                        <!-- <i class='bx bxs-send' ></i> -->
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="chatbox__bottom__send">
+                                            <i class='bx bxs-send' ></i>
+                                        </div>
                                     </div>
                                 </div>
-                
                             </div>
                         </div>
-
                     </div>
-
                     <!-- ACCOUNT -->
-                    <div class="container__show__account">
+                    <div id="accountTable" class="container__show__account">
                         <div class="container-select">
                             <div class="container__show__add container__show__account__add">
                                 <div class="box-title">
-                                    <div class="navigation-display">
-                                        <button class="navigation-display-button"><i class="fa-solid fa-bars"></i></button>
+                                    <div class="nav-open">
+                                        <button class="nav-open-bt">
+                                            <ion-icon class="nav-open-bt-icon" name="menu-sharp"></ion-icon>
+                                        </button>
                                     </div>
                                     <h3 class="title-row">
                                         Quản lý tài khoản
@@ -393,13 +411,12 @@
                     </div>
 
                     <!-- CARD -->
-                    <div class="container__show container__show__card">
+                    <div id="cardTable" class="container__show container__show__card">
                         <div class="container__show__add container__show__card__add">
                             <div class="box-title">
-                                <div class="navigation-display">
-                                    <button class="navigation-display-button">
-                                        <i class="fa-solid fa-bars"></i>
-                                        <!-- <i class="fa-solid fa-xmark"></i> -->
+                                <div class="nav-open">
+                                    <button class="nav-open-bt">
+                                        <ion-icon class="nav-open-bt-icon" name="menu-sharp"></ion-icon>
                                     </button>
                                 </div>
                                 <h3 class="title-row">
@@ -461,13 +478,12 @@
                     </div>
 
                     <!-- CALENDAR EX -->
-                    <div class="container__show__calendar">
+                    <div id="trainingScheduleTable" class="container__show__calendar">
                         <div class="container__show__add container__show__calendar__add">
                             <div class="box-title">
-                                <div class="navigation-display">
-                                    <button class="navigation-display-button">
-                                        <i class="fa-solid fa-bars"></i>
-                                        <!-- <i class="fa-solid fa-xmark"></i> -->
+                                <div class="nav-open">
+                                    <button class="nav-open-bt">
+                                        <ion-icon class="nav-open-bt-icon" name="menu-sharp"></ion-icon>
                                     </button>
                                 </div>
                                 <h3 class="title-row">

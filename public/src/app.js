@@ -1,176 +1,165 @@
-const btshow = document.querySelectorAll('.navigation-display-button');
-const bthide = document.querySelector('.navigation-hide-button');
-const navigation = document.querySelector('.container__bar');
+const navbar = document.querySelector('.navbar');
+const closenav = navbar.querySelector('.nav-close-bt');
 const shadow = document.querySelector('.shadow');
+const opennav = document.querySelectorAll('.nav-open-bt');
 const chat = document.querySelector('.chatbox');
+let activeNav = null;
 
-shadow.addEventListener('click', function(event) {
-    console.log('hide2');
-    navigation.style.animation = 'fly-out-left .35s ease-in-out forwards';
-    shadow.style.animation = 'shadow-out .35s ease-in-out forwards';
-    setTimeout(function() {
-        navigation.style.display = 'none';
-        btshow.innerHTML = '<i class="fa-solid fa-bars"></i>';
-        shadow.style.display = 'none';
-    }, 500);
-})
-btshow.forEach(button => {
-    button.addEventListener('click', function(event) {
-        console.log('show');
-        navigation.style.animation = 'fly-in-left .35s ease-in-out forwards';
-        navigation.style.display = 'flex';
-        shadow.style.animation = 'shadow-in .35s ease-in-out forwards';
-        shadow.style.display = 'flex';
-    })
-});
+// Tạo một mảng để lưu trữ các thẻ và bảng tương ứng
+const tabs = [
+  { tab: navbar.querySelector('#QLMessage'), table: document.querySelector('#groupList') },
+  { tab: navbar.querySelector('#QLAccount'), table: document.querySelector('#accountTable') },
+  { tab: navbar.querySelector('#QLCard'), table: document.querySelector('#cardTable') },
+  { tab: navbar.querySelector('#QLCalendar'), table: document.querySelector('#trainingScheduleTable') }
+];
 
-
-
-bthide.addEventListener('click', function(event) {
-    console.log('hide');
-    navigation.style.animation = 'fly-out-left .35s ease-in-out forwards';
-    shadow.style.animation = 'shadow-out .35s ease-in-out forwards';
-    setTimeout(function() {
-        navigation.style.display = 'none';
-        btshow.innerHTML = '<i class="fa-solid fa-bars"></i>';
-        shadow.style.display = 'none';
-    }, 500);
-})
-    
-
-
-
-let bttrash = document.querySelectorAll('.more-option i');
-let displaytrash = document.querySelector('.message__user__box__affter');
-let displaylist = document.querySelector('.message__user__box__affter__list');
-
-// bttrash.forEach(button => {
-//     button.addEventListener('click', function(){
-
-//         event.stopPropagation();
-    
-//         if (displaytrash.style.display === 'none' || displaytrash.style.display === ''){
-//             console.log('show trash1')
-//             displaytrash.style.display = 'flex';
-//             displaytrash.style.animation = 'showtrash .35s ease-in-out forwards';
-//             setTimeout(function(){
-//                 displaylist.style.animation = 'showlist .1s ease-in-out forwards';
-//             }, 250)
-//         }else{
-//             console.log('hide trash2')
-//             displaylist.style.animation = 'hidelist .1s ease-in-out forwards';
-//             setTimeout(function(){
-//                 displaytrash.style.animation = 'hidetrash .35s ease-in-out forwards';
-//                 setTimeout(function(){
-//                     displaytrash.style.display = 'none';
-//                 }, 350)
-//             }, 50)
-//         }
-//     });
-// })
-
-
-// xu ly khi click ra ngoai nut 3 cham
-document.addEventListener('click', function(){
-    if(displaytrash)
-    if(displaytrash.style.display === 'flex'){
-        console.log('hide click tum lum')
-        displaylist.style.animation = 'hidelist .1s ease-in-out forwards';
-        setTimeout(function(){
-            displaytrash.style.animation = 'hidetrash .35s ease-in-out forwards';
-            setTimeout(function(){
-                displaytrash.style.display = 'none';
-            }, 350)
-        }, 50)
+// Hàm để hiển thị bảng tương ứng và thêm class active cho tab
+function showTableAndSetActive(tab, table) {
+  tabs.forEach(item => {
+    if (item.tab === tab) {
+      item.tab.classList.add('active');
+      item.table.style.display = 'block';
+    } else {
+      item.tab.classList.remove('active');
+      item.table.style.display = 'none';
     }
+  });
+}
+
+// Thêm sự kiện click cho các tab và xử lý hiển thị bảng và class active
+tabs.forEach(item => {
+  item.tab.addEventListener('click', function() {
+    showTableAndSetActive(item.tab, item.table);
+    setTimeout(closeNav, 300);
+  });
 });
 
-
-
-
-
-
-//animation xoa tin nhan
-const deletechat = document.querySelector('.message__user__box__affter__item');
-if(deletechat)
-deletechat.addEventListener('click', function(){
-    const chat_active = document.querySelector('.message__user--active1');
-    chat_active.style.animation = 'side-to-left .25s ease-in-out forwards';
-    setTimeout(function(){
-        chat_active.style.animation = 'de-height .25s ease-in-out forwards';
-        setTimeout(function(){
-            chat_active.style.display = 'none';
-        }, 250)
-    }, 250)
-    console.log('delete');
+// Thêm sự kiện click cho nút mở nav
+opennav.forEach(button => {
+  button.addEventListener('click', function() {
+    console.log('open');
+    navbar.style.animation = 'fly-in-left .35s ease-in-out forwards';
+    navbar.style.display = 'flex';
+    shadow.style.animation = 'shadow-in .35s ease-in-out forwards';
+    shadow.style.display = 'flex';
+  })
 });
 
+// Thêm sự kiện click cho nút đóng nav
+closenav.addEventListener('click', closeNav);
+shadow.addEventListener('click', closeNav);
 
+function closeNav() {
+  console.log('close');
+  navbar.style.animation = 'fly-out-left .35s ease-in-out forwards';
+  shadow.style.animation = 'shadow-out .35s ease-in-out forwards';
+  setTimeout(function() {
+    navbar.style.display = 'none';
+    opennav.forEach(button => {
+      button.innerHTML = '<i class="fa-solid fa-bars"></i>';
+    });
+    shadow.style.display = 'none';
+  }, 500);
+}
 
-// document.getElementById('next').onclick = function(){
-//     const widthItem = document.querySelector('.chatbox').offsetWidth;
-//     document.getElementById('groupList').scrollLeft += widthItem;
-// };
-// document.getElementById('prve').onclick = function(){
-//     const widthItem = document.querySelector('.chatbox').offsetWidth;
-//     document.getElementById('groupList').scrollLeft -= widthItem;
-// };
-
-
-
-function scrollRight() {
+document.getElementById('next').onclick = function(){
     const widthItem = document.querySelector('.chatbox').offsetWidth;
     document.getElementById('groupList').scrollLeft += widthItem;
-}
-
-function scrollLeft() {
+};
+document.getElementById('prve').onclick = function(){
     const widthItem = document.querySelector('.chatbox').offsetWidth;
     document.getElementById('groupList').scrollLeft -= widthItem;
-}
-
-document.getElementById('next').onclick = scrollRight;
-document.getElementById('prve').onclick = scrollLeft;
+};
 
 
 
-// // Biến để theo dõi trạng thái của vòng lặp
-// let isScrollingRight = true;
-// // Thiết lập vòng lặp vô tận để gọi hàm
-// setInterval(function() {
-//     if (isScrollingRight) {
-//         scrollRight();
+
+// Lấy danh sách tất cả các msg-box
+const msgBoxes = document.querySelectorAll('.msg-box');
+
+// Mặc định chọn msg-box đầu tiên và thêm class active
+let activeMsgBox = msgBoxes[0];
+activeMsgBox.classList.add('active');
+
+// Lặp qua từng msg-box để thêm sự kiện click vào more-option-bt
+msgBoxes.forEach(msgBox => {
+  const moreOptionBtn = msgBox.querySelector('.more-option-bt');
+  const boxBot = msgBox.querySelector('.box-bot');
+
+  // Thêm sự kiện click vào more-option-bt
+  moreOptionBtn.addEventListener('click', function(event) {
+    event.stopPropagation(); // Ngăn chặn sự kiện click từ more-option-bt lan toả lên các phần tử khác
+
+    // Ẩn tất cả các box-bot trước khi hiển thị box-bot của msg-box hiện tại
+    msgBoxes.forEach(box => {
+      if (box !== msgBox) {
+        box.querySelector('.box-bot').style.display = 'none';
+      }
+    });
+
+    // Hiển thị hoặc ẩn box-bot tùy thuộc vào trạng thái hiện tại
+    if (boxBot.style.display === 'none' || boxBot.style.display === '') {
+      boxBot.style.display = 'block';
+      // boxBot.style.animation = 'showtrash .5s ease-in-out forwards;';
+    } else {
+      boxBot.style.display = 'none';
+    }
+
+    // Xóa class active từ msg-box hiện tại và thêm vào msg-box được click
+    activeMsgBox.classList.remove('active');
+    msgBox.classList.add('active');
+    activeMsgBox = msgBox; // Cập nhật msg-box hiện tại là msg-box được click
+  });
+
+  // Thêm sự kiện click vào msg-box để thêm class active và xóa class active từ msg-box hiện tại
+  msgBox.addEventListener('click', function() {
+    activeMsgBox.classList.remove('active');
+    msgBox.classList.add('active');
+    activeMsgBox = msgBox;
+  });
+});
+
+// Thêm sự kiện click vào document để ẩn box-bot khi click bên ngoài msg-box
+document.addEventListener('click', function() {
+  msgBoxes.forEach(box => {
+    box.querySelector('.box-bot').style.display = 'none';
+  });
+});
+
+// Chặn sự kiện click từ box-bot lan toả lên các phần tử khác
+document.querySelector('.box-bot').addEventListener('click', function(event) {
+  event.stopPropagation();
+});
+
+
+
+
+
+
+  
+
+
+// const msgBoxes = document.querySelectorAll('.msg-box');
+
+// msgBoxes.forEach(msgBox => {
+//   const btOpenTrash = msgBox.querySelector('.more-option-bt');
+//   const showTrash = msgBox.querySelector('.box-bot');
+//   const btTrash = msgBox.querySelectorAll('.bot-bar-item');
+
+//   btOpenTrash.addEventListener('click', function() {
+//     if (showTrash.style.display === 'none' || showTrash.style.display === '') {
+//       showTrash.style.display = 'flex';
+//       console.log('show trash');
 //     } else {
-//         scrollLeft();
+//       showTrash.style.display = 'none';
+//       console.log('hide trash');
 //     }
-//     isScrollingRight = !isScrollingRight; // Đảo ngược trạng thái sau mỗi lần gọi hàm
-// }, 2000); // Thực hiện sau mỗi 3 giây
+//   });
 
-
-
-
-// let touchTimer; // Biến để lưu trữ thời gian giữ touch
-// const element = document.querySelectorAll('.message__user');
-
-// element.forEach(button => {
-//     button.addEventListener('touchstart', function(event) {
-//         touchTimer = setTimeout(function() {
-//             // Thực hiện hành động khi giữ touch trong thời gian mong muốn
-//             // console.log('Touch and hold event detected!');
-//             console.log('show trash1')
-//                 displaytrash.style.display = 'flex';
-//                 displaytrash.style.animation = 'showtrash .35s ease-in-out forwards';
-//                 setTimeout(function(){
-//                     displaylist.style.animation = 'showlist .1s ease-in-out forwards';
-//                 }, 250)
-//         }, 600); // 1000 miliseconds = 1 giây (thay đổi thời gian tùy ý)
+//   btTrash.forEach(button => {
+//     button.addEventListener('click', function() {
+//       msgBox.style.display = 'none';
+//       console.log('delete message');
 //     });
-    
-// })
-
-
-
-
-// element.addEventListener('touchend', function(event) {
-//     clearTimeout(touchTimer); // Hủy timer nếu người dùng nhấc tay ra trước khi hết thời gian
-//     console.log('cancel Touch and hold');
+//   });
 // });
