@@ -79,7 +79,8 @@ function f_logoutBTN() {
                         loginBTN1.addEventListener("click", f_loginBTN);
                     cookieSave = null;
                     loginBTN2.addEventListener("click", f_loginBTN);
-                    logoutBTN2.removeEventListener("click", f_logoutBTN);
+                    if (loginBTN2)
+                        logoutBTN2.removeEventListener("click", f_logoutBTN);
                     removeTextOfInformation();
                     unActiveClickChange();
                     console.log("path: ", path)
@@ -315,7 +316,7 @@ function f_getValidCard() {
                         value.removeEventListener("click", f_cubeBTN);
                         value.removeEventListener("click", eventNotActiveRE);
                     })
-                }else if (a_cubeBTN) {
+                } else if (a_cubeBTN) {
                     a_cubeBTN = Array.from(a_cubeBTN);
                     a_cubeBTN.map(value => {
                         value.removeEventListener("click", f_cubeBTN);
@@ -347,7 +348,8 @@ $(document).ready(function () {
                         displayNoneAll();
                         showSuccessToast("Đăng nhập thành công", "Chào mừng bạn quay lại với hệ thống");
                         loginBTN1.removeEventListener("click", f_loginBTN);
-                        loginBTN2.removeEventListener("click", f_loginBTN);
+                        if (loginBTN2)
+                            loginBTN2.removeEventListener("click", f_loginBTN);
                         cookieSave = data;
                         getValueInformationForm(path);
                         activeClickChange();

@@ -15,8 +15,24 @@ function addMonths(date, months) {
     newDate.setMonth(date.getMonth() + months);
     return newDate;
 }
+
+
+function loadMessage(con, maKH, callback){
+    var sql = "SELECT * FROM historyMessage WHERE maKH = ?";
+    con.query(sql, maKH, function(err, result){
+        if(err) throw err;
+        if(result.length > 0) {
+            callback(result); // Gọi callback với kết quả truy vấn
+        } else {
+            callback([]); // Gọi callback với một mảng rỗng nếu không có dữ liệu
+        }
+    });
+}
+
+
 module.exports = {
     generateCustomerCode,
     getCurrentDate,
-    addMonths
+    addMonths,
+    loadMessage
 }

@@ -1,18 +1,30 @@
+
 // Import các module cần thiết
 const express = require('express');
 const app = express();
 const path = require('path');
 const url = require('url');
+const http = require('http');
 const bodyParser = require('body-parser');
 var mysql = require('mysql');
-const { generateCustomerCode, getCurrentDate, addMonths } = require('./src/functions.js');
+const {
+  generateCustomerCode,
+  getCurrentDate,
+  addMonths,
+  loadMessage
+} = require('./src/functions.js');
 const nodemailer = require('nodemailer');
 
-// Sử dụng body-parser để phân tích cú pháp dữ liệu form
+const cors = require('cors');
+app.use(cors());
 app.use(bodyParser.urlencoded({ extended: true }));
 
-// Phục vụ các file tĩnh từ thư mục 'public'
+// app.use('/socket.io', express.static(path.join(__dirname, 'node_modules/socket.io/client-dist')));
+app.use('/socket.io', express.static(path.join(__dirname, 'node_modules/socket.io/client-dist')));
+
+
 app.use(express.static(path.join(__dirname, 'public')));
+app.use(express.static('public'));
 
 var cookieParser = require('cookie-parser');
 var session = require('express-session');
@@ -51,7 +63,7 @@ let con = mysql.createConnection({
   password: "1234"
 });
 
-/* INITIAL DATA BASE */
+//INITIAL DATA BASE 
 con.connect(function (err) {
   if (err) throw err;
   con.query("SHOW DATABASES LIKE 'gymz'", function (err, result) {
@@ -87,7 +99,7 @@ function createTable() {
     },
     {
       name: 'historyMessage',
-      columns: 'messageID INT AUTO_INCREMENT PRIMARY KEY, maKH VARCHAR(10), sender VARCHAR(255), senderRole ENUM("admin", "customer"), message TEXT, FOREIGN KEY (maKH) REFERENCES users(maKH)'
+      columns: 'messageID INT AUTO_INCREMENT PRIMARY KEY, maKH VARCHAR(10), senderRole ENUM("admin", "customer"), message TEXT, FOREIGN KEY (maKH) REFERENCES users(maKH)'
     },
     {
       name: 'cardData',
@@ -387,10 +399,10 @@ app.post('/get-value-information-form', function (req, res) {
       });
 
     } else {
-      res.json({ success: false, value: {} , login: true});
+      res.json({ success: false, value: {}, login: true });
     }
   } else {
-    res.json({ success: false, value: {}});
+    res.json({ success: false, value: {} });
   }
 });
 
@@ -530,10 +542,121 @@ app.get('/get-cancel-submit', function (req, res) {
   }
 })
 
-// Khởi động server
-const port = process.env.PORT || 8080;
-app.listen(port, () => {
-  console.log(`Server đang chạy trên cổng ${port}`);
+
+
+///
+
+
+/////////////////////////////////////////////////
+// socket
+const socketIo = require('socket.io');
+const { ppid } = require('process');
+
+function getCookie2(cookieName, socket) {
+  // Lấy cookie từ handshake
+  const cookie = socket.handshake.headers.cookie;
+  if (cookie) {
+    console.log("cookie2: ", cookie);
+    // Tìm chuỗi chứa cookie cụ thể
+    const cookieString = cookie.split(';').find(pair => pair.trim().startsWith(cookieName + '='));
+    if (cookieString) {
+      // Lấy giá trị của cookie
+      const cookieValue = cookieString.split('=')[1].trim();
+
+      // Loại bỏ ký tự không mong muốn từ chuỗi
+
+      // Giải mã chuỗi từ URL-encoded trở lại chuỗi gốc
+      const decodedCookieValue = decodeURIComponent(cookieValue);
+      const cleanedCookieValue = decodedCookieValue.replace(/^j:/, '');
+      console.log(cleanedCookieValue)
+      try {
+        // Phân tích chuỗi thành đối tượng JSON
+        const cookieObject = JSON.parse(cleanedCookieValue);
+        return cookieObject;
+      } catch (error) {
+        console.error('Không thể phân tích chuỗi cookie thành đối tượng JSON:', error);
+        return null;
+      }
+    } else {
+      return null;
+    }
+  } else {
+    return null;
+  }
+}
+
+
+
+
+app.use(express.static(path.join(__dirname, 'public')));
+
+// Sử dụng middleware để phục vụ các tệp tĩnh từ thư mục client-dist
+app.use('/socket.io', express.static(path.join(__dirname, 'node_modules/socket.io/client-dist')));
+
+const server = http.createServer(app);
+const io = socketIo(server);
+
+var cookieParser = require('cookie-parser');
+
+app.use(cookieParser());
+app.use(function (req, res, next) {
+  req.io = io;
+  req.res = res;
+  next();
 });
 
+io.on('connection', (socket) => {
+  console.log('A user connected');
+  var cookie = getCookie2('user_id', socket);
+  if (cookie) {
+      var maKH = cookie.maKH;
+      con.query("SELECT name FROM users WHERE maKH = ?", maKH, function(err, result){
+        if(err) throw err;
+        if(result.length > 0){
+          var name = result[0].name;
+          loadMessage(con, maKH, function(myData) {
+            // Gửi dữ liệu tới client
+            socket.emit('messageData', myData, name);
+         })
+        }
+      });
+  }
+});
 
+io.on('connection', (socket) => {
+  console.log('a user connected');
+  // Xử lý sự kiện chatMessage từ client 
+  socket.on('chatMessage', (data) => {
+    var cookie = getCookie2('user_id', socket);
+    const { senderRole, message } = data;
+    console.log('message: ' + message);
+    if (cookie) {
+      console.log("cookie", cookie);
+      var maKH = cookie.maKH;
+      var sql = 'SELECT MAX(messageID) AS maxMessageID FROM historymessage';
+      con.query(sql, function (err, result) {
+        let maxMessageID = result[0].maxMessageID;
+        if (!maxMessageID) {
+          maxMessageID = 1;
+        }
+        // Lưu tin nhắn vào cơ sở dữ liệu
+        const query = `INSERT INTO historymessage (messageID, maKH, senderRole, message) VALUES (?, ?, ?, ?)`;
+        con.query(query, [maxMessageID + 1, maKH, senderRole, message], function (error, results, fields) {
+          if (error) throw error;
+          console.log('Message saved to database');
+          // Gửi tin nhắn đến tất cả các client
+          io.emit('chatMessage', message);
+        });
+      })
+    } else {
+      console.log("chua đăng nhập mà đòi nhắn")
+      io.emit('chatMessage', false);
+    }
+
+  });
+});
+
+const port = process.env.PORT || 8080;
+server.listen(port, () => {
+  console.log(`Server đang chạy trên cổng ${port}`);
+});

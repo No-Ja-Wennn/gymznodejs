@@ -1,30 +1,25 @@
+import {
+    displayNoneAll,
+    removeAllInputValue,
+    f_loginBTN,
+    activeNecessaryForm,
+    f_registerBTN,
+    f_cancel,
+    eventNotActiveRE,
+    eventNotActiveCA,
+    f_cubeBTN
+} from "./login.js"
+import { showSuccessToast, showErrorToast } from "../src/toast.js";
+
 function autoResizeTextarea() {
     const textarea = document.getElementById('myTextarea');
     textarea.style.height = '17px';
     textarea.style.height = `${textarea.scrollHeight}px`;
 }
 
-// Gọi hàm khi người dùng nhập văn bản
 document.getElementById('myTextarea').addEventListener('input', autoResizeTextarea);
 
-// Hàm để trả về kích thước chiều cao mặc định của textarea khi người dùng click vào sendbutton
-// function resetTextareaHeight() {
-//     const textarea = document.getElementById('myTextarea');
-//     textarea.style.height = '17px'; // Đặt lại chiều cao mặc định của textarea
-// }
-
-// // Gọi hàm resetTextareaHeight khi người dùng click vào sendbutton
-// sendButton.addEventListener('click', function(){
-//     textarea.style.height = '17px'; // Đặt lại chiều cao mặc định của textarea
-// });
-
-import { loadData } from './loadData.js';
-
-loadData();
-
-import { toast, showSuccessToast, showErrorToast } from './toast.js';
 // const stringSimilarity = require('string-similarity'); //
-var activePage = "userMessage";
 const chatBoxMessage = document.querySelector('.chatbox__message');
 const chatBoxList = chatBoxMessage.querySelector('.chatbox__message__list');
 
@@ -32,98 +27,81 @@ const inputBox = document.querySelector('.chatbox__bottom__input');
 const inputElement = inputBox.querySelector('textarea');
 const sendButton = document.querySelector('.chatbox__bottom__send i');
 
-let userActive = "other";
-
-window.addEventListener('load', function () {
-    var cookie = document.cookie.split('; ').find(row => row.startsWith('loggedInUser'));
-    if (cookie) {
-        var loggedInUser = JSON.parse(cookie.split('=')[1]); // Lấy thông tin người dùng từ cookie và chuyển nó thành đối tượng
-        if (loggedInUser) {
-            userActive = loggedInUser.id;
-        }
-    } else
-        userActive = "other";
-    var historyMessage = JSON.parse(localStorage.getItem('historyMessage'));
-    if (historyMessage) {
-        for (var i = 0; i < historyMessage.messages.length; i++) {
-            if (historyMessage.messages[i].id == userActive) {
-                historyMessage.messages[i].msg.map((value) => {
-                    if (value.sender == 'User') {
-                        displayUserMessage(value.message)
-                    }
-                    if (value.sender == 'Admin') {
-                        displayBotMessage(value.message)
-                    }
-                })
-            }
-        }
-    }
-})
-
 function makeLi(value = "", option = "chatbox__message__item__right") {
     const chatBoxItem = document.createElement('li');
     if (value) {
         chatBoxItem.className = `chatbox__message__item ${option}`;
-
         const textMessage = document.createElement('span');
         textMessage.className = 'chatbox__message__item__text';
-
         textMessage.innerText = value;
-
         chatBoxItem.appendChild(textMessage);
     }
     return chatBoxItem;
 }
 
-async function getPromiseResult(valueInput) {
-    return "Tư vấn viên sẽ sớm trả lời câu hỏi của bạn."; // Xử lý lỗi nếu có
-}
-
-let responseMessage = false;
-sendButton.addEventListener('click', async () => { // Thêm async vào đây
-    const valueInput = inputElement.value.trim();
-    var cookie = document.cookie.split('; ').find(row => row.startsWith('loggedInUser'));
-    if (cookie) {
-        var loggedInUser = JSON.parse(cookie.split('=')[1]); // Lấy thông tin người dùng từ cookie và chuyển nó thành đối tượng
-        if (loggedInUser) {
-            if (valueInput) {
-                displayUserMessage(valueInput);
-                sendMessage(valueInput)
-                chatBoxMessage.scrollTop = chatBoxMessage.scrollHeight + 100;
-                inputElement.value = '';
-                setTimeout(function(){
-                    inputElement.style.height = '17px'; // Đặt lại chiều cao mặc định của textarea
-                }, 1);
-            }
-        }
-    }else{
-        showErrorToast("Thất bại", "Vui lòng đăng nhập");
-        var modalBox = document.querySelector(".modal");
-        modalBox.style.display = "flex";
-        var loginBox = modalBox.querySelector(".login-box");
-        loginBox.style.display = "block";
-    }
-});
-
-function isQuestionContained(userInput, questionWords, percentageRequired = 0.8) {
-    var userInputWords = userInput.toLowerCase().split(/\s+/);
-    questionWords = questionWords.toLowerCase().split(/\s+/);
-    var matchingWords = questionWords.filter(word => userInputWords.includes(word)).length;
-    var percentage = matchingWords / questionWords.length;
-    if (percentage >= percentageRequired) {
-        return true;
-    }
-    return false;
-}
-
-function displayUserMessage(message) {
+function displayRightMessage(message) {
     const chatBoxItemUser = makeLi(message, "chatbox__message__item__right");
     chatBoxList.appendChild(chatBoxItemUser);
 }
-function displayBotMessage(message) {
+function displayLeftMessage(message) {
     const chatBoxItemBot = makeLi(message, "chatbox__message__item__left");
     chatBoxList.appendChild(chatBoxItemBot);
 }
+
+let socket = io();
+
+// send message to admin
+function sendMessage(message) {
+    var data = {
+        senderRole: "customer",
+        message: message
+    }
+    socket.emit('chatMessage', data);
+}
+const titleNameE = document.querySelector(".chatbox__head__title");
+socket.on('messageData', function (data, name) {
+    if (titleNameE)
+        titleNameE.innerText = name;
+    if (data.length > 0) {
+        for (var i = 0; i < data.length; i++) {
+            // console.log("messageID:", data[i].messageID);
+            // console.log("maKH:", data[i].maKH);
+            if (data[i].senderRole == "admin") {
+                displayLeftMessage(data[i].message);
+            } else if (data[i].senderRole == "customer") {
+                displayRightMessage(data[i].message);
+            }
+            // console.log("senderRole:", data[i].senderRole);
+            console.log("message:", data[i].message);
+            // console.log("-------------------------------");
+        }
+    } else {
+        console.log("Không có dữ liệu phù hợp.");
+    }
+});
+
+
+socket.on('chatMessage', function (msg) {
+    if (msg) {
+        displayRightMessage(msg);
+    } else {
+        showErrorToast("Quý khách chưa đăng nhập", "Vui lòng đăng nhập vào hệ thống");
+        displayNoneAll();
+        activeNecessaryForm();
+        f_loginBTN();
+    }
+    // // Đóng kết nối socket hiện tại
+    // socket.close();
+
+    // // Tạo một kết nối socket mới
+    // socket = io();
+});
+sendButton.addEventListener('click', async () => {
+    const valueInput = inputElement.value.trim();
+    sendMessage(valueInput);
+
+    inputElement.value = "";
+});
 
 inputElement.addEventListener("keypress", function (event) {
     if (event.key === "Enter") {
@@ -132,84 +110,4 @@ inputElement.addEventListener("keypress", function (event) {
     }
 });
 
-function getCloseMatches(userInput, questions, n, cutoff) {
-    var matches = [];
-    // convert all to lower
-    userInput = userInput.toLowerCase();
-    questions.forEach(question => {
-        question.question = question.question.toLowerCase();
-    });
-    // compear
-    for (var i = 0; i < questions.length; i++) {
-        var question = questions[i];
-        var similarity1 = stringSimilarity.compareTwoStrings(userInput, question.question); // Sử dụng stringSimilarity để tính toán độ tương đồng
-        var similarity2 = isQuestionContained(userInput, question.question, cutoff);
-        if (similarity1 >= cutoff && similarity1 < 1) {
-            // console.log("đã lưu userInput = ", userInput, "matches.answer= ", matches.answer)
-        }
-        if (similarity1 >= cutoff || similarity2 == true) {
-            matches.push(question);
-            if (matches.length >= n) {
-                break;
-            }
-        }
-    }
-    return matches;
-}
 
-function loadKnowledgeBase(callback) {
-    $.getJSON("../data/knowledge_base.json", function (data) {
-        callback(data);
-    });
-}
-
-function findBestMatch(userQuestion, questions) {
-    const matches = getCloseMatches(userQuestion, questions, 1, 0.8);
-    if (matches.length > 0) {
-        return matches[0];
-    } else {
-        return null;
-    }
-}
-
-// send message to admin
-function sendMessage(message) {
-    var cookie = document.cookie.split('; ').find(row => row.startsWith('loggedInUser'));
-    if (cookie) {
-        var loggedInUser = JSON.parse(cookie.split('=')[1]); // Lấy thông tin người dùng từ cookie và chuyển nó thành đối tượng
-        if (loggedInUser) {
-            userActive = loggedInUser.id;
-            // Lưu tin nhắn vào lịch sử
-            var historyMessage = JSON.parse(localStorage.getItem('historyMessage'))
-            //  || { "messages": [{ "id": userActive, "msg": [] }] };
-            var have = false;
-            for (var i = 0; i < historyMessage.messages.length; i++) {
-                if (historyMessage.messages[i].id == userActive) {
-                    historyMessage.messages[i].msg.push({ sender: 'User', message: message });
-                    have = true;
-                }
-            }
-            if (!have || historyMessage.messages.length == 0) {
-                historyMessage.messages.push({ "id": userActive, "msg": [{ sender: 'User', message: message }] })
-            }
-            localStorage.setItem('historyMessage', JSON.stringify(historyMessage));
-            localStorage.setItem('userMessage', JSON.stringify({ "id": userActive, "message": message }));
-        }
-    }
-
-
-}
-
-// Kiểm tra tin nhắn mới từ admin sau mỗi giây
-setInterval(function () {
-    var adminMessage = JSON.parse(localStorage.getItem('adminMessage'));
-    if (adminMessage && userActive == adminMessage.id) {
-        responseMessage = true;
-        // Hiển thị tin nhắn từ admin
-        displayBotMessage(adminMessage.message)
-        localStorage.removeItem('adminMessage');
-        chatBoxMessage.scrollTop = chatBoxMessage.scrollHeight + 100;
-    }
-
-    // load chat
-}, 1000);
