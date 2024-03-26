@@ -1,3 +1,5 @@
+const { get } = require("http");
+
 function generateCustomerCode(lastCode) {
     var numericPart = parseInt(lastCode.slice(2));
     var startCode = lastCode.slice(0, 2);
@@ -17,11 +19,11 @@ function addMonths(date, months) {
 }
 
 
-function loadMessage(con, maKH, callback){
+function loadMessage(con, maKH, callback) {
     var sql = "SELECT * FROM historyMessage WHERE maKH = ?";
-    con.query(sql, maKH, function(err, result){
-        if(err) throw err;
-        if(result.length > 0) {
+    con.query(sql, maKH, function (err, result) {
+        if (err) throw err;
+        if (result.length > 0) {
             callback(result); // Gọi callback với kết quả truy vấn
         } else {
             callback([]); // Gọi callback với một mảng rỗng nếu không có dữ liệu
@@ -29,10 +31,76 @@ function loadMessage(con, maKH, callback){
     });
 }
 
+function getContentMessage(con, maKH, callback) {
+    var sql = "SELECT * FROM historyMessage WHERE maKH = ?";
+    con.query(sql, [maKH], function (err, result) {
+        if (err) throw err;
+        if (result.length > 0) {
+            callback(result);
+        } else {
+            callback([]);
+        }
+    });
+}
+
+function getNameCustomer(con, maKH, callback) {
+    var sql = "SELECT name from users where maKH = ?";
+    con.query(sql, [maKH], function (err, result) {
+        if (err) throw err;
+        if (result.length > 0)
+            callback(result[0].name);
+        else
+            callback("");
+    });
+}
+
+function getBoxMessage(con, callback) {
+    var sql = "SELECT maKH FROM (SELECT maKH, MAX(messageID) as maxMessageID FROM historyMessage GROUP BY maKH ) as temp ORDER BY maxMessageID DESC ";
+    con.query(sql, function (err, result) {
+        if (err) throw err;
+        console.log("re: ", result);
+        if (result.length > 0) {
+            var promises = [];
+            result.forEach(function (value) {
+                // Tạo một promise mới cho mỗi giá trị
+                promises.push(new Promise(function (resolve, reject) {
+                    // Gọi hàm getNameCustomer để lấy tên của khách hàng dựa trên maKH
+                    getNameCustomer(con, value.maKH, function (data) {
+                        // Sau khi lấy được tên, gán tên vào thuộc tính "name" của object
+                        value["name"] = data;
+                        // Đánh dấu promise này đã hoàn thành
+                        resolve();
+                    });
+                }));
+            });
+
+            // Khi tất cả các promise đã hoàn thành
+            Promise.all(promises).then(function () {
+                // Gọi callback và truyền kết quả result đã được cập nhật (bao gồm tên khách hàng)
+                callback(result);
+            });
+        } else {
+            callback([]);
+        }
+    });
+}
+
+function saveMessage(con, maKH, senderRole, message) {
+
+    // Lưu tin nhắn vào cơ sở dữ liệu
+    const query = `INSERT INTO historymessage (maKH, senderRole, message) VALUES (?, ?, ?)`;
+    con.query(query, [maKH, senderRole, message], function (error, results, fields) {
+        if (error) throw error;
+        console.log('Message saved to database');
+    });
+}
 
 module.exports = {
     generateCustomerCode,
     getCurrentDate,
     addMonths,
-    loadMessage
+    loadMessage,
+    getContentMessage,
+    getBoxMessage,
+    saveMessage
 }

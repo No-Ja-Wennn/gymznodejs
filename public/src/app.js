@@ -28,7 +28,7 @@ function showTableAndSetActive(tab, table) {
 
 // Thêm sự kiện click cho các tab và xử lý hiển thị bảng và class active
 tabs.forEach(item => {
-  item.tab.addEventListener('click', function() {
+  item.tab.addEventListener('click', function () {
     showTableAndSetActive(item.tab, item.table);
     setTimeout(closeNav, 300);
   });
@@ -36,7 +36,7 @@ tabs.forEach(item => {
 
 // Thêm sự kiện click cho nút mở nav
 opennav.forEach(button => {
-  button.addEventListener('click', function() {
+  button.addEventListener('click', function () {
     console.log('open');
     navbar.style.animation = 'fly-in-left .35s ease-in-out forwards';
     navbar.style.display = 'flex';
@@ -50,10 +50,9 @@ closenav.addEventListener('click', closeNav);
 shadow.addEventListener('click', closeNav);
 
 function closeNav() {
-  console.log('close');
   navbar.style.animation = 'fly-out-left .35s ease-in-out forwards';
   shadow.style.animation = 'shadow-out .35s ease-in-out forwards';
-  setTimeout(function() {
+  setTimeout(function () {
     navbar.style.display = 'none';
     opennav.forEach(button => {
       button.innerHTML = '<i class="fa-solid fa-bars"></i>';
@@ -62,81 +61,80 @@ function closeNav() {
   }, 500);
 }
 
-document.getElementById('next').onclick = function(){
-    const widthItem = document.querySelector('.chatbox').offsetWidth;
-    document.getElementById('groupList').scrollLeft += widthItem;
+document.getElementById('next').onclick = function () {
+  const widthItem = document.querySelector('.chatbox').offsetWidth;
+  document.getElementById('groupList').scrollLeft += widthItem;
 };
-document.getElementById('prve').onclick = function(){
-    const widthItem = document.querySelector('.chatbox').offsetWidth;
-    document.getElementById('groupList').scrollLeft -= widthItem;
+document.getElementById('prve').onclick = function () {
+  const widthItem = document.querySelector('.chatbox').offsetWidth;
+  document.getElementById('groupList').scrollLeft -= widthItem;
 };
 
 
+// const msgBoxes = document.querySelectorAll('.msg-box');
 
+// // Mặc định chọn msg-box đầu tiên và thêm class active
+// let activeMsgBox = msgBoxes[0];
+// activeMsgBox.classList.add('active');
 
 // Lấy danh sách tất cả các msg-box
-const msgBoxes = document.querySelectorAll('.msg-box');
-
-// Mặc định chọn msg-box đầu tiên và thêm class active
-let activeMsgBox = msgBoxes[0];
-activeMsgBox.classList.add('active');
 
 // Lặp qua từng msg-box để thêm sự kiện click vào more-option-bt
-msgBoxes.forEach(msgBox => {
-  const moreOptionBtn = msgBox.querySelector('.more-option-bt');
-  const boxBot = msgBox.querySelector('.box-bot');
+// msgBoxes.forEach(msgBox => {
+//   const moreOptionBtn = msgBox.querySelector('.more-option-bt');
+//   const boxBot = msgBox.querySelector('.box-bot');
 
-  // Thêm sự kiện click vào more-option-bt
-  moreOptionBtn.addEventListener('click', function(event) {
-    event.stopPropagation(); // Ngăn chặn sự kiện click từ more-option-bt lan toả lên các phần tử khác
+//   // Thêm sự kiện click vào more-option-bt
+//   moreOptionBtn.addEventListener('click', function (event) {
+//     event.stopPropagation(); // Ngăn chặn sự kiện click từ more-option-bt lan toả lên các phần tử khác
 
-    // Ẩn tất cả các box-bot trước khi hiển thị box-bot của msg-box hiện tại
-    msgBoxes.forEach(box => {
-      if (box !== msgBox) {
-        box.querySelector('.box-bot').style.display = 'none';
-      }
-    });
+//     // Ẩn tất cả các box-bot trước khi hiển thị box-bot của msg-box hiện tại
+//     msgBoxes.forEach(box => {
+//       if (box !== msgBox) {
+//         box.querySelector('.box-bot').style.display = 'none';
+//       }
+//     });
 
-    // Hiển thị hoặc ẩn box-bot tùy thuộc vào trạng thái hiện tại
-    if (boxBot.style.display === 'none' || boxBot.style.display === '') {
-      boxBot.style.display = 'block';
-      // boxBot.style.animation = 'showtrash .5s ease-in-out forwards;';
-    } else {
-      boxBot.style.display = 'none';
-    }
+//     // Hiển thị hoặc ẩn box-bot tùy thuộc vào trạng thái hiện tại
+//     if (boxBot.style.display === 'none' || boxBot.style.display === '') {
+//       boxBot.style.display = 'block';
+//       // boxBot.style.animation = 'showtrash .5s ease-in-out forwards;';
+//     } else {
+//       boxBot.style.display = 'none';
+//     }
 
-    // Xóa class active từ msg-box hiện tại và thêm vào msg-box được click
-    activeMsgBox.classList.remove('active');
-    msgBox.classList.add('active');
-    activeMsgBox = msgBox; // Cập nhật msg-box hiện tại là msg-box được click
-  });
+//     // Xóa class active từ msg-box hiện tại và thêm vào msg-box được click
+//     activeMsgBox.classList.remove('active');
+//     msgBox.classList.add('active');
+//     activeMsgBox = msgBox; // Cập nhật msg-box hiện tại là msg-box được click
+//   });
 
-  // Thêm sự kiện click vào msg-box để thêm class active và xóa class active từ msg-box hiện tại
-  msgBox.addEventListener('click', function() {
-    activeMsgBox.classList.remove('active');
-    msgBox.classList.add('active');
-    activeMsgBox = msgBox;
-  });
-});
+//   // Thêm sự kiện click vào msg-box để thêm class active và xóa class active từ msg-box hiện tại
+//   msgBox.addEventListener('click', function () {
+//     activeMsgBox.classList.remove('active');
+//     msgBox.classList.add('active');
+//     activeMsgBox = msgBox;
+//   });
+// });
 
-// Thêm sự kiện click vào document để ẩn box-bot khi click bên ngoài msg-box
-document.addEventListener('click', function() {
-  msgBoxes.forEach(box => {
-    box.querySelector('.box-bot').style.display = 'none';
-  });
-});
+// // Thêm sự kiện click vào document để ẩn box-bot khi click bên ngoài msg-box
+// document.addEventListener('click', function () {
+//   msgBoxes.forEach(box => {
+//     box.querySelector('.box-bot').style.display = 'none';
+//   });
+// });
 
 // Chặn sự kiện click từ box-bot lan toả lên các phần tử khác
-document.querySelector('.box-bot').addEventListener('click', function(event) {
-  event.stopPropagation();
-});
+// document.querySelector('.box-bot').addEventListener('click', function (event) {
+//   event.stopPropagation();
+// });
 
 
 
 
 
 
-  
+
 
 
 // const msgBoxes = document.querySelectorAll('.msg-box');
@@ -163,3 +161,4 @@ document.querySelector('.box-bot').addEventListener('click', function(event) {
 //     });
 //   });
 // });
+

@@ -11,7 +11,10 @@ const {
   generateCustomerCode,
   getCurrentDate,
   addMonths,
-  loadMessage
+  loadMessage,
+  getContentMessage,
+  getBoxMessage,
+  saveMessage
 } = require('./src/functions.js');
 const nodemailer = require('nodemailer');
 
@@ -33,7 +36,8 @@ app.use(cookieParser());
 
 // Hàm setCookie
 function setCookie(res, cookieName, cookieValue) {
-  res.cookie(cookieName, cookieValue, { maxAge: 900000, httpOnly: true });
+  const oneDay = 24 * 60 * 60 * 1000;
+  res.cookie(cookieName, cookieValue, { maxAge: oneDay, httpOnly: true });
 }
 
 // Hàm getCookie
@@ -99,7 +103,7 @@ function createTable() {
     },
     {
       name: 'historyMessage',
-      columns: 'messageID INT AUTO_INCREMENT PRIMARY KEY, maKH VARCHAR(10), senderRole ENUM("admin", "customer"), message TEXT, FOREIGN KEY (maKH) REFERENCES users(maKH)'
+      columns: 'messageID INT AUTO_INCREMENT PRIMARY KEY, maKH VARCHAR(10), senderRole ENUM("admin", "customer"), message TEXT, seen ENUM("true", "false"), FOREIGN KEY (maKH) REFERENCES users(maKH)'
     },
     {
       name: 'cardData',
@@ -143,7 +147,6 @@ function insertIntoTable(tableName, data) {
   });
 }
 
-
 app.post('/login-url', (req, res) => {
   const { email, password } = req.body;
   const lowerCaseEmail = email.toLowerCase();
@@ -151,7 +154,6 @@ app.post('/login-url', (req, res) => {
   con.query(sql, [lowerCaseEmail, password], function (err, result) {
     if (err) throw err;
     if (result.length > 0) {
-      console.log("re: ", result[0]);
       var user = result[0];
       setCookie(res, "user_id", user);
       res.json({ success: true, email: lowerCaseEmail, maKH: user.maKH, name: user.name });
@@ -227,7 +229,6 @@ app.post('/create-account-url', (req, res) => {
           });
         });
     } else {
-      console.log("Trùng email");
       res.json({ success: true, active: false });
       res.end();
     }
@@ -236,6 +237,12 @@ app.post('/create-account-url', (req, res) => {
 
 
 app.post('/logout-url', function (req, res) {
+  var cookie = getCookie(req, "user_id");
+  if (cookie) {
+    var maKH = cookie.maKH;
+    console.log("xóa: ", maKH);
+    delete clients[maKH];
+  }
   // Xóa cookie
   clearCookie(res, "user_id");
   // Gửi phản hồi về client
@@ -328,7 +335,6 @@ app.post('/your-change-password-url', function (req, res) {
       }
     });
   } else {
-    console.log("email, pass: ", email, pass);
     res.json({ active: false });
   }
 });
@@ -438,8 +444,6 @@ app.post('/change-password-url', (req, res) => {
   const { password, newPass, confirmPass, maKH } = req.body;
   var sql = "SELECT password FROM loginData WHERE maKH = ?";
   con.query(sql, [maKH], function (err, result) {
-    console.log(result[0].password);
-    console.log("pass: ", password);
     if (result[0].password == password) {
       var sqlQuery = "UPDATE loginData SET password = ? WHERE maKH = ?";
       con.query(sqlQuery, [newPass, maKH], function (err, result) {
@@ -464,14 +468,11 @@ app.post('/register-card-url', (req, res) => {
       if (maThe) {
         const { cardType, weekday, time, type, note } = req.body;
         var dateStart = getCurrentDate();
-        console.log("dateStart", dateStart);
         var add = 1;
         if (cardType == "BEGINNER") add = 1;
         else if (cardType == "BASIC") add = 2;
         else if (cardType == "ADVANCE") add = 3;
         var dateEnd = addMonths(dateStart, add);
-        console.log("dateStart", dateStart);
-        console.log(cardType, weekday, time, type, note);
         var sql = "UPDATE cardData SET cardType = ?, dateStart = ?, dateEnd = ? WHERE maThe = ?";
         con.query(sql, [cardType, dateStart, dateEnd, maThe], function (err, result) {
           if (err) throw err;
@@ -546,17 +547,10 @@ app.get('/get-cancel-submit', function (req, res) {
 
 ///
 
-
-/////////////////////////////////////////////////
-// socket
-const socketIo = require('socket.io');
-const { ppid } = require('process');
-
 function getCookie2(cookieName, socket) {
   // Lấy cookie từ handshake
   const cookie = socket.handshake.headers.cookie;
   if (cookie) {
-    console.log("cookie2: ", cookie);
     // Tìm chuỗi chứa cookie cụ thể
     const cookieString = cookie.split(';').find(pair => pair.trim().startsWith(cookieName + '='));
     if (cookieString) {
@@ -585,7 +579,22 @@ function getCookie2(cookieName, socket) {
   }
 }
 
+//////////  CHAT BOX /////////////////
+// socket
+const socketIo = require('socket.io');
+const server = http.createServer(app);
+const io = socketIo(server);
 
+
+app.get('/get-login', (req, res) => {
+  var cookie = getCookie(req, 'user_id');
+  if (cookie) {
+    var maKH = cookie.maKH;
+    res.json({ success: true, maKH: maKH });
+  } else {
+    res.json({ success: false, maKH: "" });
+  }
+})
 
 
 app.use(express.static(path.join(__dirname, 'public')));
@@ -593,8 +602,6 @@ app.use(express.static(path.join(__dirname, 'public')));
 // Sử dụng middleware để phục vụ các tệp tĩnh từ thư mục client-dist
 app.use('/socket.io', express.static(path.join(__dirname, 'node_modules/socket.io/client-dist')));
 
-const server = http.createServer(app);
-const io = socketIo(server);
 
 var cookieParser = require('cookie-parser');
 
@@ -605,57 +612,111 @@ app.use(function (req, res, next) {
   next();
 });
 
-io.on('connection', (socket) => {
-  console.log('A user connected');
-  var cookie = getCookie2('user_id', socket);
-  if (cookie) {
-      var maKH = cookie.maKH;
-      con.query("SELECT name FROM users WHERE maKH = ?", maKH, function(err, result){
-        if(err) throw err;
-        if(result.length > 0){
-          var name = result[0].name;
-          loadMessage(con, maKH, function(myData) {
-            // Gửi dữ liệu tới client
-            socket.emit('messageData', myData, name);
-         })
-        }
-      });
-  }
-});
+const clients = {};
+const admins = {}; // Lưu trữ thông tin về các kết nối của admin
 
+// Sự kiện khi có một kết nối mới được thiết lập
 io.on('connection', (socket) => {
-  console.log('a user connected');
-  // Xử lý sự kiện chatMessage từ client 
-  socket.on('chatMessage', (data) => {
-    var cookie = getCookie2('user_id', socket);
-    const { senderRole, message } = data;
-    console.log('message: ' + message);
-    if (cookie) {
-      console.log("cookie", cookie);
-      var maKH = cookie.maKH;
-      var sql = 'SELECT MAX(messageID) AS maxMessageID FROM historymessage';
-      con.query(sql, function (err, result) {
-        let maxMessageID = result[0].maxMessageID;
-        if (!maxMessageID) {
-          maxMessageID = 1;
+  console.log('New connection:', socket.id);
+  // Sự kiện khi một khách hàng kết nối
+  socket.on('client-connect', (maKH) => {
+    console.log("client-connect: ", maKH);
+    // Lưu thông tin về kết nối của khách hàng
+    clients[maKH] = socket.id;
+    // Sự kiện khi một khách hàng gửi tin nhắn cho admin
+    socket.on('client-message', (data) => {
+      // Lấy thông tin khách hàng từ data
+      const { message } = data;
+      console.log(clients);
+      if (clients.hasOwnProperty(maKH)) {
+        console.log("Mã khách hàng hợp lệ:", maKH);
+        console.log("Data:", message);
+
+        // Lưu tin nhắn vào csdl
+        saveMessage(con, maKH, "customer", message);
+        console.log("data:", message);
+
+        // gửi tới khách hàng để hiển thị và lưu vào csdl
+        saveMessage(con, maKH, "customer", message);
+        io.emit('response-message', message);
+
+        // Gửi tin nhắn đến admin
+        for (const adminSocketId in admins) {
+          io.to(admins[adminSocketId]).emit('admin-message', { maKH, message });
         }
-        // Lưu tin nhắn vào cơ sở dữ liệu
-        const query = `INSERT INTO historymessage (messageID, maKH, senderRole, message) VALUES (?, ?, ?, ?)`;
-        con.query(query, [maxMessageID + 1, maKH, senderRole, message], function (error, results, fields) {
-          if (error) throw error;
-          console.log('Message saved to database');
-          // Gửi tin nhắn đến tất cả các client
-          io.emit('chatMessage', message);
-        });
-      })
-    } else {
-      console.log("chua đăng nhập mà đòi nhắn")
-      io.emit('chatMessage', false);
+      } else {
+        console.log("Mã khách hàng không hợp lệ:", maKH);
+        // Xử lý trường hợp mã khách hàng không hợp lệ nếu cần
+      }
+    });
+  });
+
+  // Sự kiện khi một admin kết nối
+  socket.on('admin-connect', (adminId) => {
+    console.log("admin-connect: ", adminId);
+    // Lưu thông tin về kết nối của admin
+    admins[adminId] = socket.id;
+    // Sự kiện khi một admin gửi tin nhắn cho một khách hàng cụ thể
+    socket.on('admin-message', (data) => {
+      const { maKH, message } = data;
+
+      // Gửi tin nhắn đến khách hàng cụ thể
+      io.to(clients[maKH]).emit('client-message', { message });
+    });
+  });
+
+  // Sự kiện khi một kết nối bị đóng
+  socket.on('disconnect', () => {
+    console.log('Connection closed:', socket.id);
+
+    // Xóa thông tin kết nối của khách hàng hoặc admin khi họ ngắt kết nối
+    for (const maKH in clients) {
+      if (clients[maKH] === socket.id) {
+        delete clients[maKH];
+        break;
+      }
     }
-
+    for (const adminId in admins) {
+      if (admins[adminId] === socket.id) {
+        delete admins[adminId];
+        break;
+      }
+    }
   });
 });
 
+
+
+
+// ====== ADMIN ====== //
+
+
+app.get('/get-box-message', (req, res) => {
+  getBoxMessage(con, function (data) {
+    console.log(data);
+    res.json({ value: data });
+  });
+});
+
+app.post('/get-content-message', (req, res) => {
+  var { maKH } = req.body;
+  getContentMessage(con, maKH, function (data) {
+    res.json({ value: data });
+  })
+})
+
+app.get('/get-customer-message', (req, res) => {
+  var cookie = getCookie(req, "user_id");
+  if (cookie) {
+    var maKH = cookie.maKH;
+    getContentMessage(con, maKH, function (data) {
+      res.json({ value: data });
+    })
+  }
+})
+
+
+// =======================
 const port = process.env.PORT || 8080;
 server.listen(port, () => {
   console.log(`Server đang chạy trên cổng ${port}`);

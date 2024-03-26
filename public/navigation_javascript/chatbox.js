@@ -8,8 +8,10 @@ import {
     eventNotActiveRE,
     eventNotActiveCA,
     f_cubeBTN
-} from "./login.js"
+} from "./login.js";
 import { showSuccessToast, showErrorToast } from "../src/toast.js";
+import { innerBoxMsg } from "../src/function.js";
+import { addEventListenersAfterLogin } from "../src/client.js";
 
 function autoResizeTextarea() {
     const textarea = document.getElementById('myTextarea');
@@ -48,60 +50,107 @@ function displayLeftMessage(message) {
     chatBoxList.appendChild(chatBoxItemBot);
 }
 
-let socket = io();
 
-// send message to admin
-function sendMessage(message) {
-    var data = {
-        senderRole: "customer",
-        message: message
-    }
-    socket.emit('chatMessage', data);
-}
 const titleNameE = document.querySelector(".chatbox__head__title");
-socket.on('messageData', function (data, name) {
+
+export function innerMesageBox(name) {
+    const titleNameE = document.querySelector(".chatbox__head__title");
     if (titleNameE)
         titleNameE.innerText = name;
-    if (data.length > 0) {
-        for (var i = 0; i < data.length; i++) {
-            // console.log("messageID:", data[i].messageID);
-            // console.log("maKH:", data[i].maKH);
-            if (data[i].senderRole == "admin") {
-                displayLeftMessage(data[i].message);
-            } else if (data[i].senderRole == "customer") {
-                displayRightMessage(data[i].message);
+    if (chatBoxList)
+        chatBoxList.innerHTML = "";
+    $.ajax({
+        url: '/get-customer-message',
+        type: "GET",
+        success: function (data) {
+            if (data) {
+                var a_value = data.value;
+                a_value.forEach(value => {
+                    var role = value.senderRole;
+                    if (role == "admin") {
+                        displayLeftMessage(value.message);
+                    } else if (role == "customer") {
+                        displayRightMessage(value.message);
+                    }
+                })
             }
-            // console.log("senderRole:", data[i].senderRole);
-            console.log("message:", data[i].message);
-            // console.log("-------------------------------");
+        },
+        error: function (err) {
+
         }
-    } else {
-        console.log("Không có dữ liệu phù hợp.");
-    }
-});
+    });
+}
+export function removeMessageBox() {
+    const titleNameE = document.querySelector(".chatbox__head__title");
+    if (titleNameE)
+        titleNameE.innerText = "....";
+    if (chatBoxList)
+        chatBoxList.innerHTML = "";
+}
+
+export let state = {
+    connected3: false
+};
+
+$(document).ready(function () {
+    $.ajax({
+        url: '/get-login',
+        type: 'GET',
+        success: function (data) {
+            // Kiểm tra trạng thái kết nối
+            if (data.success) {
+                addEventListenersAfterLogin();
+            } else {
+                f_loginBTN();
+            }
+        },
+        error: function (err) {
+
+        }
+    });
+})
 
 
-socket.on('chatMessage', function (msg) {
-    if (msg) {
-        displayRightMessage(msg);
-    } else {
-        showErrorToast("Quý khách chưa đăng nhập", "Vui lòng đăng nhập vào hệ thống");
-        displayNoneAll();
-        activeNecessaryForm();
-        f_loginBTN();
-    }
-    // // Đóng kết nối socket hiện tại
-    // socket.close();
 
-    // // Tạo một kết nối socket mới
-    // socket = io();
-});
+function f_getLogin() {
+    return new Promise((resolve, reject) => {
+        $.ajax({
+            url: '/get-login',
+            type: 'GET',
+            success: function (data) {
+                console.log(state.connected3)
+                // Kiểm tra trạng thái kết nối
+                if (data.success) {
+                    resolve(true);
+                }
+                else {
+                    f_loginBTN();
+                    resolve(false);
+                }
+            },
+            error: function (err) {
+                reject(err);
+            }
+        });
+    });
+}
+
+
 sendButton.addEventListener('click', async () => {
-    const valueInput = inputElement.value.trim();
-    sendMessage(valueInput);
-
-    inputElement.value = "";
+    try {
+        const loggedIn = await f_getLogin();
+        if (loggedIn) {
+            console.log(loggedIn);
+            const valueInput = inputElement.value.trim();
+            console.log(valueInput);
+            sendMessage(valueInput);
+            inputElement.value = "";
+        }
+    } catch (error) {
+        console.error(error);
+    }
 });
+
 
 inputElement.addEventListener("keypress", function (event) {
     if (event.key === "Enter") {
@@ -111,3 +160,30 @@ inputElement.addEventListener("keypress", function (event) {
 });
 
 
+export const socket = io();
+
+// Hàm gửi tin nhắn từ khách hàng đến server
+export function sendMessage(message) {
+    socket.emit('client-message', { message });
+}
+
+socket.on('response-message', (message) => {
+    displayRightMessage(message);
+});
+
+// Định nghĩa hàm clientMessageHandler
+export const clientMessageHandler = (data) => {
+    console.log(data);
+    // Xử lý tin nhắn ở đây
+    displayLeftMessage(data.message);
+};
+
+// Thêm hàm lắng nghe cho sự kiện 'client-message'
+socket.on('client-message', clientMessageHandler);
+
+
+// Sự kiện nhận tin nhắn từ server và hiển thị nó
+socket.on('admin-message', (data) => {
+    const messagesDiv = document.getElementById('messages');
+    messagesDiv.innerHTML += `<p>Admin: ${data.message}</p>`;
+});

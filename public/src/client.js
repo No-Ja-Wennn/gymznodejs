@@ -20,6 +20,7 @@ import {
     innerTextOfCard,
     removeTextOfCard,
 } from '../navigation_javascript/infomation_account.js'
+import { clientMessageHandler, innerMesageBox, removeMessageBox, socket, state } from "../navigation_javascript/chatbox.js";
 
 const modalBox = document.querySelector(".modal");
 const overlayBox = modalBox.querySelector(".modal-overlay");
@@ -69,6 +70,7 @@ function f_logoutBTN() {
         userNameElement1.innerText = "ĐĂNG NHẬP";
     userNameElement2.innerText = "USERNAME";
     accountCodeElement2.innerText = "USERCODE";
+    removeMessageBox();
     $.ajax({
         url: '/logout-url',
         type: 'POST',
@@ -77,7 +79,6 @@ function f_logoutBTN() {
                 if (cookieSave) {
                     if (loginBTN1)
                         loginBTN1.addEventListener("click", f_loginBTN);
-                    cookieSave = null;
                     loginBTN2.addEventListener("click", f_loginBTN);
                     if (loginBTN2)
                         logoutBTN2.removeEventListener("click", f_logoutBTN);
@@ -88,6 +89,9 @@ function f_logoutBTN() {
                     if (cancelREBTN)
                         cancelREBTN.removeEventListener("click", eventNotActiveCA);
                     f_getValidCard();
+                    state.connected3 = false;
+                    cookieSave = null;
+                    removeAllEventListeners();
                     showSuccessToast("Đã đăng xuất", "Cảm ơn bạn đã sử dụng dịch vụ");
                 }
                 else
@@ -267,7 +271,6 @@ function f_changeServer(element, url) {
 }
 
 function f_getValidCard() {
-    console.log("...")
     $.ajax({
         url: "/get-valid-card",
         type: "GET",
@@ -331,9 +334,34 @@ function f_getValidCard() {
     })
 }
 
+function removeAllEventListeners() {
+    socket.off('client-message');
+    socket.off('client-connect');
+}
+
+// Hàm thêm lại các hàm lắng nghe sau khi đăng nhập lại
+export function addEventListenersAfterLogin() {
+
+    $.ajax({
+        url: '/get-login',
+        type: 'GET',
+        success: function(data) {
+            if (data.success) {
+                const maKH = data.maKH;
+                socket.emit('client-connect', data.maKH);
+            } else {
+                // Xử lý khi không có mã khách hàng
+            }
+        },
+        error: function(err) {
+            console.error('Error:', err);
+        }
+    });
+    socket.on('client-message', clientMessageHandler);
+}
+
 // client.js
 $(document).ready(function () {
-
     $('#login-form').submit(function (e) {
         e.preventDefault();
         if (validateLoginValue()) {
@@ -354,6 +382,9 @@ $(document).ready(function () {
                         getValueInformationForm(path);
                         activeClickChange();
                         f_getValidCard();
+                        innerMesageBox(data.name);
+                        addEventListenersAfterLogin();
+
                     } else {
                         showErrorToast("Thất bại", "Email hoặc mật khẩu không đúng");
                     }
@@ -471,6 +502,7 @@ $(document).ready(function () {
                     if (loginBTN2)
                         loginBTN2.removeEventListener("click", f_loginBTN);
                     activeClickChange();
+                    innerMesageBox(value.name);
                 } else {
                     unActiveClickChange();
                 }
