@@ -14,7 +14,8 @@ const {
   loadMessage,
   getContentMessage,
   getBoxMessage,
-  saveMessage
+  saveMessage,
+  changeStatusSeen
 } = require('./src/functions.js');
 const nodemailer = require('nodemailer');
 
@@ -28,6 +29,7 @@ app.use('/socket.io', express.static(path.join(__dirname, 'node_modules/socket.i
 
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(express.static('public'));
+app.use(express.json());
 
 var cookieParser = require('cookie-parser');
 var session = require('express-session');
@@ -103,7 +105,7 @@ function createTable() {
     },
     {
       name: 'historyMessage',
-      columns: 'messageID INT AUTO_INCREMENT PRIMARY KEY, maKH VARCHAR(10), senderRole ENUM("admin", "customer"), message TEXT, seen ENUM("true", "false"), FOREIGN KEY (maKH) REFERENCES users(maKH)'
+      columns: 'messageID INT AUTO_INCREMENT PRIMARY KEY, maKH VARCHAR(10), senderRole ENUM("admin", "customer"), seen BOOLEAN DEFAULT false, message TEXT, FOREIGN KEY (maKH) REFERENCES users(maKH)'
     },
     {
       name: 'cardData',
@@ -112,7 +114,11 @@ function createTable() {
     {
       name: 'calendarData',
       columns: 'maLT VARCHAR(10) PRIMARY KEY, maThe VARCHAR(10), date DATE, timeStart TIME, timeEnd TIME, type VARCHAR(255), ptName VARCHAR(255), note VARCHAR(255), FOREIGN KEY (maThe) REFERENCES cardData(maThe)'
-    }
+    },
+    {
+      name: 'AdminAccounts',
+      columns: 'adminID nvarchar(10) PRIMARY KEY, username VARCHAR(255) NOT NULL, password VARCHAR(255) NOT NULL, lastUpdateDate DATE'
+    }    
   ];
 
 
@@ -615,75 +621,43 @@ app.use(function (req, res, next) {
 const clients = {};
 const admins = {}; // Lưu trữ thông tin về các kết nối của admin
 
-// Sự kiện khi có một kết nối mới được thiết lập
+
 io.on('connection', (socket) => {
-  console.log('New connection:', socket.id);
-  // Sự kiện khi một khách hàng kết nối
-  socket.on('client-connect', (maKH) => {
-    console.log("client-connect: ", maKH);
-    // Lưu thông tin về kết nối của khách hàng
-    clients[maKH] = socket.id;
-    // Sự kiện khi một khách hàng gửi tin nhắn cho admin
-    socket.on('client-message', (data) => {
-      // Lấy thông tin khách hàng từ data
-      const { message } = data;
-      console.log(clients);
-      if (clients.hasOwnProperty(maKH)) {
-        console.log("Mã khách hàng hợp lệ:", maKH);
-        console.log("Data:", message);
+  console.log('New client connected');
 
-        // Lưu tin nhắn vào csdl
-        saveMessage(con, maKH, "customer", message);
-        console.log("data:", message);
+  socket.on('clientMessage', (data) => {
+    const message = data.text;
+    const maKH = data.id;
+    console.log('Message from client: ', message, 'Customer ID: ', maKH);
 
-        // gửi tới khách hàng để hiển thị và lưu vào csdl
-        saveMessage(con, maKH, "customer", message);
-        io.emit('response-message', message);
-
-        // Gửi tin nhắn đến admin
-        for (const adminSocketId in admins) {
-          io.to(admins[adminSocketId]).emit('admin-message', { maKH, message });
-        }
-      } else {
-        console.log("Mã khách hàng không hợp lệ:", maKH);
-        // Xử lý trường hợp mã khách hàng không hợp lệ nếu cần
-      }
-    });
+    // save message
+    saveMessage(con, maKH, "customer", message);
+    // send message
+    io.emit('response-message-client', {maKH, message});
+    con.query("SELECT name FROM users WHERE maKH = ?", [maKH], function(err, result){
+      if(err) throw err;
+      var name = result[0].name;
+      io.emit('clientMessage', { message, maKH, name, senderRole: "customer"});
+    })
   });
 
-  // Sự kiện khi một admin kết nối
-  socket.on('admin-connect', (adminId) => {
-    console.log("admin-connect: ", adminId);
-    // Lưu thông tin về kết nối của admin
-    admins[adminId] = socket.id;
-    // Sự kiện khi một admin gửi tin nhắn cho một khách hàng cụ thể
-    socket.on('admin-message', (data) => {
-      const { maKH, message } = data;
-
-      // Gửi tin nhắn đến khách hàng cụ thể
-      io.to(clients[maKH]).emit('client-message', { message });
-    });
+  socket.on('adminMessage', (data) => {
+    console.log(data);
+    const message = data.text;
+    const maKH = data.id;
+    console.log('Message from admin: ', message, 'Customer ID: ', maKH);
+    // save message
+    saveMessage(con, maKH, "admin", message);
+    // send message
+    io.emit('response-message-admin', message);
+    io.emit('adminMessage', {maKH, message});
   });
 
-  // Sự kiện khi một kết nối bị đóng
   socket.on('disconnect', () => {
-    console.log('Connection closed:', socket.id);
-
-    // Xóa thông tin kết nối của khách hàng hoặc admin khi họ ngắt kết nối
-    for (const maKH in clients) {
-      if (clients[maKH] === socket.id) {
-        delete clients[maKH];
-        break;
-      }
-    }
-    for (const adminId in admins) {
-      if (admins[adminId] === socket.id) {
-        delete admins[adminId];
-        break;
-      }
-    }
+    console.log('Client disconnected');
   });
 });
+
 
 
 
@@ -700,6 +674,10 @@ app.get('/get-box-message', (req, res) => {
 
 app.post('/get-content-message', (req, res) => {
   var { maKH } = req.body;
+
+  //đổi trạng thái seen
+  changeStatusSeen(con, maKH);
+  // gửi phản hồi
   getContentMessage(con, maKH, function (data) {
     res.json({ value: data });
   })
@@ -715,6 +693,71 @@ app.get('/get-customer-message', (req, res) => {
   }
 })
 
+
+app.post('/remove-chat', (req, res) => {
+  const { maKH } = req.body;
+  var sql = "DELETE FROM historyMessage WHERE maKH = ?";
+  con.query(sql, [maKH], function (err, result) {
+    if (err) throw err;
+    res.json({ success: true });
+  })
+})
+
+
+/* ======= ADMIN ======= */
+
+app.get("/get-login-admin", function (req, res){
+  var cookieAdmin = getCookie(req, "admin_acc");
+  if(cookieAdmin){
+    res.json({success: true, username: cookieAdmin.username});
+  }else{
+    res.json({success: false, username: ""});
+  }
+})
+app.post("/login-admin-url", function(req, res){
+  const {username, password} = req.body;
+  var sql = "SELECT * FROM adminaccounts WHERE username = ? AND password = ?";
+  con.query(sql, [username, password], (err, result)=>{
+    if(err) throw err;
+    if(result.length > 0){
+      console.log(result);
+      var adminID = result[0].adminID;
+      setCookie(res, "admin_acc", {username, adminID});
+      res.json({success: true, username: username, adminID});
+    }else{
+      res.json({success: false, username: "", adminID: ""})
+    }
+  })
+})
+
+
+
+// TEST JWT
+
+import jwt from "jsonwebtoken";
+import dotenv from "dotenv";
+dotenv.config();
+const book = [
+  {
+    id: 1,
+    name: 'chi pheo'
+  },
+  {
+    id: 2,
+    name: 'thi no'
+  }
+]
+
+app.post('/login-test', (req, res)=>{
+
+  const data = req.body;
+  const accessToken = jwt.sign(data, process.env.ACCESS_TOKEN_SECRET, {expiresIn: '30s'});
+  res.json({accessToken})
+})
+
+app.get("/get-book", (req, res)=>{
+  res.json({status: "success", data: book});
+})
 
 // =======================
 const port = process.env.PORT || 8080;

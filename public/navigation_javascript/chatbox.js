@@ -10,8 +10,7 @@ import {
     f_cubeBTN
 } from "./login.js";
 import { showSuccessToast, showErrorToast } from "../src/toast.js";
-import { innerBoxMsg } from "../src/function.js";
-import { addEventListenersAfterLogin } from "../src/client.js";
+// import { innerBoxMsg } from "../src/function.js";
 
 function autoResizeTextarea() {
     const textarea = document.getElementById('myTextarea');
@@ -88,66 +87,51 @@ export function removeMessageBox() {
         chatBoxList.innerHTML = "";
 }
 
-export let state = {
-    connected3: false
-};
 
-$(document).ready(function () {
-    $.ajax({
-        url: '/get-login',
-        type: 'GET',
-        success: function (data) {
-            // Kiểm tra trạng thái kết nối
-            if (data.success) {
-                addEventListenersAfterLogin();
-            } else {
-                f_loginBTN();
-            }
-        },
-        error: function (err) {
+let socket = null;
+let customerID = null;
 
-        }
+export function loginSocket(maKH) {
+    socket = io();
+    customerID = maKH;
+    socket.on('connect', () => {
+        console.log('Connected to server');
     });
-})
-
-
-
-function f_getLogin() {
-    return new Promise((resolve, reject) => {
-        $.ajax({
-            url: '/get-login',
-            type: 'GET',
-            success: function (data) {
-                console.log(state.connected3)
-                // Kiểm tra trạng thái kết nối
-                if (data.success) {
-                    resolve(true);
-                }
-                else {
-                    f_loginBTN();
-                    resolve(false);
-                }
-            },
-            error: function (err) {
-                reject(err);
-            }
-        });
+    showSuccessToast("kết lối");
+    socket.on('adminMessage', (data) => {
+        if (customerID == data.maKH)
+            displayLeftMessage(data.message);
     });
+    socket.on('response-message-client', (data) => {
+        if (customerID == data.maKH)
+            displayRightMessage(data.message);
+    });
+
 }
 
+export function logoutSocket() {
+    if (socket) {
+        socket.disconnect();
+        socket = null;
+        customerID = null;
+        showSuccessToast("hủy kết nối");
+        console.log('Disconnected from server');
+    }
+}
+
+function sendMessage(message) {
+    if (socket) {
+        socket.emit('clientMessage', { text: message, id: customerID });
+    } else {
+        console.log('You must be logged in to send a message');
+    }
+}
 
 sendButton.addEventListener('click', async () => {
-    try {
-        const loggedIn = await f_getLogin();
-        if (loggedIn) {
-            console.log(loggedIn);
-            const valueInput = inputElement.value.trim();
-            console.log(valueInput);
-            sendMessage(valueInput);
-            inputElement.value = "";
-        }
-    } catch (error) {
-        console.error(error);
+    var valueInput = inputElement.value.trim();
+    if (valueInput != '') {
+        sendMessage(valueInput);
+        inputElement.value = '';
     }
 });
 
@@ -157,33 +141,4 @@ inputElement.addEventListener("keypress", function (event) {
         event.preventDefault();
         sendButton.click();
     }
-});
-
-
-export const socket = io();
-
-// Hàm gửi tin nhắn từ khách hàng đến server
-export function sendMessage(message) {
-    socket.emit('client-message', { message });
-}
-
-socket.on('response-message', (message) => {
-    displayRightMessage(message);
-});
-
-// Định nghĩa hàm clientMessageHandler
-export const clientMessageHandler = (data) => {
-    console.log(data);
-    // Xử lý tin nhắn ở đây
-    displayLeftMessage(data.message);
-};
-
-// Thêm hàm lắng nghe cho sự kiện 'client-message'
-socket.on('client-message', clientMessageHandler);
-
-
-// Sự kiện nhận tin nhắn từ server và hiển thị nó
-socket.on('admin-message', (data) => {
-    const messagesDiv = document.getElementById('messages');
-    messagesDiv.innerHTML += `<p>Admin: ${data.message}</p>`;
 });

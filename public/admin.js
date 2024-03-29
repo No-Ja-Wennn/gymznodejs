@@ -1,55 +1,115 @@
 import {
+    activeEventClickBox,
+    activeNecessaryForm,
+    createMessageBox,
     displayLeftMessage,
+    displayNoneAll,
     displayRightMessage,
     innerBoxMsg,
     maKHActive
 } from "./src/function.js";
+import { showErrorToast, showSuccessToast } from "./src/toast.js";
+
+
+/*====== LOGIN =====*/
+const modalBox = document.querySelector(".modal");
+const overlayBox = document.querySelector(".modal-overlay");
+const loginBox = document.querySelector(".login-box");
 
 
 
-// let socket = io();
+function affterLogin(data) {
+    adminName.innerText = data.username;
+    showSuccessToast("Đăng nhập thành công")
+    displayNoneAll();
+}
 
-// // send message to admin
-// function sendMessage(message) {
-//     var data = {
-//         senderRole: "admin",
-//         message: message
-//     }
-//     socket.emit('chatMessage', data);
-// }
+let accessRights = null;
 
-// socket.on('messageData', function (data, name) {
+function checkCookieAdmin(){
+    $.ajax({
+        url: '/get-login-admin',
+        type: 'get',
+        success: function (data) {
+            if(data){
+                return data.success;
+            }
+        },
+        error: function (err) {
+            console.log(err);
+        }
+    })
+}
+console.log(checkCookieAdmin())
 
-//     if (data.length > 0) {
-//         for (var i = 0; i < data.length; i++) {
-//             // console.log("messageID:", data[i].messageID);
-//             // console.log("maKH:", data[i].maKH);
-//             if (data[i].senderRole == "admin") {
-//                 displayRightMessage(data[i].message);
-//             } else if (data[i].senderRole == "customer") {
-//                 displayLeftMessage(data[i].message);
-//             }
-//             // console.log("senderRole:", data[i].senderRole);
-//             // console.log("message:", data[i].message);
-//             // console.log("-------------------------------");
-//         }
-//     } else {
-//         console.log("Không có dữ liệu phù hợp.");
-//     }
-// });
+$.ajax({
+    url: '/get-login-admin',
+    type: 'get',
+    success: function (data) {
+        console.log(data);
+        if (data.success) {
+            affterLogin(data);
+
+        } else {
+            displayNoneAll();
+            activeNecessaryForm();
+            loginBox.style.display = "block";
+        }
+    },
+    error: function (err) {
+
+    }
+})
+
+function validValueAdminLogin() {
+    return true;
+}
+
+const adminName = document.querySelector(".nav-admin-ifm-name");
+
+$('#login-admin-form').submit(function (e) {
+    e.preventDefault();
+    if (validValueAdminLogin())
+        $.ajax({
+            url: '/login-admin-url',
+            type: 'POST',
+            data: $(this).serialize(),
+            success: function (data) {
+                if (data.success) {
+                    affterLogin(data)
+                }
+            },
+            error: function (err) {
+                console.log(err);
+            }
+        })
+})
 
 
-// socket.on('chatMessage', function (msg, maKH) {
-//     if (msg && maKH == maKHActive) {
-//         displayLeftMessage(msg);
-//     }
-//     //  else {
-//     //     showErrorToast("Quý khách chưa đăng nhập", "Vui lòng đăng nhập vào hệ thống");
-//     //     displayNoneAll();
-//     //     activeNecessaryForm();
-//     //     f_loginBTN();
-//     // }
-// });
+
+
+/* ===== CHAT ===== */
+const socket = io();
+socket.on('connect', () => {
+    console.log('Connected to server');
+});
+
+socket.on('response-message-admin', (message) => {
+    displayRightMessage(message);
+});
+
+socket.on('clientMessage', (data) => {
+    // console.log(maKHActive)
+    if (data.maKH == maKHActive)
+        displayLeftMessage(data.message);
+    activeNewMessage(data.maKH, data.name, data.senderRole, data.message);
+});
+
+function sendMessage(message) {
+    socket.emit('adminMessage', { text: message, id: maKHActive });
+}
+
+
 
 const inputBox = document.querySelector('.chatbox__bottom__input');
 const inputElement = inputBox.querySelector('textarea');
@@ -57,8 +117,10 @@ const sendButton = document.querySelector('.chatbox__bottom__send i');
 
 sendButton.addEventListener('click', async () => {
     const valueInput = inputElement.value.trim();
-    sendMessage(maKHActive, valueInput);
-    inputElement.value = "";
+    if (valueInput != '') {
+        sendMessage(valueInput);
+        inputElement.value = '';
+    }
 });
 
 inputElement.addEventListener("keypress", function (event) {
@@ -73,6 +135,7 @@ $(document).ready(function () {
         url: '/get-box-message',
         type: "GET",
         success: function (data) {
+            // console.log(data);
             innerBoxMsg(data.value);
         },
         error: function (err) {
@@ -81,48 +144,44 @@ $(document).ready(function () {
     });
 })
 
-const socket = io();
-
-// Hàm gửi tin nhắn từ admin đến server
-function sendMessage(maKH, message) {
-    console.log(message);
-    socket.emit('admin-message', { maKH, message });
+function updateNewMessage(element, message) {
+    var newMessageE = element.querySelector(".user-ifm-card-number2");
+    newMessageE.innerText = message;
 }
 
-// Sự kiện nhận tin nhắn từ server và hiển thị nó
-socket.on('client-message', (data) => {
-    // data.maKH
-    console.log("message:", message);
-    const messagesDiv = document.getElementById('messages');
-    messagesDiv.innerHTML += `<p>Client: ${data.message}</p>`;
-});
+const msgList = document.querySelector(".msg-list");
 
-// Sự kiện nhận tin nhắn từ client và hiển thị nó
-socket.on('admin-message', (data) => {
-    if (maKHActive == data.maKH)
-        displayLeftMessage(data.message);
-
+function activeNewMessage(maKH, name, role, message) {
+    var newClient = true;
     var a_listMessage = document.querySelectorAll(".msg-box");
     a_listMessage = Array.from(a_listMessage);
     a_listMessage.forEach(value => {
         var valueMaKH = value.querySelector(".user-ifm-card-number").innerText;
-        if (valueMaKH == data.maKH && maKHActive != data.maKH) {
+        if (valueMaKH == maKH && maKHActive != maKH) {
             var parentElement = value.parentNode;
             parentElement.insertBefore(value, parentElement.firstChild);
             var nameElement = value.querySelector(".user-ifm-name");
             nameElement.style.fontWeight = 700;
+            updateNewMessage(value, message);
+        } else if (maKH == valueMaKH) {
+            var parentElement = value.parentNode;
+            parentElement.insertBefore(value, parentElement.firstChild);
+            updateNewMessage(value, message);
         }
-    })
-});
-
-// Gửi thông tin admin khi trang được tải
-socket.emit('admin-connect', "AD0001");
-
-// Tính năng chọn khách hàng để gửi tin nhắn
-function selectClient(clientId) {
-    document.getElementById('clientIdInput').value = clientId;
+        if (valueMaKH == maKH) {
+            newClient = false;
+        }
+    });
+    if (newClient) {
+        var newMsgItem = createMessageBox(maKH, name, role, message);
+        activeEventClickBox(newMsgItem);
+        msgList.appendChild(newMsgItem);
+        var parentElement = newMsgItem.parentNode;
+        parentElement.insertBefore(newMsgItem, parentElement.firstChild);
+        var nameElement = newMsgItem.querySelector(".user-ifm-name");
+        nameElement.style.fontWeight = 700;
+    }
 }
-
 
 
 
@@ -130,18 +189,70 @@ function selectClient(clientId) {
 
 const boxList = document.querySelector('.msg-list');
 
-
 var searchChatInput = document.getElementById("searchInput");
-searchChatInput.addEventListener("input", function(){
-    var inputValue = this.value.toLowerCase();
-    var a_chatbox = boxList.querySelectorAll(".msg-box");
-    a_chatbox = Array.from(a_chatbox);
-    a_chatbox.forEach(element=>{
-        element.style.display = "flex";
-        var name = element.querySelector(".user-ifm-name").innerText.toLowerCase();
-        var id = element.querySelector(".user-ifm-card-number").innerText.toLowerCase();
-        if(!(name.includes(inputValue) || id.includes(inputValue))){
-            element.style.display = "none";
+if (searchChatInput)
+    searchChatInput.addEventListener("input", function () {
+        var inputValue = this.value.toLowerCase();
+        var a_chatbox = boxList.querySelectorAll(".msg-box");
+        a_chatbox = Array.from(a_chatbox);
+        a_chatbox.forEach(element => {
+            element.style.display = "flex";
+            var name = element.querySelector(".user-ifm-name").innerText.toLowerCase();
+            var id = element.querySelector(".user-ifm-card-number").innerText.toLowerCase();
+            if (!(name.includes(inputValue) || id.includes(inputValue))) {
+                element.style.display = "none";
+            }
+        })
+    })
+
+/* REMOVE CHAT MESSAGE */
+
+export function f_removeChat(maKH, liElement) {
+    console.log("ehllo")
+    $.ajax({
+        url: '/remove-chat',
+        type: "POST",
+        data: { maKH },
+        success: function (data) {
+            var success = data.success;
+            if (success) {
+                liElement.remove();
+                showSuccessToast("Thành công", "đã xóa đoạn chat");
+            } else {
+                showErrorToast("Lỗi");
+            }
+        },
+        error: function (err) {
+
         }
     })
+}
+
+
+/* ====== SHOW ACCOUNT ====== */
+
+// save old click
+const a_nav = [
+    msgNav = document.getElementById("QLMessage"),
+    accountNav = document.getElementById("QLAccount"),
+    cardNav = document.getElementById("QLCard"),
+    calendarNav = document.getElementById("QLCalendar"),
+]
+
+// test jwt
+$.ajax({
+    url: "/get-book",
+    type: 'GET',
+    success: function(data){
+        console.log(data);
+    },
+    error: function(err){
+        console.log(err);
+    }
+})
+
+$.ajax({
+    url: '/login-test',
+    type: 'POST',
+    data: {}
 })

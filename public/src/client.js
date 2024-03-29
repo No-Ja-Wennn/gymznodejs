@@ -20,7 +20,7 @@ import {
     innerTextOfCard,
     removeTextOfCard,
 } from '../navigation_javascript/infomation_account.js'
-import { clientMessageHandler, innerMesageBox, removeMessageBox, socket, state } from "../navigation_javascript/chatbox.js";
+import { innerMesageBox, loginSocket, logoutSocket, removeMessageBox } from "../navigation_javascript/chatbox.js";
 
 const modalBox = document.querySelector(".modal");
 const overlayBox = modalBox.querySelector(".modal-overlay");
@@ -89,9 +89,8 @@ function f_logoutBTN() {
                     if (cancelREBTN)
                         cancelREBTN.removeEventListener("click", eventNotActiveCA);
                     f_getValidCard();
-                    state.connected3 = false;
                     cookieSave = null;
-                    removeAllEventListeners();
+                    logoutSocket();
                     showSuccessToast("Đã đăng xuất", "Cảm ơn bạn đã sử dụng dịch vụ");
                 }
                 else
@@ -334,31 +333,8 @@ function f_getValidCard() {
     })
 }
 
-function removeAllEventListeners() {
-    socket.off('client-message');
-    socket.off('client-connect');
-}
 
-// Hàm thêm lại các hàm lắng nghe sau khi đăng nhập lại
-export function addEventListenersAfterLogin() {
 
-    $.ajax({
-        url: '/get-login',
-        type: 'GET',
-        success: function(data) {
-            if (data.success) {
-                const maKH = data.maKH;
-                socket.emit('client-connect', data.maKH);
-            } else {
-                // Xử lý khi không có mã khách hàng
-            }
-        },
-        error: function(err) {
-            console.error('Error:', err);
-        }
-    });
-    socket.on('client-message', clientMessageHandler);
-}
 
 // client.js
 $(document).ready(function () {
@@ -374,17 +350,16 @@ $(document).ready(function () {
                         innerValueAfterLogin(data.name, data.maKH);
                         removeAllInputValue();
                         displayNoneAll();
-                        showSuccessToast("Đăng nhập thành công", "Chào mừng bạn quay lại với hệ thống");
                         loginBTN1.removeEventListener("click", f_loginBTN);
                         if (loginBTN2)
-                            loginBTN2.removeEventListener("click", f_loginBTN);
-                        cookieSave = data;
-                        getValueInformationForm(path);
-                        activeClickChange();
-                        f_getValidCard();
-                        innerMesageBox(data.name);
-                        addEventListenersAfterLogin();
-
+                        loginBTN2.removeEventListener("click", f_loginBTN);
+                    cookieSave = data;
+                    getValueInformationForm(path);
+                    activeClickChange();
+                    f_getValidCard();
+                    loginSocket(data.maKH);
+                    innerMesageBox(data.name);
+                    showSuccessToast("Đăng nhập thành công", "Chào mừng bạn quay lại với hệ thống");
                     } else {
                         showErrorToast("Thất bại", "Email hoặc mật khẩu không đúng");
                     }
@@ -503,6 +478,7 @@ $(document).ready(function () {
                         loginBTN2.removeEventListener("click", f_loginBTN);
                     activeClickChange();
                     innerMesageBox(value.name);
+                    loginSocket(value.maKH);
                 } else {
                     unActiveClickChange();
                 }

@@ -31,6 +31,14 @@ function loadMessage(con, maKH, callback) {
     });
 }
 
+function changeStatusSeen(con, maKH, callback) {
+    var sql = "UPDATE historyMessage SET seen = 1 WHERE maKH = ?";
+    con.query(sql, [maKH], function (err, result) {
+        if (err) throw err;
+        console.log("đổi trang thái maK: ", maKH);
+    });
+}
+
 function getContentMessage(con, maKH, callback) {
     var sql = "SELECT * FROM historyMessage WHERE maKH = ?";
     con.query(sql, [maKH], function (err, result) {
@@ -55,7 +63,7 @@ function getNameCustomer(con, maKH, callback) {
 }
 
 function getBoxMessage(con, callback) {
-    var sql = "SELECT maKH FROM (SELECT maKH, MAX(messageID) as maxMessageID FROM historyMessage GROUP BY maKH ) as temp ORDER BY maxMessageID DESC ";
+    var sql = "SELECT t1.maKH, t1.senderRole, t1.message, t1.seen FROM historyMessage t1 LEFT JOIN historyMessage t2 ON t1.maKH = t2.maKH AND t1.messageID < t2.messageID WHERE t2.maKH IS NULL ORDER BY t1.messageID DESC";
     con.query(sql, function (err, result) {
         if (err) throw err;
         console.log("re: ", result);
@@ -89,7 +97,7 @@ function saveMessage(con, maKH, senderRole, message) {
 
     // Lưu tin nhắn vào cơ sở dữ liệu
     const query = `INSERT INTO historymessage (maKH, senderRole, message) VALUES (?, ?, ?)`;
-    con.query(query, [maKH, senderRole, message], function (error, results, fields) {
+    con.query(query, [maKH, senderRole, message, false], function (error, results, fields) {
         if (error) throw error;
         console.log('Message saved to database');
     });
@@ -102,5 +110,6 @@ module.exports = {
     loadMessage,
     getContentMessage,
     getBoxMessage,
-    saveMessage
+    saveMessage,
+    changeStatusSeen
 }

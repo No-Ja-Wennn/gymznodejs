@@ -1,3 +1,4 @@
+import { activeNecessaryForm, displayNoneAll, removeAllInputValue } from '../src/function.js';
 import { showErrorToast } from '../src/toast.js';
 import { validateCreateAccount, validateLoginValue } from '../src/validate.js';
 
@@ -12,25 +13,6 @@ const cancelRECartBox = document.getElementById("form-cancel");
 const changeNameBox = modalBox.querySelector(".change-name-box");
 const changePassBox = modalBox.querySelector(".change-pass-box");
 
-/* ACTIVE NECESSARY FORM  */
-export function activeNecessaryForm() {
-    modalBox.style.display = "flex";
-    overlayBox.style.display = "block";
-}
-/* DISPLAY NONE ALL */
-export function displayNoneAll() {
-    modalBox.style.display = "none";
-    overlayBox.style.display = "none";
-    var a_modalBodyBox = modalBox.querySelectorAll(".modal__body__box");
-    a_modalBodyBox = Array.from(a_modalBodyBox);
-    a_modalBodyBox.map(value => value.style.display = "none");
-}
-
-export function removeAllInputValue() {
-    var a_inputElement = modalBox.querySelectorAll("input");
-    a_inputElement = Array.from(a_inputElement);
-    a_inputElement.map(element => element.value = "");
-}
 
 /* MODAL OVERLAY EVENT */
 overlayBox.addEventListener("click", displayNoneAll);
@@ -66,6 +48,7 @@ function showForgotPasswordForm() {
 
 /* CLICK CREATE ACCOUNT LINK FORM LOGIN FORM */
 const createAccountLink = loginBox.querySelector(".link-create-account");
+if(createAccountLink)
 createAccountLink.addEventListener("click", () => {
     displayNoneAll();
     activeNecessaryForm();
@@ -73,28 +56,34 @@ createAccountLink.addEventListener("click", () => {
 });
 
 /* CLICK LOGIN LINK FORM CREATE ACCOUNT FORM */
-const loginLinkCreate = createAccountBox.querySelector(".link-login");
-loginLinkCreate.addEventListener("click", () => {
-    displayNoneAll();
-    activeNecessaryForm();
-    showLoginForm();
-});
+if(createAccountBox){
+    const loginLinkCreate = createAccountBox.querySelector(".link-login");
+    loginLinkCreate.addEventListener("click", () => {
+        displayNoneAll();
+        activeNecessaryForm();
+        showLoginForm();
+    });
+}
 
 /* CLICK LOGIN LINK FORM FORGOT PASSWORD FORM */
-const loginLinkPassword = forgotPassBox.querySelector(".link-login");
-loginLinkPassword.addEventListener("click", () => {
-    displayNoneAll();
-    activeNecessaryForm();
-    showLoginForm();
-});
+if(forgotPassBox){
+    const loginLinkPassword = forgotPassBox.querySelector(".link-login");
+    loginLinkPassword.addEventListener("click", () => {
+        displayNoneAll();
+        activeNecessaryForm();
+        showLoginForm();
+    });
+}
 
 /* CLICK FORGOT PASS LINK FORM LOGIN FORM */
-const forgotPasswordLink = loginBox.querySelector(".forgot--account--link");
-forgotPasswordLink.addEventListener("click", () => {
-    displayNoneAll();
-    activeNecessaryForm();
-    showForgotPasswordForm();
-});
+if(loginBox){
+    const forgotPasswordLink = loginBox.querySelector(".forgot--account--link");
+    forgotPasswordLink.addEventListener("click", () => {
+        displayNoneAll();
+        activeNecessaryForm();
+        showForgotPasswordForm();
+    });
+}
 
 export function eventNotActiveRE() {
     showErrorToast("Lỗi", "Bạn đã đăng ký lịch tập trước đó");

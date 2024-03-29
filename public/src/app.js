@@ -37,7 +37,6 @@ tabs.forEach(item => {
 // Thêm sự kiện click cho nút mở nav
 opennav.forEach(button => {
   button.addEventListener('click', function () {
-    console.log('open');
     navbar.style.animation = 'fly-in-left .35s ease-in-out forwards';
     navbar.style.display = 'flex';
     shadow.style.animation = 'shadow-in .35s ease-in-out forwards';
@@ -70,95 +69,102 @@ document.getElementById('prve').onclick = function () {
   document.getElementById('groupList').scrollLeft -= widthItem;
 };
 
+window.onload = function () {
+  // Make the DIV element draggable:
+  dragElement(document.getElementById("draggable"));
 
-// const msgBoxes = document.querySelectorAll('.msg-box');
+  function dragElement(elmnt) {
+    var pos1 = 0, pos2 = 0, pos3 = 0, pos4 = 0;
+    elmnt.onmousedown = dragMouseDown;
 
-// // Mặc định chọn msg-box đầu tiên và thêm class active
-// let activeMsgBox = msgBoxes[0];
-// activeMsgBox.classList.add('active');
+    function dragMouseDown(e) {
+      e = e || window.event;
+      e.preventDefault();
+      // get the mouse cursor position at startup:
+      pos3 = e.clientX;
+      pos4 = e.clientY;
+      document.onmouseup = closeDragElement;
+      // call a function whenever the cursor moves:
+      document.onmousemove = elementDrag;
+    }
 
-// Lấy danh sách tất cả các msg-box
+    function elementDrag(e) {
+      e = e || window.event;
+      e.preventDefault();
+      // calculate the new cursor position:
+      pos1 = pos3 - e.clientX;
+      pos2 = pos4 - e.clientY;
+      pos3 = e.clientX;
+      pos4 = e.clientY;
+      // set the element's new position:
+      var newTop = elmnt.offsetTop - pos2;
+      var newLeft = elmnt.offsetLeft - pos1;
+      var parent = elmnt.parentElement;
+      if (newTop >= 0 && newTop <= parent.offsetHeight - elmnt.offsetHeight) {
+        elmnt.style.top = newTop + "px";
+      }
+      if (newLeft >= 0 && newLeft <= parent.offsetWidth - elmnt.offsetWidth) {
+        elmnt.style.left = newLeft + "px";
+      }
+    }
 
-// Lặp qua từng msg-box để thêm sự kiện click vào more-option-bt
-// msgBoxes.forEach(msgBox => {
-//   const moreOptionBtn = msgBox.querySelector('.more-option-bt');
-//   const boxBot = msgBox.querySelector('.box-bot');
+    function closeDragElement() {
+      /* stop moving when mouse button is released:*/
+      document.onmouseup = null;
+      document.onmousemove = null;
+    }
+  }
 
-//   // Thêm sự kiện click vào more-option-bt
-//   moreOptionBtn.addEventListener('click', function (event) {
-//     event.stopPropagation(); // Ngăn chặn sự kiện click từ more-option-bt lan toả lên các phần tử khác
+  // active old nav
+  var navIDCook = getCookie("old_nav");
+  if (navIDCook) {
+    var navCook = document.getElementById(navIDCook.nav);
+    navCook.click();
+    navbar.style.display = 'none';
+    opennav.forEach(button => {
+      button.innerHTML = '<i class="fa-solid fa-bars"></i>';
+    });
+    shadow.style.display = 'none';
+  }else{
+    navbar.style.animation = 'fly-in-left .35s ease-in-out forwards';
+    navbar.style.display = 'flex';
+    shadow.style.animation = 'shadow-in .35s ease-in-out forwards';
+    shadow.style.display = 'flex';
+  }
+}
 
-//     // Ẩn tất cả các box-bot trước khi hiển thị box-bot của msg-box hiện tại
-//     msgBoxes.forEach(box => {
-//       if (box !== msgBox) {
-//         box.querySelector('.box-bot').style.display = 'none';
-//       }
-//     });
+function setCookie(cookieName, value) {
+  var data = { nav: value };
+  var date = new Date();
+  date.setTime(date.getTime() + (3 * 24 * 60 * 60 * 1000));
+  var expires = "; expires=" + date.toUTCString();
+  document.cookie = cookieName + "=" + JSON.stringify(data) + expires + "; path=/";
+}
 
-//     // Hiển thị hoặc ẩn box-bot tùy thuộc vào trạng thái hiện tại
-//     if (boxBot.style.display === 'none' || boxBot.style.display === '') {
-//       boxBot.style.display = 'block';
-//       // boxBot.style.animation = 'showtrash .5s ease-in-out forwards;';
-//     } else {
-//       boxBot.style.display = 'none';
-//     }
+function getCookie(cookieName) {
+  var cookie = document.cookie.split(';').find(row => row.trim().startsWith(cookieName + "="));
+  if (cookie) {
+    var value = cookie.split('=')[1];
+    try {
+      return JSON.parse(decodeURIComponent(value));
+    } catch (error) {
+      return null;
+    }
+  }
+  return null;
+}
 
-//     // Xóa class active từ msg-box hiện tại và thêm vào msg-box được click
-//     activeMsgBox.classList.remove('active');
-//     msgBox.classList.add('active');
-//     activeMsgBox = msgBox; // Cập nhật msg-box hiện tại là msg-box được click
-//   });
+// save old click
+const a_nav = [
+  msgNav = document.getElementById("QLMessage"),
+  accountNav = document.getElementById("QLAccount"),
+  cardNav = document.getElementById("QLCard"),
+  calendarNav = document.getElementById("QLCalendar"),
+]
 
-//   // Thêm sự kiện click vào msg-box để thêm class active và xóa class active từ msg-box hiện tại
-//   msgBox.addEventListener('click', function () {
-//     activeMsgBox.classList.remove('active');
-//     msgBox.classList.add('active');
-//     activeMsgBox = msgBox;
-//   });
-// });
-
-// // Thêm sự kiện click vào document để ẩn box-bot khi click bên ngoài msg-box
-// document.addEventListener('click', function () {
-//   msgBoxes.forEach(box => {
-//     box.querySelector('.box-bot').style.display = 'none';
-//   });
-// });
-
-// Chặn sự kiện click từ box-bot lan toả lên các phần tử khác
-// document.querySelector('.box-bot').addEventListener('click', function (event) {
-//   event.stopPropagation();
-// });
-
-
-
-
-
-
-
-
-
-// const msgBoxes = document.querySelectorAll('.msg-box');
-
-// msgBoxes.forEach(msgBox => {
-//   const btOpenTrash = msgBox.querySelector('.more-option-bt');
-//   const showTrash = msgBox.querySelector('.box-bot');
-//   const btTrash = msgBox.querySelectorAll('.bot-bar-item');
-
-//   btOpenTrash.addEventListener('click', function() {
-//     if (showTrash.style.display === 'none' || showTrash.style.display === '') {
-//       showTrash.style.display = 'flex';
-//       console.log('show trash');
-//     } else {
-//       showTrash.style.display = 'none';
-//       console.log('hide trash');
-//     }
-//   });
-
-//   btTrash.forEach(button => {
-//     button.addEventListener('click', function() {
-//       msgBox.style.display = 'none';
-//       console.log('delete message');
-//     });
-//   });
-// });
+a_nav.forEach(value => {
+  value.addEventListener("click", function () {
+    setCookie("old_nav", value.id);
+  })
+})
 

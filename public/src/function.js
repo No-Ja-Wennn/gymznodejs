@@ -1,3 +1,39 @@
+import { f_removeChat } from "../admin.js";
+
+const modalBox = document.querySelector(".modal");
+const overlayBox = modalBox.querySelector(".modal-overlay");
+const loginBox = modalBox.querySelector(".login-box");
+const createAccountBox = modalBox.querySelector(".create-account-box");
+const forgotPassBox = modalBox.querySelector(".forgot-pass-box");
+const registerCartBox = document.getElementById("form-register");
+const registerCartBoxModal = modalBox.querySelector(".register-cart");
+const cancelRECartBox = document.getElementById("form-cancel");
+const changeNameBox = modalBox.querySelector(".change-name-box");
+const changePassBox = modalBox.querySelector(".change-pass-box");
+
+
+/* ACTIVE NECESSARY FORM  */
+export function activeNecessaryForm() {
+    modalBox.style.display = "flex";
+    overlayBox.style.display = "block";
+}
+/* DISPLAY NONE ALL */
+export function displayNoneAll() {
+    modalBox.style.display = "none";
+    overlayBox.style.display = "none";
+    var a_modalBodyBox = modalBox.querySelectorAll(".modal__body__box");
+    a_modalBodyBox = Array.from(a_modalBodyBox);
+    a_modalBodyBox.map(value => value.style.display = "none");
+}
+
+export function removeAllInputValue() {
+    var a_inputElement = modalBox.querySelectorAll("input");
+    a_inputElement = Array.from(a_inputElement);
+    a_inputElement.map(element => element.value = "");
+}
+
+
+
 
 const titleNameE = document.querySelector(".chatbox__head__title");
 
@@ -27,6 +63,7 @@ export function displayLeftMessage(message) {
 export let maKHActive = "";
 
 function f_clickChat(maKH, name, element) {
+    // console.log("hello");
     maKHActive = maKH;
     chatBoxList.innerHTML = "";
     if (titleNameE)
@@ -56,7 +93,7 @@ function f_clickChat(maKH, name, element) {
     nameElement.style.fontWeight = 500;
 }
 
-function createMessageBox(maKH, name) {
+export function createMessageBox(maKH, name, role, newMessage, seen) {
     // Tạo phần tử li mới
     var liElement = document.createElement('li');
     liElement.classList.add('msg-box');
@@ -91,22 +128,40 @@ function createMessageBox(maKH, name) {
     var userIfmNameSpan = document.createElement('span');
     userIfmNameSpan.classList.add('user-ifm-name');
     userIfmNameSpan.textContent = name;
+    if (!seen) {
+        userIfmNameSpan.style.fontWeight = 700;
+    }
+    userIfmDiv.appendChild(userIfmNameSpan);
+
 
     // Tạo phần tử span.user-ifm-card
     var userIfmCardSpan = document.createElement('span');
     userIfmCardSpan.classList.add('user-ifm-card');
-    userIfmCardSpan.textContent = 'MT: ';
+    userIfmCardSpan.textContent = 'MK: ';
 
     // Tạo phần tử span.user-ifm-card-number
     var userIfmCardNumberSpan = document.createElement('span');
     userIfmCardNumberSpan.classList.add('user-ifm-card-number');
     userIfmCardNumberSpan.textContent = maKH;
+    userIfmCardSpan.style.display = "none";
+    userIfmCardSpan.appendChild(userIfmCardNumberSpan);
+    userIfmDiv.appendChild(userIfmCardSpan);
+
+
+    // Tạo phần tử span.user-ifm-card
+    var userIfmCardSpan = document.createElement('span');
+    userIfmCardSpan.classList.add('user-ifm-card2');
+    userIfmCardSpan.textContent = role + ': ';
+
+    // Tạo phần tử span.user-ifm-card-number
+    var userIfmCardNumberSpan = document.createElement('span');
+    userIfmCardNumberSpan.classList.add('user-ifm-card-number2');
+    userIfmCardNumberSpan.textContent = newMessage;
 
     // Thêm phần tử span.user-ifm-card-number vào span.user-ifm-card
     userIfmCardSpan.appendChild(userIfmCardNumberSpan);
 
     // Thêm phần tử span.user-ifm-name và span.user-ifm-card vào div.user-ifm
-    userIfmDiv.appendChild(userIfmNameSpan);
     userIfmDiv.appendChild(userIfmCardSpan);
 
     // Thêm div.user-avt và div.user-ifm vào div.user-box
@@ -165,6 +220,8 @@ function createMessageBox(maKH, name) {
     // Thêm phần tử ion-icon vào span.bot-bar-item-text
     botBarItemTextSpan.appendChild(botBarItemIcon);
 
+    botBarItemTextSpan.addEventListener("click", () => f_removeChat(maKH, liElement))
+
     // Thêm span.bot-bar-item-text vào li.bot-bar-item
     botBarItemLi.appendChild(botBarItemTextSpan);
 
@@ -181,59 +238,100 @@ function createMessageBox(maKH, name) {
     return liElement;
 }
 
+export function activeEventClickBox(msgBox) {
+    var msgBoxes = document.querySelectorAll('.msg-box');
+    const moreOptionBtn = msgBox.querySelector('.more-option-bt');
+    const boxBot = msgBox.querySelector('.box-bot');
+
+    // Thêm sự kiện click vào more-option-bt
+    moreOptionBtn.addEventListener('click', function (event) {
+        event.stopPropagation(); // Ngăn chặn sự kiện click từ more-option-bt lan toả lên các phần tử khác
+
+        // Ẩn tất cả các box-bot trước khi hiển thị box-bot của msg-box hiện tại
+        msgBoxes.forEach(box => {
+            if (box !== msgBox) {
+                box.querySelector('.box-bot').style.display = 'none';
+            }
+        });
+
+        // Hiển thị hoặc ẩn box-bot tùy thuộc vào trạng thái hiện tại
+        if (boxBot.style.display === 'none' || boxBot.style.display === '') {
+            boxBot.style.display = 'block';
+            // boxBot.style.animation = 'showtrash .5s ease-in-out forwards;';
+        } else {
+            boxBot.style.display = 'none';
+        }
+
+        // Xóa class active từ msg-box hiện tại và thêm vào msg-box được click
+        activeMsgBox.classList.remove('active');
+        msgBox.classList.add('active');
+        activeMsgBox = msgBox; // Cập nhật msg-box hiện tại là msg-box được click
+    });
+
+    // Thêm sự kiện click vào msg-box để thêm class active và xóa class active từ msg-box hiện tại
+    msgBox.addEventListener('click', function () {
+        activeMsgBox.classList.remove('active');
+        msgBox.classList.add('active');
+        activeMsgBox = msgBox;
+    });
+}
+let activeMsgBox;
 function activeFunctionApp() {
-    const msgBoxes = document.querySelectorAll('.msg-box');
+    let msgBoxes = document.querySelectorAll('.msg-box');
 
     // Mặc định chọn msg-box đầu tiên và thêm class active
-    let activeMsgBox = msgBoxes[0];
-    activeMsgBox.classList.add('active');
-    activeMsgBox.click();
-    msgBoxes.forEach(msgBox => {
-        const moreOptionBtn = msgBox.querySelector('.more-option-bt');
-        const boxBot = msgBox.querySelector('.box-bot');
+    activeMsgBox = msgBoxes[0];
 
-        // Thêm sự kiện click vào more-option-bt
-        moreOptionBtn.addEventListener('click', function (event) {
-            event.stopPropagation(); // Ngăn chặn sự kiện click từ more-option-bt lan toả lên các phần tử khác
+    if (activeMsgBox) {
+        activeMsgBox.classList.add('active');
+        activeMsgBox.click();
+        msgBoxes.forEach(msgBox => {
+            const moreOptionBtn = msgBox.querySelector('.more-option-bt');
+            const boxBot = msgBox.querySelector('.box-bot');
 
-            // Ẩn tất cả các box-bot trước khi hiển thị box-bot của msg-box hiện tại
-            msgBoxes.forEach(box => {
-                if (box !== msgBox) {
-                    box.querySelector('.box-bot').style.display = 'none';
+            // Thêm sự kiện click vào more-option-bt
+            moreOptionBtn.addEventListener('click', function (event) {
+                event.stopPropagation(); // Ngăn chặn sự kiện click từ more-option-bt lan toả lên các phần tử khác
+
+                // Ẩn tất cả các box-bot trước khi hiển thị box-bot của msg-box hiện tại
+                msgBoxes.forEach(box => {
+                    if (box !== msgBox) {
+                        box.querySelector('.box-bot').style.display = 'none';
+                    }
+                });
+
+                // Hiển thị hoặc ẩn box-bot tùy thuộc vào trạng thái hiện tại
+                if (boxBot.style.display === 'none' || boxBot.style.display === '') {
+                    boxBot.style.display = 'block';
+                    // boxBot.style.animation = 'showtrash .5s ease-in-out forwards;';
+                } else {
+                    boxBot.style.display = 'none';
                 }
+
+                // Xóa class active từ msg-box hiện tại và thêm vào msg-box được click
+                activeMsgBox.classList.remove('active');
+                msgBox.classList.add('active');
+                activeMsgBox = msgBox; // Cập nhật msg-box hiện tại là msg-box được click
             });
 
-            // Hiển thị hoặc ẩn box-bot tùy thuộc vào trạng thái hiện tại
-            if (boxBot.style.display === 'none' || boxBot.style.display === '') {
-                boxBot.style.display = 'block';
-                // boxBot.style.animation = 'showtrash .5s ease-in-out forwards;';
-            } else {
-                boxBot.style.display = 'none';
-            }
-
-            // Xóa class active từ msg-box hiện tại và thêm vào msg-box được click
-            activeMsgBox.classList.remove('active');
-            msgBox.classList.add('active');
-            activeMsgBox = msgBox; // Cập nhật msg-box hiện tại là msg-box được click
+            // Thêm sự kiện click vào msg-box để thêm class active và xóa class active từ msg-box hiện tại
+            msgBox.addEventListener('click', function () {
+                activeMsgBox.classList.remove('active');
+                msgBox.classList.add('active');
+                activeMsgBox = msgBox;
+            });
         });
 
-        // Thêm sự kiện click vào msg-box để thêm class active và xóa class active từ msg-box hiện tại
-        msgBox.addEventListener('click', function () {
-            activeMsgBox.classList.remove('active');
-            msgBox.classList.add('active');
-            activeMsgBox = msgBox;
+        // Thêm sự kiện click vào document để ẩn box-bot khi click bên ngoài msg-box
+        document.addEventListener('click', function () {
+            msgBoxes.forEach(box => {
+                box.querySelector('.box-bot').style.display = 'none';
+            });
         });
-    });
-
-    // Thêm sự kiện click vào document để ẩn box-bot khi click bên ngoài msg-box
-    document.addEventListener('click', function () {
-        msgBoxes.forEach(box => {
-            box.querySelector('.box-bot').style.display = 'none';
+        document.querySelector('.box-bot').addEventListener('click', function (event) {
+            event.stopPropagation();
         });
-    });
-    document.querySelector('.box-bot').addEventListener('click', function (event) {
-        event.stopPropagation();
-    });
+    }
 
 }
 
@@ -241,7 +339,8 @@ const msgList = document.querySelector(".msg-list");
 
 export function innerBoxMsg(data) {
     data.forEach(value => {
-        msgList.appendChild(createMessageBox(value.maKH, value.name))
+        if (msgList)
+            msgList.appendChild(createMessageBox(value.maKH, value.name, value.senderRole, value.message, value.seen))
     });
     activeFunctionApp();
 }

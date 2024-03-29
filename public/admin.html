@@ -183,12 +183,14 @@
                                     Đăng xuất
                                 </span>
                             </li>
-                            </di>
+                        </div>
                     </ul>
                 </div>
                 <div class="shadow"></div>
                 <div class="container__show">
-
+                    <div class="save__box" id="draggable"">
+                        <button class=" save-btn">Lưu</button>
+                    </div>
                     <!-- MESSAGE -->
                     <div id="groupList" class="msgr">
                         <div id="listItem" class="msgr-box">
@@ -229,11 +231,17 @@
                                                 <div class="user-ifm">
                                                     <span class="user-ifm-name">
                                                         HOANG ANH TU
+                                                        <span class="user-ifm-card">
+                                                            MT:
+                                                            <span class="user-ifm-card-number">
+                                                                MT01
+                                                            </span>
+                                                        </span>
                                                     </span>
-                                                    <span class="user-ifm-card">
-                                                        MT:
-                                                        <span class="user-ifm-card-number">
-                                                            MT01
+                                                    <span class="who-send">
+                                                        Bạn:
+                                                        <span class="last-message-content">
+                                                            đây là tin nhắn cuối cùng !
                                                         </span>
                                                     </span>
                                                 </div>
@@ -326,6 +334,7 @@
                     <!-- ACCOUNT -->
                     <div id="accountTable" class="container__show__account">
                         <div class="container-select">
+
                             <div class="container__show__add container__show__account__add">
                                 <div class="box-title">
                                     <div class="nav-open">
@@ -341,37 +350,33 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="container__show__head">
-                                <div class="container__show__head__input__box">
-                                    <i class="exit--search fa-solid fa-arrow-left"></i>
-                                    <input class="show__input__id" type="text" oninput="findByIDAccount(this)"
-                                        placeholder="Nhập mã thẻ của khách hàng">
-                                    <div class="show__find__id__box"></div>
+                            <button id="add-account"
+                                class="container__show__add__btn container__show__account__add__btn">
+                                Thêm tài khoản
+                            </button>
+                            <i class="exit--search fa-solid fa-arrow-left"></i>
+                            <div class="container___input">
+                                <div class="container___input__left">
+                                    <div class="container__show__head__input__box">
+                                        <input class="show__input__id" type="text" oninput="findByIDAccount(this)"
+                                            placeholder="Nhập mã thẻ hoặc tên khách hàng">
+                                        <div class="show__find__id__box"></div>
+                                    </div>
                                 </div>
-                                <div class="head-end" style="display: flex; justify-content: space-between;">
+                                <div class="container___input__right">
                                     <button class="container__show__find__btn">Tìm kiếm</button>
-                                    <button id="add-account"
-                                        class="container__show__add__btn container__show__account__add__btn"
-                                        onclick="addAccount()">
-                                        Thêm tài khoản
-                                    </button>
                                 </div>
                             </div>
-                            <!-- <i class="remove-icon fa-solid fa-trash"></i> -->
                             <div class="container__show__content">
                                 <table class="table__show table__show__main">
                                     <tr class="tr__show">
-                                        <th class="th__show">ID</th>
-                                        <th class="th__show">USERNAME</th>
-                                        <th class="th__show">EMAIL</th>
-                                        <th class="th__show">PASSWORD</th>
-                                        <th class="th__show"></th>
+                                        <th class="th__show" style="width: 10%">MÃ KH</th>
+                                        <th class="th__show" style="width: 20%">TÊN KHÁCH HÀNG</th>
+                                        <th class="th__show" style="width: 26%">EMAIL</th>
+                                        <th class="th__show">MẬT KHẨU</th>
+                                        <th class="th__show" style="width: 8%">THAO TÁC</th>
                                     </tr>
                                 </table>
-                            </div>
-                            <div class="save__box">
-                                <span class="save__message"></span>
-                                <button class="save-btn" onclick="saveAccount()">Lưu</button>
                             </div>
                         </div>
                     </div>
@@ -393,54 +398,59 @@
                                 </div>
                             </div>
                         </div>
+                        <button id="add-card" class="container__show__add__btn container__show__card__add__btn"
+                            onclick="addCard()">
+                            Thêm thẻ thành viên
+                        </button>
+                        <i class="exit--search fa-solid fa-arrow-left"></i>
                         <div class="container__show__head container__show__card__head">
-                            <div class="container__show__head__input__box container__show__card__head__input__box">
-                                <i class="exit--search fa-solid fa-arrow-left"></i>
-                                <input class="show__input__id" type="text" oninput="findByIDCard(this)"
-                                    placeholder="Nhập mã thẻ hoặc tên khách hàng">
-                                <div class="show__find__id__box">
+                            <div class="container___input">
+                                <div class="container___input__left">
+                                    <div
+                                        class="container__show__head__input__box container__show__card__head__input__box">
+                                        <input class="show__input__id" type="text" oninput="findByIDCard(this)"
+                                            placeholder="Nhập mã thẻ hoặc tên khách hàng">
+                                        <div class="show__find__id__box">
+                                        </div>
+                                    </div>
+                                    <select class="show__input__package" id="packet" name="packet">
+                                        <option value="" disabled selected>Loại thẻ</option>
+                                        <option value="BEGINNER">BEGINNER</option>
+                                        <option value="BASIC">BASIC</option>
+                                        <option value="ADVENCE">ADVENCE</option>
+                                    </select>
+                                    <input id="input-date-start" class="show__input__date" type="date"
+                                        placeholder="Ngày gia nhập">
+                                    <input id="input-date-end" class="show__input__date" type="date"
+                                        placeholder="Ngày hết hạn">
                                 </div>
-                                </table>
-                            </div>
-                            <div class="head-end">
-                                <select class="show__input__package" id="packet" name="packet">
-                                    <option value="" disabled selected>Loại thẻ</option>
-                                    <option value="BEGINNER">BEGINNER</option>
-                                    <option value="BASIC">BASIC</option>
-                                    <option value="ADVENCE">ADVENCE</option>
-                                </select>
-                                <input id="input-date-start" class="show__input__date" type="text"
-                                    placeholder="Ngày gia nhập">
-                                <input id="input-date-end" class="show__input__date" type="text"
-                                    placeholder="Ngày hết hạn">
-                                <button class="container__show__find__btn container__show__card__find__btn">
-                                    Tìm kiếm
-                                </button>
+                                <div class="container___input__right">
+                                    <button class="container__show__find__btn container__show__card__find__btn">
+                                        Tìm kiếm
+                                    </button>
+                                </div>
                             </div>
                         </div>
                         <!-- <i class="remove-icon fa-solid fa-trash"></i> -->
                         <div class="container__show__content container__show__card__content">
                             <table class="table__show table__show__main">
                                 <tr class="tr__show">
-                                    <th class="th__show">Mã thẻ</th>
-                                    <th class="th__show">Tên KH</th>
-                                    <th class="th__show">Tuổi</th>
-                                    <th class="th__show">SĐT</th>
-                                    <th class="th__show">Loại thẻ</th>
-                                    <th class="th__show">Ngày mua</th>
-                                    <th class="th__show">Ngày hết hạn</th>
-                                    <th class="th__show">Thao tác</th>
+                                    <th class="th__show" style="width: 8%">MÃ THẺ</th>
+                                    <th class="th__show">TÊN KHÁCH HÀNG</th>
+                                    <th class="th__show" style="width: 15%">NGÀY SINH</th>
+                                    <th class="th__show" style="width: 15%">SĐT</th>
+                                    <th class="th__show" style="width: 8%">LOẠI THẺ</th>
+                                    <th class="th__show" style="width: 15%">NGÀY MUA</th>
+                                    <th class="th__show" style="width: 15%">NGÀY HẾT HẠN</th>
+                                    <th class="th__show" style="width: 8%">THAO TÁC</th>
                                 </tr>
                             </table>
                         </div>
-                        <div class="save__box">
-                            <button id="add-card" class="container__show__add__btn container__show__card__add__btn"
-                                onclick="addCard()">
-                                Thêm thẻ thành viên
-                            </button>
+                        <!-- <div class="save__box">
+
                             <span class="save__message"></span>
                             <button class="save-btn" onclick="saveCard()">Lưu</button>
-                        </div>
+                        </div> -->
                     </div>
 
                     <!-- CALENDAR EX -->
@@ -460,23 +470,30 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="container__show__head container__show__calendar__head">
-                            <div class="container__show__head__input__box container__show__calendar__head__input__box">
-                                <i class="exit--search fa-solid fa-arrow-left"></i>
-                                <input class="show__input__id" type="text"
-                                    placeholder="Nhập mã thẻ hoặc tên khách hàng">
-                                <div class="show__find__id__box">
+                        <button id="add-calendar" class="container__show__add__btn container__show__calendar__add__btn"
+                            onclick="addCalendar()">
+                            Thêm lịch tập
+                        </button>
+                        <i class="exit--search fa-solid fa-arrow-left"></i>
+                        <div class="container___input">
+                            <div class="container___input__left">
+                                <div
+                                    class="container__show__head__input__box container__show__calendar__head__input__box">
+                                    <input class="show__input__id" type="text"
+                                        placeholder="Nhập mã thẻ hoặc tên khách hàng">
+                                    <div class="show__find__id__box">
+                                    </div>
                                 </div>
-                                </table>
+                                <input class="show__input__id" type="text" placeholder="Nhập tên huấn luyện viên">
+                                <select class="show__input__type" id="type" name="type">
+                                    <option value="" disabled selected>Bài tập</option>
+                                    <option value="GYM">GYM</option>
+                                    <option value="YOGA">YOGA</option>
+                                </select>
                             </div>
-                            <div class="head-end" style="display: flex; justify-content: space-between;">
+                            <div class="container___input__right">
                                 <button class="container__show__find__btn container__show__calendar__find__btn">
                                     Tìm kiếm
-                                </button>
-                                <button id="add-calendar"
-                                    class="container__show__add__btn container__show__calendar__add__btn"
-                                    onclick="addCalendar()">
-                                    Thêm lịch tập
                                 </button>
                             </div>
                         </div>
@@ -484,22 +501,21 @@
                         <div class="container__show__content container__show__calendar__content">
                             <table class="table__show table__show__main">
                                 <tr class="tr__show">
-                                    <th class="th__show">Mã thẻ</th>
-                                    <th class="th__show">Tên KH</th>
-                                    <th class="th__show">Ngày tập</th>
-                                    <th class="th__show">TG bắt đầu</th>
-                                    <th class="th__show">TG kết thúc</th>
-                                    <th class="th__show">Bài tập</th>
-                                    <th class="th__show">HLV</th>
-                                    <th class="th__show">Ghi chú</th>
-                                    <th class="th__show">Thao tác</th>
+                                    <th class="th__show" style="width: 10%">MÃ LỊCH TẬP</th>
+                                    <th class="th__show" style="width: 15%">TÊN KHÁCH HÀNG</th>
+                                    <th class="th__show" style="width: 15%">NGÀY TẬP</th>
+                                    <th class="th__show" style="width: 8%">TG BẮT ĐẦU</th>
+                                    <th class="th__show" style="width: 8%">TG KẾT THÚC</th>
+                                    <th class="th__show" style="width: 6%">BÀI TẬP</th>
+                                    <th class="th__show" style="width: 15%">HLV</th>
+                                    <th class="th__show" style="width: 15%">GHI CHÚ</th>
+                                    <th class="th__show" style="width: 8%">THAO TÁC</th>
                                 </tr>
                             </table>
                         </div>
-                        <div class="save__box" onclick="saveCalendar()">
-                            <span class="save__message"></span>
+                        <!-- <div class="save__box" onclick="saveCalendar()">
                             <button class="save-btn">Lưu</button>
-                        </div>
+                        </div> -->
                     </div>
 
                 </div>
@@ -523,24 +539,24 @@
         </div>
         <div class="modal__body">
             <div class="modal__body__box login-box">
-                <p>Đăng nhập tài khoản</p>
-                <div>
+                <p>ADMIN LOGIN</p>
+                <form id="login-admin-form" action="/login-admin-url" method="POST">
                     <div class="user-box">
-                        <input class="login-email" required="" name="" type="text">
+                        <input class="login-email" required="" name="username" type="text">
                         <label>Tên đăng nhập</label>
                     </div>
                     <div class="user-box createBox">
-                        <input class="login-pass" required="" name="" type="password">
+                        <input class="login-pass" required="" name="password" type="password">
                         <label>Mật khẩu</label>
                     </div>
-                    <button id="login-btn" type="button">
+                    <button id="login-admin-btn" type="submit">
                         <span></span>
                         <span></span>
                         <span></span>
                         <span></span>
                         Đăng nhập
                     </button>
-                </div>
+                </form>
             </div>
         </div>
     </div>
