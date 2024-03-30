@@ -1148,13 +1148,17 @@ li.message__user.message__user:hover .message__user__name__options {
 .container___input__left select,
 .container___input__left button {
     height: 32px;
-    margin-top: 4px;
+    border-radius: 4px;
 }
 
 .container__show__head__input__box {
     display: flex;
     width: 100%;
     max-width: 204px;
+    background-color: rgb(223, 223, 223);
+    margin-right: 4px;
+    border-radius: 4px;
+
 }
 
 .show__input__id {
@@ -1166,6 +1170,10 @@ li.message__user.message__user:hover .message__user__name__options {
     width: 100%;
     max-width: 202px;
     padding: 8px;
+}
+
+.container__show__head__input__box .show__input__id {
+    margin: 0;
 }
 
 .show__input__package {
@@ -1184,12 +1192,30 @@ li.message__user.message__user:hover .message__user__name__options {
     background-color: rgb(223, 223, 223);
     font-weight: 500;
     text-align: center;
+    padding: 0 4px;
 }
 
 
 
 .exit--search {
-    /* display: none; */
+    display: none;
+    /* display: flex; */
+    align-items: center;
+    max-width: 22px;
+    padding: 2px 8px;
+    font-size: 12px;
+    background-color: rgb(223, 223, 223);
+    animation: expand 2s linear forwards;
+}
+
+@keyframes expand {
+    from {
+        width: 0;
+    }
+
+    to {
+        width: 100%;
+    }
 }
 
 .container__show__add__btn {
@@ -1236,6 +1262,7 @@ li.message__user.message__user:hover .message__user__name__options {
     padding: 9px 12px 9px 12px;
     background-color: rgb(230, 230, 230);
     border: 0px solid #333;
+    border-radius: 4px;
 }
 
 .container__show__find__btn:hover {
@@ -1248,7 +1275,7 @@ li.message__user.message__user:hover .message__user__name__options {
 /* phan bang =================================================== */
 
 .container__show__content {
-    display: flex;
+    /* display: flex; */
 }
 
 /* CSS cho màn hình máy tính */
@@ -1258,6 +1285,7 @@ li.message__user.message__user:hover .message__user__name__options {
     border-collapse: collapse;
     /* Gộp các đường viền lại */
     /* margin: 0 4px; */
+    width: 100%;
 }
 
 .table__show th,
@@ -1266,10 +1294,25 @@ li.message__user.message__user:hover .message__user__name__options {
     text-align: center;
     border: 1px solid black;
     font-size: 14px;
+}
+
+.table__show th {
     font-weight: 600;
 }
 
+.table__show td {
+    font-weight: 500;
+}
 
+.table__show td:last-child i {
+    margin: 0 6px;
+}
+
+
+.scrollable-content {
+    height: 402px;
+    overflow-y: auto;
+}
 
 /* CSS cho màn hình điện thoại */
 @media only screen and (max-width: 600px) {
@@ -1284,9 +1327,17 @@ li.message__user.message__user:hover .message__user__name__options {
 
     .container__show__head__input__box {
         width: 100%;
-        min-width: 300px;
         /* height: 32px; */
+        max-width: 202px;
     }
+
+    .container___input__left input,
+    .container___input__left select,
+    .container___input__left button {
+        height: 32px;
+        margin-top: 4px;
+    }
+
 }
 
 

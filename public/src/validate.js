@@ -138,3 +138,24 @@ export function isFormComplete() {
 
     return true;
 }
+
+export function validateAdminAddAcc(fullname, email, password){
+    if(!fullname){
+        showErrorToast("Thêm thất bại", "Vui lòng điền tên khách hàng");
+        return false;
+    }else if(!email){
+        showErrorToast("Thêm thất bại", "Vui lòng điền email");
+        return false;
+    }else if(!password){
+        showErrorToast("Thêm thất bại", "Vui lòng điền mật khẩu");
+        return false;
+    }else if(!validateEmail(email)){
+        showErrorToast("Thêm thất bại", "Địa chỉ email không hợp lệ");
+        return false;
+    }else if(!validatePassword(password)){
+        showErrorToast("Thêm thất bại", "mật khẩu ít nhất 8 ký tự, một chữ hoa, một chữ thường, một số và một ký tự đặc biệt");
+        return false;
+    }
+    return true;
+
+}

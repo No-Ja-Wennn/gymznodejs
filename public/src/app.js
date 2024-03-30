@@ -10,7 +10,7 @@ const tabs = [
   { tab: navbar.querySelector('#QLMessage'), table: document.querySelector('#groupList') },
   { tab: navbar.querySelector('#QLAccount'), table: document.querySelector('#accountTable') },
   { tab: navbar.querySelector('#QLCard'), table: document.querySelector('#cardTable') },
-  { tab: navbar.querySelector('#QLCalendar'), table: document.querySelector('#trainingScheduleTable') }
+  { tab: navbar.querySelector('#QLCalendar'), table: document.querySelector('#calendarTable') }
 ];
 
 // Hàm để hiển thị bảng tương ứng và thêm class active cho tab

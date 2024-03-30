@@ -174,8 +174,9 @@ app.post('/login-url', (req, res) => {
 
 app.post('/create-account-url', (req, res) => {
   // data of form in req.body
-  const { fullname, email, password, passwordConfirm } = req.body;
+  const { fullname, email, password } = req.body;
   // ktra ton tai
+  console.log(req.body)
   let emailLower = email.toLowerCase();
   var sqlQuery = "SELECT email FROM users";
   con.query(sqlQuery, function (err, result, fileds) {
@@ -235,7 +236,8 @@ app.post('/create-account-url', (req, res) => {
           });
         });
     } else {
-      res.json({ success: true, active: false });
+      console.log("trung email")
+      res.json({ success: false, active: false });
       res.end();
     }
   });
@@ -511,7 +513,6 @@ app.get('/get-valid-card', function (req, res) {
   if (cookie) {
     var maKH = cookie.maKH;
     con.query("SELECT cardType FROM cardData WHERE maKH = ?", [maKH], function (err, result) {
-      console.log(result[0].cardType);
       if (result[0].cardType) {
         res.json({ have: true, login: true });
       } else {
@@ -568,7 +569,6 @@ function getCookie2(cookieName, socket) {
       // Giải mã chuỗi từ URL-encoded trở lại chuỗi gốc
       const decodedCookieValue = decodeURIComponent(cookieValue);
       const cleanedCookieValue = decodedCookieValue.replace(/^j:/, '');
-      console.log(cleanedCookieValue)
       try {
         // Phân tích chuỗi thành đối tượng JSON
         const cookieObject = JSON.parse(cleanedCookieValue);
@@ -642,7 +642,6 @@ io.on('connection', (socket) => {
   });
 
   socket.on('adminMessage', (data) => {
-    console.log(data);
     const message = data.text;
     const maKH = data.id;
     console.log('Message from admin: ', message, 'Customer ID: ', maKH);
@@ -664,10 +663,68 @@ io.on('connection', (socket) => {
 
 // ====== ADMIN ====== //
 
+// const book = [
+//   {
+//     id: 1,
+//     name: 'chi pheo'
+//   },
+//   {
+//     id: 2,
+//     name: 'thi no'
+//   }
+// ]
+
+const jwt = require("jsonwebtoken");
+const dotenv = require("dotenv");
+dotenv.config();
+
+let refreshTokens = [];
+
+app.post('/post-user-token', (req, res)=>{
+  const data = req.body;
+  console.log(data);
+  const accessToken = generateAccessToken(data);
+  const refreshToken = jwt.sign(data, process.env.REFRESH_TOKEN_SECRET);
+  refreshTokens.push(refreshToken);
+  res.json({accessToken, refreshToken});
+})
+
+app.post('/refresh-token', (req, res) => {
+  const refreshToken = req.body.token;
+  if (!refreshToken) return res.sendStatus(401);
+  if (!refreshTokens.includes(refreshToken)) return res.sendStatus(403);
+  jwt.verify(refreshToken, process.env.REFRESH_TOKEN_SECRET, (err, data) => {
+    if (err) return res.sendStatus(403);
+    const accessToken = generateAccessToken({ username: data.username });
+    res.json({ accessToken });
+  });
+});
+
+// app.get("/get-book",authenToken, (req, res)=>{
+//   res.json({status: "success", data: book});
+// })
+
+function authenToken(req, res, next){
+  const authorizationHeader = req.headers['authorization'];
+  const token = authorizationHeader && authorizationHeader.split(' ')[1];
+  console.log("token: ", token)
+  if(!token) return res.sendStatus(401);
+  jwt.verify(token, process.env.ACCESS_TOKEN_SECRET, (err, data)=>{
+    if(err) return res.sendStatus(403);
+    req.user = data;
+    next();
+  });
+}
+
+function generateAccessToken(data) {
+  return jwt.sign(data, process.env.ACCESS_TOKEN_SECRET, { expiresIn: '400s' });
+}
+
+
+// GET MESSAGE
 
 app.get('/get-box-message', (req, res) => {
   getBoxMessage(con, function (data) {
-    console.log(data);
     res.json({ value: data });
   });
 });
@@ -703,8 +760,50 @@ app.post('/remove-chat', (req, res) => {
   })
 })
 
+// GET ACCOUNT
+app.get('/get-account-cus',authenToken, (req, res)=>{
+  var sql = "SELECT users.maKH, name, email, password FROM users JOIN loginData WHERE users.maKH = loginData.maKH";
+  con.query(sql, (err, result)=>{
+    if(err)  throw err;
+    console.log(result);
+      res.json({status: "success", data: result});
+  })
+
+})
+
+
+// GET CARD
+app.get('/get-card-cus',authenToken, (req, res)=>{
+  var sql = "SELECT maThe, name, dateOfBirth, phoneNumber, cardType, dateStart, dateEnd FROM users JOIN cardData WHERE users.maKH = cardData.maKH";
+  con.query(sql, (err, result)=>{
+    if(err)  throw err;
+    console.log(result);
+      res.json({status: "success", data: result});
+  })
+
+})
+
+
+// GET CALENDAR
+app.get('/get-calendar-cus',authenToken, (req, res)=>{
+  var sql = "SELECT maLT, name, date, timeStart, timeEnd, type, ptName, note FROM users JOIN cardData, calendarData WHERE users.maKH = cardData.maKH AND cardData.maThe = calendarData.maThe";
+  con.query(sql, (err, result)=>{
+    if(err)  throw err;
+    console.log(result);
+      res.json({status: "success", data: result});
+  })
+
+})
+
+
+
+
+
+
 
 /* ======= ADMIN ======= */
+
+
 
 app.get("/get-login-admin", function (req, res){
   var cookieAdmin = getCookie(req, "admin_acc");
@@ -720,7 +819,6 @@ app.post("/login-admin-url", function(req, res){
   con.query(sql, [username, password], (err, result)=>{
     if(err) throw err;
     if(result.length > 0){
-      console.log(result);
       var adminID = result[0].adminID;
       setCookie(res, "admin_acc", {username, adminID});
       res.json({success: true, username: username, adminID});
@@ -733,31 +831,36 @@ app.post("/login-admin-url", function(req, res){
 
 
 // TEST JWT
-
-import jwt from "jsonwebtoken";
-import dotenv from "dotenv";
+/*
+const jwt = require("jsonwebtoken");
+const dotenv = require("dotenv");
 dotenv.config();
-const book = [
-  {
-    id: 1,
-    name: 'chi pheo'
-  },
-  {
-    id: 2,
-    name: 'thi no'
-  }
-]
+
 
 app.post('/login-test', (req, res)=>{
-
   const data = req.body;
-  const accessToken = jwt.sign(data, process.env.ACCESS_TOKEN_SECRET, {expiresIn: '30s'});
+  console.log(data)
+  const accessToken = jwt.sign(data, process.env.ACCESS_TOKEN_SECRET, {expiresIn: '40s'});
   res.json({accessToken})
 })
 
-app.get("/get-book", (req, res)=>{
+app.get("/get-book",authenToken, (req, res)=>{
   res.json({status: "success", data: book});
 })
+
+function authenToken(req, res, next){
+  const authorizationHeader = req.headers['authorization'];
+  // beaer ['token']
+  const token = authorizationHeader.split(' ')[1];
+  if(!token) res.sendStatus(401);
+  jwt.verify(token, process.env.ACCESS_TOKEN_SECRET, (err, data)=>{
+    console.log(err, data);
+    if(err) res.sendStatus(403);
+    next();
+  })
+}
+
+*/
 
 // =======================
 const port = process.env.PORT || 8080;

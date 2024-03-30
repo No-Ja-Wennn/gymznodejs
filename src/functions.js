@@ -66,7 +66,6 @@ function getBoxMessage(con, callback) {
     var sql = "SELECT t1.maKH, t1.senderRole, t1.message, t1.seen FROM historyMessage t1 LEFT JOIN historyMessage t2 ON t1.maKH = t2.maKH AND t1.messageID < t2.messageID WHERE t2.maKH IS NULL ORDER BY t1.messageID DESC";
     con.query(sql, function (err, result) {
         if (err) throw err;
-        console.log("re: ", result);
         if (result.length > 0) {
             var promises = [];
             result.forEach(function (value) {

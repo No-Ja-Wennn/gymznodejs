@@ -311,6 +311,7 @@ a.chatbox__bottom__link-social__mess:active .messenger_ico{
 #myTextarea {
     resize: none;
     overflow: hidden; /* Ẩn thanh scrollbar */
+    font-size: 16px;
 }
 
 

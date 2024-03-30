@@ -119,14 +119,12 @@ input[type="date"]::-webkit-calendar-picker-indicator {
     display: inline-block;
     padding: 10px 20px;
     font-weight: bold;
-    color: #fff;
+    margin-top: 8px;
     font-size: 16px;
     text-decoration: none;
     text-transform: uppercase;
     overflow: hidden;
     transition: .5s;
-    /* margin-top: 40px; */
-    margin-bottom: 16px;
     letter-spacing: 3px;
     background-color: transparent;
 }
@@ -541,3 +539,217 @@ input[type="date"]::-webkit-calendar-picker-indicator {
 .loader-square:nth-of-type(7) {
     animation-delay: -10s;
 }
+
+/* form dang ky =====================================*/
+
+
+.form1 {
+    display: none;
+    justify-content: center;
+    position: fixed;
+    /* background-color: green; */
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    max-width: 500px;
+    width: 100%;
+    height: auto;
+    /* line-height: 1.4; */
+    z-index: 1;
+}
+
+.registration__traning__schedule {
+    width: 90%;
+}
+
+.registration__traning__schedule .table {
+    width: 100%;
+    z-index: 1;
+    background-color: white;
+    box-shadow: 0 0 0 1000px rgba(0, 0, 0, 0.5);
+}
+
+.registration__traning__schedule #training-schedule {
+    width: 100%;
+}
+
+.row__title__table {
+    border-bottom: 1px rgba(0, 0, 0, 0.05) solid;
+    margin-bottom: 16px;
+    padding-bottom: 10px;
+    width: 100%;
+    min-height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.row__title__table__content {
+    font-size: 20px;
+    color: #030303;
+    font-weight: 700;
+}
+
+.x__cancel {
+    width: 20px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 16px;
+    color: rgba(0, 0, 0, 0.5);
+}
+
+.x__cancel:hover {
+    color: rgba(0, 0, 0, 0.8);
+}
+
+.x__cancel:active {
+    color: rgba(0, 0, 0, 0.8);
+}
+
+.row__final {
+    min-height: 30px;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-top: 1px rgba(0, 0, 0, 0.05) solid;
+}
+
+.row__final__button {
+    min-height: 30px;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 16px;
+}
+
+.row__final__button__grid {
+    display: flex;
+    justify-content: space-between;
+    width: 60%;
+
+}
+
+button.button__form {
+    background-color: white;
+    border-radius: 8px;
+    /* border: 1px rgba(0, 0, 0, 0.1) solid; */
+    border: none;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+    padding: 4px 8px;
+    color: rgba(0, 0, 0, 1);
+}
+
+button.button__form:hover {
+    color: rgba(0, 0, 0, 0.8);
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
+    /* border: 1px rgba(0, 0, 0, 0.15) solid; */
+}
+
+button.button__form:active {
+    background-color: whitesmoke;
+}
+
+#button3 {
+    opacity: 0;
+}
+
+
+.training__schedule {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    height: auto;
+    margin-bottom: 30px;
+    /* background-color: green; */
+}
+
+.table {
+    padding: 16px 16px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.15);
+    display: flex;
+    width: 32%;
+    min-height: 280px;
+    min-width: 290px;
+}
+
+div#training-schedule {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    /* flex: 1 0 auto; */
+    /* background-color: bisque; */
+}
+
+.row {
+    display: flex;
+    align-items: flex-end;
+    min-height: 40px;
+    font-size: 14px;
+}
+
+.row__title {
+    /* margin-right: 10px; */
+    min-width: fit-content;
+    line-height: 18px;
+    font-size: 18px;
+    color: #030303;
+}
+
+.row__content {
+    color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: space-between;
+    flex: 1;
+    flex-wrap: wrap;
+    height: 100%;
+}
+
+.row__content--type {
+    justify-content: flex-start;
+}
+
+.row__content--type div {
+    display: flex;
+    align-items: center;
+    margin-right: 8px;
+}
+
+.row__content__input {
+    outline: none;
+    border: 0;
+    color: rgba(0, 0, 0, 0.5);
+    flex: 1;
+    font-size: 18px;
+    max-width: 200px;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+/* .row__title{
+
+    color: ;
+} */
+.admin-add-account {
+    background-color: #fff;
+    z-index: 30;
+    padding: 22px;
+}
+.form2{
+    /* padding: 14px; */
+    /* height: 300px; */
+    display: flex;
+    flex-direction: column;
+}
+.admin-add-account .registration__traning__schedule {
+    width: 100%;
+    color: #030303;
+}
+
+

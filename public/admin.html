@@ -354,12 +354,12 @@
                                 class="container__show__add__btn container__show__account__add__btn">
                                 Thêm tài khoản
                             </button>
-                            <i class="exit--search fa-solid fa-arrow-left"></i>
                             <div class="container___input">
                                 <div class="container___input__left">
                                     <div class="container__show__head__input__box">
                                         <input class="show__input__id" type="text" oninput="findByIDAccount(this)"
                                             placeholder="Nhập mã thẻ hoặc tên khách hàng">
+                                        <i class="exit--search fa-solid fa-arrow-left"></i>
                                         <div class="show__find__id__box"></div>
                                     </div>
                                 </div>
@@ -368,15 +368,32 @@
                                 </div>
                             </div>
                             <div class="container__show__content">
-                                <table class="table__show table__show__main">
-                                    <tr class="tr__show">
-                                        <th class="th__show" style="width: 10%">MÃ KH</th>
-                                        <th class="th__show" style="width: 20%">TÊN KHÁCH HÀNG</th>
-                                        <th class="th__show" style="width: 26%">EMAIL</th>
-                                        <th class="th__show">MẬT KHẨU</th>
-                                        <th class="th__show" style="width: 8%">THAO TÁC</th>
-                                    </tr>
-                                </table>
+                                <div class="scrollable-content">
+                                    <table class="table__show table__show__main">
+                                        <thead>
+                                            <tr class="tr__show">
+                                                <th class="th__show" style="width: 10%">MÃ KH</th>
+                                                <th class="th__show" style="width: 20%">TÊN KHÁCH HÀNG</th>
+                                                <th class="th__show" style="width: 26%">EMAIL</th>
+                                                <th class="th__show">MẬT KHẨU</th>
+                                                <th class="th__show" style="width: 8%">THAO TÁC</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+
+                                            <!-- <tr>
+                                            <td>Data 1</td>
+                                            <td>Data 2</td>
+                                            <td>Data 3</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Data 4</td>
+                                            <td>Data 5</td>
+                                            <td>Data 6</td>
+                                        </tr> -->
+                                        </tbody>
+                                    </table>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -402,7 +419,6 @@
                             onclick="addCard()">
                             Thêm thẻ thành viên
                         </button>
-                        <i class="exit--search fa-solid fa-arrow-left"></i>
                         <div class="container__show__head container__show__card__head">
                             <div class="container___input">
                                 <div class="container___input__left">
@@ -410,6 +426,7 @@
                                         class="container__show__head__input__box container__show__card__head__input__box">
                                         <input class="show__input__id" type="text" oninput="findByIDCard(this)"
                                             placeholder="Nhập mã thẻ hoặc tên khách hàng">
+                                        <i class="exit--search fa-solid fa-arrow-left"></i>
                                         <div class="show__find__id__box">
                                         </div>
                                     </div>
@@ -433,18 +450,25 @@
                         </div>
                         <!-- <i class="remove-icon fa-solid fa-trash"></i> -->
                         <div class="container__show__content container__show__card__content">
-                            <table class="table__show table__show__main">
-                                <tr class="tr__show">
-                                    <th class="th__show" style="width: 8%">MÃ THẺ</th>
-                                    <th class="th__show">TÊN KHÁCH HÀNG</th>
-                                    <th class="th__show" style="width: 15%">NGÀY SINH</th>
-                                    <th class="th__show" style="width: 15%">SĐT</th>
-                                    <th class="th__show" style="width: 8%">LOẠI THẺ</th>
-                                    <th class="th__show" style="width: 15%">NGÀY MUA</th>
-                                    <th class="th__show" style="width: 15%">NGÀY HẾT HẠN</th>
-                                    <th class="th__show" style="width: 8%">THAO TÁC</th>
-                                </tr>
-                            </table>
+                            <div class="scrollable-content">
+                                <table class="table__show table__show__main">
+                                    <thead>
+                                        <tr class="tr__show">
+                                            <th class="th__show" style="width: 8%">MÃ THẺ</th>
+                                            <th class="th__show">TÊN KHÁCH HÀNG</th>
+                                            <th class="th__show" style="width: 15%">NGÀY SINH</th>
+                                            <th class="th__show" style="width: 15%">SĐT</th>
+                                            <th class="th__show" style="width: 8%">LOẠI THẺ</th>
+                                            <th class="th__show" style="width: 15%">NGÀY MUA</th>
+                                            <th class="th__show" style="width: 15%">NGÀY HẾT HẠN</th>
+                                            <th class="th__show" style="width: 8%">THAO TÁC</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+
+                                    </tbody>
+                                </table>
+                            </div>
                         </div>
                         <!-- <div class="save__box">
 
@@ -454,7 +478,7 @@
                     </div>
 
                     <!-- CALENDAR EX -->
-                    <div id="trainingScheduleTable" class="container__show__calendar">
+                    <div id="calendarTable" class="container__show__calendar">
                         <div class="container__show__add container__show__calendar__add">
                             <div class="box-title">
                                 <div class="nav-open">
@@ -474,13 +498,13 @@
                             onclick="addCalendar()">
                             Thêm lịch tập
                         </button>
-                        <i class="exit--search fa-solid fa-arrow-left"></i>
                         <div class="container___input">
                             <div class="container___input__left">
                                 <div
                                     class="container__show__head__input__box container__show__calendar__head__input__box">
                                     <input class="show__input__id" type="text"
                                         placeholder="Nhập mã thẻ hoặc tên khách hàng">
+                                    <i class="exit--search fa-solid fa-arrow-left"></i>
                                     <div class="show__find__id__box">
                                     </div>
                                 </div>
@@ -499,19 +523,25 @@
                         </div>
                         <!-- <i class="remove-icon fa-solid fa-trash"></i> -->
                         <div class="container__show__content container__show__calendar__content">
-                            <table class="table__show table__show__main">
-                                <tr class="tr__show">
-                                    <th class="th__show" style="width: 10%">MÃ LỊCH TẬP</th>
-                                    <th class="th__show" style="width: 15%">TÊN KHÁCH HÀNG</th>
-                                    <th class="th__show" style="width: 15%">NGÀY TẬP</th>
-                                    <th class="th__show" style="width: 8%">TG BẮT ĐẦU</th>
-                                    <th class="th__show" style="width: 8%">TG KẾT THÚC</th>
-                                    <th class="th__show" style="width: 6%">BÀI TẬP</th>
-                                    <th class="th__show" style="width: 15%">HLV</th>
-                                    <th class="th__show" style="width: 15%">GHI CHÚ</th>
-                                    <th class="th__show" style="width: 8%">THAO TÁC</th>
-                                </tr>
-                            </table>
+                            <div class="scrollable-content">
+                                <table class="table__show table__show__main">
+                                    <thead>
+                                        <tr class="tr__show">
+                                            <th class="th__show" style="width: 10%">MÃ LỊCH TẬP</th>
+                                            <th class="th__show" style="width: 15%">TÊN KHÁCH HÀNG</th>
+                                            <th class="th__show" style="width: 15%">NGÀY TẬP</th>
+                                            <th class="th__show" style="width: 8%">TG BẮT ĐẦU</th>
+                                            <th class="th__show" style="width: 8%">TG KẾT THÚC</th>
+                                            <th class="th__show" style="width: 6%">BÀI TẬP</th>
+                                            <th class="th__show" style="width: 15%">HLV</th>
+                                            <th class="th__show" style="width: 15%">GHI CHÚ</th>
+                                            <th class="th__show" style="width: 8%">THAO TÁC</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                    </tbody>
+                                </table>
+                            </div>
                         </div>
                         <!-- <div class="save__box" onclick="saveCalendar()">
                             <button class="save-btn">Lưu</button>
@@ -556,6 +586,49 @@
                         <span></span>
                         Đăng nhập
                     </button>
+                </form>
+            </div>
+            <div class="modal__body__box admin-add-account">
+                <form id="form-add-account" class="form2">
+                    <div class="row__title__table">
+                        <div class="row__title__table__content">
+                            Thêm tài khoản
+                        </div>
+                        <div class="x__cancel">
+                            <i class="fa-regular fa-circle-xmark"></i>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="row__title">
+                            Tên khách hàng:
+                        </div>
+                        <div class="row__content">
+                            <input class="row__content__input" type="text" placeholder="....." name="fullname">
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="row__title">
+                            Email:
+                        </div>
+                        <div class="row__content">
+                            <input class="row__content__input" type="text" placeholder="....." name="email">
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="row__title">
+                            Mật khẩu:
+                        </div>
+                        <div class="row__content">
+                            <input class="row__content__input" type="text" placeholder="....." name="password">
+                        </div>
+                    </div>
+                    <div class="row__final">
+                        <div class="row__final__button">
+                            <button class="button__form" type="submit">
+                                Thêm
+                            </button>
+                        </div>
+                    </div>
                 </form>
             </div>
         </div>
