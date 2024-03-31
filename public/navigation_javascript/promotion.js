@@ -50,19 +50,6 @@ formInput.addEventListener("click", (e) => {
 
 
 
-const dropDown = document.querySelector(".header__inner__navigation__sevice")
-const menuroiE = document.querySelector(".menuroi");
-
-const noidungE = document.querySelector(".noidung");
-
-dropDown.addEventListener("click", () => {
-    if (noidungE.style.display == "block") {
-        noidungE.style.display = "none";
-    } else {
-        noidungE.style.display = "block";
-    }
-})
-
 
 // 45 ngày free ship đỏ => 1
 // bình nước => 2
