@@ -32,15 +32,16 @@
     background-size: cover;
     background-repeat: no-repeat;
     background-position: center;
-    height: calc(100vh - 68px) !important;
-    margin-top: 68px !important;
+    height: calc(100vh) !important;
+    height: 100svh;
+    margin-top: unset;
     display: flex;
 }
 
 .container__box {
     width: 100%;
-    height: calc(100vh - 68px);
-    height: calc(100svh - 68px);
+    height: 100vh;
+    height: 100svh;
     display: flex;
     background-color: rgb(255, 255, 255);
     position: relative;
@@ -350,8 +351,8 @@
 .container__show {
     /* flex: 12; */
     width: calc(100vw);
-    height: calc(100vh - 68px);
-    height: calc(100svh - 68px);
+    height: 100vh;
+    height: 100svh;
     color: black;
 
 }
@@ -481,8 +482,8 @@
 }
 
 .msgr {
-    height: calc(100vh - 68px);
-    height: calc(100svh - 68px);
+    height: 100vh;
+    height: 100svh;
     width: 100vw;
     display: flex;
 }
