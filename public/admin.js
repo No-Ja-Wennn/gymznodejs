@@ -11,7 +11,7 @@ import {
     removeAllInputValue
 } from "./src/function.js";
 import { showErrorToast, showSuccessToast } from "./src/toast.js";
-import { validateAdminAddAcc, validateAdminAddCalendar, validateAdminAddCard, validateAdminEditAcc, validateCreateAccount } from "./src/validate.js";
+import { validateAdminAddAcc, validateAdminAddCalendar, validateAdminAddCard, validateAdminEditAcc, validateAdminEditCard, validateCreateAccount } from "./src/validate.js";
 
 
 /*====== LOGIN =====*/
@@ -1005,20 +1005,19 @@ function f_editCardBTN() {
     a_box = Array.from(a_box);
     a_box.pop();
     // a_box.shift();
-
+    console.log(a_box)
     var a_span = editCardBox.querySelectorAll("span.row__content__input");
-    var firstInput = editCardBox.querySelector("input.row__content__input");
-    firstInput.value = a_box[0].innerText
-    console.log(firstInput)
+    var a_Input = editCardBox.querySelectorAll("input.row__content__input");
+    a_Input = Array.from(a_Input);
+    a_Input[0].value = a_box[0].innerText
+    a_Input[1].value = a_box[1].innerText
     a_span = Array.from(a_span);
-    console.log(a_span)
 
     a_box.map((value, index) => {
         console.log(a_span[index]);
         a_span[index].innerText = a_box[index].innerText;
     })
 
-    console.log(a_span)
     displayNoneAll();
     activeNecessaryForm();
     editCardBox.style.display = "block";
@@ -1029,28 +1028,27 @@ exitEditCard.addEventListener("click", function () {
 });
 
 
-// $('#form-edit-account').submit(function (e) {
-//     e.preventDefault();
-//     var valueInput = serializeObject(this);
+$('#form-edit-card').submit(function (e) {
+    e.preventDefault();
+    var valueInput = serializeObject(this);
 
-//     if(validateAdminEditAcc(valueInput.name, valueInput.email, valueInput.password)){
-//         $.ajax({
-//             url: "/edit-account-url",
-//             type: "POST",
-//             data: $(this).serialize(),
-//             success: function (data) {
-//                 if (data.success) {
-//                     showSuccessToast("Sửa tài khoản thành công");
-//                     displayNoneAll();
-//                     removeAllInputValue();
-//                 } else {
-//                     showErrorToast("Lỗi");
-//                 }
-//             },
-//             error: function () {
+    if(validateAdminEditCard(valueInput)){
+        // $.ajax({
+        //     url: "/edit-account-url",
+        //     type: "POST",
+        //     data: $(this).serialize(),
+        //     success: function (data) {
+        //         if (data.success) {
+        //             showSuccessToast("Sửa tài khoản thành công");
+        //             displayNoneAll();
+        //             removeAllInputValue();
+        //         } else {
+        //             showErrorToast("Lỗi");
+        //         }
+        //     },
+        //     error: function () {
     
-//             }
-//         })
-//     }
-
-// })
+        //     }
+        // })
+    }
+})

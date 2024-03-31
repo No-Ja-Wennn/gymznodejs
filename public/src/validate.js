@@ -199,6 +199,16 @@ export function validateAdminAddCard(fullname, dateOfBirth, phoneNumber, typeCar
 }
 
 
+export function validateAdminEditCard(value){
+    var phoneNumber = value.phoneNumber;
+    if(phoneNumber != "" && !validateEmail(phoneNumber)){
+        showErrorToast("Sửa thất bại", "Số điện thoại không hợp lệ");
+        return false;
+    }
+    return true;
+
+}
+
 export function validateAdminAddCalendar(maThe, name, date, time, type, ptName, note){
     if(!name){
         showErrorToast("Thiếu thông tin", "Vui lòng nhập tên khách hàng");
