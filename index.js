@@ -153,6 +153,21 @@ function insertIntoTable(tableName, data) {
   });
 }
 
+function updateTable(tableName, data, condition) {
+  // Tạo danh sách các cập nhật từ đối tượng data
+  let updates = Object.keys(data).map(key => `${key} = '${data[key]}'`).join(', ');
+
+  // Tạo câu lệnh SQL
+  let sql = `UPDATE ${tableName} SET ${updates} WHERE ${condition}`;
+
+  // Thực thi câu lệnh SQL
+  con.query(sql, function (err, result) {
+    if (err) throw err;
+    console.log("Record updated successfully");
+  });
+}
+
+
 app.post('/login-url', (req, res) => {
   const { email, password } = req.body;
   const lowerCaseEmail = email.toLowerCase();
@@ -1003,24 +1018,24 @@ app.post('/create-calendar-admin-url', (req, res) => {
             //     } else {
             //       dataAll.maThe = generateCustomerCode(result[0].maThe);
             //     }
-                con.query("SELECT maLT FROM calendarData ORDER BY maLT DESC LIMIT 1",
-                  function (err, result, fields) {
-                    if (err) throw err;
-                    var maLT;
-                    if (!result[0]) {
-                      dataAll.maLT = 'LT0001';
-                    } else {
-                      dataAll.maLT = generateCustomerCode(result[0].maLT);
-                    }
+            con.query("SELECT maLT FROM calendarData ORDER BY maLT DESC LIMIT 1",
+              function (err, result, fields) {
+                if (err) throw err;
+                var maLT;
+                if (!result[0]) {
+                  dataAll.maLT = 'LT0001';
+                } else {
+                  dataAll.maLT = generateCustomerCode(result[0].maLT);
+                }
 
-                    dataAll.timeStart = time;
-                    dataAll.timeEnd = time;
+                dataAll.timeStart = time;
+                dataAll.timeEnd = time;
 
-                    console.log(dataAll)
-                    insertIntoAllTable(dataAll, "users login card");
-                    res.json({ success: true, message: "" });
-                  }
-                )
+                console.log(dataAll)
+                insertIntoAllTable(dataAll, "users login card");
+                res.json({ success: true, message: "" });
+              }
+            )
             //   }
             // )
           } else {
@@ -1072,8 +1087,25 @@ app.post('/create-calendar-admin-url', (req, res) => {
 })
 
 
+// EDIT ACCOUNT ADMIN
+app.post("/edit-account-url", function (req, res) {
+  const { maKH, name, email, password } = req.body;
+  const userData = {maKH, name, email};
+  const loginData = {maKH, password};
+  deleteSpacePro(userData)
+  deleteSpacePro(loginData)
+  updateTable('users', userData, `maKH = '${maKH}'`);
+  updateTable('loginData', loginData, `maKH = '${maKH}'`);
+  res.json({success: true})
+})
 
-
+function deleteSpacePro(data){
+  for (let field in data) {
+    if (data[field] === '') {
+        delete data[field];
+    }
+}
+}
 
 /* ======= ADMIN ======= */
 
@@ -1135,6 +1167,8 @@ function authenToken(req, res, next){
 }
  
 */
+
+
 
 
 

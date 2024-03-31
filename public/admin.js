@@ -7,10 +7,11 @@ import {
     displayRightMessage,
     innerBoxMsg,
     maKHActive,
-    removeAccents
+    removeAccents,
+    removeAllInputValue
 } from "./src/function.js";
 import { showErrorToast, showSuccessToast } from "./src/toast.js";
-import { validateAdminAddAcc, validateAdminAddCalendar, validateAdminAddCard } from "./src/validate.js";
+import { validateAdminAddAcc, validateAdminAddCalendar, validateAdminAddCard, validateAdminEditAcc, validateCreateAccount } from "./src/validate.js";
 
 
 /*====== LOGIN =====*/
@@ -517,13 +518,15 @@ function insertToTable(tableName, dataObject) {
 
     if (tableName == "account")
         i1.addEventListener("click", f_editAccountBTN);
-
+    else if(tableName == "card")
+        i1.addEventListener("click", f_editCardBTN);
+    
     var i2 = document.createElement('i');
     i2.className = 'fa-solid fa-trash';
-    if (tableName == "account")
+    // if (tableName == "account")
         // i2.addEventListener("click", f_editAccountBTN);
 
-    // Thêm hai thẻ i vào cell
+        // Thêm hai thẻ i vào cell
     cell.appendChild(i1);
     cell.appendChild(i2);
 }
@@ -916,38 +919,138 @@ exitSearchCalendarBTN.addEventListener("click", function () {
 // 
 const editAccBox = modalBox.querySelector(".admin-edit-account")
 const modalBodyBox = modalBox.querySelector(".modal__body")
-// setTimeout(function(){
-//     modalBodyBox.style.maxWidth = "none"
-//     modalBox.style.display = "flex";
-//     overlayBox.style.display = "block";
 
-//     editAccBox.style.display = "block";
-// }, 1000);
-
-
-const exitEditAcc = editAccBox.querySelector(".x__cancel");
 // ==== EDIT ACCOUNT ====== ///
+const exitEditAcc = editAccBox.querySelector(".x__cancel");
 function f_editAccountBTN() {
     var thisElement = this;
     var row = thisElement.closest("tr");
     var a_box = row.querySelectorAll("td");
     a_box = Array.from(a_box);
     a_box.pop();
-    a_box.shift();
-    
-    var a_span = editAccBox.querySelectorAll("span.row__content__input");
-    a_span = Array.from(a_span);
+    // a_box.shift();
 
-    a_box.map((value, index)=>{
+    var a_span = editAccBox.querySelectorAll("span.row__content__input");
+    var firstInput = editAccBox.querySelector("input.row__content__input");
+    firstInput.value = a_box[0].innerText
+    console.log(firstInput)
+    a_span = Array.from(a_span);
+    console.log(a_span)
+
+    a_box.map((value, index) => {
         // console.log(a_span[index]);
         // console.log(value)
-        a_span[index].innerText = a_box[index].innerText; 
+        console.log(a_span[index]);
+        a_span[index].innerText = a_box[index].innerText;
     })
+
     console.log(a_span)
     displayNoneAll();
     activeNecessaryForm();
     editAccBox.style.display = "block";
 }
-exitEditAcc.addEventListener("click", function(){
+exitEditAcc.addEventListener("click", function () {
     displayNoneAll();
+});
+
+
+$('#form-edit-account').submit(function (e) {
+    e.preventDefault();
+    var valueInput = serializeObject(this);
+
+    if(validateAdminEditAcc(valueInput.name, valueInput.email, valueInput.password)){
+        $.ajax({
+            url: "/edit-account-url",
+            type: "POST",
+            data: $(this).serialize(),
+            success: function (data) {
+                if (data.success) {
+                    showSuccessToast("Sửa tài khoản thành công");
+                    displayNoneAll();
+                    removeAllInputValue();
+                } else {
+                    showErrorToast("Lỗi");
+                }
+            },
+            error: function () {
+    
+            }
+        })
+    }
+
 })
+
+function serializeObject(element) {
+    let serialized = $(element).serialize().split("&");
+    let obj = {};
+
+    serialized.forEach(function (item) {
+        let splitItem = item.split("=");
+        obj[decodeURIComponent(splitItem[0])] = decodeURIComponent(splitItem[1]);
+    });
+
+    return obj;
+}
+
+
+// 
+const editCardBox = modalBox.querySelector(".admin-edit-card")
+
+// ==== EDIT ACCOUNT ====== ///
+const exitEditCard = editCardBox.querySelector(".x__cancel");
+function f_editCardBTN() {
+    var thisElement = this;
+    var row = thisElement.closest("tr");
+    var a_box = row.querySelectorAll("td");
+    a_box = Array.from(a_box);
+    a_box.pop();
+    // a_box.shift();
+
+    var a_span = editCardBox.querySelectorAll("span.row__content__input");
+    var firstInput = editCardBox.querySelector("input.row__content__input");
+    firstInput.value = a_box[0].innerText
+    console.log(firstInput)
+    a_span = Array.from(a_span);
+    console.log(a_span)
+
+    a_box.map((value, index) => {
+        console.log(a_span[index]);
+        a_span[index].innerText = a_box[index].innerText;
+    })
+
+    console.log(a_span)
+    displayNoneAll();
+    activeNecessaryForm();
+    editCardBox.style.display = "block";
+}
+
+exitEditCard.addEventListener("click", function () {
+    displayNoneAll();
+});
+
+
+// $('#form-edit-account').submit(function (e) {
+//     e.preventDefault();
+//     var valueInput = serializeObject(this);
+
+//     if(validateAdminEditAcc(valueInput.name, valueInput.email, valueInput.password)){
+//         $.ajax({
+//             url: "/edit-account-url",
+//             type: "POST",
+//             data: $(this).serialize(),
+//             success: function (data) {
+//                 if (data.success) {
+//                     showSuccessToast("Sửa tài khoản thành công");
+//                     displayNoneAll();
+//                     removeAllInputValue();
+//                 } else {
+//                     showErrorToast("Lỗi");
+//                 }
+//             },
+//             error: function () {
+    
+//             }
+//         })
+//     }
+
+// })

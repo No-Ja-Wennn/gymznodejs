@@ -159,6 +159,18 @@ export function validateAdminAddAcc(fullname, email, password){
     return true;
 
 }
+export function validateAdminEditAcc(fullname, email, password){
+    console.log(email)
+    if(email != "" && !validateEmail(email)){
+        showErrorToast("Sửa thất bại", "Địa chỉ email không hợp lệ");
+        return false;
+    }else if(password != "" && !validatePassword(password)){
+        showErrorToast("Sửa thất bại", "mật khẩu ít nhất 8 ký tự, một chữ hoa, một chữ thường, một số và một ký tự đặc biệt");
+        return false;
+    }
+    return true;
+
+}
 
 export function validateAdminAddCard(fullname, dateOfBirth, phoneNumber, typeCard, buyDate){
     if(!fullname){
