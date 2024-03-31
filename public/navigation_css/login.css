@@ -45,6 +45,7 @@ input[type="date"]::-webkit-calendar-picker-indicator {
     top: 50%;
     left: 50%; */
     width: 100%;
+    /* max-width: 600px; */
     padding: 40px;
     /* transform: translate(-50%, -55%); */
     background: rgba(0, 0, 0, .9);
@@ -55,6 +56,11 @@ input[type="date"]::-webkit-calendar-picker-indicator {
 
 .modal__body__box--admin{
     background-color: #fff;
+}
+
+
+.admin-edit-account{
+    width: 600px;
 }
 
 .register-cart {
@@ -698,6 +704,14 @@ div#training-schedule {
     font-size: 14px;
 }
 
+.row__note{
+    display: flex;
+    justify-content: center;
+    color: chocolate;
+    font-size: 14px;
+    margin: 10px 0 0;
+}
+
 .row__title {
     /* margin-right: 10px; */
     min-width: fit-content;
@@ -737,6 +751,31 @@ div#training-schedule {
 }
 
 
+.row__edit{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    margin-top: 12px;
+}
+
+.row__content__edit{
+    display: flex;
+    align-items: center;
+    /* flex: 1; */
+    width: 100%;
+    font-size: 16px;
+}
+
+.row__content__edit input,
+.row__content__edit span{
+   width: 50%;
+   max-width: none;
+}
+
+.row__content__edit i{
+    padding: 0 8px;
+}
+
 input[type="date"]::-webkit-calendar-picker-indicator {
     filter: invert(0);
   }
@@ -762,3 +801,8 @@ input[type="date"]::-webkit-calendar-picker-indicator {
 }
 
 
+
+
+.modal__body--admin{
+    max-width: 600px;
+}

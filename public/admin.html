@@ -568,7 +568,7 @@
         <div class="modal-overlay">
 
         </div>
-        <div class="modal__body">
+        <div class="modal__body modal__body--admin">
             <div class="modal__body__box login-box">
                 <p>ADMIN LOGIN</p>
                 <form id="login-admin-form" action="/login-admin-url" method="POST">
@@ -774,6 +774,59 @@
                         <div class="row__final__button">
                             <button class="button__form" type="submit">
                                 Thêm
+                            </button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            
+            <div class="modal__body__box modal__body__box--admin admin-edit-account">
+                <form id="form-edit-account" class="form2">
+                    <div class="row__title__table">
+                        <div class="row__title__table__content">
+                            Sửa thông tin tài khoản
+                        </div>
+                        <div class="x__cancel">
+                            <i class="fa-regular fa-circle-xmark"></i>
+                        </div>
+                    </div>
+                    <div class="row row__edit">
+                        <div class="row__title">
+                            Tên khách hàng:
+                        </div>
+                        <div class="row__content row__content__edit">
+                            <span class="row__content__input">Ngô Gia Quyến</span>
+                            <i class="fa-solid fa-arrow-right"></i>
+                            <input class="row__content__input" type="text" placeholder="....." name="fullname">
+                        </div>
+                    </div>
+
+                    <div class="row row__edit">
+                        <div class="row__title">
+                            Email:
+                        </div>
+                        <div class="row__content row__content__edit">
+                            <span class="row__content__input">quyen@gmail.com</span>
+                            <i class="fa-solid fa-arrow-right"></i>
+                            <input class="row__content__input" type="text" placeholder="....." name="email">
+                        </div>
+                    </div>
+
+                    <div class="row row__edit">
+                        <div class="row__title">
+                            Mật khẩu:
+                        </div>
+                        <div class="row__content row__content__edit">
+                            <span class="row__content__input">Abc@123</span>
+                            <i class="fa-solid fa-arrow-right"></i>
+                            <input class="row__content__input" type="text" placeholder="....." name="password">
+                        </div>
+                    </div>
+                    <span class="row__note">Bỏ trống nếu không thay đổi</span>
+                    <div class="row__final">
+                        <div class="row__final__button">
+                            <button class="button__form" type="submit">
+                                Sửa thông tin
                             </button>
                         </div>
                     </div>

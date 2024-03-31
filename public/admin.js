@@ -511,7 +511,21 @@ function insertToTable(tableName, dataObject) {
 
     // Thêm nút xóa vào ô cuối cùng
     var cell = row.insertCell(-1);
-    cell.innerHTML = '<i class="fa-solid fa-pen-to-square"></i> <i class="fa-solid fa-trash"></i>';
+
+    var i1 = document.createElement('i');
+    i1.className = 'fa-solid fa-pen-to-square';
+
+    if (tableName == "account")
+        i1.addEventListener("click", f_editAccountBTN);
+
+    var i2 = document.createElement('i');
+    i2.className = 'fa-solid fa-trash';
+    if (tableName == "account")
+        // i2.addEventListener("click", f_editAccountBTN);
+
+    // Thêm hai thẻ i vào cell
+    cell.appendChild(i1);
+    cell.appendChild(i2);
 }
 
 
@@ -863,7 +877,7 @@ findCalendarBTN.addEventListener("click", function () {
         if (valueID != '' && (!valueID.includes(valueIDInput) && !nameValue.includes(valueIDInput))) match = false;
         if (valuePT != '' && !ptValue.includes(valuePT)) match = false;
         if (valuetype != '' && valuetype != typeValue) match = false;
-        
+
         if (match) {
             console.log(ptValue, valuePT)
             parentNodeE.style.display = "table-row";
@@ -899,3 +913,41 @@ exitSearchCalendarBTN.addEventListener("click", function () {
 
 
 
+// 
+const editAccBox = modalBox.querySelector(".admin-edit-account")
+const modalBodyBox = modalBox.querySelector(".modal__body")
+// setTimeout(function(){
+//     modalBodyBox.style.maxWidth = "none"
+//     modalBox.style.display = "flex";
+//     overlayBox.style.display = "block";
+
+//     editAccBox.style.display = "block";
+// }, 1000);
+
+
+const exitEditAcc = editAccBox.querySelector(".x__cancel");
+// ==== EDIT ACCOUNT ====== ///
+function f_editAccountBTN() {
+    var thisElement = this;
+    var row = thisElement.closest("tr");
+    var a_box = row.querySelectorAll("td");
+    a_box = Array.from(a_box);
+    a_box.pop();
+    a_box.shift();
+    
+    var a_span = editAccBox.querySelectorAll("span.row__content__input");
+    a_span = Array.from(a_span);
+
+    a_box.map((value, index)=>{
+        // console.log(a_span[index]);
+        // console.log(value)
+        a_span[index].innerText = a_box[index].innerText; 
+    })
+    console.log(a_span)
+    displayNoneAll();
+    activeNecessaryForm();
+    editAccBox.style.display = "block";
+}
+exitEditAcc.addEventListener("click", function(){
+    displayNoneAll();
+})
