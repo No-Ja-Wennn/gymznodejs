@@ -699,8 +699,10 @@ div#training-schedule {
 
 .row {
     display: flex;
-    align-items: flex-end;
+    flex-direction: column;
+    align-items: flex-start;
     min-height: 40px;
+    width: 100%;
     font-size: 14px;
 }
 
@@ -715,9 +717,11 @@ div#training-schedule {
 .row__title {
     /* margin-right: 10px; */
     min-width: fit-content;
+    width: 100%;
     line-height: 18px;
     font-size: 18px;
     color: #030303;
+    margin: 10px;
 }
 
 .row__content {
@@ -727,6 +731,10 @@ div#training-schedule {
     flex: 1;
     flex-wrap: wrap;
     height: 100%;
+    width: 100%;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+    border-radius: 8px;
+    overflow: hidden;
 }
 
 .row__content--type {
@@ -745,9 +753,10 @@ div#training-schedule {
     color: rgba(0, 0, 0, 0.5);
     flex: 1;
     font-size: 18px;
-    max-width: 200px;
+    /* max-width: 200px; */
     width: 100%;
     box-sizing: border-box;
+    padding: 10px 10px 8px 10px;
 }
 
 
