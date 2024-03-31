@@ -767,6 +767,12 @@ div#training-schedule {
     margin-top: 12px;
 }
 
+.row__remove{
+    display: flex;
+    margin-top: 12px;
+    flex-direction: row;
+}
+
 .row__content__edit{
     display: flex;
     align-items: center;

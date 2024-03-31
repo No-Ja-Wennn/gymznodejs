@@ -101,19 +101,19 @@ function createTable() {
     },
     {
       name: 'loginData',
-      columns: 'maKH VARCHAR(10) PRIMARY KEY, password VARCHAR(255), FOREIGN KEY (maKH) REFERENCES users(maKH)'
+      columns: 'maKH VARCHAR(10) PRIMARY KEY, password VARCHAR(255), FOREIGN KEY (maKH) REFERENCES users(maKH)  ON DELETE CASCADE'
     },
     {
       name: 'historyMessage',
-      columns: 'messageID INT AUTO_INCREMENT PRIMARY KEY, maKH VARCHAR(10), senderRole ENUM("admin", "customer"), seen BOOLEAN DEFAULT false, message TEXT, FOREIGN KEY (maKH) REFERENCES users(maKH)'
+      columns: 'messageID INT AUTO_INCREMENT PRIMARY KEY, maKH VARCHAR(10), senderRole ENUM("admin", "customer"), seen BOOLEAN DEFAULT false, message TEXT, FOREIGN KEY (maKH) REFERENCES users(maKH) ON DELETE CASCADE'
     },
     {
       name: 'cardData',
-      columns: 'maThe VARCHAR(10) PRIMARY KEY, maKH VARCHAR(10), cardType VARCHAR(255), dateStart DATE, dateEnd DATE, FOREIGN KEY (maKH) REFERENCES users(maKH)'
+      columns: 'maThe VARCHAR(10) PRIMARY KEY, maKH VARCHAR(10), cardType VARCHAR(255), dateStart DATE, dateEnd DATE, FOREIGN KEY (maKH) REFERENCES users(maKH)  ON DELETE CASCADE'
     },
     {
       name: 'calendarData',
-      columns: 'maLT VARCHAR(10) PRIMARY KEY, maThe VARCHAR(10), date DATE, timeStart TIME, timeEnd TIME, type VARCHAR(255), ptName VARCHAR(255), note VARCHAR(255), FOREIGN KEY (maThe) REFERENCES cardData(maThe)'
+      columns: 'maLT VARCHAR(10) PRIMARY KEY, maThe VARCHAR(10), date DATE, timeStart TIME, timeEnd TIME, type VARCHAR(255), ptName VARCHAR(255), note VARCHAR(255), FOREIGN KEY (maThe) REFERENCES cardData(maThe)  ON DELETE CASCADE'
     },
     {
       name: 'AdminAccounts',
@@ -1141,13 +1141,43 @@ app.post("/edit-calendar-url", function (req, res) {
     type,
     ptName,
     note } = req.body;
-    
+
   console.log(date)
   const caData = req.body;
   deleteSpacePro(caData)
   updateTable('calendarData', caData, `maLT = '${maLT}'`);
   res.json({ success: true })
 })
+
+app.post('/admin-remove-acc', (req, res) => {
+  const { maKH } = req.body;
+  console.log(maKH);
+  removeRowTable("users", `maKH = '${maKH}'`);
+  res.json({success: true});
+})
+
+app.post('/admin-remove-card', (req, res) => {
+  const { maThe } = req.body;
+  console.log(maThe);
+  removeRowTable("cardData", `maThe = '${maThe}'`);
+  res.json({success: true});
+})
+
+app.post('/admin-remove-calendar', (req, res) => {
+  const { maLT } = req.body;
+  console.log(maLT);
+  removeRowTable("calendarData", `maLT = '${maLT}'`);
+  res.json({success: true});
+})
+
+
+function removeRowTable(tableName, condition) {
+  let sql = 'DELETE FROM ' + tableName + ' WHERE ' + condition;
+  con.query(sql, function (error, results, fields) {
+    if (error) throw error;
+    console.log('Deleted ' + results.affectedRows + ' row(s)');
+  });
+} 
 
 /* ======= ADMIN ======= */
 

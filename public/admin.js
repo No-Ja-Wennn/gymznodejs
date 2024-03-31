@@ -525,8 +525,12 @@ function insertToTable(tableName, dataObject) {
 
     var i2 = document.createElement('i');
     i2.className = 'fa-solid fa-trash';
-    // if (tableName == "account")
-    // i2.addEventListener("click", f_editAccountBTN);
+    if (tableName == "account")
+        i2.addEventListener("click", f_removeAccountBTN);
+    else if (tableName == "card")
+        i2.addEventListener("click", f_removeCardBTN);
+    else if (tableName == "calendar")
+        i2.addEventListener("click", f_removeCalendarBTN);
 
     // Thêm hai thẻ i vào cell
     cell.appendChild(i1);
@@ -693,7 +697,7 @@ exitSearchAccBTN.addEventListener("click", function () {
 
 
 
-// ==== ASDD CARD ===== //
+// ==== ADD CARD ===== //
 
 const addCardBox = modalBox.querySelector(".admin-add-card");
 
@@ -728,6 +732,7 @@ $('#form-add-card').submit(function (e) {
                 console.log(data);
                 if (data.success) {
                     showSuccessToast("Thêm thành công");
+                    displayNoneAll();
                 } else {
                     showErrorToast("Thêm thất bại", data.message);
                 }
@@ -842,6 +847,7 @@ $('#form-add-calendar').submit(function (e) {
                 console.log(data);
                 if (data.success) {
                     showSuccessToast("Thêm thành công");
+                    displayNoneAll();
                 } else {
                     showErrorToast("Thêm thất bại", data.message);
                 }
@@ -1097,22 +1103,166 @@ $('#form-edit-calendar').submit(function (e) {
     var valueInput = serializeObject(this);
 
     // if (validateAdminEditCalendar(valueInput)) {
+    $.ajax({
+        url: "/edit-calendar-url",
+        type: "POST",
+        data: $(this).serialize(),
+        success: function (data) {
+            if (data.success) {
+                showSuccessToast("Sửa thông tin thẻ thành công");
+                displayNoneAll();
+                removeAllInputValue();
+            } else {
+                showErrorToast("Lỗi");
+            }
+        },
+        error: function () {
+
+        }
+    })
+    // }
+})
+
+
+
+
+// remove account
+const removeAccBox = modalBox.querySelector(".admin-remove-account")
+function f_removeAccountBTN() {
+    var element = this;
+    var row = element.closest("tr");
+    var idValue = row.querySelector(".show_id").innerText;
+    var nameValue = row.querySelector(".show_name").innerText;
+    var contentE = removeAccBox.querySelectorAll(".row__title2");
+    contentE = Array.from(contentE);
+    contentE[0].innerText = idValue;
+    contentE[1].innerText = nameValue;
+    displayNoneAll();
+    activeNecessaryForm();
+    removeAccBox.style.display = "block";
+}
+
+const submitRemoveAcc = removeAccBox.querySelector(".button__form");
+submitRemoveAcc.addEventListener("click", function () {
+    var contentE = removeAccBox.querySelectorAll(".row__title2");
+    contentE = Array.from(contentE);
+    var maKH = contentE[0].innerText;
+    console.log("Makh,", maKH)
+    if (maKH) {
         $.ajax({
-            url: "/edit-calendar-url",
-            type: "POST",
-            data: $(this).serialize(),
+            url: '/admin-remove-acc',
+            type: 'POST',
+            data: { maKH },
             success: function (data) {
                 if (data.success) {
-                    showSuccessToast("Sửa thông tin thẻ thành công");
+                    showSuccessToast("Xóa thành công");
                     displayNoneAll();
-                    removeAllInputValue();
                 } else {
                     showErrorToast("Lỗi");
                 }
             },
-            error: function () {
+            error: function (err) {
 
             }
         })
-    // }
-})
+    }
+});
+
+const exitRemoveAcc = removeAccBox.querySelector(".x__cancel")
+exitRemoveAcc.addEventListener("click", displayNoneAll)
+
+
+
+
+
+// remove card
+const removeCardBox = modalBox.querySelector(".admin-remove-card")
+function f_removeCardBTN() {
+    var element = this;
+    var row = element.closest("tr");
+    var idValue = row.querySelector(".show_id").innerText;
+    var nameValue = row.querySelector(".show_name").innerText;
+    var contentE = removeCardBox.querySelectorAll(".row__title2");
+    contentE = Array.from(contentE);
+    contentE[0].innerText = idValue;
+    contentE[1].innerText = nameValue;
+    displayNoneAll();
+    activeNecessaryForm();
+    removeCardBox.style.display = "block";
+}
+
+const submitRemoveCard = removeCardBox.querySelector(".button__form");
+submitRemoveCard.addEventListener("click", function () {
+    var contentE = removeCardBox.querySelectorAll(".row__title2");
+    contentE = Array.from(contentE);
+    var maThe = contentE[0].innerText;
+    console.log("Makh,", maThe)
+    if (maThe) {
+        $.ajax({
+            url: '/admin-remove-card',
+            type: 'POST',
+            data: { maThe },
+            success: function (data) {
+                if (data.success) {
+                    showSuccessToast("Xóa thành công");
+                    displayNoneAll();
+                } else {
+                    showErrorToast("Lỗi");
+                }
+            },
+            error: function (err) {
+
+            }
+        })
+    }
+});
+
+const exitRemoveCard = removeCardBox.querySelector(".x__cancel")
+exitRemoveCard.addEventListener("click", displayNoneAll)
+
+
+
+// remove card
+const removeCalendarBox = modalBox.querySelector(".admin-remove-calendar")
+function f_removeCalendarBTN() {
+    var element = this;
+    var row = element.closest("tr");
+    var idValue = row.querySelector(".show_id").innerText;
+    var nameValue = row.querySelector(".show_name").innerText;
+    var contentE = removeCalendarBox.querySelectorAll(".row__title2");
+    contentE = Array.from(contentE);
+    contentE[0].innerText = idValue;
+    contentE[1].innerText = nameValue;
+    displayNoneAll();
+    activeNecessaryForm();
+    removeCalendarBox.style.display = "block";
+}
+
+const submitRemoveAccount = removeCalendarBox.querySelector(".button__form");
+submitRemoveAccount.addEventListener("click", function () {
+    var contentE = removeCalendarBox.querySelectorAll(".row__title2");
+    contentE = Array.from(contentE);
+    var maLT = contentE[0].innerText;
+    console.log("Makh,", maLT)
+    if (maLT) {
+        $.ajax({
+            url: '/admin-remove-calendar',
+            type: 'POST',
+            data: { maLT },
+            success: function (data) {
+                if (data.success) {
+                    showSuccessToast("Xóa thành công");
+                    displayNoneAll();
+                } else {
+                    showErrorToast("Lỗi");
+                }
+            },
+            error: function (err) {
+
+            }
+        })
+    }
+});
+
+const exitRemoveCalendar = removeCalendarBox.querySelector(".x__cancel")
+exitRemoveCalendar.addEventListener("click", displayNoneAll)
