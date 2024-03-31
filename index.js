@@ -1090,22 +1090,64 @@ app.post('/create-calendar-admin-url', (req, res) => {
 // EDIT ACCOUNT ADMIN
 app.post("/edit-account-url", function (req, res) {
   const { maKH, name, email, password } = req.body;
-  const userData = {maKH, name, email};
-  const loginData = {maKH, password};
+  const userData = { maKH, name, email };
+  const loginData = { maKH, password };
   deleteSpacePro(userData)
   deleteSpacePro(loginData)
   updateTable('users', userData, `maKH = '${maKH}'`);
   updateTable('loginData', loginData, `maKH = '${maKH}'`);
-  res.json({success: true})
+  res.json({ success: true })
 })
 
-function deleteSpacePro(data){
+function deleteSpacePro(data) {
   for (let field in data) {
     if (data[field] === '') {
-        delete data[field];
+      delete data[field];
     }
+  }
 }
-}
+
+// EDIT CARD ADMIN
+app.post("/edit-card-url", function (req, res) {
+  const {
+    maThe,
+    maKH,
+    name,
+    dateOfBirth,
+    phoneNumber,
+    cardType,
+    dateStart,
+    dateEnd } = req.body;
+
+  const userData = { maKH, phoneNumber, dateOfBirth };
+  console.log("useddata", userData)
+  const cardData = { maThe, cardType, dateStart, dateEnd };
+  deleteSpacePro(userData)
+  deleteSpacePro(cardData)
+  updateTable('users', userData, `maKH = '${maKH}'`);
+  updateTable('cardData', cardData, `maThe = '${maThe}'`);
+  res.json({ success: true })
+})
+
+
+// EDIT CALENDAR ADMIN
+app.post("/edit-calendar-url", function (req, res) {
+  const {
+    maLT,
+    maThe,
+    date,
+    timeStart,
+    timeEnd,
+    type,
+    ptName,
+    note } = req.body;
+    
+  console.log(date)
+  const caData = req.body;
+  deleteSpacePro(caData)
+  updateTable('calendarData', caData, `maLT = '${maLT}'`);
+  res.json({ success: true })
+})
 
 /* ======= ADMIN ======= */
 

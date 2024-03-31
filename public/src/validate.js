@@ -201,7 +201,8 @@ export function validateAdminAddCard(fullname, dateOfBirth, phoneNumber, typeCar
 
 export function validateAdminEditCard(value){
     var phoneNumber = value.phoneNumber;
-    if(phoneNumber != "" && !validateEmail(phoneNumber)){
+    console.log(phoneNumber)
+    if(phoneNumber != "" && !validatePhoneNumber(phoneNumber)){
         showErrorToast("Sửa thất bại", "Số điện thoại không hợp lệ");
         return false;
     }

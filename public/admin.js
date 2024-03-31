@@ -518,15 +518,17 @@ function insertToTable(tableName, dataObject) {
 
     if (tableName == "account")
         i1.addEventListener("click", f_editAccountBTN);
-    else if(tableName == "card")
+    else if (tableName == "card")
         i1.addEventListener("click", f_editCardBTN);
-    
+    else if (tableName == "calendar")
+        i1.addEventListener("click", f_editCalendarBTN);
+
     var i2 = document.createElement('i');
     i2.className = 'fa-solid fa-trash';
     // if (tableName == "account")
-        // i2.addEventListener("click", f_editAccountBTN);
+    // i2.addEventListener("click", f_editAccountBTN);
 
-        // Thêm hai thẻ i vào cell
+    // Thêm hai thẻ i vào cell
     cell.appendChild(i1);
     cell.appendChild(i2);
 }
@@ -958,7 +960,7 @@ $('#form-edit-account').submit(function (e) {
     e.preventDefault();
     var valueInput = serializeObject(this);
 
-    if(validateAdminEditAcc(valueInput.name, valueInput.email, valueInput.password)){
+    if (validateAdminEditAcc(valueInput.name, valueInput.email, valueInput.password)) {
         $.ajax({
             url: "/edit-account-url",
             type: "POST",
@@ -973,7 +975,7 @@ $('#form-edit-account').submit(function (e) {
                 }
             },
             error: function () {
-    
+
             }
         })
     }
@@ -996,7 +998,7 @@ function serializeObject(element) {
 // 
 const editCardBox = modalBox.querySelector(".admin-edit-card")
 
-// ==== EDIT ACCOUNT ====== ///
+// ==== EDIT CARD ====== ///
 const exitEditCard = editCardBox.querySelector(".x__cancel");
 function f_editCardBTN() {
     var thisElement = this;
@@ -1032,23 +1034,85 @@ $('#form-edit-card').submit(function (e) {
     e.preventDefault();
     var valueInput = serializeObject(this);
 
-    if(validateAdminEditCard(valueInput)){
-        // $.ajax({
-        //     url: "/edit-account-url",
-        //     type: "POST",
-        //     data: $(this).serialize(),
-        //     success: function (data) {
-        //         if (data.success) {
-        //             showSuccessToast("Sửa tài khoản thành công");
-        //             displayNoneAll();
-        //             removeAllInputValue();
-        //         } else {
-        //             showErrorToast("Lỗi");
-        //         }
-        //     },
-        //     error: function () {
-    
-        //     }
-        // })
+    if (validateAdminEditCard(valueInput)) {
+        $.ajax({
+            url: "/edit-card-url",
+            type: "POST",
+            data: $(this).serialize(),
+            success: function (data) {
+                if (data.success) {
+                    showSuccessToast("Sửa thông tin thẻ thành công");
+                    displayNoneAll();
+                    removeAllInputValue();
+                } else {
+                    showErrorToast("Lỗi");
+                }
+            },
+            error: function () {
+
+            }
+        })
     }
+})
+
+
+//EDIT CALENDAR
+// 
+const editCalendarBox = modalBox.querySelector(".admin-edit-calendar")
+
+// ==== EDIT ACCOUNT ====== ///
+const exitEditCalendar = editCalendarBox.querySelector(".x__cancel");
+function f_editCalendarBTN() {
+    var thisElement = this;
+    var row = thisElement.closest("tr");
+    var a_box = row.querySelectorAll("td");
+    a_box = Array.from(a_box);
+    a_box.pop();
+    // a_box.shift();
+    console.log(a_box)
+    var a_span = editCalendarBox.querySelectorAll("span.row__content__input");
+    var a_Input = editCalendarBox.querySelectorAll("input.row__content__input");
+    a_Input = Array.from(a_Input);
+    a_Input[0].value = a_box[0].innerText
+    a_Input[1].value = a_box[1].innerText
+    a_span = Array.from(a_span);
+
+    a_box.map((value, index) => {
+        console.log(a_span[index]);
+        a_span[index].innerText = a_box[index].innerText;
+    })
+
+    displayNoneAll();
+    activeNecessaryForm();
+    editCalendarBox.style.display = "block";
+}
+
+exitEditCalendar.addEventListener("click", function () {
+    displayNoneAll();
+});
+
+
+$('#form-edit-calendar').submit(function (e) {
+    e.preventDefault();
+    var valueInput = serializeObject(this);
+
+    // if (validateAdminEditCalendar(valueInput)) {
+        $.ajax({
+            url: "/edit-calendar-url",
+            type: "POST",
+            data: $(this).serialize(),
+            success: function (data) {
+                if (data.success) {
+                    showSuccessToast("Sửa thông tin thẻ thành công");
+                    displayNoneAll();
+                    removeAllInputValue();
+                } else {
+                    showErrorToast("Lỗi");
+                }
+            },
+            error: function () {
+
+            }
+        })
+    // }
 })
