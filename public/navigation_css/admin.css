@@ -1201,11 +1201,15 @@ li.message__user.message__user:hover .message__user__name__options {
     display: none;
     /* display: flex; */
     align-items: center;
+    justify-content: center;
     max-width: 22px;
-    padding: 2px 8px;
+    padding: 2px 12px;
     font-size: 12px;
     background-color: rgb(223, 223, 223);
     animation: expand 2s linear forwards;
+}
+.exit--search:hover {
+    background-color: rgb(195, 195, 195);
 }
 
 @keyframes expand {

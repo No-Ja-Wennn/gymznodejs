@@ -53,6 +53,10 @@ input[type="date"]::-webkit-calendar-picker-indicator {
     border-radius: 10px;
 }
 
+.modal__body__box--admin{
+    background-color: #fff;
+}
+
 .register-cart {
     /* top: calc(100vh - 50% + 40px); */
 }
@@ -731,6 +735,11 @@ div#training-schedule {
     width: 100%;
     box-sizing: border-box;
 }
+
+
+input[type="date"]::-webkit-calendar-picker-indicator {
+    filter: invert(0);
+  }
 
 /* .row__title{
 

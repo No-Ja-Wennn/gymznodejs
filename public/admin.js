@@ -6,16 +6,23 @@ import {
     displayNoneAll,
     displayRightMessage,
     innerBoxMsg,
-    maKHActive
+    maKHActive,
+    removeAccents
 } from "./src/function.js";
 import { showErrorToast, showSuccessToast } from "./src/toast.js";
-import { validateAdminAddAcc } from "./src/validate.js";
+import { validateAdminAddAcc, validateAdminAddCalendar, validateAdminAddCard } from "./src/validate.js";
 
 
 /*====== LOGIN =====*/
 const modalBox = document.querySelector(".modal");
 const overlayBox = document.querySelector(".modal-overlay");
 const loginBox = document.querySelector(".login-box");
+
+
+
+const accountTable = document.getElementById("accountTable");
+const cardPage = document.getElementById("cardTable");
+const calendarPage = document.getElementById("calendarTable");
 
 
 function affterLogin(data) {
@@ -426,10 +433,6 @@ function removeAllTable() {
     })
 }
 
-const accountTable = document.getElementById("accountTable");
-const cardTable = document.getElementById("cardTable");
-const calendarTable = document.getElementById("calendarTable");
-
 function insertToTable(tableName, dataObject) {
     var tbody;
     if (tableName == "account")
@@ -442,16 +445,74 @@ function insertToTable(tableName, dataObject) {
     var row = tbody.insertRow(-1); // Chèn hàng mới vào cuối tbody
 
     // Duyệt qua từng trường trong đối tượng dataObject
+    var cellIndex = 0;
     for (var field in dataObject) {
         var cell = row.insertCell(-1); // Chèn ô mới vào hàng
         cell.textContent = dataObject[field]; // Điền dữ liệu vào ô
+
+        if (tableName == "account") {
+            // Nếu đây là ô đầu tiên, thêm class "show_id"
+            if (cellIndex == 0) {
+                cell.className = "show_id";
+            }
+
+            // Nếu đây là ô thứ hai, thêm class "show_name"
+            if (cellIndex == 1) {
+                cell.className = "show_name";
+            }
+
+            cellIndex++;
+        } else if (tableName == "card") {
+            // Nếu đây là ô đầu tiên, thêm class "show_id"
+            if (cellIndex == 0) {
+                cell.classList.add("show_id");
+            }
+
+            // Nếu đây là ô thứ hai, thêm class "show_name"
+            if (cellIndex == 2) {
+                cell.classList.add("show_name");
+            }
+            // Nếu đây là ô thứ hai, thêm class "show_name"
+            if (cellIndex == 5) {
+                cell.classList.add("show_type");
+            }
+            // Nếu đây là ô thứ hai, thêm class "show_name"
+            if (cellIndex == 6) {
+                cell.classList.add("show_start");
+            }
+            // Nếu đây là ô thứ hai, thêm class "show_name"
+            if (cellIndex == 7) {
+                cell.classList.add("show_end");
+            }
+
+            cellIndex++;
+        } else if (tableName == "calendar") {
+            // Nếu đây là ô đầu tiên, thêm class "show_id"
+            if (cellIndex == 0) {
+                cell.classList.add("show_id");
+            }
+
+            // Nếu đây là ô thứ hai, thêm class "show_name"
+            if (cellIndex == 2) {
+                cell.classList.add("show_name");
+            }
+            // Nếu đây là ô thứ hai, thêm class "show_name"
+            if (cellIndex == 6) {
+                cell.classList.add("show_type");
+            }
+            // Nếu đây là ô thứ hai, thêm class "show_name"
+            if (cellIndex == 7) {
+                cell.classList.add("show_pt");
+            }
+
+            cellIndex++;
+        }
     }
 
     // Thêm nút xóa vào ô cuối cùng
     var cell = row.insertCell(-1);
     cell.innerHTML = '<i class="fa-solid fa-pen-to-square"></i> <i class="fa-solid fa-trash"></i>';
 }
-
 
 
 // get card
@@ -534,7 +595,6 @@ exitAddAccount.addEventListener("click", displayNoneAll)
 
 
 // add account function
-console.log(addAccountBox)
 const addAccountBTN = addAccountBox.querySelector(".button__form");
 $('#form-add-account').submit(function (e) {
     e.preventDefault();
@@ -564,3 +624,278 @@ $('#form-add-account').submit(function (e) {
             }
         })
 })
+
+
+// find account
+const findAccountInput = accountTable.querySelector(".find-account-input");
+
+const findAccountBTN = accountTable.querySelector(".container__show__find__btn");
+const exitSearchAccBTN = accountTable.querySelector(".exit--search ");
+
+
+findAccountBTN.addEventListener("click", function () {
+    var inputValue = removeAccents(findAccountInput.value.trim().toLowerCase());
+    var a_id = accountTable.querySelectorAll(".show_id");
+    a_id = Array.from(a_id);
+    var a_name = accountTable.querySelectorAll(".show_name");
+    a_name = Array.from(a_name);
+
+    if (inputValue != '') {
+        exitSearchAccBTN.style.display = "flex";
+        a_id.forEach((element, index) => {
+            var parentNodeE = element.parentNode;
+            var valueID = removeAccents(element.innerText.toLowerCase());
+            var nameValue = removeAccents(parentNodeE.querySelector(".show_name").innerText.toLowerCase());
+
+            if (valueID.includes(inputValue) || nameValue.includes(inputValue)) {
+                parentNodeE.style.display = "table-row";
+            } else {
+                parentNodeE.style.display = "none";
+            }
+        });
+    } else {
+        a_id.forEach((element) => {
+            element.parentNode.style.display = "table-row";
+        });
+        showErrorToast("", "Vui lòng nhập giá trị tìm kiếm");
+    }
+});
+
+exitSearchAccBTN.addEventListener("click", function () {
+    var a_id = accountTable.querySelectorAll(".show_id");
+    a_id = Array.from(a_id);
+    a_id.forEach((element) => {
+        element.parentNode.style.display = "table-row";
+    });
+    findAccountInput.value = '';
+    this.style.display = "none";
+})
+
+
+
+
+// ==== ASDD CARD ===== //
+
+const addCardBox = modalBox.querySelector(".admin-add-card");
+
+const exitAddCard = addCardBox.querySelector(".x__cancel");
+exitAddCard.addEventListener("click", displayNoneAll)
+
+
+// add CARD function
+
+const showAddCardBTN = document.getElementById("add-card");
+showAddCardBTN.addEventListener("click", function () {
+    displayNoneAll();
+    activeNecessaryForm();
+    addCardBox.style.display = "block";
+})
+
+$('#form-add-card').submit(function (e) {
+    e.preventDefault();
+    var maKH = addCardBox.querySelector("[name='maKH']").value;
+    var name = addCardBox.querySelector("[name='name']").value;
+    var dateOfBirth = addCardBox.querySelector("[name='dateOfBirth']").value;
+    var phoneNumber = addCardBox.querySelector("[name='phoneNumber']").value;
+    var cardType = addCardBox.querySelector("[name='cardType']").value;
+    var dateStart = addCardBox.querySelector("[name='dateStart']").value;
+    console.log(name, dateOfBirth, phoneNumber, cardType, dateStart)
+    if (validateAdminAddCard(name, dateOfBirth, phoneNumber, cardType, dateStart)) {
+        $.ajax({
+            url: "/create-card-admin-url",
+            type: "POST",
+            data: $(this).serialize(),
+            success: function (data) {
+                console.log(data);
+                if (data.success) {
+                    showSuccessToast("Thêm thành công");
+                } else {
+                    showErrorToast("Thêm thất bại", data.message);
+                }
+            },
+            error: function () {
+
+            }
+        })
+    }
+})
+
+// FIND CARD
+
+const inputIDCard = cardPage.querySelector(".find-id-card");
+const inputPackage = cardPage.querySelector(".show__input__package");
+const inputStart = document.getElementById("input-date-start");
+const inputEnd = document.getElementById("input-date-end");
+
+const findCardBTN = cardPage.querySelector(".container__show__find__btn");
+const exitSearchCardBTN = cardPage.querySelector(".exit--search ");
+
+
+findCardBTN.addEventListener("click", function () {
+    var valueIDCard = removeAccents(inputIDCard.value.trim().toLowerCase());
+    var valuePackage = removeAccents(inputPackage.value.trim().toLowerCase());
+    var valueStart = removeAccents(inputStart.value.trim().toLowerCase());
+    var valueEnd = removeAccents(inputEnd.value.trim().toLowerCase());
+    var a_id = cardPage.querySelectorAll(".show_id");
+    a_id = Array.from(a_id);
+
+    exitSearchCardBTN.style.display = "flex";
+    a_id.forEach((element, index) => {
+        var parentNodeE = element.parentNode;
+        var valueID = removeAccents(element.innerText.toLowerCase());
+        var nameValue = removeAccents(parentNodeE.querySelector(".show_name").innerText.toLowerCase());
+        var typeValue = removeAccents(parentNodeE.querySelector(".show_type").innerText.toLowerCase());
+        var startValue = removeAccents(parentNodeE.querySelector(".show_start").innerText.split("T")[0].toLowerCase());
+        var endValue = removeAccents(parentNodeE.querySelector(".show_end").innerText.split("T")[0].toLowerCase());
+
+        var match = true;
+        if (valueIDCard != '' && (!valueID.includes(valueIDCard) && !nameValue.includes(valueIDCard))) match = false;
+        if (valuePackage != '' && valuePackage != typeValue) match = false;
+        if (valueStart != '' && valueStart != startValue) match = false;
+        if (valueEnd != '' && valueEnd != endValue) match = false;
+        console.log(valueStart, startValue);
+        if (match) {
+            parentNodeE.style.display = "table-row";
+        } else {
+            parentNodeE.style.display = "none";
+        }
+    });
+    if (valueIDCard == '' && valuePackage == '' && valueStart == '' && valueEnd == '') {
+        a_id.forEach((element) => {
+            element.parentNode.style.display = "table-row";
+        });
+        showErrorToast("", "Vui lòng nhập giá trị tìm kiếm");
+    }
+});
+
+exitSearchCardBTN.addEventListener("click", function () {
+    var a_id = cardPage.querySelectorAll(".show_id");
+    a_id = Array.from(a_id);
+    a_id.forEach((element) => {
+        element.parentNode.style.display = "table-row";
+    });
+    findAccountInput.value = '';
+
+    inputIDCard.value = "";
+    inputPackage.value = "";
+    inputStart.value = "";
+    inputEnd.value = "";
+
+    this.style.display = "none";
+})
+
+
+
+
+// ==== ASDD calendar ===== //
+
+const addcalendarBox = modalBox.querySelector(".admin-add-calendar");
+
+const exitAddcalendar = addcalendarBox.querySelector(".x__cancel");
+exitAddcalendar.addEventListener("click", displayNoneAll)
+
+
+
+// add calendar function
+
+const showAddcalendarBTN = document.getElementById("add-calendar");
+showAddcalendarBTN.addEventListener("click", function () {
+    displayNoneAll();
+    activeNecessaryForm();
+    addcalendarBox.style.display = "block";
+})
+
+$('#form-add-calendar').submit(function (e) {
+    e.preventDefault();
+    var maThe = addcalendarBox.querySelector("[name='maThe']").value;
+    var name = addcalendarBox.querySelector("[name='name']").value;
+    var date = addcalendarBox.querySelector("[name='date']").value;
+    var time = addcalendarBox.querySelector("[name='time']").value;
+    var type = addcalendarBox.querySelector("[name='type']").value;
+    var ptName = addcalendarBox.querySelector("[name='ptName']").value;
+    var note = addcalendarBox.querySelector("[name='note']").value;
+    if (validateAdminAddCalendar(maThe, name, date, time, type, ptName, note)) {
+        $.ajax({
+            url: "/create-calendar-admin-url",
+            type: "POST",
+            data: $(this).serialize(),
+            success: function (data) {
+                console.log(data);
+                if (data.success) {
+                    showSuccessToast("Thêm thành công");
+                } else {
+                    showErrorToast("Thêm thất bại", data.message);
+                }
+            },
+            error: function () {
+
+            }
+        })
+    }
+})
+
+
+// FIND CALENDAR
+
+const inputIDCalendar = calendarPage.querySelector(".find-id-calendar");
+const inputPTCalendar = calendarPage.querySelector(".find-pt-calendar");
+const inputTypeCalendar = calendarPage.querySelector(".show__input__type");
+
+const findCalendarBTN = calendarPage.querySelector(".container__show__find__btn");
+const exitSearchCalendarBTN = calendarPage.querySelector(".exit--search ");
+
+
+findCalendarBTN.addEventListener("click", function () {
+    var valueIDInput = removeAccents(inputIDCalendar.value.trim().toLowerCase());
+    var valuePT = removeAccents(inputPTCalendar.value.trim().toLowerCase());
+    var valuetype = removeAccents(inputTypeCalendar.value.trim().toLowerCase());
+    var a_id = calendarPage.querySelectorAll(".show_id");
+    a_id = Array.from(a_id);
+    console.log(a_id)
+    exitSearchCalendarBTN.style.display = "flex";
+    a_id.forEach((element, index) => {
+        var parentNodeE = element.parentNode;
+        var valueID = removeAccents(element.innerText.toLowerCase());
+        var nameValue = removeAccents(parentNodeE.querySelector(".show_name").innerText.toLowerCase());
+        var ptValue = removeAccents(parentNodeE.querySelector(".show_pt").innerText.toLowerCase());
+        var typeValue = removeAccents(parentNodeE.querySelector(".show_type").innerText.toLowerCase());
+        var match = true;
+        if (valueID != '' && (!valueID.includes(valueIDInput) && !nameValue.includes(valueIDInput))) match = false;
+        if (valuePT != '' && !ptValue.includes(valuePT)) match = false;
+        if (valuetype != '' && valuetype != typeValue) match = false;
+        
+        if (match) {
+            console.log(ptValue, valuePT)
+            parentNodeE.style.display = "table-row";
+        } else {
+            parentNodeE.style.display = "none";
+        }
+    });
+    if (valueIDInput == '' && valuePT == '' && valuetype == '') {
+        a_id.forEach((element) => {
+            element.parentNode.style.display = "table-row";
+        });
+        showErrorToast("", "Vui lòng nhập giá trị tìm kiếm");
+    }
+});
+
+exitSearchCalendarBTN.addEventListener("click", function () {
+    var a_id = calendarPage.querySelectorAll(".show_id");
+    a_id = Array.from(a_id);
+    a_id.forEach((element) => {
+        element.parentNode.style.display = "table-row";
+    });
+
+    inputIDCalendar.value = "";
+    inputPTCalendar.value = "";
+    inputTypeCalendar.value = "";
+
+    this.style.display = "none";
+})
+
+
+
+
+
+
+

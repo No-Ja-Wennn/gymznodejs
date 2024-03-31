@@ -159,3 +159,51 @@ export function validateAdminAddAcc(fullname, email, password){
     return true;
 
 }
+
+export function validateAdminAddCard(fullname, dateOfBirth, phoneNumber, typeCard, buyDate){
+    if(!fullname){
+        showErrorToast("Thêm thất bại", "Vui lòng điền tên khách hàng");
+        return false;
+    }else if(!dateOfBirth){
+        showErrorToast("Thêm thất bại", "Vui lòng chọn ngày sinh");
+        return false;
+    }else if(!phoneNumber){
+        showErrorToast("Thêm thất bại", "Vui lòng điền số điện thoại");
+        return false;
+    }else if(!typeCard){
+        showErrorToast("Thêm thất bại", "Vui lòng điền loại thẻ");
+        return false;
+    }
+    else if(!buyDate){
+        showErrorToast("Thêm thất bại", "Vui lòng điền ngày mua");
+        return false;
+    }
+    else
+     if(!validatePhoneNumber(phoneNumber)){
+        showErrorToast("Thêm thất bại", "Vui lòng điền đúng số điện thoại");
+        return false;
+    }
+    return true;
+}
+
+
+export function validateAdminAddCalendar(maThe, name, date, time, type, ptName, note){
+    if(!name){
+        showErrorToast("Thiếu thông tin", "Vui lòng nhập tên khách hàng");
+        return false;
+    }else if(!date){
+        showErrorToast("Thiếu thông tin", "Vui lòng chọn ngày tập");
+        return false;
+    }else if(!time){
+        showErrorToast("Thiếu thông tin", "Vui lòng chọn thời gian tập");
+        return false;
+    }else if(!type){
+        showErrorToast("Thiếu thông tin", "Vui lòng loại bài tập");
+        return false;
+    }else if(!ptName){
+        showErrorToast("Thiếu thông tin", "Vui lòng nhập tên pt");
+        return false;
+    }
+    return true;
+
+}

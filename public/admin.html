@@ -357,7 +357,7 @@
                             <div class="container___input">
                                 <div class="container___input__left">
                                     <div class="container__show__head__input__box">
-                                        <input class="show__input__id" type="text" oninput="findByIDAccount(this)"
+                                        <input class="find-account-input show__input__id" type="text"
                                             placeholder="Nhập mã thẻ hoặc tên khách hàng">
                                         <i class="exit--search fa-solid fa-arrow-left"></i>
                                         <div class="show__find__id__box"></div>
@@ -415,23 +415,22 @@
                                 </div>
                             </div>
                         </div>
-                        <button id="add-card" class="container__show__add__btn container__show__card__add__btn"
-                            onclick="addCard()">
+                        <button id="add-card" class="container__show__add__btn container__show__card__add__btn">
                             Thêm thẻ thành viên
                         </button>
                         <div class="container__show__head container__show__card__head">
                             <div class="container___input">
                                 <div class="container___input__left">
+                                    <i class="exit--search fa-solid fa-arrow-left"></i>
                                     <div
                                         class="container__show__head__input__box container__show__card__head__input__box">
-                                        <input class="show__input__id" type="text" oninput="findByIDCard(this)"
+                                        <input class="show__input__id find-id-card" type="text"
                                             placeholder="Nhập mã thẻ hoặc tên khách hàng">
-                                        <i class="exit--search fa-solid fa-arrow-left"></i>
                                         <div class="show__find__id__box">
                                         </div>
                                     </div>
                                     <select class="show__input__package" id="packet" name="packet">
-                                        <option value="" disabled selected>Loại thẻ</option>
+                                        <option value="" selected>Loại thẻ</option>
                                         <option value="BEGINNER">BEGINNER</option>
                                         <option value="BASIC">BASIC</option>
                                         <option value="ADVENCE">ADVENCE</option>
@@ -455,6 +454,7 @@
                                     <thead>
                                         <tr class="tr__show">
                                             <th class="th__show" style="width: 8%">MÃ THẺ</th>
+                                            <th class="th__show" style="width: 8%">MÃ KHÁCH HÀNG</th>
                                             <th class="th__show">TÊN KHÁCH HÀNG</th>
                                             <th class="th__show" style="width: 15%">NGÀY SINH</th>
                                             <th class="th__show" style="width: 15%">SĐT</th>
@@ -494,23 +494,23 @@
                                 </div>
                             </div>
                         </div>
-                        <button id="add-calendar" class="container__show__add__btn container__show__calendar__add__btn"
-                            onclick="addCalendar()">
+                        <button id="add-calendar" class="container__show__add__btn container__show__calendar__add__btn">
                             Thêm lịch tập
                         </button>
                         <div class="container___input">
                             <div class="container___input__left">
+                                <i class=" exit--search fa-solid fa-arrow-left"></i>
                                 <div
                                     class="container__show__head__input__box container__show__calendar__head__input__box">
-                                    <input class="show__input__id" type="text"
+                                    <input class="show__input__id find-id-calendar" type="text"
                                         placeholder="Nhập mã thẻ hoặc tên khách hàng">
-                                    <i class="exit--search fa-solid fa-arrow-left"></i>
                                     <div class="show__find__id__box">
                                     </div>
                                 </div>
-                                <input class="show__input__id" type="text" placeholder="Nhập tên huấn luyện viên">
+                                <input class="show__input__id find-pt-calendar" type="text"
+                                    placeholder="Nhập tên huấn luyện viên">
                                 <select class="show__input__type" id="type" name="type">
-                                    <option value="" disabled selected>Bài tập</option>
+                                    <option value="" selected>Bài tập</option>
                                     <option value="GYM">GYM</option>
                                     <option value="YOGA">YOGA</option>
                                 </select>
@@ -527,7 +527,8 @@
                                 <table class="table__show table__show__main">
                                     <thead>
                                         <tr class="tr__show">
-                                            <th class="th__show" style="width: 10%">MÃ LỊCH TẬP</th>
+                                            <th class="th__show" style="width: 6%">MÃ LỊCH TẬP</th>
+                                            <th class="th__show" style="width: 6%">MÃ THẺ</th>
                                             <th class="th__show" style="width: 15%">TÊN KHÁCH HÀNG</th>
                                             <th class="th__show" style="width: 15%">NGÀY TẬP</th>
                                             <th class="th__show" style="width: 8%">TG BẮT ĐẦU</th>
@@ -588,7 +589,7 @@
                     </button>
                 </form>
             </div>
-            <div class="modal__body__box admin-add-account">
+            <div class="modal__body__box modal__body__box--admin admin-add-account">
                 <form id="form-add-account" class="form2">
                     <div class="row__title__table">
                         <div class="row__title__table__content">
@@ -620,6 +621,153 @@
                         </div>
                         <div class="row__content">
                             <input class="row__content__input" type="text" placeholder="....." name="password">
+                        </div>
+                    </div>
+                    <div class="row__final">
+                        <div class="row__final__button">
+                            <button class="button__form" type="submit">
+                                Thêm
+                            </button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="modal__body__box modal__body__box--admin admin-add-card">
+                <form id="form-add-card" class="form2">
+                    <div class="row__title__table">
+                        <div class="row__title__table__content">
+                            Thêm thẻ thành viên
+                        </div>
+                        <div class="x__cancel">
+                            <i class="fa-regular fa-circle-xmark"></i>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="row__title">
+                            Mã khách hàng:
+                        </div>
+                        <div class="row__content">
+                            <input class="row__content__input" type="text" placeholder="Bỏ trống nếu là khách hàng mới"
+                                name="maKH">
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="row__title">
+                            Tên khách hàng:
+                        </div>
+                        <div class="row__content">
+                            <input class="row__content__input" type="text" placeholder="....." name="name">
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="row__title">
+                            ngày sinh:
+                        </div>
+                        <div class="row__content">
+                            <input class=" row__content__input row__content__input--date" type="date"
+                                placeholder="....." name="dateOfBirth">
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="row__title">
+                            số điện thoại:
+                        </div>
+                        <div class="row__content">
+                            <input class="row__content__input" type="text" placeholder="....." name="phoneNumber">
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="row__title">
+                            Loại thẻ:
+                        </div>
+                        <div class="row__content">
+                            <input class="row__content__input" type="text" placeholder="....." name="cardType">
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="row__title">
+                            Ngày mua:
+                        </div>
+                        <div class="row__content">
+                            <input class="row__content__input row__content__input--date" type="date"
+                                placeholder="Bỏ trống nếu là ngày hôm nay" name="dateStart">
+                        </div>
+                    </div>
+                    <div class="row__final">
+                        <div class="row__final__button">
+                            <button class="button__form" type="submit">
+                                Thêm
+                            </button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="modal__body__box modal__body__box--admin admin-add-calendar">
+                <form id="form-add-calendar" class="form2">
+                    <div class="row__title__table">
+                        <div class="row__title__table__content">
+                            Thêm thẻ lịch tập
+                        </div>
+                        <div class="x__cancel">
+                            <i class="fa-regular fa-circle-xmark"></i>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="row__title">
+                            Mã thẻ:
+                        </div>
+                        <div class="row__content">
+                            <input class="row__content__input" type="text" placeholder="Bỏ trống nếu là khách hàng mới"
+                                name="maThe">
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="row__title">
+                            Tên khách hàng:
+                        </div>
+                        <div class="row__content">
+                            <input class="row__content__input" type="text" placeholder="....." name="name">
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="row__title">
+                            Ngày tập:
+                        </div>
+                        <div class="row__content">
+                            <input class=" row__content__input row__content__input--date" type="text"
+                                placeholder="....." name="date">
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="row__title">
+                            Thời gian tập:
+                        </div>
+                        <div class="row__content">
+                            <input class="row__content__input" type="text" placeholder="....." name="time">
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="row__title">
+                            Bài tập:
+                        </div>
+                        <div class="row__content">
+                            <input class="row__content__input" type="text" placeholder="....." name="type">
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="row__title">
+                            Huấn luyện viên:
+                        </div>
+                        <div class="row__content">
+                            <input class="row__content__input" type="text" placeholder="......" name="ptName">
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="row__title">
+                            Ghi chú:
+                        </div>
+                        <div class="row__content">
+                            <input class="row__content__input" type="text" placeholder="......" name="note">
                         </div>
                     </div>
                     <div class="row__final">

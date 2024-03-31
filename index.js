@@ -118,7 +118,7 @@ function createTable() {
     {
       name: 'AdminAccounts',
       columns: 'adminID nvarchar(10) PRIMARY KEY, username VARCHAR(255) NOT NULL, password VARCHAR(255) NOT NULL, lastUpdateDate DATE'
-    }    
+    }
   ];
 
 
@@ -633,11 +633,11 @@ io.on('connection', (socket) => {
     // save message
     saveMessage(con, maKH, "customer", message);
     // send message
-    io.emit('response-message-client', {maKH, message});
-    con.query("SELECT name FROM users WHERE maKH = ?", [maKH], function(err, result){
-      if(err) throw err;
+    io.emit('response-message-client', { maKH, message });
+    con.query("SELECT name FROM users WHERE maKH = ?", [maKH], function (err, result) {
+      if (err) throw err;
       var name = result[0].name;
-      io.emit('clientMessage', { message, maKH, name, senderRole: "customer"});
+      io.emit('clientMessage', { message, maKH, name, senderRole: "customer" });
     })
   });
 
@@ -649,7 +649,7 @@ io.on('connection', (socket) => {
     saveMessage(con, maKH, "admin", message);
     // send message
     io.emit('response-message-admin', message);
-    io.emit('adminMessage', {maKH, message});
+    io.emit('adminMessage', { maKH, message });
   });
 
   socket.on('disconnect', () => {
@@ -680,13 +680,13 @@ dotenv.config();
 
 let refreshTokens = [];
 
-app.post('/post-user-token', (req, res)=>{
+app.post('/post-user-token', (req, res) => {
   const data = req.body;
   console.log(data);
   const accessToken = generateAccessToken(data);
   const refreshToken = jwt.sign(data, process.env.REFRESH_TOKEN_SECRET);
   refreshTokens.push(refreshToken);
-  res.json({accessToken, refreshToken});
+  res.json({ accessToken, refreshToken });
 })
 
 app.post('/refresh-token', (req, res) => {
@@ -704,13 +704,13 @@ app.post('/refresh-token', (req, res) => {
 //   res.json({status: "success", data: book});
 // })
 
-function authenToken(req, res, next){
+function authenToken(req, res, next) {
   const authorizationHeader = req.headers['authorization'];
   const token = authorizationHeader && authorizationHeader.split(' ')[1];
   console.log("token: ", token)
-  if(!token) return res.sendStatus(401);
-  jwt.verify(token, process.env.ACCESS_TOKEN_SECRET, (err, data)=>{
-    if(err) return res.sendStatus(403);
+  if (!token) return res.sendStatus(401);
+  jwt.verify(token, process.env.ACCESS_TOKEN_SECRET, (err, data) => {
+    if (err) return res.sendStatus(403);
     req.user = data;
     next();
   });
@@ -761,41 +761,315 @@ app.post('/remove-chat', (req, res) => {
 })
 
 // GET ACCOUNT
-app.get('/get-account-cus',authenToken, (req, res)=>{
+app.get('/get-account-cus', authenToken, (req, res) => {
   var sql = "SELECT users.maKH, name, email, password FROM users JOIN loginData WHERE users.maKH = loginData.maKH";
-  con.query(sql, (err, result)=>{
-    if(err)  throw err;
+  con.query(sql, (err, result) => {
+    if (err) throw err;
     console.log(result);
-      res.json({status: "success", data: result});
+    res.json({ status: "success", data: result });
   })
 
 })
 
 
+
+
 // GET CARD
-app.get('/get-card-cus',authenToken, (req, res)=>{
-  var sql = "SELECT maThe, name, dateOfBirth, phoneNumber, cardType, dateStart, dateEnd FROM users JOIN cardData WHERE users.maKH = cardData.maKH";
-  con.query(sql, (err, result)=>{
-    if(err)  throw err;
+app.get('/get-card-cus', authenToken, (req, res) => {
+  var sql = "SELECT maThe, users.maKH, name, dateOfBirth, phoneNumber, cardType, dateStart, dateEnd FROM users JOIN cardData WHERE users.maKH = cardData.maKH";
+  con.query(sql, (err, result) => {
+    if (err) throw err;
     console.log(result);
-      res.json({status: "success", data: result});
+    res.json({ status: "success", data: result });
   })
 
+})
+
+// ADD CARD
+
+let dataAll = {
+  maKH: "",
+  name: "",
+  email: "",
+  dateOfBirth: "",
+  phoneNumber: "",
+  password: "",
+  maThe: "",
+  cardType: "",
+  dateStart: "",
+  dateEnd: "",
+  maLT: "",
+  date: "",
+  timeStart: "",
+  timeEnd: "",
+  type: "",
+  ptName: "",
+  note: ""
+}
+function resetDataAllProperties(dataObject) {
+  for (let key in dataObject) {
+    if (dataObject.hasOwnProperty(key)) {
+      dataObject[key] = "";
+    }
+  }
+}
+
+
+function insertIntoAllTable(data, except = "") {
+  if (!except.includes("users")) {
+    console.log("vẫn hcayj")
+    var usersData = {
+      maKH: data.maKH,
+      name: data.name,
+      email: data.email,
+      dateOfBirth: data.dateOfBirth,
+      phoneNumber: data.phoneNumber
+    }
+    insertIntoTable('users', usersData);
+  }
+  if (!except.includes("login")) {
+    var loginData = {
+      maKH: data.maKH,
+      password: data.password
+    };
+    insertIntoTable('loginData', loginData);
+  }
+  if (!except.includes("card")) {
+    var cardData = {
+      maThe: data.maThe,
+      maKH: data.maKH,
+      cardType: data.cardType,
+      dateStart: data.dateStart,
+      dateEnd: data.dateEnd,
+    }
+    insertIntoTable('cardData', cardData);
+  }
+  if (!except.includes("calendar")) {
+    var calendarData = {
+      maLT: data.maLT,
+      maThe: data.maThe,
+      date: data.date,
+      timeStart: data.timeStart,
+      timeEnd: data.timeEnd,
+      type: data.type,
+      ptName: data.ptName,
+      note: data.note
+    }
+    insertIntoTable('calendarData', calendarData);
+  }
+}
+
+app.post('/create-card-admin-url', (req, res) => {
+  const {
+    maKH
+    , fullname
+    , dateOfBirth
+    , phoneNumber
+    , typeCard
+    , buyDate
+  } = req.body;
+
+  resetDataAllProperties(dataAll);
+
+  dataAll = req.body;
+  console.log("dataall", dataAll)
+  if (maKH != "") {
+    var sql = "SELECT maKH FROM users WHERE maKH = ?";
+    con.query(sql, [maKH], (err, result) => {
+      if (err) throw err;
+      if (result.length > 0) {
+        var sql = "SELECT maKH FROM cardData WHERE maKH = ?";
+        con.query(sql, [maKH], (err, result) => {
+          if (err) throw err;
+          if (result.length <= 0) {
+
+            con.query("SELECT maThe FROM cardData ORDER BY maThe DESC LIMIT 1",
+              function (err, result, fields) {
+                if (err) throw err;
+                var maThe;
+                if (!result[0]) {
+                  dataAll.maThe = 'MT0001';
+                } else {
+                  dataAll.maThe = generateCustomerCode(result[0].maThe);
+                }
+                con.query("SELECT maLT FROM calendarData ORDER BY maLT DESC LIMIT 1",
+                  function (err, result, fields) {
+                    if (err) throw err;
+                    var maLT;
+                    if (!result[0]) {
+                      dataAll.maLT = 'LT0001';
+                    } else {
+                      dataAll.maLT = generateCustomerCode(result[0].maLT);
+                    }
+                    console.log(dataAll)
+                    insertIntoAllTable(dataAll, "users login calendar");
+                    res.json({ success: true, message: "" });
+                  }
+                )
+              }
+            )
+          } else {
+            res.json({ success: false, message: "Khách hàng đã có thẻ" });
+          }
+        });
+      } else {
+        res.json({ success: false, message: "Khách hàng chưa đăng ký tài khoản" });
+      }
+    })
+  } else {
+    con.query("SELECT maKH FROM users ORDER BY maKH DESC LIMIT 1",
+      function (err, result, fields) {
+        if (err) throw err;
+        var maKH;
+        if (!result[0]) {
+          dataAll.maKH = 'MK0001';
+        } else {
+          dataAll.maKH = generateCustomerCode(result[0].maKH);
+        }
+        con.query("SELECT maThe FROM cardData ORDER BY maThe DESC LIMIT 1",
+          function (err, result, fields) {
+            if (err) throw err;
+            var maThe;
+            if (!result[0]) {
+              dataAll.maThe = 'MT0001';
+            } else {
+              dataAll.maThe = generateCustomerCode(result[0].maThe);
+            }
+            con.query("SELECT maLT FROM calendarData ORDER BY maLT DESC LIMIT 1",
+              function (err, result, fields) {
+                if (err) throw err;
+                var maLT;
+                if (!result[0]) {
+                  dataAll.maLT = 'LT0001';
+                } else {
+                  dataAll.maLT = generateCustomerCode(result[0].maLT);
+                }
+                insertIntoAllTable(dataAll);
+                res.json({ success: true, message: "" });
+
+              }
+            )
+          }
+        )
+      }
+    )
+  }
 })
 
 
 // GET CALENDAR
-app.get('/get-calendar-cus',authenToken, (req, res)=>{
-  var sql = "SELECT maLT, name, date, timeStart, timeEnd, type, ptName, note FROM users JOIN cardData, calendarData WHERE users.maKH = cardData.maKH AND cardData.maThe = calendarData.maThe";
-  con.query(sql, (err, result)=>{
-    if(err)  throw err;
+app.get('/get-calendar-cus', authenToken, (req, res) => {
+  var sql = "SELECT maLT, cardData.maThe, name, date, timeStart, timeEnd, type, ptName, note FROM users JOIN cardData, calendarData WHERE users.maKH = cardData.maKH AND cardData.maThe = calendarData.maThe";
+  con.query(sql, (err, result) => {
+    if (err) throw err;
     console.log(result);
-      res.json({status: "success", data: result});
+    res.json({ status: "success", data: result });
   })
-
 })
 
+// ADD CALENDAR
 
+app.post('/create-calendar-admin-url', (req, res) => {
+  const {
+    maThe,
+    name,
+    date,
+    time,
+    type,
+    ptName,
+    note
+  } = req.body;
+
+  resetDataAllProperties(dataAll);
+
+  dataAll = req.body;
+  console.log("dataall", dataAll)
+  if (maThe != "") {
+    var sql = "SELECT maThe FROM cardData WHERE maThe = ?";
+    con.query(sql, [maThe], (err, result) => {
+      if (err) throw err;
+      if (result.length > 0) {
+        var sql = "SELECT maThe FROM calendarData WHERE maThe = ?";
+        con.query(sql, [maThe], (err, result) => {
+          if (err) throw err;
+          if (result.length <= 0) {
+
+            // con.query("SELECT maThe FROM cardData ORDER BY maThe DESC LIMIT 1",
+            //   function (err, result, fields) {
+            //     if (err) throw err;
+            //     var maThe;
+            //     if (!result[0]) {
+            //       dataAll.maThe = 'MT0001';
+            //     } else {
+            //       dataAll.maThe = generateCustomerCode(result[0].maThe);
+            //     }
+                con.query("SELECT maLT FROM calendarData ORDER BY maLT DESC LIMIT 1",
+                  function (err, result, fields) {
+                    if (err) throw err;
+                    var maLT;
+                    if (!result[0]) {
+                      dataAll.maLT = 'LT0001';
+                    } else {
+                      dataAll.maLT = generateCustomerCode(result[0].maLT);
+                    }
+
+                    dataAll.timeStart = time;
+                    dataAll.timeEnd = time;
+
+                    console.log(dataAll)
+                    insertIntoAllTable(dataAll, "users login card");
+                    res.json({ success: true, message: "" });
+                  }
+                )
+            //   }
+            // )
+          } else {
+            res.json({ success: false, message: "Khách hàng đã có lịch tập" });
+          }
+        });
+      } else {
+        res.json({ success: false, message: "Khách hàng chưa có thẻ thành viên" });
+      }
+    })
+  } else {
+    con.query("SELECT maKH FROM users ORDER BY maKH DESC LIMIT 1",
+      function (err, result, fields) {
+        if (err) throw err;
+        var maKH;
+        if (!result[0]) {
+          dataAll.maKH = 'MK0001';
+        } else {
+          dataAll.maKH = generateCustomerCode(result[0].maKH);
+        }
+        con.query("SELECT maThe FROM cardData ORDER BY maThe DESC LIMIT 1",
+          function (err, result, fields) {
+            if (err) throw err;
+            var maThe;
+            if (!result[0]) {
+              dataAll.maThe = 'MT0001';
+            } else {
+              dataAll.maThe = generateCustomerCode(result[0].maThe);
+            }
+            con.query("SELECT maLT FROM calendarData ORDER BY maLT DESC LIMIT 1",
+              function (err, result, fields) {
+                if (err) throw err;
+                var maLT;
+                if (!result[0]) {
+                  dataAll.maLT = 'LT0001';
+                } else {
+                  dataAll.maLT = generateCustomerCode(result[0].maLT);
+                }
+                insertIntoAllTable(dataAll);
+                res.json({ success: true, message: "" });
+
+              }
+            )
+          }
+        )
+      }
+    )
+  }
+})
 
 
 
@@ -805,25 +1079,25 @@ app.get('/get-calendar-cus',authenToken, (req, res)=>{
 
 
 
-app.get("/get-login-admin", function (req, res){
+app.get("/get-login-admin", function (req, res) {
   var cookieAdmin = getCookie(req, "admin_acc");
-  if(cookieAdmin){
-    res.json({success: true, username: cookieAdmin.username});
-  }else{
-    res.json({success: false, username: ""});
+  if (cookieAdmin) {
+    res.json({ success: true, username: cookieAdmin.username });
+  } else {
+    res.json({ success: false, username: "" });
   }
 })
-app.post("/login-admin-url", function(req, res){
-  const {username, password} = req.body;
+app.post("/login-admin-url", function (req, res) {
+  const { username, password } = req.body;
   var sql = "SELECT * FROM adminaccounts WHERE username = ? AND password = ?";
-  con.query(sql, [username, password], (err, result)=>{
-    if(err) throw err;
-    if(result.length > 0){
+  con.query(sql, [username, password], (err, result) => {
+    if (err) throw err;
+    if (result.length > 0) {
       var adminID = result[0].adminID;
-      setCookie(res, "admin_acc", {username, adminID});
-      res.json({success: true, username: username, adminID});
-    }else{
-      res.json({success: false, username: "", adminID: ""})
+      setCookie(res, "admin_acc", { username, adminID });
+      res.json({ success: true, username: username, adminID });
+    } else {
+      res.json({ success: false, username: "", adminID: "" })
     }
   })
 })
@@ -835,19 +1109,19 @@ app.post("/login-admin-url", function(req, res){
 const jwt = require("jsonwebtoken");
 const dotenv = require("dotenv");
 dotenv.config();
-
-
+ 
+ 
 app.post('/login-test', (req, res)=>{
   const data = req.body;
   console.log(data)
   const accessToken = jwt.sign(data, process.env.ACCESS_TOKEN_SECRET, {expiresIn: '40s'});
   res.json({accessToken})
 })
-
+ 
 app.get("/get-book",authenToken, (req, res)=>{
   res.json({status: "success", data: book});
 })
-
+ 
 function authenToken(req, res, next){
   const authorizationHeader = req.headers['authorization'];
   // beaer ['token']
@@ -859,8 +1133,11 @@ function authenToken(req, res, next){
     next();
   })
 }
-
+ 
 */
+
+
+
 
 // =======================
 const port = process.env.PORT || 8080;
