@@ -4,37 +4,24 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="icon" href="../img/icon/logo.png" type="image/x-icon">
+    <link rel="icon" href="./img/icon/logo.png" type="image/x-icon">
     <meta charset="UTF-8">
     <script src="/socket.io/socket.io.js"></script>
     <!-- <meta name="viewport" content="width=device-width, initial-scale=1.0"> -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700;900&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@100;300;500;600;900&display=swap"
-        rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Overpass:wght@100;200;300;400;500;600;700;800;900&display=swap"
-        rel="stylesheet">
+        rel="stylesheet" />
     <link href="https://fonts.googleapis.com/css2?family=Raleway:ital,wght@0,100..900;1,100..900&display=swap"
-        rel="stylesheet">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
+        rel="stylesheet" />
     <link rel="stylesheet" href="./font/fontawesome-free-6.4.0-web/css/all.min.css">
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
-    <link rel="stylesheet" href="./css/index.css">
-    <link rel="stylesheet" href="./css/header.css">
-    <link rel="stylesheet" href="./css/footer.css">
-    <link rel="stylesheet" href="./css/tien.css">
-    <link rel="stylesheet" href="./css/tu.css">
-    <!-- <link rel="stylesheet" href="./css/van.css"> -->
-    <link rel="stylesheet" href="./css/quyen.css">
-    <link rel="stylesheet" href="./css/base.css">
+    <link rel="stylesheet" href="./css/styles.css">
     <link rel="stylesheet" href="./navigation_css/toast.css">
-    <link rel="stylesheet" href="./css/keyframes.css">
     <link rel="stylesheet" href="./navigation_css/login.css">
     <title>GYMZ - Thể hình giới trẻ</title>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-
 
 </head>
 
@@ -42,142 +29,279 @@
     <div id="app" class="app">
         <!-- LUU SY TRUONG -->
         <div class="header">
-            <div class="header__inner">
-                <div class="header__inner__logo">
-                    <a href="">
-                        <h1>GYM<span>Z</span></h1>
-                    </a>
+            <div class="header-wrapper">
+                <div class="header-logo">
+                    <h1>
+                        GYM
+                        <span>
+                            Z
+                        </span>
+                    </h1>
                 </div>
-                <!-- Thanh dieu huong -->
-                <div class="header__inner__navigation">
-                    <ul>
-                        <li><a class="header__inner__navigation__sevice" href="./index.html"><span>TRANG CHỦ</span></a>
-                        </li>
-                        <li><a class="header__inner__navigation__sevice" href="./navigation/chatbox.html">CHAT
-                                ONLINE</a>
-                        </li>
-                        <li>
-                            <div class="dropdown">
-                                <a class="header__inner__navigation__sevice" href="#" onclick="yourFunction(event)">
-                                    DỊCH VỤ<m><i class='bx bxs-right-arrow'></i></m>
+                <div class="header-nav-bar">
+                    <div class="header-nav home">
+                        <a href="./index.html">
+                            <span>TRANG CHỦ</span>
+                        </a>
+                    </div>
+                    <div class="header-nav chat">
+                        <a href="./navigation/chatbox.html">
+                            CHAT ONLINE
+                        </a>
+                    </div>
+                    <div class="header-nav service">
+                        <span>
+                            DỊCH VỤ
+                        <i class="fa-solid fa-play"></i>
+                        </span>
+                        <div class="drop-content">
+                            <div class="content-service">
+                                <a href="./navigation/personal_trainer.html">
+                                    HUẤN LUYỆN VIÊN
                                 </a>
-                                <div class="containt">
-                                    <a href="./navigation/personal_trainer.html">HUẤN LUYỆN VIÊN</a>
-                                    <a href="./navigation/shop.html">CỬA HÀNG WHEY</a>
-                                </div>
                             </div>
-                        </li>
-                        <li><a class="header__inner__navigation__sevice" href="./navigation/card.html">THẺ HỘI VIÊN</a>
-                        </li>
-                    </ul>
+                            <div class="content-service">
+                                <a href="./navigation/shop.html">
+                                    CỬA HÀNG WHEY
+                                </a>
+                            </div>
+                            <div class="content-service">
+                                <a href="./navigation/card.html">
+                                    THẺ HỘI VIÊN
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                        
+                    <div class="header-nav promotion">
+                        <a  href="./navigation/promotion.html">
+                            KHUYẾN MÃI
+                        </a>
+                    </div>
                 </div>
-                <div class="header__inner__try">
-                    <ul>
-                        <li><a href="./navigation/promotion.html">KHUYẾN MÃI</a></li>
-                    </ul>
-                </div>
-                <div class="header__inner__login">
-                    <ul class="header__inner__login__inner">
-                        <li class="submenu__login">
-                            <a class="account-avt account" href="#" onclick="yourFunction(event)">
-                            </a>
-                            <ul class="submenu__login__content">
-                                <i class="fa-solid fa-caret-up"></i>
-                                <div class="status__account">
-                                    <a class="loginstatus status" href="#">
-                                        ĐĂNG NHẬP
-                                    </a>
-                                    <a class="status status__link" href="./navigation/information_account.html">
-                                        THÔNG TIN TÀI KHOẢN
-                                    </a>
-                                    <a class="status status__link" href="./navigation/information_card_TS.html">
-                                        THẺ THÀNH VIÊN & LT
-                                    </a>
-                                    <button class="logoutstatus status" type="submit">
-                                        ĐĂNG XUẤT
-                                    </button>
-                                </div>
-                            </ul>
-                        </li>
-                    </ul>
+                <div class="header-login">
+                    <div class="user">
+                        <img class="user-avatar" src="./img/icon/avatar.png" alt="">
+                        <div class="submenu-login">
+                            <ion-icon name="caret-up-sharp"></ion-icon>
+                            <div class="menu-login">
+                                <a href="./login.php">
+                                    Đăng nhập
+                                </a>
+                                <a href="./navigation/information_account.html">
+                                    Thẻ thành viên
+                                </a>
+                                <a href="./navigation/information_card_TS.html">
+                                    Lịch tập
+                                </a>
+                            </div>
+                        </div>
+                    </div>
                 </div>
                 <div class="header__inner__menu">
-                    <div class="bt_dropdown">
-                        <a class="header__inner__menu__bt" href="#" onclick="yourFunction(event)">
-                            <i class='bx bx-menu'></i>
-                        </a>
-                        <div class="content">
-                            <div class="logo" id="menu2-infor">
-                                <ul class="account__login__center">
-                                    <li class="account__login">
-                                        <a class="account__login__inner">
-                                        </a>
-                                    </li>
-                                </ul>
-                                <div class="account__about">
-                                    <a class="account__name">
-                                        USERNAME
-                                    </a>
-                                    <a class="account__code">
-                                        GYMZ001
-                                    </a>
+                    <button class="button-menu">
+                        <i class="fa-solid fa-bars"></i>
+                    </button>
+                    <div class="content">
+                        <div class="account">
+                            <div class="account-wrapper">
+                                <div class="account-avt">
+                                    <img src="./img/icon/avatar.png" alt="">
                                 </div>
-                                <!-- <img src="../img/background/logo_and_bgr.png" alt="logo and bgr"> -->
-                            </div>
-                            <a class="content__inner" href="./index.html">
-                                <i class='bx bxs-home'></i>
-                                <span class="noidung__text1">
-                                    TRANG CHỦ
-                                </span>
-                            </a>
-                            <a class="content__inner" href="./navigation/chatbox.html">
-                                <i class='bx bx-world'></i>
-                                <span class="noidung__text1">
-                                    CHAT ONLINE
-                                </span>
-                            </a>
-                            <div class="submenu" href="#" onclick="toggleNoidung222(event)">
-                                <b class="content__inner" href="">
-                                    <i class='bx bx-grid-alt'></i>
-                                    <span class="noidung__text1">
-                                        DỊCH VỤ
-                                    </span>
-                                </b>
-                                <div class="noidung222">
-                                    <a class="content__inner" href="./navigation/card.html">
-                                        THẺ HỘI VIÊN
-                                    </a>
-                                    <a class="content__inner" href="./navigation/personal_trainer.html">
-                                        HUẤN LUYỆN VIÊN
-                                    </a>
-                                    <a class="content__inner" href="./navigation/shop.html">
-                                        CỬA HÀNG WHEY
-                                    </a>
+                                <div class="account-ifm">
+                                    <p class="account-fullname">
+                                       full name
+                                    </p>
+                                    <p class="account-code">
+                                       acc001
+                                    </p>
                                 </div>
                             </div>
-                            <a class="content__inner" href="./navigation/promotion.html">
-                                <i class='bx bxs-purchase-tag'></i>
-                                <span class="noidung__text1">
-                                    KHUYẾN MÃI
+                            <div class="close-menu">
+                                <button class="button-menu-close">
+                                    <i class="fa-solid fa-xmark"></i>
+                                </button>
+                            </div>
+                            <!-- <img src="../img/background/logo_and_bgr.png" alt="logo and bgr"> -->
+                        </div>
+                        <div class="content-wrapper">
+                            <a class="content-inner" href="./index.html">
+                                <i class="fa-solid fa-house"></i>
+                                <span class="content-text">
+                                    Trang chủ
                                 </span>
                             </a>
-                            <div class="content__logout">
-                                <div class="content__logout__btn content__inner">
+                            <a class="content-inner" href="./navigation/promotion.html">
+                                <i class="fa-solid fa-gift"></i>
+                                <span class="content-text">
+                                    Khuyến mãi
+                                </span>
+                            </a>
+                            <a class="content-inner" href="./navigation/chatbox.html">
+                                <i class="fa-solid fa-comments"></i>
+                                <span class="content-text">
+                                    Chat online
+                                </span>
+                            </a>
+                            <a class="content-inner" href="./navigation/shop.html">
+                                <i class="fa-solid fa-cart-shopping"></i>
+                                <span class="content-text">
+                                    Cửa hàng
+                                </span>
+                            </a>
+                            <a class="content-inner" href="./navigation/card.html">
+                                <i class="fa-solid fa-address-card"></i>
+                                <span class="content-text">
+                                    Thẻ thành viên
+                                </span>
+                            </a>
+                            <a class="content-inner" href="./navigation/personal_trainer.html">
+                                <i class="fa-solid fa-person-harassing"></i>
+                                <span class="content-text">
+                                    Huấn luyện viên
+                            </a>
+                            <div class="content-logout">
+                                <a class="content-inner logout">
                                     <!-- <i class='bx bx-code-alt'></i> -->
                                     <i class="bxf fa-solid fa-right-from-bracket"></i>
-                                    <span class="noidung__text1">
-                                        ĐĂNG XUẤT
+                                    <span class="content-text">
+                                        Đăng xuất
                                     </span>
-                                </div>
+                                </a>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
+        <div class="button-open-wrapper">
+            <button class="button-open-chat">
+                <img src="./img/icon/icon_mess.png" alt="">
+                <span>
+                    <div class="color purple"></div>
+                    <div class="color pink"></div>
+                    <div class="color red"></div>
+                </span>
+            </button>
+        </div>
+        <div class="chat-box">
+            <div class="chat-box-wrapper">
+                <div class="chat-header">
+                    <div class="chat-information">
+                        <div class="header-img">
+                            <img src="./img/icon/closeAi.jpg" alt="">
+                        </div>
+                        <div class="assistant-name">
+                            Nguyễn Thị Vân
+                            <span>
+                                Assiant
+                            </span>
+                        </div>
+                    </div>
+                    <div class="chat-option">
+                        <button class="chat-minimize">
+                            <i class="fa-solid fa-minus"></i>
+                        </button>
+                    </div>
+                </div>
+                <div class="welcome-screen">
+
+                </div>
+                <div class="chat-screen">
+                    <div class="chat-history">
+                        <div class="chat-log">
+                            <div class="message admin">
+                                <span class="admin-img">
+                                    <img src="./img/icon/closeAi.jpg" alt="">
+                                </span>
+                                <p class="message-text">
+                                    xin chào, em là trợ lý hỗ trợ mình !
+                                </p>
+                            </div>
+                            <div class="message customer">
+                                <p class="message-text">
+                                    hướng dẫn mình thanh toán online.
+                                    hướng dẫn mình thanh toán online.
+                                    hướng dẫn mình thanh toán online.
+                                    hướng dẫn mình thanh toán online.
+                                    hướng dẫn mình thanh toán online.
+                                    hướng dẫn mình thanh toán online.
+                                    hướng dẫn mình thanh toán online.
+                                    hướng dẫn mình thanh toán online.
+                                    hướng dẫn mình thanh toán online.
+                                    hướng dẫn mình thanh toán online.
+                                    hướng dẫn mình thanh toán online.
+                                    hướng dẫn mình thanh toán online.
+                                    hướng dẫn mình thanh toán online.
+                                    hướng dẫn mình thanh toán online.
+                                    hướng dẫn mình thanh toán online.
+                                </p>
+                            </div>
+                            <div class="message customer">
+                                <p class="message-text">
+                                    wwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwww
+                                </p>
+                            </div>
+                            <div class="message admin">
+                                <span class="admin-img">
+                                    <img src="./img/icon/closeAi.jpg" alt="">
+                                </span>
+                                <p class="message-text">
+                                    wwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwww
+                                </p>
+                            </div>
+                            <div class="message admin">
+                                <span class="admin-img">
+                                    <img src="./img/icon/closeAi.jpg" alt="">
+                                </span>
+                                <p class="message-text">
+                                    wwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwww
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="chat-input">
+                        <div class="input-wrapper">
+                            <div class="button-plus-wrapper">
+                                <button class="plus">
+                                    <i class="fa-solid fa-plus"></i>
+                                </button>
+                            </div>
+                            <div class="button-image-wrapper">
+                                <button class="image">
+                                    <i class="fa-regular fa-image"></i>
+                                </button>
+                            </div>
+                            <div class="input-area">
+                                <textarea class="input-text" placeholder="Aa" name="text" cols="1" rows="1"></textarea>
+                            </div>
+                            <button class="sticker">
+                                <i class="fa-solid fa-face-smile"></i>
+                            </button>
+                            <button class="send">
+                                <ion-icon name="send"></ion-icon>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                <div class="chat-footer">
+                    <span class="footer-content">
+                        Powered by
+                        <a href="#">
+                            CloseAi
+                        </a>
+                    </span>
+                </div>
+            </div>
+        </div>
         <div class="container">
             <!-- NGO GIA QUYEN -->
             <div class="container__home">
+                <div class="video-title">
+                    <video autoplay loop muted playsinline>
+                        <source src="./video/video.mp4" type="video/mp4" />
+                    </video>
+                </div>
                 <div class="home__about">
                     <div class="home__about__head">
                         <p class="home__about__head__text">TÌM LẠI NĂNG LƯỢNG CỦA BẠN</p>
@@ -199,7 +323,9 @@
             <!-- HOANG ANH TU -->
             <div class="container__service">
                 <div class="container__service__title">
-                    CÁC DỊCH VỤ CỦA CHÚNG TÔI
+                    <h1>
+                        CÁC DỊCH VỤ CỦA CHÚNG TÔI
+                    </h1>
                 </div>
                 <div class="container__service__uses">
                     <p>
@@ -268,25 +394,25 @@
                     <div class="image__item">
                         <img src="https://watermark.lovepik.com/photo/20211121/large/lovepik-men-and-women-practise-strength-in-the-gym-picture_500595712.jpg"
                             alt="Mô tả ảnh 1">
-                        <h2>Ngoài tập luyện 1 cách khoa học ra thì chúng ta đừng quên bổ sung các chất dinh dưỡng thiết
-                            yếu cho cơ thể cũng như cho việc tập luyện.</h2>
+                        <p>Ngoài tập luyện 1 cách khoa học ra thì chúng ta đừng quên bổ sung các chất dinh dưỡng thiết
+                            yếu cho cơ thể cũng như cho việc tập luyện.</p>
                     </div>
                     <div class="image__item">
                         <img src="https://tagalaxyfyc.com/wp-content/uploads/2023/02/2-scaled.jpg" alt="Mô tả ảnh 2">
-                        <h2>Cơ sở vật chất hiện đại, sang trọng, với những dụng cụ nhập khẩu trực tiếp tại mỹ giúp cho
-                            người sử dụng có 1 trải nghiệm tốt nhất và an toàn nhất.</h2>
+                        <p>Cơ sở vật chất hiện đại, sang trọng, với những dụng cụ nhập khẩu trực tiếp tại mỹ giúp cho
+                            người sử dụng có 1 trải nghiệm tốt nhất và an toàn nhất.</p>
                     </div>
                     <div class="image__item">
                         <img src="https://storage.googleapis.com/leep_app_website/2021/05/huong-dan-tap-gym-cho-nguoi-moi-den-phong-tap.jpg"
                             alt="Mô tả ảnh 3">
-                        <h2>Tập luyện với những huấn luyện viên chuyên nghiệp và nhiệt tình, sẽ hướng dẫn và đưa ra các
-                            bài tập phù hợp, giúp khách hàng có 1 body đẹp như mơ.</h2>
+                        <p>Tập luyện với những huấn luyện viên chuyên nghiệp và nhiệt tình, sẽ hướng dẫn và đưa ra các
+                            bài tập phù hợp, giúp khách hàng có 1 body đẹp như mơ.</p>
                     </div>
                     <div class="image__item">
                         <img src="https://storage.googleapis.com/leep_app_website/2020/08/lan-dau-tap-gym-image.jpg"
                             alt="Mô tả ảnh 4">
-                        <h2>Với những cô gái này, chưa cần biết điều kiện vật chất thế nào mà chỉ nhìn qua thôi cũng đã
-                            đủ làm bao chàng trai phải mê như điếu đổ!</h2>
+                        <p>Với những cô gái này, chưa cần biết điều kiện vật chất thế nào mà chỉ nhìn qua thôi cũng đã
+                            đủ làm bao chàng trai phải mê như điếu đổ!</p>
                     </div>
                 </div>
             </div>
@@ -294,7 +420,7 @@
             <div class="container__story">
                 <h1>Những thay đổi khi tập tại GYMZ</h1>
                 <div class="container__change">
-                    <div class="change__box">
+                    <div class="change__box one">
                         <div class="change__box__text">
                             <h2>BEFORE & AFTER</h2>
                             <p>Tập luyện tại GYMZ để có cơ hội thay đổi ngoại hình một cách ngoạn mục
@@ -313,7 +439,7 @@
                                 alt="before after">
                         </div>
                     </div>
-                    <div class="change__box" style=" flex-direction: row-reverse;">
+                    <div class="change__box two">
                         <div class="change__box__text">
                             <h2>TÍNH BMI (CHỈ SỐ KHỐI CƠ THỂ)</h2>
                             <p>Đo chỉ số BMI tại CITIGYM để đánh giá mức độ béo, gầy hay cân nặng lý tưởng của bạn
@@ -355,7 +481,7 @@
                         <input type="tel" id="phone" name="phone" placeholder="Số điện thoại">
                     </div>
                     <span class="change__input__error"></span>
-                    <button class="change__submit" type="submit">NHẬN KẾT QUẢ</button>
+                    <button class="change__submit" type="submit">Nhận kết quả</button>
                 </div>
             </div>
 
@@ -481,7 +607,7 @@
                                     </h4>
                                 </div>
                                 <div class="avatar__img">
-                                    <img src="../img/background/avatar.png" alt="Ảnh đại diện">
+                                    <img src="./img/background/avatar.png" alt="Ảnh đại diện">
                                 </div>
                                 <div class="folow__page">
                                     <a href="#">
@@ -495,7 +621,7 @@
                                 </div>
                             </div>
                             <div class="cover__img">
-                                <img src="../img/background/cover_img.png" alt="Ảnh bìa">
+                                <img src="./img/background/cover_img.png" alt="Ảnh bìa">
                             </div>
                         </div>
                     </div>
@@ -830,7 +956,8 @@
 
     <div class="nen_mo"></div>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <script src="./navigation_javascript/menuv2.js"></script>
+    <script src="./navigation_javascript/menu.js"></script>
+    <script src="./navigation_javascript/processChatBox.js"></script>
     <script type="module" src="./index.js"></script>
     <script type="module" src="./navigation_javascript/login.js"></script>
     <script type="module" src="./src/validate.js"></script>

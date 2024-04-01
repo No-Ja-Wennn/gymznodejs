@@ -1,29 +1,52 @@
-var sub = document.querySelector(".submenu b");
-// Lấy phần tử noidung222
-var noidung222 = document.querySelector('.noidung222');
-function toggleNoidung222(event) {
-    // Ngăn chặn sự kiện click lan ra các phần tử cha
-    event.stopPropagation();
+const openmenu = document.querySelector('.button-menu');
+const closemenu = document.querySelector('.button-menu-close');
+const html = document.querySelector('html');
+const navmenu = document.querySelector('.content');
+const nenmo = document.querySelector('.nen_mo');
 
-    // Ngăn chặn sự kiện mặc định của thẻ <a>
-    // event.preventDefault();
-
-    
-
-    // Toggle hiển thị/ẩn
-    if (noidung222.style.display === 'none' || noidung222.style.display === '') {
-        noidung222.style.display = 'block';
-        sub.style.color = 'goldenrod';
-        // sub.style.background = '#222';
+openmenu.onclick = function(){
+    if (navmenu.style.display === 'none' || navmenu.style.display === '') {
+        html.style.overflow = 'hidden';
+        navmenu.style.display = 'flex';
+        navmenu.style.animation = 'slideRight .3s ease-in-out forwards';
+        nenmo.style.display = 'flex';
+        nenmo.style.animation = 'inOpacity .3s ease-in-out forwards';
     } else {
-        noidung222.style.display = 'none';
-        sub.style.color = 'white'
-        // sub.style.background = '#000';
+        html.style.overflowY = 'scroll';
+        navmenu.style.animation = 'slideLeft .3s ease-in-out forwards';
+        nenmo.style.animation = 'outOpacity .3s ease-in-out forwards';
+        setTimeout(() => {
+            navmenu.style.display = 'none';
+            nenmo.style.display = 'none';
+        }, 300);
     }
 }
+closemenu.onclick = function(){
+    html.style.overflowY = 'scroll';
+    navmenu.style.animation = 'slideLeft .3s ease-in-out forwards';
+    nenmo.style.animation = 'outOpacity .3s ease-in-out forwards';
+    setTimeout(() => {
+        navmenu.style.display = 'none';
+        nenmo.style.display = 'none';
+    }, 300);
+}
+nenmo.onclick = function(){
+    html.style.overflowY = 'scroll';
+    navmenu.style.animation = 'slideLeft .3s ease-in-out forwards';
+    nenmo.style.animation = 'outOpacity .3s ease-in-out forwards';
+    setTimeout(() => {
+        navmenu.style.display = 'none';
+        nenmo.style.display = 'none';
+    }, 300);
+}
 
-// Bổ sung sự kiện click để ẩn noidung222 khi click bất kỳ đâu trên trang
-document.addEventListener('click', function () {
-    var noidung222 = document.querySelector('.noidung222');
-    noidung222.style.display = 'none';
-});
+const user = document.querySelector('.user');
+const submenuLogin = document.querySelector('.submenu-login');
+
+user.onclick = function(){
+    if (submenuLogin.style.display === 'none' || submenuLogin.style.display === '') {
+        submenuLogin.style.display = 'flex';
+    } else {
+        submenuLogin.style.display = 'none';
+    }
+}

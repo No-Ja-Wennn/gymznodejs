@@ -51,108 +51,56 @@ var button1 = document.querySelector('#button1');
 var button2 = document.querySelector('#button2');
 var cancel = document.querySelector('.cancel');
 var form = document.querySelector('.form');
+var formselect = document.querySelector('.form ul');
+var body = document.querySelector('body');
 
 if (button1)
     button1.addEventListener('click', function () {
         form.style.display = 'flex';
+        formselect.style.animation = 'fly-to-top .5s ease-in-out forwards';
+        body.style.overflow = 'hidden';
     });
 
 if (cancel)
     cancel.addEventListener('click', function () {
+        formselect.style.animation = 'fly-to-bot .5s ease-in-out';
+        setTimeout(function(){
         form.style.display = 'none';
+        body.style.overflow = 'auto';
+        }, 500);
     })
 
-function active() {
-    let button3 = document.querySelector('.button3');
-    let button4 = document.querySelector('.button4');
-    let button5 = document.querySelector('.button5');
-    let button6 = document.querySelector('.button6');
-    let button7 = document.querySelector('.button7');
-    let if3 = document.querySelector('#if3');
-    let if4 = document.querySelector('#if4');
-    let if5 = document.querySelector('#if5');
-    let if6 = document.querySelector('#if6');
-    let if7 = document.querySelector('#if7');
-    var cancel3 = document.querySelector('#cancel3 i');
-    var cancel4 = document.querySelector('#cancel4 i');
-    var cancel5 = document.querySelector('#cancel5 i');
-    var cancel6 = document.querySelector('#cancel6 i');
-    var cancel7 = document.querySelector('#cancel7 i');
 
-    var a_button3 = document.querySelectorAll(".button3");
-    a_button3 = Array.from(a_button3);
-    a_button3.map(value => {
-        value.addEventListener('click', function () {
-            if3.style.display = 'flex';
-            body.style.overflow = 'hidden';
+
+
+    function active() {
+        const buttons = ['button3', 'button4', 'button5', 'button6', 'button7'];
+        const ifs = ['if3', 'if4', 'if5', 'if6', 'if7'];
+        const cancels = ['cancel3', 'cancel4', 'cancel5', 'cancel6', 'cancel7'];
+        const grselect = document.querySelector('.group-colum');
+        const body = document.body;
+    
+        buttons.forEach((button, index) => {
+            const buttonElements = Array.from(document.querySelectorAll(`.${button}`));
+            const ifElement = document.querySelector(`#${ifs[index]}`);
+            const cancelElement = document.querySelector(`#${cancels[index]} i`);
+    
+            buttonElements.forEach(buttonElement => {
+                buttonElement.addEventListener('click', function () {
+                    ifElement.style.display = 'flex';
+                    ifElement.style.animation = 'fly-top .5s ease-in-out forwards';
+                    body.style.overflow = 'hidden';
+                });
+            });
+    
+            if (cancelElement) {
+                cancelElement.addEventListener('click', function () {
+                    ifElement.style.animation = 'fly-bot .5s ease-in-out forwards';
+                    body.style.overflow = 'auto';
+                    setTimeout(function(){
+                        ifElement.style.display = 'none';
+                    }, 500);
+                });
+            }
         });
-    })
-
-    if (cancel3)
-        cancel3.addEventListener('click', function () {
-            if3.style.display = 'none';
-            body.style.overflow = 'auto';
-        })
-
-    var a_button4 = document.querySelectorAll(".button4");
-    a_button4 = Array.from(a_button4);
-    a_button4.map(value => {
-        value.addEventListener('click', function () {
-            if4.style.display = 'flex';
-            body.style.overflow = 'hidden';
-            console.log("ehllo")
-        });
-    })
-
-    if (cancel4)
-        cancel4.addEventListener('click', function () {
-            if4.style.display = 'none';
-            body.style.overflow = 'auto';
-        })
-
-    var a_button5 = document.querySelectorAll(".button5");
-    a_button5 = Array.from(a_button5);
-    a_button5.map(value => {
-        value.addEventListener('click', function () {
-            if5.style.display = 'flex';
-            body.style.overflow = 'hidden';
-        });
-    })
-
-    if (cancel5)
-        cancel5.addEventListener('click', function () {
-            if5.style.display = 'none';
-            body.style.overflow = 'auto';
-        })
-
-    var a_button6 = document.querySelectorAll(".button6");
-    a_button6 = Array.from(a_button6);
-    a_button6.map(value => {
-        value.addEventListener('click', function () {
-            if6.style.display = 'flex';
-            body.style.overflow = 'hidden';
-        });
-    })
-
-    if (cancel6)
-        cancel6.addEventListener('click', function () {
-            if6.style.display = 'none';
-            body.style.overflow = 'auto';
-        })
-
-    var a_button7 = document.querySelectorAll(".button7");
-    a_button7 = Array.from(a_button7);
-    a_button7.map(value => {
-        value.addEventListener('click', function () {
-            if7.style.display = 'flex';
-            body.style.overflow = 'hidden';
-        });
-    })
-
-    if (cancel7)
-        cancel7.addEventListener('click', function () {
-            if7.style.display = 'none';
-            body.style.overflow = 'auto';
-        })
-
-}
+    }

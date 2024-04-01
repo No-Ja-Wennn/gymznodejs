@@ -8,18 +8,10 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700;900&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@100;300;500;600;900&display=swap"
-        rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Overpass:wght@100;200;300;400;500;600;700;800;900&display=swap"
-        rel="stylesheet">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
+    rel="stylesheet">
     <link rel="stylesheet" href="../font/fontawesome-free-6.4.0-web/css/all.min.css">
-    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
-    <link rel="stylesheet" href="../css/base.css">
-    <link rel="stylesheet" href="../css/header.css">
-    <link rel="stylesheet" href="../css/footer.css">
-    <link rel="stylesheet" href="../css/keyframes.css">
+    <link rel="stylesheet" href="../css/styles.css">
     <link rel="stylesheet" href="../navigation_css/toast.css">
     <link rel="stylesheet" href="../navigation_css/infomation_account.css">
     <link rel="stylesheet" href="../navigation_css/login.css">
@@ -31,136 +23,268 @@
 <body>
     <div class="app">
         <div class="header">
-            <div class="header__inner">
-                <div class="header__inner__logo">
-                    <a href="../index.html">
-                        <h1>GYM<span>Z</span></h1>
-                    </a>
+            <div class="header-wrapper">
+                <div class="header-logo">
+                    <h1>
+                        GYM
+                        <span>
+                            Z
+                        </span>
+                    </h1>
                 </div>
-                <!-- Thanh dieu huong -->
-                <div class="header__inner__navigation">
-                    <ul>
-                        <li><a class="header__inner__navigation__sevice" href="../index.html"><span>TRANG CHỦ</span></a>
-                        </li>
-                        <li><a class="header__inner__navigation__sevice" href="./chatbox.html">CHAT
-                                ONLINE</a>
-                        </li>
-                        <li>
-                            <div class="dropdown">
-                                <a class="header__inner__navigation__sevice" href="#" onclick="yourFunction(event)">
-                                    DỊCH VỤ<m><i class='bx bxs-right-arrow'></i></m>
-                                </a>
-                                <div class="containt">
-                                    <a href="./personal_trainer.html">HUẤN LUYỆN VIÊN</a>
-                                    <a href="./shop.html">CỬA HÀNG WHEY</a>
-                                </div>
-                            </div>
-                        </li>
-                        <li><a class="header__inner__navigation__sevice" href="./card.html">THẺ HỘI VIÊN</a>
-                        </li>
-                    </ul>
-                </div>
-                <div class="header__inner__try">
-                    <ul>
-                        <li><a href="./promotion.html">KHUYẾN MÃI</a></li>
-                    </ul>
-                </div>
-                <div class="header__inner__login">
-                    <ul class="header__inner__login__inner">
-                        <li class="submenu__login">
-                            <a class="account-avt account" href="#" onclick="yourFunction(event)">
-                            </a>
-                            <ul class="submenu__login__content">
-                                <i class="fa-solid fa-caret-up"></i>
-                                <div class="status__account">
-                                    <a class="loginstatus status" href="#">
-                                        ĐĂNG NHẬP
-                                    </a>
-                                    <a class="status status__link" href="./information_account.html">
-                                        THÔNG TIN TÀI KHOẢN
-                                    </a>
-                                    <a class="status status__link" href="./information_card_TS.html">
-                                        THẺ THÀNH VIÊN & LT
-                                    </a>
-                                    <button class="logoutstatus status" type="submit">
-                                        ĐĂNG XUẤT
-                                    </button>
-                                </div>
-                            </ul>
-                        </li>
-                    </ul>
-                </div>
-                <div class="header__inner__menu">
-                    <div class="bt_dropdown">
-                        <a class="header__inner__menu__bt" href="#" onclick="yourFunction(event)">
-                            <i class='bx bx-menu'></i>
+                <div class="header-nav-bar">
+                    <div class="header-nav home">
+                        <a href="../index.html">
+                            <span>TRANG CHỦ</span>
                         </a>
-                        <div class="content">
-                            <div class="logo" id="menu2-infor">
-                                <ul class="account__login__center">
-                                    <li class="account__login">
-                                        <a class="account__login__inner">
-                                        </a>
-                                    </li>
-                                </ul>
-                                <div class="account__about">
-                                    <a class="account__name">
-                                        USERNAME
-                                    </a>
-                                    <a class="account__code">
-                                        GYMZ001
-                                    </a>
-                                </div>
-                                <!-- <img src="../img/background/logo_and_bgr.png" alt="logo and bgr"> -->
+                    </div>
+                    <div class="header-nav chat">
+                        <a href="../navigation/chatbox.html">
+                            CHAT ONLINE
+                        </a>
+                    </div>
+                    <div class="header-nav service">
+                        <span>
+                            DỊCH VỤ
+                            <i class="fa-solid fa-play"></i>
+                        </span>
+                        <div class="drop-content">
+                            <div class="content-service">
+                                <a href="../navigation/personal_trainer.html">
+                                    HUẤN LUYỆN VIÊN
+                                </a>
                             </div>
-                            <a class="content__inner" href="../index.html">
-                                <i class='bx bxs-home'></i>
-                                <span class="noidung__text1">
-                                    TRANG CHỦ
-                                </span>
-                            </a>
-                            <a class="content__inner" href="./chatbox.html">
-                                <i class='bx bx-world'></i>
-                                <span class="noidung__text1">
-                                    CHAT ONLINE
-                                </span>
-                            </a>
-                            <div class="submenu" href="#" onclick="toggleNoidung222(event)">
-                                <b class="content__inner" href="">
-                                    <i class='bx bx-grid-alt'></i>
-                                    <span class="noidung__text1">
-                                        DỊCH VỤ
-                                    </span>
-                                </b>
-                                <div class="noidung222">
-                                    <a class="content__inner" href="./card.html">
-                                        THẺ HỘI VIÊN
-                                    </a>
-                                    <a class="content__inner" href="./personal_trainer.html">
-                                        HUẤN LUYỆN VIÊN
-                                    </a>
-                                    <a class="content__inner" href="./shop.html">
-                                        CỬA HÀNG WHEY
-                                    </a>
-                                </div>
+                            <div class="content-service">
+                                <a href="../navigation/shop.html">
+                                    CỬA HÀNG WHEY
+                                </a>
                             </div>
-                            <a class="content__inner" href="./promotion.html">
-                                <i class='bx bxs-purchase-tag'></i>
-                                <span class="noidung__text1">
-                                    KHUYẾN MÃI
-                                </span>
-                            </a>
-                            <div class="content__logout">
-                                <div class="content__logout__btn content__inner">
-                                    <!-- <i class='bx bx-code-alt'></i> -->
-                                    <i class="bxf fa-solid fa-right-from-bracket"></i>
-                                    <span class="noidung__text1">
-                                        ĐĂNG XUẤT
-                                    </span>
-                                </div>
+                            <div class="content-service">
+                                <a href="../navigation/card.html">
+                                    THẺ HỘI VIÊN
+                                </a>
                             </div>
                         </div>
                     </div>
+
+                    <div class="header-nav promotion">
+                        <a href="../navigation/promotion.html">
+                            KHUYẾN MÃI
+                        </a>
+                    </div>
+                </div>
+                <div class="header-login">
+                    <div class="user">
+                        <img class="user-avatar" src="../img/icon/avatar.png" alt="">
+                        <div class="submenu-login">
+                            <ion-icon name="caret-up-sharp"></ion-icon>
+                            <div class="menu-login">
+                                <a href="#">
+                                    Đăng nhập
+                                </a>
+                                <a href="../navigation/information_account.html">
+                                    Thẻ thành viên
+                                </a>
+                                <a href="../navigation/information_card_TS.html">
+                                    Lịch tập
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="header__inner__menu">
+                    <button class="button-menu">
+                        <i class="fa-solid fa-bars"></i>
+                    </button>
+                    <div class="content">
+                        <div class="account">
+                            <div class="account-wrapper">
+                                <div class="account-avt">
+                                    <img src="../img/icon/avatar.png" alt="">
+                                </div>
+                                <div class="account-ifm">
+                                    <p class="account-fullname">
+                                        full name
+                                    </p>
+                                    <p class="account-code">
+                                        acc001
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="close-menu">
+                                <button class="button-menu-close">
+                                    <i class="fa-solid fa-xmark"></i>
+                                </button>
+                            </div>
+                            <!-- <img src="../img/background/logo_and_bgr.png" alt="logo and bgr"> -->
+                        </div>
+                        <div class="content-wrapper">
+                            <a class="content-inner" href="../index.html">
+                                <i class="fa-solid fa-house"></i>
+                                <span class="content-text">
+                                    Trang chủ
+                                </span>
+                            </a>
+                            <a class="content-inner" href="../navigation/promotion.html">
+                                <i class="fa-solid fa-gift"></i>
+                                <span class="content-text">
+                                    Khuyến mãi
+                                </span>
+                            </a>
+                            <a class="content-inner" href="../navigation/chatbox.html">
+                                <i class="fa-solid fa-comments"></i>
+                                <span class="content-text">
+                                    Chat online
+                                </span>
+                            </a>
+                            <a class="content-inner" href="../navigation/shop.html">
+                                <i class="fa-solid fa-cart-shopping"></i>
+                                <span class="content-text">
+                                    Cửa hàng
+                                </span>
+                            </a>
+                            <a class="content-inner" href="../navigation/card.html">
+                                <i class="fa-solid fa-address-card"></i>
+                                <span class="content-text">
+                                    Thẻ thành viên
+                                </span>
+                            </a>
+                            <a class="content-inner" href="../navigation/personal_trainer.html">
+                                <i class="fa-solid fa-person-harassing"></i>
+                                <span class="content-text">
+                                    Huấn luyện viên
+                            </a>
+                            <div class="content-logout">
+                                <a class="content-inner logout">
+                                    <!-- <i class='bx bx-code-alt'></i> -->
+                                    <i class="bxf fa-solid fa-right-from-bracket"></i>
+                                    <span class="content-text">
+                                        Đăng xuất
+                                    </span>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="button-open-wrapper">
+            <button class="button-open-chat">
+                <img src="../img/icon/icon_mess.png" alt="">
+                <span>
+                    <div class="color purple"></div>
+                    <div class="color pink"></div>
+                    <div class="color red"></div>
+                </span>
+            </button>
+        </div>
+        <div class="chat-box">
+            <div class="chat-box-wrapper">
+                <div class="chat-header">
+                    <div class="chat-information">
+                        <div class="header-img">
+                            <img src="../img/icon/closeAi.jpg" alt="">
+                        </div>
+                        <div class="assistant-name">
+                            Nguyễn Thị Vân
+                            <span>
+                                Assiant
+                            </span>
+                        </div>
+                    </div>
+                    <div class="chat-option">
+                        <button class="chat-minimize">
+                            <i class="fa-solid fa-minus"></i>
+                        </button>
+                    </div>
+                </div>
+                <div class="welcome-screen">
+
+                </div>
+                <div class="chat-screen">
+                    <div class="chat-history">
+                        <div class="chat-log">
+                            <div class="message admin">
+                                <span class="admin-img">
+                                    <img src="../img/icon/closeAi.jpg" alt="">
+                                </span>
+                                <p class="message-text">
+                                    xin chào, em là trợ lý hỗ trợ mình !
+                                </p>
+                            </div>
+                            <div class="message customer">
+                                <p class="message-text">
+                                    hướng dẫn mình thanh toán online.
+                                    hướng dẫn mình thanh toán online.
+                                    hướng dẫn mình thanh toán online.
+                                    hướng dẫn mình thanh toán online.
+                                    hướng dẫn mình thanh toán online.
+                                    hướng dẫn mình thanh toán online.
+                                    hướng dẫn mình thanh toán online.
+                                    hướng dẫn mình thanh toán online.
+                                    hướng dẫn mình thanh toán online.
+                                    hướng dẫn mình thanh toán online.
+                                    hướng dẫn mình thanh toán online.
+                                    hướng dẫn mình thanh toán online.
+                                    hướng dẫn mình thanh toán online.
+                                    hướng dẫn mình thanh toán online.
+                                    hướng dẫn mình thanh toán online.
+                                </p>
+                            </div>
+                            <div class="message customer">
+                                <p class="message-text">
+                                    wwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwww
+                                </p>
+                            </div>
+                            <div class="message admin">
+                                <span class="admin-img">
+                                    <img src="../img/icon/closeAi.jpg" alt="">
+                                </span>
+                                <p class="message-text">
+                                    wwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwww
+                                </p>
+                            </div>
+                            <div class="message admin">
+                                <span class="admin-img">
+                                    <img src="../img/icon/closeAi.jpg" alt="">
+                                </span>
+                                <p class="message-text">
+                                    wwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwww
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="chat-input">
+                        <div class="input-wrapper">
+                            <div class="button-plus-wrapper">
+                                <button class="plus">
+                                    <i class="fa-solid fa-plus"></i>
+                                </button>
+                            </div>
+                            <div class="button-image-wrapper">
+                                <button class="image">
+                                    <i class="fa-regular fa-image"></i>
+                                </button>
+                            </div>
+                            <div class="input-area">
+                                <textarea class="input-text" placeholder="Aa" name="text" cols="1" rows="1"></textarea>
+                            </div>
+                            <button class="sticker">
+                                <i class="fa-solid fa-face-smile"></i>
+                            </button>
+                            <button class="send">
+                                <ion-icon name="send"></ion-icon>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                <div class="chat-footer">
+                    <span class="footer-content">
+                        Powered by
+                        <a href="#">
+                            CloseAi
+                        </a>
+                    </span>
                 </div>
             </div>
         </div>
@@ -839,7 +963,8 @@
     <script src="/socket.io/socket.io.js"></script>
 
     <script type="module" src="../src/toast.js"></script>
-    <script src="../navigation_javascript/menuv2.js"></script>
+    <script src="../navigation_javascript/menu.js"></script>
+    <script src="../navigation_javascript/processChatBox.js"></script>
     <script type="module" src="../src/client.js"></script>
 </body>
 
