@@ -1,14 +1,20 @@
 import {
-    displayNoneAll,
-    removeAllInputValue,
     f_loginBTN,
-    activeNecessaryForm,
     f_registerBTN,
     f_cancel,
     eventNotActiveRE,
     eventNotActiveCA,
     f_cubeBTN
-} from "../navigation_javascript/login.js"
+} from "../navigation_javascript/login.js";
+import {
+    displayNoneAll,
+    activeNecessaryForm,
+    removeAllInputValue,
+    innerMesageBox,
+    removeMessageBox,
+    loginSocket,
+    logoutSocket
+} from "./function.js";
 import { showSuccessToast, showErrorToast } from "./toast.js";
 import { validateCreateAccount, validateLoginValue, validateChangePass, isValidChangePass, isFormComplete } from './validate.js';
 import {
@@ -19,8 +25,7 @@ import {
     removeAllValueChange,
     innerTextOfCard,
     removeTextOfCard,
-} from '../navigation_javascript/infomation_account.js'
-import { innerMesageBox, loginSocket, logoutSocket, removeMessageBox } from "../navigation_javascript/chatbox.js";
+} from '../navigation_javascript/infomation_account.js';
 
 const modalBox = document.querySelector(".modal");
 const overlayBox = modalBox.querySelector(".modal-overlay");
@@ -84,7 +89,6 @@ function f_logoutBTN() {
                         logoutBTN2.removeEventListener("click", f_logoutBTN);
                     removeTextOfInformation();
                     unActiveClickChange();
-                    console.log("path: ", path)
                     getValueInformationForm(path);
                     if (cancelREBTN)
                         cancelREBTN.removeEventListener("click", eventNotActiveCA);
@@ -170,6 +174,7 @@ function getValueInformationForm(path) {
     } else {
         type = "other";
     }
+    console.log(type)
     let loaderTimeout = setTimeout(function () {
         activeNecessaryForm();
         overlayBox.removeEventListener("click", displayNoneAll);
@@ -305,7 +310,6 @@ function f_getValidCard() {
                     }
                 }
             } else {
-                console.log("huy");
                 if (registerBTN && cancelREBTN) { // chưa dky
                     registerBTN.removeEventListener("click", f_registerBTN);
                     registerBTN.removeEventListener("click", eventNotActiveRE);
@@ -352,14 +356,14 @@ $(document).ready(function () {
                         displayNoneAll();
                         loginBTN1.removeEventListener("click", f_loginBTN);
                         if (loginBTN2)
-                        loginBTN2.removeEventListener("click", f_loginBTN);
-                    cookieSave = data;
-                    getValueInformationForm(path);
-                    activeClickChange();
-                    f_getValidCard();
-                    loginSocket(data.maKH);
-                    innerMesageBox(data.name);
-                    showSuccessToast("Đăng nhập thành công", "Chào mừng bạn quay lại với hệ thống");
+                            loginBTN2.removeEventListener("click", f_loginBTN);
+                        cookieSave = data;
+                        getValueInformationForm(path);
+                        activeClickChange();
+                        f_getValidCard();
+                        loginSocket(data.maKH);
+                        innerMesageBox(data.name);
+                        showSuccessToast("Đăng nhập thành công", "Chào mừng bạn quay lại với hệ thống");
                     } else {
                         showErrorToast("Thất bại", "Email hoặc mật khẩu không đúng");
                     }
@@ -519,6 +523,7 @@ $(document).ready(function () {
                 type: "POST",
                 data: $(this).serialize(),
                 success: function (data) {
+                    console.log(data)
                     if (data.success) {
                         showSuccessToast("Đăng ký lịch tập thành công", "Hẹn một ngày gần nhất tới với lễ tân để thanh toán");
                         registerCartBox.style.display = "none";

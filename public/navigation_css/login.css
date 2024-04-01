@@ -684,7 +684,7 @@ button.button__form:active {
     border-radius: 10px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.15);
     display: flex;
-    width: 32%;
+    /* width: 32%; */
     min-height: 280px;
     min-width: 290px;
 }

@@ -358,26 +358,7 @@ if (searchChatInput)
     })
 
 /* REMOVE CHAT MESSAGE */
-
-export function f_removeChat(maKH, liElement) {
-    $.ajax({
-        url: '/remove-chat',
-        type: "POST",
-        data: { maKH },
-        success: function (data) {
-            var success = data.success;
-            if (success) {
-                liElement.remove();
-                showSuccessToast("Thành công", "đã xóa đoạn chat");
-            } else {
-                showErrorToast("Lỗi");
-            }
-        },
-        error: function (err) {
-
-        }
-    })
-}
+// bên function.js
 
 
 /* ======  ACCOUNT ====== */

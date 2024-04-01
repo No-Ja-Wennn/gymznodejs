@@ -50,7 +50,7 @@ document.addEventListener('DOMContentLoaded', function() {
 function yourFunction(event) {
     event.preventDefault(); // Ngăn chặn hành động mặc định của liên kết
     // Xử lý các công việc khác của bạn ở đây
-    console.log("ehllo")
+    // console.log("ehllo")
 }
 
 

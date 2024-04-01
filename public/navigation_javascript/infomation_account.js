@@ -1,9 +1,14 @@
 import { showErrorToast } from '../src/toast.js';
 import {
-    displayNoneAll, activeNecessaryForm,
+    // displayNoneAll, activeNecessaryForm,
     f_registerBTN, f_cancel,
     f_cubeBTN
 } from './login.js';
+
+import {
+    activeNecessaryForm,
+    displayNoneAll
+} from '../src/function.js'
 
 const loginForm = document.querySelector(".login-box");
 const nameClientElement = document.getElementById("name-client");

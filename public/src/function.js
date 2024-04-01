@@ -1,4 +1,9 @@
-import { f_removeChat } from "../admin.js";
+// import { f_removeChat } from "../admin.js";
+
+import { showSuccessToast, showErrorToast } from "./toast.js";
+
+export let socket = null;
+export let customerID = null;
 
 const modalBox = document.querySelector(".modal");
 const overlayBox = modalBox.querySelector(".modal-overlay");
@@ -38,7 +43,10 @@ export function removeAllInputValue() {
 const titleNameE = document.querySelector(".chatbox__head__title");
 
 const chatBoxMessage = document.querySelector('.chatbox__message');
-const chatBoxList = chatBoxMessage.querySelector('.chatbox__message__list');
+let chatBoxList
+if (chatBoxMessage) {
+    chatBoxList = chatBoxMessage.querySelector('.chatbox__message__list');
+}
 
 function makeLi(value = "", option = "chatbox__message__item__right") {
     const chatBoxItem = document.createElement('li');
@@ -51,14 +59,7 @@ function makeLi(value = "", option = "chatbox__message__item__right") {
     }
     return chatBoxItem;
 }
-export function displayRightMessage(message) {
-    const chatBoxItemUser = makeLi(message, "chatbox__message__item__right");
-    chatBoxList.appendChild(chatBoxItemUser);
-}
-export function displayLeftMessage(message) {
-    const chatBoxItemBot = makeLi(message, "chatbox__message__item__left");
-    chatBoxList.appendChild(chatBoxItemBot);
-}
+
 
 export let maKHActive = "";
 
@@ -361,3 +362,101 @@ export function removeAccents(str) {
     return str.join('');
 }
 
+
+function f_removeChat(maKH, liElement) {
+    $.ajax({
+        url: '/remove-chat',
+        type: "POST",
+        data: { maKH },
+        success: function (data) {
+            var success = data.success;
+            if (success) {
+                liElement.remove();
+                showSuccessToast("Thành công", "đã xóa đoạn chat");
+            } else {
+                showErrorToast("Lỗi");
+            }
+        },
+        error: function (err) {
+
+        }
+    })
+}
+
+
+// CHAT BOX
+export function innerMesageBox(name) {
+    const titleNameE = document.querySelector(".chatbox__head__title");
+    if (titleNameE)
+        titleNameE.innerText = name;
+    if (chatBoxList)
+        chatBoxList.innerHTML = "";
+    $.ajax({
+        url: '/get-customer-message',
+        type: "GET",
+        success: function (data) {
+            if (data) {
+                var a_value = data.value;
+                a_value.forEach(value => {
+                    var role = value.senderRole;
+                    if (role == "admin") {
+                        displayLeftMessage(value.message);
+                    } else if (role == "customer") {
+                        if (chatBoxList)
+                            displayRightMessage(value.message);
+                    }
+                })
+            }
+        },
+        error: function (err) {
+
+        }
+    });
+}
+
+
+export function displayRightMessage(message) {
+    const chatBoxItemUser = makeLi(message, "chatbox__message__item__right");
+    chatBoxList.appendChild(chatBoxItemUser);
+}
+export function displayLeftMessage(message) {
+    const chatBoxItemBot = makeLi(message, "chatbox__message__item__left");
+    chatBoxList.appendChild(chatBoxItemBot);
+}
+
+
+export function removeMessageBox() {
+    const titleNameE = document.querySelector(".chatbox__head__title");
+    if (titleNameE)
+        titleNameE.innerText = "....";
+    if (chatBoxList)
+        chatBoxList.innerHTML = "";
+}
+
+export function loginSocket(maKH) {
+    socket = io();
+    customerID = maKH;
+    socket.on('connect', () => {
+        console.log('Connected to server');
+    });
+    // showSuccessToast("kết lối");
+    socket.on('adminMessage', (data) => {
+        if (customerID == data.maKH)
+            displayLeftMessage(data.message);
+    });
+    socket.on('response-message-client', (data) => {
+        if (customerID == data.maKH)
+            displayRightMessage(data.message);
+    });
+
+}
+
+export function logoutSocket() {
+    if (socket) {
+        socket.disconnect();
+        socket = null;
+        customerID = null;
+        // showSuccessToast("hủy kết nối");
+        console.log('Disconnected from server');
+    }
+}

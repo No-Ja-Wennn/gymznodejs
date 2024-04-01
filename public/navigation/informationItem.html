@@ -530,166 +530,248 @@
             </div>
             <div class="modal__body__box login-box">
                 <p>Đăng nhập tài khoản</p>
-                <div>
+                <form id="login-form" action="/login-url" method="POST">
                     <div class="user-box">
-                        <input class="login-email" required="" name="" type="text">
+                        <input class="login-email" required="" name="email" type="text">
                         <label>Email</label>
                     </div>
                     <div class="user-box createBox">
-                        <input class="login-pass" required="" name="" type="password">
+                        <input class="login-pass" required="" name="password" type="password">
                         <label>Mật khẩu</label>
                     </div>
-                    <button id="login-btn" type="button">
+                    <button id="login-btn" type="submit">
                         <span></span>
                         <span></span>
                         <span></span>
                         <span></span>
                         Đăng nhập
                     </button>
-                </div>
-                <p class="create__account__text">Chưa có tài khoản? <span class="a2 link-create-account">Đăng ký!</span></p>
+                </form>
+                <p class="create__account__text">Chưa có tài khoản? <span class="a2 link-create-account">Đăng ký!</span>
+                </p>
                 <span class="forgot--account--link create__account__text a2">Quên mật khẩu?</span>
             </div>
             <div class="modal__body__box create-account-box">
-                <p>Đăng nhập tài khoản</p>
-                <div>
+                <p>Đăng ký tài khoản</p>
+                <form id="create-account-form" action="/create-account-url" method="POST">
                     <div class="user-box">
-                        <input class="login-name" required="" name="" type="text">
+                        <input class="login-name" required="" name="fullname" type="text">
                         <label>Họ và tên</label>
                     </div>
                     <div class="user-box">
-                        <input class="login-email" required="" name="" type="text">
+                        <input class="login-email" required="" name="email" type="text">
                         <label>Email</label>
                     </div>
                     <div class="user-box">
-                        <input class="login-pass" required="" name="" type="password">
+                        <input class="login-pass" required="" name="password" type="password">
                         <label>Mật khẩu</label>
                     </div>
                     <div class="user-box">
-                        <input class="login-pass-confirm" required="" name="" type="password">
+                        <input class="login-pass-confirm" required="" name="passwordConfirm" type="password">
                         <label>Nhập lại mật khẩu</label>
                     </div>
-                    <button id="create-btn" type="button">
+                    <button id="create-btn" type="submit">
                         <span></span>
                         <span></span>
                         <span></span>
                         <span></span>
                         Đăng ký
                     </button>
-                </div>
+                </form>
                 <p>Đã có tài khoản? <span class="a2 link-login">Đăng nhập!</span></p>
             </div>
             <div class="modal__body__box forgot-pass-box">
                 <p>Quên mật khẩu</p>
-                <div>
+                <form action="/your-forgot-url" method="POST">
                     <div class="user-box">
-                        <input class="login-email" required="" name="" type="text">
+                        <input class="login-email" required="" name="email" type="text">
                         <label>Email</label>
                     </div>
-                    <button id="forgot-btn" type="button">
+                    <div class="user-box send-code__code">
+                        <input class="code-pass" required="" name="code" type="text">
+                        <label>Mã khôi phục</label>
+                        <span id="timeLeft">60s</span>
+                        <button id="send-code" type="text">Gửi mã</button>
+                    </div>
+                    <button id="forgot-btn" type="submit">
                         <span></span>
                         <span></span>
                         <span></span>
                         <span></span>
-                        Gửi yêu cầu
+                        Xác nhận
                     </button>
-                </div>
+                </form>
                 <p>Đã có tài khoản? <span class="a2 link-login">Đăng nhập!</span></p>
             </div>
-
-            
-            <div class="modal__body__box register-cart">
-                <!-- <p>Đăng nhập tài khoản</p> -->
-                <div>
+            <div class="modal__body__box change-pass-box">
+                <p>Thay đổi mật khẩu</p>
+                <form action="/your-change-pass-url" method="POST">
                     <div class="user-box">
-                        <input class="login-email" required="" name="" type="text">
-                        <label>Họ và tên</label>
+                        <input class="new-pass" required="" name="email" type="text">
+                        <label>Mật khẩu mới</label>
                     </div>
-                    <div class="user-box createBox">
-                        <input class="login-pass" required="" name="" type="password">
-                        <label>Số điện thoại</label>
+                    <div class="user-box send-code__code">
+                        <input class="confirm-pass" required="" name="code" type="text">
+                        <label>Nhập lại mật khẩu</label>
                     </div>
-                    <div class="box_wrap">
-                        <div class="radio-container">
-                            <span class="tyoe_package">Gói tập</span>
-                            <div class="radio-wrapper">
-                                <label class="radio-button">
-                                    <input id="option1" name="radio-group" type="radio">
-                                    <span class="radio-checkmark"></span>
-                                    <span class="radio-label">BEGINNER</span>
-                                </label>
-                            </div>
-
-                            <div class="radio-wrapper">
-                                <label class="radio-button">
-                                    <input id="option2" name="radio-group" type="radio">
-                                    <span class="radio-checkmark"></span>
-                                    <span class="radio-label">BASIC</span>
-                                </label>
-                            </div>
-
-                            <div class="radio-wrapper">
-                                <label class="radio-button">
-                                    <input id="option3" name="radio-group" type="radio">
-                                    <span class="radio-checkmark"></span>
-                                    <span class="radio-label">ADVENCE</span>
-                                </label>
-                            </div>
-                        </div>
-
-                        <div class="user-box createBox">
-                            <input class="login-pass" required="" name="" type="text">
-                            <label>Ngày tập trong tuần mong muốn</label>
-                        </div>
-                    </div>
-
-                    <div class="radio-inputs">
-                        <label class="radio">
-                            <input type="radio" name="radio" checked="">
-                            <span class="name">1h30-3h00</span>
-                        </label>
-                        <label class="radio">
-                            <input type="radio" name="radio">
-                            <span class="name">3h00-4h30</span>
-                        </label>
-
-                        <label class="radio">
-                            <input type="radio" name="radio">
-                            <span class="name">5h30-6h30</span>
-                        </label>
-                    </div>
-                    <select name="pt-options" id="pt-options">
-                        <option>Trường designer</option>
-                        <option>Tiến fullstack</option>
-                        <option>Tú coder</option>
-                        <option>Vân tester</option>
-                        <option>Quyến developer</option>
-                    </select>
-                    <button class="summit-btn" type="button">
+                    <button id="changepass-btn" type="submit">
                         <span></span>
                         <span></span>
                         <span></span>
                         <span></span>
-                        Đăng ký
+                        Xác nhận
                     </button>
-                </div>
+                </form>
             </div>
-            <div class="modal__body__box change-name-box">
+            <div class="modal__body__box register-cart">
+                <form id="form-register" class="form1">
+                    <div class="registration__traning__schedule">
+                        <div class="table">
+                            <div id="training-schedule" class="first__training__schedule">
+                                <div class="row__title__table">
+                                    <div class="row__title__table__content">
+                                        Đăng ký lịch
+                                    </div>
+                                    <div class="x__cancel">
+                                        <i class="fa-regular fa-circle-xmark"></i>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="row__title">
+                                        Loại thẻ:
+                                    </div>
+                                    <div class="row__content">
+                                        <div>
+                                            <input type="radio" id="card1" name="cardType" value="BEGINNER">
+                                            <label for="card1">BEGINNER</label><br>
+
+                                        </div>
+                                        <div>
+                                            <input type="radio" id="card2" name="cardType" value="BASIC">
+                                            <label for="card2">BASIC</label><br>
+
+                                        </div>
+                                        <div>
+                                            <input type="radio" id="card3" name="cardType" value="ADVANCE">
+                                            <label for="card3">ADVANCE</label><br>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="row__title">
+                                        Ngày:
+                                    </div>
+                                    <div class="row__content">
+                                        <div>
+                                            <input type="checkbox" id="monday" name="weekday[]" value="T2">
+                                            <label for="monday">T2</label><br>
+                                        </div>
+                                        <div>
+                                            <input type="checkbox" id="tuesday" name="weekday[]" value="T3">
+                                            <label for="tuesday">T3</label><br>
+                                        </div>
+                                        <div>
+                                            <input type="checkbox" id="wednesday" name="weekday[]" value="T4">
+                                            <label for="wednesday">T4</label><br>
+                                        </div>
+                                        <div>
+                                            <input type="checkbox" id="thursday" name="weekday[]" value="T5">
+                                            <label for="thursday">T5</label><br>
+                                        </div>
+                                        <div>
+                                            <input type="checkbox" id="friday" name="weekday[]" value="T6">
+                                            <label for="friday">T6</label><br>
+                                        </div>
+                                        <div>
+                                            <input type="checkbox" id="saturday" name="weekday[]" value="T7">
+                                            <label for="saturday">T7</label><br>
+                                        </div>
+                                        <div>
+                                            <input type="checkbox" id="sunday" name="weekday[]" value="CN">
+                                            <label for="sunday">CN</label><br>
+                                        </div>
+
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="row__title">
+                                        Thời gian:
+                                    </div>
+                                    <div class="row__content">
+                                        <div>
+                                            <input type="radio" id="time1" name="time" value="13:30-15:00">
+                                            <label for="time1">13:30-15:00</label><br>
+
+                                        </div>
+                                        <div>
+                                            <input type="radio" id="time2" name="time" value="15:00-16:30">
+                                            <label for="time2">15:00-16:30</label><br>
+
+                                        </div>
+                                        <div>
+                                            <input type="radio" id="time3" name="time" value="17:30-18:30">
+                                            <label for="time3">17:30-18:30</label><br>
+
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="row__title">
+                                        Môn:
+                                    </div>
+                                    <div class="row__content row__content--type">
+                                        <div>
+                                            <input type="radio" id="GYM" name="type" value="GYM">
+                                            <label for="GYM">GYM</label><br>
+                                        </div>
+                                        <div>
+                                            <input type="radio" id="YOGA" name="type" value="YOGA">
+                                            <label for="YOGA">YOGA</label><br>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="row__title">
+                                        Huấn luyện viên:
+                                    </div>
+                                    <div class="row__content">
+                                        Ngẫu nhiên
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="row__title">
+                                        Ghi chú:
+                                    </div>
+                                    <div class="row__content">
+                                        <input class="row__content__input" type="text"
+                                            placeholder="Nhấp để thêm ghi chú" name="note">
+                                    </div>
+                                </div>
+                                <div class="row__final">
+                                    <div class="row__final__button">
+                                        <button class="button__form" type="submit">
+                                            Gửi yêu cầu
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+
+            <div class="modal__body__box change-box">
                 <p class="edit-title">Đổi tên khách hàng</p>
-                <div>
+                <form id="change-form" action="/your-name-url" method="POST">
                     <div class="user-box">
-                        <input class="new-name" required="" name="" type="text">
+                        <input class="new1" required="" name="newName" type="text">
                         <label class="edit-label">Tên mới</label>
                     </div>
                     <div class="submit__row">
                         <button id="submitExit">
-                            <!-- <span></span>
-                            <span></span>
-                            <span></span>
-                            <span></span> -->
                             Thoát
                         </button>
-                        <button id="submitChangeName">
+                        <button id="submitChange" type="submit">
                             <span></span>
                             <span></span>
                             <span></span>
@@ -697,7 +779,17 @@
                             Xác nhận
                         </button>
                     </div>
-                </div>
+                </form>
+            </div>
+
+            <div class="modal__body__box loader">
+                <div class="loader-square"></div>
+                <div class="loader-square"></div>
+                <div class="loader-square"></div>
+                <div class="loader-square"></div>
+                <div class="loader-square"></div>
+                <div class="loader-square"></div>
+                <div class="loader-square"></div>
             </div>
         </div>
     </div>
