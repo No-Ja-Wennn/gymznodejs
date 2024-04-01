@@ -69,8 +69,8 @@ const informationCardTitle = document.getElementById("information__card__title")
 let cookieSave = null;
 function f_logoutBTN() {
     var userNameElement1 = document.querySelector(".loginstatus");
-    var userNameElement2 = document.querySelector(".account__name");
-    var accountCodeElement2 = document.querySelector(".account__code");
+    var userNameElement2 = document.querySelector(".account-fullname");
+    var accountCodeElement2 = document.querySelector(".account-code");
     if (userNameElement1)
         userNameElement1.innerText = "ĐĂNG NHẬP";
     userNameElement2.innerText = "USERNAME";
@@ -108,8 +108,8 @@ function f_logoutBTN() {
 }
 function innerValueAfterLogin(userName, code) {
     var userNameElement1 = document.querySelector(".loginstatus");
-    var userNameElement2 = document.querySelector(".account__name");
-    var accountCodeElement2 = document.querySelector(".account__code");
+    var userNameElement2 = document.querySelector(".account-fullname");
+    var accountCodeElement2 = document.querySelector(".account-code");
     if (userNameElement1) {
         userNameElement1.innerText = userName;
     }

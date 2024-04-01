@@ -9,7 +9,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@100;300;500;600;900&display=swap"
-    rel="stylesheet">
+        rel="stylesheet">
     <link rel="stylesheet" href="../font/fontawesome-free-6.4.0-web/css/all.min.css">
     <link rel="stylesheet" href="../css/styles.css">
     <link rel="stylesheet" href="../navigation_css/toast.css">
@@ -79,7 +79,7 @@
                         <div class="submenu-login">
                             <ion-icon name="caret-up-sharp"></ion-icon>
                             <div class="menu-login">
-                                <a href="#">
+                                <a class="loginstatus status" href="#">
                                     Đăng nhập
                                 </a>
                                 <a href="../navigation/information_account.html">
@@ -88,6 +88,9 @@
                                 <a href="../navigation/information_card_TS.html">
                                     Lịch tập
                                 </a>
+                                <button class="logoutstatus status" type="submit">
+                                    ĐĂNG XUẤT
+                                </button>
                             </div>
                         </div>
                     </div>
@@ -98,7 +101,7 @@
                     </button>
                     <div class="content">
                         <div class="account">
-                            <div class="account-wrapper">
+                            <div class="menu2-infor account-wrapper" id="menu2-infor">
                                 <div class="account-avt">
                                     <img src="../img/icon/avatar.png" alt="">
                                 </div>
@@ -155,7 +158,7 @@
                                     Huấn luyện viên
                             </a>
                             <div class="content-logout">
-                                <a class="content-inner logout">
+                                <a class="content__logout__btn content-inner logout">
                                     <!-- <i class='bx bx-code-alt'></i> -->
                                     <i class="bxf fa-solid fa-right-from-bracket"></i>
                                     <span class="content-text">
