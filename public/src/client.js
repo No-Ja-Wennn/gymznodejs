@@ -13,7 +13,12 @@ import {
     innerMesageBox,
     removeMessageBox,
     loginSocket,
-    logoutSocket
+    logoutSocket,
+    displayLeftMessageHide,
+    displayRightMessageHide,
+    scrollToBottom,
+    loadHideMessage,
+    sendMessage
 } from "./function.js";
 import { showSuccessToast, showErrorToast } from "./toast.js";
 import { validateCreateAccount, validateLoginValue, validateChangePass, isValidChangePass, isFormComplete } from './validate.js';
@@ -337,6 +342,14 @@ function f_getValidCard() {
     })
 }
 
+const chatHideBox = document.querySelector(".chat-box");
+
+let sendHideMsgBTN = null;
+let inputHideE = null;
+if (chatHideBox) {
+    sendHideMsgBTN = chatHideBox.querySelector(".send");
+    inputHideE = chatHideBox.querySelector('.input-text');
+}
 
 
 
@@ -571,4 +584,24 @@ $(document).ready(function () {
         })
     f_getValidCard();
 
+    if (chatHideBox)
+        loadHideMessage();
+
+    if (sendHideMsgBTN)
+        sendHideMsgBTN.addEventListener("click", function () {
+            var valueInput = inputHideE.value.trim();
+            if (valueInput != '') {
+                sendMessage(valueInput);
+                inputHideE.value = '';
+            }
+        })
+    if (inputHideE)
+        inputHideE.addEventListener("keypress", function (event) {
+            if (event.key === "Enter") {
+                event.preventDefault();
+                sendHideMsgBTN.click();
+            }
+        });
 });
+
+

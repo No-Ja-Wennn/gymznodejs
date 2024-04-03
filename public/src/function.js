@@ -43,7 +43,7 @@ export function removeAllInputValue() {
 const titleNameE = document.querySelector(".chatbox__head__title");
 
 const chatBoxMessage = document.querySelector('.chatbox__message');
-let chatBoxList
+let chatBoxList = null;
 if (chatBoxMessage) {
     chatBoxList = chatBoxMessage.querySelector('.chatbox__message__list');
 }
@@ -60,6 +60,28 @@ function makeLi(value = "", option = "chatbox__message__item__right") {
     return chatBoxItem;
 }
 
+
+function makeLiHide(value = "", option = "customer") {
+    const chatBoxItem = document.createElement('div');
+    if (value) {
+        chatBoxItem.className = `message ${option}`;
+        if (option == "admin") {
+            var spanImg = document.createElement("span");
+            spanImg.classList.add('admin-img');
+            var imgElement = document.createElement("img");
+            imgElement.src = './img/icon/closeAi.jpg';
+            imgElement.alt = "";
+            spanImg.appendChild(imgElement);
+            chatBoxItem.appendChild(spanImg);
+
+        }
+        const textMessage = document.createElement('p');
+        textMessage.className = 'message-text';
+        textMessage.innerText = value;
+        chatBoxItem.appendChild(textMessage);
+    }
+    return chatBoxItem;
+}
 
 export let maKHActive = "";
 
@@ -417,13 +439,70 @@ export function innerMesageBox(name) {
 
 export function displayRightMessage(message) {
     const chatBoxItemUser = makeLi(message, "chatbox__message__item__right");
-    chatBoxList.appendChild(chatBoxItemUser);
+    if (chatBoxList)
+        chatBoxList.appendChild(chatBoxItemUser);
 }
 export function displayLeftMessage(message) {
     const chatBoxItemBot = makeLi(message, "chatbox__message__item__left");
-    chatBoxList.appendChild(chatBoxItemBot);
+    if (chatBoxList)
+        chatBoxList.appendChild(chatBoxItemBot);
+}
+const chatHideBox = document.querySelector(".chat-box");
+let msgListHide = null;
+if (chatHideBox){
+    msgListHide = chatHideBox.querySelector(".chat-log");
+    console.log(msgListHide)
 }
 
+export function scrollToBottom() {
+    if (msgListHide)
+        msgListHide.scrollTop = msgListHide.scrollHeight;
+}
+
+export function displayRightMessageHide(message) {
+    const chatBoxItemUser = makeLiHide(message, "customer");
+    if (msgListHide) {
+        msgListHide.appendChild(chatBoxItemUser);
+        scrollToBottom();
+    }
+}
+export function displayLeftMessageHide(message) {
+    const chatBoxItemBot = makeLiHide(message, "admin");
+    if (msgListHide) {
+        msgListHide.appendChild(chatBoxItemBot);
+        scrollToBottom();
+    }
+}
+
+export function loadHideMessage() {
+    $.ajax({
+        url: "/get-customer-message",
+        type: 'GET',
+        success: function (data) {
+            var a_value = data.value;
+            a_value.forEach(value => {
+                var role = value.senderRole;
+                if (role == "admin") {
+                    displayLeftMessageHide(value.message);
+                } else if (role == "customer") {
+                    displayRightMessageHide(value.message);
+                }
+            })
+            scrollToBottom();
+        },
+        error: function (err) {
+            console.log(err);
+        }
+    })
+}
+
+export function sendMessage(message) {
+    if (socket) {
+        socket.emit('clientMessage', { text: message, id: customerID });
+    } else {
+        console.log('You must be logged in to send a message');
+    }
+}
 
 export function removeMessageBox() {
     const titleNameE = document.querySelector(".chatbox__head__title");
@@ -441,14 +520,17 @@ export function loginSocket(maKH) {
     });
     // showSuccessToast("kết lối");
     socket.on('adminMessage', (data) => {
-        if (customerID == data.maKH)
+        if (customerID == data.maKH){
             displayLeftMessage(data.message);
+            displayLeftMessageHide(data.message);
+        }
     });
     socket.on('response-message-client', (data) => {
-        if (customerID == data.maKH)
+        if (customerID == data.maKH){
             displayRightMessage(data.message);
+            displayRightMessageHide(data.message);
+        }
     });
-
 }
 
 export function logoutSocket() {

@@ -1,3 +1,5 @@
+import { scrollToBottom } from "../src/function.js";
+
 const purple = document.querySelector('.color.purple');
 const pink = document.querySelector('.color.pink');
 const red = document.querySelector('.color.red');
@@ -19,6 +21,7 @@ buttonOpenChat.onclick = function () {
     chatBox.style.display = 'flex';
     chatBoxWrapper.style.animation = 'flyToTopChatBox .3s ease-in-out forwards';
     html.style.overflow = 'hidden';
+    scrollToBottom();
 }
 buttonCloseChat.onclick = function () {
     chatBoxWrapper.style.animation = 'fadeOutChatBox .3s ease-in-out forwards';

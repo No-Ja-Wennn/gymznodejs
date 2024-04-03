@@ -1,5 +1,5 @@
 
-import { customerID, displayLeftMessage, displayRightMessage, socket } from "../src/function.js";
+import { customerID, displayLeftMessage, displayRightMessage, sendMessage, socket } from "../src/function.js";
 import { showSuccessToast, showErrorToast } from "../src/toast.js";
 // import { innerBoxMsg } from "../src/function.js";
 
@@ -22,33 +22,10 @@ const inputBox = document.querySelector('.chatbox__bottom__input');
 // const inputElement = inputBox.querySelector('textarea');
 const sendButton = document.querySelector('.chatbox__bottom__send i');
 
-function makeLi(value = "", option = "chatbox__message__item__right") {
-    const chatBoxItem = document.createElement('li');
-    if (value) {
-        chatBoxItem.className = `chatbox__message__item ${option}`;
-        const textMessage = document.createElement('span');
-        textMessage.className = 'chatbox__message__item__text';
-        textMessage.innerText = value;
-        chatBoxItem.appendChild(textMessage);
-    }
-    return chatBoxItem;
-}
-
-
-
 const titleNameE = document.querySelector(".chatbox__head__title");
 
 
 
-
-
-function sendMessage(message) {
-    if (socket) {
-        socket.emit('clientMessage', { text: message, id: customerID });
-    } else {
-        console.log('You must be logged in to send a message');
-    }
-}
 
 sendButton.addEventListener('click', async () => {
     var valueInput = inputElement.value.trim();
