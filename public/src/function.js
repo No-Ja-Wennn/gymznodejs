@@ -60,16 +60,18 @@ function makeLi(value = "", option = "chatbox__message__item__right") {
     return chatBoxItem;
 }
 
-
+const hostCur = window.location.host;
+// const pathMain = currentPath.split('/')[0];
 function makeLiHide(value = "", option = "customer") {
     const chatBoxItem = document.createElement('div');
     if (value) {
         chatBoxItem.className = `message ${option}`;
         if (option == "admin") {
+            console.log(hostCur)
             var spanImg = document.createElement("span");
             spanImg.classList.add('admin-img');
             var imgElement = document.createElement("img");
-            imgElement.src = './img/icon/closeAi.jpg';
+            imgElement.src = 'http://' + hostCur + '/img/icon/closeAi.jpg';
             imgElement.alt = "";
             spanImg.appendChild(imgElement);
             chatBoxItem.appendChild(spanImg);
