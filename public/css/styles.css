@@ -2274,7 +2274,7 @@ body {
         opacity: 0;
     }
 }
-.chat-box {
+.chat-box { 
     position: fixed;
     /* display: flex; */
     display: none;

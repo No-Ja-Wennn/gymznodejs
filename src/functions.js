@@ -12,6 +12,20 @@ function getCurrentDate() {
     return new Date();
 }
 
+
+function insertIntoTable(tableName, data) {
+    let columns = Object.keys(data).join(', ');
+    let values = Object.values(data).map(value => `'${value}'`).join(', ');
+  
+    let sql = `INSERT INTO ${tableName} (${columns}) VALUES (${values})`;
+  
+    con.query(sql, function (err, result) {
+      if (err) throw err;
+      console.log("Record inserted successfully");
+    });
+  }
+  
+
 function addMonths(date, months) {
     let newDate = new Date(date.getTime());
     newDate.setMonth(date.getMonth() + months);
@@ -110,5 +124,6 @@ module.exports = {
     getContentMessage,
     getBoxMessage,
     saveMessage,
-    changeStatusSeen
+    changeStatusSeen,
+    insertIntoTable
 }

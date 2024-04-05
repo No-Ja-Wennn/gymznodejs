@@ -15,7 +15,8 @@ const {
   getContentMessage,
   getBoxMessage,
   saveMessage,
-  changeStatusSeen
+  changeStatusSeen,
+  insertIntoTable
 } = require('./src/functions.js');
 const nodemailer = require('nodemailer');
 
@@ -118,9 +119,16 @@ function createTable() {
     {
       name: 'AdminAccounts',
       columns: 'adminID nvarchar(10) PRIMARY KEY, username VARCHAR(255) NOT NULL, password VARCHAR(255) NOT NULL, lastUpdateDate DATE'
+    },
+    {
+      name: 'shopdata',
+      columns: 'ItemID VARCHAR(10) PRIMARY KEY, NameItem VARCHAR(255), Cost DECIMAL(10, 3), MainImg VARCHAR(255), SubImg VARCHAR(255), Depict TEXT'
+    },
+    {
+      name: 'cart',
+      columns: 'maKH VARCHAR(10), ItemID VARCHAR(10), Count INT, PRIMARY KEY(maKH, itemID), FOREIGN KEY(maKH) REFERENCES users(maKH) ON DELETE CASCADE, FOREIGN KEY(ItemID) REFERENCES shopdata(ItemID) ON DELETE CASCADE'
     }
   ];
-
 
 
   tables.forEach(table => {
@@ -139,18 +147,6 @@ function createTable() {
     });
   });
 
-}
-
-function insertIntoTable(tableName, data) {
-  let columns = Object.keys(data).join(', ');
-  let values = Object.values(data).map(value => `'${value}'`).join(', ');
-
-  let sql = `INSERT INTO ${tableName} (${columns}) VALUES (${values})`;
-
-  con.query(sql, function (err, result) {
-    if (err) throw err;
-    console.log("Record inserted successfully");
-  });
 }
 
 function updateTable(tableName, data, condition) {
@@ -1327,9 +1323,19 @@ function authenToken(req, res, next){
  
 */
 
+/* ============ SHOP WHEY ============= */
 
-
-
+app.get('/get-product-item', (req, res)=>{
+  var sql = "SELECT * FROM shopData";
+  con.query(sql, (err, result)=>{
+    if(err) throw err;
+    if(result.length > 0){
+      res.json({success: true, value: result});
+    }else{
+      res.json({success: false, value: []});
+    }
+  })
+})
 
 
 // =======================
