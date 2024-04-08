@@ -10,7 +10,8 @@ const tabs = [
   { tab: navbar.querySelector('#QLMessage'), table: document.querySelector('#groupList') },
   { tab: navbar.querySelector('#QLAccount'), table: document.querySelector('#accountTable') },
   { tab: navbar.querySelector('#QLCard'), table: document.querySelector('#cardTable') },
-  { tab: navbar.querySelector('#QLCalendar'), table: document.querySelector('#calendarTable') }
+  { tab: navbar.querySelector('#QLCalendar'), table: document.querySelector('#calendarTable') },
+  { tab: navbar.querySelector('#QLShop'), table: document.querySelector('#shopTable') }
 ];
 
 // Hàm để hiển thị bảng tương ứng và thêm class active cho tab
@@ -116,6 +117,11 @@ window.onload = function () {
   }
 
   // active old nav
+  // f_activeOldNav();
+
+}
+
+export function f_activeOldNav(){
   var navIDCook = getCookie("old_nav");
   if (navIDCook) {
     var navCook = document.getElementById(navIDCook.nav);
@@ -156,10 +162,11 @@ function getCookie(cookieName) {
 
 // save old click
 const a_nav = [
-  msgNav = document.getElementById("QLMessage"),
-  accountNav = document.getElementById("QLAccount"),
-  cardNav = document.getElementById("QLCard"),
-  calendarNav = document.getElementById("QLCalendar"),
+  document.getElementById("QLMessage"),
+  document.getElementById("QLAccount"),
+  document.getElementById("QLCard"),
+  document.getElementById("QLCalendar"),
+  document.getElementById("QLShop"),
 ]
 
 a_nav.forEach(value => {

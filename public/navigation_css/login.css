@@ -737,6 +737,10 @@ div#training-schedule {
     overflow: hidden;
 }
 
+.row__content__flex{
+    display: inline-flex;
+}
+
 .row__content--type {
     justify-content: flex-start;
 }
@@ -781,7 +785,7 @@ div#training-schedule {
     font-size: 16px;
 }
 
-.row__content__edit input,
+/* .row__content__edit input, */
 .row__content__edit span{
    width: 50%;
    max-width: none;

@@ -114,7 +114,7 @@ function createTable() {
     },
     {
       name: 'calendarData',
-      columns: 'maLT VARCHAR(10) PRIMARY KEY, maThe VARCHAR(10), weekday VARCHAR(10), timeStart TIME, timeEnd TIME, type VARCHAR(255), ptName VARCHAR(255), note VARCHAR(255), FOREIGN KEY (maThe) REFERENCES cardData(maThe)  ON DELETE CASCADE'
+      columns: 'maLT VARCHAR(10) , maThe VARCHAR(10), PRIMARY KEY(maLT, maThe), weekday VARCHAR(10), timeStart TIME, timeEnd TIME, type VARCHAR(255), ptName VARCHAR(255), note VARCHAR(255), FOREIGN KEY (maThe) REFERENCES cardData(maThe)  ON DELETE CASCADE'
     },
     {
       name: 'AdminAccounts',
@@ -183,7 +183,7 @@ app.post('/login-url', (req, res) => {
 });
 
 
-app.post('/create-account-url', (req, res) => {
+app.post('/create-account-url', authenToken, (req, res) => {
   // data of form in req.body
   const { fullname, email, password } = req.body;
   // ktra ton tai
@@ -212,35 +212,40 @@ app.post('/create-account-url', (req, res) => {
             sql = `INSERT INTO loginData (maKH ,password) VALUES ('${maKH}', '${password}')`;
             con.query(sql, function (err, result) {
               if (err) throw err;
-              con.query("SELECT maThe FROM cardData ORDER BY maThe DESC LIMIT 1",
-                function (err, result, fields) {
-                  if (err) throw err;
-                  var maThe;
-                  if (!result[0]) {
-                    maThe = 'MT0001';
-                  } else {
-                    maThe = generateCustomerCode(result[0].maThe);
-                  }
-                  var cardData = { maKH: maKH, maThe: maThe };
-                  insertIntoTable("cardData", cardData);
+              // con.query("SELECT maThe FROM cardData ORDER BY maThe DESC LIMIT 1",
+              //   function (err, result, fields) {
+              //     if (err) throw err;
+              //     var maThe;
+              //     if (!result[0]) {
+              //       maThe = 'MT0001';
+              //     } else {
+              //       maThe = generateCustomerCode(result[0].maThe);
+              //     }
+              //     var cardData = { maKH: maKH, maThe: maThe };
+              //     insertIntoTable(con, "cardData", cardData);
 
-                  con.query("SELECT maLT FROM calendarData ORDER BY maLT DESC LIMIT 1",
-                    function (err, result, fields) {
-                      if (err) throw err;
-                      var maLT;
-                      if (!result[0]) {
-                        maLT = 'LT0001';
-                      } else {
-                        maLT = generateCustomerCode(result[0].maLT);
-                      }
-                      var calendarData = { maLT: maLT, maThe: maThe };
-                      insertIntoTable("calendarData", calendarData);
-                    }
-                  )
-                }
-              )
-
-              res.json({ success: true, active: true });
+              //     con.query("SELECT maLT FROM calendarData ORDER BY maLT DESC LIMIT 1",
+              //       function (err, result, fields) {
+              //         if (err) throw err;
+              //         var maLT;
+              //         if (!result[0]) {
+              //           maLT = 'LT0001';
+              //         } else {
+              //           maLT = generateCustomerCode(result[0].maLT);
+              //         }
+              //         var calendarData = { maLT: maLT, maThe: maThe };
+              //         insertIntoTable(con, "calendarData", calendarData);
+              //       }
+              //     )
+              //   }
+              // )
+              var data = {
+                maKH,
+                fullname,
+                email: emailLower,
+                password
+              }
+              res.json({ success: true, active: true, acc: data });
               res.end();
             });
 
@@ -560,7 +565,7 @@ app.post('/register-card-url', (req, res) => {
               dateStart,
               dateEnd
             }
-            insertIntoTable("cardData", cardValue);
+            insertIntoTable(con, "cardData", cardValue);
 
             // if (weekday)
             //   var date = weekday.join(", ");
@@ -588,7 +593,7 @@ app.post('/register-card-url', (req, res) => {
                   type: ptNameAuto,
                   note
                 }
-                insertIntoTable("calendarData", caValue);
+                insertIntoTable(con, "calendarData", caValue);
                 res.json({ success: true });
 
               });
@@ -707,6 +712,21 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use('/socket.io', express.static(path.join(__dirname, 'node_modules/socket.io/client-dist')));
 
 
+/// đừng xóa
+// io.use((socket, next) => {
+//   if (socket.handshake.query && socket.handshake.query.token) {
+//     jwt.verify(socket.handshake.query.token, process.env.ACCESS_TOKEN_SECRET, (err, decoded) => {
+//       if (err) return next(new Error('Authentication error'));
+//       socket.decoded = decoded;
+//       next();
+//     });
+//   }
+
+//   else {
+//     next(new Error('Authentication error'));
+//   }
+// })
+
 var cookieParser = require('cookie-parser');
 
 app.use(cookieParser());
@@ -780,7 +800,6 @@ let refreshTokens = [];
 
 app.post('/post-user-token', (req, res) => {
   const data = req.body;
-  console.log(data);
   const accessToken = generateAccessToken(data);
   const refreshToken = jwt.sign(data, process.env.REFRESH_TOKEN_SECRET);
   refreshTokens.push(refreshToken);
@@ -805,7 +824,7 @@ app.post('/refresh-token', (req, res) => {
 function authenToken(req, res, next) {
   const authorizationHeader = req.headers['authorization'];
   const token = authorizationHeader && authorizationHeader.split(' ')[1];
-  console.log("token: ", token)
+  console.log("token: ", token);
   if (!token) return res.sendStatus(401);
   jwt.verify(token, process.env.ACCESS_TOKEN_SECRET, (err, data) => {
     if (err) return res.sendStatus(403);
@@ -821,8 +840,9 @@ function generateAccessToken(data) {
 
 // GET MESSAGE
 
-app.get('/get-box-message', (req, res) => {
+app.get('/get-box-message', authenToken, (req, res) => {
   getBoxMessage(con, function (data) {
+    console.log("mess: ", data);
     res.json({ value: data });
   });
 });
@@ -923,14 +943,14 @@ function insertIntoAllTable(data, except = "") {
       dateOfBirth: data.dateOfBirth,
       phoneNumber: data.phoneNumber
     }
-    insertIntoTable('users', usersData);
+    insertIntoTable(con, 'users', usersData);
   }
   if (!except.includes("login")) {
     var loginData = {
       maKH: data.maKH,
       password: data.password
     };
-    insertIntoTable('loginData', loginData);
+    insertIntoTable(con, 'loginData', loginData);
   }
   if (!except.includes("card")) {
     var cardData = {
@@ -940,7 +960,7 @@ function insertIntoAllTable(data, except = "") {
       dateStart: data.dateStart,
       dateEnd: data.dateEnd,
     }
-    insertIntoTable('cardData', cardData);
+    insertIntoTable(con, 'cardData', cardData);
   }
   if (!except.includes("calendar")) {
     var calendarData = {
@@ -953,11 +973,11 @@ function insertIntoAllTable(data, except = "") {
       ptName: data.ptName,
       note: data.note
     }
-    insertIntoTable('calendarData', calendarData);
+    insertIntoTable(con, 'calendarData', calendarData);
   }
 }
 
-app.post('/create-card-admin-url', (req, res) => {
+app.post('/create-card-admin-url', authenToken, (req, res) => {
   const {
     maKH
     , fullname
@@ -1060,14 +1080,14 @@ app.get('/get-calendar-cus', authenToken, (req, res) => {
   var sql = "SELECT maLT, cardData.maThe, name, weekday, timeStart, timeEnd, type, ptName, note FROM users JOIN cardData, calendarData WHERE users.maKH = cardData.maKH AND cardData.maThe = calendarData.maThe";
   con.query(sql, (err, result) => {
     if (err) throw err;
-    console.log(result);
+    // console.log(result);
     res.json({ status: "success", data: result });
   })
 })
 
 // ADD CALENDAR
 
-app.post('/create-calendar-admin-url', (req, res) => {
+app.post('/create-calendar-admin-url', authenToken, (req, res) => {
   const {
     maThe,
     name,
@@ -1081,50 +1101,50 @@ app.post('/create-calendar-admin-url', (req, res) => {
   resetDataAllProperties(dataAll);
 
   dataAll = req.body;
-  console.log("dataall", dataAll)
+  console.log("dataall", dataAll);
   if (maThe != "") {
     var sql = "SELECT maThe FROM cardData WHERE maThe = ?";
     con.query(sql, [maThe], (err, result) => {
       if (err) throw err;
       if (result.length > 0) {
-        var sql = "SELECT maThe FROM calendarData WHERE maThe = ?";
-        con.query(sql, [maThe], (err, result) => {
-          if (err) throw err;
-          if (result.length <= 0) {
+        // var sql = "SELECT maThe FROM calendarData WHERE maThe = ?";
+        // con.query(sql, [maThe], (err, result) => {
+        //   if (err) throw err;
+        //   if (result.length <= 0) {
 
-            // con.query("SELECT maThe FROM cardData ORDER BY maThe DESC LIMIT 1",
-            //   function (err, result, fields) {
-            //     if (err) throw err;
-            //     var maThe;
-            //     if (!result[0]) {
-            //       dataAll.maThe = 'MT0001';
-            //     } else {
-            //       dataAll.maThe = generateCustomerCode(result[0].maThe);
-            //     }
-            con.query("SELECT maLT FROM calendarData ORDER BY maLT DESC LIMIT 1",
-              function (err, result, fields) {
-                if (err) throw err;
-                var maLT;
-                if (!result[0]) {
-                  dataAll.maLT = 'LT0001';
-                } else {
-                  dataAll.maLT = generateCustomerCode(result[0].maLT);
-                }
+        // con.query("SELECT maThe FROM cardData ORDER BY maThe DESC LIMIT 1",
+        //   function (err, result, fields) {
+        //     if (err) throw err;
+        //     var maThe;
+        //     if (!result[0]) {
+        //       dataAll.maThe = 'MT0001';
+        //     } else {
+        //       dataAll.maThe = generateCustomerCode(result[0].maThe);
+        //     }
+        con.query("SELECT maLT FROM calendarData ORDER BY maLT DESC LIMIT 1",
+          function (err, result, fields) {
+            if (err) throw err;
+            var maLT;
+            if (!result[0]) {
+              dataAll.maLT = 'LT0001';
+            } else {
+              dataAll.maLT = generateCustomerCode(result[0].maLT);
+            }
 
-                dataAll.timeStart = time;
-                dataAll.timeEnd = time;
+            dataAll.timeStart = time;
+            dataAll.timeEnd = time;
 
-                console.log(dataAll)
-                insertIntoAllTable(dataAll, "users login card");
-                res.json({ success: true, message: "" });
-              }
-            )
-            //   }
-            // )
-          } else {
-            res.json({ success: false, message: "Khách hàng đã có lịch tập" });
+            console.log(dataAll)
+            insertIntoAllTable(dataAll, "users login card");
+            res.json({ success: true, message: "" });
           }
-        });
+        )
+        //   }
+        // )
+        // } else {
+        //   res.json({ success: false, message: "Khách hàng đã có lịch tập" });
+        // }
+        // });
       } else {
         res.json({ success: false, message: "Khách hàng chưa có thẻ thành viên" });
       }
@@ -1171,15 +1191,24 @@ app.post('/create-calendar-admin-url', (req, res) => {
 
 
 // EDIT ACCOUNT ADMIN
-app.post("/edit-account-url", function (req, res) {
+app.post("/edit-account-url", authenToken, function (req, res) {
   const { maKH, name, email, password } = req.body;
   const userData = { maKH, name, email };
   const loginData = { maKH, password };
   deleteSpacePro(userData)
   deleteSpacePro(loginData)
-  updateTable('users', userData, `maKH = '${maKH}'`);
-  updateTable('loginData', loginData, `maKH = '${maKH}'`);
-  res.json({ success: true })
+  var sql = 'SELECT email FROM users WHERE email = ?';
+  con.query(sql, [email], (err, result) => {
+    if (err) throw err;
+    console.log(result)
+    if (result.length > 0 && result[0].email == email) {
+      res.json({ success: false, err: "Email đã tồn tại" })
+    } else {
+      updateTable('users', userData, `maKH = '${maKH}'`);
+      updateTable('loginData', loginData, `maKH = '${maKH}'`);
+      res.json({ success: true })
+    }
+  })
 })
 
 function deleteSpacePro(data) {
@@ -1191,7 +1220,7 @@ function deleteSpacePro(data) {
 }
 
 // EDIT CARD ADMIN
-app.post("/edit-card-url", function (req, res) {
+app.post("/edit-card-url", authenToken, function (req, res) {
   const {
     maThe,
     maKH,
@@ -1214,39 +1243,62 @@ app.post("/edit-card-url", function (req, res) {
 
 
 // EDIT CALENDAR ADMIN
-app.post("/edit-calendar-url", function (req, res) {
+app.post("/edit-calendar-url", authenToken, function (req, res) {
   const {
     maLT,
     maThe,
     weekday,
-    timeStart,
-    timeEnd,
+    time,
     type,
     ptName,
     note } = req.body;
-
-  console.log(weekday)
-  const caData = req.body;
+  console.log("req.body: ", req.body);
+  // console.log(weekday)
+  let caData = req.body;
+  delete caData['time'];
+  if (time) {
+    var a_time = time.split('-');
+    caData.timeStart = a_time[0];
+    caData.timeEnd = a_time[1];
+  }
+  if (weekday)
+    caData.weekday = caData.weekday.toString();
+  console.log(caData)
   deleteSpacePro(caData)
   updateTable('calendarData', caData, `maLT = '${maLT}'`);
   res.json({ success: true })
 })
 
-app.post('/admin-remove-acc', (req, res) => {
+
+// GET ITEM SHOP
+
+app.get('/get-shop-item', authenToken, (req, res) => {
+  var sql = "SELECT MainImg, SubImg, ItemID, NameItem, Cost, Depict FROM shopdata";
+  con.query(sql, (err, result) => {
+    if (err) throw err;
+    console.log(result);
+    res.json({ status: "success", data: result });
+  })
+
+})
+
+// REMOVE ACC CARD CALENDAR
+
+app.post('/admin-remove-acc', authenToken, (req, res) => {
   const { maKH } = req.body;
   console.log(maKH);
   removeRowTable("users", `maKH = '${maKH}'`);
   res.json({ success: true });
 })
 
-app.post('/admin-remove-card', (req, res) => {
+app.post('/admin-remove-card', authenToken, (req, res) => {
   const { maThe } = req.body;
   console.log(maThe);
   removeRowTable("cardData", `maThe = '${maThe}'`);
   res.json({ success: true });
 })
 
-app.post('/admin-remove-calendar', (req, res) => {
+app.post('/admin-remove-calendar', authenToken, (req, res) => {
   const { maLT } = req.body;
   console.log(maLT);
   removeRowTable("calendarData", `maLT = '${maLT}'`);
@@ -1289,7 +1341,15 @@ app.post("/login-admin-url", function (req, res) {
   })
 })
 
-
+app.get('/logout-admin-url', (req, res) => {
+  let cookieAdmin = getCookie(req, 'admin_acc');
+  if (cookieAdmin) {
+    clearCookie(res, 'admin_acc');
+    res.json({ success: true });
+  } else {
+    res.json({ success: false });
+  }
+})
 
 // TEST JWT
 /*
@@ -1325,18 +1385,54 @@ function authenToken(req, res, next){
 
 /* ============ SHOP WHEY ============= */
 
-app.get('/get-product-item', (req, res)=>{
+app.get('/get-product-item', (req, res) => {
   var sql = "SELECT * FROM shopData";
-  con.query(sql, (err, result)=>{
-    if(err) throw err;
-    if(result.length > 0){
-      res.json({success: true, value: result});
-    }else{
-      res.json({success: false, value: []});
+  con.query(sql, (err, result) => {
+    if (err) throw err;
+    if (result.length > 0) {
+      res.json({ success: true, value: result });
+    } else {
+      res.json({ success: false, value: [] });
     }
   })
 })
 
+/* =============== SEARCH SHOP ================ */
+
+const stringSimilarity = require('string-similarity');
+function isSimilar(string1, string2) {
+  if (string2.includes(string1)) {
+    return true;
+  }
+  const similarity = stringSimilarity.compareTwoStrings(string1, string2);
+  return similarity > 0.2; // Điều chỉnh ngưỡng tương đồng tại đây
+}
+
+const fuzzball = require('fuzzball');
+
+function compareStrings(string1, string2) {
+  const ratio = fuzzball.ratio(string1, string2);
+  return ratio > 70; // Điều chỉnh ngưỡng tương đồng tại đây
+}
+
+app.post('/get-item-search', (req, res) => {
+  const { value } = req.body;
+  var itemAdd = [];
+  var sql = "SELECT * FROM shopData";
+  con.query(sql, (err, result) => {
+    if (err) throw err;
+    if (result.length > 0) {
+      result.forEach(item => {
+        if (isSimilar(value.trim().toLowerCase(), item.NameItem.trim().toLowerCase())) {
+          itemAdd.push(item);
+        }
+      })
+      res.json({ success: true, items: itemAdd });
+    } else {
+      res.json({ success: false, items: itemAdd });
+    }
+  })
+})
 
 // =======================
 const port = process.env.PORT || 8080;

@@ -1,3 +1,4 @@
+import { f_activeOldNav } from "./src/app.js";
 import {
     activeEventClickBox,
     activeNecessaryForm,
@@ -19,17 +20,60 @@ const modalBox = document.querySelector(".modal");
 const overlayBox = document.querySelector(".modal-overlay");
 const loginBox = document.querySelector(".login-box");
 
-
-
-const accountTable = document.getElementById("accountTable");
+const accountPage = document.getElementById("accountTable");
 const cardPage = document.getElementById("cardTable");
 const calendarPage = document.getElementById("calendarTable");
+const shopPage = document.getElementById("shopTable");
 
 
 function affterLogin(data) {
     adminName.innerText = data.username;
     showSuccessToast("Đăng nhập thành công")
     displayNoneAll();
+    logoutAdminBTN.style.display = 'flex';
+    loginAdminBTN.removeEventListener("click", f_getLoginAdmin);
+    f_activeOldNav();
+}
+
+function affterLogout(data) {
+    adminName.innerText = 'ADMIN NAME';
+    showSuccessToast("Đã đăng xuất");
+    displayNoneAll();
+    logoutAdminBTN.style.display = 'none';
+}
+let socket = null;
+function activeEventLogin() {
+    console.log("hello2");
+    socket = io(
+        //     {
+        //     query: {
+        //         token: localStorage.getItem('accessToken')
+        //     }
+        // }
+    );
+    // let socket = io({
+    //     query: {
+    //         token: localStorage.getItem('accessToken')
+    //     }
+    // });
+    socket.on('connect', () => {
+        console.log('Connected to server');
+    });
+
+    socket.on('response-message-admin', (message) => {
+        displayRightMessage(message);
+    });
+
+    socket.on('clientMessage', (data) => {
+        // console.log(maKHActive)
+        if (data.maKH == maKHActive)
+            displayLeftMessage(data.message);
+        activeNewMessage(data.maKH, data.name, data.senderRole, data.message);
+    });
+
+
+    f_getBoxMsg();
+
 }
 
 let accessRights = null;
@@ -50,30 +94,39 @@ function checkCookieAdmin() {
 }
 console.log(checkCookieAdmin())
 
-$.ajax({
-    url: '/get-login-admin',
-    type: 'get',
-    success: function (data) {
-        console.log(data);
-        if (data.success) {
-            affterLogin(data);
-            userToken(data.username)
-        } else {
-            displayNoneAll();
-            activeNecessaryForm();
-            loginBox.style.display = "block";
-        }
-    },
-    error: function (err) {
+function f_getLoginAdmin() {
+    $.ajax({
+        url: '/get-login-admin',
+        type: 'get',
+        success: function (data) {
+            console.log(data);
+            if (data.success) {
+                userToken(data.username)
+                    .then(function () {
+                        affterLogin(data);
+                        activeEventLogin();
+                    })
+                    .catch(function (err) {
+                        console.error("Error: ", err);
+                    })
+            } else {
+                displayNoneAll();
+                activeNecessaryForm();
+                loginBox.style.display = "block";
+            }
+        },
+        error: function (err) {
 
-    }
-})
+        }
+    })
+}
 
 function validValueAdminLogin() {
     return true;
 }
 
 const adminName = document.querySelector(".nav-admin-ifm-name");
+
 
 $('#login-admin-form').submit(function (e) {
     e.preventDefault();
@@ -84,8 +137,14 @@ $('#login-admin-form').submit(function (e) {
             data: $(this).serialize(),
             success: function (data) {
                 if (data.success) {
-                    affterLogin(data);
                     userToken(data.username)
+                        .then(function () {
+                            affterLogin(data);
+                            activeEventLogin();
+                        })
+                        .catch(function (err) {
+                            console.error("Error: ", err);
+                        })
                 }
             },
             error: function (err) {
@@ -94,7 +153,38 @@ $('#login-admin-form').submit(function (e) {
         })
 })
 
+const loginAdminBTN = document.getElementById("login-admin");
+loginAdminBTN.addEventListener("click", f_getLoginAdmin);
 
+
+
+
+const logoutAdminBTN = document.getElementById("logOut");
+logoutAdminBTN.addEventListener("click", function () {
+    $.ajax({
+        url: '/logout-admin-url',
+        type: 'GET',
+        success: function (data) {
+            if (data.success) {
+                localStorage.setItem('refreshToken', "");
+                localStorage.setItem('accessToken', "");
+                affterLogout();
+                if (socket) {
+                    socket.disconnect();
+                    socket = null;
+                    showSuccessToast("hủy kết nối");
+                    console.log('Disconnected from server');
+                }
+                loginAdminBTN.addEventListener("click", f_getLoginAdmin);
+            } else {
+                showErrorToast("Chưa đăng nhập vào hệ thống");
+            }
+        },
+        error: function (err) {
+            console.err(err);
+        }
+    })
+})
 
 
 
@@ -103,6 +193,7 @@ const msgNav = document.getElementById("QLMessage");
 const accountNav = document.getElementById("QLAccount");
 const cardNav = document.getElementById("QLCard");
 const calendarNav = document.getElementById("QLCalendar");
+const shopNav = document.getElementById("QLShop");
 
 // test jwt
 
@@ -147,22 +238,28 @@ function sendRequest(url, method, headers, data, successCallback, errorCallback)
 }
 
 function userToken(username) {
-    $.ajax({
-        url: '/post-user-token',
-        type: 'POST',
-        data: { username },
-        success: function (data) {
-            console.log(data);
-            const { accessToken, refreshToken } = data;
-            // Lưu trữ refresh token
-            localStorage.setItem('refreshToken', refreshToken);
-            localStorage.setItem('accessToken', accessToken);
-            // useAccessToken(accessToken);
-        },
-        error: function (err) {
-            console.error(err);
-        }
-    });
+    return new Promise(function (resolve, reject) {
+
+        $.ajax({
+            url: '/post-user-token',
+            type: 'POST',
+            data: { username },
+            success: function (data) {
+                console.log(data);
+                console.log("Hello1")
+                const { accessToken, refreshToken } = data;
+                // Lưu trữ refresh token
+                localStorage.setItem('refreshToken', refreshToken);
+                localStorage.setItem('accessToken', accessToken);
+                // useAccessToken(accessToken);
+                resolve();
+            },
+            error: function (err) {
+                console.error(err);
+                reject();
+            }
+        });
+    })
 }
 
 // function useAccessToken(accessToken) {
@@ -243,34 +340,38 @@ function isLoggedIn() {
 
 
 $(document).ready(function () {
-    $.ajax({
-        url: '/get-box-message',
-        type: "GET",
-        success: function (data) {
-            // console.log(data);
-            innerBoxMsg(data.value);
-        },
-        error: function (err) {
+    f_getLoginAdmin();
 
-        }
-    });
+    // $.ajax({
+    //     url: '/get-box-message',
+    //     type: "GET",
+    //     success: function (data) {
+    //         // console.log(data);
+    //         innerBoxMsg(data.value);
+    //     },
+    //     error: function (err) {
+
+    //     }
+    // });
+
 })
 
-const socket = io();
-socket.on('connect', () => {
-    console.log('Connected to server');
-});
+function f_getBoxMsg() {
+    var accessToken = localStorage.getItem('accessToken');
+    sendRequest("/get-box-message", 'GET',
+        {
+            'Authorization': 'Bearer ' + accessToken
+        },
+        null,
+        function (data) {
+            innerBoxMsg(data.value);
+        }),
+        function (err) {
 
-socket.on('response-message-admin', (message) => {
-    displayRightMessage(message);
-});
+        }
+}
 
-socket.on('clientMessage', (data) => {
-    // console.log(maKHActive)
-    if (data.maKH == maKHActive)
-        displayLeftMessage(data.message);
-    activeNewMessage(data.maKH, data.name, data.senderRole, data.message);
-});
+
 
 function sendMessage(message) {
     socket.emit('adminMessage', { text: message, id: maKHActive });
@@ -404,7 +505,6 @@ showAddAccBTN.addEventListener("click", function () {
     modalBox.style.display = "flex";
     overlayBox.style.display = "block";
     addAccountBox.style.display = "block";
-
 })
 
 function removeAllTable() {
@@ -418,16 +518,19 @@ function removeAllTable() {
 function insertToTable(tableName, dataObject) {
     var tbody;
     if (tableName == "account")
-        tbody = accountTable.querySelector('.table__show__main tbody');
+        tbody = accountPage.querySelector('.table__show__main tbody');
     else if (tableName == "card")
-        tbody = cardTable.querySelector('.table__show__main tbody');
+        tbody = cardPage.querySelector('.table__show__main tbody');
     else if (tableName == "calendar")
-        tbody = calendarTable.querySelector('.table__show__main tbody');
+        tbody = calendarPage.querySelector('.table__show__main tbody');
+    else if (tableName == "shop")
+        tbody = shopPage.querySelector('.table__show__main tbody');
 
     var row = tbody.insertRow(-1); // Chèn hàng mới vào cuối tbody
 
     // Duyệt qua từng trường trong đối tượng dataObject
     var cellIndex = 0;
+    var idIndex = 0;
     for (var field in dataObject) {
         var cell = row.insertCell(-1); // Chèn ô mới vào hàng
         cell.textContent = dataObject[field]; // Điền dữ liệu vào ô
@@ -445,24 +548,19 @@ function insertToTable(tableName, dataObject) {
 
             cellIndex++;
         } else if (tableName == "card") {
-            // Nếu đây là ô đầu tiên, thêm class "show_id"
             if (cellIndex == 0) {
                 cell.classList.add("show_id");
             }
 
-            // Nếu đây là ô thứ hai, thêm class "show_name"
             if (cellIndex == 2) {
                 cell.classList.add("show_name");
             }
-            // Nếu đây là ô thứ hai, thêm class "show_name"
             if (cellIndex == 5) {
                 cell.classList.add("show_type");
             }
-            // Nếu đây là ô thứ hai, thêm class "show_name"
             if (cellIndex == 6) {
                 cell.classList.add("show_start");
             }
-            // Nếu đây là ô thứ hai, thêm class "show_name"
             if (cellIndex == 7) {
                 cell.classList.add("show_end");
             }
@@ -474,21 +572,40 @@ function insertToTable(tableName, dataObject) {
                 cell.classList.add("show_id");
             }
 
-            // Nếu đây là ô thứ hai, thêm class "show_name"
             if (cellIndex == 2) {
                 cell.classList.add("show_name");
             }
-            // Nếu đây là ô thứ hai, thêm class "show_name"
+
             if (cellIndex == 6) {
                 cell.classList.add("show_type");
             }
-            // Nếu đây là ô thứ hai, thêm class "show_name"
+
             if (cellIndex == 7) {
                 cell.classList.add("show_pt");
             }
 
             cellIndex++;
+        } else if (tableName == "shop") {
+
+            // img 1
+
+            if (cellIndex == 0 || cellIndex == 1) {
+                cell.innerHTML = `<img class="show_main_img" src="${dataObject[field]}" alt="">`; // Điền dữ liệu vào ô
+                var inputChange = document.createElement('input');
+                inputChange.type = 'file';
+                inputChange.id = 'input' + field + idIndex;
+                var lableTag = document.createElement('label');
+                lableTag.innerText = 'Thay ảnh';
+                lableTag.htmlFor = 'input' + field + idIndex;
+                inputChange.style.display = 'none';
+                cell.appendChild(inputChange);
+                cell.appendChild(lableTag);
+                idIndex++;
+            }
+            cell.classList.add(field);
+            cellIndex++;
         }
+
     }
 
     // Thêm nút xóa vào ô cuối cùng
@@ -592,7 +709,7 @@ function f_calendarNav() {
 
 
 // click overlay
-// overlayBox.addEventListener("click", displayNoneAll);
+// overlcreateayBox.addEventListener("click", displayNoneAll);
 
 const exitAddAccount = addAccountBox.querySelector(".x__cancel");
 exitAddAccount.addEventListener("click", displayNoneAll)
@@ -601,21 +718,29 @@ exitAddAccount.addEventListener("click", displayNoneAll)
 // add account function
 const addAccountBTN = addAccountBox.querySelector(".button__form");
 $('#form-add-account').submit(function (e) {
+    let accessToken = localStorage.getItem('accessToken');
     e.preventDefault();
     var fullname = addAccountBox.querySelector("[name='fullname']").value;
     var email = addAccountBox.querySelector("[name='email']").value;
     var password = addAccountBox.querySelector("[name='password']").value;
-    if (validateAdminAddAcc(fullname, email, password))
-        $.ajax({
-            url: "/create-account-url",
-            type: "POST",
-            data: $(this).serialize(),
-            success: function (data) {
+    if (validateAdminAddAcc(fullname, email, password)) {
+        sendRequest(
+            '/create-account-url',
+            'POST',
+            {
+                'Authorization': 'Bearer ' + accessToken
+            },
+            $(this).serialize(),
+            function (data) {
                 console.log(data)
                 if (data.success) {
                     if (data.active == true) {
                         showSuccessToast("Thêm thành công", "");
                         displayNoneAll();
+                        accountNav.click();
+                        removeAllInputValue();
+                        // console.log(data.acc);
+                        // insertToTable('account', data.acc)
                     } else {
 
                     }
@@ -623,25 +748,52 @@ $('#form-add-account').submit(function (e) {
                     showErrorToast("Thất bại", "Email đã tồn tại trong hệ thống")
                 }
             },
-            error: function () {
-
+            function (err) {
+                showErrorToast("Thất bại", "Chưa đăng nhập");
+                console.err(err);
             }
-        })
+        )
+        // $.ajax({
+        //     url: "/create-account-url",
+        //     type: "POST",
+        //     data: $(this).serialize(),
+        //     success: function (data) {
+        //         console.log(data)
+        //         if (data.success) {
+        //             if (data.active == true) {
+        //                 showSuccessToast("Thêm thành công", "");
+        //                 displayNoneAll();
+        //                 accountNav.click();
+        //                 removeAllInputValue();
+        //                 // console.log(data.acc);
+        //                 // insertToTable('account', data.acc)
+        //             } else {
+
+        //             }
+        //         } else {
+        //             showErrorToast("Thất bại", "Email đã tồn tại trong hệ thống")
+        //         }
+        //     },
+        //     error: function () {
+
+        //     }
+        // })
+    }
 })
 
 
 // find account
-const findAccountInput = accountTable.querySelector(".find-account-input");
+const findAccountInput = accountPage.querySelector(".find-account-input");
 
-const findAccountBTN = accountTable.querySelector(".container__show__find__btn");
-const exitSearchAccBTN = accountTable.querySelector(".exit--search ");
+const findAccountBTN = accountPage.querySelector(".container__show__find__btn");
+const exitSearchAccBTN = accountPage.querySelector(".exit--search ");
 
 
 findAccountBTN.addEventListener("click", function () {
     var inputValue = removeAccents(findAccountInput.value.trim().toLowerCase());
-    var a_id = accountTable.querySelectorAll(".show_id");
+    var a_id = accountPage.querySelectorAll(".show_id");
     a_id = Array.from(a_id);
-    var a_name = accountTable.querySelectorAll(".show_name");
+    var a_name = accountPage.querySelectorAll(".show_name");
     a_name = Array.from(a_name);
 
     if (inputValue != '') {
@@ -666,7 +818,7 @@ findAccountBTN.addEventListener("click", function () {
 });
 
 exitSearchAccBTN.addEventListener("click", function () {
-    var a_id = accountTable.querySelectorAll(".show_id");
+    var a_id = accountPage.querySelectorAll(".show_id");
     a_id = Array.from(a_id);
     a_id.forEach((element) => {
         element.parentNode.style.display = "table-row";
@@ -704,24 +856,52 @@ $('#form-add-card').submit(function (e) {
     var cardType = addCardBox.querySelector("[name='cardType']").value;
     var dateStart = addCardBox.querySelector("[name='dateStart']").value;
     console.log(name, dateOfBirth, phoneNumber, cardType, dateStart)
-    if (validateAdminAddCard(name, dateOfBirth, phoneNumber, cardType, dateStart)) {
-        $.ajax({
-            url: "/create-card-admin-url",
-            type: "POST",
-            data: $(this).serialize(),
-            success: function (data) {
+    var accessToken = localStorage.getItem('accessToken');
+    if (validateAdminAddCard(maKH, name, dateOfBirth, phoneNumber, cardType, dateStart)) {
+        sendRequest(
+            '/create-card-admin-url',
+            'POST',
+            {
+                'Authorization': 'Bearer ' + accessToken
+            },
+            $(this).serialize(),
+            function (data) {
                 console.log(data);
                 if (data.success) {
                     showSuccessToast("Thêm thành công");
                     displayNoneAll();
+                    cardNav.click();
+                    removeAllInputValue();
+
                 } else {
                     showErrorToast("Thêm thất bại", data.message);
                 }
             },
-            error: function () {
-
+            function (err) {
+                if (err.status == 401)
+                    showErrorToast("Thất bại", "Chưa đăng nhập vào hệ thống");
             }
-        })
+        )
+        // $.ajax({
+        //     url: "",
+        //     type: "POST",
+        //     data: $(this).serialize(),
+        //     success: function (data) {
+        //         console.log(data);
+        //         if (data.success) {
+        //             showSuccessToast("Thêm thành công");
+        //             displayNoneAll();
+        //             cardNav.click();
+        //             removeAllInputValue();
+
+        //         } else {
+        //             showErrorToast("Thêm thất bại", data.message);
+        //         }
+        //     },
+        //     error: function () {
+
+        //     }
+        // })
     }
 })
 
@@ -802,7 +982,6 @@ exitAddcalendar.addEventListener("click", displayNoneAll)
 
 
 // add calendar function
-
 const showAddcalendarBTN = document.getElementById("add-calendar");
 showAddcalendarBTN.addEventListener("click", function () {
     displayNoneAll();
@@ -814,29 +993,43 @@ $('#form-add-calendar').submit(function (e) {
     e.preventDefault();
     var maThe = addcalendarBox.querySelector("[name='maThe']").value;
     var name = addcalendarBox.querySelector("[name='name']").value;
-    var date = addcalendarBox.querySelector("[name='date']").value;
+    var checkBox = addcalendarBox.querySelectorAll('input[name="weekday[]"]:checked');
+    var weekdayValue = [];
+    for (let i = 0; i < checkBox.length; i++) {
+        weekdayValue.push(checkBox[i].value);
+    }
+    weekdayValue = weekdayValue.toString();
+
     var time = addcalendarBox.querySelector("[name='time']").value;
     var type = addcalendarBox.querySelector("[name='type']").value;
     var ptName = addcalendarBox.querySelector("[name='ptName']").value;
     var note = addcalendarBox.querySelector("[name='note']").value;
-    if (validateAdminAddCalendar(maThe, name, date, time, type, ptName, note)) {
-        $.ajax({
-            url: "/create-calendar-admin-url",
-            type: "POST",
-            data: $(this).serialize(),
-            success: function (data) {
+    if (validateAdminAddCalendar(maThe, name, weekdayValue, time, type, ptName, note)) {
+        var accessToken = localStorage.getItem('accessToken');
+        sendRequest(
+            '/create-calendar-admin-url',
+            'POST',
+            {
+                'Authorization': 'Bearer ' + accessToken
+            },
+            $(this).serialize(),
+            function (data) {
                 console.log(data);
                 if (data.success) {
                     showSuccessToast("Thêm thành công");
                     displayNoneAll();
+                    calendarNav.click();
+                    removeAllInputValue();
+
                 } else {
                     showErrorToast("Thêm thất bại", data.message);
                 }
             },
-            error: function () {
-
+            function (err) {
+                if (err.status == 401)
+                    showErrorToast("Không thể thực hiện thao tác", "Vui lòng đăng nhập");
             }
-        })
+        )
     }
 })
 
@@ -946,25 +1139,32 @@ exitEditAcc.addEventListener("click", function () {
 $('#form-edit-account').submit(function (e) {
     e.preventDefault();
     var valueInput = serializeObject(this);
-
+    let accessToken = localStorage.getItem('accessToken');
     if (validateAdminEditAcc(valueInput.name, valueInput.email, valueInput.password)) {
-        $.ajax({
-            url: "/edit-account-url",
-            type: "POST",
-            data: $(this).serialize(),
-            success: function (data) {
+        sendRequest(
+            '/edit-account-url',
+            'POST',
+            {
+                'Authorization': 'Bearer ' + accessToken
+            },
+            $(this).serialize(),
+            function (data) {
                 if (data.success) {
                     showSuccessToast("Sửa tài khoản thành công");
                     displayNoneAll();
                     removeAllInputValue();
+                    accountNav.click();
+                    removeAllInputValue();
+
                 } else {
-                    showErrorToast("Lỗi");
+                    showErrorToast(data.err);
                 }
             },
-            error: function () {
-
+            function (err) {
+                if (err.status == 401)
+                    showErrorToast("Thất bại", "Chưa đăng nhập vào hệ thống");
             }
-        })
+        )
     }
 
 })
@@ -1020,25 +1220,32 @@ exitEditCard.addEventListener("click", function () {
 $('#form-edit-card').submit(function (e) {
     e.preventDefault();
     var valueInput = serializeObject(this);
-
+    var accessToken = localStorage.getItem('accessToken');
     if (validateAdminEditCard(valueInput)) {
-        $.ajax({
-            url: "/edit-card-url",
-            type: "POST",
-            data: $(this).serialize(),
-            success: function (data) {
+        sendRequest(
+            '/edit-card-url',
+            'POST',
+            {
+                'Authorization': 'Bearer ' + accessToken
+            },
+            $(this).serialize(),
+            function (data) {
                 if (data.success) {
                     showSuccessToast("Sửa thông tin thẻ thành công");
                     displayNoneAll();
                     removeAllInputValue();
+                    cardNav.click();
+                    removeAllInputValue();
+
                 } else {
                     showErrorToast("Lỗi");
                 }
             },
-            error: function () {
-
+            function (err) {
+                if (err.status == 401)
+                    showErrorToast("Không thể thực hiện thao tác", "Vui lòng đăng nhập");
             }
-        })
+        )
     }
 })
 
@@ -1065,7 +1272,7 @@ function f_editCalendarBTN() {
     a_span = Array.from(a_span);
 
     a_box.map((value, index) => {
-        console.log(a_span[index]);
+        // console.log(a_span[index]);
         a_span[index].innerText = a_box[index].innerText;
     })
 
@@ -1084,24 +1291,30 @@ $('#form-edit-calendar').submit(function (e) {
     var valueInput = serializeObject(this);
 
     // if (validateAdminEditCalendar(valueInput)) {
-    $.ajax({
-        url: "/edit-calendar-url",
-        type: "POST",
-        data: $(this).serialize(),
-        success: function (data) {
+    var accessToken = localStorage.getItem('accessToken');
+    sendRequest(
+        '/edit-calendar-url',
+        'POST',
+        {
+            'Authorization': 'Bearer ' + accessToken
+        },
+        $(this).serialize(),
+        function (data) {
             if (data.success) {
                 showSuccessToast("Sửa thông tin thẻ thành công");
                 displayNoneAll();
+                calendarNav.click();
                 removeAllInputValue();
+
             } else {
                 showErrorToast("Lỗi");
             }
         },
-        error: function () {
-
+        function (err) {
+            if (err.status == 401)
+                showErrorToast("Không thể thực hiện thao tác", "Vui lòng đăng nhập");
         }
-    })
-    // }
+    )
 })
 
 
@@ -1128,24 +1341,32 @@ submitRemoveAcc.addEventListener("click", function () {
     var contentE = removeAccBox.querySelectorAll(".row__title2");
     contentE = Array.from(contentE);
     var maKH = contentE[0].innerText;
-    console.log("Makh,", maKH)
+    let accessToken = localStorage.getItem('accessToken');
     if (maKH) {
-        $.ajax({
-            url: '/admin-remove-acc',
-            type: 'POST',
-            data: { maKH },
-            success: function (data) {
+        sendRequest(
+            '/admin-remove-acc',
+            'POST',
+            {
+                'Authorization': 'Bearer ' + accessToken
+            },
+            { maKH },
+            function (data) {
                 if (data.success) {
                     showSuccessToast("Xóa thành công");
                     displayNoneAll();
+                    accountNav.click();
+                    removeAllInputValue();
+
                 } else {
                     showErrorToast("Lỗi");
                 }
             },
-            error: function (err) {
-
+            function (err) {
+                if (err.status == 401)
+                    showErrorToast('Lỗi', "Vui lòng đăng nhập vào hệ thống");
             }
-        })
+
+        )
     }
 });
 
@@ -1177,24 +1398,32 @@ submitRemoveCard.addEventListener("click", function () {
     var contentE = removeCardBox.querySelectorAll(".row__title2");
     contentE = Array.from(contentE);
     var maThe = contentE[0].innerText;
-    console.log("Makh,", maThe)
     if (maThe) {
-        $.ajax({
-            url: '/admin-remove-card',
-            type: 'POST',
-            data: { maThe },
-            success: function (data) {
+        var accessToken = localStorage.getItem('accessToken');
+        sendRequest(
+            '/admin-remove-card',
+            'POST',
+            {
+                'Authorization': 'Bearer ' + accessToken
+            },
+            { maThe },
+            function (data) {
                 if (data.success) {
                     showSuccessToast("Xóa thành công");
                     displayNoneAll();
+                    cardNav.click();
+                    removeAllInputValue();
+
                 } else {
                     showErrorToast("Lỗi");
                 }
             },
-            error: function (err) {
+            function (err) {
+                if (err.status == 401)
+                    showErrorToast("Không thể thực hiện thao tác", "Vui lòng đăng nhập");
 
             }
-        })
+        )
     }
 });
 
@@ -1226,24 +1455,129 @@ submitRemoveAccount.addEventListener("click", function () {
     var maLT = contentE[0].innerText;
     console.log("Makh,", maLT)
     if (maLT) {
-        $.ajax({
-            url: '/admin-remove-calendar',
-            type: 'POST',
-            data: { maLT },
-            success: function (data) {
+        var accessToken = localStorage.getItem('accessToken');
+        sendRequest(
+            '/admin-remove-calendar',
+            'POST',
+            {
+                'Authorization': 'Bearer ' + accessToken
+            },
+            { maLT },
+            function (data) {
                 if (data.success) {
                     showSuccessToast("Xóa thành công");
                     displayNoneAll();
+                    calendarNav.click();
+                    removeAllInputValue();
+
                 } else {
                     showErrorToast("Lỗi");
                 }
             },
-            error: function (err) {
-
+            function (err) {
+                if (err.status == 401)
+                    showErrorToast("Không thể thực hiện thao tác", "Vui lòng đăng nhập");
             }
-        })
+        )
     }
 });
 
 const exitRemoveCalendar = removeCalendarBox.querySelector(".x__cancel")
 exitRemoveCalendar.addEventListener("click", displayNoneAll)
+
+//////////////////////////
+// nhập mã thì sẽ ẩn ô tên đi //
+
+let a_inputID = modalBodyBox.querySelectorAll(".row__content__input__id");
+a_inputID = Array.from(a_inputID);
+a_inputID.forEach(element => {
+    var formE = element.closest('form');
+    var rowName = formE.querySelector(".row__name");
+    console.log(formE);
+    element.addEventListener("input", function () {
+        console.log(rowName.style.display)
+        if (this.value) {
+            rowName.style.display = 'none';
+            console.log(rowName, rowName.style.display)
+        } else {
+            rowName.style.display = 'inline';
+        }
+    })
+})
+
+let a_inputName = modalBodyBox.querySelectorAll(".row__content__input__name");
+a_inputName = Array.from(a_inputName);
+a_inputName.forEach(element => {
+    var formE = element.closest('form');
+    var inputID = formE.querySelector(".row__content__input__id");
+
+    let first = false;
+
+    element.addEventListener("input", function (event) {
+        if (this.value.trim() !== '') {
+            if (!first) {
+                first = true;
+                inputID.addEventListener('keydown', unactiveInput);
+            }
+        } else {
+            first = false;
+            inputID.removeEventListener('keydown', unactiveInput);
+        }
+    })
+
+})
+
+
+
+
+function unactiveInput(e) {
+    console.log("ello")
+    showErrorToast("Không thể điền dữ liệu", "Vui lòng xóa tên khách hàng mới để thao tác")
+    e.preventDefault();
+}
+
+//================= STORE SHOP WHEY ================== //
+
+// GET ITEM
+shopNav.addEventListener("click", f_shopNav)
+
+function f_shopNav() {
+    var accessToken = localStorage.getItem('accessToken');
+    sendRequest("/get-shop-item", 'GET',
+        {
+            'Authorization': 'Bearer ' + accessToken
+        },
+        null,
+        function (data) {
+            removeAllTable();
+            data.data.forEach(value => {
+                value.Cost = value.Cost.toLocaleString();
+                insertToTable("shop", value);
+            })
+        },
+        function (err) {
+            console.error(err);
+            if (err.status === 403) {
+                const refreshToken = localStorage.getItem('refreshToken');
+                sendRequest('/refresh-token', 'POST', { token: refreshToken },
+                    function (data) {
+                        const { accessToken } = data;
+                        f_shopNav(accessToken);
+                    },
+                    function (err) {
+                        console.error(err);
+                    }
+                );
+            }
+        }
+    );
+}
+
+
+// ADD ITEM
+
+// EDIT ITEM
+
+// REMOVE ITEM
+
+

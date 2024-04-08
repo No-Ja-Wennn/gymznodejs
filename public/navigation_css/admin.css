@@ -1397,6 +1397,11 @@ li.message__user.message__user:hover .message__user__name__options {
 }
 
 
+.show_main_img{
+    width: 78px;
+    /* height: px; */
+}
+
 @media screen and (max-width: 768px) {
     .container__show {
         width: calc(100vw) !important;

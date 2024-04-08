@@ -495,7 +495,9 @@ $(document).ready(function () {
                         loginBTN2.removeEventListener("click", f_loginBTN);
                     activeClickChange();
                     innerMesageBox(value.name);
-                    loginSocket(value.maKH);
+                    // setTimeout(()=>{
+                        loginSocket(value.maKH);
+                    // }, 9000);
                 } else {
                     unActiveClickChange();
                 }

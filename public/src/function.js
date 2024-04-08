@@ -34,7 +34,19 @@ export function displayNoneAll() {
 export function removeAllInputValue() {
     var a_inputElement = modalBox.querySelectorAll("input");
     a_inputElement = Array.from(a_inputElement);
-    a_inputElement.map(element => element.value = "");
+    a_inputElement.map(element => {
+        if (element.type == 'checkbox' || element.type == 'radio')
+            return; 
+        element.value = "";
+    });
+    var checkboxes = modalBox.querySelectorAll('input[type=checkbox]');
+    for (var i = 0; i < checkboxes.length; i++) {
+        checkboxes[i].checked = false;
+    }
+    var radios = modalBox.querySelectorAll('input[type=radio]');
+    for (var i = 0; i < radios.length; i++) {
+        radios[i].checked = false;
+    }
 }
 
 
@@ -451,7 +463,7 @@ export function displayLeftMessage(message) {
 }
 const chatHideBox = document.querySelector(".chat-box");
 let msgListHide = null;
-if (chatHideBox){
+if (chatHideBox) {
     msgListHide = chatHideBox.querySelector(".chat-log");
     console.log(msgListHide)
 }
@@ -515,20 +527,26 @@ export function removeMessageBox() {
 }
 
 export function loginSocket(maKH) {
+    console.log("login socker")
     socket = io();
+    // socket = io({
+    //     query: {
+    //         token: true
+    //     }
+    // });
     customerID = maKH;
     socket.on('connect', () => {
         console.log('Connected to server');
     });
-    // showSuccessToast("kết lối");
+    showSuccessToast("kết lối");
     socket.on('adminMessage', (data) => {
-        if (customerID == data.maKH){
+        if (customerID == data.maKH) {
             displayLeftMessage(data.message);
             displayLeftMessageHide(data.message);
         }
     });
     socket.on('response-message-client', (data) => {
-        if (customerID == data.maKH){
+        if (customerID == data.maKH) {
             displayRightMessage(data.message);
             displayRightMessageHide(data.message);
         }

@@ -13,7 +13,7 @@ function getCurrentDate() {
 }
 
 
-function insertIntoTable(tableName, data) {
+function insertIntoTable(con, tableName, data) {
     let columns = Object.keys(data).join(', ');
     let values = Object.values(data).map(value => `'${value}'`).join(', ');
   

@@ -6,12 +6,14 @@
     "dotenv": "^16.4.5",
     "express": "^4.18.3",
     "express-session": "^1.18.0",
+    "fuzzball": "^2.1.2",
     "http": "^0.0.1-security",
     "jsonwebtoken": "^9.0.2",
     "mysql": "^2.18.1",
     "nodemailer": "^6.9.12",
     "nodemon": "^3.1.0",
-    "socket.io": "^4.7.5"
+    "socket.io": "^4.7.5",
+    "string-similarity": "^4.0.4"
   },
   "name": "gymz",
   "description": "",

@@ -34,12 +34,12 @@
                     <div class="header-content">
                         <div class="header-top">
                             <div class="header-search">
-                                <form action="#" class="header-search-wrapper">
+                                <form id="search-form" action="/get-item-search" class="header-search-wrapper">
                                     <div class="search-icon">
                                         <i class="fa-solid fa-magnifying-glass"></i>
                                     </div>
-                                    <input class="search-input" type="text" placeholder="sữa tăng cân">
-                                    <button class="search-button">
+                                    <input class="search-input" name="value" type="text" placeholder="sữa tăng cân">
+                                    <button class="search-button" type="submit">
                                         <span>
                                             Tìm kiếm
                                         </span>
@@ -356,7 +356,7 @@
                                 </h1>
                             </div>
                             <div class="list-item">
-                                <a href="#" class="item">
+                                <!-- <a href="#" class="item">
                                     <div class="item-img">
                                         <div class="item-img-wrapper">
                                             <img src="../img/shop/whey/lean-body-mrp-1-goi-17.webp" alt="">
@@ -699,7 +699,7 @@
                                             </div>
                                         </div>
                                     </div>
-                                </a>
+                                </a> -->
                             </div>
                         </div>
                         <div class="milk-products product-style">
@@ -709,7 +709,7 @@
                                 </h1>
                             </div>
                             <div class="list-item">
-                                <a href="#" class="item">
+                                <!-- <a href="#" class="item">
                                     <div class="item-img">
                                         <div class="item-img-wrapper">
                                             <img src="../img/shop/milk/muscle-mass-gainer-tang-can-gia-re-chinh-hang-wheyshop.webp"
@@ -1052,7 +1052,7 @@
                                             </div>
                                         </div>
                                     </div>
-                                </a>
+                                </a> -->
                             </div>
                         </div>
                         <div class="vitamin-products product-style">
@@ -1062,7 +1062,7 @@
                                 </h1>
                             </div>
                             <div class="list-item">
-                                <a href="#" class="item">
+                                <!-- <a href="#" class="item">
                                     <div class="item-img">
                                         <div class="item-img-wrapper">
                                             <img src="../img/shop/vitamin/bronson-vitamin-k2-d3-120-vien-01-min.webp"
@@ -1405,7 +1405,7 @@
                                             </div>
                                         </div>
                                     </div>
-                                </a>
+                                </a> -->
                             </div>
                         </div>
                         <div class="bcaa-products product-style">
@@ -1415,7 +1415,7 @@
                                 </h1>
                             </div>
                             <div class="list-item">
-                                <a href="#" class="item">
+                                <!-- <a href="#" class="item">
                                     <div class="item-img">
                                         <div class="item-img-wrapper">
                                             <img src="../img/shop/bcaa/ostrovit-eaadvanced-360g.webp" alt="">
@@ -1756,10 +1756,704 @@
                                             </div>
                                         </div>
                                     </div>
-                                </a>
+                                </a> -->
                             </div>
                         </div>
                     </div>
+                </div>
+            </div>
+            <div id="search-result" class="product-style">
+                <div class="product-title">
+                    <h1>
+                        Kết quả tìm kiếm
+                    </h1>
+                    <i class="fa-solid fa-xmark"></i>
+                </div>
+                <div id="list-item-search" class="list-item">
+                    <!-- <a href="#" class="item">
+                        <div class="item-img">
+                            <div class="item-img-wrapper">
+                                <img src="../img/shop/milk/muscle-mass-gainer-tang-can-gia-re-chinh-hang-wheyshop.webp" alt="">
+                            </div>
+                        </div>
+                        <div class="item-information">
+                            <div class="item-information-wrapper">
+                                <div class="auth">
+                                    <div class="auth-wrapper">
+                                        <div class="auth-icon">
+                                            <i class="fa-solid fa-circle-check"></i>
+                                        </div>
+                                        <div class="auth-content">
+                                            CHÍNH HÃNG
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="name">
+                                    <span>
+                                        Muscle Mass Gainer 12Lbs (5.4kg)
+                                    </span>
+                                </div>
+                                <div class="star">
+                                    <div class="star-icon">
+                                        <i class="fa-solid fa-star"></i>
+                                    </div>
+                                    <div class="star-icon">
+                                        <i class="fa-solid fa-star"></i>
+                                    </div>
+                                    <div class="star-icon">
+                                        <i class="fa-solid fa-star"></i>
+                                    </div>
+                                    <div class="star-icon">
+                                        <i class="fa-solid fa-star"></i>
+                                    </div>
+                                    <div class="star-icon">
+                                        <i class="fa-solid fa-star"></i>
+                                    </div>
+                                </div>
+                                <div class="cost">
+                                    1,590,000
+                                    <span>
+                                        ₫
+                                    </span>
+                                </div>
+                            </div>
+                            <div class="brand-ship">
+                                <div class="brand">
+                                    <img src="../img/shop/ghn.png" alt="">
+                                </div>
+                                <div class="brand">
+                                    <img src="../img/shop/j&amp;t.png" alt="">
+                                </div>
+                            </div>
+                        </div>
+                    </a>
+                    <a href="#" class="item">
+                        <div class="item-img">
+                            <div class="item-img-wrapper">
+                                <img src="../img/shop/milk/Mutant-Mass-15lbs-tang-can-tang-co-hieu-qua-gia-re-chinh-hang-WHEYSHOP-VN.webp" alt="">
+                            </div>
+                        </div>
+                        <div class="item-information">
+                            <div class="item-information-wrapper">
+                                <div class="auth">
+                                    <div class="auth-wrapper">
+                                        <div class="auth-icon">
+                                            <i class="fa-solid fa-circle-check"></i>
+                                        </div>
+                                        <div class="auth-content">
+                                            CHÍNH HÃNG
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="name">
+                                    <span>
+                                        Mutant Mass 15Lbs (6.8kg)
+                                    </span>
+                                </div>
+                                <div class="star">
+                                    <div class="star-icon">
+                                        <i class="fa-solid fa-star"></i>
+                                    </div>
+                                    <div class="star-icon">
+                                        <i class="fa-solid fa-star"></i>
+                                    </div>
+                                    <div class="star-icon">
+                                        <i class="fa-solid fa-star"></i>
+                                    </div>
+                                    <div class="star-icon">
+                                        <i class="fa-solid fa-star"></i>
+                                    </div>
+                                    <div class="star-icon">
+                                        <i class="fa-solid fa-star"></i>
+                                    </div>
+                                </div>
+                                <div class="cost">
+                                    1,780,000
+                                    <span>
+                                        ₫
+                                    </span>
+                                </div>
+                            </div>
+                            <div class="brand-ship">
+                                <div class="brand">
+                                    <img src="../img/shop/ghn.png" alt="">
+                                </div>
+                                <div class="brand">
+                                    <img src="../img/shop/j&amp;t.png" alt="">
+                                </div>
+                            </div>
+                        </div>
+                    </a>
+                    <a href="#" class="item">
+                        <div class="item-img">
+                            <div class="item-img-wrapper">
+                                <img src="../img/shop/milk/mutant-mass-5lbs-23kg.webp" alt="">
+                            </div>
+                        </div>
+                        <div class="item-information">
+                            <div class="item-information-wrapper">
+                                <div class="auth">
+                                    <div class="auth-wrapper">
+                                        <div class="auth-icon">
+                                            <i class="fa-solid fa-circle-check"></i>
+                                        </div>
+                                        <div class="auth-content">
+                                            CHÍNH HÃNG
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="name">
+                                    <span>
+                                        Mutant Mass 5Lbs (2.3kg)
+                                    </span>
+                                </div>
+                                <div class="star">
+                                    <div class="star-icon">
+                                        <i class="fa-solid fa-star"></i>
+                                    </div>
+                                    <div class="star-icon">
+                                        <i class="fa-solid fa-star"></i>
+                                    </div>
+                                    <div class="star-icon">
+                                        <i class="fa-solid fa-star"></i>
+                                    </div>
+                                    <div class="star-icon">
+                                        <i class="fa-solid fa-star"></i>
+                                    </div>
+                                    <div class="star-icon">
+                                        <i class="fa-solid fa-star"></i>
+                                    </div>
+                                </div>
+                                <div class="cost">
+                                    900,000
+                                    <span>
+                                        ₫
+                                    </span>
+                                </div>
+                            </div>
+                            <div class="brand-ship">
+                                <div class="brand">
+                                    <img src="../img/shop/ghn.png" alt="">
+                                </div>
+                                <div class="brand">
+                                    <img src="../img/shop/j&amp;t.png" alt="">
+                                </div>
+                            </div>
+                        </div>
+                    </a>
+                    <a href="#" class="item">
+                        <div class="item-img">
+                            <div class="item-img-wrapper">
+                                <img src="../img/shop/milk/rule-1-mass-gainer-12lbs-5-4kg.webp" alt="">
+                            </div>
+                        </div>
+                        <div class="item-information">
+                            <div class="item-information-wrapper">
+                                <div class="auth">
+                                    <div class="auth-wrapper">
+                                        <div class="auth-icon">
+                                            <i class="fa-solid fa-circle-check"></i>
+                                        </div>
+                                        <div class="auth-content">
+                                            CHÍNH HÃNG
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="name">
+                                    <span>
+                                        Rule 1 Mass Gainer (11.5 Lbs)
+                                    </span>
+                                </div>
+                                <div class="star">
+                                    <div class="star-icon">
+                                        <i class="fa-solid fa-star"></i>
+                                    </div>
+                                    <div class="star-icon">
+                                        <i class="fa-solid fa-star"></i>
+                                    </div>
+                                    <div class="star-icon">
+                                        <i class="fa-solid fa-star"></i>
+                                    </div>
+                                    <div class="star-icon">
+                                        <i class="fa-solid fa-star"></i>
+                                    </div>
+                                    <div class="star-icon">
+                                        <i class="fa-solid fa-star"></i>
+                                    </div>
+                                </div>
+                                <div class="cost">
+                                    1,290,000
+                                    <span>
+                                        ₫
+                                    </span>
+                                </div>
+                            </div>
+                            <div class="brand-ship">
+                                <div class="brand">
+                                    <img src="../img/shop/ghn.png" alt="">
+                                </div>
+                                <div class="brand">
+                                    <img src="../img/shop/j&amp;t.png" alt="">
+                                </div>
+                            </div>
+                        </div>
+                    </a>
+                    <a href="#" class="item">
+                        <div class="item-img">
+                            <div class="item-img-wrapper">
+                                <img src="../img/shop/milk/serious-mass-12lbs-5-4kg-54.webp" alt="">
+                            </div>
+                        </div>
+                        <div class="item-information">
+                            <div class="item-information-wrapper">
+                                <div class="auth">
+                                    <div class="auth-wrapper">
+                                        <div class="auth-icon">
+                                            <i class="fa-solid fa-circle-check"></i>
+                                        </div>
+                                        <div class="auth-content">
+                                            CHÍNH HÃNG
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="name">
+                                    <span>
+                                        Serious Mass 12Lbs (5.4kg)
+                                    </span>
+                                </div>
+                                <div class="star">
+                                    <div class="star-icon">
+                                        <i class="fa-solid fa-star"></i>
+                                    </div>
+                                    <div class="star-icon">
+                                        <i class="fa-solid fa-star"></i>
+                                    </div>
+                                    <div class="star-icon">
+                                        <i class="fa-solid fa-star"></i>
+                                    </div>
+                                    <div class="star-icon">
+                                        <i class="fa-solid fa-star"></i>
+                                    </div>
+                                    <div class="star-icon">
+                                        <i class="fa-solid fa-star"></i>
+                                    </div>
+                                </div>
+                                <div class="cost">
+                                    1,590,000
+                                    <span>
+                                        ₫
+                                    </span>
+                                </div>
+                            </div>
+                            <div class="brand-ship">
+                                <div class="brand">
+                                    <img src="../img/shop/ghn.png" alt="">
+                                </div>
+                                <div class="brand">
+                                    <img src="../img/shop/j&amp;t.png" alt="">
+                                </div>
+                            </div>
+                        </div>
+                    </a>
+                    <a href="#" class="item">
+                        <div class="item-img">
+                            <div class="item-img-wrapper">
+                                <img src="../img/shop/milk/utant-mass-xxxtreme-12lbs-5-4kg-copy.webp" alt="">
+                            </div>
+                        </div>
+                        <div class="item-information">
+                            <div class="item-information-wrapper">
+                                <div class="auth">
+                                    <div class="auth-wrapper">
+                                        <div class="auth-icon">
+                                            <i class="fa-solid fa-circle-check"></i>
+                                        </div>
+                                        <div class="auth-content">
+                                            CHÍNH HÃNG
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="name">
+                                    <span>
+                                        Mutant Mass XXXtreme 12Lbs (5.4kg)
+                                    </span>
+                                </div>
+                                <div class="star">
+                                    <div class="star-icon">
+                                        <i class="fa-solid fa-star"></i>
+                                    </div>
+                                    <div class="star-icon">
+                                        <i class="fa-solid fa-star"></i>
+                                    </div>
+                                    <div class="star-icon">
+                                        <i class="fa-solid fa-star"></i>
+                                    </div>
+                                    <div class="star-icon">
+                                        <i class="fa-solid fa-star"></i>
+                                    </div>
+                                    <div class="star-icon">
+                                        <i class="fa-solid fa-star"></i>
+                                    </div>
+                                </div>
+                                <div class="cost">
+                                    1,350,000
+                                    <span>
+                                        ₫
+                                    </span>
+                                </div>
+                            </div>
+                            <div class="brand-ship">
+                                <div class="brand">
+                                    <img src="../img/shop/ghn.png" alt="">
+                                </div>
+                                <div class="brand">
+                                    <img src="../img/shop/j&amp;t.png" alt="">
+                                </div>
+                            </div>
+                        </div>
+                    </a>
+                    <a href="#" class="item">
+                        <div class="item-img">
+                            <div class="item-img-wrapper">
+                                <img src="../img/shop/milk/muscle-mass-gainer-tang-can-gia-re-chinh-hang-wheyshop.webp" alt="">
+                            </div>
+                        </div>
+                        <div class="item-information">
+                            <div class="item-information-wrapper">
+                                <div class="auth">
+                                    <div class="auth-wrapper">
+                                        <div class="auth-icon">
+                                            <i class="fa-solid fa-circle-check"></i>
+                                        </div>
+                                        <div class="auth-content">
+                                            CHÍNH HÃNG
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="name">
+                                    <span>
+                                        Muscle Mass Gainer 12Lbs (5.4kg)
+                                    </span>
+                                </div>
+                                <div class="star">
+                                    <div class="star-icon">
+                                        <i class="fa-solid fa-star"></i>
+                                    </div>
+                                    <div class="star-icon">
+                                        <i class="fa-solid fa-star"></i>
+                                    </div>
+                                    <div class="star-icon">
+                                        <i class="fa-solid fa-star"></i>
+                                    </div>
+                                    <div class="star-icon">
+                                        <i class="fa-solid fa-star"></i>
+                                    </div>
+                                    <div class="star-icon">
+                                        <i class="fa-solid fa-star"></i>
+                                    </div>
+                                </div>
+                                <div class="cost">
+                                    1,590,000
+                                    <span>
+                                        ₫
+                                    </span>
+                                </div>
+                            </div>
+                            <div class="brand-ship">
+                                <div class="brand">
+                                    <img src="../img/shop/ghn.png" alt="">
+                                </div>
+                                <div class="brand">
+                                    <img src="../img/shop/j&amp;t.png" alt="">
+                                </div>
+                            </div>
+                        </div>
+                    </a>
+                    <a href="#" class="item">
+                        <div class="item-img">
+                            <div class="item-img-wrapper">
+                                <img src="../img/shop/milk/Mutant-Mass-15lbs-tang-can-tang-co-hieu-qua-gia-re-chinh-hang-WHEYSHOP-VN.webp" alt="">
+                            </div>
+                        </div>
+                        <div class="item-information">
+                            <div class="item-information-wrapper">
+                                <div class="auth">
+                                    <div class="auth-wrapper">
+                                        <div class="auth-icon">
+                                            <i class="fa-solid fa-circle-check"></i>
+                                        </div>
+                                        <div class="auth-content">
+                                            CHÍNH HÃNG
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="name">
+                                    <span>
+                                        Mutant Mass 15Lbs (6.8kg)
+                                    </span>
+                                </div>
+                                <div class="star">
+                                    <div class="star-icon">
+                                        <i class="fa-solid fa-star"></i>
+                                    </div>
+                                    <div class="star-icon">
+                                        <i class="fa-solid fa-star"></i>
+                                    </div>
+                                    <div class="star-icon">
+                                        <i class="fa-solid fa-star"></i>
+                                    </div>
+                                    <div class="star-icon">
+                                        <i class="fa-solid fa-star"></i>
+                                    </div>
+                                    <div class="star-icon">
+                                        <i class="fa-solid fa-star"></i>
+                                    </div>
+                                </div>
+                                <div class="cost">
+                                    1,780,000
+                                    <span>
+                                        ₫
+                                    </span>
+                                </div>
+                            </div>
+                            <div class="brand-ship">
+                                <div class="brand">
+                                    <img src="../img/shop/ghn.png" alt="">
+                                </div>
+                                <div class="brand">
+                                    <img src="../img/shop/j&amp;t.png" alt="">
+                                </div>
+                            </div>
+                        </div>
+                    </a>
+                    <a href="#" class="item">
+                        <div class="item-img">
+                            <div class="item-img-wrapper">
+                                <img src="../img/shop/milk/mutant-mass-5lbs-23kg.webp" alt="">
+                            </div>
+                        </div>
+                        <div class="item-information">
+                            <div class="item-information-wrapper">
+                                <div class="auth">
+                                    <div class="auth-wrapper">
+                                        <div class="auth-icon">
+                                            <i class="fa-solid fa-circle-check"></i>
+                                        </div>
+                                        <div class="auth-content">
+                                            CHÍNH HÃNG
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="name">
+                                    <span>
+                                        Mutant Mass 5Lbs (2.3kg)
+                                    </span>
+                                </div>
+                                <div class="star">
+                                    <div class="star-icon">
+                                        <i class="fa-solid fa-star"></i>
+                                    </div>
+                                    <div class="star-icon">
+                                        <i class="fa-solid fa-star"></i>
+                                    </div>
+                                    <div class="star-icon">
+                                        <i class="fa-solid fa-star"></i>
+                                    </div>
+                                    <div class="star-icon">
+                                        <i class="fa-solid fa-star"></i>
+                                    </div>
+                                    <div class="star-icon">
+                                        <i class="fa-solid fa-star"></i>
+                                    </div>
+                                </div>
+                                <div class="cost">
+                                    900,000
+                                    <span>
+                                        ₫
+                                    </span>
+                                </div>
+                            </div>
+                            <div class="brand-ship">
+                                <div class="brand">
+                                    <img src="../img/shop/ghn.png" alt="">
+                                </div>
+                                <div class="brand">
+                                    <img src="../img/shop/j&amp;t.png" alt="">
+                                </div>
+                            </div>
+                        </div>
+                    </a>
+                    <a href="#" class="item">
+                        <div class="item-img">
+                            <div class="item-img-wrapper">
+                                <img src="../img/shop/milk/rule-1-mass-gainer-12lbs-5-4kg.webp" alt="">
+                            </div>
+                        </div>
+                        <div class="item-information">
+                            <div class="item-information-wrapper">
+                                <div class="auth">
+                                    <div class="auth-wrapper">
+                                        <div class="auth-icon">
+                                            <i class="fa-solid fa-circle-check"></i>
+                                        </div>
+                                        <div class="auth-content">
+                                            CHÍNH HÃNG
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="name">
+                                    <span>
+                                        Rule 1 Mass Gainer (11.5 Lbs)
+                                    </span>
+                                </div>
+                                <div class="star">
+                                    <div class="star-icon">
+                                        <i class="fa-solid fa-star"></i>
+                                    </div>
+                                    <div class="star-icon">
+                                        <i class="fa-solid fa-star"></i>
+                                    </div>
+                                    <div class="star-icon">
+                                        <i class="fa-solid fa-star"></i>
+                                    </div>
+                                    <div class="star-icon">
+                                        <i class="fa-solid fa-star"></i>
+                                    </div>
+                                    <div class="star-icon">
+                                        <i class="fa-solid fa-star"></i>
+                                    </div>
+                                </div>
+                                <div class="cost">
+                                    1,290,000
+                                    <span>
+                                        ₫
+                                    </span>
+                                </div>
+                            </div>
+                            <div class="brand-ship">
+                                <div class="brand">
+                                    <img src="../img/shop/ghn.png" alt="">
+                                </div>
+                                <div class="brand">
+                                    <img src="../img/shop/j&amp;t.png" alt="">
+                                </div>
+                            </div>
+                        </div>
+                    </a>
+                    <a href="#" class="item">
+                        <div class="item-img">
+                            <div class="item-img-wrapper">
+                                <img src="../img/shop/milk/serious-mass-12lbs-5-4kg-54.webp" alt="">
+                            </div>
+                        </div>
+                        <div class="item-information">
+                            <div class="item-information-wrapper">
+                                <div class="auth">
+                                    <div class="auth-wrapper">
+                                        <div class="auth-icon">
+                                            <i class="fa-solid fa-circle-check"></i>
+                                        </div>
+                                        <div class="auth-content">
+                                            CHÍNH HÃNG
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="name">
+                                    <span>
+                                        Serious Mass 12Lbs (5.4kg)
+                                    </span>
+                                </div>
+                                <div class="star">
+                                    <div class="star-icon">
+                                        <i class="fa-solid fa-star"></i>
+                                    </div>
+                                    <div class="star-icon">
+                                        <i class="fa-solid fa-star"></i>
+                                    </div>
+                                    <div class="star-icon">
+                                        <i class="fa-solid fa-star"></i>
+                                    </div>
+                                    <div class="star-icon">
+                                        <i class="fa-solid fa-star"></i>
+                                    </div>
+                                    <div class="star-icon">
+                                        <i class="fa-solid fa-star"></i>
+                                    </div>
+                                </div>
+                                <div class="cost">
+                                    1,590,000
+                                    <span>
+                                        ₫
+                                    </span>
+                                </div>
+                            </div>
+                            <div class="brand-ship">
+                                <div class="brand">
+                                    <img src="../img/shop/ghn.png" alt="">
+                                </div>
+                                <div class="brand">
+                                    <img src="../img/shop/j&amp;t.png" alt="">
+                                </div>
+                            </div>
+                        </div>
+                    </a>
+                    <a href="#" class="item">
+                        <div class="item-img">
+                            <div class="item-img-wrapper">
+                                <img src="../img/shop/milk/utant-mass-xxxtreme-12lbs-5-4kg-copy.webp" alt="">
+                            </div>
+                        </div>
+                        <div class="item-information">
+                            <div class="item-information-wrapper">
+                                <div class="auth">
+                                    <div class="auth-wrapper">
+                                        <div class="auth-icon">
+                                            <i class="fa-solid fa-circle-check"></i>
+                                        </div>
+                                        <div class="auth-content">
+                                            CHÍNH HÃNG
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="name">
+                                    <span>
+                                        Mutant Mass XXXtreme 12Lbs (5.4kg)
+                                    </span>
+                                </div>
+                                <div class="star">
+                                    <div class="star-icon">
+                                        <i class="fa-solid fa-star"></i>
+                                    </div>
+                                    <div class="star-icon">
+                                        <i class="fa-solid fa-star"></i>
+                                    </div>
+                                    <div class="star-icon">
+                                        <i class="fa-solid fa-star"></i>
+                                    </div>
+                                    <div class="star-icon">
+                                        <i class="fa-solid fa-star"></i>
+                                    </div>
+                                    <div class="star-icon">
+                                        <i class="fa-solid fa-star"></i>
+                                    </div>
+                                </div>
+                                <div class="cost">
+                                    1,350,000
+                                    <span>
+                                        ₫
+                                    </span>
+                                </div>
+                            </div>
+                            <div class="brand-ship">
+                                <div class="brand">
+                                    <img src="../img/shop/ghn.png" alt="">
+                                </div>
+                                <div class="brand">
+                                    <img src="../img/shop/j&amp;t.png" alt="">
+                                </div>
+                            </div>
+                        </div>
+                    </a> -->
                 </div>
             </div>
             <div class="footer"> </div>
@@ -1773,6 +2467,7 @@
     <script src="../navigation_javascript/wheyshop.js"></script>
     <script>
 
+
         const searchInput = document.querySelector('.search-input');
         setInterval(() => {
             searchInput.placeholder = "whey";
@@ -1784,69 +2479,75 @@
             }, 3000);
         }, 6000);
 
-
-        const links = document.querySelectorAll('a');
-        links.forEach(function (link) {
-            link.addEventListener('click', function (e) {
-                e.preventDefault();
+        setTimeout(() => {
+            const links = document.querySelectorAll('a');
+            links.forEach(function (link) {
+                link.addEventListener('click', function (e) {
+                    e.preventDefault();
+                });
             });
-        });
 
-        const html = document.querySelector('html');
-        const container = document.querySelector('.container');
-        const header = document.querySelector('.header');
-        const mainContent = document.querySelector('.main-content');
-        const listItem = document.querySelectorAll('.item');
-        const detailsItem = document.querySelector('.product-details');
-        const productNameElement = document.querySelector('.name-product span');
-        const productCostElement = document.querySelector('.cost');
-        const totalCostElement = document.querySelector('.total span');
-        const namePageInPathBar = document.querySelector('.page-products a');
-        const nameProductInPathBar = document.querySelector('.current-product a');
-        const mainImgElement = document.querySelector('.main-img img');
-        const productTitleElement = document.querySelector('.product-title h1');
 
-        listItem.forEach(item => {
-            item.addEventListener('click', function (event) {
-                // event.preventDefault();
 
-                const productName = item.querySelector('.name span').textContent;
-                const productCost = item.querySelector('.cost').textContent.trim();
-                const productImgSrc = item.querySelector('.item-img img').getAttribute('src');
-                const productTitle = item.closest('.product-style').querySelector('.product-title h1').textContent;
+            //const html = document.querySelector('html');
+            //const container = document.querySelector('.container');
+            //const header = document.querySelector('.header');
+            //const mainContent = document.querySelector('.main-content');
+            //const listItem = document.querySelectorAll('.item');
+            //const detailsItem = document.querySelector('.product-details');
+            //const productNameElement = document.querySelector('.name-product span');
+            //const productCostElement = document.querySelector('.cost');
+            //const totalCostElement = document.querySelector('.total span');
+            //const namePageInPathBar = document.querySelector('.page-products a');
+            //const nameProductInPathBar = document.querySelector('.current-product a');
+            //const mainImgElement = document.querySelector('.main-img img');
+            //const productTitleElement = document.querySelector('.product-title h1');
+            //listItem.forEach(item => {
+            //    item.addEventListener('click', 
+            //    function (event) {
+            //        // event.preventDefault();
+            //
+            //        const productName = item.querySelector('.name span').textContent;
+            //        const productCost = item.querySelector('.cost').textContent.trim();
+            //        const productImgSrc = item.querySelector('.item-img img').getAttribute('src');
+            //        const productTitle = item.closest('.product-style').querySelector('.product-title h1').textContent;
+            //
+            //        productNameElement.textContent = productName;
+            //        productCostElement.textContent = productCost;
+            //        totalCostElement.textContent = productCost;
+            //        namePageInPathBar.textContent = productTitle;
+            //        nameProductInPathBar.textContent = productName;
+            //        mainImgElement.setAttribute('src', productImgSrc);
+            //
+            //        detailsItem.style.display = 'flex';
+            //        header.style.position = 'fixed'
+            //        mainContent.style.opacity = '0';
+            //        html.style.overflow = 'hidden';
+            //
+            //    }
+            //    );
+            //});
 
-                productNameElement.textContent = productName;
-                productCostElement.textContent = productCost;
-                totalCostElement.textContent = productCost;
-                namePageInPathBar.textContent = productTitle;
-                nameProductInPathBar.textContent = productName;
-                mainImgElement.setAttribute('src', productImgSrc);
 
-                detailsItem.style.display = 'flex';
-                header.style.position = 'fixed'
-                mainContent.style.opacity = '0';
-                html.style.overflow = 'hidden'
-            });
-        });
-        
-        const defaultValue = 'xxx';
-        namePageInPathBar.onclick = function(){
-            if (namePageInPathBar.innerHTML.trim() !== defaultValue){
-                detailsItem.style.display = 'none';
-                header.style.position = 'unset'
-                mainContent.style.opacity = '1';
-                html.style.overflow = 'auto'
-                console.log('hihia')
-                console.log(namePageInPathBar.innerHTML.trim())
-            } else {
-                console.log('hihi')
+            const defaultValue = 'xxx';
+            namePageInPathBar.onclick = function () {
+                if (namePageInPathBar.innerHTML.trim() !== defaultValue) {
+                    detailsItem.style.display = 'none';
+                    header.style.position = 'unset'
+                    mainContent.style.opacity = '1';
+                    html.style.overflow = 'auto'
+                    console.log('hihia')
+                    console.log(namePageInPathBar.innerHTML.trim())
+                } else {
+                    console.log('hihi')
+                }
             }
-        }
-        
-        const home = document.querySelector('.page-home a')
-        home.onclick = function(){
-            window.location.href = './wheyshop.html'
-        }
+
+            const home = document.querySelector('.page-home a')
+            home.onclick = function () {
+                window.location.href = './wheyshop.html';
+            }
+        }, 1000)
 
 
     </script>

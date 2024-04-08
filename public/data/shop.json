@@ -3,7 +3,7 @@
     "ItemID": "IT0001",
     "NameItem": "Lean Body MRP",
     "Cost": 60000,
-    "MainImg": "../img/shop/whey/lean-body-mrp-1-goi-17-280x280.webp",
+    "MainImg": "../img/shop/whey/lean-body-mrp-1-goi-17.webp",
     "SubImg": "",
     "Depict": ""
   },
@@ -11,7 +11,7 @@
     "ItemID": "IT0002",
     "NameItem": "100% Whey Gold Standard 5Lbs (2.3kg)",
     "Cost": 1590000,
-    "MainImg": "../img/shop/whey/100-whey-gold-standard-5lbs-2-3kg-13-2x-280x280.webp",
+    "MainImg": "../img/shop/whey/100-whey-gold-standard-5lbs-2-3kg-13-2x.webp",
     "SubImg": "",
     "Depict": ""
   },
@@ -19,7 +19,7 @@
     "ItemID": "IT0003",
     "NameItem": "ISO HD 4.9Lbs (2.2kg)",
     "Cost": 1490000,
-    "MainImg": "../img/shop/whey/iso-hd-4-9lbs-2-2kg-26-2-min-280x280.webp",
+    "MainImg": "../img/shop/whey/iso-hd-4-9lbs-2-2kg-26-2-min.webp",
     "SubImg": "",
     "Depict": ""
   },
@@ -27,7 +27,7 @@
     "ItemID": "IT0004",
     "NameItem": "Mutant Iso Surge 5Lbs (2.3kg)",
     "Cost": 1850000,
-    "MainImg": "../img/shop/whey/iso-surge-orange-280x280.webp",
+    "MainImg": "../img/shop/whey/iso-surge-orange.webp",
     "SubImg": "",
     "Depict": ""
   },
@@ -35,7 +35,7 @@
     "ItemID": "IT0005",
     "NameItem": "Rule 1 Protein 10Lbs (4.5kg)",
     "Cost": 3000000,
-    "MainImg": "../img/shop/whey/rule-1-proteins-280x280.webp",
+    "MainImg": "../img/shop/whey/rule-1-proteins.webp",
     "SubImg": "",
     "Depict": ""
   },
@@ -43,7 +43,7 @@
     "ItemID": "IT0006",
     "NameItem": "Rule 1 Proteins 5Lbs (2.23kg)",
     "Cost": 1600000,
-    "MainImg": "../img/shop/whey/rule1-5-lbs-tăng-cơ-gia-re-chinh-hang-wheyshop-280x280.webp",
+    "MainImg": "../img/shop/whey/rule1-5-lbs-tăng-cơ-gia-re-chinh-hang-wheyshop.webp",
     "SubImg": "",
     "Depict": ""
   },
@@ -51,7 +51,7 @@
     "ItemID": "IT0007",
     "NameItem": "Muscle Mass Gainer 12Lbs (5.4kg)",
     "Cost": 1590000,
-    "MainImg": "../img/shop/milk/muscle-mass-gainer-tang-can-gia-re-chinh-hang-wheyshop-280x280.webp",
+    "MainImg": "../img/shop/milk/muscle-mass-gainer-tang-can-gia-re-chinh-hang-wheyshop.webp",
     "SubImg": "",
     "Depict": ""
   },
@@ -59,7 +59,7 @@
     "ItemID": "IT0008",
     "NameItem": "Mutant Mass 15Lbs (6.8kg)",
     "Cost": 1780000,
-    "MainImg": "../img/shop/milk/Mutant-Mass-15lbs-tang-can-tang-co-hieu-qua-gia-re-chinh-hang-WHEYSHOP-VN-280x280.webp",
+    "MainImg": "../img/shop/milk/Mutant-Mass-15lbs-tang-can-tang-co-hieu-qua-gia-re-chinh-hang-WHEYSHOP-VN.webp",
     "SubImg": "",
     "Depict": ""
   },
@@ -67,7 +67,7 @@
     "ItemID": "IT0009",
     "NameItem": "Mutant Mass 5Lbs (2.3kg)",
     "Cost": 900000,
-    "MainImg": "../img/shop/milk/mutant-mass-5lbs-23kg-280x280.webp",
+    "MainImg": "../img/shop/milk/mutant-mass-5lbs-23kg.webp",
     "SubImg": "",
     "Depict": ""
   },
@@ -75,7 +75,7 @@
     "ItemID": "IT0010",
     "NameItem": "Rule 1 Mass Gainer (11.5 Lbs)",
     "Cost": 1290000,
-    "MainImg": "../img/shop/milk/rule-1-mass-gainer-12lbs-5-4kg-280x280.webp",
+    "MainImg": "../img/shop/milk/rule-1-mass-gainer-12lbs-5-4kg.webp",
     "SubImg": "",
     "Depict": ""
   },
@@ -83,7 +83,7 @@
     "ItemID": "IT0011",
     "NameItem": "Serious Mass 12Lbs (5.4kg)",
     "Cost": 1590000,
-    "MainImg": "../img/shop/milk/serious-mass-12lbs-5-4kg-54-280x280.webp",
+    "MainImg": "../img/shop/milk/serious-mass-12lbs-5-4kg-54.webp",
     "SubImg": "",
     "Depict": ""
   },
@@ -91,7 +91,7 @@
     "ItemID": "IT0012",
     "NameItem": "Mutant Mass XXXtreme 12Lbs (5.4kg)",
     "Cost": 1350000,
-    "MainImg": "../img/shop/milk/utant-mass-xxxtreme-12lbs-5-4kg-copy-280x280.webp",
+    "MainImg": "../img/shop/milk/utant-mass-xxxtreme-12lbs-5-4kg-copy.webp",
     "SubImg": "",
     "Depict": ""
   },
@@ -99,7 +99,7 @@
     "ItemID": "IT0013",
     "NameItem": "Bronson Vitamin K2 + D3",
     "Cost": 230000,
-    "MainImg": "../img/shop/vitamin/bronson-vitamin-k2-d3-120-vien-01-min-280x280.webp",
+    "MainImg": "../img/shop/vitamin/bronson-vitamin-k2-d3-120-vien-01-min.webp",
     "SubImg": "",
     "Depict": ""
   },
@@ -107,7 +107,7 @@
     "ItemID": "IT0014",
     "NameItem": "Ostrovit Vitamin D3 4000 K2 (110 viên)",
     "Cost": 195000,
-    "MainImg": "../img/shop/vitamin/ostrovit-d3-4000-k2-02-280x280.webp",
+    "MainImg": "../img/shop/vitamin/ostrovit-d3-4000-k2-02.webp",
     "SubImg": "",
     "Depict": ""
   },
@@ -115,7 +115,7 @@
     "ItemID": "IT0015",
     "NameItem": "Ostrovit Testo Booster (90 viên)",
     "Cost": 280000,
-    "MainImg": "../img/shop/vitamin/ostrovit-testo-booster-90-vien-280x280.webp",
+    "MainImg": "../img/shop/vitamin/ostrovit-testo-booster-90-vien.webp",
     "SubImg": "",
     "Depict": ""
   },
@@ -123,7 +123,7 @@
     "ItemID": "IT0016",
     "NameItem": "Ostrovit Vitamin Vit&Min (90 viên)",
     "Cost": 195000,
-    "MainImg": "../img/shop/vitamin/ostrovit-vit-min-01-280x280.webp",
+    "MainImg": "../img/shop/vitamin/ostrovit-vit-min-01.webp",
     "SubImg": "",
     "Depict": ""
   },
@@ -131,7 +131,7 @@
     "ItemID": "IT0017",
     "NameItem": "Platinum Multi Vitamin (90 viên)",
     "Cost": 350000,
-    "MainImg": "../img/shop/vitamin/platinum-multi-vitamin-74-280x280.webp",
+    "MainImg": "../img/shop/vitamin/platinum-multi-vitamin-74.webp",
     "SubImg": "",
     "Depict": ""
   },
@@ -139,7 +139,7 @@
     "ItemID": "IT0018",
     "NameItem": "OstroVit Astaxanthin FORTE (90 viên)",
     "Cost": 350000,
-    "MainImg": "../img/shop/vitamin/ostrovit-astaxanthin-forte-90-vien-280x280.webp",
+    "MainImg": "../img/shop/vitamin/ostrovit-astaxanthin-forte-90-vien.webp",
     "SubImg": "",
     "Depict": ""
   },
@@ -147,7 +147,7 @@
     "ItemID": "IT0019",
     "NameItem": "Ostrovit EAAdvanced (360g)",
     "Cost": 300000,
-    "MainImg": "../img/shop/bcaa/ostrovit-eaadvanced-360g-280x280.webp",
+    "MainImg": "../img/shop/bcaa/ostrovit-eaadvanced-360g.webp",
     "SubImg": "",
     "Depict": ""
   },
@@ -155,7 +155,7 @@
     "ItemID": "IT0020",
     "NameItem": "Scivation Xtend BCAA Original",
     "Cost": 1200000,
-    "MainImg": "../img/shop/bcaa/bcaa-xtend-01-280x280.webp",
+    "MainImg": "../img/shop/bcaa/bcaa-xtend-01-min.webp",
     "SubImg": "",
     "Depict": ""
   },
@@ -163,7 +163,7 @@
     "ItemID": "IT0021",
     "NameItem": "Mutant BCAA 9.7 (30 lần dùng)",
     "Cost": 490000,
-    "MainImg": "../img/shop/bcaa/mutant-bcaa-9-7-30-lan-dung-01-280x280.webp",
+    "MainImg": "../img/shop/bcaa/mutant-bcaa-9-7-30-lan-dung-01.webp",
     "SubImg": "",
     "Depict": ""
   },
@@ -171,7 +171,7 @@
     "ItemID": "IT0022",
     "NameItem": "Mutant BCAA 9.7 (90 lần dùng)",
     "Cost": 1200000,
-    "MainImg": "../img/shop/bcaa/mutant-bcaa-9-7-90-lan-dung-280x280.webp",
+    "MainImg": "../img/shop/bcaa/mutant-bcaa-9-7-90-lan-dung.webp",
     "SubImg": "",
     "Depict": ""
   },
@@ -179,7 +179,7 @@
     "ItemID": "IT0023",
     "NameItem": "Nutrex EAA+Hydration (30 servings)",
     "Cost": 489000,
-    "MainImg": "../img/shop/bcaa/nutrex-eaa-hydration-30-lan-dung-1-280x280.webp",
+    "MainImg": "../img/shop/bcaa/nutrex-eaa-hydration-30-lan-dung-1.webp",
     "SubImg": "",
     "Depict": ""
   },
@@ -187,7 +187,7 @@
     "ItemID": "IT0024",
     "NameItem": "Rule 1 EAA Essential Amino 9 (30 servings)",
     "Cost": 550000,
-    "MainImg": "../img/shop/bcaa/rule-1-eaas-30-servings-280x280.webp",
+    "MainImg": "../img/shop/bcaa/rule-1-eaas-30-servings.webp",
     "SubImg": "",
     "Depict": ""
   }

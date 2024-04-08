@@ -172,9 +172,9 @@ export function validateAdminEditAcc(fullname, email, password){
 
 }
 
-export function validateAdminAddCard(fullname, dateOfBirth, phoneNumber, typeCard, buyDate){
-    if(!fullname){
-        showErrorToast("Thêm thất bại", "Vui lòng điền tên khách hàng");
+export function validateAdminAddCard(maKH, fullname, dateOfBirth, phoneNumber, typeCard, buyDate){
+    if(!maKH && !fullname){
+        showErrorToast("Thêm thất bại", "Vui lòng điền mã hoặc tên của khách hàng");
         return false;
     }else if(!dateOfBirth){
         showErrorToast("Thêm thất bại", "Vui lòng chọn ngày sinh");

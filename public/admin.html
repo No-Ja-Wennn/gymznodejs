@@ -138,7 +138,7 @@
             <div class="container__box">
                 <div class="navbar">
                     <ul class="nav-menu">
-                        <li class="nav-item nav-admin-ifm">
+                        <li id="login-admin" class="nav-item nav-admin-ifm">
                             <img class="nav-admin-ifm-avt" src="./img/icon/ico-avt.png" alt="">
                             <span class="nav-admin-ifm-name">Admin Name</span>
                             <div class="nav-close">
@@ -172,6 +172,12 @@
                                 QL lịch tập
                             </span>
                         </li>
+                        <li id="QLShop" class="nav-item">
+                            <ion-icon class="nav-item-icon" name="calendar-sharp"></ion-icon>
+                            <span class="nav-item-text">
+                                QL shop
+                            </span>
+                        </li>
                         <div class="nav-item-last">
                             <li id="logOut" class="nav-item">
                                 <ion-icon class="nav-item-icon" name="log-out-sharp"></ion-icon>
@@ -184,7 +190,7 @@
                 </div>
                 <div class="shadow"></div>
                 <div class="container__show">
-                    <div class="save__box" id="draggable"">
+                    <div class="save__box" id="draggable" style="display: none;">
                         <button class=" save-btn">Lưu</button>
                     </div>
                     <!-- MESSAGE -->
@@ -544,6 +550,75 @@
                             <button class="save-btn">Lưu</button>
                         </div> -->
                     </div>
+                    
+                    <!-- SHOP  -->
+                    <div id="shopTable" class="container__show container__show__shop">
+                        <div class="container__show__add container__show__shop__add">
+                            <div class="box-title">
+                                <div class="nav-open">
+                                    <button class="nav-open-bt">
+                                        <ion-icon class="nav-open-bt-icon" name="menu-sharp"></ion-icon>
+                                    </button>
+                                </div>
+                                <h3 class="title-row">
+                                    Quản lý cửa hàng
+                                </h3>
+                                <div class="sub-middle">
+                                    <span></span>
+                                </div>
+                            </div>
+                        </div>
+                        <button id="add-shop" class="container__show__add__btn container__show__shop__add__btn">
+                            Thêm sản phẩm
+                        </button>
+                        <div class="container___input">
+                            <div class="container___input__left">
+                                <i class=" exit--search fa-solid fa-arrow-left"></i>
+                                <div
+                                    class="container__show__head__input__box container__show__shop__head__input__box">
+                                    <input class="show__input__id find-id-shop" type="text"
+                                        placeholder="Nhập mã sản phẩm">
+                                    <div class="show__find__id__box">
+                                    </div>
+                                </div>
+                                <!-- <input class="show__input__id find-pt-shop" type="text"
+                                    placeholder="Nhập tên huấn luyện viên"> -->
+                                <!-- <select class="show__input__type" id="type" name="type">
+                                    <option value="" selected>Bài tập</option>
+                                    <option value="GYM">GYM</option>
+                                    <option value="YOGA">YOGA</option>
+                                </select> -->
+                            </div>
+                            <div class="container___input__right">
+                                <button class="container__show__find__btn container__show__shop__find__btn">
+                                    Tìm kiếm
+                                </button>
+                            </div>
+                        </div>
+                        <!-- <i class="remove-icon fa-solid fa-trash"></i> -->
+                        <div class="container__show__content container__show__shop__content">
+                            <div class="scrollable-content">
+                                <table class="table__show table__show__main">
+                                    <thead>
+                                        <tr class="tr__show">
+                                            <th class="th__show" style="width: 13%">ẢNH CHÍNH</th>
+                                            <th class="th__show" style="width: 12%">ẢNH PHỤ</th>
+                                            <th class="th__show" style="width: 8%">MÃ SẢN PHẨM</th>
+                                            <th class="th__show" style="width: 15%">TÊN SẢN PHẨM</th>
+                                            <th class="th__show" style="width: 10%">GIÁ</th>
+                                            <th class="th__show" >MÔ TẢ</th>
+                                            <th class="th__show" style="width: 6%">THAO TÁC</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                        <!-- <div class="save__box" onclick="saveshop()">
+                            <button class="save-btn">Lưu</button>
+                        </div> -->
+                    </div>
 
                 </div>
             </div>
@@ -643,16 +718,16 @@
                             Mã khách hàng:
                         </div>
                         <div class="row__content">
-                            <input class="row__content__input" type="text" placeholder="Bỏ trống nếu là khách hàng mới"
+                            <input class="row__content__input row__content__input__id" type="text" placeholder="Bỏ trống nếu là khách hàng mới"
                                 name="maKH">
                         </div>
                     </div>
-                    <div class="row">
+                    <div class="row row__name">
                         <div class="row__title">
-                            Tên khách hàng:
+                            Tên khách hàng mới:
                         </div>
                         <div class="row__content">
-                            <input class="row__content__input" type="text" placeholder="....." name="name">
+                            <input class="row__content__input row__content__input__name" type="text" placeholder="....." name="name">
                         </div>
                     </div>
                     <div class="row">
@@ -677,7 +752,14 @@
                             Loại thẻ:
                         </div>
                         <div class="row__content">
-                            <input class="row__content__input" type="text" placeholder="....." name="cardType">
+
+                            <select class="row__content__input" id="packet2" name="cardType">
+                                <option value="" selected></option>
+                                <option value="BEGINNER">BEGINNER</option>
+                                <option value="BASIC">BASIC</option>
+                                <option value="ADVENCE">ADVENCE</option>
+                            </select>
+                            <!-- <input class="row__content__input" type="text" placeholder="....." name="cardType"> -->
                         </div>
                     </div>
                     <div class="row">
@@ -713,16 +795,16 @@
                             Mã thẻ:
                         </div>
                         <div class="row__content">
-                            <input class="row__content__input" type="text" placeholder="Bỏ trống nếu là khách hàng mới"
+                            <input class="row__content__input row__content__input__id" type="text" placeholder="Bỏ trống nếu là khách hàng mới"
                                 name="maThe">
                         </div>
                     </div>
-                    <div class="row">
+                    <div class="row row__name">
                         <div class="row__title">
                             Tên khách hàng:
                         </div>
                         <div class="row__content">
-                            <input class="row__content__input" type="text" placeholder="....." name="name">
+                            <input class="row__content__input row__content__input__name" type="text" placeholder="....." name="name">
                         </div>
                     </div>
                     <div class="row">
@@ -730,8 +812,36 @@
                             Ngày tập:
                         </div>
                         <div class="row__content">
-                            <input class=" row__content__input row__content__input--date" type="text"
-                                placeholder="....." name="date">
+                            <div>
+                                <input type="checkbox" id="monday" name="weekday[]" value="T2">
+                                <label for="monday">T2</label><br>
+                            </div>
+                            <div>
+                                <input type="checkbox" id="tuesday" name="weekday[]" value="T3">
+                                <label for="tuesday">T3</label><br>
+                            </div>
+                            <div>
+                                <input type="checkbox" id="wednesday" name="weekday[]" value="T4">
+                                <label for="wednesday">T4</label><br>
+                            </div>
+                            <div>
+                                <input type="checkbox" id="thursday" name="weekday[]" value="T5">
+                                <label for="thursday">T5</label><br>
+                            </div>
+                            <div>
+                                <input type="checkbox" id="friday" name="weekday[]" value="T6">
+                                <label for="friday">T6</label><br>
+                            </div>
+                            <div>
+                                <input type="checkbox" id="saturday" name="weekday[]" value="T7">
+                                <label for="saturday">T7</label><br>
+                            </div>
+                            <div>
+                                <input type="checkbox" id="sunday" name="weekday[]" value="CN">
+                                <label for="sunday">CN</label><br>
+                            </div>
+                            <!-- <input class=" row__content__input row__content__input--date" type="text"
+                                placeholder="....." name="date"> -->
                         </div>
                     </div>
                     <div class="row">
@@ -739,7 +849,22 @@
                             Thời gian tập:
                         </div>
                         <div class="row__content">
-                            <input class="row__content__input" type="text" placeholder="....." name="time">
+                            <div>
+                                <input type="radio" id="time1" name="time" value="13:30-15:00">
+                                <label for="time1">13:30-15:00</label><br>
+
+                            </div>
+                            <div>
+                                <input type="radio" id="time2" name="time" value="15:00-16:30">
+                                <label for="time2">15:00-16:30</label><br>
+
+                            </div>
+                            <div>
+                                <input type="radio" id="time3" name="time" value="17:30-18:30">
+                                <label for="time3">17:30-18:30</label><br>
+
+                            </div>
+                            <!-- <input class="row__content__input" type="text" placeholder="....." name="time"> -->
                         </div>
                     </div>
                     <div class="row">
@@ -747,7 +872,12 @@
                             Bài tập:
                         </div>
                         <div class="row__content">
-                            <input class="row__content__input" type="text" placeholder="....." name="type">
+                            <select class="row__content__input" id="type2" name="type">
+                                <option value="" selected></option>
+                                <option value="GYM">GYM</option>
+                                <option value="YOGA">YOGA</option>
+                            </select>
+                            <!-- <input class="row__content__input" type="text" placeholder="....." name="type"> -->
                         </div>
                     </div>
                     <div class="row">
@@ -889,7 +1019,7 @@
                         <div class="row__content row__content__edit">
                             <span class="row__content__input">quyen@gmail.com</span>
                             <i class="fa-solid fa-arrow-right"></i>
-                            <input class="row__content__input" type="text" placeholder="....." name="dateOfBirth">
+                            <input class="row__content__input" type="date" placeholder="....." name="dateOfBirth">
                         </div>
                     </div>
 
@@ -910,7 +1040,14 @@
                         <div class="row__content row__content__edit">
                             <span class="row__content__input">Abc@123</span>
                             <i class="fa-solid fa-arrow-right"></i>
-                            <input class="row__content__input" type="text" placeholder="....." name="cardType">
+                            <select class="row__content__input" id="packet3" name="cardType">
+                                <option value="" selected></option>
+                                <option value="BEGINNER">BEGINNER</option>
+                                <option value="BASIC">BASIC</option>
+                                <option value="ADVENCE">ADVENCE</option>
+                            </select>
+                            <!-- <input class="row__content__input" type="text" placeholder="....." name="cardType"> -->
+
                         </div>
                     </div>
                     <div class="row row__edit">
@@ -920,17 +1057,17 @@
                         <div class="row__content row__content__edit">
                             <span class="row__content__input">Abc@123</span>
                             <i class="fa-solid fa-arrow-right"></i>
-                            <input class="row__content__input" type="text" placeholder="....." name="dateStart">
+                            <input class="row__content__input" type="date" placeholder="....." name="dateStart">
                         </div>
                     </div>
                     <div class="row row__edit">
                         <div class="row__title">
-                            Ngày mua:
+                            Ngày hết hạn:
                         </div>
                         <div class="row__content row__content__edit">
                             <span class="row__content__input">Abc@123</span>
                             <i class="fa-solid fa-arrow-right"></i>
-                            <input class="row__content__input" type="text" placeholder="....." name="dateEnd">
+                            <input class="row__content__input" type="date" placeholder="....." name="dateEnd">
                         </div>
                     </div>
                     <span class="row__note">Bỏ trống nếu không thay đổi</span>
@@ -991,30 +1128,69 @@
                             Ngày tập:
                         </div>
                         <div class="row__content row__content__edit">
-                            <span class="row__content__input">quyen@gmail.com</span>
-                            <i class="fa-solid fa-arrow-right"></i>
-                            <input class="row__content__input" type="text" placeholder="....." name="date">
+                            <span class="row__content__input" style="display: none;">quyen@gmail.com</span>
+                            <i class="fa-solid fa-arrow-right" style="display: none;"></i>
+                            <div class="row__content">
+                                <div>
+                                    <input type="checkbox" id="monday2" name="weekday[]" value="T2">
+                                    <label for="monday2">T2</label><br>
+                                </div>
+                                <div>
+                                    <input type="checkbox" id="tuesday2" name="weekday[]" value="T3">
+                                    <label for="tuesday2">T3</label><br>
+                                </div>
+                                <div>
+                                    <input type="checkbox" id="wednesday2" name="weekday[]" value="T4">
+                                    <label for="wednesday2">T4</label><br>
+                                </div>
+                                <div>
+                                    <input type="checkbox" id="thursday2" name="weekday[]" value="T5">
+                                    <label for="thursday2">T5</label><br>
+                                </div>
+                                <div>
+                                    <input type="checkbox" id="friday2" name="weekday[]" value="T6">
+                                    <label for="friday2">T6</label><br>
+                                </div>
+                                <div>
+                                    <input type="checkbox" id="saturday2" name="weekday[]" value="T7">
+                                    <label for="saturday2">T7</label><br>
+                                </div>
+                                <div>
+                                    <input type="checkbox" id="sunday2" name="weekday[]" value="CN">
+                                    <label for="sunday2">CN</label><br>
+                                </div>
+
+                            </div>
+                            <!-- <input class="row__content__input" type="text" placeholder="....." name="date"> -->
                         </div>
                     </div>
 
                     <div class="row row__edit">
                         <div class="row__title">
-                            TG bắt đầu:
+                            TG bắt đầu và kết thúc
                         </div>
                         <div class="row__content row__content__edit">
-                            <span class="row__content__input">Abc@123</span>
-                            <i class="fa-solid fa-arrow-right"></i>
-                            <input class="row__content__input" type="text" placeholder="....." name="timeStart">
-                        </div>
-                    </div>
-                    <div class="row row__edit">
-                        <div class="row__title">
-                            TG kết thúc:
-                        </div>
-                        <div class="row__content row__content__edit">
-                            <span class="row__content__input">Abc@123</span>
-                            <i class="fa-solid fa-arrow-right"></i>
-                            <input class="row__content__input" type="text" placeholder="....." name="timeEnd">
+                            <span class="row__content__input" style="display: none">Abc@123</span>
+                            <span class="row__content__input" style="display: none">Abc@123</span>
+                            <i class="fa-solid fa-arrow-right" style="display: none"></i>
+
+                            <div class="row__content">
+                                <div class="row__content__flex">
+                                    <input type="radio" id="time4" name="time" value="13:30-15:00">
+                                    <label for="time4">13:30-15:00</label><br>
+                                </div>
+                                <div class="row__content__flex">
+                                    <input type="radio" id="time5" name="time" value="15:00-16:30">
+                                    <label for="time5">15:00-16:30</label><br>
+
+                                </div>
+                                <div class="row__content__flex">
+                                    <input type="radio" id="time6" name="time" value="17:30-18:30">
+                                    <label for="time6">17:30-18:30</label><br>
+
+                                </div>
+                                <!-- <input class="row__content__input" type="text" placeholder="....." name="time"> -->
+                            </div>
                         </div>
                     </div>
                     <div class="row row__edit">
@@ -1024,7 +1200,14 @@
                         <div class="row__content row__content__edit">
                             <span class="row__content__input">Abc@123</span>
                             <i class="fa-solid fa-arrow-right"></i>
-                            <input class="row__content__input" type="text" placeholder="....." name="type">
+                            <select class="row__content__input show__input__type" id="type3" name="type"
+                                style="background-color: transparent;">
+                                <option value="" selected></option>
+                                <option value="GYM">GYM</option>
+                                <option value="YOGA">YOGA</option>
+                            </select>
+                            <!-- <input class="row__content__input" type="text" placeholder="....." name="type"> -->
+
                         </div>
                     </div>
                     <div class="row row__edit">
@@ -1174,7 +1357,7 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
     <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
-    <script src="./src/app.js"></script>
+    <script type="module" src="./src/app.js"></script>
     <script type="module" src="./admin.js"></script>
 </body>
 
