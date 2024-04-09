@@ -55,7 +55,7 @@ function closeNav() {
   setTimeout(function () {
     navbar.style.display = 'none';
     opennav.forEach(button => {
-      button.innerHTML = '<i class="fa-solid fa-bars"></i>';
+      // button.innerHTML = '<i class="fa-solid fa-bars"></i>';
     });
     shadow.style.display = 'none';
   }, 500);

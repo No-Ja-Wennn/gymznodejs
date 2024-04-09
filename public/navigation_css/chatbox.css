@@ -27,13 +27,12 @@ i.fa-solid.fa-caret-up{
 }
 
 .container--chat {
+    margin-top: 68px;
     height: calc(100vh - 68px);
     height: calc(100svh - 68px);
     display: flex;
     align-items: center;
     justify-content: center;
-    /* background: linear-gradient(#212121d1, #212121d1),
-        url("https://img4.thuthuatphanmem.vn/uploads/2021/01/07/background-phong-tap-gym_035832535.jpg"); */
     color: rgb(0, 0, 0);
     background-color: white;
 }
@@ -338,25 +337,25 @@ a.chatbox__bottom__link-social__mess:active .messenger_ico{
 .chatbox__bottom__send{
     height: fit-content;
     width: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
-.chatbox__bottom__send i {
+.chatbox__bottom__send ion-icon {
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 2.5rem;
+    font-size: 25px;
     height: fit-content;
-    width: 50px;
+    /* width: 50px; */
     min-height: 33px;
     cursor: pointer;
-    color: rgb(80, 80, 80);
+    color: #999;
 }
 
-.chatbox__bottom__send i:hover {
-    /* color: white; */
-}
 
-.chatbox__bottom__send i:active {
-    color: rgb(245, 245, 245);
+.chatbox__bottom__send ion-icon:active {
+    color: #99999988;
 }
 
 @media (max-width: 414px){

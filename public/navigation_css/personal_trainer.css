@@ -147,6 +147,7 @@ video {
 }
 .row {
   display: flex;
+  flex-direction: row;
   box-sizing: inherit;
   padding: 15px;
 }
@@ -458,17 +459,23 @@ video {
   margin: 40px 0;
 }
 /* SLICK SLIDER */
+
 .image__item {
   border-radius: 15px;
 }
 
-.image img {
+.image-img{
+  height: fit-content;
+  width: fit-content;
+}
+
+.image-img img {
   height: 100%;
   width: 100%;
   object-fit: cover;
   border-radius: 15px 15px 0 0;
 }
-.image h3 {
+.image-img h3 {
   font-size: 18px;
 }
 .slick-slider {
