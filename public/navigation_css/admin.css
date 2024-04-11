@@ -28,10 +28,6 @@
 }
 
 .container {
-    background-image: url(../img/background/Black\ and\ Red\ Simple\ Fitness\ Zoom\ Workout\ Background.png);
-    background-size: cover;
-    background-repeat: no-repeat;
-    background-position: center;
     height: calc(100vh) !important;
     height: 100svh;
     margin-top: unset;
@@ -43,7 +39,7 @@
     height: 100vh;
     height: 100svh;
     display: flex;
-    background-color: rgb(255, 255, 255);
+    background-color: rgb(243, 244, 245);
     position: relative;
     overflow: hidden;
 }
@@ -366,7 +362,7 @@
 .container__show__card,
 .container__show__calendar {
     color: black;
-    background-color: rgb(255, 255, 255);
+    background-color: transparent;
     overflow: hidden;
     padding: 0 8px;
 }
@@ -547,7 +543,7 @@
     height: fit-content;
     display: flex;
     flex: 1;
-    background-color: transparent;
+    background-color: transparent !important;
     border: unset;
     outline: unset;
     color: black;
@@ -555,8 +551,8 @@
 
 .msgr-search-input-text::placeholder {
     color: rgb(31, 31, 31);
+    background-color: transparent;
 }
-
 .msg-list {
     height: calc(100vh - 68px - 125px);
     width: 100%;

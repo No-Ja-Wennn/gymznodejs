@@ -14,7 +14,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Overpass:wght@100;200;300;400;500;600;700;800;900&display=swap"
         rel="stylesheet">
     <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="stylesheet" href="../font/fontawesome-free-6.4.0-web/css/all.min.css">
+    <link rel="stylesheet" href="./font/fontawesome-free-6.4.0-web/css/all.min.css">
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
     <link rel="stylesheet" href="./css/index.css">
     <link rel="stylesheet" href="./css/header.css">
@@ -31,110 +31,8 @@
 </head>
 
 <body>
-    <!-- <div class="error">
-        <p>
-            không khả rụng
-        </p>
-    </div> -->
     <div class="app">
-        <!-- <div class="header">
-            <div class="header__inner">
-                <div class="header__inner__logo">
-                    <a href="">
-                        <h1>GYM<span>Z</span></h1>
-                    </a>
-                </div>
-                <div class="header__inner__navigation">
-                    <ul>
-                        <li><a class="header__inner__navigation__sevice" href="../index.html">TRANG CHỦ</a></li>
-                        <li><a class="header__inner__navigation__sevice" href="./chatbox.html">CHAT ONLINE</a></li>
-                        <li>
-                            <div class="dropdown">
-                                <a class="header__inner__navigation__sevice" href="#" onclick="yourFunction(event)">
-                                    DỊCH VỤ<m><i class='bx bxs-right-arrow'></i></m>
-                                </a>
-                                <div class="containt">
-                                    <a href="./personal_trainer.html">HUẤN LUYỆN VIÊN</a>
-                                    <a href="./shop.html">CỬA HÀNG WHEY</a>
-                                </div>
-                            </div>
-                        </li>
-                        <li><a class="header__inner__navigation__sevice" href="./card.html">THẺ HỘI VIÊN</a></li>
-                    </ul>
-                </div>
-                <div class="header__inner__try">
-                    <ul>
-                        <li><a href="./promotion.html">KHUYẾN MÃI</a></li>
-                    </ul>
-                </div>
-                <div class="header__inner__menu">
-                    <div class="bt_dropdown">
-                        <a class="header__inner__menu__bt" href="#" onclick="yourFunction(event)">
-                            <i class='bx bx-menu'></i>
-                        </a>
-                        <div class="content">
-                            <div class="logo">
-                                <ul class="account__login__center">
-                                    <li class="account__login">
-                                        <a class="account__login__inner" href="">
-                                        </a>
-                                    </li>
-                                </ul>
-                                <div class="account__about">
-                                    <a class="account__name" href="#">
-                                        USERNAME
-                                    </a>
-                                    <a class="account__code" href="#">
-                                        GYMZ001
-                                    </a>
-                                </div>
-                            </div>
-                            <a class="content__inner" href="../index.html">
-                                <i class='bx bxs-home'></i>
-                                <span class="noidung__text1">
-                                    TRANG CHỦ
-                                </span>
-                            </a>
-                            <a class="content__inner" href="./chatbox.html">
-                                <i class='bx bx-world'></i>
-                                <span class="noidung__text1">
-                                    CHAT ONLINE
-                                </span>
-                            </a>
-                            <div class="submenu" href="#" onclick="toggleNoidung222(event)">
-                                <b class="content__inner" href="">
-                                    <i class='bx bx-grid-alt'></i>
-                                    <span class="noidung__text1">
-                                        DỊCH VỤ
-                                    </span>
-                                </b>
-                                <div class="noidung222">
-                                    <a class="content__inner" href="./card.html"> THẺ HỘI VIÊN</a>
-                                    <a class="content__inner" href="./personal_trainer.html"> HUẤN LUYỆN VIÊN</a>
-                                    <a class="content__inner" href="./shop.html"> CỬA HÀNG WHEY</a>
-                                </div>
-                            </div>
-                            <a class="content__inner" href="./promotion.html">
-                                <i class='bx bxs-purchase-tag'></i>
-                                <span class="noidung__text1">
-                                    KHUYẾN MÃI
-                                </span>
-                            </a>
-                            <div class="content__logout">
-                                <a class="content__logout__btn content__inner">
-                                    <i class="bxf fa-solid fa-right-from-bracket"></i>
-                                    <span class="noidung__text1">
-                                        ĐĂNG XUẤT
-                                    </span>
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div> -->
         <div class="container">
-            <!-- <div class="grid1"> -->
             <div class="container__box">
                 <div class="navbar">
                     <ul class="nav-menu">
@@ -143,7 +41,6 @@
                             <span class="nav-admin-ifm-name">Admin Name</span>
                             <div class="nav-close">
                                 <button class="nav-close-bt">
-                                    <!-- <i class="fa-solid fa-bars"></i> -->
                                     <ion-icon class="nav-close-bt-icon" name="close-sharp"></ion-icon>
                                 </button>
                             </div>
@@ -326,7 +223,7 @@
                                             </div>
                                         </div>
                                         <div class="chatbox__bottom__send">
-                                            <i class='bx bxs-send'></i>
+                                            <ion-icon name="send"></ion-icon>
                                         </div>
                                     </div>
                                 </div>
@@ -675,7 +572,7 @@
                             Tên khách hàng:
                         </div>
                         <div class="row__content">
-                            <input class="row__content__input" type="text" placeholder="....." name="fullname">
+                            <input class="row__content__input" type="text" placeholder="Nguyen Van A" name="fullname">
                         </div>
                     </div>
                     <div class="row">
@@ -683,7 +580,7 @@
                             Email:
                         </div>
                         <div class="row__content">
-                            <input class="row__content__input" type="text" placeholder="....." name="email">
+                            <input class="row__content__input" type="text" placeholder="example@gmail.com" name="email">
                         </div>
                     </div>
                     <div class="row">
@@ -691,7 +588,7 @@
                             Mật khẩu:
                         </div>
                         <div class="row__content">
-                            <input class="row__content__input" type="text" placeholder="....." name="password">
+                            <input class="row__content__input" type="text" placeholder="***" name="password">
                         </div>
                     </div>
                     <div class="row__final">
@@ -727,7 +624,7 @@
                             Tên khách hàng mới:
                         </div>
                         <div class="row__content">
-                            <input class="row__content__input row__content__input__name" type="text" placeholder="....." name="name">
+                            <input class="row__content__input row__content__input__name" type="text" placeholder="Nguyen Van A" name="name">
                         </div>
                     </div>
                     <div class="row">
@@ -736,7 +633,7 @@
                         </div>
                         <div class="row__content">
                             <input class=" row__content__input row__content__input--date" type="date"
-                                placeholder="....." name="dateOfBirth">
+                                placeholder="+84" name="dateOfBirth">
                         </div>
                     </div>
                     <div class="row">
@@ -744,7 +641,7 @@
                             số điện thoại:
                         </div>
                         <div class="row__content">
-                            <input class="row__content__input" type="text" placeholder="....." name="phoneNumber">
+                            <input class="row__content__input" type="text" placeholder="+84" name="phoneNumber">
                         </div>
                     </div>
                     <div class="row">
@@ -804,7 +701,7 @@
                             Tên khách hàng:
                         </div>
                         <div class="row__content">
-                            <input class="row__content__input row__content__input__name" type="text" placeholder="....." name="name">
+                            <input class="row__content__input row__content__input__name" type="text" placeholder="Nguyen Van A" name="name">
                         </div>
                     </div>
                     <div class="row">
@@ -812,33 +709,35 @@
                             Ngày tập:
                         </div>
                         <div class="row__content">
-                            <div>
-                                <input type="checkbox" id="monday" name="weekday[]" value="T2">
-                                <label for="monday">T2</label><br>
-                            </div>
-                            <div>
-                                <input type="checkbox" id="tuesday" name="weekday[]" value="T3">
-                                <label for="tuesday">T3</label><br>
-                            </div>
-                            <div>
-                                <input type="checkbox" id="wednesday" name="weekday[]" value="T4">
-                                <label for="wednesday">T4</label><br>
-                            </div>
-                            <div>
-                                <input type="checkbox" id="thursday" name="weekday[]" value="T5">
-                                <label for="thursday">T5</label><br>
-                            </div>
-                            <div>
-                                <input type="checkbox" id="friday" name="weekday[]" value="T6">
-                                <label for="friday">T6</label><br>
-                            </div>
-                            <div>
-                                <input type="checkbox" id="saturday" name="weekday[]" value="T7">
-                                <label for="saturday">T7</label><br>
-                            </div>
-                            <div>
-                                <input type="checkbox" id="sunday" name="weekday[]" value="CN">
-                                <label for="sunday">CN</label><br>
+                            <div class="row-content-wrapper">
+                                <div>
+                                    <input type="checkbox" id="monday" name="weekday[]" value="T2">
+                                    <label for="monday">T2</label><br>
+                                </div>
+                                <div>
+                                    <input type="checkbox" id="tuesday" name="weekday[]" value="T3">
+                                    <label for="tuesday">T3</label><br>
+                                </div>
+                                <div>
+                                    <input type="checkbox" id="wednesday" name="weekday[]" value="T4">
+                                    <label for="wednesday">T4</label><br>
+                                </div>
+                                <div>
+                                    <input type="checkbox" id="thursday" name="weekday[]" value="T5">
+                                    <label for="thursday">T5</label><br>
+                                </div>
+                                <div>
+                                    <input type="checkbox" id="friday" name="weekday[]" value="T6">
+                                    <label for="friday">T6</label><br>
+                                </div>
+                                <div>
+                                    <input type="checkbox" id="saturday" name="weekday[]" value="T7">
+                                    <label for="saturday">T7</label><br>
+                                </div>
+                                <div>
+                                    <input type="checkbox" id="sunday" name="weekday[]" value="CN">
+                                    <label for="sunday">CN</label><br>
+                                </div>
                             </div>
                             <!-- <input class=" row__content__input row__content__input--date" type="text"
                                 placeholder="....." name="date"> -->
@@ -849,20 +748,19 @@
                             Thời gian tập:
                         </div>
                         <div class="row__content">
-                            <div>
-                                <input type="radio" id="time1" name="time" value="13:30-15:00">
-                                <label for="time1">13:30-15:00</label><br>
-
-                            </div>
-                            <div>
-                                <input type="radio" id="time2" name="time" value="15:00-16:30">
-                                <label for="time2">15:00-16:30</label><br>
-
-                            </div>
-                            <div>
-                                <input type="radio" id="time3" name="time" value="17:30-18:30">
-                                <label for="time3">17:30-18:30</label><br>
-
+                            <div class="row-content-wrapper">
+                                <div>
+                                    <input type="radio" id="time1" name="time" value="13:30-15:00">
+                                    <label for="time1">13:30-15:00</label><br>
+                                </div>
+                                <div>
+                                    <input type="radio" id="time2" name="time" value="15:00-16:30">
+                                    <label for="time2">15:00-16:30</label><br>
+                                </div>
+                                <div>
+                                    <input type="radio" id="time3" name="time" value="17:30-18:30">
+                                    <label for="time3">17:30-18:30</label><br>
+                                </div>
                             </div>
                             <!-- <input class="row__content__input" type="text" placeholder="....." name="time"> -->
                         </div>
@@ -885,7 +783,7 @@
                             Huấn luyện viên:
                         </div>
                         <div class="row__content">
-                            <input class="row__content__input" type="text" placeholder="......" name="ptName">
+                            <input class="row__content__input" type="text" placeholder="None" name="ptName">
                         </div>
                     </div>
                     <div class="row">
@@ -893,7 +791,7 @@
                             Ghi chú:
                         </div>
                         <div class="row__content">
-                            <input class="row__content__input" type="text" placeholder="......" name="note">
+                            <input class="row__content__input" type="text" placeholder="None" name="note">
                         </div>
                     </div>
                     <div class="row__final">

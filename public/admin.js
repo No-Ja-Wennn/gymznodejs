@@ -379,7 +379,7 @@ function sendMessage(message) {
 
 const inputBox = document.querySelector('.chatbox__bottom__input');
 const inputElement = inputBox.querySelector('textarea');
-const sendButton = document.querySelector('.chatbox__bottom__send i');
+const sendButton = document.querySelector('.chatbox__bottom__send ion-icon');
 
 sendButton.addEventListener('click', async () => {
     const valueInput = inputElement.value.trim();
