@@ -620,6 +620,8 @@ function insertToTable(tableName, dataObject) {
         i1.addEventListener("click", f_editCardBTN);
     else if (tableName == "calendar")
         i1.addEventListener("click", f_editCalendarBTN);
+    else if (tableName == "shop")
+        i1.addEventListener("click", f_editShopBTN);
 
     var i2 = document.createElement('i');
     i2.className = 'fa-solid fa-trash';
@@ -629,6 +631,8 @@ function insertToTable(tableName, dataObject) {
         i2.addEventListener("click", f_removeCardBTN);
     else if (tableName == "calendar")
         i2.addEventListener("click", f_removeCalendarBTN);
+    else if (tableName == "shop")
+        i2.addEventListener("click", f_removeShopBTN);
 
     // Thêm hai thẻ i vào cell
     cell.appendChild(i1);
@@ -1578,6 +1582,25 @@ function f_shopNav() {
 
 // EDIT ITEM
 
+function f_editShopBTN(){
+    var trElement = this.closest('tr');
+    var a_tdElement = trElement.querySelectorAll('td');
+    a_tdElement = Array.from(a_tdElement);
+    a_tdElement.map((element, index)=>{
+        if(index>2 && index < 6){
+            var value = element.textContent;
+            var inputE = document.createElement('input');
+            inputE.value = value;
+            element.textContent = '';
+            element.appendChild(inputE);
+        }
+    })
+
+}
+
 // REMOVE ITEM
 
+function f_removeShopBTN(){
+    console.log("ello")
+}
 
