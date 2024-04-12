@@ -1616,23 +1616,68 @@ function f_saveFunction() {
     //     }
     // );
     // img
-    console.log(editRow.querySelector('.MainImg').querySelector('input'))
-    var file_data
-        = $(editRow.querySelector('.MainImg').querySelector('input')).prop('files')[0];
-    var form_data = new FormData();
-    form_data.append('file', file_data);
-    $.ajax({
-        url: '/upload',
-        dataType: 'text',
-        cache: false,
-        contentType: false,
-        processData: false,
-        data: form_data,
-        type: 'post',
-        success: function (response) {
-            alert(response);
-        }
-    });
+    // var file_input = editRow.querySelector('.MainImg').querySelector('input');
+    // if (file_input.files.length > 0) {
+    //     var file_data = $(file_input).prop('files')[0];
+    //     var form_data = new FormData();
+    //     form_data.append('file', file_data);
+    //     console.log("type: ", obj.Type);
+    //     console.log({form_data, fileType: 'whey'})
+    //     // $.ajax({
+    //     //     url: '/upload',
+    //     //     dataType: 'text',
+    //     //     cache: false,
+    //     //     contentType: false,
+    //     //     processData: false,
+    //     //     data: {form_data, fileType: 'whey'},
+    //     //     type: 'post',
+    //     //     success: function (response) {
+    //     //         alert(response);
+    //     //     }
+    //     // });
+    //     $.ajax({
+    //         url: '/upload',
+    //         dataType: 'text',
+    //         cache: false,
+    //         contentType: false,
+    //         processData: false,
+    //         data: {file: form_data, fileType: 'whey'},
+    //         type: 'post',
+    //         success: function (response) {
+    //             alert(response);
+    //         }
+    //     });
+
+    // } else {
+    //     console.log("No file selected.");
+    // }
+
+    /////////////
+    var file_input = editRow.querySelector('.MainImg').querySelector('input');
+    if (file_input.files.length > 0) {
+        var file_data = file_input.files[0]; // Không cần sử dụng jQuery ở đây
+        var form_data = new FormData();
+        form_data.append('file', file_data);
+        form_data.append('Type', obj.Type);
+        form_data.append('Type', obj.ItemID);
+
+        $.ajax({
+            url: '/upload',
+            type: 'POST',
+            data: form_data,
+            cache: false,
+            contentType: false,
+            processData: false,
+            success: function (response) {
+                alert(response);
+            }
+        });
+    } else {
+        console.log("No file selected.");
+    }
+
+
+
 }
 
 

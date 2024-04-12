@@ -116,6 +116,20 @@ function saveMessage(con, maKH, senderRole, message) {
     });
 }
 
+function updateTable(con, tableName, data, condition) {
+    // Tạo danh sách các cập nhật từ đối tượng data
+    let updates = Object.keys(data).map(key => `${key} = '${data[key]}'`).join(', ');
+  
+    // Tạo câu lệnh SQL
+    let sql = `UPDATE ${tableName} SET ${updates} WHERE ${condition}`;
+  
+    // Thực thi câu lệnh SQL
+    con.query(sql, function (err, result) {
+      if (err) throw err;
+      console.log("Record updated successfully");
+    });
+  }
+
 module.exports = {
     generateCustomerCode,
     getCurrentDate,
@@ -125,5 +139,6 @@ module.exports = {
     getBoxMessage,
     saveMessage,
     changeStatusSeen,
-    insertIntoTable
+    insertIntoTable,
+    updateTable
 }

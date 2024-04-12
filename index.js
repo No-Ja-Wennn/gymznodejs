@@ -21,7 +21,8 @@ const {
   getBoxMessage,
   saveMessage,
   changeStatusSeen,
-  insertIntoTable
+  insertIntoTable,
+  updateTable
 } = require('./src/functions.js');
 const nodemailer = require('nodemailer');
 
@@ -154,19 +155,7 @@ function createTable() {
 
 }
 
-function updateTable(tableName, data, condition) {
-  // Tạo danh sách các cập nhật từ đối tượng data
-  let updates = Object.keys(data).map(key => `${key} = '${data[key]}'`).join(', ');
 
-  // Tạo câu lệnh SQL
-  let sql = `UPDATE ${tableName} SET ${updates} WHERE ${condition}`;
-
-  // Thực thi câu lệnh SQL
-  con.query(sql, function (err, result) {
-    if (err) throw err;
-    console.log("Record updated successfully");
-  });
-}
 
 
 app.post('/login-url', (req, res) => {
@@ -1209,8 +1198,8 @@ app.post("/edit-account-url", authenToken, function (req, res) {
     if (result.length > 0 && result[0].email == email) {
       res.json({ success: false, err: "Email đã tồn tại" })
     } else {
-      updateTable('users', userData, `maKH = '${maKH}'`);
-      updateTable('loginData', loginData, `maKH = '${maKH}'`);
+      updateTable(con, 'users', userData, `maKH = '${maKH}'`);
+      updateTable(con, 'loginData', loginData, `maKH = '${maKH}'`);
       res.json({ success: true })
     }
   })
@@ -1241,8 +1230,8 @@ app.post("/edit-card-url", authenToken, function (req, res) {
   const cardData = { maThe, cardType, dateStart, dateEnd };
   deleteSpacePro(userData)
   deleteSpacePro(cardData)
-  updateTable('users', userData, `maKH = '${maKH}'`);
-  updateTable('cardData', cardData, `maThe = '${maThe}'`);
+  updateTable(con, 'users', userData, `maKH = '${maKH}'`);
+  updateTable(con, 'cardData', cardData, `maThe = '${maThe}'`);
   res.json({ success: true })
 })
 
@@ -1270,7 +1259,7 @@ app.post("/edit-calendar-url", authenToken, function (req, res) {
     caData.weekday = caData.weekday.toString();
   console.log(caData)
   deleteSpacePro(caData)
-  updateTable('calendarData', caData, `maLT = '${maLT}'`);
+  updateTable(con, 'calendarData', caData, `maLT = '${maLT}'`);
   res.json({ success: true })
 })
 
@@ -1278,7 +1267,7 @@ app.post("/edit-calendar-url", authenToken, function (req, res) {
 // GET ITEM SHOP
 
 app.get('/get-shop-item', authenToken, (req, res) => {
-  var sql = "SELECT MainImg, SubImg, ItemID, NameItem, Cost, Depict FROM shopdata";
+  var sql = "SELECT MainImg, SubImg, ItemID, NameItem, Type, Cost, Depict FROM shopdata";
   con.query(sql, (err, result) => {
     if (err) throw err;
     console.log(result);
@@ -1419,10 +1408,10 @@ app.post('/edit-item-admin-url', (req, res) => {
   let dataEdit = req.body;
   deleteSpacePro(dataEdit);
   if (dataEdit.ItemID) {
-    updateTable('shopData', dataEdit, `ItemID = '${dataEdit.ItemID}'`);
+    updateTable(con, 'shopData', dataEdit, `ItemID = '${dataEdit.ItemID}'`);
     console.log(dataEdit);
     getRowValue('shopData', `ItemID = '${dataEdit.ItemID}'`,
-      " MainImg, SubImg, ItemID, NameItem, Cost,Depict",
+      " MainImg, SubImg, ItemID, NameItem,Type, Cost,Depict",
       (data) => {
         res.json({
           success: true,
@@ -1479,25 +1468,52 @@ app.post('/get-item-search', (req, res) => {
 // save img
 // Configure storage
 const storage = multer.diskStorage({
-    destination: function(req, file, cb) {
-        cb(null, './public/img/shop/customer'); // Here, './' is the current directory. You can set any path you like.
-    },
-    filename: function(req, file, cb) {
-        cb(null, file.fieldname + '-' + Date.now() + path.extname(file.originalname));
-    }
+  destination: function (req, file, cb) {
+    cb(null, './public/img/shop/customer'); // Here, './' is the current directory. You can set any path you like.
+  },
+  filename: function (req, file, cb) {
+    cb(null, file.fieldname + '-' + Date.now() + path.extname(file.originalname));
+  }
 });
 
-const upload = multer({ storage: storage });
+// const upload = multer({ storage: storage });
+
+const upload = multer();
+
+app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.json());
+
+
 
 
 app.post('/upload', upload.single('file'), (req, res) => {
-    res.send('File uploaded successfully.');
-});
+  const {Type, ItemID} = req.body.Type;
 
-app.listen(3000, () => {
-    console.log('Server started on port 3000');
-});
+  if (!Type) {
+    return res.status(400).send('Missing file type.');
+  }
+  // Tạo thư mục nếu nó chưa tồn tại
+  const targetDirectory = './public/img/shop/' + Type + '/';
+  if (!fs.existsSync(targetDirectory)) {
+    fs.mkdirSync(targetDirectory, { recursive: true });
+  }
 
+  const newPath = targetDirectory + req.file.originalname;
+  fs.writeFile(newPath, req.file.buffer, (err) => {
+    if (err) {
+      console.error(err);
+      res.status(500).send('Error occurred while moving file.');
+    } else {
+      console.log("newPath: ", newPath);
+      var data = {
+        MainImg: newPath
+      }
+      updateTable(con, 'shopData', data, `ItemID = '${req.body.ItemID}'`)
+      res.send('File uploaded and moved successfully.');
+    }
+  });
+
+});
 
 
 
