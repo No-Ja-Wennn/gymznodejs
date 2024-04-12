@@ -1397,6 +1397,39 @@ app.get('/get-product-item', (req, res) => {
   })
 })
 
+function getRowValue(tableName, condition, parrames = '*', callback) {
+  var sql = `SELECT ${parrames} FROM ${tableName} WHERE ${condition}`;
+  con.query(sql, (err, result) => {
+    if (err) throw err;
+    if (result.length > 0) {
+      callback(result);
+    } else
+      return null;
+  })
+}
+
+
+// EDIT ITEM SHOP
+app.post('/edit-item-admin-url', (req, res) => {
+  let dataEdit = req.body;
+  deleteSpacePro(dataEdit);
+  if (dataEdit.ItemID) {
+    updateTable('shopData', dataEdit, `ItemID = '${dataEdit.ItemID}'`);
+    console.log(dataEdit);
+    getRowValue('shopData', `ItemID = '${dataEdit.ItemID}'`,
+      " MainImg, SubImg, ItemID, NameItem, Cost,Depict",
+      (data) => {
+        res.json({
+          success: true,
+          data: data[0]
+        });
+      }
+    );
+  } else
+    res.json({ success: false });
+})
+
+
 /* =============== SEARCH SHOP ================ */
 
 const stringSimilarity = require('string-similarity');

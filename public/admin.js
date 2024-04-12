@@ -6,6 +6,7 @@ import {
     displayLeftMessage,
     displayNoneAll,
     displayRightMessage,
+    editRowShop,
     innerBoxMsg,
     maKHActive,
     removeAccents,
@@ -92,14 +93,12 @@ function checkCookieAdmin() {
         }
     })
 }
-console.log(checkCookieAdmin())
 
 function f_getLoginAdmin() {
     $.ajax({
         url: '/get-login-admin',
         type: 'get',
         success: function (data) {
-            console.log(data);
             if (data.success) {
                 userToken(data.username)
                     .then(function () {
@@ -148,7 +147,7 @@ $('#login-admin-form').submit(function (e) {
                 }
             },
             error: function (err) {
-                console.log(err);
+                console.error(err);
             }
         })
 })
@@ -203,7 +202,6 @@ $.ajax({
     type: 'POST',
     data: {username: "holiut"},
     success: function(data){
-        console.log(data)
     },
     error: function(err){
         
@@ -245,8 +243,6 @@ function userToken(username) {
             type: 'POST',
             data: { username },
             success: function (data) {
-                console.log(data);
-                console.log("Hello1")
                 const { accessToken, refreshToken } = data;
                 // Lưu trữ refresh token
                 localStorage.setItem('refreshToken', refreshToken);
@@ -270,10 +266,8 @@ function userToken(username) {
 //             'Authorization': 'Bearer ' + accessToken
 //         },
 //         success: function (data) {
-//             console.log(data);
 //         },
 //         error: function (err) {
-//             console.log(err);
 //             if (err.status === 403) {
 //                 // Nếu access token hết hạn, sử dụng refresh token để lấy access token mới
 //                 const refreshToken = localStorage.getItem('refreshToken');
@@ -287,7 +281,6 @@ function userToken(username) {
 //                         useAccessToken(accessToken);
 //                     },
 //                     error: function (err) {
-//                         console.log(err);
 //                     }
 //                 });
 //             }
@@ -313,7 +306,6 @@ function isLoggedIn() {
 // function getBook() {
 //     sendRequest("/get-book", 'GET', null,
 //         function (data) {
-//             console.log(data);
 //         },
 //         function (err) {
 //             console.error(err);
@@ -346,7 +338,6 @@ $(document).ready(function () {
     //     url: '/get-box-message',
     //     type: "GET",
     //     success: function (data) {
-    //         // console.log(data);
     //         innerBoxMsg(data.value);
     //     },
     //     error: function (err) {
@@ -597,6 +588,7 @@ function insertToTable(tableName, dataObject) {
                 var lableTag = document.createElement('label');
                 lableTag.innerText = 'Thay ảnh';
                 lableTag.htmlFor = 'input' + field + idIndex;
+                lableTag.style.display = 'none';
                 inputChange.style.display = 'none';
                 cell.appendChild(inputChange);
                 cell.appendChild(lableTag);
@@ -736,14 +728,12 @@ $('#form-add-account').submit(function (e) {
             },
             $(this).serialize(),
             function (data) {
-                console.log(data)
                 if (data.success) {
                     if (data.active == true) {
                         showSuccessToast("Thêm thành công", "");
                         displayNoneAll();
                         accountNav.click();
                         removeAllInputValue();
-                        // console.log(data.acc);
                         // insertToTable('account', data.acc)
                     } else {
 
@@ -762,14 +752,12 @@ $('#form-add-account').submit(function (e) {
         //     type: "POST",
         //     data: $(this).serialize(),
         //     success: function (data) {
-        //         console.log(data)
         //         if (data.success) {
         //             if (data.active == true) {
         //                 showSuccessToast("Thêm thành công", "");
         //                 displayNoneAll();
         //                 accountNav.click();
         //                 removeAllInputValue();
-        //                 // console.log(data.acc);
         //                 // insertToTable('account', data.acc)
         //             } else {
 
@@ -859,7 +847,6 @@ $('#form-add-card').submit(function (e) {
     var phoneNumber = addCardBox.querySelector("[name='phoneNumber']").value;
     var cardType = addCardBox.querySelector("[name='cardType']").value;
     var dateStart = addCardBox.querySelector("[name='dateStart']").value;
-    console.log(name, dateOfBirth, phoneNumber, cardType, dateStart)
     var accessToken = localStorage.getItem('accessToken');
     if (validateAdminAddCard(maKH, name, dateOfBirth, phoneNumber, cardType, dateStart)) {
         sendRequest(
@@ -870,7 +857,6 @@ $('#form-add-card').submit(function (e) {
             },
             $(this).serialize(),
             function (data) {
-                console.log(data);
                 if (data.success) {
                     showSuccessToast("Thêm thành công");
                     displayNoneAll();
@@ -891,7 +877,6 @@ $('#form-add-card').submit(function (e) {
         //     type: "POST",
         //     data: $(this).serialize(),
         //     success: function (data) {
-        //         console.log(data);
         //         if (data.success) {
         //             showSuccessToast("Thêm thành công");
         //             displayNoneAll();
@@ -942,7 +927,6 @@ findCardBTN.addEventListener("click", function () {
         if (valuePackage != '' && valuePackage != typeValue) match = false;
         if (valueStart != '' && valueStart != startValue) match = false;
         if (valueEnd != '' && valueEnd != endValue) match = false;
-        console.log(valueStart, startValue);
         if (match) {
             parentNodeE.style.display = "table-row";
         } else {
@@ -1018,7 +1002,6 @@ $('#form-add-calendar').submit(function (e) {
             },
             $(this).serialize(),
             function (data) {
-                console.log(data);
                 if (data.success) {
                     showSuccessToast("Thêm thành công");
                     displayNoneAll();
@@ -1054,7 +1037,6 @@ findCalendarBTN.addEventListener("click", function () {
     var valuetype = removeAccents(inputTypeCalendar.value.trim().toLowerCase());
     var a_id = calendarPage.querySelectorAll(".show_id");
     a_id = Array.from(a_id);
-    console.log(a_id)
     exitSearchCalendarBTN.style.display = "flex";
     a_id.forEach((element, index) => {
         var parentNodeE = element.parentNode;
@@ -1068,7 +1050,6 @@ findCalendarBTN.addEventListener("click", function () {
         if (valuetype != '' && valuetype != typeValue) match = false;
 
         if (match) {
-            console.log(ptValue, valuePT)
             parentNodeE.style.display = "table-row";
         } else {
             parentNodeE.style.display = "none";
@@ -1119,18 +1100,12 @@ function f_editAccountBTN() {
     var a_span = editAccBox.querySelectorAll("span.row__content__input");
     var firstInput = editAccBox.querySelector("input.row__content__input");
     firstInput.value = a_box[0].innerText
-    console.log(firstInput)
     a_span = Array.from(a_span);
-    console.log(a_span)
 
     a_box.map((value, index) => {
-        // console.log(a_span[index]);
-        // console.log(value)
-        console.log(a_span[index]);
         a_span[index].innerText = a_box[index].innerText;
     })
 
-    console.log(a_span)
     displayNoneAll();
     activeNecessaryForm();
     editAccBox.style.display = "block";
@@ -1197,8 +1172,6 @@ function f_editCardBTN() {
     var a_box = row.querySelectorAll("td");
     a_box = Array.from(a_box);
     a_box.pop();
-    // a_box.shift();
-    console.log(a_box)
     var a_span = editCardBox.querySelectorAll("span.row__content__input");
     var a_Input = editCardBox.querySelectorAll("input.row__content__input");
     a_Input = Array.from(a_Input);
@@ -1207,7 +1180,6 @@ function f_editCardBTN() {
     a_span = Array.from(a_span);
 
     a_box.map((value, index) => {
-        console.log(a_span[index]);
         a_span[index].innerText = a_box[index].innerText;
     })
 
@@ -1266,8 +1238,6 @@ function f_editCalendarBTN() {
     var a_box = row.querySelectorAll("td");
     a_box = Array.from(a_box);
     a_box.pop();
-    // a_box.shift();
-    console.log(a_box)
     var a_span = editCalendarBox.querySelectorAll("span.row__content__input");
     var a_Input = editCalendarBox.querySelectorAll("input.row__content__input");
     a_Input = Array.from(a_Input);
@@ -1276,7 +1246,6 @@ function f_editCalendarBTN() {
     a_span = Array.from(a_span);
 
     a_box.map((value, index) => {
-        // console.log(a_span[index]);
         a_span[index].innerText = a_box[index].innerText;
     })
 
@@ -1457,7 +1426,6 @@ submitRemoveAccount.addEventListener("click", function () {
     var contentE = removeCalendarBox.querySelectorAll(".row__title2");
     contentE = Array.from(contentE);
     var maLT = contentE[0].innerText;
-    console.log("Makh,", maLT)
     if (maLT) {
         var accessToken = localStorage.getItem('accessToken');
         sendRequest(
@@ -1497,12 +1465,9 @@ a_inputID = Array.from(a_inputID);
 a_inputID.forEach(element => {
     var formE = element.closest('form');
     var rowName = formE.querySelector(".row__name");
-    console.log(formE);
     element.addEventListener("input", function () {
-        console.log(rowName.style.display)
         if (this.value) {
             rowName.style.display = 'none';
-            console.log(rowName, rowName.style.display)
         } else {
             rowName.style.display = 'inline';
         }
@@ -1535,7 +1500,6 @@ a_inputName.forEach(element => {
 
 
 function unactiveInput(e) {
-    console.log("ello")
     showErrorToast("Không thể điền dữ liệu", "Vui lòng xóa tên khách hàng mới để thao tác")
     e.preventDefault();
 }
@@ -1582,25 +1546,82 @@ function f_shopNav() {
 
 // EDIT ITEM
 
-function f_editShopBTN(){
-    var trElement = this.closest('tr');
-    var a_tdElement = trElement.querySelectorAll('td');
-    a_tdElement = Array.from(a_tdElement);
-    a_tdElement.map((element, index)=>{
-        if(index>2 && index < 6){
-            var value = element.textContent;
-            var inputE = document.createElement('input');
-            inputE.value = value;
-            element.textContent = '';
-            element.appendChild(inputE);
-        }
-    })
+const saveBTN = document.querySelector(".save__box");
 
+let editRow = null;
+
+function f_editShopBTN() {
+    if (!editRow) {
+
+        var trElement = this.closest('tr');
+        editRow = trElement;
+        var a_tdElement = trElement.querySelectorAll('td');
+        a_tdElement = Array.from(a_tdElement);
+        a_tdElement.map((element, index) => {
+            if (index > 2 && index < 6) {
+                var value = element.textContent.replace('.', '');
+                var inputE = document.createElement('input');
+                inputE.value = value;
+                element.textContent = '';
+                element.appendChild(inputE);
+                saveBTN.style.display = 'block';
+            }
+        })
+        var a_label = trElement.querySelectorAll("label");
+        a_label = Array.from(a_label);
+        a_label.forEach(e => e.style.display = "inline");
+    } else {
+        showErrorToast("Thất bại", "Vui lòng lưu dòng đang sửa")
+    }
 }
+
+saveBTN.addEventListener("click", f_saveFunction)
+
+function f_saveFunction() {
+    saveBTN.style.display = 'none';
+    let tdRow = editRow.querySelectorAll('td');
+    tdRow = Array.from(tdRow);
+    let obj = {};
+    tdRow.forEach(element => {
+        var inputElement = element.querySelector('input');
+        if (inputElement)
+            obj[element.className] = inputElement.value;
+    })
+    var idItem = editRow.querySelector('.ItemID');
+    obj[idItem.className] = idItem.innerText;
+    var accessToken = localStorage.getItem('accessToken');
+    sendRequest(
+        '/edit-item-admin-url',
+        'POST',
+        {
+            'Authorization': 'Bearer ' + accessToken
+        },
+        obj,
+        function (data) {
+            console.log(data);
+            if (data.success) {
+                // for(let i = 0; i < tdRow.length -1; i++){
+                //     tdRow[i].innerText = data.data[tdRow[i].className]
+                // }
+                editRowShop(data.data, tdRow);
+                showSuccessToast("Sửa thành công", "");
+                editRow = null;
+            } else {
+                showErrorToast("Lỗi");
+            }
+        },
+        function (err) {
+            console.error(err);
+        }
+    )
+}
+
+
+
 
 // REMOVE ITEM
 
-function f_removeShopBTN(){
+function f_removeShopBTN() {
     console.log("ello")
 }
 

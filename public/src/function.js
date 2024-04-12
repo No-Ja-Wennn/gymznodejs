@@ -36,7 +36,7 @@ export function removeAllInputValue() {
     a_inputElement = Array.from(a_inputElement);
     a_inputElement.map(element => {
         if (element.type == 'checkbox' || element.type == 'radio')
-            return; 
+            return;
         element.value = "";
     });
     var checkboxes = modalBox.querySelectorAll('input[type=checkbox]');
@@ -560,5 +560,33 @@ export function logoutSocket() {
         customerID = null;
         // showSuccessToast("hủy kết nối");
         console.log('Disconnected from server');
+    }
+}
+
+
+export function editRowShop(dataObj, editRow) {
+    var cellIndex = 0;
+    for (var field in dataObj) {
+        console.log(field)
+        
+        editRow[cellIndex].textContent = dataObj[field];
+
+        if (cellIndex == 0 || cellIndex == 1) {
+            editRow[cellIndex].innerHTML = `<img class="show_main_img" src="${dataObj[field]}" alt="">`; // Điền dữ liệu vào ô
+            var inputChange = document.createElement('input');
+            inputChange.type = 'file';
+            inputChange.id = 'input' + field + cellIndex;
+            var lableTag = document.createElement('label');
+            lableTag.innerText = 'Thay ảnh';
+            lableTag.htmlFor = 'input' + field + cellIndex;
+            lableTag.style.display = 'none';
+            inputChange.style.display = 'none';
+            editRow[cellIndex].appendChild(inputChange);
+            editRow[cellIndex].appendChild(lableTag);
+        }else{
+            editRow[cellIndex].innerText = dataObj[field]
+        }
+        editRow[cellIndex].classList.add(field);
+        cellIndex++;
     }
 }
