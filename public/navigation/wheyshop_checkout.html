@@ -1,0 +1,379 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <link rel="icon" href="../img/icon/wheyz.png" type="image/x-icon">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@100;300;500;600;900&display=swap"
+        rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Raleway:ital,wght@0,100..900;1,100..900&display=swap"
+        rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Varela+Round&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../font/fontawesome-free-6.4.0-web/css/all.min.css">
+    <link rel="stylesheet" href="../navigation_css/wheyshop_checkout.css">
+    <title> WHEZ - mua hàng online</title>
+</head>
+
+<body>
+    <div class="container">
+        <div class="header">
+            <div class="header-wrapper">
+                <div class="header-logo">
+                    <div class="logo-img">
+                        <img src="../img/icon/WHEZ2.png" alt="">
+                    </div>
+                    <a href="#">
+                        fastshopping
+                    </a>
+                </div>
+                <div class="header-content">
+                    <div class="header-top">
+                        <div class="header-search">
+                            <form id="search-form" action="/get-item-search" class="header-search-wrapper">
+                                <div class="search-icon">
+                                    <i class="fa-solid fa-magnifying-glass"></i>
+                                </div>
+                                <input class="search-input" name="value" type="text" placeholder="sữa tăng cân">
+                                <button class="search-button" type="submit">
+                                    <span>
+                                        Tìm kiếm
+                                    </span>
+                                </button>
+                            </form>
+                        </div>
+                        <div class="header-options">
+                            <div class="home">
+                                <button class="home-button active">
+                                    <i class="fa-solid fa-house"></i>
+                                    <span>
+                                        Trang chủ
+                                    </span>
+                                </button>
+                            </div>
+                            <div class="account">
+                                <button class="account-button">
+                                    <i class="fa-solid fa-face-smile"></i>
+                                    <span>
+                                        Tài khoản
+                                    </span>
+                                </button>
+                            </div>
+                            <div class="cart">
+                                <button class="cart-button">
+                                    <ion-icon name="cart-outline"></ion-icon>
+                                </button>
+                                <span class="cart-count">
+                                    0
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="header-bot">
+                        <div class="viral-search">
+                            <div class="viral-search-wrapper">
+                                <button>whey</button>
+                                <button>sữa tăng cân</button>
+                                <button>vitamin</button>
+                                <button>bcaa</button>
+                                <button>dầu cá omega3</button>
+                            </div>
+                        </div>
+                        <div class="address one">
+                            <ion-icon name="location-outline"></ion-icon>
+                            <span>
+                                Giao đến:
+                            </span>
+                            <a href="#" class="address-wrapper">
+                                Z115, Tân Thịnh, TP Thái Nguyên, Thái Nguyên
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="container-wrapper">
+            <div class="checkout">
+                <div class="checkout-wrapper">
+                    <div class="colum-cart">
+                        <div class="colum-cart-wrapper">
+                            <div class="colum-title">
+                                Giỏ hàng
+                            </div>
+                            <div class="list-items">
+                                <div class="list-items-wrapper">
+                                    <div class="item">
+                                        <div class="item-img">
+                                            <img src="../img/shop/whey/100-whey-gold-standard-5lbs-2-3kg-13-2x.webp" alt="">
+                                        </div>
+                                        <div class="item-information">
+                                            <div class="information-group">
+                                                <div class="item-name">
+                                                    100% Whey Gold Standard 5Lbs (2.3kg)
+                                                </div>
+                                                <div class="item-quantity">
+                                                    Số lượng:
+                                                    <span>
+                                                        1
+                                                    </span>
+                                                </div>
+                                            </div>
+                                            <div class="item-price">
+                                                60,000
+                                                <span>
+                                                    ₫
+                                                </span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="item">
+                                        <div class="item-img">
+                                            <img src="../img/shop/milk/muscle-mass-gainer-tang-can-gia-re-chinh-hang-wheyshop.webp"
+                                                alt="">
+                                        </div>
+                                        <div class="item-information">
+                                            <div class="information-group">
+                                                <div class="item-name">
+                                                    Muscle Mass Gainer 12Lbs (5.4kg)
+                                                </div>
+                                                <div class="item-quantity">
+                                                    Số lượng:
+                                                    <span>
+                                                        1
+                                                    </span>
+                                                </div>
+                                            </div>
+                                            <div class="item-price">
+                                                1,590,000
+                                                <span>
+                                                    ₫
+                                                </span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!-- <div class="item"></div>
+                                    <div class="item"></div>
+                                    <div class="item"></div>
+                                    <div class="item"></div> -->
+                                </div>
+                            </div>
+                            <div class="total">
+                                <div class="total-wrapper">
+                                    <div class="colum-title">
+                                        Đơn giá
+                                    </div>
+                                    <div class="total-price-product total-style">
+                                        Tiền sản phẩm
+                                        <span>
+                                            1,650,000
+                                            <span>
+                                                ₫
+                                            </span>
+                                        </span>
+                                    </div>
+                                    <div class="total-quantity-product total-style">
+                                        Số lượng sản phẩm
+                                        <span>
+                                            2
+                                        </span>
+                                    </div>
+                                    <div class="total-price-ship total-style">
+                                        Phí ship
+                                        <span>
+                                            0
+                                            <span>
+                                                ₫
+                                            </span>
+                                        </span>
+                                    </div>
+                                    <div class="total-price-vat total-style">
+                                        VAT
+                                        <span>
+                                            0
+                                            <span>
+                                                ₫
+                                            </span>
+                                        </span>
+                                    </div>
+                                    <div class="final-total-price total-style">
+                                        Tổng cộng
+                                        <span>
+                                            1,650,000
+                                            <span>
+                                                ₫
+                                            </span>
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="colum-payment">
+                        <div class="colum-payment-wrapper">
+                            <div class="colum-title">
+                                Thông tin khách hàng
+                            </div>
+                            <div class="options-information">
+                                <!-- Địa chỉ mặc định gồm những thông tin đã có sẵn có khách hàng, nếu muốn thay đổi giao đến người khác hãy chọn địa chỉ mới ! -->
+                                <div>
+                                    <input id="default" type="checkbox">
+                                    <label for="default">
+                                        Địa chỉ mặc định
+                                        <button>
+                                            <ion-icon name="information-circle-outline"></ion-icon>
+                                            <span class="more-information">
+                                                <p>
+                                                    Địa chỉ mặc định gồm thông tin của Quý khách được lưu trữ trên hệ thống.
+                                                    Nếu muốn giao đến địa chỉ mới hãy nhập thêm thông tin.
+                                                </p>
+                                            </span>
+                                        </button>
+                                    </label>
+                                </div>
+                                <div>
+                                    <input id="new" type="checkbox">
+                                    <label for="new">Địa chỉ mới</label>
+                                </div>
+                            </div>
+                            <div class="customer-information">
+                                <div class="customer-email information-styles">
+                                    <label for="email">Địa chỉ Email</label>
+                                    <input id="email" type="text" placeholder="example@gmail.com">
+                                </div>
+                                <div class="customer-name information-styles">
+                                    <label for="name">Họ và tên</label>
+                                    <input id="name" type="text" placeholder="nguyen van a">
+                                </div>
+                                <div class="customer-phonenumber information-styles">
+                                    <label for="phonenumber">Số điện thoại</label>
+                                    <input id="phonenumber" type="text" placeholder="+84 ">
+                                </div>
+                                <div class="customer-address information-styles">
+                                    <label for="address">Địa chỉ nhận hàng</label>
+                                    <input id="address" type="text" placeholder="Z115, Tân Thịnh, TP.Thái Nguyên, Thái Nguyên">
+                                </div>
+                            </div>
+                            <div class="colum-title">
+                                Phương thức thanh Toán
+                            </div>
+                            <div class="options-payment">
+                                <div class="option-one">
+                                    <input id="online" type="checkbox">
+                                    <label for="online">Thanh toán online</label>
+                                </div>
+                                <div class="option-two">
+                                    <input id="offline" type="checkbox">
+                                    <label for="offline">Thanh khi nhận hàng</label>
+                                </div>
+                            </div>
+                            <div class="button-payment">
+                                <button>
+                                    Thanh toán
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="footer"> </div>
+        </div>
+    </div>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="../navigation_javascript/wheyshop.js"></script>
+    <script>
+
+
+        const searchInput = document.querySelector('.search-input');
+        setInterval(() => {
+            searchInput.placeholder = "whey";
+            setTimeout(() => {
+                searchInput.placeholder = "dầu cá omega3";
+                setTimeout(() => {
+                    searchInput.placeholder = "sữa tăng cân";
+                }, 3000);
+            }, 3000);
+        }, 6000);
+
+        setTimeout(() => {
+            const links = document.querySelectorAll('a');
+            links.forEach(function (link) {
+                link.addEventListener('click', function (e) {
+                    e.preventDefault();
+                });
+            });
+
+
+
+            //const html = document.querySelector('html');
+            //const container = document.querySelector('.container');
+            //const header = document.querySelector('.header');
+            //const mainContent = document.querySelector('.main-content');
+            //const listItem = document.querySelectorAll('.item');
+            //const detailsItem = document.querySelector('.product-details');
+            //const productNameElement = document.querySelector('.name-product span');
+            //const productCostElement = document.querySelector('.cost');
+            //const totalCostElement = document.querySelector('.total span');
+            //const namePageInPathBar = document.querySelector('.page-products a');
+            //const nameProductInPathBar = document.querySelector('.current-product a');
+            //const mainImgElement = document.querySelector('.main-img img');
+            //const productTitleElement = document.querySelector('.product-title h1');
+            //listItem.forEach(item => {
+            //    item.addEventListener('click', 
+            //    function (event) {
+            //        // event.preventDefault();
+            //
+            //        const productName = item.querySelector('.name span').textContent;
+            //        const productCost = item.querySelector('.cost').textContent.trim();
+            //        const productImgSrc = item.querySelector('.item-img img').getAttribute('src');
+            //        const productTitle = item.closest('.product-style').querySelector('.product-title h1').textContent;
+            //
+            //        productNameElement.textContent = productName;
+            //        productCostElement.textContent = productCost;
+            //        totalCostElement.textContent = productCost;
+            //        namePageInPathBar.textContent = productTitle;
+            //        nameProductInPathBar.textContent = productName;
+            //        mainImgElement.setAttribute('src', productImgSrc);
+            //
+            //        detailsItem.style.display = 'flex';
+            //        header.style.position = 'fixed'
+            //        mainContent.style.opacity = '0';
+            //        html.style.overflow = 'hidden';
+            //
+            //    }
+            //    );
+            //});
+
+
+            const defaultValue = 'xxx';
+            namePageInPathBar.onclick = function () {
+                if (namePageInPathBar.innerHTML.trim() !== defaultValue) {
+                    detailsItem.style.display = 'none';
+                    header.style.position = 'unset'
+                    mainContent.style.opacity = '1';
+                    html.style.overflow = 'auto'
+                    console.log('hihia')
+                    console.log(namePageInPathBar.innerHTML.trim())
+                } else {
+                    console.log('hihi')
+                }
+            }
+
+            const home = document.querySelector('.page-home a')
+            home.onclick = function () {
+                window.location.href = './wheyshop.html';
+            }
+        }, 1000)
+
+
+    </script>
+
+</body>
+
+</html>
