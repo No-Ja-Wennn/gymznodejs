@@ -24,7 +24,7 @@ const { generateCustomerCode, insertIntoTable } = require('./src/functions.js');
 const shopData = require('./public/data/shop.json');
 
 shopData.forEach(value=>{
-    insertIntoTable("shopData", value);
+    insertIntoTable(con, "shopData", value);
 })
 
 

@@ -1590,30 +1590,49 @@ function f_saveFunction() {
     var idItem = editRow.querySelector('.ItemID');
     obj[idItem.className] = idItem.innerText;
     var accessToken = localStorage.getItem('accessToken');
-    sendRequest(
-        '/edit-item-admin-url',
-        'POST',
-        {
-            'Authorization': 'Bearer ' + accessToken
-        },
-        obj,
-        function (data) {
-            console.log(data);
-            if (data.success) {
-                // for(let i = 0; i < tdRow.length -1; i++){
-                //     tdRow[i].innerText = data.data[tdRow[i].className]
-                // }
-                editRowShop(data.data, tdRow);
-                showSuccessToast("Sửa thành công", "");
-                editRow = null;
-            } else {
-                showErrorToast("Lỗi");
-            }
-        },
-        function (err) {
-            console.error(err);
+    console.log("obj: ", obj)
+    // sendRequest(
+    //     '/edit-item-admin-url',
+    //     'POST',
+    //     {
+    //         'Authorization': 'Bearer ' + accessToken
+    //     },
+    //     obj,
+    //     function (data) {
+    //         console.log(data);
+    //         if (data.success) {
+    //             // for(let i = 0; i < tdRow.length -1; i++){
+    //             //     tdRow[i].innerText = data.data[tdRow[i].className]
+    //             // }
+    //             editRowShop(data.data, tdRow);
+    //             showSuccessToast("Sửa thành công", "");
+    //             editRow = null;
+    //         } else {
+    //             showErrorToast("Lỗi");
+    //         }
+    //     },
+    //     function (err) {
+    //         console.error(err);
+    //     }
+    // );
+    // img
+    console.log(editRow.querySelector('.MainImg').querySelector('input'))
+    var file_data
+        = $(editRow.querySelector('.MainImg').querySelector('input')).prop('files')[0];
+    var form_data = new FormData();
+    form_data.append('file', file_data);
+    $.ajax({
+        url: '/upload',
+        dataType: 'text',
+        cache: false,
+        contentType: false,
+        processData: false,
+        data: form_data,
+        type: 'post',
+        success: function (response) {
+            alert(response);
         }
-    )
+    });
 }
 
 

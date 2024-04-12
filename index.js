@@ -6,6 +6,11 @@ const path = require('path');
 const url = require('url');
 const http = require('http');
 const bodyParser = require('body-parser');
+
+const axios = require('axios');
+const fs = require('fs');
+const multer = require('multer');
+
 var mysql = require('mysql');
 const {
   generateCustomerCode,
@@ -122,7 +127,7 @@ function createTable() {
     },
     {
       name: 'shopdata',
-      columns: 'ItemID VARCHAR(10) PRIMARY KEY, NameItem VARCHAR(255), Cost DECIMAL(10, 3), MainImg VARCHAR(255), SubImg VARCHAR(255), Depict TEXT'
+      columns: 'ItemID VARCHAR(10) PRIMARY KEY, NameItem VARCHAR(255), Type VARCHAR(10), Cost DECIMAL(10, 3), MainImg VARCHAR(255), SubImg VARCHAR(255), Depict TEXT'
     },
     {
       name: 'cart',
@@ -1425,10 +1430,13 @@ app.post('/edit-item-admin-url', (req, res) => {
         });
       }
     );
+    console.log(dataEdit.MainImg)
+    if (dataEdit.MainImg) {
+
+    }
   } else
     res.json({ success: false });
 })
-
 
 /* =============== SEARCH SHOP ================ */
 
@@ -1466,6 +1474,33 @@ app.post('/get-item-search', (req, res) => {
     }
   })
 })
+
+
+// save img
+// Configure storage
+const storage = multer.diskStorage({
+    destination: function(req, file, cb) {
+        cb(null, './public/img/shop/customer'); // Here, './' is the current directory. You can set any path you like.
+    },
+    filename: function(req, file, cb) {
+        cb(null, file.fieldname + '-' + Date.now() + path.extname(file.originalname));
+    }
+});
+
+const upload = multer({ storage: storage });
+
+
+app.post('/upload', upload.single('file'), (req, res) => {
+    res.send('File uploaded successfully.');
+});
+
+app.listen(3000, () => {
+    console.log('Server started on port 3000');
+});
+
+
+
+
 
 // =======================
 const port = process.env.PORT || 8080;
