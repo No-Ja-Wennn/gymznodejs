@@ -83,13 +83,13 @@
                             </div>
                         </div>
                         <div class="address one">
-                            <ion-icon name="location-outline"></ion-icon>
+                            <!-- <ion-icon name="location-outline"></ion-icon>
                             <span>
                                 Giao đến:
                             </span>
                             <a href="#" class="address-wrapper">
                                 Z115, Tân Thịnh, TP Thái Nguyên, Thái Nguyên
-                            </a>
+                            </a> -->
                         </div>
                     </div>
                 </div>
@@ -301,76 +301,10 @@
             }, 3000);
         }, 6000);
 
-        setTimeout(() => {
-            const links = document.querySelectorAll('a');
-            links.forEach(function (link) {
-                link.addEventListener('click', function (e) {
-                    e.preventDefault();
-                });
-            });
-
-
-
-            //const html = document.querySelector('html');
-            //const container = document.querySelector('.container');
-            //const header = document.querySelector('.header');
-            //const mainContent = document.querySelector('.main-content');
-            //const listItem = document.querySelectorAll('.item');
-            //const detailsItem = document.querySelector('.product-details');
-            //const productNameElement = document.querySelector('.name-product span');
-            //const productCostElement = document.querySelector('.cost');
-            //const totalCostElement = document.querySelector('.total span');
-            //const namePageInPathBar = document.querySelector('.page-products a');
-            //const nameProductInPathBar = document.querySelector('.current-product a');
-            //const mainImgElement = document.querySelector('.main-img img');
-            //const productTitleElement = document.querySelector('.product-title h1');
-            //listItem.forEach(item => {
-            //    item.addEventListener('click', 
-            //    function (event) {
-            //        // event.preventDefault();
-            //
-            //        const productName = item.querySelector('.name span').textContent;
-            //        const productCost = item.querySelector('.cost').textContent.trim();
-            //        const productImgSrc = item.querySelector('.item-img img').getAttribute('src');
-            //        const productTitle = item.closest('.product-style').querySelector('.product-title h1').textContent;
-            //
-            //        productNameElement.textContent = productName;
-            //        productCostElement.textContent = productCost;
-            //        totalCostElement.textContent = productCost;
-            //        namePageInPathBar.textContent = productTitle;
-            //        nameProductInPathBar.textContent = productName;
-            //        mainImgElement.setAttribute('src', productImgSrc);
-            //
-            //        detailsItem.style.display = 'flex';
-            //        header.style.position = 'fixed'
-            //        mainContent.style.opacity = '0';
-            //        html.style.overflow = 'hidden';
-            //
-            //    }
-            //    );
-            //});
-
-
-            const defaultValue = 'xxx';
-            namePageInPathBar.onclick = function () {
-                if (namePageInPathBar.innerHTML.trim() !== defaultValue) {
-                    detailsItem.style.display = 'none';
-                    header.style.position = 'unset'
-                    mainContent.style.opacity = '1';
-                    html.style.overflow = 'auto'
-                    console.log('hihia')
-                    console.log(namePageInPathBar.innerHTML.trim())
-                } else {
-                    console.log('hihi')
-                }
-            }
-
-            const home = document.querySelector('.page-home a')
-            home.onclick = function () {
-                window.location.href = './wheyshop.html';
-            }
-        }, 1000)
-
+        const home = document.querySelector('.home-button')
+        home.onclick = function(){
+            window.location.href = 'wheyshop.html'
+        }
 
     </script>
 

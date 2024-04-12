@@ -805,5 +805,5 @@ label button:hover .more-information{
     transition: .3s;
 }
 .button-payment button:hover{
-    box-shadow: 0 0 10px #2196f35a
+    box-shadow: 0 0 15px #2195f380
 }

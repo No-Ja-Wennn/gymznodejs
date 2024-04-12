@@ -62,13 +62,69 @@
                                     </span>
                                 </button>
                             </div>
-                            <div class="cart">
-                                <button class="cart-button">
+                            <div class="cart-button">
+                                <button class="button">
                                     <ion-icon name="cart-outline"></ion-icon>
                                 </button>
                                 <span class="cart-count">
                                     0
                                 </span>
+                                <div class="cart-show">
+                                    <div class="cart-show-wrapper">
+                                        <div class="cart-show-title">
+                                            Giỏ hàng
+                                        </div>
+                                        <div class="list-items">
+                                            <div class="item-in-cart">
+                                                <div class="item-img">
+                                                    <img src="../img/shop/whey/100-whey-gold-standard-5lbs-2-3kg-13-2x.webp"
+                                                        alt="">
+                                                </div>
+                                                <div class="item-information">
+                                                    <div class="information-group">
+                                                        <div class="item-name">
+                                                            100% Whey Gold Standard 5Lbs (2.3kg)
+                                                        </div>
+                                                        <div class="item-quantity">
+                                                            <button class="plus">
+                                                                <i class="fa-solid fa-plus"></i>
+                                                            </button>
+                                                            <input class="quantity" type="text" value="1">
+                                                            <button class="minus">
+                                                                <i class="fa-solid fa-minus"></i>
+                                                            </button>
+                                                        </div>
+                                                    </div>
+                                                    <div class="item-price">
+                                                        60,000
+                                                        <span>
+                                                            ₫
+                                                        </span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="item-in-cart"></div>
+                                            <div class="item-in-cart"></div>
+                                            <div class="item-in-cart"></div>
+                                            <div class="item-in-cart"></div>
+                                            <div class="item-in-cart"></div>
+                                        </div>
+                                        <div class="total">
+                                            Tổng
+                                            <span>
+                                                1,650,000
+                                                <span>
+                                                    ₫
+                                                </span>
+                                            </span>
+                                        </div>
+                                        <div class="button-payment">
+                                            <button>
+                                                Thanh toán
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -2459,6 +2515,7 @@
             <div class="footer"> </div>
         </div>
     </div>
+    <div class="shadow"></div>
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
@@ -2478,6 +2535,42 @@
                 }, 3000);
             }, 3000);
         }, 6000);
+
+        const home = document.querySelector('.home-button')
+        home.onclick = function () {
+            window.location.href = 'wheyshop.html'
+        }
+
+        const cartButton = document.querySelector('.cart-button button');
+        const cartShow = document.querySelector('.cart-show');
+        const shadow = document.querySelector('.shadow');
+        cartButton.onclick = function () {
+
+            if (cartShow.style.display == 'none' || cartShow.style.display == '') {
+                cartShow.style.display = 'flex';
+                shadow.style.display = 'flex';
+                html.style.overflow = 'hidden'
+                cartShow.style.animation = 'fly-to-top .35s ease-in-out forwards';
+                shadow.style.animation = 'fadeIn .35s ease-in-out forwards';
+            } else {
+                cartShow.style.animation = 'fly-to-bot .5s ease-in-out forwards';
+                shadow.style.animation = 'fadeOut .5s ease-in-out forwards';
+                html.style.overflow = 'auto'
+                setTimeout(() => {
+                    shadow.style.display = 'none';
+                    cartShow.style.display = 'none'
+                }, 500);
+            }
+        }
+        shadow.onclick = function () {
+            cartShow.style.animation = 'fly-to-bot .5s ease-in-out forwards';
+            shadow.style.animation = 'fadeOut .5s ease-in-out forwards';
+            html.style.overflow = 'auto'
+            setTimeout(() => {
+                shadow.style.display = 'none';
+                cartShow.style.display = 'none'
+            }, 500);
+        }
 
         setTimeout(() => {
             const links = document.querySelectorAll('a');
