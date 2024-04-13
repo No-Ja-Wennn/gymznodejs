@@ -1445,7 +1445,7 @@ app.post('/add-product-item', authenToken, upload2.fields([
     fs.mkdirSync(targetDirectory, { recursive: true });
   }
 
-  if(req.files.file1 && req.files.file2){
+  if (req.files.file1 && req.files.file2) {
     var arrayTemp = [
       req.files.file1[0],
       req.files.file2[0]
@@ -1484,14 +1484,14 @@ app.post('/add-product-item', authenToken, upload2.fields([
                 }
                 console.log(data);
                 insertIntoTable(con, 'shopData', data);
-                res.json({success: true, data})
+                res.json({ success: true, data })
               })
           }
         }
       });
     });
-  }else{
-    res.json({success: false, data: {}, notifi: "Thiếu ảnh"})
+  } else {
+    res.json({ success: false, data: {}, notifi: "Thiếu ảnh" })
   }
 
 });
@@ -1635,7 +1635,24 @@ app.post('/upload', authenToken, upload.single('file'), (req, res) => {
 });
 
 
+// ==== WHEY SHOP ===== //
+app.get('/get-item-cart', (req, res) => {
+  var cookie = getCookie(req, 'user_id');
+  if (cookie) {
+    const maKH = cookie.maKH;
+    console.log(maKH);
+    var sql
+      = "SELECT shopData.MainImg, shopData.NameItem, shopData.Cost, cart.Count FROM cart INNER JOIN shopData ON cart.ItemID = shopData.ItemID WHERE cart.maKH = ?";
+    con.query(sql, [maKH], (err, result) => {
+      if (err) throw err;
 
+      res.json({ success: true, data: result[0] });
+
+    })
+  } else {
+    res.json({ success: false });
+  }
+})
 
 
 

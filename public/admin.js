@@ -1811,7 +1811,38 @@ function f_saveFunction() {
 
 // REMOVE ITEM
 
+const removeProductForm = modalBodyBox.querySelector(".admin-remove-product");
+const cancelRemoveProduct = removeProductForm.querySelector(".x__cancel");
+
+
 function f_removeShopBTN() {
-    console.log("ello")
+    const tdParent = this.closest('tr');
+    const a_value = [
+        tdParent.querySelector(".ItemID").innerText,
+        tdParent.querySelector(".NameItem").innerText
+    ]
+    displayNoneAll();
+    activeNecessaryForm();
+    removeProductForm.style.display = 'block';
+    var a_titleForm = removeProductForm.querySelectorAll(".row__title2")
+    a_titleForm = Array.from(a_titleForm);
+    a_titleForm.forEach((value, index)=>{
+        a_titleForm[index].innerText = a_value[index];
+    })
+    
 }
 
+
+
+const removeProductBTN = removeProductForm.querySelector(".button__form");
+removeProductBTN.addEventListener("click", f_removeProductBTN);
+
+function f_removeProductBTN(){
+    var ItemID = removeProductForm.querySelector(".row__title-ID");;
+    console.log(ItemID)
+}
+
+cancelRemoveProduct.addEventListener("click", ()=>{
+    removeAllInputValue();
+    displayNoneAll();
+})

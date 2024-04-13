@@ -179,7 +179,7 @@ $('#search-form').submit(function (e) {
             console.log(err)
         }
     })
-    
+
 })
 exitSearchBTN.addEventListener("click", function () {
     searchResultBox.style.display = 'none';
@@ -198,8 +198,104 @@ a_products = Array.from(a_products);
 
 a_viral = Array.from(a_viral);
 
-a_viral.map((value, index)=>{
-    a_viral[index].addEventListener("click", function() {
+a_viral.map((value, index) => {
+    a_viral[index].addEventListener("click", function () {
         a_products[index].scrollIntoView({ behavior: 'smooth' });
-    });    
+    });
 })
+
+
+// CHECK OUT
+const cartShowMini = document.querySelector(".cart-show");
+
+let a_plusItem = cartShowMini.querySelectorAll(".plus");
+let a_minusItem = cartShowMini.querySelectorAll(".minus");
+
+a_plusItem = [...a_plusItem];
+a_minusItem = [...a_minusItem];
+
+a_plusItem.forEach(plus => {
+    plus.addEventListener("click", function () {
+        let inputCountItem = this.closest('.item-quantity').querySelector(".quantity");
+        if (inputCountItem.value < 99)
+            inputCountItem.value++;
+    })
+})
+a_minusItem.forEach(minus => {
+    minus.addEventListener("click", function () {
+        let inputCountItem = this.closest('.item-quantity').querySelector(".quantity");
+        if (inputCountItem.value > 0)
+            inputCountItem.value--;
+
+    })
+})
+
+const mainProduct = document.querySelector(".main-product");
+const plusCountMainProduct = mainProduct.querySelector(".plus-button");
+const minusCountMainProduct = mainProduct.querySelector(".minus-button");
+const inputCountMainProduct = mainProduct.querySelector(".input-quantily");
+
+plusCountMainProduct.addEventListener("click", () => {
+    if (inputCountMainProduct.value < 99)
+        inputCountMainProduct.value++;
+})
+minusCountMainProduct.addEventListener("click", () => {
+    if (inputCountMainProduct.value > 1)
+        inputCountMainProduct.value--;
+})
+
+
+function innerHTMLItemCart({MainImg, NameItem, Count, Cost}) {
+    const itemCart = document.createElement('div');
+    itemCart.className = "item-in-cart"
+    itemCart.innerHTML = `
+                <div class="item-img">
+                    <img src="${MainImg}"
+                        alt="">
+                </div>
+                <div class="item-information">
+                    <div class="information-group">
+                        <div class="item-name">
+                            ${NameItem}
+                        </div>
+                        <div class="item-quantity">
+                            <button class="plus">
+                                <i class="fa-solid fa-plus"></i>
+                            </button>
+                            <input class="quantity" type="text" value="${Count}">
+                            <button class="minus">
+                                <i class="fa-solid fa-minus"></i>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="item-price">
+                        ${Cost}
+                        <span>
+                            ₫
+                        </span>
+                    </div>
+                </div>
+        `;
+    return itemCart;
+}
+
+//// show item cart
+const cartButton2 = document.querySelector('.cart-button button');
+
+cartButton2.addEventListener("click", function () {
+    $.ajax({
+        url: '/get-item-cart',
+        type: 'GET',
+        success: function (data) {
+            console.log(data);
+            if(data.success){
+                innerHTMLItemCart(data.data)
+            }
+        },
+        error: function (err) {
+
+        }
+    }
+    )
+})
+
