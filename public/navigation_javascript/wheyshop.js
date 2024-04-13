@@ -1,3 +1,6 @@
+import {showSuccessToast } from "../src/toast.js";
+
+
 const html = document.querySelector('html');
 const container = document.querySelector('.container');
 const header = document.querySelector('.header');
@@ -12,6 +15,8 @@ const nameProductInPathBar = document.querySelector('.current-product a');
 const mainImgElement = document.querySelector('.main-img img');
 const productTitleElement = document.querySelector('.product-title h1');
 const chooseOption = document.querySelector(".choose-options");
+const buyNow = chooseOption.querySelector(".buy-now");
+const addCart = chooseOption.querySelector(".add-cart");
 const searchResultBox = document.getElementById("search-result");
 const searchListBox = document.getElementById("list-item-search");
 const exitSearchBTN = searchResultBox.querySelector('i');
@@ -36,8 +41,35 @@ function itemEvent(item, itemID) {
     mainContent.style.opacity = '0';
     html.style.overflow = 'hidden';
     chooseOption.id = itemID;
-}
 
+    inputCountMainProduct.value = 1;
+    
+}
+buyNow.addEventListener("click", f_buyNowBTN);
+addCart.addEventListener("click", f_addCartBTN);
+
+function f_buyNowBTN(){
+    var ItemID = this.closest('.choose-options').id;
+    console.log(ItemID);
+}
+function f_addCartBTN(){
+    var ItemID = this.closest('.choose-options').id;
+    var Count = inputCountMainProduct.value;
+    $.ajax({
+        url: '/add-cart-url',
+        type: 'POST',
+        data: {ItemID, Count},
+        success: function(data){
+            console.log(data);
+            if(data.success){
+                showSuccessToast(data.msg, "");
+            }
+        },
+        error: function(err){
+
+        }
+    })
+}
 
 function createItem(ItemID, MainImg, NameItem, Cost) {
     var itemElement = document.createElement('a');
@@ -245,7 +277,7 @@ minusCountMainProduct.addEventListener("click", () => {
 })
 
 
-function innerHTMLItemCart({MainImg, NameItem, Count, Cost}) {
+function HTMLItemCart({ MainImg, NameItem, Count, Cost }) {
     const itemCart = document.createElement('div');
     itemCart.className = "item-in-cart"
     itemCart.innerHTML = `
@@ -276,20 +308,37 @@ function innerHTMLItemCart({MainImg, NameItem, Count, Cost}) {
                     </div>
                 </div>
         `;
+    itemCart.querySelector('.plus').addEventListener('click', function () {
+        let inputCountItem = this.closest('.item-quantity').querySelector(".quantity");
+        if (inputCountItem.value < 99)
+            inputCountItem.value++;
+    })
+    itemCart.querySelector('.minus').addEventListener('click', function () {
+        let inputCountItem = this.closest('.item-quantity').querySelector(".quantity");
+        if (inputCountItem.value > 0)
+            inputCountItem.value--;
+
+    })
     return itemCart;
 }
 
 //// show item cart
 const cartButton2 = document.querySelector('.cart-button button');
+const listItemCartShow = cartShowMini.querySelector(".list-items");
 
 cartButton2.addEventListener("click", function () {
     $.ajax({
         url: '/get-item-cart',
         type: 'GET',
-        success: function (data) {
-            console.log(data);
-            if(data.success){
-                innerHTMLItemCart(data.data)
+        success: function (res) {
+            console.log(res.data);
+            if (res.success) {
+                listItemCartShow.innerHTML = '';
+                res.data.forEach(value => {
+                    value.Cost = value.Cost.toLocaleString();
+                    var divE = HTMLItemCart(value)
+                    listItemCartShow.appendChild(divE);
+                })
             }
         },
         error: function (err) {
