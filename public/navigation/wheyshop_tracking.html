@@ -154,80 +154,99 @@
             <div class="tracking">
                 <div class="tracking-wrapper">
                     <div class="tag-status">
-                        <!-- <div class="tag tag-none">
-                                <div class="title title2">
+                        <div class="tagbox tagbox1 tagbox--first">
+                            <div class="tag tag1 tag-none">
+                                <div class="title title1">
                                 </div>
-                            </div> -->
-                        <div class="tag">
-                            <div class="title">
-                                Đang giao
-                            </div>
-                        </div>
-                        <div class="tag tag1">
-                            <div class="title title1">
-                                Đang giao
                             </div>
                         </div>
                         <div class="tagbox tagbox3">
                             <div class="tag tag3">
                                 <div class="title title3">
+                                    Tất cả
+                                </div>
+                            </div>
+                        </div>
+                        <div class="tagbox">
+                            <div class="tag tag2">
+                                <div class="title title2">
+                                    Đã hủy
+                                </div>
+                            </div>
+                        </div>
+                        <div class="tagbox">
+                            <div class="tag">
+                                <div class="title">
                                     Đang giao
                                 </div>
                             </div>
                         </div>
-                        <div class="tag tag2">
-                            <div class="title title2">
-                                Đang giao
+                        <div class="tagbox">
+                            <div class="tag">
+                                <div class="title">
+                                    Thành công
+                                </div>
                             </div>
                         </div>
-                        <div class="tag tag-none">
-                            <div class="title">
+                        <div class="tagbox tagbox--none">
+                            <div class="tag tag-none">
+                                <div class="title">
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
+                <div class="footer"> </div>
             </div>
-            <div class="footer"> </div>
         </div>
-    </div>
-    <div class="shadow"></div>
+        <div class="shadow"></div>
 
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
-    <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <script src="../navigation_javascript/wheyshop.js"></script>
-    <script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+        <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        <script type="module" src="../navigation_javascript/wheyshop_tracking.js"></script>
+        <script>
 
 
-        const searchInput = document.querySelector('.search-input');
-        setInterval(() => {
-            searchInput.placeholder = "whey";
-            setTimeout(() => {
-                searchInput.placeholder = "dầu cá omega3";
+            const searchInput = document.querySelector('.search-input');
+            setInterval(() => {
+                searchInput.placeholder = "whey";
                 setTimeout(() => {
-                    searchInput.placeholder = "sữa tăng cân";
+                    searchInput.placeholder = "dầu cá omega3";
+                    setTimeout(() => {
+                        searchInput.placeholder = "sữa tăng cân";
+                    }, 3000);
                 }, 3000);
-            }, 3000);
-        }, 6000);
+            }, 6000);
 
-        const home = document.querySelector('.home-button')
-        home.onclick = function () {
-            window.location.href = 'wheyshop.html'
-        }
+            const home = document.querySelector('.home-button')
+            home.onclick = function () {
+                window.location.href = 'wheyshop.html'
+            }
 
-        const cartButton = document.querySelector('.cart-button button');
-        const cartShow = document.querySelector('.cart-show');
-        const shadow = document.querySelector('.shadow');
-        cartButton.onclick = function () {
+            const cartButton = document.querySelector('.cart-button button');
+            const cartShow = document.querySelector('.cart-show');
+            const shadow = document.querySelector('.shadow');
+            cartButton.onclick = function () {
 
-            if (cartShow.style.display == 'none' || cartShow.style.display == '') {
-                cartShow.style.display = 'flex';
-                shadow.style.display = 'flex';
-                html.style.overflow = 'hidden'
-                cartShow.style.animation = 'fly-to-top .35s ease-in-out forwards';
-                shadow.style.animation = 'fadeIn .35s ease-in-out forwards';
-            } else {
+                if (cartShow.style.display == 'none' || cartShow.style.display == '') {
+                    cartShow.style.display = 'flex';
+                    shadow.style.display = 'flex';
+                    html.style.overflow = 'hidden'
+                    cartShow.style.animation = 'fly-to-top .35s ease-in-out forwards';
+                    shadow.style.animation = 'fadeIn .35s ease-in-out forwards';
+                } else {
+                    cartShow.style.animation = 'fly-to-bot .5s ease-in-out forwards';
+                    shadow.style.animation = 'fadeOut .5s ease-in-out forwards';
+                    html.style.overflow = 'auto'
+                    setTimeout(() => {
+                        shadow.style.display = 'none';
+                        cartShow.style.display = 'none'
+                    }, 500);
+                }
+            }
+            shadow.onclick = function () {
                 cartShow.style.animation = 'fly-to-bot .5s ease-in-out forwards';
                 shadow.style.animation = 'fadeOut .5s ease-in-out forwards';
                 html.style.overflow = 'auto'
@@ -236,89 +255,79 @@
                     cartShow.style.display = 'none'
                 }, 500);
             }
-        }
-        shadow.onclick = function () {
-            cartShow.style.animation = 'fly-to-bot .5s ease-in-out forwards';
-            shadow.style.animation = 'fadeOut .5s ease-in-out forwards';
-            html.style.overflow = 'auto'
+            /*
             setTimeout(() => {
-                shadow.style.display = 'none';
-                cartShow.style.display = 'none'
-            }, 500);
-        }
-
-        setTimeout(() => {
-            const links = document.querySelectorAll('a');
-            links.forEach(function (link) {
-                link.addEventListener('click', function (e) {
-                    e.preventDefault();
+                const links = document.querySelectorAll('a');
+                links.forEach(function (link) {
+                    link.addEventListener('click', function (e) {
+                        e.preventDefault();
+                    });
                 });
-            });
 
 
 
-            //const html = document.querySelector('html');
-            //const container = document.querySelector('.container');
-            //const header = document.querySelector('.header');
-            //const mainContent = document.querySelector('.main-content');
-            //const listItem = document.querySelectorAll('.item');
-            //const detailsItem = document.querySelector('.product-details');
-            //const productNameElement = document.querySelector('.name-product span');
-            //const productCostElement = document.querySelector('.cost');
-            //const totalCostElement = document.querySelector('.total span');
-            //const namePageInPathBar = document.querySelector('.page-products a');
-            //const nameProductInPathBar = document.querySelector('.current-product a');
-            //const mainImgElement = document.querySelector('.main-img img');
-            //const productTitleElement = document.querySelector('.product-title h1');
-            //listItem.forEach(item => {
-            //    item.addEventListener('click', 
-            //    function (event) {
-            //        // event.preventDefault();
-            //
-            //        const productName = item.querySelector('.name span').textContent;
-            //        const productCost = item.querySelector('.cost').textContent.trim();
-            //        const productImgSrc = item.querySelector('.item-img img').getAttribute('src');
-            //        const productTitle = item.closest('.product-style').querySelector('.product-title h1').textContent;
-            //
-            //        productNameElement.textContent = productName;
-            //        productCostElement.textContent = productCost;
-            //        totalCostElement.textContent = productCost;
-            //        namePageInPathBar.textContent = productTitle;
-            //        nameProductInPathBar.textContent = productName;
-            //        mainImgElement.setAttribute('src', productImgSrc);
-            //
-            //        detailsItem.style.display = 'flex';
-            //        header.style.position = 'fixed'
-            //        mainContent.style.opacity = '0';
-            //        html.style.overflow = 'hidden';
-            //
-            //    }
-            //    );
-            //});
+                // const html = document.querySelector('html');
+                // const container = document.querySelector('.container');
+                // const header = document.querySelector('.header');
+                // const mainContent = document.querySelector('.main-content');
+                // const listItem = document.querySelectorAll('.item');
+                // const detailsItem = document.querySelector('.product-details');
+                // const productNameElement = document.querySelector('.name-product span');
+                // const productCostElement = document.querySelector('.cost');
+                // const totalCostElement = document.querySelector('.total span');
+                // const namePageInPathBar = document.querySelector('.page-products a');
+                // const nameProductInPathBar = document.querySelector('.current-product a');
+                // const mainImgElement = document.querySelector('.main-img img');
+                // const productTitleElement = document.querySelector('.product-title h1');
+                // listItem.forEach(item => {
+                //    item.addEventListener('click', 
+                //    function (event) {
+                //        // event.preventDefault();
+                //
+                //        const productName = item.querySelector('.name span').textContent;
+                //        const productCost = item.querySelector('.cost').textContent.trim();
+                //        const productImgSrc = item.querySelector('.item-img img').getAttribute('src');
+                //        const productTitle = item.closest('.product-style').querySelector('.product-title h1').textContent;
+                //
+                //        productNameElement.textContent = productName;
+                //        productCostElement.textContent = productCost;
+                //        totalCostElement.textContent = productCost;
+                //        namePageInPathBar.textContent = productTitle;
+                //        nameProductInPathBar.textContent = productName;
+                //        mainImgElement.setAttribute('src', productImgSrc);
+                //
+                //        detailsItem.style.display = 'flex';
+                //        header.style.position = 'fixed'
+                //        mainContent.style.opacity = '0';
+                //        html.style.overflow = 'hidden';
+                //
+                //    }
+                //    );
+                //});
 
 
-            const defaultValue = 'xxx';
-            namePageInPathBar.onclick = function () {
-                if (namePageInPathBar.innerHTML.trim() !== defaultValue) {
-                    detailsItem.style.display = 'none';
-                    header.style.position = 'unset'
-                    mainContent.style.opacity = '1';
-                    html.style.overflow = 'auto'
-                    console.log('hihia')
-                    console.log(namePageInPathBar.innerHTML.trim())
-                } else {
-                    console.log('hihi')
+                const defaultValue = 'xxx';
+                namePageInPathBar.onclick = function () {
+                    if (namePageInPathBar.innerHTML.trim() !== defaultValue) {
+                        detailsItem.style.display = 'none';
+                        header.style.position = 'unset'
+                        mainContent.style.opacity = '1';
+                        html.style.overflow = 'auto'
+                        console.log('hihia')
+                        console.log(namePageInPathBar.innerHTML.trim())
+                    } else {
+                        console.log('hihi')
+                    }
                 }
-            }
 
-            const home = document.querySelector('.page-home a')
-            home.onclick = function () {
-                window.location.href = './wheyshop.html';
-            }
-        }, 1000)
+                const home = document.querySelector('.page-home a')
+                home.onclick = function () {
+                    window.location.href = './wheyshop.html';
+                }
+            }, 1000)
 
-
-    </script>
+            */
+        </script>
 
 </body>
 

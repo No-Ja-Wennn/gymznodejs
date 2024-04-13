@@ -354,3 +354,5 @@ cartButton2.addEventListener("click", function () {
     )
 })
 
+
+
