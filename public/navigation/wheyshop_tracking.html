@@ -20,138 +20,82 @@
 
 <body>
     <div class="container">
-        <div class="header">
-            <div class="header-wrapper">
-                <div class="header-logo">
-                    <div class="logo-img">
-                        <img src="../img/icon/WHEZ2.png" alt="">
-                    </div>
-                    <a href="#">
-                        fastshopping
-                    </a>
-                </div>
-                <div class="header-content">
-                    <div class="header-top">
-                        <div class="header-search">
-                            <form id="search-form" action="/get-item-search" class="header-search-wrapper">
-                                <div class="search-icon">
-                                    <i class="fa-solid fa-magnifying-glass"></i>
-                                </div>
-                                <input class="search-input" name="value" type="text" placeholder="sữa tăng cân">
-                                <button class="search-button" type="submit">
-                                    <span>
-                                        Tìm kiếm
-                                    </span>
-                                </button>
-                            </form>
+        <div class="container-wrapper">
+            <div class="header">
+                <div class="header-wrapper">
+                    <div class="header-logo">
+                        <div class="logo-img">
+                            <img src="../img/icon/WHEZ2.png" alt="">
                         </div>
-                        <div class="header-options">
-                            <div class="home">
-                                <button class="home-button active">
-                                    <i class="fa-solid fa-house"></i>
-                                    <span>
-                                        Trang chủ
-                                    </span>
-                                </button>
-                            </div>
-                            <div class="account">
-                                <button class="account-button">
-                                    <i class="fa-solid fa-face-smile"></i>
-                                    <span>
-                                        Tài khoản
-                                    </span>
-                                </button>
-                            </div>
-                            <div class="cart-button">
-                                <button class="button">
-                                    <ion-icon name="cart-outline"></ion-icon>
-                                </button>
-                                <span class="cart-count">
-                                    0
-                                </span>
-                                <div class="cart-show">
-                                    <div class="cart-show-wrapper">
-                                        <div class="cart-show-title">
-                                            Giỏ hàng
-                                        </div>
-                                        <div class="list-items">
-                                            <div class="item-in-cart">
-                                                <div class="item-img">
-                                                    <img src="../img/shop/whey/100-whey-gold-standard-5lbs-2-3kg-13-2x.webp"
-                                                        alt="">
-                                                </div>
-                                                <div class="item-information">
-                                                    <div class="information-group">
-                                                        <div class="item-name">
-                                                            100% Whey Gold Standard 5Lbs (2.3kg)
-                                                        </div>
-                                                        <div class="item-quantity">
-                                                            <button class="plus">
-                                                                <i class="fa-solid fa-plus"></i>
-                                                            </button>
-                                                            <input class="quantity" type="text" value="1">
-                                                            <button class="minus">
-                                                                <i class="fa-solid fa-minus"></i>
-                                                            </button>
-                                                        </div>
-                                                    </div>
-                                                    <div class="item-price">
-                                                        60,000
-                                                        <span>
-                                                            ₫
-                                                        </span>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="item-in-cart"></div>
-                                            <div class="item-in-cart"></div>
-                                            <div class="item-in-cart"></div>
-                                            <div class="item-in-cart"></div>
-                                            <div class="item-in-cart"></div>
-                                        </div>
-                                        <div class="total">
-                                            Tổng
-                                            <span>
-                                                1,650,000
-                                                <span>
-                                                    ₫
-                                                </span>
-                                            </span>
-                                        </div>
-                                        <div class="button-payment">
-                                            <button>
-                                                Thanh toán
-                                            </button>
-                                        </div>
+                        <a href="#">
+                            fastshopping
+                        </a>
+                    </div>
+                    <div class="header-content">
+                        <div class="header-top">
+                            <div class="header-search">
+                                <form id="search-form" action="/get-item-search" class="header-search-wrapper">
+                                    <div class="search-icon">
+                                        <i class="fa-solid fa-magnifying-glass"></i>
                                     </div>
+                                    <input class="search-input" name="value" type="text" placeholder="sữa tăng cân">
+                                    <button class="search-button" type="submit">
+                                        <span>
+                                            Tìm kiếm
+                                        </span>
+                                    </button>
+                                </form>
+                            </div>
+                            <div class="header-options">
+                                <div class="home">
+                                    <button class="home-button active">
+                                        <i class="fa-solid fa-house"></i>
+                                        <span>
+                                            Trang chủ
+                                        </span>
+                                    </button>
+                                </div>
+                                <div class="account">
+                                    <button class="account-button">
+                                        <i class="fa-solid fa-face-smile"></i>
+                                        <span>
+                                            Tài khoản
+                                        </span>
+                                    </button>
+                                </div>
+                                <div class="cart">
+                                    <button class="cart-button">
+                                        <ion-icon name="cart-outline"></ion-icon>
+                                    </button>
+                                    <span class="cart-count">
+                                        0
+                                    </span>
                                 </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="header-bot">
-                        <div class="viral-search">
-                            <div class="viral-search-wrapper">
-                                <button>whey</button>
-                                <button>sữa tăng cân</button>
-                                <button>vitamin</button>
-                                <button>bcaa</button>
-                                <button>dầu cá omega3</button>
+                        <div class="header-bot">
+                            <div class="viral-search">
+                                <div class="viral-search-wrapper">
+                                    <button>whey</button>
+                                    <button>sữa tăng cân</button>
+                                    <button>vitamin</button>
+                                    <button>bcaa</button>
+                                    <button>dầu cá omega3</button>
+                                </div>
                             </div>
-                        </div>
-                        <div class="address one">
-                            <ion-icon name="location-outline"></ion-icon>
-                            <span>
-                                Giao đến:
-                            </span>
-                            <a href="#" class="address-wrapper">
-                                Z115, Tân Thịnh, TP Thái Nguyên, Thái Nguyên
-                            </a>
+                            <div class="address one">
+                                <ion-icon name="location-outline"></ion-icon>
+                                <span>
+                                    Giao đến:
+                                </span>
+                                <a href="#" class="address-wrapper">
+                                    Z115, Tân Thịnh, TP Thái Nguyên, Thái Nguyên
+                                </a>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
-        <div class="container-wrapper">
             <div class="product-details">
                 <div class="product-details-wrapper">
                     <div class="path-bar">
@@ -2515,7 +2459,6 @@
             <div class="footer"> </div>
         </div>
     </div>
-    <div class="shadow"></div>
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
@@ -2535,42 +2478,6 @@
                 }, 3000);
             }, 3000);
         }, 6000);
-
-        const home = document.querySelector('.home-button')
-        home.onclick = function () {
-            window.location.href = 'wheyshop.html'
-        }
-
-        const cartButton = document.querySelector('.cart-button button');
-        const cartShow = document.querySelector('.cart-show');
-        const shadow = document.querySelector('.shadow');
-        cartButton.onclick = function () {
-
-            if (cartShow.style.display == 'none' || cartShow.style.display == '') {
-                cartShow.style.display = 'flex';
-                shadow.style.display = 'flex';
-                html.style.overflow = 'hidden'
-                cartShow.style.animation = 'fly-to-top .35s ease-in-out forwards';
-                shadow.style.animation = 'fadeIn .35s ease-in-out forwards';
-            } else {
-                cartShow.style.animation = 'fly-to-bot .5s ease-in-out forwards';
-                shadow.style.animation = 'fadeOut .5s ease-in-out forwards';
-                html.style.overflow = 'auto'
-                setTimeout(() => {
-                    shadow.style.display = 'none';
-                    cartShow.style.display = 'none'
-                }, 500);
-            }
-        }
-        shadow.onclick = function () {
-            cartShow.style.animation = 'fly-to-bot .5s ease-in-out forwards';
-            shadow.style.animation = 'fadeOut .5s ease-in-out forwards';
-            html.style.overflow = 'auto'
-            setTimeout(() => {
-                shadow.style.display = 'none';
-                cartShow.style.display = 'none'
-            }, 500);
-        }
 
         setTimeout(() => {
             const links = document.querySelectorAll('a');
