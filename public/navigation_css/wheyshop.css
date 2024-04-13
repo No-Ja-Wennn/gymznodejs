@@ -940,16 +940,21 @@ body{
     display: flex;
     justify-content: flex-start;
     align-items: center;
-    color: #888;
     font-size: 10px;
     gap: 5px;
 }
 .path-bar-wrapper i{
     position: relative;
     top: 2px;
+    font-size: 14px;
+    color: #999;
 }
 .path-bar-wrapper a{
     color: #555;
+}
+.current-product a{
+    color: #2196F3;
+    cursor: unset;
 }
 .main-product{
     height: fit-content;
