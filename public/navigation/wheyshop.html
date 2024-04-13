@@ -15,6 +15,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Varela+Round&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="../font/fontawesome-free-6.4.0-web/css/all.min.css">
     <link rel="stylesheet" href="../navigation_css/wheyshop.css">
+    <link rel="stylesheet" href="../navigation_css/toast.css">
     <title> WHEZ - mua hàng online</title>
 </head>
 
@@ -75,7 +76,7 @@
                                             Giỏ hàng
                                         </div>
                                         <div class="list-items">
-                                            <div class="item-in-cart">
+                                            <!-- <div class="item-in-cart">
                                                 <div class="item-img">
                                                     <img src="../img/shop/whey/100-whey-gold-standard-5lbs-2-3kg-13-2x.webp"
                                                         alt="">
@@ -106,7 +107,7 @@
                                             <div class="item-in-cart"></div>
                                             <div class="item-in-cart"></div>
                                             <div class="item-in-cart"></div>
-                                            <div class="item-in-cart"></div>
+                                            <div class="item-in-cart"></div> -->
                                         </div>
                                         <div class="total">
                                             Tổng
@@ -2514,17 +2515,33 @@
             <div class="footer"> </div>
         </div>
     </div>
+    <div id="toast"></div>
+
     <div class="shadow"></div>
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
     <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <script src="../navigation_javascript/wheyshop.js"></script>
+    <script type="module" src="../navigation_javascript/wheyshop.js"></script>
     <script>
 
 
+
+        const html = document.querySelector('html');
+        const container = document.querySelector('.container');
+        const header = document.querySelector('.header');
+        const mainContent = document.querySelector('.main-content');
+        const listItem = document.querySelectorAll('.item');
+        const detailsItem = document.querySelector('.product-details');
+        const productNameElement = document.querySelector('.name-product span');
+        const productCostElement = document.querySelector('.cost');
+        const totalCostElement = document.querySelector('.total span');
+        const nameProductInPathBar = document.querySelector('.current-product a');
+        const mainImgElement = document.querySelector('.main-img img');
+        const productTitleElement = document.querySelector('.product-title h1');
         const searchInput = document.querySelector('.search-input');
+
         setInterval(() => {
             searchInput.placeholder = "whey";
             setTimeout(() => {
@@ -2580,20 +2597,6 @@
             });
 
 
-
-            //const html = document.querySelector('html');
-            //const container = document.querySelector('.container');
-            //const header = document.querySelector('.header');
-            //const mainContent = document.querySelector('.main-content');
-            //const listItem = document.querySelectorAll('.item');
-            //const detailsItem = document.querySelector('.product-details');
-            //const productNameElement = document.querySelector('.name-product span');
-            //const productCostElement = document.querySelector('.cost');
-            //const totalCostElement = document.querySelector('.total span');
-            //const namePageInPathBar = document.querySelector('.page-products a');
-            //const nameProductInPathBar = document.querySelector('.current-product a');
-            //const mainImgElement = document.querySelector('.main-img img');
-            //const productTitleElement = document.querySelector('.product-title h1');
             //listItem.forEach(item => {
             //    item.addEventListener('click', 
             //    function (event) {
@@ -2620,6 +2623,7 @@
             //    );
             //});
 
+            const namePageInPathBar = document.querySelector('.page-products a');
 
             const defaultValue = 'xxx';
             namePageInPathBar.onclick = function () {

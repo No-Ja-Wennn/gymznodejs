@@ -1640,20 +1640,41 @@ app.get('/get-item-cart', (req, res) => {
   var cookie = getCookie(req, 'user_id');
   if (cookie) {
     const maKH = cookie.maKH;
-    console.log(maKH);
     var sql
       = "SELECT shopData.MainImg, shopData.NameItem, shopData.Cost, cart.Count FROM cart INNER JOIN shopData ON cart.ItemID = shopData.ItemID WHERE cart.maKH = ?";
     con.query(sql, [maKH], (err, result) => {
       if (err) throw err;
-
-      res.json({ success: true, data: result[0] });
-
+      res.json({ success: true, data: result });
     })
   } else {
     res.json({ success: false });
   }
 })
 
+app.post('/add-cart-url', (req, res)=>{
+  var cookie = getCookie(req, 'user_id');
+  if (cookie) {
+    const maKH = cookie.maKH;
+    let {ItemID, Count} = req.body;
+    var sql = 'SELECT * FROM cart WHERE maKH = ? AND ItemId = ?';
+    con.query(sql, [maKH, ItemID], (err, result)=>{
+      if(err)  throw err;
+      if(result.length > 0){
+        Count = parseInt(Count)
+        console.log(typeof Count , typeof result[0].Count)
+        Count += result[0].Count;
+        console.log("countsai: ", Count);
+        updateTable(con, 'cart', {Count}, `maKH = '${maKH}' AND ItemID = '${ItemID}'`);
+        res.json({success: true, msg: "Đã cập nhật giỏ hàng"});
+      }else{
+        insertIntoTable(con, 'cart', {maKH, ItemID, Count});
+        res.json({success: true, msg: "Đã thêm vào giỏ hàng"});
+      }
+    })
+  } else {
+    res.json({ success: false });
+  }
+})
 
 
 // =======================
