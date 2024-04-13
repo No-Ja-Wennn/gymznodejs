@@ -712,6 +712,10 @@ body {
     background-image: linear-gradient(#333 50%, #888 50%);
 }
 
+.tagbox2 {
+    background-image: linear-gradient(#333 50%, #888 50%);
+}
+
 .tagbox--none {
     flex: 1;
     background-color: #333;
