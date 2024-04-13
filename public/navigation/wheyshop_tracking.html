@@ -401,26 +401,7 @@
             //    }
             //    );
             //});
-
-
-            const defaultValue = 'xxx';
-            namePageInPathBar.onclick = function () {
-                if (namePageInPathBar.innerHTML.trim() !== defaultValue) {
-                    detailsItem.style.display = 'none';
-                    header.style.position = 'unset'
-                    mainContent.style.opacity = '1';
-                    html.style.overflow = 'auto'
-                    console.log('hihia')
-                    console.log(namePageInPathBar.innerHTML.trim())
-                } else {
-                    console.log('hihi')
-                }
-            }
-
-            const home = document.querySelector('.page-home a')
-            home.onclick = function () {
-                window.location.href = './wheyshop.html';
-            }
+            
         }, 1000)
 
 
