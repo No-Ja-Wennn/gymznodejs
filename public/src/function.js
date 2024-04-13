@@ -564,29 +564,117 @@ export function logoutSocket() {
 }
 
 
-export function editRowShop(dataObj, editRow) {
+export function updateRowShop(dataObj, editRow, flag = false) {
     var cellIndex = 0;
-    for (var field in dataObj) {
-        console.log(field)
-        
-        editRow[cellIndex].textContent = dataObj[field];
+    console.log("//////////////// ");
+    console.log(dataObj)
+    editRow.map((cell, index) => {
+        var className = cell.className;
+        if (index > 6) return;
 
-        if (cellIndex == 0 || cellIndex == 1) {
-            editRow[cellIndex].innerHTML = `<img class="show_main_img" src="${dataObj[field]}" alt="">`; // Điền dữ liệu vào ô
+        if (index == 0 || index == 1)
+            cell.querySelector('label').style.display = 'none';
+
+        if (flag) {
+            console.log(flag)
+            if (index == 0 || index == 1) {
+                // cell.querySelector('label').style.display = 'none';
+                // console.log(cell.querySelector('label').style.display);
+                if (dataObj[className]) {
+                    cell.textContent = '';
+                    var imgE = document.createElement('img');
+                    imgE.className = "show_main_img";
+                    imgE.src = "" || dataObj[className];
+                    cell.appendChild(imgE);
+
+                    // cell.innerHTML = `<img class="show_main_img" src="${dataObj[className]}" alt="">`; // Điền dữ liệu vào ô
+                    var inputChange = document.createElement('input');
+                    inputChange.type = 'file';
+                    inputChange.id = 'input' + className + index;
+                    var lableTag = document.createElement('label');
+                    lableTag.innerText = 'Thay ảnh';
+                    lableTag.htmlFor = 'input' + className + index;
+                    lableTag.style.display = 'none';
+                    inputChange.style.display = 'none';
+                    inputChange.addEventListener('change', function (img) {
+                        return function(event) {
+                            changeFileInput(event, img);
+                        };
+                    }(imgE));
+                    cell.appendChild(inputChange);
+                    cell.appendChild(lableTag);
+                }
+                console.log(cell.querySelector('label'));
+            }
+            else {
+                return;
+            }
+        }
+        else {
+            if (index == 0 || index == 1) {
+                return;
+            }
+            else {
+                cell.innerHTML = "";
+                if (dataObj[className])
+                    cell.textContent = dataObj[className];
+            }
+        }
+    })
+
+}
+
+//"change"  input file
+
+export function changeFileInput(event, imgE) {
+    console.log(imgE)
+    // Kiểm tra xem có tệp nào được chọn hay không
+    if (event.target.files && event.target.files[0]) {
+        var reader = new FileReader();
+
+        // Đọc tệp tin hình ảnh
+        reader.onload = function (e) {
+            imgE.src = e.target.result;
+            imgE.style.display = 'block'; // Hiển thị thẻ <img>
+        };
+
+        // Đọc dữ liệu từ tệp tin hình ảnh dưới dạng URL dữ liệu
+        reader.readAsDataURL(event.target.files[0]);
+    }
+}
+
+
+
+
+export function updateRowShop2(dataObj, editRow) {
+    console.log(dataObj);
+    for (var i = 0; i < editRow.length; i++) {
+        editRow[i].innerHTML = ""; // Xóa nội dung hiện có của ô
+        if (i === 0 || i === 1) {
+            var imgTag = document.createElement('img');
+            imgTag.className = 'show_main_img';
+            imgTag.src = dataObj[`field${i}`]; // Sử dụng template literal để truy cập vào field tương ứng
+            imgTag.alt = '';
+            editRow[i].appendChild(imgTag);
+
             var inputChange = document.createElement('input');
             inputChange.type = 'file';
-            inputChange.id = 'input' + field + cellIndex;
-            var lableTag = document.createElement('label');
-            lableTag.innerText = 'Thay ảnh';
-            lableTag.htmlFor = 'input' + field + cellIndex;
-            lableTag.style.display = 'none';
+            inputChange.id = `inputfield${i}${i}`;
+            var labelTag = document.createElement('label');
+            labelTag.innerText = 'Thay ảnh';
+            labelTag.htmlFor = `inputfield${i}${i}`;
+            labelTag.style.display = 'none';
             inputChange.style.display = 'none';
-            editRow[cellIndex].appendChild(inputChange);
-            editRow[cellIndex].appendChild(lableTag);
-        }else{
-            editRow[cellIndex].innerText = dataObj[field]
+            editRow[i].appendChild(inputChange);
+            editRow[i].appendChild(labelTag);
+        } else {
+            editRow[i].innerText = dataObj[`field${i}`]; // Sử dụng template literal để truy cập vào field tương ứng
         }
-        editRow[cellIndex].classList.add(field);
-        cellIndex++;
+        editRow[i].classList.add(`field${i}`); // Thêm class tương ứng
     }
+}
+
+
+export function updateRowTable(cells, data) {
+
 }

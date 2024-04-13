@@ -836,7 +836,6 @@ function generateAccessToken(data) {
 
 app.get('/get-box-message', authenToken, (req, res) => {
   getBoxMessage(con, function (data) {
-    console.log("mess: ", data);
     res.json({ value: data });
   });
 });
@@ -1379,6 +1378,125 @@ function authenToken(req, res, next){
 
 /* ============ SHOP WHEY ============= */
 
+// add product item
+
+// app.post('/add-product-item', authenToken, (req, res)=>{
+//   console.log(req.body);
+
+
+
+
+// })
+
+const storage = multer.diskStorage({
+  destination: function (req, file, cb) {
+    cb(null, './public/img/shop/temp/'); // Lưu tạm thời tại đây
+  },
+  filename: function (req, file, cb) {
+    cb(null, file.fieldname + '-' + Date.now() + path.extname(file.originalname));
+  }
+});
+const upload = multer({ storage: storage });
+
+// Cấu hình Multer
+const upload2 = multer({
+  // Lưu trữ các file tải lên trong thư mục './uploads'
+  storage: multer.diskStorage({
+    destination: (req, file, cb) => {
+      cb(null, './public/img/shop/temp/');
+    },
+    filename: (req, file, cb) => {
+      cb(null, file.originalname);
+    }
+  }),
+  // Định dạng tên của file tải lên
+  fileFilter: (req, file, cb) => {
+    // Kiểm tra kiểu MIME của file
+    if (file.mimetype.startsWith('image/')) {
+      cb(null, true);
+    } else {
+      cb(new Error('Only images are allowed.'));
+    }
+  }
+});
+
+
+
+app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.json());
+
+
+// Xử lý yêu cầu POST
+app.post('/add-product-item', authenToken, upload2.fields([
+  { name: 'file1', maxCount: 1 },
+  { name: 'file2', maxCount: 1 }
+]), (req, res) => {
+
+  const { dataItem } = req.body;
+  const { NameItem, Type, Cost, Depict } = JSON.parse(dataItem);
+
+  if (!Type) {
+    return res.status(400).send('Missing file type.');
+  }
+
+  // Tạo thư mục nếu nó chưa tồn tại
+  const targetDirectory = './img/shop/' + Type + '/';
+  if (!fs.existsSync(targetDirectory)) {
+    fs.mkdirSync(targetDirectory, { recursive: true });
+  }
+
+  if(req.files.file1 && req.files.file2){
+    var arrayTemp = [
+      req.files.file1[0],
+      req.files.file2[0]
+    ]
+    let objPath = {};
+    arrayTemp.forEach((file, index) => {
+      const newPath = generateFilePath(file, Type);
+      const pathSave = newPath.replace('..', './public');
+      if (index == 0)
+        objPath.MainImg = newPath
+      else if (index == 1)
+        objPath.SubImg = newPath
+      fs.rename(file.path, pathSave, (err) => {
+        if (err) {
+          console.error(err);
+          res.status(500).send('Error occurred while moving file.');
+        } else {
+          if (index == 1) {
+            con.query("SELECT ItemID FROM shopData ORDER BY ItemID DESC LIMIT 1",
+              function (err, result, fields) {
+                if (err) throw err;
+                var ItemID;
+                if (!result[0]) {
+                  ItemID = 'LT0001';
+                } else {
+                  ItemID = generateCustomerCode(result[0].ItemID);
+                }
+                var data = {
+                  MainImg: objPath.MainImg,
+                  SubImg: objPath.SubImg,
+                  ItemID,
+                  NameItem,
+                  Type,
+                  Cost,
+                  Depict
+                }
+                console.log(data);
+                insertIntoTable(con, 'shopData', data);
+                res.json({success: true, data})
+              })
+          }
+        }
+      });
+    });
+  }else{
+    res.json({success: false, data: {}, notifi: "Thiếu ảnh"})
+  }
+
+});
+
+
 app.get('/get-product-item', (req, res) => {
   var sql = "SELECT * FROM shopData";
   con.query(sql, (err, result) => {
@@ -1404,8 +1522,9 @@ function getRowValue(tableName, condition, parrames = '*', callback) {
 
 
 // EDIT ITEM SHOP
-app.post('/edit-item-admin-url', (req, res) => {
+app.post('/edit-item-admin-url', authenToken, (req, res) => {
   let dataEdit = req.body;
+  console.log("edit data: ", dataEdit);
   deleteSpacePro(dataEdit);
   if (dataEdit.ItemID) {
     updateTable(con, 'shopData', dataEdit, `ItemID = '${dataEdit.ItemID}'`);
@@ -1439,6 +1558,7 @@ function isSimilar(string1, string2) {
 }
 
 const fuzzball = require('fuzzball');
+const { type } = require('os');
 
 function compareStrings(string1, string2) {
   const ratio = fuzzball.ratio(string1, string2);
@@ -1467,53 +1587,54 @@ app.post('/get-item-search', (req, res) => {
 
 // save img
 // Configure storage
-const storage = multer.diskStorage({
-  destination: function (req, file, cb) {
-    cb(null, './public/img/shop/customer'); // Here, './' is the current directory. You can set any path you like.
-  },
-  filename: function (req, file, cb) {
-    cb(null, file.fieldname + '-' + Date.now() + path.extname(file.originalname));
-  }
-});
-
-// const upload = multer({ storage: storage });
-
-const upload = multer();
-
-app.use(bodyParser.urlencoded({ extended: false }));
-app.use(bodyParser.json());
+// const storage = multer.diskStorage({
+//   destination: function (req, file, cb) {
+//     cb(null, './public/img/shop/'); 
+//   },
+//   filename: function (req, file, cb) {
+//     cb(null, file.fieldname + '-' + Date.now() + path.extname(file.originalname));
+//   }
+// });
 
 
 
+// Hàm tạo đường dẫn tệp tùy chỉnh
+function generateFilePath(file, Type) {
+  const fileName = file.fieldname + '-' + Date.now() + path.extname(file.originalname);
+  return `../img/shop/${Type}/${fileName}`;
+}
 
-app.post('/upload', upload.single('file'), (req, res) => {
-  const {Type, ItemID} = req.body.Type;
-
+app.post('/upload', authenToken, upload.single('file'), (req, res) => {
+  const { Type, ItemID, imgType } = req.body;
+  console.log(Type)
   if (!Type) {
     return res.status(400).send('Missing file type.');
   }
   // Tạo thư mục nếu nó chưa tồn tại
-  const targetDirectory = './public/img/shop/' + Type + '/';
+  const targetDirectory = './img/shop/' + Type + '/';
   if (!fs.existsSync(targetDirectory)) {
     fs.mkdirSync(targetDirectory, { recursive: true });
   }
 
-  const newPath = targetDirectory + req.file.originalname;
-  fs.writeFile(newPath, req.file.buffer, (err) => {
+  const newPath = generateFilePath(req.file, Type);
+  const pathSave = newPath.replace('..', './public');
+  fs.rename(req.file.path, pathSave, (err) => {
     if (err) {
       console.error(err);
       res.status(500).send('Error occurred while moving file.');
     } else {
       console.log("newPath: ", newPath);
       var data = {
-        MainImg: newPath
+        [imgType]: newPath
       }
-      updateTable(con, 'shopData', data, `ItemID = '${req.body.ItemID}'`)
-      res.send('File uploaded and moved successfully.');
+      updateTable(con, 'shopData', data, `ItemID = '${ItemID}'`)
+      res.json({ success: true, data });
     }
   });
 
 });
+
+
 
 
 

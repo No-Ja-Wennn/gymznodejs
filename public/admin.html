@@ -671,7 +671,7 @@
                 <form id="form-add-calendar" class="form2">
                     <div class="row__title__table">
                         <div class="row__title__table__content">
-                            Thêm thẻ lịch tập
+                            Thêm lịch tập
                         </div>
                         <div class="x__cancel">
                             <i class="fa-regular fa-circle-xmark"></i>
@@ -1236,6 +1236,83 @@
                         </div>
                     </div>
                 </div>
+            </div>
+
+            
+            <div class="modal__body__box modal__body__box--admin admin-add-product">
+                <form id="form-add-product" class="form2">
+                    <div class="row__title__table">
+                        <div class="row__title__table__content">
+                            Thêm sản phẩm
+                        </div>
+                        <div class="x__cancel">
+                            <i class="fa-regular fa-circle-xmark"></i>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="row__title">
+                            Tên sản phẩm
+                        </div>
+                        <div class="row__content">
+                            <input class="row__content__input row__content__input__item" type="text" placeholder="Protein ABC..."
+                                name="NameItem">
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="row__title">
+                            Loại:
+                        </div>
+                        <div class="row__content">
+                            <select class="row__content__input" id="" name="Type">
+                                <option value="" selected></option>
+                                <option value="whey">whey</option>
+                                <option value="milk">milk</option>
+                                <option value="vitamin">vitamin</option>
+                                <option value="bcaa">bcaa</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="row row__name">
+                        <div class="row__title">
+                            Giá:
+                        </div>
+                        <div class="row__content">
+                            <input class="row__content__input row__content__input__cost" type="text" placeholder="99999" name="Cost">
+                        </div>
+                    </div>
+                    <div class="row row__name">
+                        <div class="row__title">
+                            Mô Tả:
+                        </div>
+                        <div class="row__content">
+                            <input class="row__content__input row__content__input__de" type="text" placeholder="ABC" name="Depict">
+                        </div>
+                    </div>
+                    <div class="row row__img">
+                        <div class="row__title">
+                            Ảnh:
+                        </div>
+                        <div class="row__content row__content__picture">
+                            <div class="row__content__col">
+                                <img src="./img/shop/whey/rule-1-proteins.webp" alt="">
+                                <input id="content-img-main1" class="content-img-main content-img-main1" type="file" name="file1" style="display: none">
+                                <label for="content-img-main1">Ảnh chính</label>
+                            </div>
+                            <div class="row__content__col">
+                                <img src="./img/shop/whey/rule-1-proteins.webp" alt="">
+                                <input id="content-img-main2" class="content-img-main content-img-main2" type="file" name="file2" style="display: none">
+                                <label for="content-img-main2">Ảnh phụ</label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row__final">
+                        <div class="row__final__button">
+                            <button class="button__form" type="submit">
+                                Thêm
+                            </button>
+                        </div>
+                    </div>
+                </form>
             </div>
         </div>
     </div>

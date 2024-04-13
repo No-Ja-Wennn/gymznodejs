@@ -492,10 +492,11 @@ html::-webkit-scrollbar{
     width: 100%;
     padding: 16px;
     display: flex;
-    justify-content: space-between;
+    /* justify-content: space-between; */
     align-items: center;
-    /* gap: 15px; */
+    gap: 12px;
     overflow: hidden;
+    flex-wrap: wrap;
 }
 .item{
     width: calc((100% / 6) - 10px);

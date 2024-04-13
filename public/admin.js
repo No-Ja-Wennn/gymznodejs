@@ -2,18 +2,19 @@ import { f_activeOldNav } from "./src/app.js";
 import {
     activeEventClickBox,
     activeNecessaryForm,
+    changeFileInput,
     createMessageBox,
     displayLeftMessage,
     displayNoneAll,
     displayRightMessage,
-    editRowShop,
     innerBoxMsg,
     maKHActive,
     removeAccents,
-    removeAllInputValue
+    removeAllInputValue,
+    updateRowShop
 } from "./src/function.js";
 import { showErrorToast, showSuccessToast } from "./src/toast.js";
-import { validateAdminAddAcc, validateAdminAddCalendar, validateAdminAddCard, validateAdminEditAcc, validateAdminEditCard, validateCreateAccount } from "./src/validate.js";
+import { validateAddProduct, validateAdminAddAcc, validateAdminAddCalendar, validateAdminAddCard, validateAdminEditAcc, validateAdminEditCard, validateCreateAccount } from "./src/validate.js";
 
 
 /*====== LOGIN =====*/
@@ -579,9 +580,12 @@ function insertToTable(tableName, dataObject) {
         } else if (tableName == "shop") {
 
             // img 1
-
             if (cellIndex == 0 || cellIndex == 1) {
-                cell.innerHTML = `<img class="show_main_img" src="${dataObject[field]}" alt="">`; // Điền dữ liệu vào ô
+                cell.textContent = '';
+                var imgE = document.createElement('img');
+                imgE.className = "show_main_img";
+                imgE.src = "" || dataObject[field];
+                cell.appendChild(imgE);
                 var inputChange = document.createElement('input');
                 inputChange.type = 'file';
                 inputChange.id = 'input' + field + idIndex;
@@ -590,10 +594,16 @@ function insertToTable(tableName, dataObject) {
                 lableTag.htmlFor = 'input' + field + idIndex;
                 lableTag.style.display = 'none';
                 inputChange.style.display = 'none';
+                inputChange.addEventListener('change', function (img) {
+                    return function (event) {
+                        changeFileInput(event, img);
+                    };
+                }(imgE));
                 cell.appendChild(inputChange);
                 cell.appendChild(lableTag);
                 idIndex++;
             }
+
             cell.classList.add(field);
             cellIndex++;
         }
@@ -1544,6 +1554,118 @@ function f_shopNav() {
 
 // ADD ITEM
 
+
+// $('#form-edit-calendar').submit(function (e) {
+//     e.preventDefault();
+
+function splitSerialize(dataString) {
+    var dataArray = dataString.split("&");
+    var dataObj = {};
+
+    for (var i = 0; i < dataArray.length; i++) {
+        var item = dataArray[i].split("=");
+        dataObj[item[0]] = decodeURIComponent(item[1]);
+    }
+
+    return dataObj;
+}
+
+const addProductBTN = document.getElementById("add-shop");
+const addProductBox = modalBodyBox.querySelector(".admin-add-product")
+addProductBTN.addEventListener("click", () => {
+    modalBox.style.display = 'flex';
+    overlayBox.style.display = 'block';
+    modalBodyBox.style.display = 'block';
+    addProductBox.style.display = 'block';
+
+    const cancelAddProduct = addProductBox.querySelector(".x__cancel");
+    cancelAddProduct.addEventListener("click", () => {
+        displayNoneAll();
+    })
+})
+
+// change picture click
+
+
+
+function previewImage() {
+    console.log(this)
+    var parentThis = this.closest('div');
+
+    const image = parentThis.querySelector('img'); // Lấy hình ảnh theo ID
+
+    const files = this.files; // Lấy danh sách các file được chọn từ input
+    
+    // Kiểm tra xem có file nào được chọn không
+    if (files.length > 0) {
+        const file = files[0]; // Lấy file đầu tiên trong danh sách
+
+        // Tạo một FileReader để đọc dữ liệu của file được chọn
+        const reader = new FileReader();
+
+        // Định nghĩa hàm xử lý khi file được đọc thành công
+        reader.onload = function(e) {
+            image.src = e.target.result; // Gán nguồn (src) của ảnh là dữ liệu của file đã đọc
+        };
+
+        // Đọc dữ liệu của file
+        reader.readAsDataURL(file);
+    } else {
+        // Nếu không có file nào được chọn, gán nguồn (src) của ảnh là một giá trị mặc định
+        image.src = '#';
+    }
+}
+
+let imgInputAdd = addProductBox.querySelectorAll(".content-img-main");
+imgInputAdd = Array.from(imgInputAdd);
+imgInputAdd.forEach(element=>element.addEventListener('change', previewImage))
+
+
+$('#form-add-product').submit(function (e) {
+    e.preventDefault();
+    var accessToken = localStorage.getItem('accessToken');
+    var dataObj = splitSerialize($(this).serialize());
+    
+    var file_input1 = addProductBox.querySelector('.content-img-main1');
+    var file_input2 = addProductBox.querySelector('.content-img-main2');
+    var file_data1 = file_input1.files[0];
+    var file_data2 = file_input2.files[0];
+    dataObj.file_data1 = file_data1
+    dataObj.file_data2 = file_data2
+    if (validateAddProduct(dataObj)) {
+
+
+    var form_data = new FormData();
+    form_data.append('file1', file_data1);
+    form_data.append('file2', file_data2);
+    form_data.append('dataItem', JSON.stringify(dataObj));
+    console.log(dataObj);
+    $.ajax({
+        url: '/add-product-item',
+        type: 'POST',
+        headers: {
+            'Authorization': 'Bearer ' + accessToken
+        },
+        data: form_data,
+        cache: false,
+        contentType: false,
+        processData: false,
+        success: function (response) {
+            if (response.success) {
+                insertToTable('shop', response.data);
+                displayNoneAll();
+                removeAllInputValue();
+                showSuccessToast("Thêm sản phẩm thành công");
+            } else {
+                showErrorToast("Thêm sản phẩm thất bại", response.notifi);
+            }
+        }
+    });
+    }
+})
+
+
+
 // EDIT ITEM
 
 const saveBTN = document.querySelector(".save__box");
@@ -1552,15 +1674,38 @@ let editRow = null;
 
 function f_editShopBTN() {
     if (!editRow) {
-
         var trElement = this.closest('tr');
         editRow = trElement;
         var a_tdElement = trElement.querySelectorAll('td');
         a_tdElement = Array.from(a_tdElement);
         a_tdElement.map((element, index) => {
-            if (index > 2 && index < 6) {
-                var value = element.textContent.replace('.', '');
+            var value = element.textContent.replace(/[.,]/g, '');
+            if (index == 4) {
+                var selectType = document.createElement('select');
+                selectType.id = 'select' + index;
+                selectType.innerHTML = `
+                    <option value="whey">whey</option>
+                    <option value="milk">milk</option>
+                    <option value="vitamin">vitamin</option>
+                    <option value="bcaa">bcaa</option>
+                    `
+
+                // var value = element.textContent;
+                console.log("Value: ", value);
+                element.textContent = ''
+                for (var i = 0; i < selectType.options.length; i++) {
+                    if (selectType.options[i].value == value) {
+                        selectType.options[i].selected = true;
+                        break;
+                    }
+                }
+                element.appendChild(selectType);
+                selectType.style.display = 'inline-block';
+
+            } else if (index > 2 && index < 7) {
+
                 var inputE = document.createElement('input');
+                console.log(inputE)
                 inputE.value = value;
                 element.textContent = '';
                 element.appendChild(inputE);
@@ -1584,104 +1729,85 @@ function f_saveFunction() {
     let obj = {};
     tdRow.forEach(element => {
         var inputElement = element.querySelector('input');
+        var selectElement = element.querySelector('select');
         if (inputElement)
             obj[element.className] = inputElement.value;
+        else if (selectElement) {
+            obj[element.className] = selectElement.value;
+        }
     })
     var idItem = editRow.querySelector('.ItemID');
     obj[idItem.className] = idItem.innerText;
     var accessToken = localStorage.getItem('accessToken');
-    console.log("obj: ", obj)
-    // sendRequest(
-    //     '/edit-item-admin-url',
-    //     'POST',
-    //     {
-    //         'Authorization': 'Bearer ' + accessToken
-    //     },
-    //     obj,
-    //     function (data) {
-    //         console.log(data);
-    //         if (data.success) {
-    //             // for(let i = 0; i < tdRow.length -1; i++){
-    //             //     tdRow[i].innerText = data.data[tdRow[i].className]
-    //             // }
-    //             editRowShop(data.data, tdRow);
-    //             showSuccessToast("Sửa thành công", "");
-    //             editRow = null;
-    //         } else {
-    //             showErrorToast("Lỗi");
-    //         }
-    //     },
-    //     function (err) {
-    //         console.error(err);
-    //     }
-    // );
-    // img
-    // var file_input = editRow.querySelector('.MainImg').querySelector('input');
-    // if (file_input.files.length > 0) {
-    //     var file_data = $(file_input).prop('files')[0];
-    //     var form_data = new FormData();
-    //     form_data.append('file', file_data);
-    //     console.log("type: ", obj.Type);
-    //     console.log({form_data, fileType: 'whey'})
-    //     // $.ajax({
-    //     //     url: '/upload',
-    //     //     dataType: 'text',
-    //     //     cache: false,
-    //     //     contentType: false,
-    //     //     processData: false,
-    //     //     data: {form_data, fileType: 'whey'},
-    //     //     type: 'post',
-    //     //     success: function (response) {
-    //     //         alert(response);
-    //     //     }
-    //     // });
-    //     $.ajax({
-    //         url: '/upload',
-    //         dataType: 'text',
-    //         cache: false,
-    //         contentType: false,
-    //         processData: false,
-    //         data: {file: form_data, fileType: 'whey'},
-    //         type: 'post',
-    //         success: function (response) {
-    //             alert(response);
-    //         }
-    //     });
+    console.log("obj: ", obj);
 
-    // } else {
-    //     console.log("No file selected.");
-    // }
+    sendRequest(
+        '/edit-item-admin-url',
+        'POST',
+        {
+            'Authorization': 'Bearer ' + accessToken
+        },
+        obj,
+        function (data) {
+            console.log(data);
+            if (data.success) {
+                data.data.Cost = data.data.Cost.toLocaleString();
+                console.log(data.data)
+                updateRowShop(data.data, tdRow, false);
+                showSuccessToast("Sửa thành công", "");
+                editRow = null;
+            } else {
+                showErrorToast("Lỗi");
+            }
+        },
+        function (err) {
+            console.error(err);
+        }
+    );
+    // img
+
 
     /////////////
-    var file_input = editRow.querySelector('.MainImg').querySelector('input');
-    if (file_input.files.length > 0) {
-        var file_data = file_input.files[0]; // Không cần sử dụng jQuery ở đây
-        var form_data = new FormData();
-        form_data.append('file', file_data);
-        form_data.append('Type', obj.Type);
-        form_data.append('Type', obj.ItemID);
-
-        $.ajax({
-            url: '/upload',
-            type: 'POST',
-            data: form_data,
-            cache: false,
-            contentType: false,
-            processData: false,
-            success: function (response) {
-                alert(response);
-            }
-        });
-    } else {
-        console.log("No file selected.");
-    }
-
-
+    var a_fileInput = [
+        editRow.querySelector('.MainImg').querySelector('input'),
+        editRow.querySelector('.SubImg').querySelector('input'),
+    ]
+    a_fileInput.forEach(file_input => {
+        if (file_input.files.length > 0) {
+            var file_data = file_input.files[0]; // Không cần sử dụng jQuery ở đây
+            var form_data = new FormData();
+            form_data.append('file', file_data);
+            form_data.append('Type', obj.Type);
+            form_data.append('ItemID', obj.ItemID);
+            var imgType = file_input.closest('td').className;
+            form_data.append('imgType', imgType);
+            console.log("imgType: ", imgType);
+            $.ajax({
+                url: '/upload',
+                type: 'POST',
+                headers: {
+                    'Authorization': 'Bearer ' + accessToken
+                },
+                data: form_data,
+                cache: false,
+                contentType: false,
+                processData: false,
+                success: function (response) {
+                    if (response.success) {
+                        // var data = { MainImg: response.img }
+                        updateRowShop(response.data, tdRow, true);
+                        console.log(response.data);
+                    } else {
+                        showErrorToast("Sửa thất ảnh thất bại");
+                    }
+                }
+            });
+        } else {
+            console.log("No file selected.");
+        }
+    })
 
 }
-
-
-
 
 // REMOVE ITEM
 

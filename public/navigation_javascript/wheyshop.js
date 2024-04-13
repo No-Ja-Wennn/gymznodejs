@@ -128,16 +128,16 @@ $(document).ready(function () {
                 var a_item = data.value;
                 a_item.forEach(item => {
                     var cost = item.Cost.toLocaleString().replaceAll('.', ',');
-                    console.log(cost)
                     var elementCreate = createItem(item.ItemID, item.MainImg, item.NameItem, cost)
                     // console.log(item.MainImg)
-                    if (item.MainImg.includes('../img/shop/whey')) {
+                    console.log(item.Type)
+                    if (item.Type == "whey") {
                         wheyList.appendChild(elementCreate);
-                    } else if (item.MainImg.includes('../img/shop/milk')) {
+                    } else if (item.Type == "milk") {
                         milkList.appendChild(elementCreate);
-                    } else if (item.MainImg.includes('../img/shop/vitamin')) {
+                    } else if (item.Type == "vitamin") {
                         vitaminList.appendChild(elementCreate);
-                    } else if (item.MainImg.includes('../img/shop/bcaa')) {
+                    } else if (item.Type == "bcaa") {
                         bcaaList.appendChild(elementCreate);
                     } else {
                         console.log("sản phẩm khonong đúng");

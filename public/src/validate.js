@@ -25,6 +25,12 @@ function validatePassword(password) {
     return re.test(password);
 }
 
+function validateNumber(input) {
+    if (input === null || input === undefined) {
+        return false;
+    }
+    return !isNaN(input);
+}
 
 export function validateCreateAccount() {
     var fullname = createAccountBox.querySelector(".login-name").value;
@@ -229,4 +235,31 @@ export function validateAdminAddCalendar(maThe, name, date, time, type, ptName, 
     }
     return true;
 
+}
+
+export function validateAddProduct(dataObj){
+    const {NameItem, Type, Cost, Depict,file_data1, file_data2} = dataObj;
+    if(!NameItem){
+        showErrorToast("Thất bại", "Vui lòng nhập tên sản phẩm");
+        return false;
+    }else if(!Type){
+        showErrorToast("Thất bại", "Vui lòng chọn loại sản phẩm");
+        return false;
+    }else if(!Cost){
+        showErrorToast("Thất bại", "Vui lòng nhập giá tiền");
+        return false;
+    }else if(!validateNumber(Cost)){
+        showErrorToast("Thất bại", "Giá tiền là một con số");
+        return false;
+    }else if(!Depict){
+        showErrorToast("Thất bại", "Vui lòng điền mô tả");
+        return false;
+    }else if(!file_data1){
+        showErrorToast("Thất bại", "Vui tải lên ảnh chính");
+        return false;
+    }else if(!file_data2){
+        showErrorToast("Thất bại", "Vui lòng tải lên ảnh phụ");
+        return false;
+    }
+    return true;
 }
