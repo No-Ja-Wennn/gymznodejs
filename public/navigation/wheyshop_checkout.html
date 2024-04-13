@@ -97,6 +97,11 @@
         </div>
         <div class="container-wrapper">
             <div class="checkout">
+                <div class="order-succesful">
+                    <img src="../img/shop/icon/successful.gif" alt="">
+                    <p>Đặt hàng thành công</p>
+                    <button>Xem trạng thái đơn hàng</button>
+                </div>
                 <div class="checkout-wrapper">
                     <div class="colum-cart">
                         <div class="colum-cart-wrapper">
@@ -304,6 +309,16 @@
         const home = document.querySelector('.home-button')
         home.onclick = function(){
             window.location.href = 'wheyshop.html'
+        }
+        const viewNow = document.querySelector('.order-succesful button')
+        viewNow.onclick = function(){
+            window.location.href = 'wheyshop_tracking.html'
+        }
+
+        const orderSuccessful = document.querySelector('.order-succesful')
+        const pay = document.querySelector('.button-payment')
+        pay.onclick = function(){
+            orderSuccessful.style.display = 'flex';
         }
 
     </script>
