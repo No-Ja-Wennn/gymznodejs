@@ -1649,7 +1649,7 @@ app.get('/get-item-cart', (req, res) => {
   if (cookie) {
     const maKH = cookie.maKH;
     var sql
-      = "SELECT shopData.MainImg, shopData.NameItem, shopData.Cost, cart.Count FROM cart INNER JOIN shopData ON cart.ItemID = shopData.ItemID WHERE cart.maKH = ?";
+      = "SELECT shopData.ItemID ,shopData.MainImg, shopData.NameItem, shopData.Cost, cart.Count FROM cart INNER JOIN shopData ON cart.ItemID = shopData.ItemID WHERE cart.maKH = ?";
     con.query(sql, [maKH], (err, result) => {
       if (err) throw err;
       res.json({ success: true, data: result });

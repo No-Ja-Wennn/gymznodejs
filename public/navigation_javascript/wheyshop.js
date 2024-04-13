@@ -1,5 +1,5 @@
 import { activeLoginBox, activeNecessaryForm } from "../src/function.js";
-import {showErrorToast, showSuccessToast } from "../src/toast.js";
+import { showErrorToast, showSuccessToast } from "../src/toast.js";
 
 
 const html = document.querySelector('html');
@@ -22,11 +22,19 @@ const searchResultBox = document.getElementById("search-result");
 const searchListBox = document.getElementById("list-item-search");
 const exitSearchBTN = searchResultBox.querySelector('i');
 
+const mainProduct = document.querySelector(".main-product");
+const plusCountMainProduct = mainProduct.querySelector(".plus-button");
+const minusCountMainProduct = mainProduct.querySelector(".minus-button");
+const inputCountMainProduct = mainProduct.querySelector(".input-quantily");
+const costOneProduct = mainProduct.querySelector(".cost");
+const costTotalProduct = mainProduct.querySelector(".total");
+const costTotalSpanProduct = costTotalProduct.querySelector("span");
+
 
 function itemEvent(item, itemID) {
     // event.preventDefault();
     const productName = item.querySelector('.name span').textContent;
-    const productCost = item.querySelector('.cost').textContent.trim();
+    const productCost = item.querySelector('.cost').textContent.trim().replaceAll(',', '.');
     const productImgSrc = item.querySelector('.item-img img').getAttribute('src');
     const productTitle = item.closest('.product-style').querySelector('.product-title h1').textContent;
 
@@ -37,6 +45,9 @@ function itemEvent(item, itemID) {
     nameProductInPathBar.textContent = productName;
     mainImgElement.setAttribute('src', productImgSrc);
 
+    costTotalSpanProduct.innerText = productCost;
+
+
     detailsItem.style.display = 'flex';
     header.style.position = 'fixed'
     mainContent.style.opacity = '0';
@@ -45,36 +56,75 @@ function itemEvent(item, itemID) {
 
     inputCountMainProduct.value = 1;
 }
+
+
+function itemEvent2({
+    ItemID,
+    NameItem,
+    Cost,
+    MainImg,
+}) {
+    console.log(ItemID)
+    Cost = Cost.toLocaleString();
+    // // event.preventDefault();
+    // const productName = item.querySelector('.name span').textContent;
+    // const productCost = item.querySelector('.cost').textContent.trim();
+    // const productImgSrc = item.querySelector('.item-img img').getAttribute('src');
+    // const productTitle = item.closest('.product-style').querySelector('.product-title h1').textContent;
+
+    productNameElement.textContent = NameItem;
+    productCostElement.textContent = Cost;
+    totalCostElement.textContent = Cost;
+    // namePageInPathBar.textContent = productTitle;
+    nameProductInPathBar.textContent = NameItem;
+    mainImgElement.setAttribute('src', MainImg);
+
+    costTotalSpanProduct.innerText = Cost;
+
+
+    detailsItem.style.display = 'flex';
+    header.style.position = 'fixed'
+    mainContent.style.opacity = '0';
+    html.style.overflow = 'hidden';
+    chooseOption.id = ItemID;
+
+    inputCountMainProduct.value = 1;
+}
+
 buyNow.addEventListener("click", f_buyNowBTN);
 addCart.addEventListener("click", f_addCartBTN);
 
-function f_buyNowBTN(){
+function f_buyNowBTN() {
     var ItemID = this.closest('.choose-options').id;
     console.log(ItemID);
 }
-function f_addCartBTN(){
+function f_addCartBTN() {
     var ItemID = this.closest('.choose-options').id;
     var Count = inputCountMainProduct.value;
-    $.ajax({
-        url: '/add-cart-url',
-        type: 'POST',
-        data: {ItemID, Count},
-        success: function(data){
-            console.log(data);
-            if(data.success){
-                showSuccessToast(data.msg, "");
-            }else{
-                if(!data.login){
-                    showErrorToast("Lỗi", data.msg);
-                    activeNecessaryForm();
-                    activeLoginBox();
+    if (Count > 0) {
+        $.ajax({
+            url: '/add-cart-url',
+            type: 'POST',
+            data: { ItemID, Count },
+            success: function (data) {
+                console.log(data);
+                if (data.success) {
+                    showSuccessToast(data.msg, "");
+                } else {
+                    if (!data.login) {
+                        showErrorToast("Lỗi", data.msg);
+                        activeNecessaryForm();
+                        activeLoginBox();
+                    }
                 }
-            }
-        },
-        error: function(err){
+            },
+            error: function (err) {
 
-        }
-    })
+            }
+        })
+    } else {
+        showErrorToast("Số lượng sản phẩm không hợp lệ", "");
+    }
 }
 
 function createItem(ItemID, MainImg, NameItem, Cost) {
@@ -126,10 +176,7 @@ function createItem(ItemID, MainImg, NameItem, Cost) {
                     </div>
                 </div>
                 <div class="cost">
-                    ${Cost}
-                    <span>
-                        ₫
-                    </span>
+                    ${Cost} ₫
                 </div>
             </div>
             <div class="brand-ship">
@@ -167,8 +214,6 @@ $(document).ready(function () {
                 a_item.forEach(item => {
                     var cost = item.Cost.toLocaleString().replaceAll('.', ',');
                     var elementCreate = createItem(item.ItemID, item.MainImg, item.NameItem, cost)
-                    // console.log(item.MainImg)
-                    console.log(item.Type)
                     if (item.Type == "whey") {
                         wheyList.appendChild(elementCreate);
                     } else if (item.Type == "milk") {
@@ -268,22 +313,36 @@ a_minusItem.forEach(minus => {
     })
 })
 
-const mainProduct = document.querySelector(".main-product");
-const plusCountMainProduct = mainProduct.querySelector(".plus-button");
-const minusCountMainProduct = mainProduct.querySelector(".minus-button");
-const inputCountMainProduct = mainProduct.querySelector(".input-quantily");
+
 
 plusCountMainProduct.addEventListener("click", () => {
-    if (inputCountMainProduct.value < 99)
+    if (inputCountMainProduct.value < 99) {
         inputCountMainProduct.value++;
+        var productCost = parseInt(productCostElement.textContent.replace(/[₫,.]/g, '').trim()) * parseInt(inputCountMainProduct.value);
+        costTotalSpanProduct.innerHTML = `${productCost.toLocaleString()} ₫`;
+    }
 })
 minusCountMainProduct.addEventListener("click", () => {
-    if (inputCountMainProduct.value > 1)
+    if (inputCountMainProduct.value > 1) {
         inputCountMainProduct.value--;
+        var productCost = parseInt(productCostElement.textContent.replace(/[₫,.]/g, '').trim()) * parseInt(inputCountMainProduct.value);
+        costTotalSpanProduct.innerHTML = `${productCost.toLocaleString()} ₫`;
+    }
 })
 
+inputCountMainProduct.addEventListener("input", function () {
 
-function HTMLItemCart({ MainImg, NameItem, Count, Cost }) {
+    var inputValue = inputCountMainProduct.value;
+    inputCountMainProduct.value = parseInt(inputValue);
+    if (isNaN(inputValue) || inputValue == '') {
+        inputCountMainProduct.value = 0;
+    } else {
+        var productCost = parseInt(productCostElement.textContent.replace(/[₫,.]/g, '').trim()) * parseInt(inputCountMainProduct.value);
+        costTotalSpanProduct.innerHTML = `${productCost.toLocaleString()} ₫`;
+    }
+})
+
+function HTMLItemCart({ MainImg, NameItem, Count, CostAll, Cost, ItemID }) {
     const itemCart = document.createElement('div');
     itemCart.className = "item-in-cart"
     itemCart.innerHTML = `
@@ -307,13 +366,22 @@ function HTMLItemCart({ MainImg, NameItem, Count, Cost }) {
                         </div>
                     </div>
                     <div class="item-price">
-                        ${Cost}
+                        ${CostAll}
                         <span>
                             ₫
                         </span>
                     </div>
                 </div>
         `;
+
+    itemCart.querySelector('.item-img').addEventListener("click", function () {
+        itemEvent2({ ItemID, MainImg, NameItem, Cost });
+        // itemID,
+        // NameItem,
+        // Cost,
+        // MainImg,
+    })
+
     itemCart.querySelector('.plus').addEventListener('click', function () {
         let inputCountItem = this.closest('.item-quantity').querySelector(".quantity");
         if (inputCountItem.value < 99)
@@ -331,20 +399,27 @@ function HTMLItemCart({ MainImg, NameItem, Count, Cost }) {
 //// show item cart
 const cartButton2 = document.querySelector('.cart-button button');
 const listItemCartShow = cartShowMini.querySelector(".list-items");
+const totalCartShow = cartShowMini.querySelector(".total");
+const cartCountE = document.querySelector(".cart-count");
 
-cartButton2.addEventListener("click", function () {
+cartButton2.addEventListener("click", f_getItemCart);
+
+function f_getItemCart() {
     $.ajax({
         url: '/get-item-cart',
         type: 'GET',
         success: function (res) {
-            console.log(res.data);
             if (res.success) {
                 listItemCartShow.innerHTML = '';
+                let cost = 0;
                 res.data.forEach(value => {
-                    value.Cost = value.Cost.toLocaleString();
+                    cost += value.Cost * value.Count;
+                    value.CostAll = (value.Cost * value.Count).toLocaleString();
                     var divE = HTMLItemCart(value)
                     listItemCartShow.appendChild(divE);
                 })
+                totalCartShow.innerHTML = `Tổng <span>${cost.toLocaleString()}<span>₫</span></span>`;
+                cartCountE.innerText = res.data.length;
             }
         },
         error: function (err) {
@@ -352,7 +427,9 @@ cartButton2.addEventListener("click", function () {
         }
     }
     )
+}
+$(document).ready(function () {
+    f_getItemCart();
 })
-
 
 
