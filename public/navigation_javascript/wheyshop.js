@@ -1,4 +1,5 @@
-import {showSuccessToast } from "../src/toast.js";
+import { activeLoginBox, activeNecessaryForm } from "../src/function.js";
+import {showErrorToast, showSuccessToast } from "../src/toast.js";
 
 
 const html = document.querySelector('html');
@@ -43,7 +44,6 @@ function itemEvent(item, itemID) {
     chooseOption.id = itemID;
 
     inputCountMainProduct.value = 1;
-    
 }
 buyNow.addEventListener("click", f_buyNowBTN);
 addCart.addEventListener("click", f_addCartBTN);
@@ -63,6 +63,12 @@ function f_addCartBTN(){
             console.log(data);
             if(data.success){
                 showSuccessToast(data.msg, "");
+            }else{
+                if(!data.login){
+                    showErrorToast("Lỗi", data.msg);
+                    activeNecessaryForm();
+                    activeLoginBox();
+                }
             }
         },
         error: function(err){

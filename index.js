@@ -855,9 +855,17 @@ app.get('/get-customer-message', (req, res) => {
   var cookie = getCookie(req, "user_id");
   if (cookie) {
     var maKH = cookie.maKH;
-    getContentMessage(con, maKH, function (data) {
-      res.json({ value: data });
-    })
+    var sql = "SELECT * FROM historyMessage WHERE maKH = ?";
+    con.query(sql, [maKH], function (err, result) {
+        if (err) throw err;
+        if (result.length > 0) {
+          res.json({ success: true, value: result });
+        } else {
+          res.json({ success: false, value: result });
+        }
+    });
+  }else{
+    res.json({ success: false });
   }
 })
 
@@ -1672,7 +1680,7 @@ app.post('/add-cart-url', (req, res)=>{
       }
     })
   } else {
-    res.json({ success: false });
+    res.json({ success: false, msg: "Chưa đăng nhập", login: false });
   }
 })
 

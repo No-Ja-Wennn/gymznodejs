@@ -12,6 +12,7 @@ input[type="date"]::-webkit-calendar-picker-indicator {
     right: 0;
     align-items: center;
     justify-content: center;
+    z-index: 200;
 }
 
 .modal__body {

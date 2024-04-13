@@ -18,7 +18,9 @@ import {
     displayRightMessageHide,
     scrollToBottom,
     loadHideMessage,
-    sendMessage
+    sendMessage,
+    activeLoginBox,
+    removeHideMessage
 } from "./function.js";
 import { showSuccessToast, showErrorToast } from "./toast.js";
 import { validateCreateAccount, validateLoginValue, validateChangePass, isValidChangePass, isFormComplete } from './validate.js';
@@ -100,6 +102,7 @@ function f_logoutBTN() {
                     f_getValidCard();
                     cookieSave = null;
                     logoutSocket();
+                    removeHideMessage();
                     showSuccessToast("Đã đăng xuất", "Cảm ơn bạn đã sử dụng dịch vụ");
                 }
                 else
@@ -118,14 +121,16 @@ function innerValueAfterLogin(userName, code) {
     if (userNameElement1) {
         userNameElement1.innerText = userName;
     }
-    userNameElement2.innerText = userName;
-    accountCodeElement2.innerText = code;
-    logoutBTN2.style.display = "flex";
-    logoutBTN2.addEventListener("click", f_logoutBTN);
-    if (loginBTN2)
-        loginBTN2.addEventListener("click", () => {
-            window.location.href = './navigation/information_account.html';
-        })
+    if (userNameElement2 && userNameElement1) {
+        userNameElement2.innerText = userName;
+        accountCodeElement2.innerText = code;
+        logoutBTN2.style.display = "flex";
+        logoutBTN2.addEventListener("click", f_logoutBTN);
+        if (loginBTN2)
+            loginBTN2.addEventListener("click", () => {
+                window.location.href = './navigation/information_account.html';
+            })
+    }
 }
 
 
@@ -228,9 +233,9 @@ function getValueInformationForm(path) {
                     );
                 }
                 if (!data.login) {
-                    displayNoneAll();
-                    activeNecessaryForm();
-                    loginBox.style.display = "block";
+                    // displayNoneAll();
+                    // activeNecessaryForm();
+                    // loginBox.style.display = "block";
                 }
             }
         },
@@ -364,17 +369,19 @@ $(document).ready(function () {
                 data: $(this).serialize(),
                 success: function (data) {
                     if (data.success) {
+                        loadHideMessage();
+                        loginSocket(data.maKH);
                         innerValueAfterLogin(data.name, data.maKH);
                         removeAllInputValue();
                         displayNoneAll();
-                        loginBTN1.removeEventListener("click", f_loginBTN);
+                        if (loginBTN1)
+                            loginBTN1.removeEventListener("click", f_loginBTN);
                         if (loginBTN2)
                             loginBTN2.removeEventListener("click", f_loginBTN);
                         cookieSave = data;
                         getValueInformationForm(path);
                         activeClickChange();
                         f_getValidCard();
-                        loginSocket(data.maKH);
                         innerMesageBox(data.name);
                         showSuccessToast("Đăng nhập thành công", "Chào mừng bạn quay lại với hệ thống");
                     } else {
@@ -496,7 +503,7 @@ $(document).ready(function () {
                     activeClickChange();
                     innerMesageBox(value.name);
                     // setTimeout(()=>{
-                        loginSocket(value.maKH);
+                    loginSocket(value.maKH);
                     // }, 9000);
                 } else {
                     unActiveClickChange();
@@ -593,8 +600,14 @@ $(document).ready(function () {
         sendHideMsgBTN.addEventListener("click", function () {
             var valueInput = inputHideE.value.trim();
             if (valueInput != '') {
-                sendMessage(valueInput);
-                inputHideE.value = '';
+                var flag = sendMessage(valueInput);
+                if (flag)
+                    inputHideE.value = '';
+                else {
+                    displayNoneAll();
+                    activeNecessaryForm();
+                    activeLoginBox();
+                }
             }
         })
     if (inputHideE)

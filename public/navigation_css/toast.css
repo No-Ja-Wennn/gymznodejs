@@ -44,7 +44,7 @@
     position: fixed;
     top: 72px;
     right: 8px;
-    z-index: 99;
+    z-index: 9999;
     /* cho số cao cao để tránh bị đè lên những thằng khác*/
 }
 

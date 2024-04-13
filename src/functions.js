@@ -54,6 +54,7 @@ function changeStatusSeen(con, maKH, callback) {
 }
 
 function getContentMessage(con, maKH, callback) {
+    console.log("get content")
     var sql = "SELECT * FROM historyMessage WHERE maKH = ?";
     con.query(sql, [maKH], function (err, result) {
         if (err) throw err;

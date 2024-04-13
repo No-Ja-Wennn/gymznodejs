@@ -1,5 +1,14 @@
 
-import { customerID, displayLeftMessage, displayRightMessage, sendMessage, socket } from "../src/function.js";
+import {
+    activeLoginBox,
+    activeNecessaryForm,
+    customerID,
+    displayLeftMessage,
+    displayNoneAll,
+    displayRightMessage,
+    sendMessage,
+    socket
+} from "../src/function.js";
 import { showSuccessToast, showErrorToast } from "../src/toast.js";
 // import { innerBoxMsg } from "../src/function.js";
 
@@ -14,13 +23,13 @@ if (inputElement)
 
 // const stringSimilarity = require('string-similarity'); //
 const chatBoxMessage = document.querySelector('.chatbox__message');
-if (chatBoxMessage){
+if (chatBoxMessage) {
     const chatBoxList = chatBoxMessage.querySelector('.chatbox__message__list');
 }
 
 const inputBox = document.querySelector('.chatbox__bottom__input');
 // const inputElement = inputBox.querySelector('textarea');
-const sendButton = document.querySelector('.chatbox__bottom__send i');
+const sendButton = document.querySelector('.chatbox__bottom__send .send');
 
 const titleNameE = document.querySelector(".chatbox__head__title");
 
@@ -30,8 +39,15 @@ const titleNameE = document.querySelector(".chatbox__head__title");
 sendButton.addEventListener('click', async () => {
     var valueInput = inputElement.value.trim();
     if (valueInput != '') {
-        sendMessage(valueInput);
-        inputElement.value = '';
+        var flag = sendMessage(valueInput);
+        if (flag)
+            inputElement.value = '';
+        else {
+            showErrorToast("Gửi tin nhắn không thành công", "Vui lòng đăng nhập vào hệ thống");
+            displayNoneAll();
+            activeNecessaryForm();
+            activeLoginBox();
+        }
     }
 });
 

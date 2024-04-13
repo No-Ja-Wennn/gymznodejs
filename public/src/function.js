@@ -49,7 +49,9 @@ export function removeAllInputValue() {
     }
 }
 
-
+export function activeLoginBox() {
+    loginBox.style.display = 'block';
+}
 
 
 const titleNameE = document.querySelector(".chatbox__head__title");
@@ -79,7 +81,7 @@ function makeLiHide(value = "", option = "customer") {
     if (value) {
         chatBoxItem.className = `message ${option}`;
         if (option == "admin") {
-            console.log(hostCur)
+            // console.log(hostCur)
             var spanImg = document.createElement("span");
             spanImg.classList.add('admin-img');
             var imgElement = document.createElement("img");
@@ -431,7 +433,7 @@ export function innerMesageBox(name) {
         url: '/get-customer-message',
         type: "GET",
         success: function (data) {
-            if (data) {
+            if (data.success) {
                 var a_value = data.value;
                 a_value.forEach(value => {
                     var role = value.senderRole;
@@ -489,20 +491,24 @@ export function displayLeftMessageHide(message) {
 }
 
 export function loadHideMessage() {
+    console.log("ello")
     $.ajax({
         url: "/get-customer-message",
         type: 'GET',
         success: function (data) {
-            var a_value = data.value;
-            a_value.forEach(value => {
-                var role = value.senderRole;
-                if (role == "admin") {
-                    displayLeftMessageHide(value.message);
-                } else if (role == "customer") {
-                    displayRightMessageHide(value.message);
-                }
-            })
-            scrollToBottom();
+            if(data.success){
+                var a_value = data.value;
+                a_value.forEach(value => {
+                    var role = value.senderRole;
+                    if (role == "admin") {
+                        displayLeftMessageHide(value.message);
+                    } else if (role == "customer") {
+                        displayRightMessageHide(value.message);
+                    }
+                })
+                scrollToBottom();
+            }else{
+            }
         },
         error: function (err) {
             console.log(err);
@@ -510,11 +516,18 @@ export function loadHideMessage() {
     })
 }
 
+export function removeHideMessage() {
+    if (msgListHide)
+        msgListHide.innerHTML = '';
+}
+
 export function sendMessage(message) {
     if (socket) {
         socket.emit('clientMessage', { text: message, id: customerID });
+        return true;
     } else {
         console.log('You must be logged in to send a message');
+        return false;
     }
 }
 
@@ -527,7 +540,7 @@ export function removeMessageBox() {
 }
 
 export function loginSocket(maKH) {
-    console.log("login socker")
+    console.log("login socket")
     socket = io();
     // socket = io({
     //     query: {
@@ -597,7 +610,7 @@ export function updateRowShop(dataObj, editRow, flag = false) {
                     lableTag.style.display = 'none';
                     inputChange.style.display = 'none';
                     inputChange.addEventListener('change', function (img) {
-                        return function(event) {
+                        return function (event) {
                             changeFileInput(event, img);
                         };
                     }(imgE));
