@@ -56,6 +56,7 @@ body{
     justify-content: space-between;
     align-items: center;
     padding: 0 10px;
+    margin: 0 10px;
 }
 
 .header-logo{
@@ -906,6 +907,7 @@ body{
     max-width: 1280px;
     display: none;
     height: calc((100vh - 88px));
+    height: calc((100svh - 88px));
     /* height: fit-content; */
     width: 100%;
     padding: 0 10px;
@@ -1365,6 +1367,7 @@ body{
 
 @media only screen and (max-width: 1024px) {
     .header-wrapper{
+        margin: unset;
         max-width: 100%;
         width: 100%;
         flex-direction: column;
