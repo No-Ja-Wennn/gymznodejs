@@ -371,8 +371,28 @@ function HTMLItemCart({ MainImg, NameItem, Count, CostAll, Cost, ItemID }) {
                             ₫
                         </span>
                     </div>
+                    <button class="item-delete">
+                        <i class="fa-solid fa-trash-can"></i>
+                    </button>
                 </div>
         `;
+
+    const itemDelete = itemCart.querySelector(".item-delete").
+        addEventListener("click", function () {
+            $.ajax({
+                url: '/cus-remove-item-cart',
+                type: 'POST',
+                data: {ItemID},
+                success: function(res){
+                    if(res.success){
+                        f_getItemCart();
+                    }
+                },
+                error: function(err){
+                    console.error(err);
+                }
+            })
+        })
 
     itemCart.querySelector('.item-img').addEventListener("click", function () {
         itemEvent2({ ItemID, MainImg, NameItem, Cost });

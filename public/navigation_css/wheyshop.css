@@ -318,7 +318,8 @@ body{
     }
 }
 .cart-show{
-    display: flex;
+    /* display: flex; */
+    display: none;
     position: absolute;
     top: 93px;
     right: -15px;

@@ -857,14 +857,14 @@ app.get('/get-customer-message', (req, res) => {
     var maKH = cookie.maKH;
     var sql = "SELECT * FROM historyMessage WHERE maKH = ?";
     con.query(sql, [maKH], function (err, result) {
-        if (err) throw err;
-        if (result.length > 0) {
-          res.json({ success: true, value: result });
-        } else {
-          res.json({ success: false, value: result });
-        }
+      if (err) throw err;
+      if (result.length > 0) {
+        res.json({ success: true, value: result });
+      } else {
+        res.json({ success: false, value: result });
+      }
     });
-  }else{
+  } else {
     res.json({ success: false });
   }
 })
@@ -1659,25 +1659,41 @@ app.get('/get-item-cart', (req, res) => {
   }
 })
 
-app.post('/add-cart-url', (req, res)=>{
+app.post('/add-cart-url', (req, res) => {
   var cookie = getCookie(req, 'user_id');
   if (cookie) {
     const maKH = cookie.maKH;
-    let {ItemID, Count} = req.body;
+    let { ItemID, Count } = req.body;
     var sql = 'SELECT * FROM cart WHERE maKH = ? AND ItemId = ?';
-    con.query(sql, [maKH, ItemID], (err, result)=>{
-      if(err)  throw err;
-      if(result.length > 0){
+    con.query(sql, [maKH, ItemID], (err, result) => {
+      if (err) throw err;
+      if (result.length > 0) {
         Count = parseInt(Count)
-        console.log(typeof Count , typeof result[0].Count)
+        console.log(typeof Count, typeof result[0].Count)
         Count += result[0].Count;
         console.log("countsai: ", Count);
-        updateTable(con, 'cart', {Count}, `maKH = '${maKH}' AND ItemID = '${ItemID}'`);
-        res.json({success: true, msg: "Đã cập nhật giỏ hàng"});
-      }else{
-        insertIntoTable(con, 'cart', {maKH, ItemID, Count});
-        res.json({success: true, msg: "Đã thêm vào giỏ hàng"});
+        updateTable(con, 'cart', { Count }, `maKH = '${maKH}' AND ItemID = '${ItemID}'`);
+        res.json({ success: true, msg: "Đã cập nhật giỏ hàng" });
+      } else {
+        insertIntoTable(con, 'cart', { maKH, ItemID, Count });
+        res.json({ success: true, msg: "Đã thêm vào giỏ hàng" });
       }
+    })
+  } else {
+    res.json({ success: false, msg: "Chưa đăng nhập", login: false });
+  }
+})
+
+app.post('/cus-remove-item-cart', (req, res) => {
+  var cookie = getCookie(req, 'user_id');
+  if (cookie) {
+    const maKH = cookie.maKH;
+    let { ItemID } = req.body;
+    var sql = 'DELETE FROM cart WHERE maKH = ? AND ItemID = ?';
+    con.query(sql, [maKH, ItemID], (err, result) => {
+      if (err) throw err;
+      console.log("one row deleted");
+      res.json({ success: true});
     })
   } else {
     res.json({ success: false, msg: "Chưa đăng nhập", login: false });
