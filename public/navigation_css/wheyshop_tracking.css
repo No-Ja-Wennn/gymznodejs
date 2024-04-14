@@ -856,7 +856,7 @@ body {
     text-align: start;
 }
 .tab button.active{
-    background-color: #2196F31a !important;
+    background-color: #2196F311 !important;
 }
 .tab button:hover{
     background-color: #f5f5f5;
@@ -949,12 +949,12 @@ body {
     height: 160px;
     width: 100%;
     background-color: #f9f9f950;
-    border: 1px solid rgba(0, 0, 0, 0.05);
+    border: 1px solid #2196F31a;
     border-radius: 15px;
     cursor: pointer;
 }
 .order:hover{
-    background-color: #f8f8f8;
+    background-color: #2196F311;
 }
 .order-wrapper{
     height: 100%;
@@ -1002,7 +1002,7 @@ body {
     display: flex;
     justify-content: flex-start;
     align-items: center;
-    border: 1px solid rgba(0, 0, 0, 0.1);
+    border: 1px solid #0076d71a;
 }
 .first-product-img img{
     height: 100%;
@@ -1063,7 +1063,7 @@ body {
     display: flex;
     justify-content: space-between;
     align-items: flex-end;
-    border-top: 1px solid rgba(0, 0, 0, 0.05);
+    border-top: 1px solid #2196F31a;
     
 }
 
@@ -1077,6 +1077,9 @@ body {
     gap: 5px;
     color: #999;
     font-size: 14px;
+}
+.total-products:hover{
+    color: #0076d7;
 }
 .total-products span{
     font-size: 14px;
