@@ -98,6 +98,10 @@ addCart.addEventListener("click", f_addCartBTN);
 function f_buyNowBTN() {
     var ItemID = this.closest('.choose-options').id;
     console.log(ItemID);
+
+    localStorage.setItem('tempItem',
+        JSON.stringify({ ItemID, count: inputCountMainProduct.value }))
+    window.location.href = 'wheyshop_checkout.html';
 }
 function f_addCartBTN() {
     var ItemID = this.closest('.choose-options').id;
@@ -111,6 +115,8 @@ function f_addCartBTN() {
                 console.log(data);
                 if (data.success) {
                     showSuccessToast(data.msg, "");
+                    if (data.count)
+                        cartCountE.innerText = data.count;
                 } else {
                     if (!data.login) {
                         showErrorToast("Lỗi", data.msg);

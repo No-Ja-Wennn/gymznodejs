@@ -104,7 +104,7 @@ function createTable() {
   const tables = [
     {
       name: 'users',
-      columns: 'maKH VARCHAR(10) PRIMARY KEY, name VARCHAR(255), email VARCHAR(255), dateOfBirth DATE, phoneNumber VARCHAR(11)'
+      columns: 'maKH VARCHAR(10) PRIMARY KEY, name VARCHAR(255), email VARCHAR(255), dateOfBirth DATE, phoneNumber VARCHAR(11), address VARCHAR(255)'
     },
     {
       name: 'loginData',
@@ -133,6 +133,14 @@ function createTable() {
     {
       name: 'cart',
       columns: 'maKH VARCHAR(10), ItemID VARCHAR(10), Count INT, PRIMARY KEY(maKH, itemID), FOREIGN KEY(maKH) REFERENCES users(maKH) ON DELETE CASCADE, FOREIGN KEY(ItemID) REFERENCES shopdata(ItemID) ON DELETE CASCADE'
+    },
+    {
+      name: 'orderData',
+      columns: 'orderID VARCHAR(10), ItemID VARCHAR(10), Count INT, PRIMARY KEY(orderID, ItemID), FOREIGN KEY(ItemID) REFERENCES shopData(ItemID) ON DELETE CASCADE'
+    },
+    {
+      name: 'status',
+      columns: 'orderID VARCHAR(10) PRIMARY KEY, maKH VARCHAR(10), Status ENUM("oderSuccess", "transport", "complete", "canceled"), FOREIGN KEY(orderID) REFERENCES orderData(orderID), FOREIGN KEY(maKH) REFERENCES users(maKH)'
     }
   ];
 
@@ -1673,10 +1681,16 @@ app.post('/add-cart-url', (req, res) => {
         Count += result[0].Count;
         console.log("countsai: ", Count);
         updateTable(con, 'cart', { Count }, `maKH = '${maKH}' AND ItemID = '${ItemID}'`);
+
         res.json({ success: true, msg: "Đã cập nhật giỏ hàng" });
+
       } else {
         insertIntoTable(con, 'cart', { maKH, ItemID, Count });
-        res.json({ success: true, msg: "Đã thêm vào giỏ hàng" });
+        var sql = 'SELECT COUNT(*) AS count FROM cart WHERE maKH = ?';
+        con.query(sql, [maKH], (err, result) => {
+          if (err) throw err;
+          res.json({ success: true, msg: "Đã thêm vào giỏ hàng", count: result[0].count });
+        })
       }
     })
   } else {
@@ -1693,7 +1707,23 @@ app.post('/cus-remove-item-cart', (req, res) => {
     con.query(sql, [maKH, ItemID], (err, result) => {
       if (err) throw err;
       console.log("one row deleted");
-      res.json({ success: true});
+      res.json({ success: true });
+    })
+  } else {
+    res.json({ success: false, msg: "Chưa đăng nhập", login: false });
+  }
+})
+
+app.post('/get-item-by-id', (req, res) => {
+  var cookie = getCookie(req, 'user_id');
+  if (cookie) {
+    const maKH = cookie.maKH;
+    const { ItemID } = req.body;
+    var sql = 'SELECT * FROM shopData WHERE ItemID = ?';
+    con.query(sql, [ItemID], (err, result) => {
+      if (err) throw err;
+      console.log(result)
+      res.json({ success: true, data: result[0] });
     })
   } else {
     res.json({ success: false, msg: "Chưa đăng nhập", login: false });
