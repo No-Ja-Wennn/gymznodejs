@@ -94,6 +94,7 @@ function itemEvent2({
 buyNow.addEventListener("click", f_buyNowBTN);
 addCart.addEventListener("click", f_addCartBTN);
 
+
 function f_buyNowBTN() {
     var ItemID = this.closest('.choose-options').id;
     console.log(ItemID);
@@ -382,13 +383,13 @@ function HTMLItemCart({ MainImg, NameItem, Count, CostAll, Cost, ItemID }) {
             $.ajax({
                 url: '/cus-remove-item-cart',
                 type: 'POST',
-                data: {ItemID},
-                success: function(res){
-                    if(res.success){
+                data: { ItemID },
+                success: function (res) {
+                    if (res.success) {
                         f_getItemCart();
                     }
                 },
-                error: function(err){
+                error: function (err) {
                     console.error(err);
                 }
             })
