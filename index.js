@@ -187,6 +187,84 @@ app.post('/login-url', (req, res) => {
 
 app.post('/create-account-url', authenToken, (req, res) => {
   // data of form in req.body
+  console.log("hello")
+  const { fullname, email, password } = req.body;
+  // ktra ton tai
+  console.log(req.body)
+  let emailLower = email.toLowerCase();
+  var sqlQuery = "SELECT email FROM users";
+  con.query(sqlQuery, function (err, result, fileds) {
+    var test = false;
+    result.map(value => {
+      if (!test && value.email == emailLower) test = true;
+    })
+    if (!test) {
+      con.query("SELECT maKH FROM users ORDER BY maKH DESC LIMIT 1",
+        function (err, result, fields) {
+          if (err) throw err;
+          var maKH;
+          if (!result[0]) {
+            maKH = 'MK0001';
+          } else {
+            maKH = generateCustomerCode(result[0].maKH);
+          }
+
+          var sql = `INSERT INTO users (maKH ,name, email) VALUES ('${maKH}', '${fullname}',  '${emailLower}')`;
+          con.query(sql, function (err, result) {
+            if (err) throw err;
+            sql = `INSERT INTO loginData (maKH ,password) VALUES ('${maKH}', '${password}')`;
+            con.query(sql, function (err, result) {
+              if (err) throw err;
+              // con.query("SELECT maThe FROM cardData ORDER BY maThe DESC LIMIT 1",
+              //   function (err, result, fields) {
+              //     if (err) throw err;
+              //     var maThe;
+              //     if (!result[0]) {
+              //       maThe = 'MT0001';
+              //     } else {
+              //       maThe = generateCustomerCode(result[0].maThe);
+              //     }
+              //     var cardData = { maKH: maKH, maThe: maThe };
+              //     insertIntoTable(con, "cardData", cardData);
+
+              //     con.query("SELECT maLT FROM calendarData ORDER BY maLT DESC LIMIT 1",
+              //       function (err, result, fields) {
+              //         if (err) throw err;
+              //         var maLT;
+              //         if (!result[0]) {
+              //           maLT = 'LT0001';
+              //         } else {
+              //           maLT = generateCustomerCode(result[0].maLT);
+              //         }
+              //         var calendarData = { maLT: maLT, maThe: maThe };
+              //         insertIntoTable(con, "calendarData", calendarData);
+              //       }
+              //     )
+              //   }
+              // )
+              var data = {
+                maKH,
+                fullname,
+                email: emailLower,
+                password
+              }
+              res.json({ success: true, active: true, acc: data });
+              res.end();
+            });
+
+          });
+        });
+    } else {
+      console.log("trung email")
+      res.json({ success: false, active: false });
+      res.end();
+    }
+  });
+});
+
+app.post('/create-account-url-cus', (req, res) => {
+  // data of form in req.body
+  console.log("hello")
   const { fullname, email, password } = req.body;
   // ktra ton tai
   console.log(req.body)

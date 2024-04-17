@@ -397,11 +397,13 @@ $(document).ready(function () {
     $('#create-account-form').submit(function (e) {
         e.preventDefault();
         if (validateCreateAccount()) {
+            console.log("valid")
             $.ajax({
-                url: '/create-account-url',
+                url: '/create-account-url-cus',
                 type: 'POST',
                 data: $(this).serialize(),
                 success: function (data) {
+                    console.log("success")
                     if (data.active == true) {
                         removeAllInputValue();
                         displayNoneAll();
