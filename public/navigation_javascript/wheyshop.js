@@ -94,6 +94,7 @@ function itemEvent2({
 buyNow.addEventListener("click", f_buyNowBTN);
 addCart.addEventListener("click", f_addCartBTN);
 
+
 function f_buyNowBTN() {
     var ItemID = this.closest('.choose-options').id;
     console.log(ItemID);
