@@ -398,7 +398,7 @@ app.post('/your-forgot-password-url', function (req, res) {
       console.log("length: ", result.length)
       if (result.length <= 0) {
         res.json({ active: false, register: false });
-      }else{
+      } else {
         res.json({ active: false, register: true });
       }
     })
@@ -420,7 +420,16 @@ app.post('/your-change-password-url', function (req, res) {
           if (err) throw err;
           console.log("Password updated");
           // Gửi phản hồi về client
-          res.json({ active: true });
+          var sql = "SELECT users.maKH, users.name, users.email, loginData.password FROM users INNER JOIN loginData ON users.maKH = loginData.maKH WHERE users.email = ? AND loginData.password = ?";
+          con.query(sql, [emailLower, newPassword], function (err, result) {
+            if (err) throw err;
+            if (result.length > 0) {
+              var user = result[0];
+              setCookie(res, "user_id", user);
+              res.json({ active: true, user });
+            }
+          })
+
         });
       } else {
         console.log("No user found with this email");

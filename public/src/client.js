@@ -478,7 +478,8 @@ $(document).ready(function () {
                     } else {
                         removeAllInputValue();
                         displayNoneAll();
-                        showSuccessToast("Đổi mật khẩu thành công", "Vui lòng đăng nhập bằng mật khẩu mới")
+                        f_affterLoginCus(response.user);
+                        showSuccessToast("Đổi mật khẩu thành công", "Đã đăng nhập vào hệ thống");
                         timeLeftElement.textContent = 60 + "s";
                         sendCodeBTN.addEventListener("click", f_sendCodeBTN);
                         if (typeof countdownTimer !== 'undefined') {
