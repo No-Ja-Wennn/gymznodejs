@@ -184,16 +184,16 @@ var img1 = document.querySelector(".img_change1");
 var img2 = document.querySelector(".img_change2");
 var modalImg = document.getElementById("img01");
 var captionText = document.getElementById("caption");
-img1.addEventListener("click", function () {
-    modalShow.style.display = "block";
-    modalImg.src = this.src;
-    captionText.innerHTML = this.alt;
-})
-img2.addEventListener("click", function () {
-    modalShow.style.display = "block";
-    modalImg.src = this.src;
-    captionText.innerHTML = this.alt;
-})
+// img1.addEventListener("click", function () {
+//     modalShow.style.display = "block";
+//     modalImg.src = this.src;
+//     captionText.innerHTML = this.alt;
+// })
+// img2.addEventListener("click", function () {
+//     modalShow.style.display = "block";
+//     modalImg.src = this.src;
+//     captionText.innerHTML = this.alt;
+// })
 
 // Get the <span> element that closes the modal
 var span = document.getElementsByClassName("close")[0];
