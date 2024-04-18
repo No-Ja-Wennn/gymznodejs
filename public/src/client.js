@@ -168,7 +168,7 @@ function f_sendCodeBTN(e) {
                     }, 1000);
                 }
                 else
-                    showErrorToast("Lỗi", "Tài khoản không tồn tại trong hệ thống");
+                    showErrorToast("Lỗi", "Địa chỉ email chưa được đăng ký");
             }
         });
     }
@@ -432,29 +432,40 @@ $(document).ready(function () {
         // Lấy dữ liệu từ form
         var emailValue = forgotPassBox.querySelector(".login-email").value;
         var codeValue = forgotPassBox.querySelector(".code-pass").value;
-        if (emailValue == emailChangePass) {
-            if (emailValue && codeValue) {
-                // Gửi yêu cầu POST đến server
-                $.ajax({
-                    url: '/your-forgot-password-url',
-                    type: 'POST',
-                    data: { email: emailValue, code: codeValue },
-                    success: function (response) {
-                        if (response.active == false) {
-                            showErrorToast("Mã khôi phục không đúng", "Vui lòng nhập lại mã xác thực")
-                        } else {
-                            removeAllInputValue();
-                            displayNoneAll();
-                            activeNecessaryForm();
-                            changePassBox.style.display = "block";
+        if(emailValue && codeValue){
+            // if ( emailValue) {
+                if (emailValue && codeValue) {
+                    // Gửi yêu cầu POST đến server
+                    $.ajax({
+                        url: '/your-forgot-password-url',
+                        type: 'POST',
+                        data: { email: emailValue, code: codeValue },
+                        success: function (response) {
+                            if (response.active == false) {
+                                if(!response.register)
+                                    showErrorToast("Địa chỉ email chưa được đăng ký")
+                                else
+                                showErrorToast("Mã khôi phục không đúng", "Vui lòng nhập lại mã khôi phục")
+                            } else {
+                                removeAllInputValue();
+                                displayNoneAll();
+                                activeNecessaryForm();
+                                changePassBox.style.display = "block";
+                            }
                         }
-                    }
-                });
-            } else {
-                showErrorToast("Thất bại", "Vui lòng điền đầy đủ thông tin")
-            }
-        } else {
-            showErrorToast("Lỗi", "Địa chỉ email đã thay đổi");
+                    });
+                } else {
+                    showErrorToast("Thất bại", "Vui lòng điền đầy đủ thông tin")
+                }
+            // } else {
+            //     // showErrorToast("Lỗi", "Bạn đã thay đổi địa chỉ email khác");
+
+            // }
+        }else{
+            if(!emailValue)
+            showErrorToast("Vui lòng điền địa chỉ email");
+            else if(!codeValue)
+            showErrorToast("Vui lòng điền mã khôi phục");
         }
     });
 
@@ -482,6 +493,7 @@ $(document).ready(function () {
                         if (typeof countdownTimer !== 'undefined') {
                             clearInterval(countdownTimer);
                         }
+                        emailChangePass = null;
                     }
                 }
             });

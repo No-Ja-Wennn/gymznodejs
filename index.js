@@ -368,7 +368,8 @@ function textForgotPass(code) {
   Đội ngũ hỗ trợ phòng tập gym`;
 
 }
-let codeChangePass = 0;
+let codeChangePass = {};
+
 app.post('/your-send-code-url', function (req, res) {
   const { email } = req.body;
   var emailLower = email.toLowerCase();
@@ -380,13 +381,14 @@ app.post('/your-send-code-url', function (req, res) {
 
     if (result.length > 0) {
       var randomNumber = Math.floor(Math.random() * 1000000);
-      codeChangePass = randomNumber;
+      codeChangePass[emailLower] = randomNumber;
       var mailOptions = {
         from: 'dtc225180268@ictu.edu.vn',
         to: email,
         subject: 'HỆ THỐNG PHÒNG TẬP GYMZ!',
         text: textForgotPass(randomNumber)
       };
+      console.log(codeChangePass)
 
       transporter.sendMail(mailOptions, function (error, info) {
         if (error) {
@@ -408,11 +410,23 @@ app.post('/your-send-code-url', function (req, res) {
 
 app.post('/your-forgot-password-url', function (req, res) {
   const { email, code } = req.body;
-  if (email && code == codeChangePass) {
+  console.log(req.body)
+  var emailLower = email.toLowerCase();
+  if (email && code == codeChangePass[emailLower]) {
     // Gửi phản hồi về client
     res.json({ active: true });
   } else {
-    res.json({ active: false });
+    var sql = `SELECT * FROM users WHERE email = ?`;
+
+    con.query(sql, [emailLower], function (err, result) {
+      if (err) throw err;
+      console.log("length: ", result.length)
+      if (result.length <= 0) {
+        res.json({ active: false, register: false });
+      }else{
+        res.json({ active: false, register: true });
+      }
+    })
   }
 });
 app.post('/your-change-password-url', function (req, res) {
