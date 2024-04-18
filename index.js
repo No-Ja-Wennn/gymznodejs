@@ -169,7 +169,7 @@ function createTable() {
 app.post('/login-url', (req, res) => {
   const { email, password } = req.body;
   const lowerCaseEmail = email.toLowerCase();
-  var sql = "SELECT users.maKH, users.name, loginData.password FROM users INNER JOIN loginData ON users.maKH = loginData.maKH WHERE users.email = ? AND loginData.password = ?";
+  var sql = "SELECT users.maKH, users.name, users.email, loginData.password FROM users INNER JOIN loginData ON users.maKH = loginData.maKH WHERE users.email = ? AND loginData.password = ?";
   con.query(sql, [lowerCaseEmail, password], function (err, result) {
     if (err) throw err;
     if (result.length > 0) {
@@ -292,40 +292,15 @@ app.post('/create-account-url-cus', (req, res) => {
             sql = `INSERT INTO loginData (maKH ,password) VALUES ('${maKH}', '${password}')`;
             con.query(sql, function (err, result) {
               if (err) throw err;
-              // con.query("SELECT maThe FROM cardData ORDER BY maThe DESC LIMIT 1",
-              //   function (err, result, fields) {
-              //     if (err) throw err;
-              //     var maThe;
-              //     if (!result[0]) {
-              //       maThe = 'MT0001';
-              //     } else {
-              //       maThe = generateCustomerCode(result[0].maThe);
-              //     }
-              //     var cardData = { maKH: maKH, maThe: maThe };
-              //     insertIntoTable(con, "cardData", cardData);
 
-              //     con.query("SELECT maLT FROM calendarData ORDER BY maLT DESC LIMIT 1",
-              //       function (err, result, fields) {
-              //         if (err) throw err;
-              //         var maLT;
-              //         if (!result[0]) {
-              //           maLT = 'LT0001';
-              //         } else {
-              //           maLT = generateCustomerCode(result[0].maLT);
-              //         }
-              //         var calendarData = { maLT: maLT, maThe: maThe };
-              //         insertIntoTable(con, "calendarData", calendarData);
-              //       }
-              //     )
-              //   }
-              // )
-              var data = {
+              var user = {
                 maKH,
-                fullname,
+                name: fullname,
                 email: emailLower,
                 password
               }
-              res.json({ success: true, active: true, acc: data });
+              setCookie(res, "user_id", user);
+              res.json({ success: true, active: true, acc: user });
               res.end();
             });
 

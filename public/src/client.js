@@ -184,7 +184,6 @@ function getValueInformationForm(path) {
     } else {
         type = "other";
     }
-    console.log(type)
     let loaderTimeout = setTimeout(function () {
         activeNecessaryForm();
         overlayBox.removeEventListener("click", displayNoneAll);
@@ -356,7 +355,22 @@ if (chatHideBox) {
     inputHideE = chatHideBox.querySelector('.input-text');
 }
 
-
+function f_affterLoginCus(data){
+    loadHideMessage();
+    loginSocket(data.maKH);
+    innerValueAfterLogin(data.name, data.maKH);
+    removeAllInputValue();
+    displayNoneAll();
+    if (loginBTN1)
+        loginBTN1.removeEventListener("click", f_loginBTN);
+    if (loginBTN2)
+        loginBTN2.removeEventListener("click", f_loginBTN);
+    cookieSave = data;
+    getValueInformationForm(path);
+    activeClickChange();
+    f_getValidCard();
+    innerMesageBox(data.name);
+}
 
 // client.js
 $(document).ready(function () {
@@ -369,20 +383,7 @@ $(document).ready(function () {
                 data: $(this).serialize(),
                 success: function (data) {
                     if (data.success) {
-                        loadHideMessage();
-                        loginSocket(data.maKH);
-                        innerValueAfterLogin(data.name, data.maKH);
-                        removeAllInputValue();
-                        displayNoneAll();
-                        if (loginBTN1)
-                            loginBTN1.removeEventListener("click", f_loginBTN);
-                        if (loginBTN2)
-                            loginBTN2.removeEventListener("click", f_loginBTN);
-                        cookieSave = data;
-                        getValueInformationForm(path);
-                        activeClickChange();
-                        f_getValidCard();
-                        innerMesageBox(data.name);
+                        f_affterLoginCus(data);
                         showSuccessToast("Đăng nhập thành công", "Chào mừng bạn quay lại với hệ thống");
                     } else {
                         showErrorToast("Thất bại", "Email hoặc mật khẩu không đúng");
@@ -403,11 +404,11 @@ $(document).ready(function () {
                 type: 'POST',
                 data: $(this).serialize(),
                 success: function (data) {
-                    console.log("success")
                     if (data.active == true) {
                         removeAllInputValue();
                         displayNoneAll();
-                        showSuccessToast("Đăng ký tài khoản thành công", "Hãy đăng nhập bằng tài khoản vừa tạo");
+                        f_affterLoginCus(data.acc);
+                        showSuccessToast("Đăng ký tài khoản thành công", "Đã đăng nhập vào hệ thống");
                     } else {
                         showSuccessToast("Địa chỉ email đã được sử dụng", "Vui lòng thử địa chỉ email khác");
                     }
@@ -432,40 +433,30 @@ $(document).ready(function () {
         // Lấy dữ liệu từ form
         var emailValue = forgotPassBox.querySelector(".login-email").value;
         var codeValue = forgotPassBox.querySelector(".code-pass").value;
-        if(emailValue && codeValue){
-            // if ( emailValue) {
-                if (emailValue && codeValue) {
-                    // Gửi yêu cầu POST đến server
-                    $.ajax({
-                        url: '/your-forgot-password-url',
-                        type: 'POST',
-                        data: { email: emailValue, code: codeValue },
-                        success: function (response) {
-                            if (response.active == false) {
-                                if(!response.register)
-                                    showErrorToast("Địa chỉ email chưa được đăng ký")
-                                else
-                                showErrorToast("Mã khôi phục không đúng", "Vui lòng nhập lại mã khôi phục")
-                            } else {
-                                removeAllInputValue();
-                                displayNoneAll();
-                                activeNecessaryForm();
-                                changePassBox.style.display = "block";
-                            }
-                        }
-                    });
-                } else {
-                    showErrorToast("Thất bại", "Vui lòng điền đầy đủ thông tin")
+        if (emailValue && codeValue) {
+            $.ajax({
+                url: '/your-forgot-password-url',
+                type: 'POST',
+                data: { email: emailValue, code: codeValue },
+                success: function (response) {
+                    if (response.active == false) {
+                        if (!response.register)
+                            showErrorToast("Địa chỉ email chưa được đăng ký");
+                        else
+                            showErrorToast("Mã khôi phục không đúng", "Vui lòng nhập lại mã khôi phục");
+                    } else {
+                        removeAllInputValue();
+                        displayNoneAll();
+                        activeNecessaryForm();
+                        changePassBox.style.display = "block";
+                    }
                 }
-            // } else {
-            //     // showErrorToast("Lỗi", "Bạn đã thay đổi địa chỉ email khác");
-
-            // }
-        }else{
-            if(!emailValue)
-            showErrorToast("Vui lòng điền địa chỉ email");
-            else if(!codeValue)
-            showErrorToast("Vui lòng điền mã khôi phục");
+            });
+        } else {
+            if (!emailValue)
+                showErrorToast("Vui lòng điền địa chỉ email");
+            else if (!codeValue)
+                showErrorToast("Vui lòng điền mã khôi phục");
         }
     });
 

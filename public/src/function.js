@@ -467,7 +467,6 @@ const chatHideBox = document.querySelector(".chat-box");
 let msgListHide = null;
 if (chatHideBox) {
     msgListHide = chatHideBox.querySelector(".chat-log");
-    console.log(msgListHide)
 }
 
 export function scrollToBottom() {
@@ -491,7 +490,6 @@ export function displayLeftMessageHide(message) {
 }
 
 export function loadHideMessage() {
-    console.log("ello")
     $.ajax({
         url: "/get-customer-message",
         type: 'GET',
@@ -540,7 +538,6 @@ export function removeMessageBox() {
 }
 
 export function loginSocket(maKH) {
-    console.log("login socket")
     socket = io();
     // socket = io({
     //     query: {
@@ -551,7 +548,7 @@ export function loginSocket(maKH) {
     socket.on('connect', () => {
         console.log('Connected to server');
     });
-    showSuccessToast("kết lối");
+    // showSuccessToast("kết lối");
     socket.on('adminMessage', (data) => {
         if (customerID == data.maKH) {
             displayLeftMessage(data.message);
