@@ -1313,7 +1313,7 @@ li.message__user.message__user:hover .message__user__name__options {
 
 
 .scrollable-content {
-    height: 402px;
+    height: calc(100vh - 195px);
     overflow-y: auto;
 }
 
