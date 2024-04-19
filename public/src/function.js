@@ -315,15 +315,17 @@ export function activeEventClickBox(msgBox) {
     });
 }
 let activeMsgBox;
-function activeFunctionApp() {
+function activeFunctionApp(activeFirst = true) {
     let msgBoxes = document.querySelectorAll('.msg-box');
 
     // Mặc định chọn msg-box đầu tiên và thêm class active
     activeMsgBox = msgBoxes[0];
 
     if (activeMsgBox) {
-        activeMsgBox.classList.add('active');
-        activeMsgBox.click();
+        if(activeFirst){
+            activeMsgBox.classList.add('active');
+            activeMsgBox.click();
+        }
         msgBoxes.forEach(msgBox => {
             const moreOptionBtn = msgBox.querySelector('.more-option-bt');
             const boxBot = msgBox.querySelector('.box-bot');
@@ -384,6 +386,27 @@ export function innerBoxMsg(data) {
     activeFunctionApp();
 }
 
+export function innerAloneMsg(value) {
+    if (msgList)
+        msgList.appendChild(createMessageBox(value.maKH, value.name, value.senderRole, value.message, value.seen))
+    activeFunctionApp(false);
+}
+export function removeAllBoxMessage() {
+    if (msgList)
+        msgList.innerHTML = '';
+}
+
+export function replaceNullUndefinedWithEmptyString(obj) {
+    if (obj === null || typeof obj !== 'object') {
+        return obj;
+    }
+    for (let key in obj) {
+        if (obj[key] === null || obj[key] === undefined) {
+            obj[key] = '';
+        }
+    }
+    return obj;
+}
 
 //
 export function removeAccents(str) {
@@ -494,7 +517,7 @@ export function loadHideMessage() {
         url: "/get-customer-message",
         type: 'GET',
         success: function (data) {
-            if(data.success){
+            if (data.success) {
                 var a_value = data.value;
                 a_value.forEach(value => {
                     var role = value.senderRole;
@@ -505,7 +528,7 @@ export function loadHideMessage() {
                     }
                 })
                 scrollToBottom();
-            }else{
+            } else {
             }
         },
         error: function (err) {

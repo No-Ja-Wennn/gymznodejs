@@ -924,6 +924,31 @@ app.get('/get-box-message', authenToken, (req, res) => {
   });
 });
 
+
+app.get('/get-user-chat', authenToken, (req, res) => {
+  var sql = `
+    SELECT u.maKH, u.name, hm.messageID, hm.senderRole, hm.seen, hm.message
+    FROM users u
+    LEFT JOIN (
+      SELECT maKH, MAX(messageID) AS latest_messageID
+      FROM historyMessage
+      GROUP BY maKH
+    ) latest_msg ON u.maKH = latest_msg.maKH
+    LEFT JOIN historyMessage hm ON latest_msg.latest_messageID = hm.messageID
+  `;
+  // var sql = `
+  //   SELECT u.maKH, u.name, hm.messageID, hm.senderRole, hm.seen, hm.message
+  //   FROM users u
+  //   LEFT JOIN history_message hm ON u.maKH = hm.maKH
+  // `;
+
+  con.query(sql, (error, results) => {
+    console.log(results);
+    if (results)
+      res.json({ data: results });
+  })
+});
+
 app.post('/get-content-message', (req, res) => {
   var { maKH } = req.body;
 

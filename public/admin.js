@@ -7,10 +7,13 @@ import {
     displayLeftMessage,
     displayNoneAll,
     displayRightMessage,
+    innerAloneMsg,
     innerBoxMsg,
     maKHActive,
     removeAccents,
+    removeAllBoxMessage,
     removeAllInputValue,
+    replaceNullUndefinedWithEmptyString,
     updateRowShop
 } from "./src/function.js";
 import { showErrorToast, showSuccessToast } from "./src/toast.js";
@@ -435,20 +438,61 @@ function activeNewMessage(maKH, name, role, message) {
 const boxList = document.querySelector('.msg-list');
 
 var searchChatInput = document.getElementById("searchInput");
-if (searchChatInput)
-    searchChatInput.addEventListener("input", function () {
+if (searchChatInput) {
+    let dataMessage = null;
+    searchChatInput.addEventListener("click", function () {
+        var accessToken = localStorage.getItem('accessToken');
         var inputValue = this.value.toLowerCase();
-        var a_chatbox = boxList.querySelectorAll(".msg-box");
-        a_chatbox = Array.from(a_chatbox);
-        a_chatbox.forEach(element => {
-            element.style.display = "flex";
-            var name = element.querySelector(".user-ifm-name").innerText.toLowerCase();
-            var id = element.querySelector(".user-ifm-card-number").innerText.toLowerCase();
-            if (!(name.includes(inputValue) || id.includes(inputValue))) {
-                element.style.display = "none";
+        sendRequest(
+            '/get-user-chat',
+            'GET',
+            {
+                'Authorization': 'Bearer ' + accessToken
+            },
+            null,
+            function (response) {
+                var data = response.data;
+                console.log(data);
+                // innerBoxMsg(data);
+                dataMessage = data;
+                removeAllBoxMessage();
+                cancelFindMsg.style.display = 'flex';
+
+            },
+            function (err) {
+                console.log(err);
             }
-        })
+        )
     })
+
+    searchChatInput.addEventListener("input", function () {
+        var inputValue = this.value.toLowerCase().trim();
+        if (inputValue) {
+            removeAllBoxMessage();
+            dataMessage.forEach(data => {
+                var nameCompear = data.name.toLowerCase().trim();
+                var maKHCompear = data.maKH.toLowerCase().trim();
+                console.log(data.name, "va: ", inputValue);
+                if ((nameCompear.includes(inputValue) || maKHCompear.includes(inputValue))) {
+                    data = replaceNullUndefinedWithEmptyString(data);
+                    innerAloneMsg(data);
+                }
+            })
+        } else {
+            removeAllBoxMessage();
+            // f_getBoxMsg();
+        }
+
+    })
+}
+
+const cancelFindMsg = document.getElementById("cancel__find__msg");
+cancelFindMsg.addEventListener("click", function () {
+    searchChatInput.value = '';
+    removeAllBoxMessage();
+    f_getBoxMsg();
+    this.style.display = 'none';
+})
 
 /* REMOVE CHAT MESSAGE */
 // bên function.js
@@ -1595,7 +1639,7 @@ function previewImage() {
     const image = parentThis.querySelector('img'); // Lấy hình ảnh theo ID
 
     const files = this.files; // Lấy danh sách các file được chọn từ input
-    
+
     // Kiểm tra xem có file nào được chọn không
     if (files.length > 0) {
         const file = files[0]; // Lấy file đầu tiên trong danh sách
@@ -1604,7 +1648,7 @@ function previewImage() {
         const reader = new FileReader();
 
         // Định nghĩa hàm xử lý khi file được đọc thành công
-        reader.onload = function(e) {
+        reader.onload = function (e) {
             image.src = e.target.result; // Gán nguồn (src) của ảnh là dữ liệu của file đã đọc
         };
 
@@ -1618,14 +1662,14 @@ function previewImage() {
 
 let imgInputAdd = addProductBox.querySelectorAll(".content-img-main");
 imgInputAdd = Array.from(imgInputAdd);
-imgInputAdd.forEach(element=>element.addEventListener('change', previewImage))
+imgInputAdd.forEach(element => element.addEventListener('change', previewImage))
 
 
 $('#form-add-product').submit(function (e) {
     e.preventDefault();
     var accessToken = localStorage.getItem('accessToken');
     var dataObj = splitSerialize($(this).serialize());
-    
+
     var file_input1 = addProductBox.querySelector('.content-img-main1');
     var file_input2 = addProductBox.querySelector('.content-img-main2');
     var file_data1 = file_input1.files[0];
@@ -1635,32 +1679,32 @@ $('#form-add-product').submit(function (e) {
     if (validateAddProduct(dataObj)) {
 
 
-    var form_data = new FormData();
-    form_data.append('file1', file_data1);
-    form_data.append('file2', file_data2);
-    form_data.append('dataItem', JSON.stringify(dataObj));
-    console.log(dataObj);
-    $.ajax({
-        url: '/add-product-item',
-        type: 'POST',
-        headers: {
-            'Authorization': 'Bearer ' + accessToken
-        },
-        data: form_data,
-        cache: false,
-        contentType: false,
-        processData: false,
-        success: function (response) {
-            if (response.success) {
-                insertToTable('shop', response.data);
-                displayNoneAll();
-                removeAllInputValue();
-                showSuccessToast("Thêm sản phẩm thành công");
-            } else {
-                showErrorToast("Thêm sản phẩm thất bại", response.notifi);
+        var form_data = new FormData();
+        form_data.append('file1', file_data1);
+        form_data.append('file2', file_data2);
+        form_data.append('dataItem', JSON.stringify(dataObj));
+        console.log(dataObj);
+        $.ajax({
+            url: '/add-product-item',
+            type: 'POST',
+            headers: {
+                'Authorization': 'Bearer ' + accessToken
+            },
+            data: form_data,
+            cache: false,
+            contentType: false,
+            processData: false,
+            success: function (response) {
+                if (response.success) {
+                    insertToTable('shop', response.data);
+                    displayNoneAll();
+                    removeAllInputValue();
+                    showSuccessToast("Thêm sản phẩm thành công");
+                } else {
+                    showErrorToast("Thêm sản phẩm thất bại", response.notifi);
+                }
             }
-        }
-    });
+        });
     }
 })
 
@@ -1826,10 +1870,10 @@ function f_removeShopBTN() {
     removeProductForm.style.display = 'block';
     var a_titleForm = removeProductForm.querySelectorAll(".row__title2")
     a_titleForm = Array.from(a_titleForm);
-    a_titleForm.forEach((value, index)=>{
+    a_titleForm.forEach((value, index) => {
         a_titleForm[index].innerText = a_value[index];
     })
-    
+
 }
 
 
@@ -1837,12 +1881,12 @@ function f_removeShopBTN() {
 const removeProductBTN = removeProductForm.querySelector(".button__form");
 removeProductBTN.addEventListener("click", f_removeProductBTN);
 
-function f_removeProductBTN(){
+function f_removeProductBTN() {
     var ItemID = removeProductForm.querySelector(".row__title-ID");;
     console.log(ItemID)
 }
 
-cancelRemoveProduct.addEventListener("click", ()=>{
+cancelRemoveProduct.addEventListener("click", () => {
     removeAllInputValue();
     displayNoneAll();
 })

@@ -1315,6 +1315,20 @@ li.message__user.message__user:hover .message__user__name__options {
     overflow-y: auto;
 }
 
+#cancel__find__msg{
+    display: none;
+    align-items: center;
+    justify-content: center;
+    /* background-color: #0866FF; */
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+}
+#cancel__find__msg:hover{
+    background-color: #c0c0c0;
+}
+
+
 /* CSS cho màn hình điện thoại */
 @media only screen and (max-width: 600px) {
 

@@ -118,6 +118,7 @@
                                         </ion-icon>
                                         <input id="searchInput" class="msgr-search-input-text" type="text"
                                             placeholder="Tìm kiếm đoạn chat" autocomplete="nope">
+                                        <i id="cancel__find__msg" class="fa-solid fa-xmark"></i>
                                     </div>
                                 </div>
                                 <ul class="msg-list">
@@ -439,7 +440,7 @@
                             </div>
                         </div>
                     </div>
-                    
+
                     <!-- SHOP  -->
                     <div id="shopTable" class="container__show container__show__shop">
                         <div class="container__show__add container__show__shop__add">
@@ -463,8 +464,7 @@
                         <div class="container___input">
                             <div class="container___input__left">
                                 <i class=" exit--search fa-solid fa-arrow-left"></i>
-                                <div
-                                    class="container__show__head__input__box container__show__shop__head__input__box">
+                                <div class="container__show__head__input__box container__show__shop__head__input__box">
                                     <input class="show__input__id find-id-shop" type="text"
                                         placeholder="Nhập mã sản phẩm">
                                     <div class="show__find__id__box">
@@ -496,7 +496,7 @@
                                             <th class="th__show" style="width: 15%">TÊN SẢN PHẨM</th>
                                             <th class="th__show" style="width: 8%">LOẠI</th>
                                             <th class="th__show" style="width: 10%">GIÁ</th>
-                                            <th class="th__show" >MÔ TẢ</th>
+                                            <th class="th__show">MÔ TẢ</th>
                                             <th class="th__show" style="width: 6%">THAO TÁC</th>
                                         </tr>
                                     </thead>
@@ -605,8 +605,8 @@
                             Mã khách hàng:
                         </div>
                         <div class="row__content">
-                            <input class="row__content__input row__content__input__id" type="text" placeholder="Bỏ trống nếu là khách hàng mới"
-                                name="maKH">
+                            <input class="row__content__input row__content__input__id" type="text"
+                                placeholder="Bỏ trống nếu là khách hàng mới" name="maKH">
                         </div>
                     </div>
                     <div class="row row__name">
@@ -614,7 +614,8 @@
                             Tên khách hàng mới:
                         </div>
                         <div class="row__content">
-                            <input class="row__content__input row__content__input__name" type="text" placeholder="Nguyen Van A" name="name">
+                            <input class="row__content__input row__content__input__name" type="text"
+                                placeholder="Nguyen Van A" name="name">
                         </div>
                     </div>
                     <div class="row">
@@ -622,8 +623,8 @@
                             ngày sinh:
                         </div>
                         <div class="row__content">
-                            <input class=" row__content__input row__content__input--date" type="date"
-                                placeholder="+84" name="dateOfBirth">
+                            <input class=" row__content__input row__content__input--date" type="date" placeholder="+84"
+                                name="dateOfBirth">
                         </div>
                     </div>
                     <div class="row">
@@ -682,8 +683,8 @@
                             Mã thẻ:
                         </div>
                         <div class="row__content">
-                            <input class="row__content__input row__content__input__id" type="text" placeholder="Bỏ trống nếu là khách hàng mới"
-                                name="maThe">
+                            <input class="row__content__input row__content__input__id" type="text"
+                                placeholder="Bỏ trống nếu là khách hàng mới" name="maThe">
                         </div>
                     </div>
                     <div class="row row__name">
@@ -691,7 +692,8 @@
                             Tên khách hàng:
                         </div>
                         <div class="row__content">
-                            <input class="row__content__input row__content__input__name" type="text" placeholder="Nguyen Van A" name="name">
+                            <input class="row__content__input row__content__input__name" type="text"
+                                placeholder="Nguyen Van A" name="name">
                         </div>
                     </div>
                     <div class="row">
@@ -1252,8 +1254,8 @@
                             Tên sản phẩm
                         </div>
                         <div class="row__content">
-                            <input class="row__content__input row__content__input__item" type="text" placeholder="Protein ABC..."
-                                name="NameItem">
+                            <input class="row__content__input row__content__input__item" type="text"
+                                placeholder="Protein ABC..." name="NameItem">
                         </div>
                     </div>
                     <div class="row">
@@ -1275,7 +1277,8 @@
                             Giá:
                         </div>
                         <div class="row__content">
-                            <input class="row__content__input row__content__input__cost" type="text" placeholder="99999" name="Cost">
+                            <input class="row__content__input row__content__input__cost" type="text" placeholder="99999"
+                                name="Cost">
                         </div>
                     </div>
                     <div class="row row__name">
@@ -1283,7 +1286,8 @@
                             Mô Tả:
                         </div>
                         <div class="row__content">
-                            <input class="row__content__input row__content__input__de" type="text" placeholder="ABC" name="Depict">
+                            <input class="row__content__input row__content__input__de" type="text" placeholder="ABC"
+                                name="Depict">
                         </div>
                     </div>
                     <div class="row row__img">
@@ -1293,12 +1297,14 @@
                         <div class="row__content row__content__picture">
                             <div class="row__content__col">
                                 <img src="./img/shop/whey/rule-1-proteins.webp" alt="">
-                                <input id="content-img-main1" class="content-img-main content-img-main1" type="file" name="file1" style="display: none">
+                                <input id="content-img-main1" class="content-img-main content-img-main1" type="file"
+                                    name="file1" style="display: none">
                                 <label for="content-img-main1">Ảnh chính</label>
                             </div>
                             <div class="row__content__col">
                                 <img src="./img/shop/whey/rule-1-proteins.webp" alt="">
-                                <input id="content-img-main2" class="content-img-main content-img-main2" type="file" name="file2" style="display: none">
+                                <input id="content-img-main2" class="content-img-main content-img-main2" type="file"
+                                    name="file2" style="display: none">
                                 <label for="content-img-main2">Ảnh phụ</label>
                             </div>
                         </div>
@@ -1337,7 +1343,7 @@
 
                         </div>
                     </div>
-                    
+
                     <span class="row__note">Chú ý: Hành động không thể khôi phục</span>
                     <div class="row__final">
                         <div class="row__final__button">
