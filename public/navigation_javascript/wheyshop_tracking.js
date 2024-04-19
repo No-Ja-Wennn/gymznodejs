@@ -40,7 +40,6 @@ editAccount.onclick = function () {
     window.location.href = 'information_account.html'
 }
 
-<<<<<<< HEAD
 const orders = $$('.order')
 orders.forEach(order => {
 
@@ -124,5 +123,3 @@ if (processShipping.classList.contains('orderSuccess')) {
 //     wcircle3.style.borderColor = '#2196F3';
 //     line2.style.backgroundColor = '#2196F3';
 // }
-=======
->>>>>>> 040c1443053f4cc5c4288be3c323194170016df3
