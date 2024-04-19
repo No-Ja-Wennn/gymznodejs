@@ -16,15 +16,15 @@ function getCurrentDate() {
 function insertIntoTable(con, tableName, data) {
     let columns = Object.keys(data).join(', ');
     let values = Object.values(data).map(value => `'${value}'`).join(', ');
-  
+
     let sql = `INSERT INTO ${tableName} (${columns}) VALUES (${values})`;
-  
+
     con.query(sql, function (err, result) {
-      if (err) throw err;
-      console.log("Record inserted successfully");
+        if (err) throw err;
+        console.log("Record inserted successfully");
     });
-  }
-  
+}
+
 
 function addMonths(date, months) {
     let newDate = new Date(date.getTime());
@@ -108,7 +108,6 @@ function getBoxMessage(con, callback) {
 }
 
 function saveMessage(con, maKH, senderRole, message) {
-
     // Lưu tin nhắn vào cơ sở dữ liệu
     const query = `INSERT INTO historymessage (maKH, senderRole, message) VALUES (?, ?, ?)`;
     con.query(query, [maKH, senderRole, message, false], function (error, results, fields) {
@@ -120,16 +119,21 @@ function saveMessage(con, maKH, senderRole, message) {
 function updateTable(con, tableName, data, condition) {
     // Tạo danh sách các cập nhật từ đối tượng data
     let updates = Object.keys(data).map(key => `${key} = '${data[key]}'`).join(', ');
-  
+
     // Tạo câu lệnh SQL
     let sql = `UPDATE ${tableName} SET ${updates} WHERE ${condition}`;
-  
+
     // Thực thi câu lệnh SQL
     con.query(sql, function (err, result) {
-      if (err) throw err;
-      console.log("Record updated successfully");
+        if (err) throw err;
+        console.log("Record updated successfully");
     });
-  }
+}
+
+function sendFirstmessage() {
+    var message = "Xin chào đến với phòng gym của chúng tôi! Hãy cung cấp cho chúng tôi mọi câu hỏi hoặc phản hồi mà bạn có, và chúng tôi sẽ cố gắng hỗ trợ bạn một cách tốt nhất có thể. Cảm ơn bạn đã chọn chúng tôi là nơi để rèn luyện sức khỏe của mình!"
+    
+}
 
 module.exports = {
     generateCustomerCode,
@@ -141,5 +145,6 @@ module.exports = {
     saveMessage,
     changeStatusSeen,
     insertIntoTable,
-    updateTable
+    updateTable,
+    sendFirstmessage
 }

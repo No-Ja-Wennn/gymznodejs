@@ -467,12 +467,12 @@ if (searchChatInput) {
 
     searchChatInput.addEventListener("input", function () {
         var inputValue = this.value.toLowerCase().trim();
+        console.log(maKHActive);
         if (inputValue) {
             removeAllBoxMessage();
             dataMessage.forEach(data => {
                 var nameCompear = data.name.toLowerCase().trim();
                 var maKHCompear = data.maKH.toLowerCase().trim();
-                console.log(data.name, "va: ", inputValue);
                 if ((nameCompear.includes(inputValue) || maKHCompear.includes(inputValue))) {
                     data = replaceNullUndefinedWithEmptyString(data);
                     innerAloneMsg(data);

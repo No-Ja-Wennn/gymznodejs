@@ -164,7 +164,7 @@ function createTable() {
 }
 
 
-
+var firstMessage = "Xin chào đến với phòng gym của chúng tôi! Hãy cung cấp cho chúng tôi mọi câu hỏi hoặc phản hồi mà bạn có, và chúng tôi sẽ cố gắng hỗ trợ bạn một cách tốt nhất có thể. Cảm ơn bạn đã chọn chúng tôi là nơi để rèn luyện sức khỏe của mình!"
 
 app.post('/login-url', (req, res) => {
   const { email, password } = req.body;
@@ -215,39 +215,13 @@ app.post('/create-account-url', authenToken, (req, res) => {
             sql = `INSERT INTO loginData (maKH ,password) VALUES ('${maKH}', '${password}')`;
             con.query(sql, function (err, result) {
               if (err) throw err;
-              // con.query("SELECT maThe FROM cardData ORDER BY maThe DESC LIMIT 1",
-              //   function (err, result, fields) {
-              //     if (err) throw err;
-              //     var maThe;
-              //     if (!result[0]) {
-              //       maThe = 'MT0001';
-              //     } else {
-              //       maThe = generateCustomerCode(result[0].maThe);
-              //     }
-              //     var cardData = { maKH: maKH, maThe: maThe };
-              //     insertIntoTable(con, "cardData", cardData);
-
-              //     con.query("SELECT maLT FROM calendarData ORDER BY maLT DESC LIMIT 1",
-              //       function (err, result, fields) {
-              //         if (err) throw err;
-              //         var maLT;
-              //         if (!result[0]) {
-              //           maLT = 'LT0001';
-              //         } else {
-              //           maLT = generateCustomerCode(result[0].maLT);
-              //         }
-              //         var calendarData = { maLT: maLT, maThe: maThe };
-              //         insertIntoTable(con, "calendarData", calendarData);
-              //       }
-              //     )
-              //   }
-              // )
               var data = {
                 maKH,
                 fullname,
                 email: emailLower,
                 password
               }
+              saveMessage(con, maKH, "customer", firstMessage);
               res.json({ success: true, active: true, acc: data });
               res.end();
             });
@@ -300,6 +274,8 @@ app.post('/create-account-url-cus', (req, res) => {
                 password
               }
               setCookie(res, "user_id", user);
+              saveMessage(con, maKH, "customer", firstMessage);
+              io.emit('clientMessage', { message: firstMessage, maKH, name: fullname, senderRole: "customer" });
               res.json({ success: true, active: true, acc: user });
               res.end();
             });

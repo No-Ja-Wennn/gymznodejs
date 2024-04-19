@@ -553,6 +553,7 @@
     color: rgb(31, 31, 31);
     background-color: transparent;
 }
+
 .msg-list {
     height: calc(100vh - 68px - 125px);
     width: 100%;
@@ -1205,6 +1206,7 @@ li.message__user.message__user:hover .message__user__name__options {
     background-color: rgb(223, 223, 223);
     animation: expand 2s linear forwards;
 }
+
 .exit--search:hover {
     background-color: rgb(195, 195, 195);
 }
@@ -1315,7 +1317,7 @@ li.message__user.message__user:hover .message__user__name__options {
     overflow-y: auto;
 }
 
-#cancel__find__msg{
+#cancel__find__msg {
     display: none;
     align-items: center;
     justify-content: center;
@@ -1324,7 +1326,8 @@ li.message__user.message__user:hover .message__user__name__options {
     height: 18px;
     border-radius: 50%;
 }
-#cancel__find__msg:hover{
+
+#cancel__find__msg:hover {
     background-color: #c0c0c0;
 }
 
@@ -1407,7 +1410,7 @@ li.message__user.message__user:hover .message__user__name__options {
 }
 
 
-.show_main_img{
+.show_main_img {
     width: 78px;
     /* height: px; */
 }
@@ -1449,4 +1452,20 @@ li.message__user.message__user:hover .message__user__name__options {
         width: 100vw;
     }
 
+}
+
+.user-ifm-card2{
+    display: flex;
+    align-items: center;
+}
+
+.user-ifm-card-number2 {
+    display: inline-block;
+    max-width: 102px;
+    /* Điều này làm cho span không vượt quá chiều rộng của nó */
+    overflow: hidden;
+    text-overflow: ellipsis;
+    /* Thêm dấu '...' nếu văn bản vượt quá kích thước */
+    white-space: nowrap;
+    /* Ngăn văn bản từ việc xuống dòng */
 }
