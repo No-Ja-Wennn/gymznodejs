@@ -1528,66 +1528,66 @@ app.post('/add-product-item', authenToken, upload2.fields([
 
   console.log("hjello")
 
-  // const { dataItem } = req.body;
-  // const { NameItem, Type, Cost, Depict } = JSON.parse(dataItem);
+  const { dataItem } = req.body;
+  const { NameItem, Type, Cost, Depict } = JSON.parse(dataItem);
 
-  // if (!Type) {
-  //   return res.status(400).send('Missing file type.');
-  // }
+  if (!Type) {
+    return res.status(400).send('Missing file type.');
+  }
 
-  // // Tạo thư mục nếu nó chưa tồn tại
-  // const targetDirectory = './public/img/shop/' + Type + '/';
-  // if (!fs.existsSync(targetDirectory)) {
-  //   fs.mkdirSync(targetDirectory, { recursive: true });
-  // }
-  // if (req.files.file1 && req.files.file2) {
-  //   var arrayTemp = [
-  //     req.files.file1[0],
-  //     req.files.file2[0]
-  //   ]
-  //   let objPath = {};
-  //   arrayTemp.forEach((file, index) => {
-  //     const newPath = generateFilePath(file, Type);
-  //     const pathSave = newPath.replace('..', './public');
-  //     if (index == 0)
-  //       objPath.MainImg = newPath
-  //     else if (index == 1)
-  //       objPath.SubImg = newPath
-  //     fs.rename(file.path, pathSave, (err) => {
-  //       if (err) {
-  //         console.error(err);
-  //         res.status(500).send('Error occurred while moving file.');
-  //       } else {
-  //         if (index == 1) {
-  //           con.query("SELECT ItemID FROM shopData ORDER BY ItemID DESC LIMIT 1",
-  //             function (err, result, fields) {
-  //               if (err) throw err;
-  //               var ItemID;
-  //               if (!result[0]) {
-  //                 ItemID = 'LT0001';
-  //               } else {
-  //                 ItemID = generateCustomerCode(result[0].ItemID);
-  //               }
-  //               var data = {
-  //                 MainImg: objPath.MainImg,
-  //                 SubImg: objPath.SubImg,
-  //                 ItemID,
-  //                 NameItem,
-  //                 Type,
-  //                 Cost,
-  //                 Depict
-  //               }
-  //               console.log(data);
-  //               insertIntoTable(con, 'shopData', data);
-  //               res.json({ success: true, data })
-  //             })
-  //         }
-  //       }
-  //     });
-  //   });
-  // } else {
-  //   res.json({ success: false, data: {}, notifi: "Thiếu ảnh" })
-  // }
+  // Tạo thư mục nếu nó chưa tồn tại
+  const targetDirectory = './public/img/shop/' + Type + '/';
+  if (!fs.existsSync(targetDirectory)) {
+    fs.mkdirSync(targetDirectory, { recursive: true });
+  }
+  if (req.files.file1 && req.files.file2) {
+    var arrayTemp = [
+      req.files.file1[0],
+      req.files.file2[0]
+    ]
+    let objPath = {};
+    arrayTemp.forEach((file, index) => {
+      const newPath = generateFilePath(file, Type);
+      const pathSave = newPath.replace('..', './public');
+      if (index == 0)
+        objPath.MainImg = newPath
+      else if (index == 1)
+        objPath.SubImg = newPath
+      fs.rename(file.path, pathSave, (err) => {
+        if (err) {
+          console.error(err);
+          res.status(500).send('Error occurred while moving file.');
+        } else {
+          if (index == 1) {
+            con.query("SELECT ItemID FROM shopData ORDER BY ItemID DESC LIMIT 1",
+              function (err, result, fields) {
+                if (err) throw err;
+                var ItemID;
+                if (!result[0]) {
+                  ItemID = 'LT0001';
+                } else {
+                  ItemID = generateCustomerCode(result[0].ItemID);
+                }
+                var data = {
+                  MainImg: objPath.MainImg,
+                  SubImg: objPath.SubImg,
+                  ItemID,
+                  NameItem,
+                  Type,
+                  Cost,
+                  Depict
+                }
+                console.log(data);
+                insertIntoTable(con, 'shopData', data);
+                res.json({ success: true, data })
+              })
+          }
+        }
+      });
+    });
+  } else {
+    res.json({ success: false, data: {}, notifi: "Thiếu ảnh" })
+  }
 
 });
 
