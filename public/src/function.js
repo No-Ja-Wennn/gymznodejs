@@ -726,8 +726,30 @@ export function editDate(dateValue) {
 }
 
 
-export function hidenLoginBox(){
+export function hidenLoginBox() {
     displayNoneAll();
     activeNecessaryForm();
     activeLoginBox();
+}
+
+export function plusMinusItemCart(inputCountItem, ItemID, Cost, costAll) {
+    costAll.innerHTML = `
+    ${(Cost * inputCountItem.value).toLocaleString()}
+    <span>
+        ₫
+    </span>
+    `
+    $.ajax({
+        url: '/plus-minus-item-cart',
+        method: 'POST',
+        data: { ItemID, Count: inputCountItem.value },
+        success: function (res) {
+            if (!res.login) {
+                showErrorToast("Chưa đăng nhập vào hệ thống", "");
+            }
+        },
+        error: function (err) {
+            console.error(err);
+        }
+    })
 }

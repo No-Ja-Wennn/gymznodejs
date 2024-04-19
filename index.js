@@ -1947,6 +1947,19 @@ app.post("/pay-product-item", (req, res) => {
 })
 
 
+app.post("/plus-minus-item-cart", (req, res)=>{
+  var cookie = getCookie(req, 'user_id');
+  if (cookie) {
+    const maKH = cookie.maKH;
+    const {ItemID, Count} = req.body;
+    updateTable(con, 'cart', {Count}, `maKH = '${maKH}' AND ItemID = '${ItemID}'`)
+    res.json({login: true});
+  }else{
+    res.json({login: false});
+  }
+})
+
+
 // =======================
 const port = process.env.PORT || 8080;
 server.listen(port, () => {

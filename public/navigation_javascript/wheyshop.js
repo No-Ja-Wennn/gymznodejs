@@ -1,4 +1,4 @@
-import { activeLoginBox, activeNecessaryForm, hidenLoginBox } from "../src/function.js";
+import { activeLoginBox, activeNecessaryForm, hidenLoginBox, plusMinusItemCart } from "../src/function.js";
 import { showErrorToast, showSuccessToast } from "../src/toast.js";
 
 
@@ -336,27 +336,27 @@ a_viral.map((value, index) => {
 // CHECK OUT
 const cartShowMini = document.querySelector(".cart-show");
 
-let a_plusItem = cartShowMini.querySelectorAll(".plus");
-let a_minusItem = cartShowMini.querySelectorAll(".minus");
+// let a_plusItem = cartShowMini.querySelectorAll(".plus");
+// let a_minusItem = cartShowMini.querySelectorAll(".minus");
 
-a_plusItem = [...a_plusItem];
-a_minusItem = [...a_minusItem];
+// // a_plusItem = [...a_plusItem];
+// // a_minusItem = [...a_minusItem];
 
-a_plusItem.forEach(plus => {
-    plus.addEventListener("click", function () {
-        let inputCountItem = this.closest('.item-quantity').querySelector(".quantity");
-        if (inputCountItem.value < 99)
-            inputCountItem.value++;
-    })
-})
-a_minusItem.forEach(minus => {
-    minus.addEventListener("click", function () {
-        let inputCountItem = this.closest('.item-quantity').querySelector(".quantity");
-        if (inputCountItem.value > 0)
-            inputCountItem.value--;
+// a_plusItem.forEach(plus => {
+//     plus.addEventListener("click", function () {
+//         let inputCountItem = this.closest('.item-quantity').querySelector(".quantity");
+//         if (inputCountItem.value < 99)
+//             inputCountItem.value++;
+//     })
+// })
+// a_minusItem.forEach(minus => {
+//     minus.addEventListener("click", function () {
+//         let inputCountItem = this.closest('.item-quantity').querySelector(".quantity");
+//         if (inputCountItem.value > 0)
+//             inputCountItem.value--;
 
-    })
-})
+//     })
+// })
 
 
 
@@ -447,17 +447,39 @@ function HTMLItemCart({ MainImg, NameItem, Count, CostAll, Cost, ItemID }) {
         // MainImg,
     })
 
-    itemCart.querySelector('.plus').addEventListener('click', function () {
+    // itemCart.querySelector('.plus').addEventListener('click', function () {
+    //     let inputCountItem = this.closest('.item-quantity').querySelector(".quantity");
+    //     if (inputCountItem.value < 99)
+    //         inputCountItem.value++;
+    // })
+    // itemCart.querySelector('.minus').addEventListener('click', function () {
+    //     let inputCountItem = this.closest('.item-quantity').querySelector(".quantity");
+    //     if (inputCountItem.value > 0)
+    //         inputCountItem.value--;
+
+    // })
+
+    let plus = itemCart.querySelector(".plus");
+    let minus = itemCart.querySelector(".minus");
+    const costAllE = itemCart.querySelector(".item-price");
+
+    plus.addEventListener("click", function () {
+        console.log("hello")
         let inputCountItem = this.closest('.item-quantity').querySelector(".quantity");
-        if (inputCountItem.value < 99)
+        if (inputCountItem.value < 99) {
             inputCountItem.value++;
+            plusMinusItemCart(inputCountItem, ItemID, Cost, costAllE);
+        }
     })
-    itemCart.querySelector('.minus').addEventListener('click', function () {
+    minus.addEventListener("click", function () {
         let inputCountItem = this.closest('.item-quantity').querySelector(".quantity");
-        if (inputCountItem.value > 0)
+        if (inputCountItem.value > 0) {
             inputCountItem.value--;
+            plusMinusItemCart(inputCountItem, ItemID, Cost, costAllE);
+        }
 
     })
+
     return itemCart;
 }
 
