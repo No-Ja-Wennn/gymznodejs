@@ -33,9 +33,10 @@ export function displayNoneAll() {
 
 export function removeAllInputValue() {
     var a_inputElement = modalBox.querySelectorAll("input");
+    console.log(a_inputElement)
     a_inputElement = Array.from(a_inputElement);
     a_inputElement.map(element => {
-        if (element.type == 'checkbox' || element.type == 'radio')
+        if (element.type == 'checkbox' || element.type == 'radio' || element.type == 'file')
             return;
         element.value = "";
     });
@@ -47,6 +48,10 @@ export function removeAllInputValue() {
     for (var i = 0; i < radios.length; i++) {
         radios[i].checked = false;
     }
+
+    var a_img = modalBox.querySelectorAll(".row__content__col img");
+    a_img = Array.from(a_img);
+    a_img.forEach(img => img.src = '');
 }
 
 export function activeLoginBox() {
@@ -322,7 +327,7 @@ function activeFunctionApp(activeFirst = true) {
     activeMsgBox = msgBoxes[0];
 
     if (activeMsgBox) {
-        if(activeFirst){
+        if (activeFirst) {
             activeMsgBox.classList.add('active');
             activeMsgBox.click();
         }
@@ -710,4 +715,19 @@ export function updateRowShop2(dataObj, editRow) {
 
 export function updateRowTable(cells, data) {
 
+}
+
+export function editDate(dateValue) {
+    let date = new Date(dateValue);
+    date.setUTCHours(24, 0, 0, 0);
+    let roundedDate = date.toISOString().split('T')[0];
+    console.log(roundedDate);
+    return roundedDate;
+}
+
+
+export function hidenLoginBox(){
+    displayNoneAll();
+    activeNecessaryForm();
+    activeLoginBox();
 }

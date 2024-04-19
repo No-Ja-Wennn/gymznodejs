@@ -78,18 +78,18 @@ export function validateLoginValue() {
     return true;
 }
 
-export function validateChangePass(newPass, confirmPass){
+export function validateChangePass(newPass, confirmPass) {
     console.log(1)
-    if(!newPass){
+    if (!newPass) {
         showErrorToast("Thất bại", "Vui lòng nhập mật khẩu mới của bạn");
         return false;
     } else if (!validatePassword(newPass)) {
         showErrorToast("Thất bại", "mật khẩu ít nhất 8 ký tự, một chữ hoa, một chữ thường, một số và một ký tự đặc biệt");
         return false;
-    } else if(!confirmPass){
+    } else if (!confirmPass) {
         showErrorToast("Thất bại", "Vui lòng nhập mật khẩu mới của bạn");
         return false;
-    }else if(newPass != confirmPass){
+    } else if (newPass != confirmPass) {
         showErrorToast("Thất bại", "Mật khẩu không khớp");
         return false;
     }
@@ -97,20 +97,20 @@ export function validateChangePass(newPass, confirmPass){
 }
 
 
-export function isValidChangePass(password, newPass, confirmPass){
-    if(!password){
+export function isValidChangePass(password, newPass, confirmPass) {
+    if (!password) {
         showErrorToast("Thất bại", "Vui lòng điền mật khẩu");
         return false;
-    } else if(!newPass){
+    } else if (!newPass) {
         showErrorToast("Thất bại", "Vui lòng điền mật khẩu");
         return false;
-    } else if(!validatePassword(newPass)){
+    } else if (!validatePassword(newPass)) {
         showErrorToast("Thất bại", "mật khẩu ít nhất 8 ký tự, một chữ hoa, một chữ thường, một số và một ký tự đặc biệt");
         return false;
-    } else if(!confirmPass){
+    } else if (!confirmPass) {
         showErrorToast("Thất bại", "Vui lòng nhập lại mật khẩu");
         return false;
-    } else if( newPass != confirmPass){
+    } else if (newPass != confirmPass) {
         showErrorToast("Thất bại", "Mật khẩu không khớp");
         return false;
     }
@@ -145,32 +145,32 @@ export function isFormComplete() {
     return true;
 }
 
-export function validateAdminAddAcc(fullname, email, password){
-    if(!fullname){
+export function validateAdminAddAcc(fullname, email, password) {
+    if (!fullname) {
         showErrorToast("Thêm thất bại", "Vui lòng điền tên khách hàng");
         return false;
-    }else if(!email){
+    } else if (!email) {
         showErrorToast("Thêm thất bại", "Vui lòng điền email");
         return false;
-    }else if(!password){
+    } else if (!password) {
         showErrorToast("Thêm thất bại", "Vui lòng điền mật khẩu");
         return false;
-    }else if(!validateEmail(email)){
+    } else if (!validateEmail(email)) {
         showErrorToast("Thêm thất bại", "Địa chỉ email không hợp lệ");
         return false;
-    }else if(!validatePassword(password)){
+    } else if (!validatePassword(password)) {
         showErrorToast("Thêm thất bại", "mật khẩu ít nhất 8 ký tự, một chữ hoa, một chữ thường, một số và một ký tự đặc biệt");
         return false;
     }
     return true;
 
 }
-export function validateAdminEditAcc(fullname, email, password){
+export function validateAdminEditAcc(fullname, email, password) {
     console.log(email)
-    if(email != "" && !validateEmail(email)){
+    if (email != "" && !validateEmail(email)) {
         showErrorToast("Sửa thất bại", "Địa chỉ email không hợp lệ");
         return false;
-    }else if(password != "" && !validatePassword(password)){
+    } else if (password != "" && !validatePassword(password)) {
         showErrorToast("Sửa thất bại", "mật khẩu ít nhất 8 ký tự, một chữ hoa, một chữ thường, một số và một ký tự đặc biệt");
         return false;
     }
@@ -178,37 +178,37 @@ export function validateAdminEditAcc(fullname, email, password){
 
 }
 
-export function validateAdminAddCard(maKH, fullname, dateOfBirth, phoneNumber, typeCard, buyDate){
-    if(!maKH && !fullname){
+export function validateAdminAddCard(maKH, fullname, dateOfBirth, phoneNumber, typeCard, buyDate) {
+    if (!maKH && !fullname) {
         showErrorToast("Thêm thất bại", "Vui lòng điền mã hoặc tên của khách hàng");
         return false;
-    }else if(!dateOfBirth){
+    } else if (!dateOfBirth) {
         showErrorToast("Thêm thất bại", "Vui lòng chọn ngày sinh");
         return false;
-    }else if(!phoneNumber){
+    } else if (!phoneNumber) {
         showErrorToast("Thêm thất bại", "Vui lòng điền số điện thoại");
         return false;
-    }else if(!typeCard){
+    } else if (!typeCard) {
         showErrorToast("Thêm thất bại", "Vui lòng điền loại thẻ");
         return false;
     }
-    else if(!buyDate){
+    else if (!buyDate) {
         showErrorToast("Thêm thất bại", "Vui lòng điền ngày mua");
         return false;
     }
     else
-     if(!validatePhoneNumber(phoneNumber)){
-        showErrorToast("Thêm thất bại", "Vui lòng điền đúng số điện thoại");
-        return false;
-    }
+        if (!validatePhoneNumber(phoneNumber)) {
+            showErrorToast("Thêm thất bại", "Vui lòng điền đúng số điện thoại");
+            return false;
+        }
     return true;
 }
 
 
-export function validateAdminEditCard(value){
+export function validateAdminEditCard(value) {
     var phoneNumber = value.phoneNumber;
     console.log(phoneNumber)
-    if(phoneNumber != "" && !validatePhoneNumber(phoneNumber)){
+    if (phoneNumber != "" && !validatePhoneNumber(phoneNumber)) {
         showErrorToast("Sửa thất bại", "Số điện thoại không hợp lệ");
         return false;
     }
@@ -216,20 +216,20 @@ export function validateAdminEditCard(value){
 
 }
 
-export function validateAdminAddCalendar(maThe, name, date, time, type, ptName, note){
-    if(!name){
+export function validateAdminAddCalendar(maThe, name, date, time, type, ptName, note) {
+    if (!name) {
         showErrorToast("Thiếu thông tin", "Vui lòng nhập tên khách hàng");
         return false;
-    }else if(!date){
+    } else if (!date) {
         showErrorToast("Thiếu thông tin", "Vui lòng chọn ngày tập");
         return false;
-    }else if(!time){
+    } else if (!time) {
         showErrorToast("Thiếu thông tin", "Vui lòng chọn thời gian tập");
         return false;
-    }else if(!type){
+    } else if (!type) {
         showErrorToast("Thiếu thông tin", "Vui lòng loại bài tập");
         return false;
-    }else if(!ptName){
+    } else if (!ptName) {
         showErrorToast("Thiếu thông tin", "Vui lòng nhập tên pt");
         return false;
     }
@@ -237,28 +237,61 @@ export function validateAdminAddCalendar(maThe, name, date, time, type, ptName, 
 
 }
 
-export function validateAddProduct(dataObj){
-    const {NameItem, Type, Cost, Depict,file_data1, file_data2} = dataObj;
-    if(!NameItem){
+export function validateAddProduct(dataObj) {
+    const { NameItem, Type, Cost, Depict, file_data1, file_data2 } = dataObj;
+    if (!NameItem) {
         showErrorToast("Thất bại", "Vui lòng nhập tên sản phẩm");
         return false;
-    }else if(!Type){
+    } else if (!Type) {
         showErrorToast("Thất bại", "Vui lòng chọn loại sản phẩm");
         return false;
-    }else if(!Cost){
+    } else if (!Cost) {
         showErrorToast("Thất bại", "Vui lòng nhập giá tiền");
         return false;
-    }else if(!validateNumber(Cost)){
+    } else if (!validateNumber(Cost)) {
         showErrorToast("Thất bại", "Giá tiền là một con số");
         return false;
-    }else if(!Depict){
+    } else if (!Depict) {
         showErrorToast("Thất bại", "Vui lòng điền mô tả");
         return false;
-    }else if(!file_data1){
+    } else if (!file_data1) {
         showErrorToast("Thất bại", "Vui tải lên ảnh chính");
         return false;
-    }else if(!file_data2){
+    } else if (!file_data2) {
         showErrorToast("Thất bại", "Vui lòng tải lên ảnh phụ");
+        return false;
+    }
+    return true;
+}
+
+export function checkValidPayAll(
+    {
+        name,
+        email,
+        phoneNumber,
+        address,
+        ItemID,
+        Count,
+        payMethod
+    }
+) {
+    if (!email) {
+        showErrorToast("Thanh toán không thành công", "Vui lòng điền email");
+        return false;
+    } else if (!validateEmail(email)) {
+        showErrorToast("Thanh toán không thành công", "Địa chỉ email không hợp lệ");
+        return false;
+    } else if (!name) {
+        showErrorToast("Thanh toán không thành công", "Vui lòng điền tên người nhận hàng");
+        return false;
+    } else if (!phoneNumber) {
+        showErrorToast("Thanh toán không thành công", "Vui lòng điền số điện thoại tên người nhận hàng");
+        return false;
+    } else if (!validatePhoneNumber(phoneNumber)) {
+        showErrorToast("Thanh toán không thành công", "Số điện thoại không hợp lệ");
+        return false;
+    } else if (!address) {
+        showErrorToast("Thanh toán không thành công", "Vui lòng nhập địa chỉ nhận hàng");
         return false;
     }
     return true;

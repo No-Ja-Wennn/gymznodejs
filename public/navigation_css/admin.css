@@ -1469,3 +1469,22 @@ li.message__user.message__user:hover .message__user__name__options {
     white-space: nowrap;
     /* Ngăn văn bản từ việc xuống dòng */
 }
+
+.find__item__box{
+    display: flex;
+    align-items: center;
+    width: 100%;
+}
+.find__item__box i{
+    display: none;
+    align-items: center;
+    justify-content: center;
+    font-size: 12px;
+    width: 24px;
+    height: 22px;
+    border-radius: 50%;
+    margin-right: 4px;
+}
+.find__item__box i:hover{
+    background-color: #d1d1d1;
+}

@@ -23,3 +23,4 @@ const editAccount = $('.user-account-edit');
 editAccount.onclick = function(){
     window.location.href = 'information_account.html'
 }
+
