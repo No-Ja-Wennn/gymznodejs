@@ -20,7 +20,8 @@ import {
     loadHideMessage,
     sendMessage,
     activeLoginBox,
-    removeHideMessage
+    removeHideMessage,
+    editDate
 } from "./function.js";
 import { showSuccessToast, showErrorToast } from "./toast.js";
 import { validateCreateAccount, validateLoginValue, validateChangePass, isValidChangePass, isFormComplete } from './validate.js';
@@ -199,6 +200,7 @@ function getValueInformationForm(path) {
                 console.log("Type: ", type);
                 var myData = data.value;
                 if (type == "account") {
+                    myData.dateOfBirth = editDate(myData.dateOfBirth)
                     innerTextOfInformation(
                         myData.name,
                         myData.dateOfBirth,
@@ -355,7 +357,7 @@ if (chatHideBox) {
     inputHideE = chatHideBox.querySelector('.input-text');
 }
 
-function f_affterLoginCus(data){
+function f_affterLoginCus(data) {
     loadHideMessage();
     loginSocket(data.maKH);
     innerValueAfterLogin(data.name, data.maKH);

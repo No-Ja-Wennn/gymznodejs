@@ -7,6 +7,7 @@ import {
     displayLeftMessage,
     displayNoneAll,
     displayRightMessage,
+    editDate,
     innerAloneMsg,
     innerBoxMsg,
     maKHActive,
@@ -699,6 +700,10 @@ function f_cardNav() {
         function (data) {
             removeAllTable();
             data.data.forEach(value => {
+                console.log(value)
+                value.dateEnd = editDate(value.dateEnd)
+                value.dateOfBirth = editDate(value.dateOfBirth)
+                value.dateStart = editDate(value.dateStart)
                 insertToTable("card", value);
             })
         },
@@ -721,7 +726,7 @@ function f_cardNav() {
 }
 
 
-// getcalendar
+// get calendar
 calendarNav.addEventListener("click", f_calendarNav)
 
 function f_calendarNav() {
@@ -733,7 +738,9 @@ function f_calendarNav() {
         null,
         function (data) {
             removeAllTable();
-            data.data.forEach(value => {
+            var data = replaceNullUndefinedWithEmptyString(data.data);
+            console.log(data)
+            data.forEach(value => {
                 insertToTable("calendar", value);
             })
         },
@@ -1658,6 +1665,7 @@ function previewImage() {
         // Nếu không có file nào được chọn, gán nguồn (src) của ảnh là một giá trị mặc định
         image.src = '#';
     }
+    console.log(image)
 }
 
 let imgInputAdd = addProductBox.querySelectorAll(".content-img-main");
@@ -1665,13 +1673,16 @@ imgInputAdd = Array.from(imgInputAdd);
 imgInputAdd.forEach(element => element.addEventListener('change', previewImage))
 
 
+
+
+
+
 $('#form-add-product').submit(function (e) {
     e.preventDefault();
+    const file_input1 = addProductBox.querySelector('.content-img-main1');
+    const file_input2 = addProductBox.querySelector('.content-img-main2');
     var accessToken = localStorage.getItem('accessToken');
     var dataObj = splitSerialize($(this).serialize());
-
-    var file_input1 = addProductBox.querySelector('.content-img-main1');
-    var file_input2 = addProductBox.querySelector('.content-img-main2');
     var file_data1 = file_input1.files[0];
     var file_data2 = file_input2.files[0];
     dataObj.file_data1 = file_data1
@@ -1873,7 +1884,6 @@ function f_removeShopBTN() {
     a_titleForm.forEach((value, index) => {
         a_titleForm[index].innerText = a_value[index];
     })
-
 }
 
 
@@ -1882,11 +1892,100 @@ const removeProductBTN = removeProductForm.querySelector(".button__form");
 removeProductBTN.addEventListener("click", f_removeProductBTN);
 
 function f_removeProductBTN() {
-    var ItemID = removeProductForm.querySelector(".row__title-ID");;
+    var ItemID = removeProductForm.querySelector(".row__title-ID").innerText;
     console.log(ItemID)
+    var accessToken = localStorage.getItem('accessToken');
+    sendRequest(
+        '/remove-product-item',
+        'POST',
+        {
+            'Authorization': 'Bearer ' + accessToken
+        },
+        { ItemID },
+        function (response) {
+            if (response.success) {
+                showSuccessToast("Xóa sản phẩm thành công", "");
+                removeAllInputValue();
+                displayNoneAll();
+                removeItemByID(ItemID)
+            } else {
+                showSuccessToast("Xóa sản phẩm không thành công", "Sản phẩm không tồn tại");
+            }
+        },
+        function (err) {
+            console.log(err);
+        }
+    )
+
+}
+
+function removeItemByID(ItemID) {
+    var tbody = shopPage.querySelector('.table__show__main tbody');
+    var idElement = tbody.querySelector(ItemID);
+    var trElement = tbody.querySelectorAll("tr");
+    trElement = Array.from(trElement);
+    trElement.forEach(tr => {
+        var idElement = tr.querySelector(".ItemID");
+        if (idElement && idElement.innerText == ItemID) {
+            idElement.closest('tr').style.display = 'none';
+        }
+    })
 }
 
 cancelRemoveProduct.addEventListener("click", () => {
     removeAllInputValue();
     displayNoneAll();
+})
+
+// FIND PRODUCT ITEM
+const inputFindItem = shopPage.querySelector(".find-id-shop")
+const findProductItemBTN = shopPage.querySelector(".container__show__shop__find__btn");
+
+findProductItemBTN.addEventListener("click", function () {
+    var inputValue = inputFindItem.value.toLowerCase().trim();
+    var tbody = shopPage.querySelector('.table__show__main tbody');
+    var trElement = tbody.querySelectorAll("tr");
+    trElement = Array.from(trElement);
+    var count = 0;
+    if (inputValue) {
+        trElement.forEach(tr => {
+            console.log(tr)
+            var idElement = tr.querySelector(".ItemID").innerText.toLowerCase();
+            var nameElement = tr.querySelector(".NameItem").innerText.toLowerCase();
+            if (idElement && nameElement
+                && (idElement.includes(inputValue) || nameElement.includes(inputValue))) {
+                console.log(idElement, nameElement)
+                tr.style.display = 'table-row';
+                count++;
+            } else {
+                tr.style.display = 'none';
+            }
+        })
+        if (count == 0) showErrorToast("Không tìm thấy sản phẩm", "");
+    } else {
+        showErrorToast("Vui lòng nhập giá trị tìm kiếm")
+    }
+
+})
+inputFindItem.addEventListener("click", function () {
+    var tbody = shopPage.querySelector('.table__show__main tbody');
+    var trElement = tbody.querySelectorAll("tr");
+    trElement = Array.from(trElement);
+
+    trElement.forEach(tr => {
+        tr.style.display = 'none';
+    })
+    cancelFindItem.style.display = "flex";
+});
+const cancelFindItem = document.getElementById("cancel__find__item");
+
+cancelFindItem.addEventListener("click", function () {
+    inputFindItem.value = '';
+    var tbody = shopPage.querySelector('.table__show__main tbody');
+    var trElement = tbody.querySelectorAll("tr");
+    trElement = Array.from(trElement);
+    trElement.forEach(tr => {
+        tr.style.display = 'table-row';
+    })
+    this.style.display = 'none';
 })

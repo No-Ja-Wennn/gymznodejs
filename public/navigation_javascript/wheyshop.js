@@ -1,4 +1,4 @@
-import { activeLoginBox, activeNecessaryForm } from "../src/function.js";
+import { activeLoginBox, activeNecessaryForm, hidenLoginBox } from "../src/function.js";
 import { showErrorToast, showSuccessToast } from "../src/toast.js";
 
 
@@ -95,43 +95,81 @@ buyNow.addEventListener("click", f_buyNowBTN);
 addCart.addEventListener("click", f_addCartBTN);
 
 
-function f_buyNowBTN() {
-    var ItemID = this.closest('.choose-options').id;
-    console.log(ItemID);
 
-    localStorage.setItem('tempItem',
-        JSON.stringify({ ItemID, count: inputCountMainProduct.value }))
-    window.location.href = 'wheyshop_checkout.html';
+function f_buyNowBTN() {
+    var thisElement = this;
+    $.ajax({
+        url: '/get-cookie',
+        type: 'GET',
+        success: function (data) {
+            if (data) {
+                var value = data.cookieValue;
+                if (value) {
+                    var ItemID = thisElement.closest('.choose-options').id;
+                    console.log(ItemID);
+
+                    localStorage.setItem('tempItem',
+                        JSON.stringify({ ItemID, count: inputCountMainProduct.value }))
+                    window.location.href = 'wheyshop_checkout.html';
+                } else {
+                    showErrorToast("Chưa đăng nhập", "Vui lòng đăng nhập và thử lại");
+                    hidenLoginBox();
+                }
+            }
+        },
+        error: function (err) {
+            // console.log('Error:', err);
+        }
+    });
 }
 function f_addCartBTN() {
-    var ItemID = this.closest('.choose-options').id;
-    var Count = inputCountMainProduct.value;
-    if (Count > 0) {
-        $.ajax({
-            url: '/add-cart-url',
-            type: 'POST',
-            data: { ItemID, Count },
-            success: function (data) {
-                console.log(data);
-                if (data.success) {
-                    showSuccessToast(data.msg, "");
-                    if (data.count)
-                        cartCountE.innerText = data.count;
-                } else {
-                    if (!data.login) {
-                        showErrorToast("Lỗi", data.msg);
-                        activeNecessaryForm();
-                        activeLoginBox();
-                    }
-                }
-            },
-            error: function (err) {
+    var thisElement = this;
+    $.ajax({
+        url: '/get-cookie',
+        type: 'GET',
+        success: function (data) {
+            if (data) {
+                var value = data.cookieValue;
+                if (value) {
+                    var ItemID = thisElement.closest('.choose-options').id;
+                    var Count = inputCountMainProduct.value;
+                    if (Count > 0) {
+                        $.ajax({
+                            url: '/add-cart-url',
+                            type: 'POST',
+                            data: { ItemID, Count },
+                            success: function (data) {
+                                console.log(data);
+                                if (data.success) {
+                                    showSuccessToast(data.msg, "");
+                                    if (data.count)
+                                        cartCountE.innerText = data.count;
+                                } else {
+                                    if (!data.login) {
+                                        showErrorToast("Lỗi", data.msg);
+                                        activeNecessaryForm();
+                                        activeLoginBox();
+                                    }
+                                }
+                            },
+                            error: function (err) {
 
+                            }
+                        })
+                    } else {
+                        showErrorToast("Số lượng sản phẩm không hợp lệ", "");
+                    }
+                } else {
+                    showErrorToast("Chưa đăng nhập", "Vui lòng đăng nhập và thử lại");
+                    hidenLoginBox();
+                }
             }
-        })
-    } else {
-        showErrorToast("Số lượng sản phẩm không hợp lệ", "");
-    }
+        },
+        error: function (err) {
+            // console.log('Error:', err);
+        }
+    });
+
 }
 
 function createItem(ItemID, MainImg, NameItem, Cost) {
