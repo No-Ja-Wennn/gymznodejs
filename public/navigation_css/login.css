@@ -676,7 +676,6 @@ input[type="date"]::-webkit-calendar-picker-indicator {
 
 .row__title__table {
     border-bottom: 1px rgba(0, 0, 0, 0.05) solid;
-    margin-bottom: 16px;
     padding-bottom: 10px;
     width: 100%;
     min-height: 40px;
@@ -688,9 +687,12 @@ input[type="date"]::-webkit-calendar-picker-indicator {
 .row__title__table__content {
     font-size: 20px;
     color: #030303;
-    font-weight: 700;
+    font-weight: 600;
 }
-
+.row_content{
+    font-size: 16px;
+    font-weight: 500;
+}
 .x__cancel {
     width: 20px;
     height: 40px;
@@ -699,6 +701,17 @@ input[type="date"]::-webkit-calendar-picker-indicator {
     justify-content: center;
     font-size: 16px;
     color: rgba(0, 0, 0, 0.5);
+    cursor: pointer;
+}
+.x__cancel2 {
+    width: 20px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 16px;
+    color: rgba(0, 0, 0, 0.5);
+    cursor: pointer;
 }
 
 .x__cancel:hover {
@@ -706,6 +719,13 @@ input[type="date"]::-webkit-calendar-picker-indicator {
 }
 
 .x__cancel:active {
+    color: rgba(0, 0, 0, 0.8);
+}
+.x__cancel2:hover {
+    color: rgba(0, 0, 0, 0.8);
+}
+
+.x__cancel2:active {
     color: rgba(0, 0, 0, 0.8);
 }
 
@@ -723,7 +743,6 @@ input[type="date"]::-webkit-calendar-picker-indicator {
     display: flex;
     align-items: center;
     justify-content: center;
-    margin-top: 16px;
 }
 
 .row__final__button__grid {
@@ -740,12 +759,14 @@ button.button__form {
     border-radius: 8px;
     border: 1px solid #99999922 !important;
     padding: 4px 8px;
-    color: rgba(0, 0, 0, 1);
+    color: #999;
+    cursor: pointer;
+    transition: .2s;
 }
 
 button.button__form:hover {
     color: rgba(0, 0, 0, 0.8);
-    box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
 button.button__form:active {
@@ -774,16 +795,15 @@ button.button__form:active {
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.15);
     display: flex;
     /* width: 32%; */
-    min-height: 280px;
-    min-width: 290px;
+    /* min-height: 280px;
+    min-width: 290px; */
 }
 
 div#training-schedule {
     display: flex;
     flex-direction: column;
     justify-content: space-around;
-    /* flex: 1 0 auto; */
-    /* background-color: bisque; */
+    gap: 10px;
 }
 
 .row {

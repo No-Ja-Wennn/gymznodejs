@@ -117,7 +117,7 @@ if (cancelREBTN)
 export function f_cancel() {
     displayNoneAll();
     // activeNecessaryForm();
-    cancelRECartBox.style.display = "block";
+    cancelRECartBox.style.display = "flex";
 }
 
 // EXIT CANCEL FORM
@@ -137,7 +137,7 @@ if (cancelRECartBox) {
     const ruleBox = document.querySelector(".rules__group__content");
     const useBTN = document.querySelector(".rules__group__title__content");
     useBTN.addEventListener("click", function () {
-        ruleBox.style.display = "block";
+        ruleBox.style.display = "flex";
     })
     
     const hideUserBTN = document.querySelector(".button__hide__terms__of__use");
