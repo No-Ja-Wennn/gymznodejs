@@ -74,8 +74,80 @@ input[type="date"]::-webkit-calendar-picker-indicator {
     width: 600px;
 }
 
-.register-cart {
-    /* top: calc(100vh - 50% + 40px); */
+.modal__body__box.BMI-form{
+    color: #000;
+    display: none;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+    min-width: 280px;
+    gap: 10px;
+    box-shadow: -15px 15px 55px rgba(0, 0, 0, .1);
+}
+.BMI__title{
+    height: 50px;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    font-size: 20px;
+    font-weight: 600;
+    border-bottom: 1px solid #f0f0f0;
+    color: rgb(0, 160, 255);
+}
+.BMI__title i{
+    height: 30px;
+    width: 30px;
+    background-color: #f8f8f8;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;
+    font-size: 16px;
+    cursor: pointer;
+}
+.BMI__title i:hover{
+    background-color: #f0f0f0;
+}
+.BMI__value{
+    height: fit-content;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+}
+.BMI__value__row{
+    min-height: 35px;
+    font-size: 16px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 8px;
+}
+.BMI__value__row:last-child{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    margin-top: 20px;
+}
+.BMI__value__row:last-child .BMI__value__row__label{
+    font-size: 18px;
+    color: rgb(0, 160, 255);
+}
+.BMI__value__row:last-child .BMI__value__row__data{
+    text-align: justify;
+    color: #000;
+    white-space: unset;
+}
+.BMI__value__row__label{
+    font-weight: 600;
+}
+.BMI__value__row__data{
+    text-align: start;
+    color: rgb(0, 160, 255);
+    white-space: nowrap;
 }
 
 .modal__body__box p:first-child {

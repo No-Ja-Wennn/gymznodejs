@@ -98,7 +98,7 @@ function errorNotification(heightElement, weightElement, ageElement, phoneElemen
 
 
 changeSubmitElement.addEventListener("click", function () {
-    bmiBox.style.display = "block"
+    bmiBox.style.display = "flex"
     var heightValue = heightElement.value;
     var weightValue = weightElement.value;
     var ageValue = ageElement.value;

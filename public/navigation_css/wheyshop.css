@@ -843,6 +843,7 @@ body {
 }
 
 .item {
+    height: 388px;
     width: calc((100% / 6) - 10px);
     /* margin: 5px; */
     border-radius: 8px;
@@ -861,6 +862,7 @@ body {
 
 .item-img {
     height: 50%;
+    max-height: 50%;
     width: 100%;
     display: flex;
     justify-content: center;
@@ -873,10 +875,11 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
+    overflow: hidden;
 }
 
 .item-img img {
-    height: 100%;
+    /* height: 100%; */
     max-width: 100%;
     object-fit: cover;
 }
@@ -1662,6 +1665,7 @@ body {
 
     .item {
         width: calc((100% / 3) - 15px);
+        height: 505px;
     }
 }
 
@@ -1710,6 +1714,7 @@ body {
 
     .item {
         width: calc((100% / 2) - 8px);
+        height: 487px;
     }
 
     .item-information-wrapper {
