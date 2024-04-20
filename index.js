@@ -1720,6 +1720,7 @@ function generateFilePath(file, Type) {
 
 app.post('/upload', authenToken, upload.single('file'), (req, res) => {
   const { Type, ItemID, imgType } = req.body;
+  console.log("jello")
   console.log(Type)
   if (!Type) {
     return res.status(400).send('Missing file type.');
@@ -1758,10 +1759,10 @@ app.get('/get-item-cart', (req, res) => {
       = "SELECT shopData.ItemID ,shopData.MainImg, shopData.NameItem, shopData.Cost, cart.Count FROM cart INNER JOIN shopData ON cart.ItemID = shopData.ItemID WHERE cart.maKH = ?";
     con.query(sql, [maKH], (err, result) => {
       if (err) throw err;
-      res.json({ success: true, data: result });
+      res.json({ login: true, success: true, data: result });
     })
   } else {
-    res.json({ success: false });
+    res.json({ login: false, success: false });
   }
 })
 
@@ -1829,9 +1830,8 @@ app.post('/get-item-by-id', (req, res) => {
 })
 
 
-app.post('/get-address-cus', (req, res) => {
+app.get('/get-address-cus', (req, res) => {
 
-  // const { ItemID } = req.body;  
   var cookie = getCookie(req, 'user_id');
   if (cookie) {
     const maKH = cookie.maKH;
@@ -1937,29 +1937,114 @@ app.post("/pay-product-item", (req, res) => {
 
         return queryPromise(sql4, []);
       })
-      .then(result4=>{
+      .then(result4 => {
         console.log("re4: ", result4);
-        res.json({login: true ,success: true});
+        res.json({ login: true, success: true });
       })
-      .catch(error=>{
+      .catch(error => {
         console.error(error);
-        res.json({ login: true ,success: false});
+        res.json({ login: true, success: false });
       })
   } else {
-    res.json({ login: false,success: false });
+    res.json({ login: false, success: false });
   }
 })
 
 
-app.post("/plus-minus-item-cart", (req, res)=>{
+app.post("/plus-minus-item-cart", (req, res) => {
   var cookie = getCookie(req, 'user_id');
   if (cookie) {
     const maKH = cookie.maKH;
-    const {ItemID, Count} = req.body;
-    updateTable(con, 'cart', {Count}, `maKH = '${maKH}' AND ItemID = '${ItemID}'`)
-    res.json({login: true});
-  }else{
-    res.json({login: false});
+    const { ItemID, Count } = req.body;
+    updateTable(con, 'cart', { Count }, `maKH = '${maKH}' AND ItemID = '${ItemID}'`)
+    res.json({ login: true });
+  } else {
+    res.json({ login: false });
+  }
+})
+
+
+
+app.post("/pay-item-cart", (req, res) => {
+  var cookie = getCookie(req, 'user_id');
+  if (cookie) {
+    const maKH = cookie.maKH;
+    const {
+      name,
+      email,
+      phoneNumber,
+      address,
+    } = req.body;
+    const Status = 'orderSuccess';
+    const timeOrder = new Date().toISOString().slice(0, 19).replace('T', ' ');
+
+    let orderData = [];
+    // {
+    // orderID, // chưa
+    // ItemID, // chưa
+    // Count, // chưa
+    // Cost // chưa
+    // }
+    let statusData = {
+      // orderID, // chưa
+      maKH,
+      Status,
+      phoneNumber,
+      address,
+      timeOrder
+    }
+
+    var sql1 = 'SELECT ItemID, Count, Cost FROM cart WHERE maKH = ? AND cart.ItemID = shopData.ItemID';
+    var sql2 = 'SELECT orderID FROM orderData ORDER BY orderID DESC LIMIT 1';
+    // var sql3 = 'INSERT INTO ? (?) VALUES (?)'
+    queryPromise(sql1, [maKH])
+      .then(result1 => {
+        console.log("re1: ", result1);
+        orderData = result1;
+        return queryPromise(sql2, null);
+      })
+      .then(result2 => {
+        console.log("re2: ", result2);
+
+        var orderID;
+        if (!result2[0]) {
+          orderID = 'OD0001';
+        } else {
+          orderID = generateCustomerCode(result2[0].orderID);
+        }
+
+
+        orderData.forEach(order => {
+          order.orderID = orderID;
+        })
+
+        statusData.orderID = orderID;
+
+        let columns = Object.keys(orderData[0]).join(', ');
+        let values = orderData.map(order => '(' + Object.values(order).map(value => `'${value}'`).join(', ') + ')').join(', ');
+
+        let sql3 = `INSERT INTO orderData (${columns}) VALUES ${values}`;
+
+        return queryPromise(sql3, ['orderData', columns, values]);
+      })
+      .then(result3 => {
+        console.log("re3: ", result3);
+        let columns = Object.keys(statusData).join(', ');
+        let values = Object.values(statusData).map(value => `'${value}'`).join(', ');
+        let sql4 = `INSERT INTO status (${columns}) VALUES (${values})`;
+
+        return queryPromise(sql4, []);
+      })
+      .then(result4 => {
+        console.log("re4: ", result4);
+        res.json({ login: true, success: true });
+      })
+      .catch(error => {
+        console.error(error);
+        res.json({ login: true, success: false });
+      })
+  } else {
+    res.json({ login: false, success: false });
   }
 })
 

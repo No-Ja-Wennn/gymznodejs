@@ -538,6 +538,10 @@ body {
     align-items: center;
 }
 
+.cart-show .total span:first-child {
+    flex: 1;
+}
+
 .button-payment {
     height: 40px;
     width: 100%;

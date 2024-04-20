@@ -2525,7 +2525,7 @@
     </div>
     <div id="toast"></div>
     <div class="shadow"></div>
-    
+
     <div class="modal">
         <div class="modal-overlay">
 
@@ -2841,7 +2841,7 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script type="module" src="../navigation_javascript/wheyshop.js"></script>
     <script type="module" src="../src/client.js"></script>
-    
+
     <script>
 
 
@@ -2883,9 +2883,11 @@
         //    window.location.href = 'wheyshop_checkout.html'
         //}
         const buy = document.querySelector('.button-payment button')
-        buy.onclick = function () {
-            window.location.href = 'wheyshop_checkout.html'
-        }
+
+        //buy.onclick = function () {
+        //    localStorage.removeItem('tempItem');
+        //    window.location.href = 'wheyshop_checkout.html'
+        //}
 
         const cartButton = document.querySelector('.cart-button button');
         const cartShow = document.querySelector('.cart-show');

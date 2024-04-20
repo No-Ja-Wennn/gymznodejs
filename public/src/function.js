@@ -604,6 +604,7 @@ export function logoutSocket() {
 
 export function updateRowShop(dataObj, editRow, flag = false) {
     var cellIndex = 0;
+    console.log(dataObj)
     console.log("//////////////// ");
     console.log(dataObj)
     editRow.map((cell, index) => {
@@ -634,6 +635,7 @@ export function updateRowShop(dataObj, editRow, flag = false) {
                     lableTag.htmlFor = 'input' + className + index;
                     lableTag.style.display = 'none';
                     inputChange.style.display = 'none';
+                    console.log(inputChange)
                     inputChange.addEventListener('change', function (img) {
                         return function (event) {
                             changeFileInput(event, img);
@@ -665,7 +667,7 @@ export function updateRowShop(dataObj, editRow, flag = false) {
 //"change"  input file
 
 export function changeFileInput(event, imgE) {
-    console.log(imgE)
+    // console.log(imgE)
     // Kiểm tra xem có tệp nào được chọn hay không
     if (event.target.files && event.target.files[0]) {
         var reader = new FileReader();
@@ -732,13 +734,22 @@ export function hidenLoginBox() {
     activeLoginBox();
 }
 
-export function plusMinusItemCart(inputCountItem, ItemID, Cost, costAll) {
+export function plusMinusItemCart(inputCountItem, ItemID, Cost, costAll, totalCartShow, type) {
     costAll.innerHTML = `
     ${(Cost * inputCountItem.value).toLocaleString()}
     <span>
         ₫
     </span>
     `
+    var totalCart = totalCartShow.querySelector('.total__cart')
+    var totalValue = totalCart.innerHTML.replace(/[,.₫]/g, '');
+    console.log(totalValue);
+    if(type == 'plus'){
+        var one = 1;
+    }if(type == 'minus'){
+        var one = -1;
+    }
+    totalCart.innerHTML =  (parseInt(totalValue)  + parseInt(Cost) * one).toLocaleString() + '₫';
     $.ajax({
         url: '/plus-minus-item-cart',
         method: 'POST',

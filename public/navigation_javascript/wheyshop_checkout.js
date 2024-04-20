@@ -1,5 +1,5 @@
 import { hidenLoginBox } from "../src/function.js";
-import { showErrorToast } from "../src/toast.js";
+import { showErrorToast, showSuccessToast } from "../src/toast.js";
 import { checkValidPayAll } from "../src/validate.js";
 
 
@@ -66,15 +66,13 @@ defaultAddressInput.addEventListener("click", function () {
     console.log("ehll")
     addressElement.value = addressSave;
 })
-
+let localValue;
 $(document).ready(function () {
-    var localValue = JSON.parse(localStorage.getItem('tempItem'));
-    const { ItemID, count } = localValue;
+
 
     $.ajax({
         url: '/get-address-cus',
-        method: 'POST',
-        data: { ItemID },
+        method: 'GET',
         success: function (response) {
             console.log(response);
             var customerData = response.data;
@@ -107,37 +105,77 @@ $(document).ready(function () {
             console.log(err);
         }
     })
+    localValue = JSON.parse(localStorage.getItem('tempItem'));
+    if (localValue) {
+        // Nếu giá trị tồn tại, xóa nó khỏi localStorage
+        const { ItemID, count } = localValue;
 
 
-    console.log(localValue)
-    $.ajax({
-        url: '/get-item-by-id',
-        type: 'POST',
-        data: { ItemID },
-        success: function (res) {
-            if (res.success) {
-                var data = res.data;
-                data.Count = count;
-                console.log(data);
 
-                var element = HTMLItemCart(data);
+        $.ajax({
+            url: '/get-item-by-id',
+            type: 'POST',
+            data: { ItemID },
+            success: function (res) {
+                if (res.success) {
+                    var data = res.data;
+                    data.Count = count;
+                    console.log(data);
 
-                listItemMain.appendChild(element);
+                    var element = HTMLItemCart(data);
 
-                totalPriceProduct.querySelector('span').innerText = (count * data.Cost).toLocaleString();
-                totalQuantityProduct.querySelector('span').innerText = count
-                totalPriceShip.querySelector('span').innerText = shipPrice.toLocaleString();
-                totalPriceVat.querySelector('span').innerText = vatPrice.toLocaleString();
-                var finalPrice = parseInt(count) * data.Cost + shipPrice + vatPrice;
-                finalTotalPrice.querySelector('span').innerText = finalPrice.toLocaleString();
+                    listItemMain.appendChild(element);
 
-                // localStorage.removeItem('tempItem')
+                    totalPriceProduct.querySelector('span').innerText = (count * data.Cost).toLocaleString();
+                    totalQuantityProduct.querySelector('span').innerText = count
+                    totalPriceShip.querySelector('span').innerText = shipPrice.toLocaleString();
+                    totalPriceVat.querySelector('span').innerText = vatPrice.toLocaleString();
+                    var finalPrice = parseInt(count) * data.Cost + shipPrice + vatPrice;
+                    finalTotalPrice.querySelector('span').innerText = finalPrice.toLocaleString();
+
+                    // localStorage.removeItem('tempItem')
+                }
+            },
+            error: function (err) {
+                console.error(err);
             }
-        },
-        error: function (err) {
-            console.error(err);
-        }
-    })
+        })
+    } else {
+        $.ajax({
+            url: '/get-item-cart',
+            type: 'GET',
+            success: function (res) {
+                console.log(res)
+                if (res.login) {
+                    if (res.success) {
+                        var data = res.data;
+                        var cost = 0;
+                        var count = 0;
+                        data.forEach(item => {
+                            cost += item.Cost * item.Count;
+                            count += item.Count;
+                            var element = HTMLItemCart(item);
+
+                            listItemMain.appendChild(element);
+
+                        });
+                        totalPriceProduct.querySelector('span').innerText = cost.toLocaleString();
+                        totalQuantityProduct.querySelector('span').innerText = count
+                        totalPriceShip.querySelector('span').innerText = shipPrice.toLocaleString();
+                        totalPriceVat.querySelector('span').innerText = vatPrice.toLocaleString();
+                        var finalPrice = cost + shipPrice + vatPrice;
+                        finalTotalPrice.querySelector('span').innerText = finalPrice.toLocaleString();
+                    }
+                } else {
+                    showErrorToast("Chưa đăng nhập", "Vui lòng đăng nhập vào hệ thống");
+                    hidenLoginBox();
+                }
+            },
+            error: function (err) {
+                console.error(err);
+            }
+        })
+    }
 })
 
 
@@ -154,49 +192,98 @@ console.log(online.value
     , offline.value)
 
 function f_payAll() {
-    var localValue = JSON.parse(localStorage.getItem('tempItem'));
-    const { ItemID, count } = localValue;
-    let payMethod = 'offline';
-    if(online.checked){
-        payMethod = 'online';
-    }else{
-        payMethod = 'offline';
-    }
-    var objPay = {
-        name: nameElement.value,
-        email: emailElement.value,
-        phoneNumber: phonenumberElement.value,
-        address: addressElement.value,
-        ItemID,
-        Count: count,
-        payMethod: payMethod
-    }
-    console.log(objPay)
-    if (checkValidPayAll(objPay)) {
-        $.ajax({
-            url: '/pay-product-item',
-            method: 'POST',
-            data: objPay,
-            success: function (response) {
-                console.log(response);
-                if (response.login) {
-                    if (response.success) {
-                        pay.onclick = function () {
-                            orderSuccessful.style.display = 'flex';
+    if (localValue) {
+
+        const { ItemID, count } = localValue;
+        let payMethod = 'offline';
+        if (online.checked) {
+            payMethod = 'online';
+        } else {
+            payMethod = 'offline';
+        }
+        var objPay = {
+            name: nameElement.value,
+            email: emailElement.value,
+            phoneNumber: phonenumberElement.value,
+            address: addressElement.value,
+            ItemID,
+            Count: count,
+            payMethod: payMethod
+        }
+        console.log(objPay)
+        if (checkValidPayAll(objPay)) {
+            $.ajax({
+                url: '/pay-product-item',
+                method: 'POST',
+                data: objPay,
+                success: function (response) {
+                    console.log(response);
+                    if (response.login) {
+                        if (response.success) {
+                            pay.onclick = function () {
+                                orderSuccessful.style.display = 'flex';
+                            }
+                            pay.click();
+                        } else {
+                            console.log("lkooxi khi điền dư xlieeuj")
+                            showErrorToast("Lỗi", "Lỗi khi điền dữ liệu");
                         }
-                        pay.click();
                     } else {
-                        console.log("lkooxi khi điền dư xlieeuj")
-                        showErrorToast("Lỗi", "Lỗi khi điền dữ liệu");
+                        showErrorToast("Chưa đăng nhập", "Vui lòng đăng nhập để thanh toán");
+                        hidenLoginBox();
                     }
-                } else {
-                    showErrorToast("Chưa đăng nhập", "Vui lòng đăng nhập để thanh toán");
-                    hidenLoginBox();
+                },
+                error: function (errr) {
+                    console.error(err);
                 }
-            },
-            error: function (errr) {
-                console.error(err);
-            }
-        })
+            })
+        }
+    } else {
+
+        let payMethod = 'offline';
+        if (online.checked) {
+            payMethod = 'online';
+        } else {
+            payMethod = 'offline';
+        }
+        var objPay = {
+            name: nameElement.value,
+            email: emailElement.value,
+            phoneNumber: phonenumberElement.value,
+            address: addressElement.value,
+            payMethod: payMethod
+        }
+        console.log(objPay)
+        if (checkValidPayAll(objPay)) {
+            $.ajax({
+                url: '/pay-item-cart',
+                method: 'POST',
+                data: objPay,
+                success: function (response) {
+                    console.log(response);
+                    if (response.login) {
+                        if (response.success) {
+                            pay.onclick = function () {
+                                orderSuccessful.style.display = 'flex';
+                            }
+                            pay.click();
+                        } else {
+                            console.log("lkooxi khi điền dư xlieeuj")
+                            showErrorToast("Lỗi", "Lỗi khi điền dữ liệu");
+                        }
+                    } else {
+                        showErrorToast("Chưa đăng nhập", "Vui lòng đăng nhập để thanh toán");
+                        hidenLoginBox();
+                    }
+                },
+                error: function (errr) {
+                    console.error(err);
+                }
+            })
+        }
     }
+
+
 }
+
+

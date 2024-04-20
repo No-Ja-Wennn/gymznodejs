@@ -447,17 +447,7 @@ function HTMLItemCart({ MainImg, NameItem, Count, CostAll, Cost, ItemID }) {
         // MainImg,
     })
 
-    // itemCart.querySelector('.plus').addEventListener('click', function () {
-    //     let inputCountItem = this.closest('.item-quantity').querySelector(".quantity");
-    //     if (inputCountItem.value < 99)
-    //         inputCountItem.value++;
-    // })
-    // itemCart.querySelector('.minus').addEventListener('click', function () {
-    //     let inputCountItem = this.closest('.item-quantity').querySelector(".quantity");
-    //     if (inputCountItem.value > 0)
-    //         inputCountItem.value--;
 
-    // })
 
     let plus = itemCart.querySelector(".plus");
     let minus = itemCart.querySelector(".minus");
@@ -468,14 +458,14 @@ function HTMLItemCart({ MainImg, NameItem, Count, CostAll, Cost, ItemID }) {
         let inputCountItem = this.closest('.item-quantity').querySelector(".quantity");
         if (inputCountItem.value < 99) {
             inputCountItem.value++;
-            plusMinusItemCart(inputCountItem, ItemID, Cost, costAllE);
+            plusMinusItemCart(inputCountItem, ItemID, Cost, costAllE, totalCartShow, 'plus');
         }
     })
     minus.addEventListener("click", function () {
         let inputCountItem = this.closest('.item-quantity').querySelector(".quantity");
-        if (inputCountItem.value > 0) {
+        if (inputCountItem.value > 1) {
             inputCountItem.value--;
-            plusMinusItemCart(inputCountItem, ItemID, Cost, costAllE);
+            plusMinusItemCart(inputCountItem, ItemID, Cost, costAllE, totalCartShow, 'minus');
         }
 
     })
@@ -505,7 +495,7 @@ function f_getItemCart() {
                     var divE = HTMLItemCart(value)
                     listItemCartShow.appendChild(divE);
                 })
-                totalCartShow.innerHTML = `Tổng <span>${cost.toLocaleString()}<span>₫</span></span>`;
+                totalCartShow.innerHTML = `<span>Tổng</span> <span class="total__cart">${cost.toLocaleString()}₫</span>`;
                 cartCountE.innerText = res.data.length;
             }
         },
@@ -520,3 +510,10 @@ $(document).ready(function () {
 })
 
 
+const buy = document.querySelector('.button-payment button')
+console.log(buy)
+buy.addEventListener("click",  function () {
+    console.log("jello")
+    localStorage.removeItem('tempItem');
+    window.location.href = 'wheyshop_checkout.html'
+})
