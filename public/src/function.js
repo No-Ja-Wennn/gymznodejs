@@ -604,6 +604,7 @@ export function logoutSocket() {
 
 export function updateRowShop(dataObj, editRow, flag = false) {
     var cellIndex = 0;
+    console.log(dataObj)
     console.log("//////////////// ");
     console.log(dataObj)
     editRow.map((cell, index) => {
@@ -634,6 +635,7 @@ export function updateRowShop(dataObj, editRow, flag = false) {
                     lableTag.htmlFor = 'input' + className + index;
                     lableTag.style.display = 'none';
                     inputChange.style.display = 'none';
+                    console.log(inputChange)
                     inputChange.addEventListener('change', function (img) {
                         return function (event) {
                             changeFileInput(event, img);
@@ -665,7 +667,7 @@ export function updateRowShop(dataObj, editRow, flag = false) {
 //"change"  input file
 
 export function changeFileInput(event, imgE) {
-    console.log(imgE)
+    // console.log(imgE)
     // Kiểm tra xem có tệp nào được chọn hay không
     if (event.target.files && event.target.files[0]) {
         var reader = new FileReader();

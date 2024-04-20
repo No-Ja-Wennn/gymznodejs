@@ -49,7 +49,6 @@ function affterLogout(data) {
 }
 let socket = null;
 function activeEventLogin() {
-    console.log("hello2");
     socket = io(
         //     {
         //     query: {
@@ -71,7 +70,6 @@ function activeEventLogin() {
     });
 
     socket.on('clientMessage', (data) => {
-        // console.log(maKHActive)
         if (data.maKH == maKHActive)
             displayLeftMessage(data.message);
         activeNewMessage(data.maKH, data.name, data.senderRole, data.message);
@@ -453,7 +451,6 @@ if (searchChatInput) {
             null,
             function (response) {
                 var data = response.data;
-                console.log(data);
                 // innerBoxMsg(data);
                 dataMessage = data;
                 removeAllBoxMessage();
@@ -468,7 +465,6 @@ if (searchChatInput) {
 
     searchChatInput.addEventListener("input", function () {
         var inputValue = this.value.toLowerCase().trim();
-        console.log(maKHActive);
         if (inputValue) {
             removeAllBoxMessage();
             dataMessage.forEach(data => {
@@ -552,6 +548,41 @@ function removeAllTable() {
     })
 }
 
+const tbodyShopPage = shopPage.querySelector('.table__show__main tbody');
+
+function activeClickChangeForAllInput() {
+//     var img1Element = tbodyShopPage.querySelectorAll(".MainImg");
+//     img1Element = Array.from(img1Element);
+//     let count = 0;
+//     img1Element.forEach(img1 => {
+//         let inputChange = img1.querySelector('input');
+//         let imgE = inputChange.parentNode.querySelector('img'); // Lấy img trong cùng td với input được click
+//         let labelE = inputChange.parentNode.querySelector('label'); // Lấy img trong cùng td với input được click
+
+//         // Nghe sự kiện "change" trên thẻ label
+//         labelE.addEventListener("click", function(){
+//             // Thực hiện các hành động khi input thay đổi giá trị
+//             inputChange.style.display = "block";
+//             console.log(inputChange.files); // Để lấy danh sách các files được chọn
+//             // changeFileInput(e, imgE);
+//             count++;
+//         });
+
+//         // Bổ sung phần xử lý khi input thay đổi giá trị
+//         inputChange.addEventListener("change", function (e) {
+//             // Thực hiện các hành động khi giá trị của input thay đổi
+//             inputChange.style.display = "block";
+//             console.log(inputChange.files); // Để lấy danh sách các files được chọn
+//             // changeFileInput(e, imgE);
+//             count++;
+//         });
+//     });
+}
+
+let imgItemClick = null;
+
+let countForInput = 0;
+
 function insertToTable(tableName, dataObject) {
     var tbody;
     if (tableName == "account")
@@ -627,30 +658,43 @@ function insertToTable(tableName, dataObject) {
             // img 1
             if (cellIndex == 0 || cellIndex == 1) {
                 cell.textContent = '';
-                var imgE = document.createElement('img');
+                let imgE = document.createElement('img');
                 imgE.className = "show_main_img";
                 imgE.src = "" || dataObject[field];
                 cell.appendChild(imgE);
-                var inputChange = document.createElement('input');
+                let inputChange = document.createElement('input');
                 inputChange.type = 'file';
-                inputChange.id = 'input' + field + idIndex;
-                var lableTag = document.createElement('label');
+                inputChange.id = 'input' + field + idIndex + countForInput;
+                let lableTag = document.createElement('label');
                 lableTag.innerText = 'Thay ảnh';
-                lableTag.htmlFor = 'input' + field + idIndex;
+                lableTag.htmlFor = 'input' + field + idIndex + countForInput;
                 lableTag.style.display = 'none';
                 inputChange.style.display = 'none';
-                inputChange.addEventListener('change', function (img) {
-                    return function (event) {
-                        changeFileInput(event, img);
-                    };
-                }(imgE));
+
+                lableTag.addEventListener("click", function(){
+                    imgItemClick = imgE;
+                })
+                // inputChange.addEventListener('change', function (img) {
+                //     return function (event) {
+                //         changeFileInput(event, img);
+                //     };
+                // }(imgE));
+                
+                inputChange.addEventListener("change", function(e){
+                    if(imgItemClick)
+                    changeFileInput(e, imgItemClick);
+                })
+
                 cell.appendChild(inputChange);
+
+
                 cell.appendChild(lableTag);
                 idIndex++;
             }
 
             cell.classList.add(field);
             cellIndex++;
+            countForInput++;
         }
 
     }
@@ -700,7 +744,6 @@ function f_cardNav() {
         function (data) {
             removeAllTable();
             data.data.forEach(value => {
-                console.log(value)
                 value.dateEnd = editDate(value.dateEnd)
                 value.dateOfBirth = editDate(value.dateOfBirth)
                 value.dateStart = editDate(value.dateStart)
@@ -739,7 +782,6 @@ function f_calendarNav() {
         function (data) {
             removeAllTable();
             var data = replaceNullUndefinedWithEmptyString(data.data);
-            console.log(data)
             data.forEach(value => {
                 insertToTable("calendar", value);
             })
@@ -1583,6 +1625,7 @@ function f_shopNav() {
                 value.Cost = value.Cost.toLocaleString();
                 insertToTable("shop", value);
             })
+            activeClickChangeForAllInput();
         },
         function (err) {
             console.error(err);
@@ -1640,7 +1683,6 @@ addProductBTN.addEventListener("click", () => {
 
 
 function previewImage() {
-    console.log(this)
     var parentThis = this.closest('div');
 
     const image = parentThis.querySelector('img'); // Lấy hình ảnh theo ID
@@ -1665,7 +1707,6 @@ function previewImage() {
         // Nếu không có file nào được chọn, gán nguồn (src) của ảnh là một giá trị mặc định
         image.src = '#';
     }
-    console.log(image)
 }
 
 let imgInputAdd = addProductBox.querySelectorAll(".content-img-main");
@@ -1694,7 +1735,6 @@ $('#form-add-product').submit(function (e) {
         form_data.append('file1', file_data1);
         form_data.append('file2', file_data2);
         form_data.append('dataItem', JSON.stringify(dataObj));
-        console.log(dataObj);
         $.ajax({
             url: '/add-product-item',
             type: 'POST',
@@ -1746,7 +1786,6 @@ function f_editShopBTN() {
                     `
 
                 // var value = element.textContent;
-                console.log("Value: ", value);
                 element.textContent = ''
                 for (var i = 0; i < selectType.options.length; i++) {
                     if (selectType.options[i].value == value) {
@@ -1760,7 +1799,6 @@ function f_editShopBTN() {
             } else if (index > 2 && index < 7) {
 
                 var inputE = document.createElement('input');
-                console.log(inputE)
                 inputE.value = value;
                 element.textContent = '';
                 element.appendChild(inputE);
@@ -1775,7 +1813,7 @@ function f_editShopBTN() {
     }
 }
 
-saveBTN.addEventListener("click", f_saveFunction)
+saveBTN.addEventListener("click", f_saveFunction);
 
 function f_saveFunction() {
     saveBTN.style.display = 'none';
@@ -1794,7 +1832,6 @@ function f_saveFunction() {
     var idItem = editRow.querySelector('.ItemID');
     obj[idItem.className] = idItem.innerText;
     var accessToken = localStorage.getItem('accessToken');
-    console.log("obj: ", obj);
 
     sendRequest(
         '/edit-item-admin-url',
@@ -1804,10 +1841,8 @@ function f_saveFunction() {
         },
         obj,
         function (data) {
-            console.log(data);
             if (data.success) {
                 data.data.Cost = data.data.Cost.toLocaleString();
-                console.log(data.data)
                 updateRowShop(data.data, tdRow, false);
                 showSuccessToast("Sửa thành công", "");
                 editRow = null;
@@ -1827,8 +1862,12 @@ function f_saveFunction() {
         editRow.querySelector('.MainImg').querySelector('input'),
         editRow.querySelector('.SubImg').querySelector('input'),
     ]
+    console.log(editRow)
+    console.log("chuan bi trung manh")
     a_fileInput.forEach(file_input => {
+        console.log("flie; ", file_input.files);
         if (file_input.files.length > 0) {
+            console.log("trung manh roi")
             var file_data = file_input.files[0]; // Không cần sử dụng jQuery ở đây
             var form_data = new FormData();
             form_data.append('file', file_data);
@@ -1836,7 +1875,8 @@ function f_saveFunction() {
             form_data.append('ItemID', obj.ItemID);
             var imgType = file_input.closest('td').className;
             form_data.append('imgType', imgType);
-            console.log("imgType: ", imgType);
+
+
             $.ajax({
                 url: '/upload',
                 type: 'POST',
@@ -1851,7 +1891,6 @@ function f_saveFunction() {
                     if (response.success) {
                         // var data = { MainImg: response.img }
                         updateRowShop(response.data, tdRow, true);
-                        console.log(response.data);
                     } else {
                         showErrorToast("Sửa thất ảnh thất bại");
                     }
@@ -1893,7 +1932,6 @@ removeProductBTN.addEventListener("click", f_removeProductBTN);
 
 function f_removeProductBTN() {
     var ItemID = removeProductForm.querySelector(".row__title-ID").innerText;
-    console.log(ItemID)
     var accessToken = localStorage.getItem('accessToken');
     sendRequest(
         '/remove-product-item',
@@ -1949,12 +1987,10 @@ findProductItemBTN.addEventListener("click", function () {
     var count = 0;
     if (inputValue) {
         trElement.forEach(tr => {
-            console.log(tr)
             var idElement = tr.querySelector(".ItemID").innerText.toLowerCase();
             var nameElement = tr.querySelector(".NameItem").innerText.toLowerCase();
             if (idElement && nameElement
                 && (idElement.includes(inputValue) || nameElement.includes(inputValue))) {
-                console.log(idElement, nameElement)
                 tr.style.display = 'table-row';
                 count++;
             } else {

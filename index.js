@@ -1720,6 +1720,7 @@ function generateFilePath(file, Type) {
 
 app.post('/upload', authenToken, upload.single('file'), (req, res) => {
   const { Type, ItemID, imgType } = req.body;
+  console.log("jello")
   console.log(Type)
   if (!Type) {
     return res.status(400).send('Missing file type.');
