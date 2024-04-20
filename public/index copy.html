@@ -17,1034 +17,571 @@
         rel="stylesheet" />
     <link rel="stylesheet" href="./font/fontawesome-free-6.4.0-web/css/all.min.css">
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
-    <link rel="stylesheet" href="./css/styles.css">
-    <link rel="stylesheet" href="./navigation_css/toast.css">
-    <link rel="stylesheet" href="./navigation_css/login.css">
+    <!-- <link rel="stylesheet" href="./css/styles.css"> -->
     <title>GYMZ - Thể hình giới trẻ</title>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <style>
+        /* service second */
+.container-second{
+    width: 100%;
+    height: fit-content;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.container-second-wrapper{
+    width: 100%;
+    height: fit-content;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 16px;
+    gap: 32px;
+}
+.service-style{
+    width: 100%;
+    height: fit-content;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 16px;
+}
+.service-partone{
+    height: 100%;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 32px;
+}
+.partone-row-title{
+    height: 100%;
+    width: fit-content;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    gap: 5px;
+}
+.partone-title{
+    font-size: 36px;
+    color: #666;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 8px;
+    font-weight: 400;
+}
+.partone-title span{
+    font-style: italic;
+    font-weight: 600;
+    color: #000;
+    display: -webkit-box;
+    -webkit-line-clamp: 1;
+    -webkit-box-orient: vertical;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    width: fit-content;
+}
+.partone-content{
+    font-size: 18px;
+    font-weight: 400;
+    color: #222;
+    text-align: start;
+}
+.partone-nav{
+    height: 100%;
+    width: fit-content;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.partone-nav a{
+    width: max-content;
+    height: fit-content;
+    white-space: nowrap;
+    font-size: 18px;
+    font-style: italic;
+    font-weight: 600;
+    text-transform: uppercase;
+    padding: 7px 14px 5px 14px ;
+    border-radius: 50px;
+    border: 1px solid #888;
+    color: #888;
+    transition: .1s;
+}
+.partone-nav a:hover{
+    border-color: rgb(160, 0, 0);
+    background-color: rgb(160, 0, 0);
+    color: #fff;
+}
+.service-parttwo{
+    height: calc(100vh - 500px);
+    height: calc(100svh - 500px);
+    min-height: 550px;
+    max-height: 700px;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 2px;
+}
+.item-second{
+    position: relative;
+    height: 100%;
+    /* width: calc(100% / 4); */
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 15px;
+    overflow: hidden;
+    transition: all .5s;
+    cursor: pointer;
+    background-color: green;
+}
+.item-second.active{
+    /* width: calc(100% / 2); */
+    flex: 2;
+}
+.item-second:hover{
+    /* width: calc(100% / 2); */
+    flex: 2.5;
+    /* flex-shrink: 0; */
+}
+/* .item-second:hover .item-second-wrapper.one::after,
+.item-second:hover .item-second-wrapper.two::after,
+.item-second:hover .item-second-wrapper.three::after,
+.item-second:hover .item-second-wrapper.four::after,
+.item-second:hover .item-second-wrapper.five::after,
+.item-second:hover .item-second-wrapper.six::after,
+.item-second:hover .item-second-wrapper.seven::after,
+.item-second:hover .item-second-wrapper.eight::after,
+.item-second:hover .item-second-wrapper.nine{
+    scale: 1.1;
+} */
+.item-second-wrapper{
+    height: 100%;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    align-items: flex-start;
+    padding: 16px;
+    gap: 5px;
+    transition: all .5s;
+}
+.item-second-title{
+    /* position: relative;
+    z-index: 0; */
+    font-size: 22px;
+    font-weight: 600;
+    font-style: italic;
+    text-transform: uppercase;
+    text-align: start;
+    color: #fff;
+    width: 375px;
+}
+.item-second-group{
+    /* position: relative;
+    z-index: 0; */
+    width: 100%;
+    height: fit-content;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    text-align: start;
+    font-size: 18px;
+    gap: 10px;
+}
+.item-second-content{
+    color: #fff;
+    width: 375px;
+}
+.item-second-group a{
+    color: #fff;
+    font-size: 18px;
+    font-weight: 600;
+    font-style: italic;
+    text-transform: uppercase;
+    padding: 7px 14px 5px 14px;
+    border-radius: 50px;
+    border: 1px solid #fff;
+    width: max-content;
+    white-space: nowrap;
+    transition: all .1s;
+}
+.item-second-group a:hover{
+    background-color: rgb(160, 0, 0);
+    border-color: rgb(160, 0, 0);
+}
 
+
+.item-second-wrapper.one{
+    background: linear-gradient(rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.51)), url(./img/services/personalTrainer/pt1.webp);
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: 50%;
+    content: '';
+    /* position: absolute; */
+    /* top: 0;
+    bottom: 0;
+    right: 0;
+    left: 0; */
+    /* z-index: 0; */
+    transition: all .5s;
+}
+.item-second-wrapper.two{
+    background: linear-gradient(rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.51)), url(./img/services/personalTrainer/home-success-stories.webp);
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: 50%;
+    content: '';
+    /* position: absolute; */
+    /* top: 0;
+    bottom: 0;
+    right: 0;
+    left: 0; */
+    /* z-index: 0; */
+    transition: all .5s;
+}
+.item-second-wrapper.three{
+    background: linear-gradient(rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.51)), url(./img/services/personalTrainer/home-whyus.webp);
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: 50%;
+    content: '';
+    /* position: absolute; */
+    /* top: 0;
+    bottom: 0;
+    right: 0;
+    left: 0; */
+    /* z-index: 0; */
+    transition: all .5s;
+}
+.item-second-wrapper.four{
+    background: linear-gradient(rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.51)), url(./img/services/pilates/clinical-pilates-slide.webp);
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: 50%;
+    content: '';
+    /* position: absolute; */
+    /* top: 0;
+    bottom: 0;
+    right: 0;
+    left: 0; */
+    /* z-index: 0; */
+    transition: all .5s;
+}
+.item-second-wrapper.five{
+    background: linear-gradient(rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.51)), url(./img/services/pilates/private-duet-and-trio-home-slide.webp);
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: 50%;
+    content: '';
+    /* position: absolute; */
+    /* top: 0;
+    bottom: 0;
+    right: 0;
+    left: 0; */
+    /* z-index: 0; */
+    transition: all .5s;
+}
+.item-second-wrapper.six{
+    background: linear-gradient(rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.51)), url(./img/services/pilates/pre-post-natal-home-slide.webp);
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: 50%;
+    content: '';
+    /* position: absolute; */
+    /* top: 0;
+    bottom: 0;
+    right: 0;
+    left: 0; */
+    /* z-index: 0; */
+    transition: all .5s;
+}
+.item-second-wrapper.seven{
+    background: linear-gradient(rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.51)), url(./img/services/eats/Sculpt.webp);
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: 50%;
+    content: '';
+    /* position: absolute; */
+    /* top: 0;
+    bottom: 0;
+    right: 0;
+    left: 0; */
+    /* z-index: 0; */
+    transition: all .5s;
+}
+.item-second-wrapper.eight{
+    background: linear-gradient(rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.51)), url(./img/services/eats/tsquaredlab-full-menu.webp);
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: 50%;
+    content: '';
+    /* position: absolute; */
+    /* top: 0;
+    bottom: 0;
+    right: 0;
+    left: 0; */
+    /* z-index: 0; */
+    transition: all .5s;
+}
+.item-second-wrapper.nine{
+    background: linear-gradient(rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.51)), url(./img/services/eats/nutrition-related-blogs.webp);
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: 50%;
+    content: '';
+    /* position: absolute; */
+    /* top: 0;
+    bottom: 0;
+    right: 0;
+    left: 0; */
+    /* z-index: 0; */
+    transition: all .5s;
+}
+    </style>
 </head>
 
 <body>
-    <div id="app" class="app">
-        <!-- LUU SY TRUONG -->
-        <div class="header">
-            <div class="header-wrapper">
-                <div class="header-logo">
-                    <h1>
-                        GYM
-                        <span>
-                            Z
-                        </span>
-                    </h1>
-                </div>
-                <div class="header-nav-bar">
-                    <div class="header-nav home">
-                        <a href="./index.html">
-                            <span>TRANG CHỦ</span>
-                        </a>
-                    </div>
-                    <div class="header-nav chat">
-                        <a href="./navigation/wheyshop.html">
-                            SHOP WHEY
-                        </a>
-                    </div>
-                    <div class="header-nav service">
-                        <span>
-                            DỊCH VỤ
-                            <i class="fa-solid fa-play"></i>
-                        </span>
-                        <div class="drop-content">
-                            <div class="content-service">
-                                <a href="./navigation/personal_trainer.html">
-                                    HUẤN LUYỆN VIÊN
-                                </a>
-                            </div>
-                            <div class="content-service">
-                                <a href="./navigation/chatbox.html">
-                                    CHAT ONLINE
-                                </a>
-                            </div>
-                            <div class="content-service">
-                                <a href="./navigation/card.html">
-                                    THẺ HỘI VIÊN
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="header-nav promotion">
-                        <a href="./navigation/promotion.html">
-                            KHUYẾN MÃI
-                        </a>
-                    </div>
-                </div>
-                <div class="header-login">
-                    <div class="user">
-                        <img class="user-avatar" src="./img/icon/avatar.png" alt="">
-                        <div class="submenu-login">
-                            <ion-icon name="caret-up-sharp"></ion-icon>
-                            <div class="menu-login">
-                                <a class="loginstatus status" href="#">
-                                    Đăng nhập
-                                </a>
-                                <a href="./navigation/information_account.html">
-                                    Thẻ thành viên
-                                </a>
-                                <a href="./navigation/information_card_TS.html">
-                                    Lịch tập
-                                </a>
-                                <a class="logoutstatus status">
-                                    ĐĂNG XUẤT
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="header__inner__menu">
-                    <button class="button-menu">
-                        <i class="fa-solid fa-bars"></i>
-                    </button>
-                    <div class="content">
-                        <div class="account">
-                            <div class="menu2-infor account-wrapper" id="menu2-infor">
-                                <div class="account-avt">
-                                    <img src="./img/icon/avatar.png" alt="">
-                                </div>
-                                <div class="account-ifm">
-                                    <p class="account-fullname">
-                                        full name
-                                    </p>
-                                    <p class="account-code">
-                                        acc001
-                                    </p>
-                                </div>
-                            </div>
-                            <div class="close-menu">
-                                <button class="button-menu-close">
-                                    <i class="fa-solid fa-xmark"></i>
-                                </button>
-                            </div>
-                            <!-- <img src="../img/background/logo_and_bgr.png" alt="logo and bgr"> -->
-                        </div>
-                        <div class="content-wrapper">
-                            <a class="content-inner" href="./index.html">
-                                <i class="fa-solid fa-house"></i>
-                                <span class="content-text">
-                                    Trang chủ
-                                </span>
-                            </a>
-                            <a class="content-inner" href="./navigation/promotion.html">
-                                <i class="fa-solid fa-gift"></i>
-                                <span class="content-text">
-                                    Khuyến mãi
-                                </span>
-                            </a>
-                            <a class="content-inner" href="./navigation/chatbox.html">
-                                <i class="fa-solid fa-comments"></i>
-                                <span class="content-text">
-                                    Chat online
-                                </span>
-                            </a>
-                            <a class="content-inner" href="./navigation/wheyshop.html">
-                                <i class="fa-solid fa-cart-shopping"></i>
-                                <span class="content-text">
-                                    Cửa hàng
-                                </span>
-                            </a>
-                            <a class="content-inner" href="./navigation/card.html">
-                                <i class="fa-solid fa-address-card"></i>
-                                <span class="content-text">
-                                    Thẻ thành viên
-                                </span>
-                            </a>
-                            <a class="content-inner" href="./navigation/personal_trainer.html">
-                                <i class="fa-solid fa-person-harassing"></i>
-                                <span class="content-text">
-                                    Huấn luyện viên
-                            </a>
-                            <div class="content-logout">
-                                <a class="content__logout__btn content-inner logout">
-                                    <!-- <i class='bx bx-code-alt'></i> -->
-                                    <i class="bxf fa-solid fa-right-from-bracket"></i>
-                                    <span class="content-text">
-                                        Đăng xuất
-                                    </span>
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="button-open-wrapper">
-            <button class="button-open-chat">
-                <img src="./img/icon/icon_mess.png" alt="">
-                <span>
-                    <div class="color purple"></div>
-                    <div class="color pink"></div>
-                    <div class="color red"></div>
-                </span>
-            </button>
-        </div>
-        <div class="chat-box">
-            <div class="chat-box-wrapper">
-                <div class="chat-header">
-                    <div class="chat-information">
-                        <div class="header-img">
-                            <img src="./img/icon/closeAi.jpg" alt="">
-                        </div>
-                        <div class="assistant-name">
-                            Nguyễn Thị Vân
+    <div class="container-second">
+        <div class="container-second-wrapper">
+            <div class="service-style">
+                <div class="service-partone">
+                    <div class="partone-row-title">
+                        <div class="partone-title">
+                            gymz
                             <span>
-                                Assiant
+                                huấn luyện viên cá nhân
                             </span>
                         </div>
-                    </div>
-                    <div class="chat-option">
-                        <button class="chat-minimize">
-                            <i class="fa-solid fa-minus"></i>
-                        </button>
-                    </div>
-                </div>
-                <div class="welcome-screen">
-
-                </div>
-                <div class="chat-screen">
-                    <div class="chat-history">
-                        <div class="chat-log">
-                            <!-- <div class="message admin">
-                                <span class="admin-img">
-                                    <img src="./img/icon/closeAi.jpg" alt="">
-                                </span>
-                                <p class="message-text">
-                                    xin chào, em là trợ lý hỗ trợ mình !
-                                </p>
-                            </div>
-                            <div class="message customer">
-                                <p class="message-text">
-                                    hướng dẫn mình thanh toán online.
-                                    hướng dẫn mình thanh toán online.
-                                    hướng dẫn mình thanh toán online.
-                                    hướng dẫn mình thanh toán online.
-                                    hướng dẫn mình thanh toán online.
-                                    hướng dẫn mình thanh toán online.
-                                    hướng dẫn mình thanh toán online.
-                                    hướng dẫn mình thanh toán online.
-                                    hướng dẫn mình thanh toán online.
-                                    hướng dẫn mình thanh toán online.
-                                    hướng dẫn mình thanh toán online.
-                                    hướng dẫn mình thanh toán online.
-                                    hướng dẫn mình thanh toán online.
-                                    hướng dẫn mình thanh toán online.
-                                    hướng dẫn mình thanh toán online.
-                                </p>
-                            </div>
-                            <div class="message customer">
-                                <p class="message-text">
-                                    wwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwww
-                                </p>
-                            </div>
-                            <div class="message admin">
-                                <span class="admin-img">
-                                    <img src="./img/icon/closeAi.jpg" alt="">
-                                </span>
-                                <p class="message-text">
-                                    wwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwww
-                                </p>
-                            </div>
-                            <div class="message admin">
-                                <span class="admin-img">
-                                    <img src="./img/icon/closeAi.jpg" alt="">
-                                </span>
-                                <p class="message-text">
-                                    wwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwww
-                                </p>
-                            </div> -->
+                        <div class="partone-content">
+                            Trải nghiệm đào tạo với các huấn luyện viên cá nhân hàng đầu thế giới, sử dụng Các phương pháp được khoa học ủng hộ để điêu khắc một bài tập mạnh mẽ hơn, khỏe mạnh hơn tại một thời điểm.
                         </div>
                     </div>
-                    <div class="chat-input">
-                        <div class="input-wrapper">
-                            <div class="button-plus-wrapper">
-                                <button class="plus">
-                                    <i class="fa-solid fa-plus"></i>
-                                </button>
-                            </div>
-                            <div class="button-image-wrapper">
-                                <button class="image">
-                                    <i class="fa-regular fa-image"></i>
-                                </button>
-                            </div>
-                            <div class="input-area">
-                                <textarea class="input-text" placeholder="Aa" name="text" cols="1" rows="1"></textarea>
-                            </div>
-                            <button class="sticker">
-                                <i class="fa-solid fa-face-smile"></i>
-                            </button>
-                            <button class="send">
-                                <ion-icon name="send"></ion-icon>
-                            </button>
-                        </div>
-                    </div>
-                </div>
-                <div class="chat-footer">
-                    <span class="footer-content">
-                        Powered by
-                        <a href="#">
-                            CloseAi
-                        </a>
-                    </span>
-                </div>
-            </div>
-        </div>
-        <div class="container">
-            <!-- NGO GIA QUYEN -->
-            <div class="container__home">
-                <div class="video-title">
-                    <video autoplay loop muted playsinline> 
-                        <!-- <source src="./video/video.mp4" type="video/mp4" /> -->
-                    </video>
-                </div>
-                <div class="home__about">
-                    <div class="home__about__head">
-                        <p class="home__about__head__text">TÌM LẠI NĂNG LƯỢNG CỦA BẠN</p>
-                    </div>
-                    <h1 class="home__about__title">
-                        TẠO NỀN TẢNG CHO MÔI TRƯỜNG TẬP LUYỆN HIỆU QUẢ
-                    </h1>
-                    <p class="home__about__text">
-                        CLOSE-AIGYM dùng toàn bộ nỗ lực để giúp bạn yêu cơ thể mình hơn, đều đặn mỗi ngày.
-                    </p>
-                    <div class="home__about__btn">
-                        <a href="./navigation/chatbox.html" class="home__about__btn__child__link home__about__btn__child">
-                            <span class="">LIÊN HỆ NGAY</span>
+                    <div class="partone-nav">
+                        <a href="./navigation/personal_trainer.html">
+                            bắt đầu
                         </a>
                     </div>
-
                 </div>
-            </div>
-            <!-- HOANG ANH TU -->
-            <div class="container__service">
-                <div class="container__service__first">
-                    <div class="container__service__title">
-                        <h1>
-                            CÁC DỊCH VỤ CỦA CHÚNG TÔI
-                        </h1>
-                    </div>
-                    <div class="container__service__uses">
-                        <p>
-                            Chương trình luyện tập yoga, gym, group X được thiết kế khoa học và phù hợp từ chuyên gia sẽ
-                            giúp bạn đạt được mục tiêu sức khỏe và hình thể.
-                        </p>
-                    </div>
-                    <div class="container__service__img hidden">
-                        <div class="container__service__img__items container__service__img1">
-                            <img src="./img/services/sv1.jpg" alt="">
-                            <span>Tập luyện với Huấn luyện viên cá nhân</span>
-                            <a href="./navigation/personal_trainer.html" class="container__service__img__items__link">Xem
-                                thêm
-                            </a>
-                        </div>
-                        <div class="container__service__img__items container__service__img2">
-                            <img src="./img/services/sv2.jpg">
-                            <span>Cơ hội trải nghiệm 40 bộ môn yoga</span>
-                            <a href="./navigation/personal_trainer.html" class="container__service__img__items__link">Xem
-                                thêm
-                            </a>
-                        </div>
-                        <div class="container__service__img__items container__service__img3">
-                            <img src="./img/services/sv3.jpg" alt="">
-                            <span>Tỏa căng thẳng với hơn 10 thể loại Group</span>
-                            <a href="./navigation/personal_trainer.html" class="container__service__img__items__link">Xem
-                                thêm
-                            </a>
-                        </div>
-                        <div class="container__service__img__items container__service__img4">
-                            <img src="./img/services/sv4.jpg" alt="">
-                            <span>Cùng nhau đạp xe để nâng cao sức khỏe</span>
-                            <a href="./navigation/personal_trainer.html" class="container__service__img__items__link">Xem
-                                thêm
-                            </a>
-                        </div>
-                        <div class="container__service__img__items container__service__img5">
-                            <img src="./img/services/sv5.jpg" alt="">
-                            <span>Có những dạng Dance như: Zumba, Sexy Dance </span>
-                            <a href="./navigation/personal_trainer.html" class="container__service__img__items__link">Xem
-                                thêm
-                            </a>
-                        </div>
-                        <div class="container__service__img__items container__service__img5">
-                            <img src="./img/services/sv5.jpg" alt="">
-                            <span>Có những dạng Dance như: Zumba, Sexy Dance </span>
-                            <a href="./navigation/personal_trainer.html" class="container__service__img__items__link">Xem
-                                thêm
-                            </a>
-                        </div>
-                    </div>
-                </div>
-                <div class="container-second">
-                    <div class="container-second-wrapper">
-                        <div class="service-style">
-                            <div class="service-second-wrapper">
-                                <div class="title-service-second">
-                                    <div class="title-second-content">
-                                        <div class="title-second-content-top">
-                                            gymz
-                                            <span>
-                                                huấn luyện viên cá nhân
-                                            </span>
-                                        </div>
-                                        <div class="title-second-content-bot">
-                                            Trải nghiệm đào tạo với các huấn luyện viên cá nhân hàng đầu thế giới, sử dụng Các phương pháp được khoa học ủng hộ để điêu khắc một bài tập mạnh mẽ hơn, khỏe mạnh hơn tại một thời điểm.
-                                        </div>
-                                    </div>
-                                    <div class="title-second-button">
-                                        <a href="./navigation/personal_trainer.html">
-                                            bắt đầu
-                                        </a>
-                                    </div>
+                <div class="service-parttwo">
+                    <div class="item-second active">
+                        <div class="item-second-wrapper one">
+                            <div class="item-second-title">
+                                đào tạo cá nhân 1 kèm 1
+                            </div>
+                            <div class="item-second-group">
+                                <div class="item-second-content">
+                                    Biến đổi cơ thể suốt đời và giảm mỡ cơ thể là kết quả từ cá nhân hàng đầu thế giới Giảng viên.
                                 </div>
-                                <div class="content-service-second">
-                                    <div class="item-second">
-                                        <div class="item-second-wrapper one">
-                                            <div class="item-second-title">
-                                                đào tạo cá nhân 1 kèm 1
-                                            </div>
-                                            <div class="item-second-group">
-                                                <div class="item-second-content">
-                                                    Biến đổi cơ thể suốt đời và giảm mỡ cơ thể là kết quả từ cá nhân hàng đầu thế giới Giảng viên.
-                                                </div>
-                                                <a href="./navigation/personal_trainer.html">
-                                                    tìm hiểu thêm
-                                                </a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="item-second">
-                                        <div class="item-second-wrapper two">
-                                            <div class="item-second-title">
-                                                biến đổi
-                                            </div>
-                                            <div class="item-second-group">
-                                                <div class="item-second-content">
-                                                    Đạt được kết quả đáng kinh ngạc, như thế này với các huấn luyện viên cá nhân hàng đầu thế giới tại Gymz.
-                                                </div>
-                                                <a href="./navigation/personal_trainer.html">
-                                                    tìm hiểu thêm
-                                                </a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="item-second">
-                                        <div class="item-second-wrapper three">
-                                            <div class="item-second-title">
-                                                tại sao chọn chúng tôi
-                                            </div>
-                                            <div class="item-second-group">
-                                                <div class="item-second-content">
-                                                    Một hệ sinh thái chuyển đổi toàn diện xa xỉ..
-                                                </div>
-                                                <a href="./navigation/personal_trainer.html">
-                                                    tìm hiểu thêm
-                                                </a>
-                                            </div>
-                                        </div>
-                                    </div>
+                                <a href="./navigation/personal_trainer.html">
+                                    tìm hiểu thêm
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="item-second">
+                        <div class="item-second-wrapper two">
+                            <div class="item-second-title">
+                                biến đổi
+                            </div>
+                            <div class="item-second-group">
+                                <div class="item-second-content">
+                                    Đạt được kết quả đáng kinh ngạc, như thế này với các huấn luyện viên cá nhân hàng đầu thế giới tại Gymz.
                                 </div>
+                                <a href="./navigation/personal_trainer.html">
+                                    tìm hiểu thêm
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="item-second">
+                        <div class="item-second-wrapper three">
+                            <div class="item-second-title">
+                                tại sao chọn chúng tôi
+                            </div>
+                            <div class="item-second-group">
+                                <div class="item-second-content">
+                                    Một hệ sinh thái chuyển đổi toàn diện xa xỉ..
+                                </div>
+                                <a href="./navigation/personal_trainer.html">
+                                    tìm hiểu thêm
+                                </a>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-            
-            <!-- LE VAN TIEN -->
-
-            <div class="container__shop">
-                <div class="feedback">
-                    <h1>CƠ SỞ VẬT CHẤT</h1>
-                    <h2>GYMZ có cơ sở vật chất hiện đại với phòng tập rộng rãi và trang
-                        thiết bị tập luyện đa dạng như máy cardio,
-                        tạ và máy tập cơ bụng. Không gian yên tĩnh, ánh sáng tự nhiên,
-                        hệ thống điều hòa làm tăng sự thoải mái.
-                        Có khu vực nướng, phòng thay đồ và nhân viên chuyên nghiệp.</h2>
-                </div>
-                <div class="container__images">
-                    <div class="image__item">
-                        <img src="https://watermark.lovepik.com/photo/20211121/large/lovepik-men-and-women-practise-strength-in-the-gym-picture_500595712.jpg"
-                            alt="Mô tả ảnh 1">
-                        <p>Ngoài tập luyện 1 cách khoa học ra thì chúng ta đừng quên bổ sung các chất dinh dưỡng thiết
-                            yếu cho cơ thể cũng như cho việc tập luyện.</p>
-                    </div>
-                    <div class="image__item">
-                        <img src="https://tagalaxyfyc.com/wp-content/uploads/2023/02/2-scaled.jpg" alt="Mô tả ảnh 2">
-                        <p>Cơ sở vật chất hiện đại, sang trọng, với những dụng cụ nhập khẩu trực tiếp tại mỹ giúp cho
-                            người sử dụng có 1 trải nghiệm tốt nhất và an toàn nhất.</p>
-                    </div>
-                    <div class="image__item">
-                        <img src="https://storage.googleapis.com/leep_app_website/2021/05/huong-dan-tap-gym-cho-nguoi-moi-den-phong-tap.jpg"
-                            alt="Mô tả ảnh 3">
-                        <p>Tập luyện với những huấn luyện viên chuyên nghiệp và nhiệt tình, sẽ hướng dẫn và đưa ra các
-                            bài tập phù hợp, giúp khách hàng có 1 body đẹp như mơ.</p>
-                    </div>
-                    <div class="image__item">
-                        <img src="https://storage.googleapis.com/leep_app_website/2020/08/lan-dau-tap-gym-image.jpg"
-                            alt="Mô tả ảnh 4">
-                        <p>Với những cô gái này, chưa cần biết điều kiện vật chất thế nào mà chỉ nhìn qua thôi cũng đã
-                            đủ làm bao chàng trai phải mê như điếu đổ!</p>
-                    </div>
-                </div>
-            </div>
-
-            <div class="container__story">
-                <h1>Những thay đổi khi tập tại GYMZ</h1>
-                <div class="container__change">
-                    <div class="change__box one">
-                        <div class="change__box__text">
-                            <h2>BEFORE & AFTER</h2>
-                            <p>Tập luyện tại GYMZ để có cơ hội thay đổi ngoại hình một cách ngoạn mục
-                                Việc luyện tập đều đặn tại GYMZ và đúng kỹ thuật, cùng với một chế độ dinh dưỡng hợp
-                                lý
-                                sẽ giúp cải thiện vóc dáng một cách rõ rệt. Huấn luyện viên của GYMZ thiết kế chương
-                                trình
-                                luyện tập dựa trên chỉ số cơ thể, tình trạng sức khỏe của bạn nhằm giúp bạn thấy rõ sự
-                                thay đổi
-                                ngoạn mục chỉ trong khoảng trung bình từ 6-8 tuần.
-                            </p>
+            <div class="service-style">
+                <div class="service-partone">
+                    <div class="partone-row-title">
+                        <div class="partone-title">
+                            gymz
+                            <span>
+                                pilates
+                            </span>
                         </div>
-                        <div class="change__box__img">
-                            <img class="img_change1"
-                                src="https://trainghiemmuasam.com/wp-content/uploads/2020/07/fitness-transformation-male.jpg"
-                                alt="before after">
+                        <div class="partone-content">
+                            Khám phá nghệ thuật của sức mạnh và sự linh hoạt tại studio Pilates từng đoạt giải thưởng của chúng tôi, nơi Ân sủng mở ra với mọi chuyển động.
                         </div>
                     </div>
-                    <div class="change__box two">
-                        <div class="change__box__text">
-                            <h2>TÍNH BMI (CHỈ SỐ KHỐI CƠ THỂ)</h2>
-                            <p>Đo chỉ số BMI tại CITIGYM để đánh giá mức độ béo, gầy hay cân nặng lý tưởng của bạn
-                                GYMZ hỗ trợ hội viên đo chỉ số BMI trước và trong quá trình tập luyện để hội viên có
-                                thể
-                                theo
-                                dõi được kết quả tập luyện. BMI là chỉ số khối cơ thể (Body Mass Index), được các bác sĩ
-                                và
-                                chuyên gia sức khỏe dùng để xác định một người có bị béo phì, thừa cân hay quá gầy. Hãy
-                                để
-                                lại
-                                thông tin để GYMZ có thể giúp bạn phân tích sức khỏe và đưa ra những tư vấn phù hợp
-                                với
-                                thể
-                                trạng của bạn.
-                            </p>
-                        </div>
-                        <div class="change__box__img">
-                            <img class="img_change2"
-                                src="https://www.binhduongvn.city/uploads/files/2021/11/22/lot-xac-nho-gym-11.jpeg"
-                                alt="Hãy đến với chúng tôi!">
-                        </div>
-                    </div>
-
-                </div>
-                <div class="change__weightcalculation">
-                    <!-- trường nhập liệu  -->
-                    <div class="change__input">
-                        <input type="number" id="height" name="height" min="0" max="300" placeholder="Chiều cao (cm)">
-                        <input type="number" id="weight" name="weight" min="0" max="150" placeholder="Cân nặng (kg)">
-                        <input type="number" id="age" name="age" min="0" max="100" placeholder="Tuổi">
-                        <input type="text" id="fullname" name="fullname" placeholder="Họ và tên">
-                        <select id="gender" name="gender">
-                            <option value="" disabled selected>Giới tính</option>
-                            <option value="male">Nam</option>
-                            <option value="female">Nữ</option>
-                            <option value="other">Khác</option>
-                        </select>
-                        <input type="tel" id="phone" name="phone" placeholder="Số điện thoại">
-                    </div>
-                    <span class="change__input__error"></span>
-                    <button class="change__submit" type="submit">Nhận kết quả</button>
-                </div>
-            </div>
-
-            <div class="container__history">
-                <div class="container__history__header">
-                    <h1>Hãy đến với chúng tôi!</h1>
-                    <p>Giúp bạn tăng cường sức khỏe là nhiệm vụ hàng đầu của chúng tôi.</p>
-                </div>
-                <div class="container__history__row">
-                    <div class="container__history__column">
-                        <img src="./img/history/img4.jpg" style="width:100%">
-                        <img src="./img/history/img15.jpg" style="width:100%">
-                        <img src="./img/history/img18.jpg" style="width:100%">
-                        <img src="./img/history/img1.jpg" style="width:100%">
-                        <img src="./img/history/img12.jpg" style="width:100%">
-                        <img src="./img/history/img24.jpg" style="width:100%">
-                        <img src="./img/history/img7.jpg" style="width:100%">
-                    </div>
-                    <div class="container__history__column">
-                        <img src="./img/history/img26.jpg" style="width:100%">
-                        <img src="./img/history/img23.jpg" style="width:100%">
-                        <img src="./img/history/img21.jpg" style="width:100%">
-                        <img src="./img/history/img11.jpg" style="width:100%">
-                        <img src="./img/history/img5.jpg" style="width:100%">
-                        <img src="./img/history/img13.jpg" style="width:100%">
-                        <img src="./img/history/img18.jpg" style="width:100%">
-                    </div>
-                    <div class="container__history__column">
-                        <img src="./img/history/img14.jpg" style="width:100%">
-                        <img src="./img/history/img2.jpg" style="width:100%">
-                        <img src="./img/history/img16.jpg" style="width:100%">
-                        <img src="./img/history/img17.jpg" style="width:100%">
-                        <img src="./img/history/img3.jpg" style="width:100%">
-                        <img src="./img/history/img19.jpg" style="width:100%">
-                        <img src="./img/history/img20.jpg" style="width:100%">
-                    </div>
-                    <div class="container__history__column">
-                        <img src="./img/history/img10.jpg" style="width:100%">
-                        <img src="./img/history/img22.jpg" style="width:100%">
-                        <img src="./img/history/img9.jpg" style="width:100%">
-                        <img src="./img/history/img6.jpg" style="width:100%">
-                        <img src="./img/history/img25.jpg" style="width:100%">
-                        <img src="./img/history/img8.jpg" style="width:100%">
-                        <img src="./img/history/img21.jpg" style="width:100%">
-                    </div>
-                </div>
-            </div>
-
-
-        </div>
-        <!--   NGUYEN THI VAN -->
-        <div class="footer">
-            <div class="footer__select">
-                <div class="footer__colum1">
-                    <div class="footer__colum1__inner">
-                        <a href="#">
-                            <h3>
-                                CÔNG TY CỔ PHẦN ĐẦU TƯ VÀ PHÁT TRIỂN CLOSEAI
-                            </h3>
+                    <div class="partone-nav">
+                        <a href="./navigation/personal_trainer.html">
+                            bắt đầu
                         </a>
                     </div>
-                    <div class="about__us">
-                        <div class="about__us__inner">
-                            <div class="about__address">
-                                <a href="#">
-                                    <m><i class='bx bxs-home'></i></m> Trụ sở chính: z115, Tân Thịnh, TP.Thái
-                                    Nguyên, Thái Nguyên
-                                </a>
-                            </div>
-                            <div class="about__hotline">
-                                <a href="#">
-                                    <m><i class='bx bxs-phone'></i></m> Hotline: 0999.999.999
-                                </a>
-                            </div>
-                            <div class="about__email">
-                                <a href="#">
-                                    <m><i class='bx bxs-envelope'></i></m> Email: closeai.work@gmail.com
-                                </a>
-                            </div>
-                            <div class="about__website">
-                                <a href="#">
-                                    <m><i class='bx bx-world'></i></m> Website: https://pwm.io.vn
-                                </a>
-                            </div>
-                        </div>
-
-                    </div>
-                    <div class="service__customer">
-                        <div class="service__customer__title">
-                            <div class="footer__colum1__inner">
-                                <a href="#">
-                                    <h3>
-                                        DỊCH VỤ KHÁCH HÀNG
-                                    </h3>
-                                </a>
-                            </div>
-                        </div>
-                        <div class="service__customer__list">
-                            <div class="service__customer__list__inner">
-                                <a href="#">
-                                    <i class='bx bx-file'></i> Điều khoản sử dụng
-                                </a>
-                                <a href="#">
-                                    <i class='bx bxs-lock-alt'></i> Chính sách bảo mật
-                                </a>
-                                <a href="#">
-                                    <i class='bx bxs-chat'></i> Kết nối với chúng tôi
-                                </a>
-                            </div>
-                        </div>
-                    </div>
                 </div>
-                <div class="footer__colum2">
-                    <div class="footer__colum2__center">
-                        <div class="footer__colum2__inner">
-                            <div class="group">
-                                <div class="name__page">
-                                    <a href="#">
-                                        GYM Z<m><i class='bx bxs-badge-check'></i></m>
-                                    </a>
-                                    <h4>
-                                        999.999 người theo dõi
-                                    </h4>
-                                </div>
-                                <div class="avatar__img">
-                                    <img src="./img/background/avatar.png" alt="Ảnh đại diện">
-                                </div>
-                                <div class="folow__page">
-                                    <a href="#">
-                                        <i class='bx bxl-facebook-square'></i>Theo dõi fanpage
-                                    </a>
-                                </div>
-                                <div class="share__page">
-                                    <a href="#">
-                                        <i class='bx bxs-share'></i>Chia sẻ
-                                    </a>
-                                </div>
+                <div class="service-parttwo">
+                    <div class="item-second active">
+                        <div class="item-second-wrapper four">
+                            <div class="item-second-title">
+                                PILATES LÂM SÀNG
                             </div>
-                            <div class="cover__img">
-                                <img src="./img/background/cover_img.png" alt="Ảnh bìa">
+                            <div class="item-second-group">
+                                <div class="item-second-content">
+                                    Pilates lâm sàng tập trung vào nhu cầu hoặc chấn thương cụ thể của bạn.
+                                </div>
+                                <a href="./navigation/personal_trainer.html">
+                                    tìm hiểu thêm
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="item-second">
+                        <div class="item-second-wrapper five">
+                            <div class="item-second-title">
+                                PILATES RIÊNG, SONG CA & NHÓM NHỎ
+                            </div>
+                            <div class="item-second-group">
+                                <div class="item-second-content">
+                                    Thích hợp cho tất cả các hình dạng cơ thể, kích thước và độ tuổi để làm việc trên cốt lõi, sức mạnh và sự linh hoạt của bạn.
+                                </div>
+                                <a href="./navigation/personal_trainer.html">
+                                    tìm hiểu thêm
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="item-second">
+                        <div class="item-second-wrapper six">
+                            <div class="item-second-title">
+                                PILATES TRƯỚC VÀ SAU KHI SINH
+                            </div>
+                            <div class="item-second-group">
+                                <div class="item-second-content">
+                                    Cả hai Pilates làm việc trên sàn chậu, lõi và toàn bộ cơ thể của bạn, trong việc chuẩn bị, hoặc phục hồi sau khi sinh con.
+                                </div>
+                                <a href="./navigation/personal_trainer.html">
+                                    tìm hiểu thêm
+                                </a>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-            <div class="footer__last">
-                <div class="footer__last__select">
-                    <div class="footer__last__select__inner">
-                        <a href="#">
-                            <m><i class='bx bxs-copyright'></i></m> 2023 Allrights reserved pwm.io.vn
+            <div class="service-style">
+                <div class="service-partone">
+                    <div class="partone-row-title">
+                        <div class="partone-title">
+                            gymz
+                            <span>
+                                ăn uống lành mạnh
+                            </span>
+                        </div>
+                        <div class="partone-content">
+                            Thưởng thức hương vị thơm ngon của việc chuẩn bị bữa ăn ngon và lành mạnh nhất của Thái Nguyên, như Mỗi món ăn là một lễ kỷ niệm của sự tươi mới và ẩm thực xuất sắc.
+                        </div>
+                    </div>
+                    <div class="partone-nav">
+                        <a href="./navigation/personal_trainer.html">
+                            bắt đầu
                         </a>
+                    </div>
+                </div>
+                <div class="service-parttwo">
+                    <div class="item-second active">
+                        <div class="item-second-wrapper seven">
+                            <div class="item-second-title">
+                                BỮA ĂN LÀNH MẠNH
+                            </div>
+                            <div class="item-second-group">
+                                <div class="item-second-content">
+                                    Bữa ăn thủ công được chế biến dựa trên triết lý về các chất dinh dưỡng đa lượng.
+                                </div>
+                                <a href="./navigation/personal_trainer.html">
+                                    tìm hiểu thêm
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="item-second">
+                        <div class="item-second-wrapper eight">
+                            <div class="item-second-title">
+                                THỰC ĐƠN ĐẦY ĐỦ
+                            </div>
+                            <div class="item-second-group">
+                                <div class="item-second-content">
+                                    Kiểm tra toàn bộ phạm vi của chúng tôi trước khi bạn tham gia
+                                </div>
+                                <a href="./navigation/personal_trainer.html">
+                                    tìm hiểu thêm
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="item-second">
+                        <div class="item-second-wrapper nine">
+                            <div class="item-second-title">
+                                BLOG LIÊN QUAN ĐẾN DINH DƯỠNG
+                            </div>
+                            <div class="item-second-group">
+                                <div class="item-second-content">
+                                    Đúng bản thân, tìm hiểu sự thật và nhận lời khuyên về dinh dưỡng.
+                                </div>
+                                <a href="./navigation/personal_trainer.html">
+                                    tìm hiểu thêm
+                                </a>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-    <div id="toast"></div>
-
-    <!-- overlay -->
-    <div class="modal">
-        <div class="modal-overlay">
-
-        </div>
-        <div class="modal__body">
-            <div class="modal__body__box BMI-form">
-                <div class="BMI__title">
-                    <span class="BMI__title__word">Kết quả</span>
-                    <i class="BMI__title__icon fa-solid fa-xmark"></i>
-                </div>
-                <div class="BMI__value">
-                    <div class="BMI__value__row">
-                        <span class="BMI__value__row__label">Chiều cao: </span>
-                        <span class="BMI__value__row__data"></span>
-                    </div>
-                    <div class="BMI__value__row">
-                        <span class="BMI__value__row__label">Cân nặng: </span>
-                        <span class="BMI__value__row__data"></span>
-                    </div>
-                    <div class="BMI__value__row">
-                        <span class="BMI__value__row__label">Tuổi: </span>
-                        <span class="BMI__value__row__data"></span>
-                    </div>
-                    <div class="BMI__value__row">
-                        <span class="BMI__value__row__label">Giới tính: </span>
-                        <span class="BMI__value__row__data"></span>
-                    </div>
-                    <div class="BMI__value__row">
-                        <span class="BMI__value__row__label">Chỉ số BMI: </span>
-                        <span class="BMI__value__row__data"></span>
-                    </div>
-                    <div class="BMI__value__row">
-                        <span class="BMI__value__row__label">Tình trạng sức khỏe: </span>
-                        <span class="BMI__value__row__data"></span>
-                    </div>
-                    <div class="BMI__value__row">
-                        <span class="BMI__value__row__label">Tư vấn:</span>
-                        <span class="BMI__value__row__data"></span>
-                    </div>
-                </div>
-            </div>
-            <div class="modal__body__box login-box">
-                <p>Đăng nhập tài khoản</p>
-                <form id="login-form" action="/login-url" method="POST">
-                    <div class="user-box">
-                        <input class="login-email" required="" name="email" type="text">
-                        <label>Email</label>
-                    </div>
-                    <div class="user-box createBox">
-                        <input class="login-pass" required="" name="password" type="password">
-                        <label>Mật khẩu</label>
-                    </div>
-                    <button id="login-btn" type="submit">
-                        <span></span>
-                        <span></span>
-                        <span></span>
-                        <span></span>
-                        Đăng nhập
-                    </button>
-                </form>
-                <p class="create__account__text">Chưa có tài khoản? <span class="a2 link-create-account">Đăng ký!</span>
-                </p>
-                <span class="forgot--account--link create__account__text a2">Quên mật khẩu?</span>
-            </div>
-            <div class="modal__body__box create-account-box">
-                <p>Đăng ký tài khoản</p>
-                <form id="create-account-form" action="/create-account-url" method="POST">
-                    <div class="user-box">
-                        <input class="login-name" required="" name="fullname" type="text">
-                        <label>Họ và tên</label>
-                    </div>
-                    <div class="user-box">
-                        <input class="login-email" required="" name="email" type="text">
-                        <label>Email</label>
-                    </div>
-                    <div class="user-box">
-                        <input class="login-pass" required="" name="password" type="password">
-                        <label>Mật khẩu</label>
-                    </div>
-                    <div class="user-box">
-                        <input class="login-pass-confirm" required="" name="passwordConfirm" type="password">
-                        <label>Nhập lại mật khẩu</label>
-                    </div>
-                    <button id="create-btn" type="submit">
-                        <span></span>
-                        <span></span>
-                        <span></span>
-                        <span></span>
-                        Đăng ký
-                    </button>
-                </form>
-                <p>Đã có tài khoản? <span class="a2 link-login">Đăng nhập!</span></p>
-            </div>
-            <div class="modal__body__box forgot-pass-box">
-                <p>Quên mật khẩu</p>
-                <form action="/your-forgot-url" method="POST">
-                    <div class="user-box">
-                        <input class="login-email" required="" name="email" type="text">
-                        <label>Email</label>
-                    </div>
-                    <div class="user-box send-code__code">
-                        <input class="code-pass" required="" name="code" type="text">
-                        <label>Mã khôi phục</label>
-                        <span id="timeLeft">60s</span>
-                        <button id="send-code" type="text">Gửi mã</button>
-                    </div>
-                    <button id="forgot-btn" type="submit">
-                        <span></span>
-                        <span></span>
-                        <span></span>
-                        <span></span>
-                        Xác nhận
-                    </button>
-                </form>
-                <p>Đã có tài khoản? <span class="a2 link-login">Đăng nhập!</span></p>
-            </div>
-            <div class="modal__body__box change-pass-box">
-                <p>Thay đổi mật khẩu</p>
-                <form action="/your-change-pass-url" method="POST">
-                    <div class="user-box">
-                        <input class="new-pass" required="" name="email" type="text">
-                        <label>Mật khẩu mới</label>
-                    </div>
-                    <div class="user-box send-code__code">
-                        <input class="confirm-pass" required="" name="code" type="text">
-                        <label>Nhập lại mật khẩu</label>
-                    </div>
-                    <button id="changepass-btn" type="submit">
-                        <span></span>
-                        <span></span>
-                        <span></span>
-                        <span></span>
-                        Xác nhận
-                    </button>
-                </form>
-            </div>
-            <div class="modal__body__box register-cart">
-                <form id="form-register" class="form1">
-                    <div class="registration__traning__schedule">
-                        <div class="table">
-                            <div id="training-schedule" class="first__training__schedule">
-                                <div class="row__title__table">
-                                    <div class="row__title__table__content">
-                                        Đăng ký lịch
-                                    </div>
-                                    <div class="x__cancel">
-                                        <i class="fa-regular fa-circle-xmark"></i>
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <div class="row__title">
-                                        Loại thẻ:
-                                    </div>
-                                    <div class="row__content">
-                                        <div>
-                                            <input type="radio" id="card1" name="cardType" value="BEGINNER">
-                                            <label for="card1">BEGINNER</label><br>
-
-                                        </div>
-                                        <div>
-                                            <input type="radio" id="card2" name="cardType" value="BASIC">
-                                            <label for="card2">BASIC</label><br>
-
-                                        </div>
-                                        <div>
-                                            <input type="radio" id="card3" name="cardType" value="ADVANCE">
-                                            <label for="card3">ADVANCE</label><br>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <div class="row__title">
-                                        Ngày:
-                                    </div>
-                                    <div class="row__content">
-                                        <div>
-                                            <input type="checkbox" id="monday" name="weekday[]" value="T2">
-                                            <label for="monday">T2</label><br>
-                                        </div>
-                                        <div>
-                                            <input type="checkbox" id="tuesday" name="weekday[]" value="T3">
-                                            <label for="tuesday">T3</label><br>
-                                        </div>
-                                        <div>
-                                            <input type="checkbox" id="wednesday" name="weekday[]" value="T4">
-                                            <label for="wednesday">T4</label><br>
-                                        </div>
-                                        <div>
-                                            <input type="checkbox" id="thursday" name="weekday[]" value="T5">
-                                            <label for="thursday">T5</label><br>
-                                        </div>
-                                        <div>
-                                            <input type="checkbox" id="friday" name="weekday[]" value="T6">
-                                            <label for="friday">T6</label><br>
-                                        </div>
-                                        <div>
-                                            <input type="checkbox" id="saturday" name="weekday[]" value="T7">
-                                            <label for="saturday">T7</label><br>
-                                        </div>
-                                        <div>
-                                            <input type="checkbox" id="sunday" name="weekday[]" value="CN">
-                                            <label for="sunday">CN</label><br>
-                                        </div>
-
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <div class="row__title">
-                                        Thời gian:
-                                    </div>
-                                    <div class="row__content">
-                                        <div>
-                                            <input type="radio" id="time1" name="time" value="13:30-15:00">
-                                            <label for="time1">13:30-15:00</label><br>
-
-                                        </div>
-                                        <div>
-                                            <input type="radio" id="time2" name="time" value="15:00-16:30">
-                                            <label for="time2">15:00-16:30</label><br>
-
-                                        </div>
-                                        <div>
-                                            <input type="radio" id="time3" name="time" value="17:30-18:30">
-                                            <label for="time3">17:30-18:30</label><br>
-
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <div class="row__title">
-                                        Môn:
-                                    </div>
-                                    <div class="row__content row__content--type">
-                                        <div>
-                                            <input type="radio" id="GYM" name="type" value="GYM">
-                                            <label for="GYM">GYM</label><br>
-                                        </div>
-                                        <div>
-                                            <input type="radio" id="YOGA" name="type" value="YOGA">
-                                            <label for="YOGA">YOGA</label><br>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <div class="row__title">
-                                        Huấn luyện viên:
-                                    </div>
-                                    <div class="row__content">
-                                        Ngẫu nhiên
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <div class="row__title">
-                                        Ghi chú:
-                                    </div>
-                                    <div class="row__content">
-                                        <input class="row__content__input" type="text"
-                                            placeholder="Nhấp để thêm ghi chú" name="note">
-                                    </div>
-                                </div>
-                                <div class="row__final">
-                                    <div class="row__final__button">
-                                        <button class="button__form" type="submit">
-                                            Gửi yêu cầu
-                                        </button>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </form>
-            </div>
-
-            <div class="modal__body__box change-box">
-                <p class="edit-title">Đổi tên khách hàng</p>
-                <form id="change-form" action="/your-name-url" method="POST">
-                    <div class="user-box">
-                        <input class="new1" required="" name="newName" type="text">
-                        <label class="edit-label">Tên mới</label>
-                    </div>
-                    <div class="submit__row">
-                        <button id="submitExit">
-                            Thoát
-                        </button>
-                        <button id="submitChange" type="submit">
-                            <span></span>
-                            <span></span>
-                            <span></span>
-                            <span></span>
-                            Xác nhận
-                        </button>
-                    </div>
-                </form>
-            </div>
-
-            <div class="modal__body__box loader">
-                <div class="loader-square"></div>
-                <div class="loader-square"></div>
-                <div class="loader-square"></div>
-                <div class="loader-square"></div>
-                <div class="loader-square"></div>
-                <div class="loader-square"></div>
-                <div class="loader-square"></div>
-            </div>
-        </div>
-    </div>
-    <div id="myModalShow" class="modal">
-        <span class="close">&times;</span>
-        <img class="modal-content" id="img01">
-        <div id="caption"></div>
-    </div>
-
-
-    <div class="nen_mo"></div>
-    <script src="/socket.io/socket.io.js"></script>
 
     <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
     <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <script src="./navigation_javascript/menu.js"></script>
-    <script type="module" src="./navigation_javascript/processChatBox.js"></script>
-    <script type="module" src="./index.js"></script>
-    <script type="module" src="./navigation_javascript/login.js"></script>
-    <script type="module" src="./src/validate.js"></script>
-    <script type="module" src="./src/toast.js"></script>
-    <!-- <script type="module" src="./src/client.js"></script> -->
+    
+    <script>
+        // JavaScript
+        var box = document.getElementById('myBox');
+        
+        // Add event listeners for touch devices
+        box.addEventListener('touchstart', function() {
+          this.classList.add('hovered');
+        });
+        
+        box.addEventListener('touchend', function() {
+          this.classList.remove('hovered');
+        });
+        
+        // Add event listeners for non-touch devices
+        box.addEventListener('mouseenter', function() {
+          this.classList.add('hovered');
+        });
+        
+        box.addEventListener('mouseleave', function() {
+          this.classList.remove('hovered');
+        });
+        </script>
 </body>
 
 >>>>>>> 5fb661f85a730f40e164a98d1cf1de808ce665c4
