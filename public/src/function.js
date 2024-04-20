@@ -732,13 +732,22 @@ export function hidenLoginBox() {
     activeLoginBox();
 }
 
-export function plusMinusItemCart(inputCountItem, ItemID, Cost, costAll) {
+export function plusMinusItemCart(inputCountItem, ItemID, Cost, costAll, totalCartShow, type) {
     costAll.innerHTML = `
     ${(Cost * inputCountItem.value).toLocaleString()}
     <span>
         ₫
     </span>
     `
+    var totalCart = totalCartShow.querySelector('.total__cart')
+    var totalValue = totalCart.innerHTML.replace(/[,.₫]/g, '');
+    console.log(totalValue);
+    if(type == 'plus'){
+        var one = 1;
+    }if(type == 'minus'){
+        var one = -1;
+    }
+    totalCart.innerHTML =  (parseInt(totalValue)  + parseInt(Cost) * one).toLocaleString() + '₫';
     $.ajax({
         url: '/plus-minus-item-cart',
         method: 'POST',
