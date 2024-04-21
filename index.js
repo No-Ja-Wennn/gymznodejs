@@ -450,7 +450,15 @@ app.post('/get-value-information-form', function (req, res) {
         }
       });
     } else if (type == "card") {
-      var resultAdd = {};
+      var resultAdd = {
+        name: '...',
+        id: '...',
+        type: '...',
+        cardType: '...',
+        maThe: '...',
+        dateStart: '...',
+        dateEnd: '...'
+      };
       var sql = 'SELECT * FROM users WHERE maKH = ?';
       con.query(sql, [maKH], function (err, result) {
         var data = result[0];
@@ -476,14 +484,12 @@ app.post('/get-value-information-form', function (req, res) {
                     var sql = 'SELECT * FROM calendarData WHERE maThe = ?';
                     con.query(sql, [resultAdd.maThe], function (err, result) {
                       if (err) throw err;
-                      var data = result[0];
-                      if (data) {
-                        for (var key in data) {
-                          resultAdd[key] = data[key];
-                        }
-                        res.json({ success: true, value: resultAdd });
+                      var calendars = result;
+                      if (calendars) {
+                        console.log(calendars);
+                        res.json({ success: true, value: resultAdd, calendars });
                       } else {
-                        res.json({ success: true, value: resultAdd });
+                        res.json({ success: true, value: resultAdd, calendars: [] });
                       }
                     })
                   }
@@ -560,36 +566,7 @@ app.post('/register-card-url', (req, res) => {
     con.query(sql, [maKH], function (err, result) {
       if (err) throw err;
       if (result.length > 0) {
-        var maThe = result[0].maThe;
-        if (maThe) {
-          var dateStart = getCurrentDate();
-          var add = 1;
-          if (cardType == "BEGINNER") add = 1;
-          else if (cardType == "BASIC") add = 2;
-          else if (cardType == "ADVANCE") add = 3;
-          var dateEnd = addMonths(dateStart, add);
-          dateStart = dateStart.toISOString().split('T')[0];
-          dateEnd = dateEnd.toISOString().split('T')[0];
-          var sql = "UPDATE cardData SET cardType = ?, dateStart = ?, dateEnd = ? WHERE maThe = ?";
-          con.query(sql, [cardType, dateStart, dateEnd, maThe], function (err, result) {
-            if (err) throw err;
-            if (weekday)
-              var date = weekday.join(", ");
-            else
-              var date = null;
-            if (time)
-              var a_time = time.split("-");
-            else
-              var a_time = ["00h00", "00h00"];
-            var sql = 'UPDATE calendarData SET weekday = ? , timeStart = ? , timeEnd = ? , type = ? , ptName = ? , note = ?';
-            con.query(sql, [date, a_time[0], a_time[1], type, "Truong co bap", note], function (err, result) {
-              if (err) throw err;
-              res.json({ success: true });
-            })
-          });
-        } else {
-          res.json({ success: false });
-        }
+        res.json({ success: false, have: true });
       } else {
         // res.json({ success: false});
         // create a new row card
@@ -621,37 +598,7 @@ app.post('/register-card-url', (req, res) => {
               dateEnd
             }
             insertIntoTable(con, "cardData", cardValue);
-
-            // if (weekday)
-            //   var date = weekday.join(", ");
-            // else
-            //   var date = null;
-            con.query("SELECT maLT FROM calendarData ORDER BY maLT DESC LIMIT 1",
-              function (err, result, fields) {
-                if (err) throw err;
-                var maLT;
-                if (!result[0]) {
-                  maLT = 'LT0001';
-                } else {
-                  maLT = generateCustomerCode(result[0].maLT);
-                }
-                if (time)
-                  var a_time = time.split("-");
-                else
-                  var a_time = ["00h00", "00h00"];
-                var caValue = {
-                  maLT,
-                  maThe,
-                  weekday,
-                  timeStart: a_time[0],
-                  timeEnd: a_time[1],
-                  type: ptNameAuto,
-                  note
-                }
-                insertIntoTable(con, "calendarData", caValue);
-                res.json({ success: true });
-
-              });
+            res.json({ success: true });
           });
       }
     })
@@ -660,19 +607,131 @@ app.post('/register-card-url', (req, res) => {
   }
 })
 
+app.post('/register-calendar-url', (req, res) => {
+  const cookie = getCookie(req, 'user_id');
+  const { cardType, weekday, time, type, note } = req.body;
+  if (cookie) {
+    const maKH = cookie.maKH;
+    var sql = "SELECT maThe FROM cardData WHERE maKH = ?";
+    con.query(sql, [maKH], function (err, result) {
+      if (err) throw err;
+      if (result.length > 0) {
+        var maThe = result[0].maThe;
+        if (maThe) {
+          var dateStart = getCurrentDate();
+          var add = 1;
+          con.query("SELECT maLT FROM calendarData ORDER BY maLT DESC LIMIT 1",
+            function (err, result, fields) {
+              if (err) throw err;
+              var maLT;
+              if (!result[0]) {
+                maLT = 'LT0001';
+              } else {
+                maLT = generateCustomerCode(result[0].maLT);
+              }
+              if (weekday)
+                var date = weekday.join(", ");
+              else
+                var date = null;
+              if (time)
+                var a_time = time.split("-");
+              else
+                var a_time = ["00h00", "00h00"];
+              var note2 = 'Chưa thanh toán';
+              var sql = 'INSERT INTO calendarData ( maLT, maThe,weekday, timeStart, timeEnd, type, ptName, note) VALUES (?,?,?,?,?,?,?,?)';
+              con.query(sql, [maLT, maThe, date, a_time[0], a_time[1], type, "Truong co bap", note2], function (err, result) {
+                if (err) throw err;
+                res.json({ success: true });
+              })
+            })
+        } else {
+          res.json({ success: false });
+        }
+      } else {
+        res.json({ success: false, haveCard: false });
+      }
+    })
+  } else {
+    res.json({ success: false, reason: "login" });
+  }
+})
+/*
+con.query("SELECT maThe FROM cardData ORDER BY maThe DESC LIMIT 1",
+  function (err, result, fields) {
+    if (err) throw err;
+    var maThe;
+    if (!result[0]) {
+      maThe = 'MT0001';
+    } else {
+      maThe = generateCustomerCode(result[0].maThe);
+    }
+    var dateStart = getCurrentDate();
+    var add = 1;
+    if (cardType == "BEGINNER") add = 1;
+    else if (cardType == "BASIC") add = 2;
+    else if (cardType == "ADVANCE") add = 3;
+    var dateEnd = addMonths(dateStart, add);
+
+    dateStart = dateStart.toISOString().split('T')[0];
+    dateEnd = dateEnd.toISOString().split('T')[0];
+
+    console.log(dateStart);
+    var cardValue = {
+      maThe,
+      maKH,
+      cardType,
+      dateStart,
+      dateEnd
+    }
+    insertIntoTable(con, "cardData", cardValue);
+
+    // if (weekday)
+    //   var date = weekday.join(", ");
+    // else
+    //   var date = null;
+    con.query("SELECT maLT FROM calendarData ORDER BY maLT DESC LIMIT 1",
+      function (err, result, fields) {
+        if (err) throw err;
+        var maLT;
+        if (!result[0]) {
+          maLT = 'LT0001';
+        } else {
+          maLT = generateCustomerCode(result[0].maLT);
+        }
+        if (time)
+          var a_time = time.split("-");
+        else
+          var a_time = ["00h00", "00h00"];
+        var caValue = {
+          maLT,
+          maThe,
+          weekday,
+          timeStart: a_time[0],
+          timeEnd: a_time[1],
+          type: ptNameAuto,
+          note
+        }
+        insertIntoTable(con, "calendarData", caValue);
+        res.json({ success: true });
+
+      });
+  });
+*/
 const ptNameAuto = "Truong co bap";
 // active register card
 app.get('/get-valid-card', function (req, res) {
   const cookie = getCookie(req, 'user_id');
   if (cookie) {
     var maKH = cookie.maKH;
-    con.query("SELECT cardType FROM cardData WHERE maKH = ?", [maKH], function (err, result) {
+    var sql = `SELECT calendarData.maLT
+    FROM calendarData 
+    JOIN cardData ON calendarData.maThe = cardData.maThe 
+    JOIN users ON cardData.maKH = users.maKH 
+    WHERE users.maKH = ?`
+    con.query(sql, [maKH], function (err, result) {
+      console.log(result)
       if (result.length > 0) {
-        if (result[0].cardType) {
-          res.json({ have: true, login: true });
-        } else {
-          res.json({ have: false, login: true });
-        }
+        res.json({ have: true, login: true });
       } else {
         res.json({ have: false, login: true });
       }
@@ -687,22 +746,17 @@ app.get('/get-cancel-submit', function (req, res) {
   const cookie = getCookie(req, 'user_id');
   if (cookie) {
     var maKH = cookie.maKH;
-    let sql = 'UPDATE cardData SET cardType = NULL, dateStart = NULL, dateEnd = NULL WHERE maKH = ?';
+    sql = "SELECT maThe FROM cardData WHERE maKH = ?";
     con.query(sql, [maKH], function (err, result) {
-      if (err) throw err;
-      sql = "SELECT maThe FROM cardData WHERE maKH = ?";
-      con.query(sql, [maKH], function (err, result) {
-        if (result[0].maThe) {
-          var maThe = result[0].maThe;
-          sql = 'UPDATE calendarData SET weekday = NULL, timeStart = NULL, timeEnd = NULL, type = NULL, ptName = NULL, note = NULL WHERE maThe = ?';
-          con.query(sql, [maThe], function (err, result) {
-            if (err) throw err;
-            res.json({ success: true });
-          });
-        }
-      })
-    });
-
+      if (result[0].maThe) {
+        var maThe = result[0].maThe;
+        sql = 'DELETE FROM calendarData WHERE maThe = ?';
+        con.query(sql, [maThe], function (err, result) {
+          if (err) throw err;
+          res.json({ success: true });
+        });
+      }
+    })
   } else {
     res.json({ success: false });
   }
@@ -2165,14 +2219,36 @@ app.post('/get-order-by-id-admin', authenToken, (req, res) => {
   }
 })
 
-app.post('/change-status-order', authenToken, (req, res)=>{
-  const {orderID, status} = req.body;
+app.post('/change-status-order', authenToken, (req, res) => {
+  const { orderID, status } = req.body;
 
-  if(orderID, status){
-    updateTable(con, 'status', {status}, `orderID = '${orderID}'`);
-    res.json({success: true});
-  }else{
-    res.json({success: false});
+  if (orderID, status) {
+    updateTable(con, 'status', { status }, `orderID = '${orderID}'`);
+    res.json({ success: true });
+  } else {
+    res.json({ success: false });
+  }
+})
+
+app.get('/check-card-cus', (req, res) => {
+  var cookie = getCookie(req, 'user_id');
+  if (cookie) {
+    const maKH = cookie.maKH;
+
+    var sql = 'SELECT * FROM cardData WHERE maKH = ?';
+    con.query(sql, [maKH], (err, result) => {
+      if (err) throw err;
+      if (result.length > 0) {
+        res.json({ login: true, have: true });
+
+      } else {
+        res.json({ login: true, have: false });
+
+      }
+    })
+
+  } else {
+    res.json({ login: false });
   }
 })
 

@@ -1,4 +1,4 @@
-import { activeNecessaryForm, displayNoneAll, removeAllInputValue } from '../src/function.js';
+import { activeLoginBox, activeNecessaryForm, displayNoneAll, f_changePageRegister, removeAllInputValue } from '../src/function.js';
 import { showErrorToast } from '../src/toast.js';
 import { validateCreateAccount, validateLoginValue } from '../src/validate.js';
 
@@ -7,7 +7,8 @@ const overlayBox = modalBox.querySelector(".modal-overlay");
 const loginBox = modalBox.querySelector(".login-box");
 const createAccountBox = modalBox.querySelector(".create-account-box");
 const forgotPassBox = modalBox.querySelector(".forgot-pass-box");
-const registerCartBox = document.getElementById("form-register");
+const registerCardBox = document.getElementById("form-register-card");
+const registerCalendarBox = document.getElementById("form-register-calendar");
 const registerCartBoxModal = modalBox.querySelector(".register-cart");
 const cancelRECartBox = document.getElementById("form-cancel");
 const changeNameBox = modalBox.querySelector(".change-name-box");
@@ -86,27 +87,57 @@ if(loginBox){
     });
 }
 
-export function eventNotActiveRE() {
+export function eventNotActiveRECard() {
+    showErrorToast("Lỗi", "Bạn đã đăng ký thẻ trước đó");
+}
+
+export function eventNotActiveRECalendar() {
     showErrorToast("Lỗi", "Bạn đã đăng ký lịch tập trước đó");
 }
+
+
 export function eventNotActiveCA() {
     showErrorToast("Lỗi", "Bạn chưa đăng ký dịch vụ");
 }
+export function eventNotActiveCard() {
+    showErrorToast("Lỗi", "Bạn chưa đăng ký thẻ thành viên");
+}
+export function eventNotActiveCalendar() {
+    showErrorToast("Lỗi", "Bạn chưa đăng ký lịch tập");
+}
 // CLICK REGISTER CALENDAR
 const registerBTN = document.getElementById("button1");
-export function f_registerBTN() {
-    displayNoneAll();
-    // activeNecessaryForm();
-    registerCartBox.style.display = "block";
+export function f_registerCalendarBTN() {
+    $.ajax({
+        url: '/check-card-cus',
+        method: 'GET',
+        success: function(res){
+            if(res.login){
+                if(res.have){
+                    displayNoneAll();
+                    registerCalendarBox.style.display = "block";
+                }else{
+                    showErrorToast("Bạn chưa đăng ký thẻ thành viên", "Vui lòng đăng ký thẻ thành viên trước");
+                    f_changePageRegister();
+                }
+            }else{
+                displayNoneAll();
+                activeLoginBox();
+            }
+        },
+        error: function(err){
+            console.error(err);
+        }
+    })
 }
 // registerBTN.addEventListener("click", f_registerBTN);
 
 
 // EXIT REGISTER FORM
-if(registerCartBox){
-    const exitRegister = registerCartBox.querySelector(".x__cancel");
+if(registerCalendarBox){
+    const exitRegister = registerCalendarBox.querySelector(".x__cancel");
     exitRegister.addEventListener("click", function () {
-        registerCartBox.style.display = "none";
+        registerCalendarBox.style.display = "none";
         displayNoneAll();
     })
 }
@@ -157,5 +188,5 @@ export function f_cubeBTN(){
     displayNoneAll();
     activeNecessaryForm();
     registerCartBoxModal.style.display = "block";
-    registerCartBox.style.display = "block";
+    registerCardBox.style.display = "block";
 }

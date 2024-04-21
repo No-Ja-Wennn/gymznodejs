@@ -1,10 +1,11 @@
 import {
     f_loginBTN,
-    f_registerBTN,
+    f_registerCalendarBTN,
     f_cancel,
-    eventNotActiveRE,
-    eventNotActiveCA,
-    f_cubeBTN
+    eventNotActiveRECalendar,
+    f_cubeBTN,
+    eventNotActiveCalendar,
+    eventNotActiveRECard
 } from "../navigation_javascript/login.js";
 import {
     displayNoneAll,
@@ -21,10 +22,14 @@ import {
     sendMessage,
     activeLoginBox,
     removeHideMessage,
-    editDate
+    editDate,
+    replaceNullUndefinedWithEmptyString,
+    setIntervalChangePage,
+    intervalId,
+    createCalendarBox
 } from "./function.js";
 import { showSuccessToast, showErrorToast } from "./toast.js";
-import { validateCreateAccount, validateLoginValue, validateChangePass, isValidChangePass, isFormComplete } from './validate.js';
+import { validateCreateAccount, validateLoginValue, validateChangePass, isValidChangePass, isFormCompleteCard, isFormCompleteCalendar } from './validate.js';
 import {
     innerTextOfInformation,
     removeTextOfInformation,
@@ -40,7 +45,8 @@ const overlayBox = modalBox.querySelector(".modal-overlay");
 const loginBox = modalBox.querySelector(".login-box");
 const createAccountBox = modalBox.querySelector(".create-account-box");
 const forgotPassBox = modalBox.querySelector(".forgot-pass-box");
-const registerCartBox = document.getElementById("form-register");
+const registerCartBox = document.getElementById("form-register-card");
+const registerCalendarBox = document.getElementById("form-register-calendar");
 const changeNameBox = modalBox.querySelector(".change-name-box");
 const changePassBox = modalBox.querySelector(".change-pass-box");
 const loadBox = modalBox.querySelector(".loader");
@@ -52,9 +58,10 @@ const logoutBTN = document.querySelector(".logoutstatus");
 const loginBTN1 = document.querySelector(".loginstatus");
 const loginBTN2 = document.getElementById("menu2-infor");
 
+const calendarShow = document.querySelector(".training__schedule--calendar");
 
-const registerBTN = document.getElementById("button1");
-const cancelREBTN = document.getElementById("button2");
+const registerCalendarBTN = document.getElementById("button1");
+const cancelRECalendarBTN = document.getElementById("button2");
 let a_cubeBTN = document.querySelectorAll(".cube");
 
 const path = window.location.pathname;
@@ -99,8 +106,8 @@ function f_logoutBTN() {
                     removeTextOfInformation();
                     unActiveClickChange();
                     getValueInformationForm(path);
-                    if (cancelREBTN)
-                        cancelREBTN.removeEventListener("click", eventNotActiveCA);
+                    if (cancelRECalendarBTN)
+                        cancelRECalendarBTN.removeEventListener("click", eventNotActiveCalendar);
                     f_getValidCard();
                     cookieSave = null;
                     logoutSocket();
@@ -135,7 +142,7 @@ function innerValueAfterLogin(userName, code) {
     }
 
     const userAccountTraking = document.querySelector(".user-account-name");
-    if(userAccountTraking){
+    if (userAccountTraking) {
         userAccountTraking.innerText = userName;
     }
 }
@@ -203,7 +210,6 @@ function getValueInformationForm(path) {
         success: function (data) {
             clearTimeout(loaderTimeout);
             if (data.success) {
-                console.log("Type: ", type);
                 var myData = data.value;
                 if (type == "account") {
                     myData.dateOfBirth = editDate(myData.dateOfBirth)
@@ -214,13 +220,21 @@ function getValueInformationForm(path) {
                         myData.phoneNumber);
                 }
                 else if (type == "card") {
+                    myData = replaceNullUndefinedWithEmptyString(myData);
                     innerTextOfCard(
-                        myData.name,
-                        myData.maThe,
-                        myData.cardType,
-                        myData.dateStart,
-                        myData.dateEnd
+                        myData
                     );
+                    
+                    var calendars = data.calendars;
+                    calendars.forEach(calendar=>{
+                        var weekdays = calendar.weekday.split(', ');
+                        weekdays.forEach(day => {
+                            calendar.day = day;
+                            var caElement = createCalendarBox(calendar);
+                            calendarShow.appendChild(caElement);
+                        });
+                    })
+
                 }
             } else {
                 if (type == "account") {
@@ -298,52 +312,52 @@ function f_getValidCard() {
         success: function (data) {
             if (data.login) {
                 if (data.have) {
-                    if (registerBTN && cancelREBTN) { // đã đky
-                        registerBTN.removeEventListener("click", f_registerBTN);
-                        registerBTN.addEventListener("click", eventNotActiveRE);
-                        cancelREBTN.removeEventListener("click", eventNotActiveCA);
-                        cancelREBTN.addEventListener("click", f_cancel);
+                    if (registerCalendarBTN && cancelRECalendarBTN) { // đã đky
+                        registerCalendarBTN.removeEventListener("click", f_registerCalendarBTN);
+                        registerCalendarBTN.addEventListener("click", eventNotActiveRECalendar);
+                        cancelRECalendarBTN.removeEventListener("click", eventNotActiveCalendar);
+                        cancelRECalendarBTN.addEventListener("click", f_cancel);
 
                     } else if (a_cubeBTN) {
                         a_cubeBTN = Array.from(a_cubeBTN);
                         a_cubeBTN.map(value => {
                             value.removeEventListener("click", f_cubeBTN);
-                            value.addEventListener("click", eventNotActiveRE);
+                            value.addEventListener("click", eventNotActiveRECard);
                         })
                     }
                 } else {
-                    if (registerBTN && cancelREBTN) { // chưa dky
-                        registerBTN.addEventListener("click", f_registerBTN);
-                        registerBTN.removeEventListener("click", eventNotActiveRE);
-                        cancelREBTN.addEventListener("click", eventNotActiveCA);
-                        cancelREBTN.removeEventListener("click", f_cancel);
+                    if (registerCalendarBTN && cancelRECalendarBTN) { // chưa dky
+                        registerCalendarBTN.addEventListener("click", f_registerCalendarBTN);
+                        registerCalendarBTN.removeEventListener("click", eventNotActiveRECalendar);
+                        cancelRECalendarBTN.addEventListener("click", eventNotActiveCalendar);
+                        cancelRECalendarBTN.removeEventListener("click", f_cancel);
 
                     } else if (a_cubeBTN) {
                         a_cubeBTN = Array.from(a_cubeBTN);
                         a_cubeBTN.map(value => {
                             value.addEventListener("click", f_cubeBTN);
-                            value.removeEventListener("click", eventNotActiveRE);
+                            value.removeEventListener("click", eventNotActiveRECard);
                         })
                     }
                 }
             } else {
-                if (registerBTN && cancelREBTN) { // chưa dky
-                    registerBTN.removeEventListener("click", f_registerBTN);
-                    registerBTN.removeEventListener("click", eventNotActiveRE);
-                    cancelREBTN.removeEventListener("click", eventNotActiveCA);
-                    cancelREBTN.removeEventListener("click", f_cancel);
+                if (registerCalendarBTN && cancelRECalendarBTN) { // chưa dky
+                    registerCalendarBTN.removeEventListener("click", f_registerCalendarBTN);
+                    registerCalendarBTN.removeEventListener("click", eventNotActiveRECalendar);
+                    cancelRECalendarBTN.removeEventListener("click", eventNotActiveCalendar);
+                    cancelRECalendarBTN.removeEventListener("click", f_cancel);
 
                 } else if (a_cubeBTN) {
                     a_cubeBTN = Array.from(a_cubeBTN);
                     a_cubeBTN.map(value => {
                         value.removeEventListener("click", f_cubeBTN);
-                        value.removeEventListener("click", eventNotActiveRE);
+                        value.removeEventListener("click", eventNotActiveRECard);
                     })
                 } else if (a_cubeBTN) {
                     a_cubeBTN = Array.from(a_cubeBTN);
                     a_cubeBTN.map(value => {
                         value.removeEventListener("click", f_cubeBTN);
-                        value.removeEventListener("click", eventNotActiveRE);
+                        value.removeEventListener("click", eventNotActiveRECard);
                     })
                 }
             }
@@ -406,7 +420,6 @@ $(document).ready(function () {
     $('#create-account-form').submit(function (e) {
         e.preventDefault();
         if (validateCreateAccount()) {
-            console.log("valid")
             $.ajax({
                 url: '/create-account-url-cus',
                 type: 'POST',
@@ -540,7 +553,6 @@ $(document).ready(function () {
         if (url.pathname == '/change-password-url') {
             var a_input = changeBox.querySelectorAll("input");
             a_input = Array.from(a_input, input => input.value);
-            console.log(a_input)
             const [password, newPass, confirmPass] = a_input;
             if (isValidChangePass(password, newPass, confirmPass)) {
                 f_changeServer(this, url);
@@ -551,15 +563,14 @@ $(document).ready(function () {
 
     });
 
-    $('#form-register').submit(function (e) {
+    $('#form-register-card').submit(function (e) {
         e.preventDefault();
-        if (isFormComplete()) {
+        if (isFormCompleteCard()) {
             $.ajax({
                 url: '/register-card-url',
                 type: "POST",
                 data: $(this).serialize(),
                 success: function (data) {
-                    console.log(data)
                     if (data.success) {
                         showSuccessToast("Đăng ký lịch tập thành công", "Hẹn một ngày gần nhất tới với lễ tân để thanh toán");
                         registerCartBox.style.display = "none";
@@ -570,8 +581,38 @@ $(document).ready(function () {
                         if (data.reason == "login") {
                             f_loginBTN();
                             showErrorToast("Chưa đăng nhập");
-                        } else {
+                        } else if (!data.haveCard) {
+                            showErrorToast("Bạn chưa đăng ký thẻ thành viên");
 
+                        }
+                    }
+                },
+                err: function (err) {
+
+                }
+            })
+        }
+    })
+    $('#form-register-calendar').submit(function (e) {
+        e.preventDefault();
+        if (isFormCompleteCalendar()) {
+            $.ajax({
+                url: '/register-calendar-url',
+                type: "POST",
+                data: $(this).serialize(),
+                success: function (data) {
+                    if (data.success) {
+                        showSuccessToast("Đăng ký lịch tập thành công", "Hẹn một ngày gần nhất tới với lễ tân để thanh toán");
+                        registerCalendarBox.style.display = "none";
+                        getValueInformationForm(path);
+                        f_getValidCard();
+                        displayNoneAll();
+                    } else {
+                        if (data.reason == "login") {
+                            f_loginBTN();
+                            showErrorToast("Chưa đăng nhập");
+                        } else if (!data.haveCard) {
+                            showErrorToast("Bạn chưa đăng ký thẻ thành viên");
                         }
                     }
                 },
@@ -590,12 +631,12 @@ $(document).ready(function () {
                 url: "/get-cancel-submit",
                 type: "GET",
                 success: function (data) {
-                    console.log(data);
                     if (data.success) {
                         f_getValidCard();
                         showSuccessToast("Đã hủy lịch tập");
                         cancelRECartBox.style.display = "none";
                         getValueInformationForm(path);
+                        calendarShow.innerHTML = '';
                     } else {
                         showErrorToast("LỖi")
                     }
@@ -633,4 +674,10 @@ $(document).ready(function () {
         });
 });
 
-
+const exitChangePageRegisterCard = document.getElementById("submitChangePage");
+if (exitChangePageRegisterCard)
+    exitChangePageRegisterCard.addEventListener("click", (e) => {
+        e.preventDefault();
+        clearInterval(intervalId)
+        displayNoneAll();
+    })

@@ -117,12 +117,16 @@ export function isValidChangePass(password, newPass, confirmPass) {
     return true;
 }
 
-export function isFormComplete() {
+export function isFormCompleteCard() {
     let cardType = document.querySelector('input[name="cardType"]:checked');
     if (!cardType) {
         showErrorToast("Vui lòng điền đầy đủ thông tin", "Chưa chọn loại thẻ")
         return false;
     }
+    return true;
+}
+
+export function isFormCompleteCalendar() {
 
     let weekdays = document.querySelectorAll('input[name="weekday[]"]:checked');
     if (weekdays.length === 0) {
