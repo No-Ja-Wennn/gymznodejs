@@ -120,7 +120,7 @@ export function f_registerCalendarBTN() {
             if(res.login){
                 if(res.have){
                     displayNoneAll();
-                    registerCalendarBox.style.display = "block";
+                    registerCalendarBox.style.display = "flex";
                 }else{
                     showErrorToast("Bạn chưa đăng ký thẻ thành viên", "Vui lòng đăng ký thẻ thành viên trước");
                     f_changePageRegister();

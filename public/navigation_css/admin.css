@@ -1517,3 +1517,19 @@ li.message__user.message__user:hover .message__user__name__options {
 .find__item__box i:hover{
     background-color: #d1d1d1;
 }
+
+
+tbody .status{
+    display: table-cell !important;
+    background-color: unset;
+    color: black;
+} 
+
+tbody .status:hover{
+    cursor: pointer;
+    color: black;
+    border: 1px solid black;
+} 
+tbody .status i{
+    margin-left: 4px;
+}
