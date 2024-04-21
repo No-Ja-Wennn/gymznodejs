@@ -1,13 +1,15 @@
 import { showErrorToast } from '../src/toast.js';
 import {
     // displayNoneAll, activeNecessaryForm,
-    f_registerBTN, f_cancel,
+    f_registerCalendarBTN, f_cancel,
     f_cubeBTN
 } from './login.js';
 
 import {
     activeNecessaryForm,
-    displayNoneAll
+    displayNoneAll,
+    editDate,
+    replaceNullUndefinedWithEmptyString
 } from '../src/function.js'
 
 const loginForm = document.querySelector(".login-box");
@@ -287,7 +289,7 @@ export function activeClickChange() {
         changeInformationBTN.removeEventListener("click", noLogin);
         changePassBTN.removeEventListener("click", noLogin);
     } else if (registerBTN) {
-        registerBTN.addEventListener("click", f_registerBTN);
+        registerBTN.addEventListener("click", f_registerCalendarBTN);
         cancelREBTN.addEventListener("click", f_cancel);
         registerBTN.removeEventListener("click", noLogin);
         cancelREBTN.removeEventListener("click", noLogin);
@@ -319,7 +321,7 @@ export function unActiveClickChange() {
         changeInformationBTN.addEventListener("click", noLogin);
         changePassBTN.addEventListener("click", noLogin);
     } else if (registerBTN) {
-        registerBTN.removeEventListener("click", f_registerBTN);
+        registerBTN.removeEventListener("click", f_registerCalendarBTN);
         cancelREBTN.removeEventListener("click", f_cancel);
         registerBTN.addEventListener("click", noLogin);
         cancelREBTN.addEventListener("click", noLogin);
@@ -333,19 +335,19 @@ export function unActiveClickChange() {
 }
 
 // CARD PAGE
-export function innerTextOfCard(name, id, type, dateStart, dateEnd) {
+export function innerTextOfCard(myData) {
     if (nameClientElementCard
         && idClientElementCard
         && typeClientElementCard
         && dateStartClientElementCard
         && dateEndClientElementCard
     ) {
-        nameClientElementCard.innerText = name;
-        idClientElementCard.innerText = id;
-        typeClientElementCard.innerText = type;
-        dateStartClientElementCard.innerText = dateStart;
-        dateEndClientElementCard.innerText = dateEnd;
-        console.log(type)
+        var type = myData.cardType;
+        nameClientElementCard.innerText = myData.name;
+        idClientElementCard.innerText = myData.maThe;
+        typeClientElementCard.innerText = myData.cardType;
+        dateStartClientElementCard.innerText = editDate(myData.dateStart);
+        dateEndClientElementCard.innerText = editDate(myData.dateEnd);
         imgCard.style.display = "block";
         if (type == "BEGINNER")
             imgCard.setAttribute("src", "../img/card/beginner.png")

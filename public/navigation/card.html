@@ -249,13 +249,9 @@
             <div class="container--id">
                 <div class="id-card id1">
                     <div class="id-card id2">
-                        <p class="heading_id">MASTER CARD</p>
-                        <p class="heading_logo"><b>GYM</b><span>Z</span></p>
-                        <div class="content-id">
-                            <span class="top-id">ĐĂNG NHẬP</span><br>
-                            <span class="bot-id">ĐỂ XEM THẺ</span>
-                        </div>
-                        <span class="name-id">click</span>
+                        <img src="../img/card/beginner-1.png" alt="" class="img-card">
+                        <img src="../img/card/basic-1.png" alt="" class="img-card">
+                        <img src="../img/card/advance-1.png" alt="" class="img-card">
                     </div>
                 </div>
             </div>
@@ -662,13 +658,13 @@
                 </form>
             </div>
             <div class="modal__body__box register-cart">
-                <form id="form-register" class="form1">
+                <form id="form-register-card" class="form1">
                     <div class="registration__traning__schedule">
                         <div class="table">
                             <div id="training-schedule" class="first__training__schedule">
                                 <div class="row__title__table">
                                     <div class="row__title__table__content">
-                                        Đăng ký lịch
+                                        Đăng thẻ thành viên
                                     </div>
                                     <div class="x__cancel">
                                         <i class="fa-regular fa-circle-xmark"></i>
@@ -693,96 +689,6 @@
                                             <input type="radio" id="card3" name="cardType" value="ADVANCE">
                                             <label for="card3">ADVANCE</label><br>
                                         </div>
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <div class="row__title">
-                                        Ngày:
-                                    </div>
-                                    <div class="row__content">
-                                        <div>
-                                            <input type="checkbox" id="monday" name="weekday[]" value="T2">
-                                            <label for="monday">T2</label><br>
-                                        </div>
-                                        <div>
-                                            <input type="checkbox" id="tuesday" name="weekday[]" value="T3">
-                                            <label for="tuesday">T3</label><br>
-                                        </div>
-                                        <div>
-                                            <input type="checkbox" id="wednesday" name="weekday[]" value="T4">
-                                            <label for="wednesday">T4</label><br>
-                                        </div>
-                                        <div>
-                                            <input type="checkbox" id="thursday" name="weekday[]" value="T5">
-                                            <label for="thursday">T5</label><br>
-                                        </div>
-                                        <div>
-                                            <input type="checkbox" id="friday" name="weekday[]" value="T6">
-                                            <label for="friday">T6</label><br>
-                                        </div>
-                                        <div>
-                                            <input type="checkbox" id="saturday" name="weekday[]" value="T7">
-                                            <label for="saturday">T7</label><br>
-                                        </div>
-                                        <div>
-                                            <input type="checkbox" id="sunday" name="weekday[]" value="CN">
-                                            <label for="sunday">CN</label><br>
-                                        </div>
-
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <div class="row__title">
-                                        Thời gian:
-                                    </div>
-                                    <div class="row__content">
-                                        <div>
-                                            <input type="radio" id="time1" name="time" value="13:30-15:00">
-                                            <label for="time1">13:30-15:00</label><br>
-
-                                        </div>
-                                        <div>
-                                            <input type="radio" id="time2" name="time" value="15:00-16:30">
-                                            <label for="time2">15:00-16:30</label><br>
-
-                                        </div>
-                                        <div>
-                                            <input type="radio" id="time3" name="time" value="17:30-18:30">
-                                            <label for="time3">17:30-18:30</label><br>
-
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <div class="row__title">
-                                        Môn:
-                                    </div>
-                                    <div class="row__content row__content--type">
-                                        <div>
-                                            <input type="radio" id="GYM" name="type" value="GYM">
-                                            <label for="GYM">GYM</label><br>
-                                        </div>
-                                        <div>
-                                            <input type="radio" id="YOGA" name="type" value="YOGA">
-                                            <label for="YOGA">YOGA</label><br>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <div class="row__title">
-                                        Huấn luyện viên:
-                                    </div>
-                                    <div class="row__content">
-                                        Ngẫu nhiên
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <div class="row__title">
-                                        Ghi chú:
-                                    </div>
-                                    <div class="row__content">
-                                        <input class="row__content__input" type="text"
-                                            placeholder="Nhấp để thêm ghi chú" name="note">
                                     </div>
                                 </div>
                                 <div class="row__final">
@@ -838,9 +744,38 @@
     <script type="module" src="../navigation_javascript/processChatBox.js"></script>
     <script type="module" src="../src/toast.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <script type="module" src="../src/client.js"></script>
     <script type="module" src="../navigation_javascript/login.js"></script>
     <script type="module" src="../navigation_javascript/infomation_account.js"></script>
+    <script type="module" src="../src/client.js"></script>
+    <script>
+        const images = document.querySelectorAll('.img-card');
+        let currentIndex = 0;
+        
+        // Preload các hình ảnh trước khi chúng được hiển thị
+        images.forEach(image => {
+            const img = new Image();
+            img.src = image.src;
+        });
+        showImage(0)
+        // Hàm hiển thị ảnh
+        function showImage(index) {
+            images.forEach((image, i) => {
+                if (i === index) {
+                    image.classList.add('show');
+                } else {
+                    image.classList.remove('show');
+                }
+            });
+        }
+        
+        // Chuyển đổi giữa các ảnh sau một khoảng thời gian
+        setInterval(() => {
+            currentIndex = (currentIndex + 1) % images.length;
+            showImage(currentIndex);
+        }, 3000); // Thời gian hiển thị mỗi ảnh là 3 giây
+        
+
+    </script>
 </body>
 
 </html>

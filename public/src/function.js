@@ -33,7 +33,6 @@ export function displayNoneAll() {
 
 export function removeAllInputValue() {
     var a_inputElement = modalBox.querySelectorAll("input");
-    console.log(a_inputElement)
     a_inputElement = Array.from(a_inputElement);
     a_inputElement.map(element => {
         if (element.type == 'checkbox' || element.type == 'radio' || element.type == 'file')
@@ -86,7 +85,6 @@ function makeLiHide(value = "", option = "customer") {
     if (value) {
         chatBoxItem.className = `message ${option}`;
         if (option == "admin") {
-            // console.log(hostCur)
             var spanImg = document.createElement("span");
             spanImg.classList.add('admin-img');
             var imgElement = document.createElement("img");
@@ -107,7 +105,6 @@ function makeLiHide(value = "", option = "customer") {
 export let maKHActive = "";
 
 function f_clickChat(maKH, name, element) {
-    // console.log("hello");
     maKHActive = maKH;
     chatBoxList.innerHTML = "";
     if (titleNameE)
@@ -405,14 +402,12 @@ export function replaceNullUndefinedWithEmptyString(obj) {
     if (obj === null || typeof obj !== 'object') {
         return obj;
     }
-    
+
     for (let key in obj) {
         if (obj[key] == null || obj[key] == undefined || obj[key] == "null" || obj[key] == "undefined") {
             obj[key] = '';
-            console.log(obj)
         }
     }
-    console.log(obj);
     return obj;
 }
 
@@ -607,9 +602,6 @@ export function logoutSocket() {
 
 export function updateRowShop(dataObj, editRow, flag = false) {
     var cellIndex = 0;
-    console.log(dataObj)
-    console.log("//////////////// ");
-    console.log(dataObj)
     editRow.map((cell, index) => {
         var className = cell.className;
         if (index > 6) return;
@@ -618,10 +610,7 @@ export function updateRowShop(dataObj, editRow, flag = false) {
             cell.querySelector('label').style.display = 'none';
 
         if (flag) {
-            console.log(flag)
             if (index == 0 || index == 1) {
-                // cell.querySelector('label').style.display = 'none';
-                // console.log(cell.querySelector('label').style.display);
                 if (dataObj[className]) {
                     cell.textContent = '';
                     var imgE = document.createElement('img');
@@ -629,7 +618,6 @@ export function updateRowShop(dataObj, editRow, flag = false) {
                     imgE.src = "" || dataObj[className];
                     cell.appendChild(imgE);
 
-                    // cell.innerHTML = `<img class="show_main_img" src="${dataObj[className]}" alt="">`; // Điền dữ liệu vào ô
                     var inputChange = document.createElement('input');
                     inputChange.type = 'file';
                     inputChange.id = 'input' + className + index;
@@ -638,7 +626,6 @@ export function updateRowShop(dataObj, editRow, flag = false) {
                     lableTag.htmlFor = 'input' + className + index;
                     lableTag.style.display = 'none';
                     inputChange.style.display = 'none';
-                    console.log(inputChange)
                     inputChange.addEventListener('change', function (img) {
                         return function (event) {
                             changeFileInput(event, img);
@@ -647,7 +634,6 @@ export function updateRowShop(dataObj, editRow, flag = false) {
                     cell.appendChild(inputChange);
                     cell.appendChild(lableTag);
                 }
-                console.log(cell.querySelector('label'));
             }
             else {
                 return;
@@ -670,7 +656,6 @@ export function updateRowShop(dataObj, editRow, flag = false) {
 //"change"  input file
 
 export function changeFileInput(event, imgE) {
-    // console.log(imgE)
     // Kiểm tra xem có tệp nào được chọn hay không
     if (event.target.files && event.target.files[0]) {
         var reader = new FileReader();
@@ -690,7 +675,6 @@ export function changeFileInput(event, imgE) {
 
 
 export function updateRowShop2(dataObj, editRow) {
-    console.log(dataObj);
     for (var i = 0; i < editRow.length; i++) {
         editRow[i].innerHTML = ""; // Xóa nội dung hiện có của ô
         if (i === 0 || i === 1) {
@@ -726,19 +710,19 @@ export function updateRowTable(cells, data) {
 //     let date = new Date(dateValue);
 //     date.setUTCHours(24, 0, 0, 0);
 //     let roundedDate = date.toISOString().split('T')[0];
-//     console.log(roundedDate);
 //     return roundedDate;
 // }
 export function editDate(dateValue) {
-    if (dateValue === "0000-00-00") {
-        console.log("Invalid date");
-        return null; 
+    if (dateValue == null || dateValue == '' || dateValue == '...') {
+        return "0000-00-00";
     }
-    
+    if (dateValue === "0000-00-00") {
+        return "0000-00-00";
+    }
+
     let date = new Date(dateValue);
-    date.setUTCHours(0, 0, 0, 0); 
+    date.setUTCHours(24, 0, 0, 0);
     let roundedDate = date.toISOString().split('T')[0];
-    console.log(roundedDate);
     return roundedDate;
 }
 
@@ -758,13 +742,12 @@ export function plusMinusItemCart(inputCountItem, ItemID, Cost, costAll, totalCa
     `
     var totalCart = totalCartShow.querySelector('.total__cart')
     var totalValue = totalCart.innerHTML.replace(/[,.₫]/g, '');
-    console.log(totalValue);
-    if(type == 'plus'){
+    if (type == 'plus') {
         var one = 1;
-    }if(type == 'minus'){
+    } if (type == 'minus') {
         var one = -1;
     }
-    totalCart.innerHTML =  (parseInt(totalValue)  + parseInt(Cost) * one).toLocaleString() + '₫';
+    totalCart.innerHTML = (parseInt(totalValue) + parseInt(Cost) * one).toLocaleString() + '₫';
     $.ajax({
         url: '/plus-minus-item-cart',
         method: 'POST',
@@ -778,4 +761,86 @@ export function plusMinusItemCart(inputCountItem, ItemID, Cost, costAll, totalCa
             console.error(err);
         }
     })
+}
+const changePage = modalBox.querySelector(".chage-page");
+if (changePage)
+    var spanMinute = changePage.querySelector(".edit-label span");
+
+export let intervalId;
+
+export function f_changePageRegister() {
+    displayNoneAll();
+    activeNecessaryForm();
+    changePage.style.display = 'block';
+    var count = 5;
+
+    intervalId = setInterval(() => setIntervalChangePage(count--), 1000);
+}
+
+export function setIntervalChangePage(count) {
+    spanMinute.innerText = count;
+    if (count == 0) {
+        clearInterval(intervalId);
+        window.location.href = "./card.html";
+    }
+}
+
+export function createCalendarBox({
+    maLT,
+    maThe,
+    note,
+    ptName,
+    timeEnd,
+    timeStart,
+    type,
+    weekday,
+    day
+}) {
+    var eCreate = document.createElement("div");
+    eCreate.classList.add("table");
+    eCreate.innerHTML = `
+        <div id="training-schedule" class="first__training__schedule">
+            <div class="row">
+                <div class="row__title">
+                    Thứ:
+                </div>
+                <div class="row__content">
+                    ${day}
+                </div>
+            </div>
+            <div class="row">
+                <div class="row__title">
+                    Thời gian:
+                </div>
+                <div class="row__content">
+                    ${timeStart + " - "+ timeEnd}
+                </div>
+            </div>
+            <div class="row">
+                <div class="row__title">
+                    Môn:
+                </div>
+                <div class="row__content">
+                    ${type}
+                </div>
+            </div>
+            <div class="row">
+                <div class="row__title">
+                    Huấn luyện viên:
+                </div>
+                <div class="row__content">
+                    ${ptName}
+                </div>
+            </div>
+            <div class="row">
+                <div class="row__title">
+                    Ghi chú: 
+                </div>
+                <div class="row__content">
+                    ${note}
+                </div>
+            </div>
+        </div>
+    `
+    return eCreate;
 }
