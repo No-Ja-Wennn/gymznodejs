@@ -74,6 +74,7 @@ const cancelRECartBox = document.getElementById("form-cancel");
 
 const informationCardTitle = document.getElementById("information__card__title");
 
+//logout
 let cookieSave = null;
 function f_logoutBTN() {
     var userNameElement1 = document.querySelector(".loginstatus");

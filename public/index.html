@@ -82,20 +82,41 @@
                     <div class="user">
                         <img class="user-avatar" src="./img/icon/avatar.png" alt="">
                         <div class="submenu-login">
-                            <ion-icon name="caret-up-sharp"></ion-icon>
                             <div class="menu-login">
-                                <a class="loginstatus status" href="#">
-                                    Đăng nhập
-                                </a>
-                                <a href="./navigation/information_account.html">
-                                    Thẻ thành viên
-                                </a>
-                                <a href="./navigation/information_card_TS.html">
-                                    Lịch tập
-                                </a>
-                                <a class="logoutstatus status">
-                                    ĐĂNG XUẤT
-                                </a>
+                                <div class="logo-web">
+                                    <div class="logo-web-wrapper">
+                                        <img src="./img/icon/logo.png" alt="">
+                                        gym
+                                        <span>z</span>
+                                    </div>
+                                    <button class="logoutstatus status active">
+                                        Đăng xuất
+                                    </button>
+                                </div>
+                                <div class="login-account active">
+                                    <img src="./img/icon/avatar.png" alt="">
+                                    <div>
+                                        <div class="name-account-login">
+                                            name
+                                        </div>
+                                        <div class="gmail-account-login">
+                                            toiratdeptraineexample@gmail.com
+                                        </div>
+                                        <a href="./navigation/information_account.html">
+                                            Quản lý tài khoản
+                                        </a>
+                                    </div>
+                                </div>
+                                <div class="option-account-login">
+                                    <a class="loginstatus status active" href="./navigation/information_account.html">
+                                        <img src="./img/icon/zP39lDxtrVHqXpgE8Vo-PryLpkI.svg" alt="">
+                                        Truy cập trang hồ sơ Gymz của tôi
+                                    </a>
+                                    <a href="./navigation/information_card_TS.html">
+                                        <img src="./img/icon/FHfezw5xDe6YeAjleV4p6k87BO0.svg" alt="">
+                                        Truy cập thẻ thành viên và lịch tập
+                                    </a>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -301,7 +322,7 @@
             <div class="container__home">
                 <div class="video-title">
                     <video autoplay loop muted playsinline> 
-                        <!-- <source src="./video/video.mp4" type="video/mp4" /> -->
+                        <source src="./video/video.mp4" type="video/mp4" />
                     </video>
                 </div>
                 <div class="home__about">
@@ -586,11 +607,34 @@
                         </div>
                     </div>
                 </div>
+                <div class="container-third">
+                    <div class="container-third-wrapper">
+                        <div class="third-style">
+                            <div class="third-style-left">
+                                <div class="third-title">
+                                    Nâng tầm trải nghiệm tập luyện
+                                </div>
+                                <div class="third-content">
+                                    <p>
+                                        Hệ thống phòng tập đầu tiên kiến tạo nên mô hình tập luyện chuyên nghiệp, đón đầu xu hướng tương lai.
+                                    </p>
+                                    <p>
+                                        Khoác lên thiết kế Futuristic, UNITY Fitness dành riêng cho những trải nghiệm sang trọng và mới lạ. Ưu tiên sự đầu tư chỉnh chu trang thiết bị và không gian phòng tập nhằm đảm bảo chất lượng tập luyện của mọi hội viên.
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="third-style-right">
+                                <img src="./img/services/backgroud/phong-gym-quan-2-6.jpg" alt="">
+                                <img src="./img/services/backgroud/phong-tap-yoga-1-1.jpg" alt="">
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
             
             <!-- LE VAN TIEN -->
 
-            <div class="container__shop">
+            <div class="container__shop" style="display: none;">
                 <div class="feedback">
                     <h1>CƠ SỞ VẬT CHẤT</h1>
                     <h2>GYMZ có cơ sở vật chất hiện đại với phòng tập rộng rãi và trang
@@ -625,10 +669,10 @@
                     </div>
                 </div>
             </div>
-
+            
             <div class="container__story">
                 <h1>Những thay đổi khi tập tại GYMZ</h1>
-                <div class="container__change">
+                <div class="container__change" style="display: none;">
                     <div class="change__box one">
                         <div class="change__box__text">
                             <h2>BEFORE & AFTER</h2>
@@ -1175,7 +1219,7 @@
     <script type="module" src="./navigation_javascript/login.js"></script>
     <script type="module" src="./src/validate.js"></script>
     <script type="module" src="./src/toast.js"></script>
-    <script type="module" src="./src/client.js"></script>
+    <!-- <script type="module" src="./src/client.js"></script> -->
     <script>
         // JavaScript
         var items = document.querySelectorAll('.item-second');

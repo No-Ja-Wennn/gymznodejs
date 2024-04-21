@@ -457,7 +457,7 @@ function f_removeChat(maKH, liElement) {
 export function innerMesageBox(name) {
     const titleNameE = document.querySelector(".chatbox__head__title");
     if (titleNameE)
-        titleNameE.innerText = name;
+        titleNameE.innerText = 'Nhân viên hỗ trợ';
     if (chatBoxList)
         chatBoxList.innerHTML = "";
     $.ajax({
