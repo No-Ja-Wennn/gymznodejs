@@ -285,28 +285,35 @@ $(document).ready(function () {
 // FIND ITEM
 $('#search-form').submit(function (e) {
     e.preventDefault();
-    $.ajax({
-        url: '/get-item-search',
-        type: 'POST',
-        data: $(this).serialize(),
-        success: function (data) {
-            if (data.success) {
-                searchResultBox.style.display = 'flex';
-                html.style.overflow = 'hidden';
-                var items = data.items
-                items.forEach(value => {
-                    var cost = item.Cost.toLocaleString().replaceAll('.', ',');
-                    var element = createItem(value.ItemID, value.MainImg, value.NameItem, cost)
-                    searchListBox.appendChild(element);
-                })
-            } else {
-                console.log(data)
+
+    var inputValue = this.querySelector('input').value;
+    if (inputValue)
+        $.ajax({
+            url: '/get-item-search',
+            type: 'POST',
+            data: $(this).serialize(),
+            success: function (data) {
+                if (data.success) {
+                    searchResultBox.style.display = 'flex';
+                    html.style.overflow = 'hidden';
+                    var items = data.items
+                    if (items)
+                        items.forEach(item => {
+                            var cost = item.Cost.toLocaleString().replaceAll('.', ',');
+                            var element = createItem(item.ItemID, item.MainImg, item.NameItem, cost)
+                            searchListBox.appendChild(element);
+                        })
+                } else {
+                    console.log(data)
+                }
+            },
+            error: function (err) {
+                console.log(err)
             }
-        },
-        error: function (err) {
-            console.log(err)
-        }
-    })
+        })
+    else {
+        showErrorToast("Vui lòng nhập giá trị tìm kiếm");
+    }
 
 })
 exitSearchBTN.addEventListener("click", function () {
@@ -512,16 +519,16 @@ $(document).ready(function () {
 
 const buy = document.querySelector('.button-payment button')
 console.log(buy)
-buy.addEventListener("click",  function () {
-    
+buy.addEventListener("click", function () {
+
     localStorage.removeItem('tempItem');
     $.ajax({
         url: '/get-item-cart',
         type: 'GET',
         success: function (res) {
             if (res.success && res.data.length > 0) {
-                window.location.href = 'wheyshop_checkout.html'               
-            }else{
+                window.location.href = 'wheyshop_checkout.html'
+            } else {
                 showErrorToast("Thanh toán thất bại", "Không có sản phẩm nào trong giỏ hàng");
             }
         },
@@ -529,5 +536,5 @@ buy.addEventListener("click",  function () {
 
         }
     }
-)
+    )
 })

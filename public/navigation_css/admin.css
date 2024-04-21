@@ -1291,6 +1291,10 @@ li.message__user.message__user:hover .message__user__name__options {
     width: 100%;
 }
 
+.table__show--disable{
+    display: none;
+}
+
 .table__show th,
 .table__show td {
     padding: 8px;
@@ -1311,6 +1315,14 @@ li.message__user.message__user:hover .message__user__name__options {
     margin: 0 6px;
 }
 
+.table__show tr:hover{
+    background-color: #e6e6e6;
+}
+
+.details{
+    font-style: italic;
+    text-decoration: underline;
+}
 
 .scrollable-content {
     height: calc(100vh - 195px);
@@ -1410,7 +1422,8 @@ li.message__user.message__user:hover .message__user__name__options {
 }
 
 
-.show_main_img {
+.show_main_img,
+.MainImg{
     width: 78px;
     /* height: px; */
 }
@@ -1452,6 +1465,22 @@ li.message__user.message__user:hover .message__user__name__options {
         width: 100vw;
     }
 
+}
+
+.total_cost_product{
+    display: none;
+    /* display: flex; */
+    align-items: center;
+    justify-content: flex-end;
+    font-size: 14px;
+    margin-right: 6%;
+}
+
+.exit__infor__order{
+    display: none;
+    font-size: 16px;
+    margin-left: 12px;
+    text-decoration: underline;
 }
 
 .user-ifm-card2{

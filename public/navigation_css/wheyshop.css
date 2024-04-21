@@ -1648,10 +1648,24 @@ body {
         align-items: center;
     }
 
-    .header-bot,
-    .home,
-    .account {
+    .header-bot
+    {
         display: none;
+    }
+
+    .header-options{
+        width: 100%;
+        display: flex;
+        justify-content: space-between;
+    }
+
+    .header-top{
+        display: flex;
+        flex-direction: column-reverse;
+        height: fit-content;
+    }
+    .header{
+        height: fit-content;
     }
 
     .main-content {

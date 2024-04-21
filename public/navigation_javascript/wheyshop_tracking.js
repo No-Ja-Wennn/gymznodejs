@@ -3,32 +3,25 @@ import { showErrorToast } from "../src/toast.js";
 const tabs = document.querySelectorAll('.tab button')
 const contents = document.querySelectorAll('.content')
 const orderActive = document.querySelector('.order-details');
+let oldIndex = 0;
 tabs.forEach((tab, index) => {
 
-    const content = contents[index]
-
+    
     tab.onclick = function () {
-
-        document.querySelector('.content.active').classList.remove('active');
-
-        document.querySelector('.tab button.active').classList.remove('active');
-        
-        if (orderActive.classList.contains('active')) {
-            document.querySelector('.order-details.active').classList.remove('active');
-        }
-        // if ( document.querySelector('.content').contains('active')) {
-        // }
-        document.querySelector('.content.active').classList.remove('active');
-
+        contents.forEach(content => content.classList.remove('active'));
+        contents[index].classList.add("active");
+        orderActive.classList.remove('active');
+        oldIndex = index;
+        tabs.forEach(t=>t.classList.remove('active'));
         this.classList.add('active');
-        content.classList.add('active');
     }
+
 })
 
 const closeDetails = document.querySelector('.close-details')
 closeDetails.onclick = function () {
-    document.querySelector('.order-details.active').classList.remove('active');
-    document.querySelector('.content').classList.add('active');
+    orderActive.classList.remove('active');
+    contents[oldIndex].classList.add("active");
 }
 
 const searchInput = document.querySelector('.search-input');
@@ -167,7 +160,7 @@ function createOrderElement(
                         </div>
                     </div>
                     <div class="status-order ${status}">
-                        Hoàn thành
+                        Đặt hàng thành công
                     </div>
                 </div>
                 <div class="first-product">
@@ -283,13 +276,31 @@ function f_eventOrderClick(orderID) {
                 var countAllItem = 0;
                 var costAllItem = 0;
                 data.forEach(item => {
-                    countAllItem+=item.Count;
-                    costAllItem+= item.Count * item.Cost;
+                    countAllItem += item.Count;
+                    costAllItem += item.Count * item.Cost;
                     var orderElement = createAnInforOrderBox(item);
                     iformationOrderBox.appendChild(orderElement);
                 })
                 totalCountProductElement.innerText = countAllItem;
                 totalPriceProductElement.innerText = costAllItem.toLocaleString();
+
+                contents.forEach(content => content.classList.remove('active'));
+                orderActive.classList.add("active");
+                console.log("hell")
+                statusTransport.className = `transportation-process ${data[0].status}`;
+                console.log(statusTransport)
+
+                if (statusTransport.classList.contains('orderSuccess')) {
+                    setStyle([circles[0], wrapperCircles[0], circles[1], wrapperCircles[1], lines[0]], '#2196F3');
+                } else if (statusTransport.classList.contains('transport')) {
+                    setStyle([circles[0], wrapperCircles[0], circles[1], wrapperCircles[1], lines[0], circles[2], wrapperCircles[2], lines[1]], '#2196F3');
+                } else if (statusTransport.classList.contains('complete')) {
+                    setStyle([circles[0], wrapperCircles[0], circles[1], wrapperCircles[1], lines[0], circles[2], wrapperCircles[2], circles[3], wrapperCircles[3], lines[1], lines[2]], '#2196F3');
+                } else if (statusTransport.classList.contains('canceled')) {
+                    setStyle([circles[0], wrapperCircles[0], circles[1], wrapperCircles[1], lines[0], circles[2], wrapperCircles[2], circles[3], wrapperCircles[3], lines[1], lines[2]], '#888');
+                }
+                
+
             } else {
                 showErrorToast("Chưa đăng nhập", "Vui lòng thử lại");
             }
@@ -309,6 +320,8 @@ const cancelOrderBox = document.querySelector(".list-order-cancel");
 const transportOrderBox = document.querySelector(".list-order-transport");
 const completeOrderBox = document.querySelector(".list-order-complete");
 const iformationOrderBox = document.querySelector(".list-order-iformation");
+
+const statusTransport = document.querySelector(".transportation-process");
 
 const shipPrice = 26500;
 const vatPrice = 0;
@@ -366,10 +379,17 @@ $(document).ready(function () {
 
                     allOrderBox.appendChild(orderElement2);
                     if (mathData[item].status == 'canceled') {
+                        orderElement.querySelector('.status-order').innerText = 'Đã hủy';
+                        orderElement2.querySelector('.status-order').innerText = 'Đã hủy';
                         cancelOrderBox.appendChild(orderElement);
                     } else if (mathData[item].status == 'transport') {
+                        console.log(orderElement)
+                        orderElement.querySelector('.status-order').innerText = 'Đang vận chuyển';
+                        orderElement2.querySelector('.status-order').innerText = 'Đang vận chuyển';
                         transportOrderBox.appendChild(orderElement);
                     } else if (mathData[item].status == 'complete') {
+                        orderElement.querySelector('.status-order').innerText = 'Đã nhận hàng';
+                        orderElement2.querySelector('.status-order').innerText = 'Đã nhận hàng';
                         completeOrderBox.appendChild(orderElement);
                     }
                 })(item);

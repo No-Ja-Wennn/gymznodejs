@@ -11,7 +11,8 @@ const tabs = [
   { tab: navbar.querySelector('#QLAccount'), table: document.querySelector('#accountTable') },
   { tab: navbar.querySelector('#QLCard'), table: document.querySelector('#cardTable') },
   { tab: navbar.querySelector('#QLCalendar'), table: document.querySelector('#calendarTable') },
-  { tab: navbar.querySelector('#QLShop'), table: document.querySelector('#shopTable') }
+  { tab: navbar.querySelector('#QLShop'), table: document.querySelector('#shopTable') },
+  { tab: navbar.querySelector('#QLOrder'), table: document.querySelector('#orderTable') }
 ];
 
 // Hàm để hiển thị bảng tương ứng và thêm class active cho tab
@@ -167,6 +168,7 @@ const a_nav = [
   document.getElementById("QLCard"),
   document.getElementById("QLCalendar"),
   document.getElementById("QLShop"),
+  document.getElementById("QLOrder"),
 ]
 
 a_nav.forEach(value => {

@@ -17,7 +17,7 @@
     <link rel="stylesheet" href="./font/fontawesome-free-6.4.0-web/css/all.min.css">
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
     <link rel="stylesheet" href="./css/index.css">
-    <link rel="stylesheet" href="./css/header.css">
+    <!-- <link rel="stylesheet" href="./css/header.css"> -->
     <link rel="stylesheet" href="./css/base.css">
     <link rel="stylesheet" href="./navigation_css/toast.css">
     <link rel="stylesheet" href="./css/keyframes.css">
@@ -73,6 +73,12 @@
                             <ion-icon class="nav-item-icon" name="calendar-sharp"></ion-icon>
                             <span class="nav-item-text">
                                 QL shop
+                            </span>
+                        </li>
+                        <li id="QLOrder" class="nav-item">
+                            <ion-icon class="nav-item-icon" name="calendar-sharp"></ion-icon>
+                            <span class="nav-item-text">
+                                QL đặt hàng
                             </span>
                         </li>
                         <div class="nav-item-last">
@@ -501,6 +507,99 @@
                                             <th class="th__show" style="width: 10%">GIÁ</th>
                                             <th class="th__show">MÔ TẢ</th>
                                             <th class="th__show" style="width: 6%">THAO TÁC</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- ORDER  -->
+                    <div id="orderTable" class="container__show container__show__order">
+                        <div class="container__show__add container__show__order__add">
+                            <div class="box-title">
+                                <div class="nav-open">
+                                    <button class="nav-open-bt">
+                                        <ion-icon class="nav-open-bt-icon" name="menu-sharp"></ion-icon>
+                                    </button>
+                                </div>
+                                <h3 class="title-row">
+                                    Quản lý đơn đặt hàng
+                                </h3>
+                                <div class="sub-middle">
+                                    <span></span>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- <button id="add-order" class="container__show__add__btn container__show__order__add__btn">
+                            Thêm sản phẩm
+                        </button> -->
+                        <div class="container___input">
+                            <div class="container___input__left">
+                                <i class=" exit--search fa-solid fa-arrow-left"></i>
+                                <!-- <div class="container__show__head__input__box container__show__order__head__input__box">
+                                    <div class="find__item__box">
+                                        <input class="show__input__id find-id-order" type="text"
+                                            placeholder="Nhập mã hoặc tên sản phẩm">
+                                        <i id="cancel__find__item" class="fa-solid fa-xmark"></i>
+                                    </div>
+                                    <div class="show__find__id__box">
+                                    </div>
+                                </div> -->
+                                <!-- <input class="show__input__id find-pt-order" type="text"
+                                    placeholder="Nhập tên huấn luyện viên"> -->
+                                <!-- <select class="show__input__type" id="type" name="type">
+                                    <option value="" selected>Bài tập</option>
+                                    <option value="GYM">GYM</option>
+                                    <option value="YOGA">YOGA</option>
+                                </select> -->
+                            </div>
+                            <div class="container___input__right">
+                                <!-- <button class="container__show__find__btn container__show__order__find__btn">
+                                    Tìm kiếm
+                                </button> -->
+                            </div>
+                        </div>
+                        <span class="exit__infor__order">Quay lại</span>
+                        <div class="total_cost_product">
+                            <span class="total_cost_product__title">Tổng: </span>
+                            <span class="total_cost_product__content">1.000.000</span>
+                            ₫
+                        </div>
+                        
+                        <div class="container__show__content container__show__order__content">
+                            <div class="scrollable-content">
+                                <table class="table__show table__show__main">
+                                    <thead>
+                                        <tr class="tr__show">
+                                            <th class="th__show" style="width: 5%">MÃ ĐƠN HÀNG</th>
+                                            <th class="th__show" style="width: 5%">MÃ KHÁCH HÀNG</th>
+                                            <th class="th__show" style="width: 10%">TÊN KHÁCH HÀNG</th>
+                                            <th class="th__show" style="width: 8%">SỐ ĐIỆN THOẠI</th>
+                                            <th class="th__show" style="width: 10%">ĐỊA CHỈ GIAO HÀNG</th>
+                                            <th class="th__show" style="width: 10%">THỜI GIAN ĐẶT HÀNG</th>
+                                            <th class="th__show" style="width: 7%">TRẠNG THÁI GIAO HÀNG</th>
+                                            <th class="th__show" style="width: 7%"></th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                    </tbody>
+                                </table>
+                                <table class="table__show table__show__info  table__show--disable">
+                                    <thead>
+                                        <tr class="tr__show">
+                                            <th class="th__show" style="width: 5%">MÃ ĐƠN HÀNG</th>
+                                            <th class="th__show" style="width: 10%">TÊN KHÁCH HÀNG</th>
+                                            <th class="th__show" style="width: 5%">MÃ SẢN PHẨM</th>
+                                            <th class="th__show" style="width: 10%">HÌNH ẢNH</th>
+                                            <th class="th__show" style="width: 15%">TÊN SẢN PHẨM</th>
+                                            <th class="th__show" style="width: 5%">SỐ LƯỢNG</th>
+                                            <th class="th__show" style="width: 10%">GIÁ</th>
+                                            <th class="th__show" style="width: 10%">TIỀN MỘT SẢN PHẨM</th>
+                                            <th class="th__show" style="width: 7%">TRẠNG THÁI GIAO HÀNG</th>
+                                            <th class="th__show" style="width: 7%"></th>
                                         </tr>
                                     </thead>
                                     <tbody>

@@ -30,6 +30,15 @@ const accountPage = document.getElementById("accountTable");
 const cardPage = document.getElementById("cardTable");
 const calendarPage = document.getElementById("calendarTable");
 const shopPage = document.getElementById("shopTable");
+const orderPage = document.getElementById("orderTable");
+
+
+const msgNav = document.getElementById("QLMessage");
+const accountNav = document.getElementById("QLAccount");
+const cardNav = document.getElementById("QLCard");
+const calendarNav = document.getElementById("QLCalendar");
+const shopNav = document.getElementById("QLShop");
+const orderNav = document.getElementById("QLOrder");
 
 
 function affterLogin(data) {
@@ -191,11 +200,6 @@ logoutAdminBTN.addEventListener("click", function () {
 
 
 
-const msgNav = document.getElementById("QLMessage");
-const accountNav = document.getElementById("QLAccount");
-const cardNav = document.getElementById("QLCard");
-const calendarNav = document.getElementById("QLCalendar");
-const shopNav = document.getElementById("QLShop");
 
 // test jwt
 
@@ -509,6 +513,7 @@ function f_accountNav() {
         function (data) {
             removeAllTable();
             data.data.forEach(value => {
+                value = replaceNullUndefinedWithEmptyString(value);
                 insertToTable("account", value);
             })
         },
@@ -551,32 +556,32 @@ function removeAllTable() {
 const tbodyShopPage = shopPage.querySelector('.table__show__main tbody');
 
 function activeClickChangeForAllInput() {
-//     var img1Element = tbodyShopPage.querySelectorAll(".MainImg");
-//     img1Element = Array.from(img1Element);
-//     let count = 0;
-//     img1Element.forEach(img1 => {
-//         let inputChange = img1.querySelector('input');
-//         let imgE = inputChange.parentNode.querySelector('img'); // Lấy img trong cùng td với input được click
-//         let labelE = inputChange.parentNode.querySelector('label'); // Lấy img trong cùng td với input được click
+    //     var img1Element = tbodyShopPage.querySelectorAll(".MainImg");
+    //     img1Element = Array.from(img1Element);
+    //     let count = 0;
+    //     img1Element.forEach(img1 => {
+    //         let inputChange = img1.querySelector('input');
+    //         let imgE = inputChange.parentNode.querySelector('img'); // Lấy img trong cùng td với input được click
+    //         let labelE = inputChange.parentNode.querySelector('label'); // Lấy img trong cùng td với input được click
 
-//         // Nghe sự kiện "change" trên thẻ label
-//         labelE.addEventListener("click", function(){
-//             // Thực hiện các hành động khi input thay đổi giá trị
-//             inputChange.style.display = "block";
-//             console.log(inputChange.files); // Để lấy danh sách các files được chọn
-//             // changeFileInput(e, imgE);
-//             count++;
-//         });
+    //         // Nghe sự kiện "change" trên thẻ label
+    //         labelE.addEventListener("click", function(){
+    //             // Thực hiện các hành động khi input thay đổi giá trị
+    //             inputChange.style.display = "block";
+    //             console.log(inputChange.files); // Để lấy danh sách các files được chọn
+    //             // changeFileInput(e, imgE);
+    //             count++;
+    //         });
 
-//         // Bổ sung phần xử lý khi input thay đổi giá trị
-//         inputChange.addEventListener("change", function (e) {
-//             // Thực hiện các hành động khi giá trị của input thay đổi
-//             inputChange.style.display = "block";
-//             console.log(inputChange.files); // Để lấy danh sách các files được chọn
-//             // changeFileInput(e, imgE);
-//             count++;
-//         });
-//     });
+    //         // Bổ sung phần xử lý khi input thay đổi giá trị
+    //         inputChange.addEventListener("change", function (e) {
+    //             // Thực hiện các hành động khi giá trị của input thay đổi
+    //             inputChange.style.display = "block";
+    //             console.log(inputChange.files); // Để lấy danh sách các files được chọn
+    //             // changeFileInput(e, imgE);
+    //             count++;
+    //         });
+    //     });
 }
 
 let imgItemClick = null;
@@ -671,7 +676,7 @@ function insertToTable(tableName, dataObject) {
                 lableTag.style.display = 'none';
                 inputChange.style.display = 'none';
 
-                lableTag.addEventListener("click", function(){
+                lableTag.addEventListener("click", function () {
                     imgItemClick = imgE;
                 })
                 // inputChange.addEventListener('change', function (img) {
@@ -679,10 +684,10 @@ function insertToTable(tableName, dataObject) {
                 //         changeFileInput(event, img);
                 //     };
                 // }(imgE));
-                
-                inputChange.addEventListener("change", function(e){
-                    if(imgItemClick)
-                    changeFileInput(e, imgItemClick);
+
+                inputChange.addEventListener("change", function (e) {
+                    if (imgItemClick)
+                        changeFileInput(e, imgItemClick);
                 })
 
                 cell.appendChild(inputChange);
@@ -781,8 +786,8 @@ function f_calendarNav() {
         null,
         function (data) {
             removeAllTable();
-            var data = replaceNullUndefinedWithEmptyString(data.data);
-            data.forEach(value => {
+            data.data.forEach(value => {
+                var value = replaceNullUndefinedWithEmptyString(value);
                 insertToTable("calendar", value);
             })
         },
@@ -2025,3 +2030,192 @@ cancelFindItem.addEventListener("click", function () {
     })
     this.style.display = 'none';
 })
+
+
+// ORDER PRODUCT ITEM
+
+const tbodyOrderPage = orderPage.querySelector('.table__show__main tbody');
+const tbodyInforOrderPage = orderPage.querySelector('.table__show__info tbody');
+
+orderNav.addEventListener("click", f_clickOrderNav)
+function f_clickOrderNav() {
+    var accessToken = localStorage.getItem('accessToken');
+    totalCostProcuctBox.style.display = 'none';
+
+    sendRequest(
+        '/get-order-admin',
+        'GET',
+        {
+            'Authorization': 'Bearer ' + accessToken
+        },
+        null,
+        function (res) {
+            console.log(res);
+            var orders = res.status;
+            orders.forEach(order => {
+                order.details = 'Chi tiết đơn hàng';
+                var tr = createRowOrder(order);
+
+                tr.querySelector(".details")
+                    .addEventListener("click", function () {
+                        f_details(order.orderID);
+                    });
+
+                var i1 = document.createElement('i');
+                i1.className = 'fa-solid fa-pen-to-square';
+
+                i1.addEventListener("click", function () {
+                    f_changeStatusBTN(tr, order.orderID, order.status)
+                });
+
+                tr.querySelector(".status").appendChild(i1);
+                tbodyOrderPage.appendChild(tr);
+            });
+        },
+        function (err) {
+            console.error(err);
+        }
+    )
+}
+
+function createRowOrder(order) {
+    var trElement = document.createElement('tr');
+    for (var key in order) {
+        var tdElement = document.createElement('td');
+        tdElement.classList.add(key);
+
+        if (key == 'MainImg') {
+            var img = document.createElement('img');
+            img.classList.add(key);
+            img.src = order[key];
+            tdElement.appendChild(img);
+        } else {
+            tdElement.innerText = order[key];
+        }
+        trElement.appendChild(tdElement);
+    }
+    return trElement;
+}
+
+let tableShowOrder = orderPage.querySelectorAll(".table__show");
+tableShowOrder = Array.from(tableShowOrder);
+const totalCostProcuctBox = orderPage.querySelector(".total_cost_product");
+const totalCostProcuctContent = orderPage.querySelector(".total_cost_product__content");
+const cancelIforProduct = orderPage.querySelector(".exit__infor__order");
+
+
+function f_details(orderID) {
+    var accessToken = localStorage.getItem('accessToken');
+    sendRequest(
+        '/get-order-by-id-admin',
+        'POST',
+        {
+            'Authorization': 'Bearer ' + accessToken
+        },
+        { orderID },
+        function (res) {
+            console.log(res);
+            var orders = res.orders;
+            var totalCost = 0;
+            orders.forEach(order => {
+                order.operation = '';
+                totalCost += order.totalCost;
+                order.Cost = order.Cost.toLocaleString() + '₫';
+                order.totalCost = order.totalCost.toLocaleString() + '₫';
+                var tr = createRowOrder(order);
+                tbodyInforOrderPage.appendChild(tr);
+            })
+            totalCostProcuctBox.style.display = 'flex';
+            totalCostProcuctContent.innerText = totalCost.toLocaleString();
+            cancelIforProduct.style.display = 'flex';
+
+            revertShowTable('Chi tiết đơn hàng');
+        },
+        function (err) {
+            console.error(err);
+        }
+    )
+}
+
+const titleOrder = orderPage.querySelector(".title-row");
+
+function revertShowTable(title = 'Quản lý đơn đặt hàng') {
+    tableShowOrder.forEach(table =>
+        table.classList.toggle('table__show--disable')
+    );
+    titleOrder.innerText = title;
+}
+
+cancelIforProduct.addEventListener("click", function () {
+
+    revertShowTable()
+    totalCostProcuctBox.style.display = 'none';
+
+    totalCostProcuctContent.innerText = "";
+
+    cancelIforProduct.style.display = 'none';
+})
+
+function f_changeStatusBTN(tr, orderID, status) {
+    console.log(tr);
+    console.log(orderID);
+    var trStatus = tr.querySelector(".status");
+    var curentStatus = trStatus.innerText;
+    trStatus.innerHTML = `
+            <select class="change-order" id="${orderID}" name="status">
+                <option value="orderSuccess">orderSuccess</option>
+                <option value="transport">transport</option>
+                <option value="complete">complete</option>
+                <option value="canceled">canceled</option>
+            </select>
+            <i class="fa-solid fa-check"></i>
+    `
+    var options = trStatus.querySelector('select').options;
+    for (var i = 0; i < options.length; i++) {
+        if (options[i].value === status) {
+            options[i].selected = true;
+            break;
+        }
+    }
+
+    trStatus.querySelector('i').addEventListener("click", function(){
+        var newStatus = trStatus.querySelector('select').value;
+        console.log(newStatus)
+        f_saveChangeStatus(orderID,newStatus,trStatus, tr);
+    })
+}
+
+function f_saveChangeStatus(orderID,status, trStatus, tr){
+    var accessToken = localStorage.getItem('accessToken');
+
+    sendRequest(
+        '/change-status-order',
+        'POST',
+        {
+            'Authorization': 'Bearer ' + accessToken
+
+        },
+        {orderID, status},
+        function(res){
+            if(res.success){
+                showSuccessToast("Đổi trạng thái giao hàng thành công");
+                trStatus.innerText = status;
+                
+                var i1 = document.createElement('i');
+                i1.className = 'fa-solid fa-pen-to-square';
+
+                i1.addEventListener("click", function () {
+                    f_changeStatusBTN(tr, orderID, status)
+                });
+
+                trStatus.appendChild(i1);
+            }else{
+                showErrorToast("Lỗi");
+            }
+        },
+        function(err){
+            console.error(err);
+        }
+
+    )
+}

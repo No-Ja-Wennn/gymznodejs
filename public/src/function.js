@@ -405,11 +405,14 @@ export function replaceNullUndefinedWithEmptyString(obj) {
     if (obj === null || typeof obj !== 'object') {
         return obj;
     }
+    
     for (let key in obj) {
-        if (obj[key] === null || obj[key] === undefined) {
+        if (obj[key] == null || obj[key] == undefined || obj[key] == "null" || obj[key] == "undefined") {
             obj[key] = '';
+            console.log(obj)
         }
     }
+    console.log(obj);
     return obj;
 }
 
@@ -719,9 +722,21 @@ export function updateRowTable(cells, data) {
 
 }
 
+// export function editDate(dateValue) {
+//     let date = new Date(dateValue);
+//     date.setUTCHours(24, 0, 0, 0);
+//     let roundedDate = date.toISOString().split('T')[0];
+//     console.log(roundedDate);
+//     return roundedDate;
+// }
 export function editDate(dateValue) {
+    if (dateValue === "0000-00-00") {
+        console.log("Invalid date");
+        return null; 
+    }
+    
     let date = new Date(dateValue);
-    date.setUTCHours(24, 0, 0, 0);
+    date.setUTCHours(0, 0, 0, 0); 
     let roundedDate = date.toISOString().split('T')[0];
     console.log(roundedDate);
     return roundedDate;

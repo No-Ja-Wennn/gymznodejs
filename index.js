@@ -2089,8 +2089,8 @@ app.get('/get-order-cus', (req, res) => {
     `;
     // SUM(orderData.Count) AS TotalCount,
     // SUM(orderData.Cost) AS TotalCost
-        // GROUP BY 
-        //     orderData.orderID ;
+    // GROUP BY 
+    //     orderData.orderID ;
     con.query(sql, [maKH], (err, result) => {
       if (err) throw err;
       if (result.length > 0) {
@@ -2108,24 +2108,71 @@ app.get('/get-order-cus', (req, res) => {
 });
 
 
-app.post('/get-order-by-id', (req, res)=>{
-  
+app.post('/get-order-by-id', (req, res) => {
+
   var cookie = getCookie(req, 'user_id');
   if (cookie) {
     const maKH = cookie.maKH;
-    const {orderID} = req.body;
+    const { orderID } = req.body;
     var sql = `SELECT shopData.MainImg, shopData.NameItem, orderData.Count, orderData.Cost, status.status, orderData.orderID
     FROM orderData
     JOIN status ON orderData.orderID = status.orderID
     JOIN shopData ON orderData.ItemID = shopData.ItemID 
     WHERE status.maKH = ? AND orderData.orderID = ?`;
-    
-    con.query(sql, [maKH, orderID], (err, result)=>{
-      if(err) throw err;
-      res.json({login: true, data: result});
+
+    con.query(sql, [maKH, orderID], (err, result) => {
+      if (err) throw err;
+      res.json({ login: true, data: result });
     })
+  } else {
+    res.json({ login: false, data: [] });
+  }
+})
+
+
+// ADMIN GET ORDER
+app.get('/get-order-admin', authenToken, (req, res) => {
+  var sql = `SELECT status.orderID, users.maKH, users.name, status.phoneNumber,
+  status.address, status.timeOrder, status.status
+  FROM status
+  JOIN users ON status.maKH = users.maKH
+  JOIN orderData ON orderData.orderID = status.orderID
+  GROUP BY status.orderID
+  `;
+  con.query(sql, (err, result) => {
+    if (err) throw err;
+    res.json({ status: result })
+  })
+})
+
+// ADMIN GET ORDER
+app.post('/get-order-by-id-admin', authenToken, (req, res) => {
+  const { orderID } = req.body;
+  if (orderID) {
+    var sql = `SELECT status.orderID, users.name, orderData.ItemID,
+    shopData.MainImg, shopData.NameItem, orderData.Count,
+    orderData.Cost, (orderData.Cost * orderData.Count) AS totalCost, status.status
+    FROM status
+    JOIN users ON status.maKH = users.maKH
+    JOIN orderData ON orderData.orderID = status.orderID
+    JOIN shopData ON orderData.ItemID = shopData.ItemID
+    WHERE orderData.orderID = ?
+    `;
+    con.query(sql, [orderID], (err, result) => {
+      if (err) throw err;
+      res.json({ orders: result })
+    })
+  }
+})
+
+app.post('/change-status-order', authenToken, (req, res)=>{
+  const {orderID, status} = req.body;
+
+  if(orderID, status){
+    updateTable(con, 'status', {status}, `orderID = '${orderID}'`);
+    res.json({success: true});
   }else{
-    res.json({login: false, data: []});
+    res.json({success: false});
   }
 })
 
