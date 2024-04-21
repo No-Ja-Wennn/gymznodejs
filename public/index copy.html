@@ -22,136 +22,174 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <style>
         /* service second */
-.container-second{
-    width: 100%;
-    height: fit-content;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-.container-second-wrapper{
-    width: 100%;
-    height: fit-content;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    padding: 16px;
-    gap: 32px;
-}
-.service-style{
-    width: 100%;
-    height: fit-content;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    gap: 16px;
-}
-.service-partone{
-    height: 100%;
-    width: 100%;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    gap: 32px;
-}
-.partone-row-title{
-    height: 100%;
-    width: fit-content;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: flex-start;
-    gap: 5px;
-}
-.partone-title{
-    font-size: 36px;
-    color: #666;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 8px;
-    font-weight: 400;
-}
-.partone-title span{
-    font-style: italic;
-    font-weight: 600;
-    color: #000;
-    display: -webkit-box;
-    -webkit-line-clamp: 1;
-    -webkit-box-orient: vertical;
-    text-overflow: ellipsis;
-    overflow: hidden;
-    width: fit-content;
-}
-.partone-content{
-    font-size: 18px;
-    font-weight: 400;
-    color: #222;
-    text-align: start;
-}
-.partone-nav{
-    height: 100%;
-    width: fit-content;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-.partone-nav a{
-    width: max-content;
-    height: fit-content;
-    white-space: nowrap;
-    font-size: 18px;
-    font-style: italic;
-    font-weight: 600;
-    text-transform: uppercase;
-    padding: 7px 14px 5px 14px ;
-    border-radius: 50px;
-    border: 1px solid #888;
-    color: #888;
-    transition: .1s;
-}
-.partone-nav a:hover{
-    border-color: rgb(160, 0, 0);
-    background-color: rgb(160, 0, 0);
-    color: #fff;
-}
-.service-parttwo{
-    height: calc(100vh - 500px);
-    height: calc(100svh - 500px);
-    min-height: 550px;
-    max-height: 700px;
-    width: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 2px;
-}
-.item-second{
-    position: relative;
-    height: 100%;
-    /* width: calc(100% / 4); */
-    flex: 1;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    border-radius: 15px;
-    overflow: hidden;
-    transition: all .5s;
-    cursor: pointer;
-    background-color: green;
-}
-.item-second.active{
-    /* width: calc(100% / 2); */
-    flex: 2;
-}
-.item-second:hover{
-    /* width: calc(100% / 2); */
+        .container-second {
+            width: 100%;
+            height: fit-content;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .container-second-wrapper {
+            width: 100%;
+            height: fit-content;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 16px;
+            gap: 32px;
+        }
+
+        .service-style {
+            width: 100%;
+            height: fit-content;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            gap: 16px;
+        }
+
+        .service-partone {
+            height: 100%;
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 32px;
+        }
+
+        .partone-row-title {
+            height: 100%;
+            width: fit-content;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: flex-start;
+            gap: 5px;
+        }
+
+        .partone-title {
+            font-size: 36px;
+            color: #666;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 8px;
+            font-weight: 400;
+        }
+
+        .partone-title span {
+            font-style: italic;
+            font-weight: 600;
+            color: #000;
+            display: -webkit-box;
+            -webkit-line-clamp: 1;
+            -webkit-box-orient: vertical;
+            text-overflow: ellipsis;
+            overflow: hidden;
+            width: fit-content;
+        }
+
+        .partone-content {
+            font-size: 18px;
+            font-weight: 400;
+            color: #222;
+            text-align: start;
+        }
+
+        .partone-nav {
+            height: 100%;
+            width: fit-content;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .partone-nav a {
+            width: max-content;
+            height: fit-content;
+            white-space: nowrap;
+            font-size: 18px;
+            font-style: italic;
+            font-weight: 600;
+            text-transform: uppercase;
+            padding: 7px 14px 5px 14px;
+            border-radius: 50px;
+            border: 1px solid #888;
+            color: #888;
+            transition: .1s;
+        }
+
+        .partone-nav a:hover {
+            border-color: rgb(160, 0, 0);
+            background-color: rgb(160, 0, 0);
+            color: #fff;
+        }
+
+        .service-parttwo {
+            height: calc(100vh - 500px);
+            height: calc(100svh - 500px);
+            min-height: 550px;
+            max-height: 700px;
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 2px;
+        }
+
+        .item-second {
+            position: relative;
+            height: 100%;
+            /* width: calc(100% / 4); */
+            flex: 1;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border-radius: 15px;
+            overflow: hidden;
+            transition: all .5s;
+            cursor: pointer;
+            background-color: green;
+        }
+
+        .item-second.active {
+            /* width: calc(100% / 2); */
+            flex: 2;
+        }
+
+        /* width: calc(100% / 2); */
+        .item-second:hover {
+            flex: 2.5;
+            flex-shrink: 0;
+        }
+
+        @media (hover: none) {
+
+            /* CSS hover thay thế */
+            .item-second:hover {
+                /* width: calc(100% / 2); */
+                flex: 2.5;
+                flex-shrink: 0;
+            }
+
+            .item-second-group a:hover {
+                background-color: rgb(160, 0, 0);
+                border-color: rgb(160, 0, 0);
+            }
+
+            .your-element:hover {
+                /* CSS hover thay thế ở đây */
+            }
+        }
+
+        /* .item-second.hovered{
     flex: 2.5;
-    /* flex-shrink: 0; */
-}
-/* .item-second:hover .item-second-wrapper.one::after,
+    flex-shrink: 0;
+} */
+        /* .item-second:hover .item-second-wrapper.one::after,
 .item-second:hover .item-second-wrapper.two::after,
 .item-second:hover .item-second-wrapper.three::after,
 .item-second:hover .item-second-wrapper.four::after,
@@ -162,190 +200,203 @@
 .item-second:hover .item-second-wrapper.nine{
     scale: 1.1;
 } */
-.item-second-wrapper{
-    height: 100%;
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-end;
-    align-items: flex-start;
-    padding: 16px;
-    gap: 5px;
-    transition: all .5s;
-}
-.item-second-title{
-    /* position: relative;
+        .item-second-wrapper {
+            height: 100%;
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+            align-items: flex-start;
+            padding: 16px;
+            gap: 5px;
+            transition: all .5s;
+        }
+
+        .item-second-title {
+            /* position: relative;
     z-index: 0; */
-    font-size: 22px;
-    font-weight: 600;
-    font-style: italic;
-    text-transform: uppercase;
-    text-align: start;
-    color: #fff;
-    width: 375px;
-}
-.item-second-group{
-    /* position: relative;
+            font-size: 22px;
+            font-weight: 600;
+            font-style: italic;
+            text-transform: uppercase;
+            text-align: start;
+            color: #fff;
+            width: 375px;
+        }
+
+        .item-second-group {
+            /* position: relative;
     z-index: 0; */
-    width: 100%;
-    height: fit-content;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: flex-start;
-    text-align: start;
-    font-size: 18px;
-    gap: 10px;
-}
-.item-second-content{
-    color: #fff;
-    width: 375px;
-}
-.item-second-group a{
-    color: #fff;
-    font-size: 18px;
-    font-weight: 600;
-    font-style: italic;
-    text-transform: uppercase;
-    padding: 7px 14px 5px 14px;
-    border-radius: 50px;
-    border: 1px solid #fff;
-    width: max-content;
-    white-space: nowrap;
-    transition: all .1s;
-}
-.item-second-group a:hover{
-    background-color: rgb(160, 0, 0);
-    border-color: rgb(160, 0, 0);
-}
+            width: 100%;
+            height: fit-content;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: flex-start;
+            text-align: start;
+            font-size: 18px;
+            gap: 10px;
+        }
+
+        .item-second-content {
+            color: #fff;
+            width: 375px;
+        }
+
+        .item-second-group a {
+            color: #fff;
+            font-size: 18px;
+            font-weight: 600;
+            font-style: italic;
+            text-transform: uppercase;
+            padding: 7px 14px 5px 14px;
+            border-radius: 50px;
+            border: 1px solid #fff;
+            width: max-content;
+            white-space: nowrap;
+            transition: all .1s;
+        }
+
+        /* .item-second-group a:hover {
+            background-color: rgb(160, 0, 0);
+            border-color: rgb(160, 0, 0);
+        } */
 
 
-.item-second-wrapper.one{
-    background: linear-gradient(rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.51)), url(./img/services/personalTrainer/pt1.webp);
-    background-size: cover;
-    background-repeat: no-repeat;
-    background-position: 50%;
-    content: '';
-    /* position: absolute; */
-    /* top: 0;
+        .item-second-wrapper.one {
+            background: linear-gradient(rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.51)), url(./img/services/personalTrainer/pt1.webp);
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-position: 50%;
+            content: '';
+            /* position: absolute; */
+            /* top: 0;
     bottom: 0;
     right: 0;
     left: 0; */
-    /* z-index: 0; */
-    transition: all .5s;
-}
-.item-second-wrapper.two{
-    background: linear-gradient(rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.51)), url(./img/services/personalTrainer/home-success-stories.webp);
-    background-size: cover;
-    background-repeat: no-repeat;
-    background-position: 50%;
-    content: '';
-    /* position: absolute; */
-    /* top: 0;
+            /* z-index: 0; */
+            transition: all .5s;
+        }
+
+        .item-second-wrapper.two {
+            background: linear-gradient(rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.51)), url(./img/services/personalTrainer/home-success-stories.webp);
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-position: 50%;
+            content: '';
+            /* position: absolute; */
+            /* top: 0;
     bottom: 0;
     right: 0;
     left: 0; */
-    /* z-index: 0; */
-    transition: all .5s;
-}
-.item-second-wrapper.three{
-    background: linear-gradient(rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.51)), url(./img/services/personalTrainer/home-whyus.webp);
-    background-size: cover;
-    background-repeat: no-repeat;
-    background-position: 50%;
-    content: '';
-    /* position: absolute; */
-    /* top: 0;
+            /* z-index: 0; */
+            transition: all .5s;
+        }
+
+        .item-second-wrapper.three {
+            background: linear-gradient(rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.51)), url(./img/services/personalTrainer/home-whyus.webp);
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-position: 50%;
+            content: '';
+            /* position: absolute; */
+            /* top: 0;
     bottom: 0;
     right: 0;
     left: 0; */
-    /* z-index: 0; */
-    transition: all .5s;
-}
-.item-second-wrapper.four{
-    background: linear-gradient(rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.51)), url(./img/services/pilates/clinical-pilates-slide.webp);
-    background-size: cover;
-    background-repeat: no-repeat;
-    background-position: 50%;
-    content: '';
-    /* position: absolute; */
-    /* top: 0;
+            /* z-index: 0; */
+            transition: all .5s;
+        }
+
+        .item-second-wrapper.four {
+            background: linear-gradient(rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.51)), url(./img/services/pilates/clinical-pilates-slide.webp);
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-position: 50%;
+            content: '';
+            /* position: absolute; */
+            /* top: 0;
     bottom: 0;
     right: 0;
     left: 0; */
-    /* z-index: 0; */
-    transition: all .5s;
-}
-.item-second-wrapper.five{
-    background: linear-gradient(rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.51)), url(./img/services/pilates/private-duet-and-trio-home-slide.webp);
-    background-size: cover;
-    background-repeat: no-repeat;
-    background-position: 50%;
-    content: '';
-    /* position: absolute; */
-    /* top: 0;
+            /* z-index: 0; */
+            transition: all .5s;
+        }
+
+        .item-second-wrapper.five {
+            background: linear-gradient(rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.51)), url(./img/services/pilates/private-duet-and-trio-home-slide.webp);
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-position: 50%;
+            content: '';
+            /* position: absolute; */
+            /* top: 0;
     bottom: 0;
     right: 0;
     left: 0; */
-    /* z-index: 0; */
-    transition: all .5s;
-}
-.item-second-wrapper.six{
-    background: linear-gradient(rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.51)), url(./img/services/pilates/pre-post-natal-home-slide.webp);
-    background-size: cover;
-    background-repeat: no-repeat;
-    background-position: 50%;
-    content: '';
-    /* position: absolute; */
-    /* top: 0;
+            /* z-index: 0; */
+            transition: all .5s;
+        }
+
+        .item-second-wrapper.six {
+            background: linear-gradient(rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.51)), url(./img/services/pilates/pre-post-natal-home-slide.webp);
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-position: 50%;
+            content: '';
+            /* position: absolute; */
+            /* top: 0;
     bottom: 0;
     right: 0;
     left: 0; */
-    /* z-index: 0; */
-    transition: all .5s;
-}
-.item-second-wrapper.seven{
-    background: linear-gradient(rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.51)), url(./img/services/eats/Sculpt.webp);
-    background-size: cover;
-    background-repeat: no-repeat;
-    background-position: 50%;
-    content: '';
-    /* position: absolute; */
-    /* top: 0;
+            /* z-index: 0; */
+            transition: all .5s;
+        }
+
+        .item-second-wrapper.seven {
+            background: linear-gradient(rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.51)), url(./img/services/eats/Sculpt.webp);
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-position: 50%;
+            content: '';
+            /* position: absolute; */
+            /* top: 0;
     bottom: 0;
     right: 0;
     left: 0; */
-    /* z-index: 0; */
-    transition: all .5s;
-}
-.item-second-wrapper.eight{
-    background: linear-gradient(rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.51)), url(./img/services/eats/tsquaredlab-full-menu.webp);
-    background-size: cover;
-    background-repeat: no-repeat;
-    background-position: 50%;
-    content: '';
-    /* position: absolute; */
-    /* top: 0;
+            /* z-index: 0; */
+            transition: all .5s;
+        }
+
+        .item-second-wrapper.eight {
+            background: linear-gradient(rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.51)), url(./img/services/eats/tsquaredlab-full-menu.webp);
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-position: 50%;
+            content: '';
+            /* position: absolute; */
+            /* top: 0;
     bottom: 0;
     right: 0;
     left: 0; */
-    /* z-index: 0; */
-    transition: all .5s;
-}
-.item-second-wrapper.nine{
-    background: linear-gradient(rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.51)), url(./img/services/eats/nutrition-related-blogs.webp);
-    background-size: cover;
-    background-repeat: no-repeat;
-    background-position: 50%;
-    content: '';
-    /* position: absolute; */
-    /* top: 0;
+            /* z-index: 0; */
+            transition: all .5s;
+        }
+
+        .item-second-wrapper.nine {
+            background: linear-gradient(rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.51)), url(./img/services/eats/nutrition-related-blogs.webp);
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-position: 50%;
+            content: '';
+            /* position: absolute; */
+            /* top: 0;
     bottom: 0;
     right: 0;
     left: 0; */
-    /* z-index: 0; */
-    transition: all .5s;
-}
+            /* z-index: 0; */
+            transition: all .5s;
+        }
     </style>
 </head>
 
@@ -362,7 +413,9 @@
                             </span>
                         </div>
                         <div class="partone-content">
-                            Trải nghiệm đào tạo với các huấn luyện viên cá nhân hàng đầu thế giới, sử dụng Các phương pháp được khoa học ủng hộ để điêu khắc một bài tập mạnh mẽ hơn, khỏe mạnh hơn tại một thời điểm.
+                            Trải nghiệm đào tạo với các huấn luyện viên cá nhân hàng đầu thế giới, sử dụng Các phương
+                            pháp được khoa học ủng hộ để điêu khắc một bài tập mạnh mẽ hơn, khỏe mạnh hơn tại một thời
+                            điểm.
                         </div>
                     </div>
                     <div class="partone-nav">
@@ -379,7 +432,8 @@
                             </div>
                             <div class="item-second-group">
                                 <div class="item-second-content">
-                                    Biến đổi cơ thể suốt đời và giảm mỡ cơ thể là kết quả từ cá nhân hàng đầu thế giới Giảng viên.
+                                    Biến đổi cơ thể suốt đời và giảm mỡ cơ thể là kết quả từ cá nhân hàng đầu thế giới
+                                    Giảng viên.
                                 </div>
                                 <a href="./navigation/personal_trainer.html">
                                     tìm hiểu thêm
@@ -394,7 +448,8 @@
                             </div>
                             <div class="item-second-group">
                                 <div class="item-second-content">
-                                    Đạt được kết quả đáng kinh ngạc, như thế này với các huấn luyện viên cá nhân hàng đầu thế giới tại Gymz.
+                                    Đạt được kết quả đáng kinh ngạc, như thế này với các huấn luyện viên cá nhân hàng
+                                    đầu thế giới tại Gymz.
                                 </div>
                                 <a href="./navigation/personal_trainer.html">
                                     tìm hiểu thêm
@@ -429,7 +484,8 @@
                             </span>
                         </div>
                         <div class="partone-content">
-                            Khám phá nghệ thuật của sức mạnh và sự linh hoạt tại studio Pilates từng đoạt giải thưởng của chúng tôi, nơi Ân sủng mở ra với mọi chuyển động.
+                            Khám phá nghệ thuật của sức mạnh và sự linh hoạt tại studio Pilates từng đoạt giải thưởng
+                            của chúng tôi, nơi Ân sủng mở ra với mọi chuyển động.
                         </div>
                     </div>
                     <div class="partone-nav">
@@ -461,7 +517,8 @@
                             </div>
                             <div class="item-second-group">
                                 <div class="item-second-content">
-                                    Thích hợp cho tất cả các hình dạng cơ thể, kích thước và độ tuổi để làm việc trên cốt lõi, sức mạnh và sự linh hoạt của bạn.
+                                    Thích hợp cho tất cả các hình dạng cơ thể, kích thước và độ tuổi để làm việc trên
+                                    cốt lõi, sức mạnh và sự linh hoạt của bạn.
                                 </div>
                                 <a href="./navigation/personal_trainer.html">
                                     tìm hiểu thêm
@@ -476,7 +533,8 @@
                             </div>
                             <div class="item-second-group">
                                 <div class="item-second-content">
-                                    Cả hai Pilates làm việc trên sàn chậu, lõi và toàn bộ cơ thể của bạn, trong việc chuẩn bị, hoặc phục hồi sau khi sinh con.
+                                    Cả hai Pilates làm việc trên sàn chậu, lõi và toàn bộ cơ thể của bạn, trong việc
+                                    chuẩn bị, hoặc phục hồi sau khi sinh con.
                                 </div>
                                 <a href="./navigation/personal_trainer.html">
                                     tìm hiểu thêm
@@ -496,7 +554,8 @@
                             </span>
                         </div>
                         <div class="partone-content">
-                            Thưởng thức hương vị thơm ngon của việc chuẩn bị bữa ăn ngon và lành mạnh nhất của Thái Nguyên, như Mỗi món ăn là một lễ kỷ niệm của sự tươi mới và ẩm thực xuất sắc.
+                            Thưởng thức hương vị thơm ngon của việc chuẩn bị bữa ăn ngon và lành mạnh nhất của Thái
+                            Nguyên, như Mỗi món ăn là một lễ kỷ niệm của sự tươi mới và ẩm thực xuất sắc.
                         </div>
                     </div>
                     <div class="partone-nav">
@@ -559,29 +618,31 @@
     <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
     <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    
+
     <script>
         // JavaScript
-        var box = document.getElementById('myBox');
-        
-        // Add event listeners for touch devices
-        box.addEventListener('touchstart', function() {
-          this.classList.add('hovered');
-        });
-        
-        box.addEventListener('touchend', function() {
-          this.classList.remove('hovered');
-        });
-        
-        // Add event listeners for non-touch devices
-        box.addEventListener('mouseenter', function() {
-          this.classList.add('hovered');
-        });
-        
-        box.addEventListener('mouseleave', function() {
-          this.classList.remove('hovered');
-        });
-        </script>
+        var items = document.querySelectorAll('.item-second');
+        items.forEach(item => {
+            // Add event listeners for touch devices
+            item.addEventListener('touchstart', function () {
+                this.classList.add('hovered');
+            });
+
+            item.addEventListener('touchend', function () {
+                this.classList.remove('hovered');
+            });
+
+            // Add event listeners for non-touch devices
+            item.addEventListener('mouseenter', function () {
+                this.classList.add('hovered');
+            });
+
+            item.addEventListener('mouseleave', function () {
+                this.classList.remove('hovered');
+            });
+
+        })
+    </script>
 </body>
 
 >>>>>>> 5fb661f85a730f40e164a98d1cf1de808ce665c4

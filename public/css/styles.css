@@ -1486,6 +1486,7 @@ body {
     text-overflow: ellipsis;
     overflow: hidden;
     width: fit-content;
+    text-align: start;
 }
 .partone-content{
     font-size: 18px;
@@ -1528,7 +1529,7 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-    gap: 2px;
+    gap: 0px;
 }
 .item-second{
     position: relative;
@@ -1537,7 +1538,7 @@ body {
     flex: 1;
     display: flex;
     justify-content: center;
-    align-items: center;
+    align-items: flex-end;
     border-radius: 15px;
     overflow: hidden;
     transition: all .5s;
@@ -1547,10 +1548,73 @@ body {
     /* width: calc(100% / 2); */
     flex: 2;
 }
+.item-second.active .item-second-group:nth-child(n){
+    height: unset;
+}
+.item-second.active .item-second-title{
+    position: relative;
+    bottom: unset;
+}
+.item-second.active .item-second-content{
+    opacity: 1;
+    animation: unset !important;
+}
+.item-second.active .item-second-group a{
+    opacity: 1;
+    animation: unset !important;
+}
 .item-second:hover{
     /* width: calc(100% / 2); */
     flex: 2.5;
     flex-shrink: 0;
+}
+.item-second:hover .item-second-title{
+    position: relative;
+    bottom: unset;
+}
+.item-second:hover .item-second-content{
+    animation: inOpacity .6s ease-in-out forwards;
+}
+.item-second:hover .item-second-group a{
+    animation: inOpacity .6s ease-in-out forwards;
+}
+
+.item-second.hovered {
+    flex: 2.5;
+    flex-shrink: 0;
+}
+
+@media (hover: none) {
+    .item-second:hover {
+        flex: 2.5;
+        flex-shrink: 0;
+    }
+    .item-second:hover .item-second-title{
+        position: relative;
+        bottom: unset;
+    }
+    .item-second:hover .item-second-content{
+        animation: inOpacity .6s ease-in-out forwards;
+    }
+    .item-second:hover .item-second-group a{
+        animation: inOpacity .6s ease-in-out forwards;
+    }
+}
+@keyframes inOpacity{
+    0%{
+        opacity: 0;
+    }
+    100%{
+        opacity: 1;
+    }
+}
+@keyframes flyBottom{
+    0%{
+        transform: translateY(0px);
+    }
+    100%{
+        transform: translateY(300px);
+    }
 }
 .item-second:hover .item-second-wrapper.one::after,
 .item-second:hover .item-second-wrapper.two::after,
@@ -1575,7 +1639,8 @@ body {
     transition: all .5s;
 }
 .item-second-title{
-    position: relative;
+    bottom: 20%;
+    position: absolute;
     z-index: 1;
     font-size: 22px;
     font-weight: 600;
@@ -1583,7 +1648,6 @@ body {
     text-transform: uppercase;
     text-align: start;
     color: #fff;
-    width: 375px;
 }
 .item-second-group{
     position: relative;
@@ -1592,7 +1656,7 @@ body {
     height: fit-content;
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    justify-content: flex-end;
     align-items: flex-start;
     text-align: start;
     font-size: 18px;
@@ -1600,9 +1664,15 @@ body {
 }
 .item-second-content{
     color: #fff;
-    width: 375px;
+    font-weight: 400;
+    /* display: none; */
+    /* opacity: 0; */
+    animation: flyBottom .1s ease-in-out forwards;
 }
 .item-second-group a{
+    animation: flyBottom .1s ease-in-out forwards;
+    /* opacity: 0; */
+    /* display: none; */
     color: #fff;
     font-size: 18px;
     font-weight: 600;
@@ -1622,7 +1692,7 @@ body {
 
 
 .item-second-wrapper.one::after{
-    background: linear-gradient(rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.51)), url(../img/services/personalTrainer/pt1.webp);
+    background: linear-gradient(rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.5)), url(../img/services/personalTrainer/pt1.webp);
     background-size: cover;
     background-repeat: no-repeat;
     background-position: 50%;
@@ -1636,7 +1706,7 @@ body {
     transition: all .5s;
 }
 .item-second-wrapper.two::after{
-    background: linear-gradient(rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.51)), url(../img/services/personalTrainer/home-success-stories.webp);
+    background: linear-gradient(rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.5)), url(../img/services/personalTrainer/home-success-stories.webp);
     background-size: cover;
     background-repeat: no-repeat;
     background-position: 50%;
@@ -1650,7 +1720,7 @@ body {
     transition: all .5s;
 }
 .item-second-wrapper.three::after{
-    background: linear-gradient(rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.51)), url(../img/services/personalTrainer/home-whyus.webp);
+    background: linear-gradient(rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.5)), url(../img/services/personalTrainer/home-whyus.webp);
     background-size: cover;
     background-repeat: no-repeat;
     background-position: 50%;
@@ -1664,7 +1734,7 @@ body {
     transition: all .5s;
 }
 .item-second-wrapper.four::after{
-    background: linear-gradient(rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.51)), url(../img/services/pilates/clinical-pilates-slide.webp);
+    background: linear-gradient(rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.5)), url(../img/services/pilates/clinical-pilates-slide.webp);
     background-size: cover;
     background-repeat: no-repeat;
     background-position: 50%;
@@ -1678,7 +1748,7 @@ body {
     transition: all .5s;
 }
 .item-second-wrapper.five::after{
-    background: linear-gradient(rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.51)), url(../img/services/pilates/private-duet-and-trio-home-slide.webp);
+    background: linear-gradient(rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.5)), url(../img/services/pilates/private-duet-and-trio-home-slide.webp);
     background-size: cover;
     background-repeat: no-repeat;
     background-position: 50%;
@@ -1692,7 +1762,7 @@ body {
     transition: all .5s;
 }
 .item-second-wrapper.six::after{
-    background: linear-gradient(rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.51)), url(../img/services/pilates/pre-post-natal-home-slide.webp);
+    background: linear-gradient(rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.5)), url(../img/services/pilates/pre-post-natal-home-slide.webp);
     background-size: cover;
     background-repeat: no-repeat;
     background-position: 50%;
@@ -1706,7 +1776,7 @@ body {
     transition: all .5s;
 }
 .item-second-wrapper.seven::after{
-    background: linear-gradient(rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.51)), url(../img/services/eats/Sculpt.webp);
+    background: linear-gradient(rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.5)), url(../img/services/eats/Sculpt.webp);
     background-size: cover;
     background-repeat: no-repeat;
     background-position: 50%;
@@ -1720,7 +1790,7 @@ body {
     transition: all .5s;
 }
 .item-second-wrapper.eight::after{
-    background: linear-gradient(rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.51)), url(../img/services/eats/tsquaredlab-full-menu.webp);
+    background: linear-gradient(rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.5)), url(../img/services/eats/tsquaredlab-full-menu.webp);
     background-size: cover;
     background-repeat: no-repeat;
     background-position: 50%;
@@ -1734,7 +1804,7 @@ body {
     transition: all .5s;
 }
 .item-second-wrapper.nine::after{
-    background: linear-gradient(rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.51)), url(../img/services/eats/nutrition-related-blogs.webp);
+    background: linear-gradient(rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.5)), url(../img/services/eats/nutrition-related-blogs.webp);
     background-size: cover;
     background-repeat: no-repeat;
     background-position: 50%;
@@ -2973,6 +3043,12 @@ body {
     .container__service__img__items {
         width: calc((100% / 2) - 64px);
     }
+    .item-second-title{
+        width: 140px;
+    }
+    .item-second-content{
+        width: 300px;
+    }
 }
 
 @media screen and (max-width: 768px) {
@@ -2999,57 +3075,38 @@ body {
         height: calc(100% - 108px);
         margin: 20px;
     }
-    .title-service-second{
-        font-size: 22px;
+    .service-partone{
         flex-direction: column;
         align-items: flex-start;
-        gap: 10px;
+        gap: 16px;
     }
-    .title-second-content{
-        width: 100%;
+    .partone-title{
+        font-size: 20px;
     }
-    .title-second-content-top{
-        gap: 5px;
-    }
-    .title-second-content span{
-        width: fit-content;
-        display: -webkit-box;
-        -webkit-line-clamp: 1;
-        -webkit-box-orient: vertical;
-        text-overflow: ellipsis;
-        overflow: hidden;
-        text-align: start;
-    }
-    .title-second-content-bot{
-        width: 100%;
-        max-width: unset;
+    .partone-content{
         font-size: 16px;
-        font-weight: 400;
-        font-style: normal;
-        color: #666;
     }
-    .title-second-button a{
-        border: 1px solid #666;
-        color: #666;
-        font-size: 16px;
-        transition: all 0s;
+    .partone-nav a{
+        font-size: 14px;
     }
-    .service-item-second{
+    .service-parttwo{
         flex-direction: column;
+        /* min-height: unset; */
+        max-height: unset;
+        width: 100%;
     }
-    .item-content-in-img{
-        display: flex;
+    .item-second{
+        width: 100%;
     }
-    .service-item-second-wrapper .item-content{
-        /* transform: unset; */
-        height: unset;
-        opacity: 1;
+    .item-second-title{
+        bottom: 8%;
+        font-size: 18px;
     }
-    .item-content-in{
+    .item-second-content{
         display: none;
     }
-    .item-content-in-img-wrapper a{
-        transition: all 0s;
+    .item-second-group a{
+        font-size: 14px;
     }
 }
 

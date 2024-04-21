@@ -301,7 +301,7 @@
             <div class="container__home">
                 <div class="video-title">
                     <video autoplay loop muted playsinline> 
-                        <source src="./video/video.mp4" type="video/mp4" />
+                        <!-- <source src="./video/video.mp4" type="video/mp4" /> -->
                     </video>
                 </div>
                 <div class="home__about">
@@ -1170,12 +1170,36 @@
     <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="./navigation_javascript/menu.js"></script>
-    <!-- <script type="module" src="./navigation_javascript/processChatBox.js"></script>
+    <script type="module" src="./navigation_javascript/processChatBox.js"></script>
     <script type="module" src="./index.js"></script>
     <script type="module" src="./navigation_javascript/login.js"></script>
     <script type="module" src="./src/validate.js"></script>
     <script type="module" src="./src/toast.js"></script>
-    <script type="module" src="./src/client.js"></script> -->
+    <script type="module" src="./src/client.js"></script>
+    <script>
+        // JavaScript
+        var items = document.querySelectorAll('.item-second');
+        items.forEach(item => {
+            // Add event listeners for touch devices
+            item.addEventListener('touchstart', function () {
+                this.classList.add('hovered');
+            });
+
+            item.addEventListener('touchend', function () {
+                this.classList.remove('hovered');
+            });
+
+            // Add event listeners for non-touch devices
+            // item.addEventListener('mouseenter', function () {
+            //     this.classList.add('hovered');
+            // });
+
+            // item.addEventListener('mouseleave', function () {
+            //     this.classList.remove('hovered');
+            // });
+
+        })
+    </script>
 </body>
 
 >>>>>>> 5fb661f85a730f40e164a98d1cf1de808ce665c4
