@@ -15,7 +15,10 @@
     <link href="https://fonts.googleapis.com/css2?family=Varela+Round&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="../font/fontawesome-free-6.4.0-web/css/all.min.css">
     <link rel="stylesheet" href="../navigation_css/wheyshop_tracking.css">
+    <link rel="stylesheet" href="../navigation_css/login.css">
+    <link rel="stylesheet" href="../navigation_css/toast.css">
     <title> WHEZ - Đơn hàng của bạn</title>
+
 </head>
 
 <body>
@@ -257,8 +260,8 @@
                                     </div>
                                 </div>
                                 <div class="list-order">
-                                    <div class="list-order-wrapper">
-                                        <div class="product">
+                                    <div class="list-order-wrapper list-order-iformation">
+                                        <!-- <div class="product">
                                             <div class="product-wrapper">
                                                 <div class="product-img">
                                                     <img src="../img/shop/whey/100-whey-gold-standard-5lbs-2-3kg-13-2x.webp"
@@ -284,12 +287,12 @@
                                                     </div>
                                                 </div>
                                             </div>
-                                        </div>
+                                        </div> -->
+                                        <!-- <div class="product"></div>
                                         <div class="product"></div>
                                         <div class="product"></div>
                                         <div class="product"></div>
-                                        <div class="product"></div>
-                                        <div class="product"></div>
+                                        <div class="product"></div> -->
                                     </div>
                                 </div>
                                 <div class="total details">
@@ -319,8 +322,9 @@
                                     Tất cả đơn hàng
                                 </div>
                                 <div class="list-order">
-                                    <div class="list-order-wrapper">
-                                        <div class="order ">
+                                    <div class="list-order-wrapper list-order-all">
+                                        <!-- 
+                                            <div class="order ">
                                             <div class="order-wrapper">
                                                 <div class="header-order">
                                                     <div class="brand-offical">
@@ -389,7 +393,7 @@
                                         <div class="order 3"></div>
                                         <div class="order"></div>
                                         <div class="order"></div>
-                                        <div class="order"></div>
+                                        <div class="order"></div> -->
                                     </div>
                                 </div>
                             </div>
@@ -401,8 +405,8 @@
                                     Đơn hàng huỷ
                                 </div>
                                 <div class="list-order">
-                                    <div class="list-order-wrapper">
-                                        <div class="order">
+                                    <div class="list-order-wrapper list-order-cancel">
+                                        <!-- <div class="order">
                                             <div class="order-wrapper">
                                                 <div class="header-order">
                                                     <div class="brand-offical">
@@ -465,7 +469,7 @@
                                                     </div>
                                                 </div>
                                             </div>
-                                        </div>
+                                        </div> -->
                                         <!-- <div class="order"></div>
                                         <div class="order"></div>
                                         <div class="order"></div>
@@ -483,8 +487,8 @@
                                     Đang vận chuyển
                                 </div>
                                 <div class="list-order">
-                                    <div class="list-order-wrapper">
-                                        <div class="order">
+                                    <div class="list-order-wrapper list-order-transport">
+                                        <!-- <div class="order">
                                             <div class="order-wrapper">
                                                 <div class="header-order">
                                                     <div class="brand-offical">
@@ -547,7 +551,7 @@
                                                     </div>
                                                 </div>
                                             </div>
-                                        </div>
+                                        </div> -->
                                         <!-- <div class="order"></div>
                                         <div class="order"></div>
                                         <div class="order"></div>
@@ -565,8 +569,8 @@
                                     Giao thành công
                                 </div>
                                 <div class="list-order">
-                                    <div class="list-order-wrapper">
-                                        <div class="order">
+                                    <div class="list-order-wrapper list-order-complete">
+                                        <!-- <div class="order">
                                             <div class="order-wrapper">
                                                 <div class="header-order">
                                                     <div class="brand-offical">
@@ -629,7 +633,7 @@
                                                     </div>
                                                 </div>
                                             </div>
-                                        </div>
+                                        </div> -->
                                         <!-- <div class="order"></div>
                                         <div class="order"></div>
                                         <div class="order"></div>
@@ -647,13 +651,323 @@
         </div>
     </div>
     <div class="shadow"></div>
+    <div id="toast"></div>
+    <!-- overlay -->
+    <div class="modal">
+        <div class="modal-overlay">
 
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        </div>
+        <div class="modal__body">
+            <div class="modal__body__box BMI-form">
+                <div class="BMI__title">
+                    <span class="BMI__title__word">Kết quả</span>
+                    <i class="BMI__title__icon fa-solid fa-xmark"></i>
+                </div>
+                <div class="BMI__value">
+                    <div class="BMI__value__row">
+                        <span class="BMI__value__row__label">Chiều cao: </span>
+                        <span class="BMI__value__row__data"></span>
+                    </div>
+                    <div class="BMI__value__row">
+                        <span class="BMI__value__row__label">Cân nặng: </span>
+                        <span class="BMI__value__row__data"></span>
+                    </div>
+                    <div class="BMI__value__row">
+                        <span class="BMI__value__row__label">Tuổi: </span>
+                        <span class="BMI__value__row__data"></span>
+                    </div>
+                    <div class="BMI__value__row">
+                        <span class="BMI__value__row__label">Giới tính: </span>
+                        <span class="BMI__value__row__data"></span>
+                    </div>
+                    <div class="BMI__value__row">
+                        <span class="BMI__value__row__label">Chỉ số BMI: </span>
+                        <span class="BMI__value__row__data"></span>
+                    </div>
+                    <div class="BMI__value__row">
+                        <span class="BMI__value__row__label">Tình trạng sức khỏe: </span>
+                        <span class="BMI__value__row__data"></span>
+                    </div>
+                    <div class="BMI__value__row">
+                        <span class="BMI__value__row__label">Tư vấn:</span>
+                        <span class="BMI__value__row__data"></span>
+                    </div>
+                </div>
+            </div>
+            <div class="modal__body__box login-box">
+                <p>Đăng nhập tài khoản</p>
+                <form id="login-form" action="/login-url" method="POST">
+                    <div class="user-box">
+                        <input class="login-email" required="" name="email" type="text">
+                        <label>Email</label>
+                    </div>
+                    <div class="user-box createBox">
+                        <input class="login-pass" required="" name="password" type="password">
+                        <label>Mật khẩu</label>
+                    </div>
+                    <button id="login-btn" type="submit">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                        Đăng nhập
+                    </button>
+                </form>
+                <p class="create__account__text">Chưa có tài khoản? <span class="a2 link-create-account">Đăng ký!</span>
+                </p>
+                <span class="forgot--account--link create__account__text a2">Quên mật khẩu?</span>
+            </div>
+            <div class="modal__body__box create-account-box">
+                <p>Đăng ký tài khoản</p>
+                <form id="create-account-form" action="/create-account-url" method="POST">
+                    <div class="user-box">
+                        <input class="login-name" required="" name="fullname" type="text">
+                        <label>Họ và tên</label>
+                    </div>
+                    <div class="user-box">
+                        <input class="login-email" required="" name="email" type="text">
+                        <label>Email</label>
+                    </div>
+                    <div class="user-box">
+                        <input class="login-pass" required="" name="password" type="password">
+                        <label>Mật khẩu</label>
+                    </div>
+                    <div class="user-box">
+                        <input class="login-pass-confirm" required="" name="passwordConfirm" type="password">
+                        <label>Nhập lại mật khẩu</label>
+                    </div>
+                    <button id="create-btn" type="submit">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                        Đăng ký
+                    </button>
+                </form>
+                <p>Đã có tài khoản? <span class="a2 link-login">Đăng nhập!</span></p>
+            </div>
+            <div class="modal__body__box forgot-pass-box">
+                <p>Quên mật khẩu</p>
+                <form action="/your-forgot-url" method="POST">
+                    <div class="user-box">
+                        <input class="login-email" required="" name="email" type="text">
+                        <label>Email</label>
+                    </div>
+                    <div class="user-box send-code__code">
+                        <input class="code-pass" required="" name="code" type="text">
+                        <label>Mã khôi phục</label>
+                        <span id="timeLeft">60s</span>
+                        <button id="send-code" type="text">Gửi mã</button>
+                    </div>
+                    <button id="forgot-btn" type="submit">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                        Xác nhận
+                    </button>
+                </form>
+                <p>Đã có tài khoản? <span class="a2 link-login">Đăng nhập!</span></p>
+            </div>
+            <div class="modal__body__box change-pass-box">
+                <p>Thay đổi mật khẩu</p>
+                <form action="/your-change-pass-url" method="POST">
+                    <div class="user-box">
+                        <input class="new-pass" required="" name="email" type="text">
+                        <label>Mật khẩu mới</label>
+                    </div>
+                    <div class="user-box send-code__code">
+                        <input class="confirm-pass" required="" name="code" type="text">
+                        <label>Nhập lại mật khẩu</label>
+                    </div>
+                    <button id="changepass-btn" type="submit">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                        Xác nhận
+                    </button>
+                </form>
+            </div>
+            <div class="modal__body__box register-cart">
+                <form id="form-register" class="form1">
+                    <div class="registration__traning__schedule">
+                        <div class="table">
+                            <div id="training-schedule" class="first__training__schedule">
+                                <div class="row__title__table">
+                                    <div class="row__title__table__content">
+                                        Đăng ký lịch
+                                    </div>
+                                    <div class="x__cancel">
+                                        <i class="fa-regular fa-circle-xmark"></i>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="row__title">
+                                        Loại thẻ:
+                                    </div>
+                                    <div class="row__content">
+                                        <div>
+                                            <input type="radio" id="card1" name="cardType" value="BEGINNER">
+                                            <label for="card1">BEGINNER</label><br>
+
+                                        </div>
+                                        <div>
+                                            <input type="radio" id="card2" name="cardType" value="BASIC">
+                                            <label for="card2">BASIC</label><br>
+
+                                        </div>
+                                        <div>
+                                            <input type="radio" id="card3" name="cardType" value="ADVANCE">
+                                            <label for="card3">ADVANCE</label><br>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="row__title">
+                                        Ngày:
+                                    </div>
+                                    <div class="row__content">
+                                        <div>
+                                            <input type="checkbox" id="monday" name="weekday[]" value="T2">
+                                            <label for="monday">T2</label><br>
+                                        </div>
+                                        <div>
+                                            <input type="checkbox" id="tuesday" name="weekday[]" value="T3">
+                                            <label for="tuesday">T3</label><br>
+                                        </div>
+                                        <div>
+                                            <input type="checkbox" id="wednesday" name="weekday[]" value="T4">
+                                            <label for="wednesday">T4</label><br>
+                                        </div>
+                                        <div>
+                                            <input type="checkbox" id="thursday" name="weekday[]" value="T5">
+                                            <label for="thursday">T5</label><br>
+                                        </div>
+                                        <div>
+                                            <input type="checkbox" id="friday" name="weekday[]" value="T6">
+                                            <label for="friday">T6</label><br>
+                                        </div>
+                                        <div>
+                                            <input type="checkbox" id="saturday" name="weekday[]" value="T7">
+                                            <label for="saturday">T7</label><br>
+                                        </div>
+                                        <div>
+                                            <input type="checkbox" id="sunday" name="weekday[]" value="CN">
+                                            <label for="sunday">CN</label><br>
+                                        </div>
+
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="row__title">
+                                        Thời gian:
+                                    </div>
+                                    <div class="row__content">
+                                        <div>
+                                            <input type="radio" id="time1" name="time" value="13:30-15:00">
+                                            <label for="time1">13:30-15:00</label><br>
+
+                                        </div>
+                                        <div>
+                                            <input type="radio" id="time2" name="time" value="15:00-16:30">
+                                            <label for="time2">15:00-16:30</label><br>
+
+                                        </div>
+                                        <div>
+                                            <input type="radio" id="time3" name="time" value="17:30-18:30">
+                                            <label for="time3">17:30-18:30</label><br>
+
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="row__title">
+                                        Môn:
+                                    </div>
+                                    <div class="row__content row__content--type">
+                                        <div>
+                                            <input type="radio" id="GYM" name="type" value="GYM">
+                                            <label for="GYM">GYM</label><br>
+                                        </div>
+                                        <div>
+                                            <input type="radio" id="YOGA" name="type" value="YOGA">
+                                            <label for="YOGA">YOGA</label><br>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="row__title">
+                                        Huấn luyện viên:
+                                    </div>
+                                    <div class="row__content">
+                                        Ngẫu nhiên
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="row__title">
+                                        Ghi chú:
+                                    </div>
+                                    <div class="row__content">
+                                        <input class="row__content__input" type="text"
+                                            placeholder="Nhấp để thêm ghi chú" name="note">
+                                    </div>
+                                </div>
+                                <div class="row__final">
+                                    <div class="row__final__button">
+                                        <button class="button__form" type="submit">
+                                            Gửi yêu cầu
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+
+            <div class="modal__body__box change-box">
+                <p class="edit-title">Đổi tên khách hàng</p>
+                <form id="change-form" action="/your-name-url" method="POST">
+                    <div class="user-box">
+                        <input class="new1" required="" name="newName" type="text">
+                        <label class="edit-label">Tên mới</label>
+                    </div>
+                    <div class="submit__row">
+                        <button id="submitExit">
+                            Thoát
+                        </button>
+                        <button id="submitChange" type="submit">
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                            Xác nhận
+                        </button>
+                    </div>
+                </form>
+            </div>
+
+            <div class="modal__body__box loader">
+                <div class="loader-square"></div>
+                <div class="loader-square"></div>
+                <div class="loader-square"></div>
+                <div class="loader-square"></div>
+                <div class="loader-square"></div>
+                <div class="loader-square"></div>
+                <div class="loader-square"></div>
+            </div>
+        </div>
+    </div>
+    <script src="/socket.io/socket.io.js"></script>
+
     <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
     <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <script src="../navigation_javascript/wheyshop.js"></script>
-    <script src="../navigation_javascript/wheyshop_tracking.js"></script>
+    
+    <script type="module" src="../navigation_javascript/wheyshop_tracking.js"></script>
+    <script type="module" src="../src/client.js"></script>
+
 
 </body>
 

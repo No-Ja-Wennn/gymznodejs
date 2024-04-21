@@ -1994,7 +1994,7 @@ app.post("/pay-item-cart", (req, res) => {
       timeOrder
     }
 
-    var sql1 = 'SELECT ItemID, Count, Cost FROM cart WHERE maKH = ? AND cart.ItemID = shopData.ItemID';
+    var sql1 = 'SELECT cart.ItemID, Count, shopData.Cost FROM cart JOIN shopData ON cart.ItemID = shopData.ItemID WHERE maKH = ?';
     var sql2 = 'SELECT orderID FROM orderData ORDER BY orderID DESC LIMIT 1';
     // var sql3 = 'INSERT INTO ? (?) VALUES (?)'
     queryPromise(sql1, [maKH])
@@ -2037,6 +2037,11 @@ app.post("/pay-item-cart", (req, res) => {
       })
       .then(result4 => {
         console.log("re4: ", result4);
+        let sql5 = 'DELETE FROM cart WHERE maKH = ?';
+        return queryPromise(sql5, [maKH]);
+      })
+      .then(result5 => {
+        console.log("re5: ", result5);
         res.json({ login: true, success: true });
       })
       .catch(error => {
@@ -2047,7 +2052,82 @@ app.post("/pay-item-cart", (req, res) => {
     res.json({ login: false, success: false });
   }
 })
+// var sql1 = 'SELECT cart.ItemID, Count, shopData.Cost FROM cart JOIN shopData ON cart.ItemID = shopData.ItemID WHERE maKH = ?';
+// 
 
+
+
+
+
+
+
+
+app.get('/get-order-cus', (req, res) => {
+  var cookie = getCookie(req, 'user_id');
+  if (cookie) {
+    const maKH = cookie.maKH;
+    var sql = `
+    SELECT 
+    orderData.orderID,
+    shopData.NameItem,
+    shopData.MainImg,
+    status.timeOrder,
+    status.status,
+    orderData.Cost,
+    orderData.Count,
+    orderData.Count,  
+    orderData.Cost
+    FROM 
+    orderData 
+    JOIN 
+    shopData ON orderData.ItemID = shopData.ItemID 
+    JOIN 
+    status ON orderData.orderID = status.orderID 
+    WHERE 
+    status.maKH = ? 
+    
+    `;
+    // SUM(orderData.Count) AS TotalCount,
+    // SUM(orderData.Cost) AS TotalCost
+        // GROUP BY 
+        //     orderData.orderID ;
+    con.query(sql, [maKH], (err, result) => {
+      if (err) throw err;
+      if (result.length > 0) {
+        console.log("resut", result[0].TotalCount)
+        console.log(typeof result[0].TotalCount)
+        res.json({ login: false, data: result });
+      } else {
+        res.json({ login: false, data: [] });
+      }
+    })
+  } else {
+    res.json({ login: false });
+  }
+
+});
+
+
+app.post('/get-order-by-id', (req, res)=>{
+  
+  var cookie = getCookie(req, 'user_id');
+  if (cookie) {
+    const maKH = cookie.maKH;
+    const {orderID} = req.body;
+    var sql = `SELECT shopData.MainImg, shopData.NameItem, orderData.Count, orderData.Cost, status.status, orderData.orderID
+    FROM orderData
+    JOIN status ON orderData.orderID = status.orderID
+    JOIN shopData ON orderData.ItemID = shopData.ItemID 
+    WHERE status.maKH = ? AND orderData.orderID = ?`;
+    
+    con.query(sql, [maKH, orderID], (err, result)=>{
+      if(err) throw err;
+      res.json({login: true, data: result});
+    })
+  }else{
+    res.json({login: false, data: []});
+  }
+})
 
 // =======================
 const port = process.env.PORT || 8080;

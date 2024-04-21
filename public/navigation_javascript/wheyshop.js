@@ -513,7 +513,21 @@ $(document).ready(function () {
 const buy = document.querySelector('.button-payment button')
 console.log(buy)
 buy.addEventListener("click",  function () {
-    console.log("jello")
+    
     localStorage.removeItem('tempItem');
-    window.location.href = 'wheyshop_checkout.html'
+    $.ajax({
+        url: '/get-item-cart',
+        type: 'GET',
+        success: function (res) {
+            if (res.success && res.data.length > 0) {
+                window.location.href = 'wheyshop_checkout.html'               
+            }else{
+                showErrorToast("Thanh toán thất bại", "Không có sản phẩm nào trong giỏ hàng");
+            }
+        },
+        error: function (err) {
+
+        }
+    }
+)
 })

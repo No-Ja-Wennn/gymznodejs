@@ -132,6 +132,11 @@ function innerValueAfterLogin(userName, code) {
                 window.location.href = './navigation/information_account.html';
             })
     }
+
+    const userAccountTraking = document.querySelector(".user-account-name");
+    if(userAccountTraking){
+        userAccountTraking.innerText = userName;
+    }
 }
 
 
