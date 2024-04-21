@@ -9,15 +9,12 @@ tabs.forEach((tab, index) => {
 
     tab.onclick = function () {
 
-        console.log(document.querySelector('.content.active'));
+        document.querySelector('.content.active').classList.remove('active');
 
         document.querySelector('.tab button.active').classList.remove('active');
         
         if (orderActive.classList.contains('active')) {
             document.querySelector('.order-details.active').classList.remove('active');
-        }
-        if ( document.querySelector('.content').contains('active')) {
-            document.querySelector('.content.active').classList.remove('active');
         }
 
         this.classList.add('active');
