@@ -16,15 +16,20 @@ tabs.forEach((tab, index) => {
         if (orderActive.classList.contains('active')) {
             document.querySelector('.order-details.active').classList.remove('active');
         }
-        if ( document.querySelector('.content').contains('active')) {
-            document.querySelector('.content.active').classList.remove('active');
-        }
+        // if ( document.querySelector('.content').contains('active')) {
+        // }
+        document.querySelector('.content.active').classList.remove('active');
 
         this.classList.add('active');
         content.classList.add('active');
     }
 })
 
+const closeDetails = document.querySelector('.close-details')
+closeDetails.onclick = function () {
+    document.querySelector('.order-details.active').classList.remove('active');
+    document.querySelector('.content').classList.add('active');
+}
 
 const searchInput = document.querySelector('.search-input');
 setInterval(() => {
@@ -58,10 +63,6 @@ const orders = document.querySelectorAll('.order')
 //     }
 // })
 
-const closeDetails = document.querySelector('.close-details')
-closeDetails.onclick = function () {
-    document.querySelector('.order-details.active').classList.remove('active');
-}
 
 
 
