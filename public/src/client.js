@@ -87,8 +87,8 @@ function f_logoutBTN() {
     var userNameElement1 = document.querySelector(".loginstatus");
     var userNameElement2 = document.querySelector(".account-fullname");
     var accountCodeElement2 = document.querySelector(".account-code");
-    if (userNameElement1)
-        userNameElement1.innerText = "ĐĂNG NHẬP";
+    // if (userNameElement1)
+    //     userNameElement1.innerText = "ĐĂNG NHẬP";
     userNameElement2.innerText = "USERNAME";
     accountCodeElement2.innerText = "USERCODE";
     removeMessageBox();
@@ -97,12 +97,15 @@ function f_logoutBTN() {
         type: 'POST',
         success: function (data) {
             if (data) {
+                console.log(cookieSave)
                 if (cookieSave) {
                     if (loginBTN1)
                         loginBTN1.addEventListener("click", f_loginBTN);
                     loginBTN2.addEventListener("click", f_loginBTN);
-                    if (loginBTN2)
+                    if (loginBTN2) {
                         logoutBTN2.removeEventListener("click", f_logoutBTN);
+                        logoutBTN2.style.display = 'none';
+                    }
                     removeTextOfInformation();
                     unActiveClickChange();
                     getValueInformationForm(path);
@@ -112,6 +115,20 @@ function f_logoutBTN() {
                     cookieSave = null;
                     logoutSocket();
                     removeHideMessage();
+                    if (
+                        logoutBTN &&
+                        loginAccountBox &&
+                        loginBTN1
+                    ) {
+                        logoutBTN.classList.remove('active');
+                        loginAccountBox.classList.remove('active');
+                        loginBTN1.classList.remove('active');
+                    }
+
+                    if (loginBTN2)
+                        loginBTN2.removeEventListener("click", changePageInforAccount)
+
+
                     showSuccessToast("Đã đăng xuất", "Cảm ơn bạn đã sử dụng dịch vụ");
                 }
                 else
@@ -123,22 +140,29 @@ function f_logoutBTN() {
         }
     });
 }
-function innerValueAfterLogin(userName, code) {
-    var userNameElement1 = document.querySelector(".loginstatus");
+
+function changePageInforAccount() {
+    window.location.href = './navigation/information_account.html';
+}
+
+function innerValueAfterLogin(userName, code, email) {
+    var userNameElement1 = document.querySelector(".name-account-login");
+    var emailElement1 = document.querySelector(".gmail-account-login");
     var userNameElement2 = document.querySelector(".account-fullname");
     var accountCodeElement2 = document.querySelector(".account-code");
     if (userNameElement1) {
         userNameElement1.innerText = userName;
+        emailElement1.innerText = email;
     }
+    console.log(userNameElement2, userNameElement1)
     if (userNameElement2 && userNameElement1) {
         userNameElement2.innerText = userName;
         accountCodeElement2.innerText = code;
         logoutBTN2.style.display = "flex";
         logoutBTN2.addEventListener("click", f_logoutBTN);
         if (loginBTN2)
-            loginBTN2.addEventListener("click", () => {
-                window.location.href = './navigation/information_account.html';
-            })
+            loginBTN2.addEventListener("click", changePageInforAccount)
+
     }
 
     const userAccountTraking = document.querySelector(".user-account-name");
@@ -224,9 +248,9 @@ function getValueInformationForm(path) {
                     innerTextOfCard(
                         myData
                     );
-                    
+
                     var calendars = data.calendars;
-                    calendars.forEach(calendar=>{
+                    calendars.forEach(calendar => {
                         var weekdays = calendar.weekday.split(', ');
                         weekdays.forEach(day => {
                             calendar.day = day;
@@ -377,22 +401,40 @@ if (chatHideBox) {
     inputHideE = chatHideBox.querySelector('.input-text');
 }
 
+// logoutBTN
+const loginAccountBox = document.querySelector(".login-account");
+// loginBTN1
+
 function f_affterLoginCus(data) {
     loadHideMessage();
     loginSocket(data.maKH);
-    innerValueAfterLogin(data.name, data.maKH);
+    innerValueAfterLogin(data.name, data.maKH, data.email);
     removeAllInputValue();
     displayNoneAll();
-    if (loginBTN1)
+    if (loginBTN1) {
         loginBTN1.removeEventListener("click", f_loginBTN);
+    }
     if (loginBTN2)
         loginBTN2.removeEventListener("click", f_loginBTN);
+
     cookieSave = data;
     getValueInformationForm(path);
     activeClickChange();
     f_getValidCard();
     innerMesageBox(data.name);
+    if (
+        logoutBTN &&
+        loginAccountBox &&
+        loginBTN1
+    ) {
+        logoutBTN.classList.add('active');
+        loginAccountBox.classList.add('active');
+        loginBTN1.classList.add('active');
+    }
+
 }
+
+
 
 // client.js
 $(document).ready(function () {
@@ -521,18 +563,9 @@ $(document).ready(function () {
             if (data) {
                 var value = data.cookieValue;
                 if (value) {
-                    cookieSave = value;
-                    innerValueAfterLogin(value.name, value.maKH);
-                    if (loginBTN1)
-                        loginBTN1.removeEventListener("click", f_loginBTN);
-                    if (loginBTN2)
-                        loginBTN2.removeEventListener("click", f_loginBTN);
-                    activeClickChange();
-                    innerMesageBox(value.name);
-                    // setTimeout(()=>{
-                    loginSocket(value.maKH);
-                    // }, 9000);
+                    f_affterLoginCus(value);
                 } else {
+                    logoutBTN2.style.display = 'none';
                     unActiveClickChange();
                 }
             }

@@ -25,10 +25,15 @@ if (loginBTN1)
 const loginBTN2 = document.getElementById("menu2-infor");
 if (loginBTN2)
     loginBTN2.addEventListener("click", f_loginBTN);
+
+const nenmo = document.querySelector('.nen_mo');
+
+
 export function f_loginBTN(e) {
     e.preventDefault();
     activeNecessaryForm();
     showLoginForm();
+    nenmo.click();
 }
 /* LOGOUT BTN */
 
