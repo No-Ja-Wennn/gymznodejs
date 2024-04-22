@@ -195,3 +195,14 @@ export function f_cubeBTN(){
     registerCartBoxModal.style.display = "block";
     registerCardBox.style.display = "block";
 }
+
+
+if(registerCartBoxModal){
+    const cancelReCard = registerCartBoxModal.querySelector(".x__cancel");
+    console.log(registerCartBoxModal)
+    if(cancelReCard){
+        cancelReCard.addEventListener("click", function(){
+            displayNoneAll();
+        })
+    }
+}

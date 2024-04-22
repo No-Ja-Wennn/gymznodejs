@@ -154,7 +154,6 @@ function innerValueAfterLogin(userName, code, email) {
         userNameElement1.innerText = userName;
         emailElement1.innerText = email;
     }
-    console.log(userNameElement2, userNameElement1)
     if (userNameElement2 && userNameElement1) {
         userNameElement2.innerText = userName;
         accountCodeElement2.innerText = code;
@@ -565,6 +564,7 @@ $(document).ready(function () {
                 if (value) {
                     f_affterLoginCus(value);
                 } else {
+                    if(logoutBTN2)
                     logoutBTN2.style.display = 'none';
                     unActiveClickChange();
                 }

@@ -577,6 +577,7 @@ html {
 }
 .login-account img{
     height: 80px;
+    width: 80px;
     border-radius: 50%;
     object-fit: cover;
     flex-shrink: 0;
@@ -633,6 +634,7 @@ html {
 }
 .option-account-login img{
     height: 30px;
+    width: 30px;
     /* text-shadow: 0 0 5px #99999955; */
 }
 
