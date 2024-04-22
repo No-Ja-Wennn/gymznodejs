@@ -182,6 +182,8 @@ $(document).ready(function () {
 const payAllBTN = document.getElementById("pay-all-product");
 payAllBTN.addEventListener("click", f_payAll);
 
+
+const checkoutDisplay = document.querySelector('.checkout-wrapper')
 const orderSuccessful = document.querySelector('.order-succesful')
 const pay = document.querySelector('.button-payment')
 
@@ -222,6 +224,7 @@ function f_payAll() {
                         if (response.success) {
                             pay.onclick = function () {
                                 orderSuccessful.style.display = 'flex';
+                                checkoutDisplay.style.display = 'none';
                             }
                             pay.click();
                         } else {
@@ -265,6 +268,7 @@ function f_payAll() {
                         if (response.success) {
                             pay.onclick = function () {
                                 orderSuccessful.style.display = 'flex';
+                                checkoutDisplay.style.display = 'none';
                             }
                             pay.click();
                         } else {
@@ -277,7 +281,8 @@ function f_payAll() {
                     }
                 },
                 error: function (errr) {
-                    console.error(err);
+                    console.error(errr);
+                    showErrorToast("Lỗi", "Lỗi kết nối thử, lại sau!");
                 }
             })
         }

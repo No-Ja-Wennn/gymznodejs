@@ -1061,12 +1061,12 @@ body {
     z-index: 99;
     left: 50%;
     transform: translateX(-50%);
-    top: 88px;
+    top: 145px;
     margin: 0 auto;
     max-width: 1280px;
     display: none;
-    height: calc((100vh - 88px));
-    height: calc((100svh - 88px));
+    height: calc((100vh - 145px));
+    height: calc((100svh - 145px));
     /* height: fit-content; */
     width: 100%;
     padding: 0 10px;
@@ -1697,6 +1697,10 @@ body {
         height: fit-content;
     }
     .header{
+        height: 145px;
+        /* height: auto; */
+    }
+    .header-wrapper{
         height: fit-content;
     }
 
@@ -1791,6 +1795,12 @@ body {
 
     .path-bar-wrapper i {
         font-size: 10px;
+    }
+    .cart-show{
+        position: fixed;
+        left: 10px;
+        right: 10px;
+        width: auto;
     }
 }
 
